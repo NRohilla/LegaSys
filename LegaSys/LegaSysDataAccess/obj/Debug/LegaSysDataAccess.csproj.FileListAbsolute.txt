@@ -1,0 +1,13 @@
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll.config
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CoreCompileInputs.cache
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CopyComplete
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.pdb

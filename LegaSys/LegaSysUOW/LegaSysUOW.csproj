@@ -42,8 +42,8 @@
     <Reference Include="LegaSysDataAccess">
       <HintPath>..\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="LegaSysEntities">
-      <HintPath>..\LegaSysEntities\bin\Debug\LegaSysEntities.dll</HintPath>
+    <Reference Include="LegaSysDataEntities">
+      <HintPath>..\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -62,8 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Interface\IUOWUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\UOWUsers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

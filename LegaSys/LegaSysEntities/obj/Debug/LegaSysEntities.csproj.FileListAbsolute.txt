@@ -1,5 +1,0 @@
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysEntities\bin\Debug\LegaSysEntities.dll
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysEntities\bin\Debug\LegaSysEntities.pdb
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysEntities\obj\Debug\LegaSysEntities.csproj.CoreCompileInputs.cache
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysEntities\obj\Debug\LegaSysEntities.dll
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysEntities\obj\Debug\LegaSysEntities.pdb

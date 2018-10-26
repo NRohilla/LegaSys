@@ -130,3 +130,7 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataA
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysEntities.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysUOW.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysUOW.dll.config
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csprojAssemblyReference.cache
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CoreCompileInputs.cache
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.pdb

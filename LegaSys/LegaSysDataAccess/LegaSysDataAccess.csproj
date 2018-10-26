@@ -42,6 +42,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,12 +52,102 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="LegaSysEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegaSysEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSysEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSysEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegaSysEDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Attachments.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_AttachmentTypes.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_ClientDetails.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Master_Locations.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Master_Menu.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Master_Shifts.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Master_TechDomains.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Master_Technology.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Master_UserRoles.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Menu_Roles.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_ProjectResource.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Projects.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_ProjectSubTasks.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_ProjectTasks.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_ProjectTechDetail.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserDetail.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserLoginDetails.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserTechDetail.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="LegaSysEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LegaSysEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LegaSysEDM.edmx.diagram">
+      <DependentUpon>LegaSysEDM.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LegaSysEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LegaSysEDM.edmx</DependentUpon>
+      <LastGenOutput>LegaSysEDM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LegaSysEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LegaSysEDM.edmx</DependentUpon>
+      <LastGenOutput>LegaSysEDM.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

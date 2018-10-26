@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysEntities", "LegaSysEntities\LegaSysEntities.csproj", "{47D87E6A-8815-4A13-BA2F-A4FA1226400E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysDataAccess", "LegaSysDataAccess\LegaSysDataAccess.csproj", "{94275C37-D375-4DF8-ACB2-209F1A89B8F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysUOW", "LegaSysUOW\LegaSysUOW.csproj", "{3B3E1AE0-727D-4B86-B5EE-B32B5FC7E409}"
@@ -15,22 +13,24 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LegaSys", "D:\Other Docs\Tu
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_61871"
-		Debug.AspNetCompiler.PhysicalPath = "LegaSys\"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\angular6\LegaSys\LegaSys\LegaSys\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61871\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_61871"
-		Release.AspNetCompiler.PhysicalPath = "LegaSys\"
+		Release.AspNetCompiler.PhysicalPath = "..\..\angular6\LegaSys\LegaSys\LegaSys\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61871\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "61871"
-		SlnRelativePath = "LegaSys\"
+		SlnRelativePath = "..\..\angular6\LegaSys\LegaSys\LegaSys\"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysDataEntities", "LegaSysDataEntities\LegaSysDataEntities.csproj", "{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{47D87E6A-8815-4A13-BA2F-A4FA1226400E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47D87E6A-8815-4A13-BA2F-A4FA1226400E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47D87E6A-8815-4A13-BA2F-A4FA1226400E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47D87E6A-8815-4A13-BA2F-A4FA1226400E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94275C37-D375-4DF8-ACB2-209F1A89B8F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94275C37-D375-4DF8-ACB2-209F1A89B8F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94275C37-D375-4DF8-ACB2-209F1A89B8F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,6 +54,10 @@ Global
 		{F68924D6-4676-400F-BF63-227404A62DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F68924D6-4676-400F-BF63-227404A62DEC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{F68924D6-4676-400F-BF63-227404A62DEC}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

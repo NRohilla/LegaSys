@@ -1,0 +1,5 @@
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csproj.CoreCompileInputs.cache
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.pdb

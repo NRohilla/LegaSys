@@ -6,7 +6,7 @@
             <form role="form">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
+                        <input type="text" class="form-control" name="Username" [(ngModel)]="model.Username" #Username="ngModel" required />
                     </div>
 
                     <div class="form-group">

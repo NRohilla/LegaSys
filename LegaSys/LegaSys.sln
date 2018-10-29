@@ -9,28 +9,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysUOW", "LegaSysUOW\Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysServices", "LegaSysServices\LegaSysServices.csproj", "{0F23810C-0EDC-4A79-B806-39AE1A066C94}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LegaSys", "D:\Other Docs\Tutorials\angular6\LegaSys\LegaSys\LegaSys\", "{F68924D6-4676-400F-BF63-227404A62DEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysDataEntities", "LegaSysDataEntities\LegaSysDataEntities.csproj", "{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LegaSys(1)", "LegaSys\", "{75548D13-3FCB-4CB7-BB19-B34F2AD67E4B}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_61871"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\angular6\LegaSys\LegaSys\LegaSys\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61871\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50464"
+		Debug.AspNetCompiler.PhysicalPath = "LegaSys\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50464\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_61871"
-		Release.AspNetCompiler.PhysicalPath = "..\..\angular6\LegaSys\LegaSys\LegaSys\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61871\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50464"
+		Release.AspNetCompiler.PhysicalPath = "LegaSys\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50464\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "61871"
-		SlnRelativePath = "..\..\angular6\LegaSys\LegaSys\LegaSys\"
+		VWDPort = "50464"
+		SlnRelativePath = "LegaSys\"
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegaSysDataEntities", "LegaSysDataEntities\LegaSysDataEntities.csproj", "{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,19 +50,19 @@ Global
 		{0F23810C-0EDC-4A79-B806-39AE1A066C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F23810C-0EDC-4A79-B806-39AE1A066C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F23810C-0EDC-4A79-B806-39AE1A066C94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F68924D6-4676-400F-BF63-227404A62DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F68924D6-4676-400F-BF63-227404A62DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F68924D6-4676-400F-BF63-227404A62DEC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{F68924D6-4676-400F-BF63-227404A62DEC}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3834BBA8-DF83-4FFE-ABEF-0C27E11C56C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75548D13-3FCB-4CB7-BB19-B34F2AD67E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75548D13-3FCB-4CB7-BB19-B34F2AD67E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75548D13-3FCB-4CB7-BB19-B34F2AD67E4B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{75548D13-3FCB-4CB7-BB19-B34F2AD67E4B}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {08B3E26B-2B6F-4F47-B434-F2EADAB1ACC3}
+		SolutionGuid = {A27CE473-BAAC-4A31-8B6D-DC5013AB00C6}
 	EndGlobalSection
 EndGlobal

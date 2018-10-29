@@ -17,9 +17,8 @@ namespace LegaSysDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LegaSys_Master_TechDomains()
         {
-            this.LegaSys_Master_Technology = new HashSet<LegaSys_Master_Technology>();
+            this.LegaSys_Master_Technologies = new HashSet<LegaSys_Master_Technologies>();
             this.LegaSys_Projects = new HashSet<LegaSys_Projects>();
-            this.LegaSys_UserTechDetail = new HashSet<LegaSys_UserTechDetail>();
         }
     
         public int TechDomainID { get; set; }
@@ -28,10 +27,8 @@ namespace LegaSysDataAccess
         public Nullable<System.DateTime> Updated_Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_Master_Technology> LegaSys_Master_Technology { get; set; }
+        public virtual ICollection<LegaSys_Master_Technologies> LegaSys_Master_Technologies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_Projects> LegaSys_Projects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserTechDetail> LegaSys_UserTechDetail { get; set; }
     }
 }

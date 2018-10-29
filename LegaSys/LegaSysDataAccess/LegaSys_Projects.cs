@@ -17,9 +17,10 @@ namespace LegaSysDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LegaSys_Projects()
         {
-            this.LegaSys_ProjectResource = new HashSet<LegaSys_ProjectResource>();
+            this.LegaSys_Client_Projects = new HashSet<LegaSys_Client_Projects>();
+            this.LegaSys_ProjectResources = new HashSet<LegaSys_ProjectResources>();
             this.LegaSys_ProjectTasks = new HashSet<LegaSys_ProjectTasks>();
-            this.LegaSys_ProjectTechDetail = new HashSet<LegaSys_ProjectTechDetail>();
+            this.LegaSys_ProjectTechnology = new HashSet<LegaSys_ProjectTechnology>();
         }
     
         public int ProjectID { get; set; }
@@ -32,15 +33,17 @@ namespace LegaSysDataAccess
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LegaSys_Client_Projects> LegaSys_Client_Projects { get; set; }
         public virtual LegaSys_ClientDetails LegaSys_ClientDetails { get; set; }
         public virtual LegaSys_Master_TechDomains LegaSys_Master_TechDomains { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectResource> LegaSys_ProjectResource { get; set; }
-        public virtual LegaSys_UserDetail LegaSys_UserDetail { get; set; }
+        public virtual ICollection<LegaSys_ProjectResources> LegaSys_ProjectResources { get; set; }
+        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_ProjectTasks> LegaSys_ProjectTasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectTechDetail> LegaSys_ProjectTechDetail { get; set; }
-        public virtual LegaSys_UserDetail LegaSys_UserDetail1 { get; set; }
+        public virtual ICollection<LegaSys_ProjectTechnology> LegaSys_ProjectTechnology { get; set; }
+        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
     }
 }

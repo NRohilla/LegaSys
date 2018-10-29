@@ -17,7 +17,7 @@ namespace LegaSysDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LegaSys_Master_Shifts()
         {
-            this.LegaSys_UserDetail = new HashSet<LegaSys_UserDetail>();
+            this.LegaSys_UserDetails = new HashSet<LegaSys_UserDetails>();
         }
     
         public int ShiftID { get; set; }
@@ -30,6 +30,6 @@ namespace LegaSysDataAccess
         public Nullable<System.DateTime> Updated_Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserDetail> LegaSys_UserDetail { get; set; }
+        public virtual ICollection<LegaSys_UserDetails> LegaSys_UserDetails { get; set; }
     }
 }

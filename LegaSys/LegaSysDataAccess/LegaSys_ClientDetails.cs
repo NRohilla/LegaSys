@@ -17,6 +17,7 @@ namespace LegaSysDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LegaSys_ClientDetails()
         {
+            this.LegaSys_Client_Projects = new HashSet<LegaSys_Client_Projects>();
             this.LegaSys_Projects = new HashSet<LegaSys_Projects>();
         }
     
@@ -37,9 +38,11 @@ namespace LegaSysDataAccess
         public string CoClient4 { get; set; }
         public string EmailID4 { get; set; }
     
-        public virtual LegaSys_UserDetail LegaSys_UserDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LegaSys_Client_Projects> LegaSys_Client_Projects { get; set; }
+        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_Projects> LegaSys_Projects { get; set; }
-        public virtual LegaSys_UserDetail LegaSys_UserDetail1 { get; set; }
+        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
     }
 }

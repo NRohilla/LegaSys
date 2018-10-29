@@ -27,7 +27,6 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.SqlServer.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.SqlServerCompact.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataAccess.dll
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysEntities.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\Newtonsoft.Json.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\System.Data.SqlServerCe.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.xml
@@ -35,10 +34,11 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.Sql
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.SqlServerCompact.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataAccess.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataAccess.dll.config
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysEntities.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\Newtonsoft.Json.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csprojAssemblyReference.cache
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CoreCompileInputs.cache
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CopyComplete
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataEntities.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataEntities.pdb

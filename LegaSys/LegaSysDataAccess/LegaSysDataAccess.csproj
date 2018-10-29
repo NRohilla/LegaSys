@@ -76,10 +76,16 @@
     <Compile Include="LegaSys_ClientDetails.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="LegaSys_Client_Projects.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="LegaSys_Master_Locations.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegaSys_Master_Menu.cs">
+    <Compile Include="LegaSys_Master_MenuItems.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_Master_Roles.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="LegaSys_Master_Shifts.cs">
@@ -88,16 +94,10 @@
     <Compile Include="LegaSys_Master_TechDomains.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegaSys_Master_Technology.cs">
+    <Compile Include="LegaSys_Master_Technologies.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegaSys_Master_UserRoles.cs">
-      <DependentUpon>LegaSysEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LegaSys_Menu_Roles.cs">
-      <DependentUpon>LegaSysEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LegaSys_ProjectResource.cs">
+    <Compile Include="LegaSys_ProjectResources.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="LegaSys_Projects.cs">
@@ -109,16 +109,19 @@
     <Compile Include="LegaSys_ProjectTasks.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegaSys_ProjectTechDetail.cs">
+    <Compile Include="LegaSys_ProjectTechnology.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegaSys_UserDetail.cs">
+    <Compile Include="LegaSys_RoleMenus.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegaSys_UserLoginDetails.cs">
+    <Compile Include="LegaSys_UserDetails.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegaSys_UserTechDetail.cs">
+    <Compile Include="LegaSys_UserLogin.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserTechnology.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,9 +9,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { HttpModule } from '@angular/http';
-import { LocalStorageModule, ILocalStorageServiceConfig } from 'angular-2-local-storage';
-import { FormsModule } from '@angular/forms';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -37,13 +34,7 @@ export const createTranslateLoader = (http: HttpClient) => {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule,
-        HttpModule,
-        LocalStorageModule.withConfig({
-            prefix: 'LegaSys',
-            storageType: 'localStorage'
-        }),
-        FormsModule      
+        AppRoutingModule
     ],
     declarations: [AppComponent],
     providers: [AuthGuard],

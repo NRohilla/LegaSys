@@ -130,10 +130,335 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataA
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysEntities.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysUOW.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSys\LegaSysServices\bin\LegaSysUOW.dll.config
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csprojAssemblyReference.cache
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CoreCompileInputs.cache
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csprojResolveAssemblyReference.cache
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\ApplicationInsights.config
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysServices.dll.config
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysServices.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysServices.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csc.exe
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csc.exe.config
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csc.rsp
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csi.exe
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csi.exe.config
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csi.rsp
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.AppContext.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Console.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.Compression.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.Pipes.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Claims.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Threading.Thread.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.ValueTuple.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.XPath.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\vbc.exe
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\vbc.exe.config
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\vbc.rsp
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\VBCSCompiler.exe
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlcese40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceqp40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceme40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceer40EN.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlcecompact40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceca40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\Microsoft.VC90.CRT\README_ENU.txt
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\Microsoft.VC90.CRT\msvcr90.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlcese40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceqp40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceme40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceer40EN.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlcecompact40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceca40.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\Microsoft.VC90.CRT\README_ENU.txt
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\Microsoft.VC90.CRT\msvcr90.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Antlr3.Runtime.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServer.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServerCompact.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataAccess.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataEntities.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysUOW.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.Web.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.ApplicationInsights.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Cors.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Newtonsoft.Json.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Owin.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Data.SqlServerCe.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Net.Http.Formatting.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Cors.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Helpers.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.Owin.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.WebHost.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Mvc.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Optimization.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Razor.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Deployment.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Razor.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Thinktecture.IdentityModel.Core.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\WebGrease.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataEntities.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServer.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServerCompact.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataAccess.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysUOW.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Cors.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Newtonsoft.Json.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Net.Http.Formatting.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.Owin.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Helpers.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.WebHost.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Mvc.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Optimization.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Razor.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Deployment.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Razor.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Thinktecture.IdentityModel.Core.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Antlr3.Runtime.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.Web.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.pdb
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.Jwt.dll
+C:\Users\NEW SYSTEM\Downloads\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.Jwt.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\ApplicationInsights.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysServices.dll.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysServices.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysServices.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csc.exe
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csc.exe.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csc.rsp
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csi.exe
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csi.exe.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\csi.rsp
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.AppContext.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Console.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.Compression.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.IO.Pipes.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Claims.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Threading.Thread.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.ValueTuple.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.XPath.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\vbc.exe
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\vbc.exe.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\vbc.rsp
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\VBCSCompiler.exe
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlcese40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceqp40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceme40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceer40EN.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlcecompact40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\sqlceca40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\Microsoft.VC90.CRT\README_ENU.txt
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\Microsoft.VC90.CRT\msvcr90.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlcese40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceqp40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceme40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceer40EN.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlcecompact40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\sqlceca40.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\Microsoft.VC90.CRT\README_ENU.txt
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\Microsoft.VC90.CRT\msvcr90.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Antlr3.Runtime.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServer.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServerCompact.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataAccess.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataEntities.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysUOW.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.Web.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.ApplicationInsights.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Cors.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.Jwt.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Newtonsoft.Json.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Owin.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Data.SqlServerCe.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Net.Http.Formatting.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Cors.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Helpers.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.Owin.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.WebHost.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Mvc.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Optimization.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Razor.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Deployment.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Razor.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Thinktecture.IdentityModel.Core.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\WebGrease.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataEntities.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServer.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\EntityFramework.SqlServerCompact.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataAccess.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysDataAccess.dll.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysUOW.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\LegaSysUOW.dll.config
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Cors.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.Jwt.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Newtonsoft.Json.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Net.Http.Formatting.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.Owin.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Helpers.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Http.WebHost.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Mvc.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Optimization.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.Razor.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Deployment.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Web.WebPages.Razor.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Thinktecture.IdentityModel.Core.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Antlr3.Runtime.pdb
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.AI.Web.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csprojAssemblyReference.cache
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CoreCompileInputs.cache
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CopyComplete
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.dll
+C:\Users\nitinrohilla\Downloads\Microsoft.SkypeApp_kzf8qxf38zg5c!App\All\LegaSys-master\LegaSys-master\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\ApplicationInsights.config
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysServices.dll.config
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysServices.dll
@@ -209,6 +534,7 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\EntityFramework.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\EntityFramework.SqlServer.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\EntityFramework.SqlServerCompact.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataAccess.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataEntities.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysUOW.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AI.Agent.Intercept.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AI.DependencyCollector.dll
@@ -217,17 +543,30 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AI.ServerT
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AI.Web.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AI.WindowsServer.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.ApplicationInsights.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AspNet.TelemetryCorrelation.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Cors.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.Jwt.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.OAuth.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Web.Infrastructure.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Newtonsoft.Json.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Owin.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Data.SqlServerCe.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Diagnostics.DiagnosticSource.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.IdentityModel.Tokens.Jwt.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Net.Http.Formatting.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Cors.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Helpers.dll
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.Cors.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.Owin.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.WebHost.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Mvc.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Optimization.dll
@@ -235,19 +574,35 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Razor.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.WebPages.Deployment.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.WebPages.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.WebPages.Razor.dll
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Thinktecture.IdentityModel.Core.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\WebGrease.dll
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\EntityFramework.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\EntityFramework.SqlServer.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\EntityFramework.SqlServerCompact.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataAccess.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataAccess.dll.config
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysEntities.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataEntities.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysUOW.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysUOW.dll.config
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Logging.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Cors.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.Jwt.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Newtonsoft.Json.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.IdentityModel.Tokens.Jwt.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Net.Http.Formatting.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.xml
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.Cors.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.Owin.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Helpers.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Http.WebHost.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Mvc.xml
@@ -256,6 +611,7 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.Razor.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.WebPages.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.WebPages.Deployment.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Web.WebPages.Razor.xml
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Thinktecture.IdentityModel.Core.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Antlr3.Runtime.pdb
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\System.Diagnostics.DiagnosticSource.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AspNet.TelemetryCorrelation.xml
@@ -264,5 +620,4 @@ D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AI.Windows
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.AI.Web.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CopyComplete
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataEntities.dll
-D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\bin\LegaSysDataEntities.pdb
+D:\Other Docs\Tutorials\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csprojAssemblyReference.cache

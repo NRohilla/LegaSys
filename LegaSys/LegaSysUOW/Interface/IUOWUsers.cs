@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LegaSysDataEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace LegaSysUOW.Interface
 {
     public interface IUOWUsers
     {
-        List<object> AuthenticateAndFetchUserDetail(string Username, string Password);
+        UserLoginDetails AuthenticateAndFetchUserDetail(string Username, string Password);
     }
 }
     

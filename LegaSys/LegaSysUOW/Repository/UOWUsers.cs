@@ -2,15 +2,16 @@
 using System.Linq;
 using LegaSysUOW.Interface;
 using LegaSysDataAccess;
+using LegaSysDataEntities;
 
 namespace LegaSysUOW.Repository
 {
     public class UOWUsers : IUOWUsers
     {
-        public List<object> AuthenticateAndFetchUserDetail(string Username, string Password)
+        public UserLoginDetails AuthenticateAndFetchUserDetail(string Username, string Password)
         {
             //declare the object to return
-            List<object> ObjUserInfo = null;
+            UserLoginDetails ObjUserInfo = null;
 
             using (LegaSysEntities db = new LegaSysEntities())
             {
@@ -19,11 +20,13 @@ namespace LegaSysUOW.Repository
                 if (GetUserDetails != null)
                 {
                     //initialize the object
-                    ObjUserInfo = new List<object>();
-                    ObjUserInfo.Add(new LegaSysDataEntities.UserLoginDetails()
+                    //ObjUserInfo = new List<UserLoginDetails>();
+                    ObjUserInfo = new LegaSysDataEntities.UserLoginDetails()
                     {
                         UserLoginDetailID = GetUserDetails.UserLoginDetailID,
-                    });
+                        Username = GetUserDetails.Username,
+
+                    };
                 }
             }
             return ObjUserInfo;

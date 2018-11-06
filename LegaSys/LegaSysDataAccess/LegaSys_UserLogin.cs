@@ -25,9 +25,5 @@ namespace LegaSysDataAccess
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
-    
-        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails2 { get; set; }
     }
 }

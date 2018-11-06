@@ -5,9 +5,11 @@ import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import {
-    TimelineComponent,
+    ProjectsComponent,
     NotificationComponent,
-    ChatComponent
+    ClientsComponent,
+    TasksComponent,
+    ResourcesComponent
 } from './components';
 import { StatModule } from '../../shared';
 
@@ -21,9 +23,11 @@ import { StatModule } from '../../shared';
     ],
     declarations: [
         DashboardComponent,
-        TimelineComponent,
+        ProjectsComponent,
         NotificationComponent,
-        ChatComponent
+        ClientsComponent,
+        TasksComponent,
+        ResourcesComponent
     ]
 })
 export class DashboardModule {}

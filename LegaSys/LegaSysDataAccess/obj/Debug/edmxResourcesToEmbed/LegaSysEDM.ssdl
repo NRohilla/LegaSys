@@ -55,6 +55,95 @@
     <Property Name="CoClient3" Type="varchar" MaxLength="50" />
     <Property Name="CoClient4" Type="varchar" MaxLength="50" />
     <Property Name="EmailID4" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LegaSys_ClientStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientStatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LegaSys_LeavesApplication">
+    <Key>
+      <PropertyRef Name="LeaveID" />
+    </Key>
+    <Property Name="LeaveID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserDetail_ID" Type="int" />
+    <Property Name="Master_LeaveTypeID" Type="int" />
+    <Property Name="Summary" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="AppliedOn" Type="datetime" />
+    <Property Name="LeaveFromDate" Type="date" />
+    <Property Name="LeaveToDate" Type="date" />
+    <Property Name="DaysCount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ActionBy" Type="int" />
+    <Property Name="ActionOn" Type="datetime" />
+    <Property Name="Master_LeaveStatusID" Type="int" />
+  </EntityType>
+  <EntityType Name="LegaSys_Log_Clients">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FieldDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="OldValue" Type="varchar(max)" />
+    <Property Name="NewValue" Type="varchar(max)" />
+    <Property Name="EntryDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UserResponsible" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LegaSys_Log_Projects">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="int" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FieldDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="OldValue" Type="varchar(max)" />
+    <Property Name="NewValue" Type="varchar(max)" />
+    <Property Name="EntryDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UserResponsible" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LegaSys_Log_Resources">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="int" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FieldDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="OldValue" Type="varchar(max)" />
+    <Property Name="NewValue" Type="varchar(max)" />
+    <Property Name="EntryDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UserResponsible" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LegaSys_Master_LeaveStatus">
+    <Key>
+      <PropertyRef Name="LeaveStatusID" />
+    </Key>
+    <Property Name="LeaveStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
+    <Property Name="Created_Date" Type="datetime" />
+    <Property Name="Updated_Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LegaSys_Master_LeaveTypes">
+    <Key>
+      <PropertyRef Name="LeaveTypeID" />
+    </Key>
+    <Property Name="LeaveTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
+    <Property Name="Created_Date" Type="datetime" />
+    <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
   <EntityType Name="LegaSys_Master_Locations">
     <Key>
@@ -62,6 +151,9 @@
     </Key>
     <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LocationAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
@@ -71,6 +163,9 @@
     </Key>
     <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MenuName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
@@ -81,6 +176,9 @@
     <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Role" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
@@ -94,6 +192,9 @@
     <Property Name="WeekOff3" Type="varchar" MaxLength="20" />
     <Property Name="StartTimeIST" Type="varchar" MaxLength="10" />
     <Property Name="EndTimeIST" Type="varchar" MaxLength="10" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
@@ -103,6 +204,9 @@
     </Key>
     <Property Name="TechDomainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DomainName" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
@@ -112,8 +216,10 @@
     </Key>
     <Property Name="TechnologyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" />
-    <Property Name="Master_DomainID" Type="int" />
-    <Property Name="IsActive" Type="bit" />
+    <Property Name="Master_DomainID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
@@ -138,6 +244,7 @@
     <Property Name="Description" Type="varchar" MaxLength="500" />
     <Property Name="Client_ID" Type="int" />
     <Property Name="ProjectDomain_ID" Type="int" />
+    <Property Name="Status" Type="smallint" />
     <Property Name="Created_By" Type="int" />
     <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
@@ -183,17 +290,16 @@
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
   </EntityType>
-  <EntityType Name="LegaSys_RoleMenus">
+  <EntityType Name="LegaSys_UserActivityLog">
     <Key>
-      <PropertyRef Name="MenuRoleID" />
+      <PropertyRef Name="LogID" />
     </Key>
-    <Property Name="MenuRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Master_Role_ID" Type="int" Nullable="false" />
-    <Property Name="Master_Menu_ID" Type="int" Nullable="false" />
-    <Property Name="Created_By" Type="int" />
-    <Property Name="Updated_By" Type="int" />
-    <Property Name="Created_Date" Type="datetime" />
-    <Property Name="Updated_Date" Type="datetime" />
+    <Property Name="LogID" Type="int" Nullable="false" />
+    <Property Name="Userdetail_ID" Type="int" />
+    <Property Name="LoginDateTime" Type="datetime" />
+    <Property Name="LogoutDateTime" Type="datetime" />
+    <Property Name="SessionDuration" Type="varchar" MaxLength="50" />
+    <Property Name="IP_Address" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="LegaSys_UserDetails">
     <Key>
@@ -204,17 +310,18 @@
     <Property Name="Middlename" Type="nvarchar" MaxLength="100" />
     <Property Name="Lastname" Type="nvarchar" MaxLength="100" />
     <Property Name="TotalExp" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="EmailId" Type="nvarchar" MaxLength="100" />
-    <Property Name="IsActive" Type="bit" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MobileNumber" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
-    <Property Name="Master_Shift_ID" Type="int" />
-    <Property Name="Master_Location_ID" Type="int" />
+    <Property Name="Master_Shift_ID" Type="int" Nullable="false" />
+    <Property Name="Master_Location_ID" Type="int" Nullable="false" />
     <Property Name="ReportingHead_ID" Type="int" />
     <Property Name="Created_By" Type="int" />
     <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
-    <Property Name="Master_Role_ID" Type="int" />
+    <Property Name="Master_Role_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="LegaSys_UserLogin">
     <Key>
@@ -234,16 +341,34 @@
   </EntityType>
   <EntityType Name="LegaSys_UserTechnology">
     <Key>
-      <PropertyRef Name="UserTechDetailID" />
+      <PropertyRef Name="Master_Technology_ID" />
+      <PropertyRef Name="UserDetail_ID" />
     </Key>
     <Property Name="UserTechDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Master_Technology_ID" Type="int" />
+    <Property Name="Master_Technology_ID" Type="int" Nullable="false" />
     <Property Name="IsActive" Type="bit" />
-    <Property Name="UserDetail_ID" Type="int" />
+    <Property Name="UserDetail_ID" Type="int" Nullable="false" />
     <Property Name="Created_By" Type="int" />
     <Property Name="Updated_By" Type="int" />
     <Property Name="Created_Date" Type="datetime" />
     <Property Name="Updated_Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LegaSys_WhiteList_IP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IP_Address" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK__LegaSys_A__Attac__778AC167">
     <End Role="LegaSys_AttachmentTypes" Type="Self.LegaSys_AttachmentTypes" Multiplicity="0..1" />
@@ -269,18 +394,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LegaSys_C__Creat__7D439ABD">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_Client_Projects" Type="Self.LegaSys_Client_Projects" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_Client_Projects">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__LegaSys_C__Proje__7B5B524B">
     <End Role="LegaSys_Projects" Type="Self.LegaSys_Projects" Multiplicity="0..1" />
     <End Role="LegaSys_Client_Projects" Type="Self.LegaSys_Client_Projects" Multiplicity="*" />
@@ -293,20 +406,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LegaSys_C__Updat__7E37BEF6">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_Client_Projects" Type="Self.LegaSys_Client_Projects" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_Client_Projects">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__LegaSys_M__LegaS__3D5E1FD2">
-    <End Role="LegaSys_Master_TechDomains" Type="Self.LegaSys_Master_TechDomains" Multiplicity="0..1" />
+    <End Role="LegaSys_Master_TechDomains" Type="Self.LegaSys_Master_TechDomains" Multiplicity="1" />
     <End Role="LegaSys_Master_Technologies" Type="Self.LegaSys_Master_Technologies" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LegaSys_Master_TechDomains">
@@ -314,150 +415,6 @@
       </Principal>
       <Dependent Role="LegaSys_Master_Technologies">
         <PropertyRef Name="Master_DomainID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__3E52440B">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_Attachments" Type="Self.LegaSys_Attachments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_Attachments">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__403A8C7D">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ClientDetails" Type="Self.LegaSys_ClientDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ClientDetails">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__4316F928">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_RoleMenus" Type="Self.LegaSys_RoleMenus" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_RoleMenus">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__47DBAE45">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_Projects" Type="Self.LegaSys_Projects" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_Projects">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__4BAC3F29">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectResources" Type="Self.LegaSys_ProjectResources" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectResources">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__4F7CD00D">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectSubTasks" Type="Self.LegaSys_ProjectSubTasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectSubTasks">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__534D60F1">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectTasks" Type="Self.LegaSys_ProjectTasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectTasks">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__571DF1D5">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectTechnology" Type="Self.LegaSys_ProjectTechnology" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectTechnology">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__5DCAEF64">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserDetails1" Type="Self.LegaSys_UserDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserDetails1">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Creat__693CA210">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserTechnology" Type="Self.LegaSys_UserTechnology" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserTechnology">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__LegaS__44FF419A">
-    <End Role="LegaSys_Master_MenuItems" Type="Self.LegaSys_Master_MenuItems" Multiplicity="1" />
-    <End Role="LegaSys_RoleMenus" Type="Self.LegaSys_RoleMenus" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_Master_MenuItems">
-        <PropertyRef Name="MenuID" />
-      </Principal>
-      <Dependent Role="LegaSys_RoleMenus">
-        <PropertyRef Name="Master_Menu_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__LegaS__45F365D3">
-    <End Role="LegaSys_Master_Roles" Type="Self.LegaSys_Master_Roles" Multiplicity="1" />
-    <End Role="LegaSys_RoleMenus" Type="Self.LegaSys_RoleMenus" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_Master_Roles">
-        <PropertyRef Name="UserRoleID" />
-      </Principal>
-      <Dependent Role="LegaSys_RoleMenus">
-        <PropertyRef Name="Master_Role_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -474,7 +431,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__LegaSys_O__LegaS__6383C8BA">
-    <End Role="LegaSys_Master_Roles" Type="Self.LegaSys_Master_Roles" Multiplicity="0..1" />
+    <End Role="LegaSys_Master_Roles" Type="Self.LegaSys_Master_Roles" Multiplicity="1" />
     <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LegaSys_Master_Roles">
@@ -486,7 +443,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__LegaSys_O__LegaS__6B24EA82">
-    <End Role="LegaSys_Master_Technologies" Type="Self.LegaSys_Master_Technologies" Multiplicity="0..1" />
+    <End Role="LegaSys_Master_Technologies" Type="Self.LegaSys_Master_Technologies" Multiplicity="1" />
     <End Role="LegaSys_UserTechnology" Type="Self.LegaSys_UserTechnology" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LegaSys_Master_Technologies">
@@ -593,20 +550,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LegaSys_O__ORG_R__5FB337D6">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserDetails1" Type="Self.LegaSys_UserDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserDetails1">
-        <PropertyRef Name="ReportingHead_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__LegaSys_O__ORG_U__619B8048">
-    <End Role="LegaSys_Master_Locations" Type="Self.LegaSys_Master_Locations" Multiplicity="0..1" />
+    <End Role="LegaSys_Master_Locations" Type="Self.LegaSys_Master_Locations" Multiplicity="1" />
     <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LegaSys_Master_Locations">
@@ -618,7 +563,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__LegaSys_O__ORG_U__628FA481">
-    <End Role="LegaSys_Master_Shifts" Type="Self.LegaSys_Master_Shifts" Multiplicity="0..1" />
+    <End Role="LegaSys_Master_Shifts" Type="Self.LegaSys_Master_Shifts" Multiplicity="1" />
     <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LegaSys_Master_Shifts">
@@ -629,191 +574,145 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LegaSys_O__ORG_U__6A30C649">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserTechnology" Type="Self.LegaSys_UserTechnology" Multiplicity="*" />
+  <Association Name="FK__Log_Projects_UserResponsible">
+    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="1" />
+    <End Role="LegaSys_Log_Projects" Type="Self.LegaSys_Log_Projects" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LegaSys_UserDetails">
         <PropertyRef Name="UserDetailID" />
       </Principal>
-      <Dependent Role="LegaSys_UserTechnology">
+      <Dependent Role="LegaSys_Log_Projects">
+        <PropertyRef Name="UserResponsible" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Log_Resources_UserResponsible">
+    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="1" />
+    <End Role="LegaSys_Log_Resources" Type="Self.LegaSys_Log_Resources" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LegaSys_UserDetails">
+        <PropertyRef Name="UserDetailID" />
+      </Principal>
+      <Dependent Role="LegaSys_Log_Resources">
+        <PropertyRef Name="UserResponsible" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeavesApplication_CreatedBy">
+    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
+    <End Role="LegaSys_LeavesApplication" Type="Self.LegaSys_LeavesApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LegaSys_UserDetails">
+        <PropertyRef Name="UserDetailID" />
+      </Principal>
+      <Dependent Role="LegaSys_LeavesApplication">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeavesApplied_ActionBy">
+    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
+    <End Role="LegaSys_LeavesApplication" Type="Self.LegaSys_LeavesApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LegaSys_UserDetails">
+        <PropertyRef Name="UserDetailID" />
+      </Principal>
+      <Dependent Role="LegaSys_LeavesApplication">
+        <PropertyRef Name="ActionBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeavesApplied_UserDetail_ID">
+    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
+    <End Role="LegaSys_LeavesApplication" Type="Self.LegaSys_LeavesApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LegaSys_UserDetails">
+        <PropertyRef Name="UserDetailID" />
+      </Principal>
+      <Dependent Role="LegaSys_LeavesApplication">
         <PropertyRef Name="UserDetail_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LegaSys_O__Updat__3F466844">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_Attachments" Type="Self.LegaSys_Attachments" Multiplicity="*" />
+  <Association Name="FK_LeaveTypeID">
+    <End Role="LegaSys_Master_LeaveTypes" Type="Self.LegaSys_Master_LeaveTypes" Multiplicity="0..1" />
+    <End Role="LegaSys_LeavesApplication" Type="Self.LegaSys_LeavesApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LegaSys_Master_LeaveTypes">
+        <PropertyRef Name="LeaveTypeID" />
+      </Principal>
+      <Dependent Role="LegaSys_LeavesApplication">
+        <PropertyRef Name="Master_LeaveTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Log_Clients_UserResponsible">
+    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="1" />
+    <End Role="LegaSys_Log_Clients" Type="Self.LegaSys_Log_Clients" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LegaSys_UserDetails">
         <PropertyRef Name="UserDetailID" />
       </Principal>
-      <Dependent Role="LegaSys_Attachments">
-        <PropertyRef Name="Updated_By" />
+      <Dependent Role="LegaSys_Log_Clients">
+        <PropertyRef Name="UserResponsible" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LegaSys_O__Updat__412EB0B6">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ClientDetails" Type="Self.LegaSys_ClientDetails" Multiplicity="*" />
+  <Association Name="FK_StatusID">
+    <End Role="LegaSys_Master_LeaveStatus" Type="Self.LegaSys_Master_LeaveStatus" Multiplicity="0..1" />
+    <End Role="LegaSys_LeavesApplication" Type="Self.LegaSys_LeavesApplication" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
+      <Principal Role="LegaSys_Master_LeaveStatus">
+        <PropertyRef Name="LeaveStatusID" />
       </Principal>
-      <Dependent Role="LegaSys_ClientDetails">
-        <PropertyRef Name="Updated_By" />
+      <Dependent Role="LegaSys_LeavesApplication">
+        <PropertyRef Name="Master_LeaveStatusID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LegaSys_O__Updat__46E78A0C">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_RoleMenus" Type="Self.LegaSys_RoleMenus" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_RoleMenus">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Updat__4AB81AF0">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_Projects" Type="Self.LegaSys_Projects" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_Projects">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Updat__4E88ABD4">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectResources" Type="Self.LegaSys_ProjectResources" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectResources">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Updat__52593CB8">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectSubTasks" Type="Self.LegaSys_ProjectSubTasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectSubTasks">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Updat__5629CD9C">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectTasks" Type="Self.LegaSys_ProjectTasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectTasks">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Updat__59FA5E80">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectTechnology" Type="Self.LegaSys_ProjectTechnology" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectTechnology">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Updat__6477ECF3">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserDetails1" Type="Self.LegaSys_UserDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserDetails1">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_O__Updat__6C190EBB">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserTechnology" Type="Self.LegaSys_UserTechnology" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserTechnology">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_ORG_P__ORG_R__4316F928">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_ProjectResources" Type="Self.LegaSys_ProjectResources" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_ProjectResources">
-        <PropertyRef Name="Resource_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_U__Creat__6D0D32F4">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserLogin" Type="Self.LegaSys_UserLogin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserLogin">
-        <PropertyRef Name="Created_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_U__ORG_U__6E01572D">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserLogin" Type="Self.LegaSys_UserLogin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserLogin">
-        <PropertyRef Name="UserDetailID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__LegaSys_U__Updat__6EF57B66">
-    <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="0..1" />
-    <End Role="LegaSys_UserLogin" Type="Self.LegaSys_UserLogin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegaSys_UserDetails">
-        <PropertyRef Name="UserDetailID" />
-      </Principal>
-      <Dependent Role="LegaSys_UserLogin">
-        <PropertyRef Name="Updated_By" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="LegaSysModelStoreContainer">
     <EntitySet Name="LegaSys_Attachments" EntityType="Self.LegaSys_Attachments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_AttachmentTypes" EntityType="Self.LegaSys_AttachmentTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_Client_Projects" EntityType="Self.LegaSys_Client_Projects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_ClientDetails" EntityType="Self.LegaSys_ClientDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_ClientStatus" EntityType="Self.LegaSys_ClientStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_LeavesApplication" EntityType="Self.LegaSys_LeavesApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_Log_Clients" EntityType="Self.LegaSys_Log_Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_Log_Projects" EntityType="Self.LegaSys_Log_Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_Log_Resources" EntityType="Self.LegaSys_Log_Resources" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_Master_LeaveStatus" EntityType="Self.LegaSys_Master_LeaveStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_Master_LeaveTypes" EntityType="Self.LegaSys_Master_LeaveTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_Master_Locations" EntityType="Self.LegaSys_Master_Locations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_Master_MenuItems" EntityType="Self.LegaSys_Master_MenuItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_Master_Roles" EntityType="Self.LegaSys_Master_Roles" Schema="dbo" store:Type="Tables" />
@@ -825,10 +724,12 @@
     <EntitySet Name="LegaSys_ProjectSubTasks" EntityType="Self.LegaSys_ProjectSubTasks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_ProjectTasks" EntityType="Self.LegaSys_ProjectTasks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_ProjectTechnology" EntityType="Self.LegaSys_ProjectTechnology" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LegaSys_RoleMenus" EntityType="Self.LegaSys_RoleMenus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_UserActivityLog" EntityType="Self.LegaSys_UserActivityLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_UserDetails" EntityType="Self.LegaSys_UserDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_UserLogin" EntityType="Self.LegaSys_UserLogin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_UserTechnology" EntityType="Self.LegaSys_UserTechnology" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_WhiteList_IP" EntityType="Self.LegaSys_WhiteList_IP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__LegaSys_A__Attac__778AC167" Association="Self.FK__LegaSys_A__Attac__778AC167">
       <End Role="LegaSys_AttachmentTypes" EntitySet="LegaSys_AttachmentTypes" />
       <End Role="LegaSys_Attachments" EntitySet="LegaSys_Attachments" />
@@ -837,69 +738,13 @@
       <End Role="LegaSys_ClientDetails" EntitySet="LegaSys_ClientDetails" />
       <End Role="LegaSys_Client_Projects" EntitySet="LegaSys_Client_Projects" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_C__Creat__7D439ABD" Association="Self.FK__LegaSys_C__Creat__7D439ABD">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_Client_Projects" EntitySet="LegaSys_Client_Projects" />
-    </AssociationSet>
     <AssociationSet Name="FK__LegaSys_C__Proje__7B5B524B" Association="Self.FK__LegaSys_C__Proje__7B5B524B">
       <End Role="LegaSys_Projects" EntitySet="LegaSys_Projects" />
-      <End Role="LegaSys_Client_Projects" EntitySet="LegaSys_Client_Projects" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_C__Updat__7E37BEF6" Association="Self.FK__LegaSys_C__Updat__7E37BEF6">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
       <End Role="LegaSys_Client_Projects" EntitySet="LegaSys_Client_Projects" />
     </AssociationSet>
     <AssociationSet Name="FK__LegaSys_M__LegaS__3D5E1FD2" Association="Self.FK__LegaSys_M__LegaS__3D5E1FD2">
       <End Role="LegaSys_Master_TechDomains" EntitySet="LegaSys_Master_TechDomains" />
       <End Role="LegaSys_Master_Technologies" EntitySet="LegaSys_Master_Technologies" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__3E52440B" Association="Self.FK__LegaSys_O__Creat__3E52440B">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_Attachments" EntitySet="LegaSys_Attachments" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__403A8C7D" Association="Self.FK__LegaSys_O__Creat__403A8C7D">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ClientDetails" EntitySet="LegaSys_ClientDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__4316F928" Association="Self.FK__LegaSys_O__Creat__4316F928">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_RoleMenus" EntitySet="LegaSys_RoleMenus" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__47DBAE45" Association="Self.FK__LegaSys_O__Creat__47DBAE45">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_Projects" EntitySet="LegaSys_Projects" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__4BAC3F29" Association="Self.FK__LegaSys_O__Creat__4BAC3F29">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectResources" EntitySet="LegaSys_ProjectResources" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__4F7CD00D" Association="Self.FK__LegaSys_O__Creat__4F7CD00D">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectSubTasks" EntitySet="LegaSys_ProjectSubTasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__534D60F1" Association="Self.FK__LegaSys_O__Creat__534D60F1">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectTasks" EntitySet="LegaSys_ProjectTasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__571DF1D5" Association="Self.FK__LegaSys_O__Creat__571DF1D5">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectTechnology" EntitySet="LegaSys_ProjectTechnology" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__5DCAEF64" Association="Self.FK__LegaSys_O__Creat__5DCAEF64">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserDetails1" EntitySet="LegaSys_UserDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Creat__693CA210" Association="Self.FK__LegaSys_O__Creat__693CA210">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserTechnology" EntitySet="LegaSys_UserTechnology" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__LegaS__44FF419A" Association="Self.FK__LegaSys_O__LegaS__44FF419A">
-      <End Role="LegaSys_Master_MenuItems" EntitySet="LegaSys_Master_MenuItems" />
-      <End Role="LegaSys_RoleMenus" EntitySet="LegaSys_RoleMenus" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__LegaS__45F365D3" Association="Self.FK__LegaSys_O__LegaS__45F365D3">
-      <End Role="LegaSys_Master_Roles" EntitySet="LegaSys_Master_Roles" />
-      <End Role="LegaSys_RoleMenus" EntitySet="LegaSys_RoleMenus" />
     </AssociationSet>
     <AssociationSet Name="FK__LegaSys_O__LegaS__59063A47" Association="Self.FK__LegaSys_O__LegaS__59063A47">
       <End Role="LegaSys_Master_Technologies" EntitySet="LegaSys_Master_Technologies" />
@@ -945,10 +790,6 @@
       <End Role="LegaSys_Projects" EntitySet="LegaSys_Projects" />
       <End Role="LegaSys_ProjectTechnology" EntitySet="LegaSys_ProjectTechnology" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__ORG_R__5FB337D6" Association="Self.FK__LegaSys_O__ORG_R__5FB337D6">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserDetails1" EntitySet="LegaSys_UserDetails" />
-    </AssociationSet>
     <AssociationSet Name="FK__LegaSys_O__ORG_U__619B8048" Association="Self.FK__LegaSys_O__ORG_U__619B8048">
       <End Role="LegaSys_Master_Locations" EntitySet="LegaSys_Master_Locations" />
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
@@ -957,65 +798,37 @@
       <End Role="LegaSys_Master_Shifts" EntitySet="LegaSys_Master_Shifts" />
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__ORG_U__6A30C649" Association="Self.FK__LegaSys_O__ORG_U__6A30C649">
+    <AssociationSet Name="FK__Log_Projects_UserResponsible" Association="Self.FK__Log_Projects_UserResponsible">
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserTechnology" EntitySet="LegaSys_UserTechnology" />
+      <End Role="LegaSys_Log_Projects" EntitySet="LegaSys_Log_Projects" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__3F466844" Association="Self.FK__LegaSys_O__Updat__3F466844">
+    <AssociationSet Name="FK__Log_Resources_UserResponsible" Association="Self.FK__Log_Resources_UserResponsible">
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_Attachments" EntitySet="LegaSys_Attachments" />
+      <End Role="LegaSys_Log_Resources" EntitySet="LegaSys_Log_Resources" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__412EB0B6" Association="Self.FK__LegaSys_O__Updat__412EB0B6">
+    <AssociationSet Name="FK_LeavesApplication_CreatedBy" Association="Self.FK_LeavesApplication_CreatedBy">
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ClientDetails" EntitySet="LegaSys_ClientDetails" />
+      <End Role="LegaSys_LeavesApplication" EntitySet="LegaSys_LeavesApplication" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__46E78A0C" Association="Self.FK__LegaSys_O__Updat__46E78A0C">
+    <AssociationSet Name="FK_LeavesApplied_ActionBy" Association="Self.FK_LeavesApplied_ActionBy">
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_RoleMenus" EntitySet="LegaSys_RoleMenus" />
+      <End Role="LegaSys_LeavesApplication" EntitySet="LegaSys_LeavesApplication" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__4AB81AF0" Association="Self.FK__LegaSys_O__Updat__4AB81AF0">
+    <AssociationSet Name="FK_LeavesApplied_UserDetail_ID" Association="Self.FK_LeavesApplied_UserDetail_ID">
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_Projects" EntitySet="LegaSys_Projects" />
+      <End Role="LegaSys_LeavesApplication" EntitySet="LegaSys_LeavesApplication" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__4E88ABD4" Association="Self.FK__LegaSys_O__Updat__4E88ABD4">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectResources" EntitySet="LegaSys_ProjectResources" />
+    <AssociationSet Name="FK_LeaveTypeID" Association="Self.FK_LeaveTypeID">
+      <End Role="LegaSys_Master_LeaveTypes" EntitySet="LegaSys_Master_LeaveTypes" />
+      <End Role="LegaSys_LeavesApplication" EntitySet="LegaSys_LeavesApplication" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__52593CB8" Association="Self.FK__LegaSys_O__Updat__52593CB8">
+    <AssociationSet Name="FK_Log_Clients_UserResponsible" Association="Self.FK_Log_Clients_UserResponsible">
       <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectSubTasks" EntitySet="LegaSys_ProjectSubTasks" />
+      <End Role="LegaSys_Log_Clients" EntitySet="LegaSys_Log_Clients" />
     </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__5629CD9C" Association="Self.FK__LegaSys_O__Updat__5629CD9C">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectTasks" EntitySet="LegaSys_ProjectTasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__59FA5E80" Association="Self.FK__LegaSys_O__Updat__59FA5E80">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectTechnology" EntitySet="LegaSys_ProjectTechnology" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__6477ECF3" Association="Self.FK__LegaSys_O__Updat__6477ECF3">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserDetails1" EntitySet="LegaSys_UserDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_O__Updat__6C190EBB" Association="Self.FK__LegaSys_O__Updat__6C190EBB">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserTechnology" EntitySet="LegaSys_UserTechnology" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_ORG_P__ORG_R__4316F928" Association="Self.FK__LegaSys_ORG_P__ORG_R__4316F928">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_ProjectResources" EntitySet="LegaSys_ProjectResources" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_U__Creat__6D0D32F4" Association="Self.FK__LegaSys_U__Creat__6D0D32F4">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserLogin" EntitySet="LegaSys_UserLogin" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_U__ORG_U__6E01572D" Association="Self.FK__LegaSys_U__ORG_U__6E01572D">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserLogin" EntitySet="LegaSys_UserLogin" />
-    </AssociationSet>
-    <AssociationSet Name="FK__LegaSys_U__Updat__6EF57B66" Association="Self.FK__LegaSys_U__Updat__6EF57B66">
-      <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
-      <End Role="LegaSys_UserLogin" EntitySet="LegaSys_UserLogin" />
+    <AssociationSet Name="FK_StatusID" Association="Self.FK_StatusID">
+      <End Role="LegaSys_Master_LeaveStatus" EntitySet="LegaSys_Master_LeaveStatus" />
+      <End Role="LegaSys_LeavesApplication" EntitySet="LegaSys_LeavesApplication" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

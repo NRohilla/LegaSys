@@ -4,264 +4,421 @@
     <EntitySetMapping Name="LegaSys_Attachments">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Attachments">
         <MappingFragment StoreEntitySet="LegaSys_Attachments">
-          <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="IsProjectAttachment" ColumnName="IsProjectAttachment" />
-          <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+          <ScalarProperty Name="IsProjectAttachment" ColumnName="IsProjectAttachment" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_AttachmentTypes">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_AttachmentTypes">
         <MappingFragment StoreEntitySet="LegaSys_AttachmentTypes">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="AttachmentType" ColumnName="AttachmentType" />
           <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
+          <ScalarProperty Name="AttachmentType" ColumnName="AttachmentType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Client_Projects">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Client_Projects">
         <MappingFragment StoreEntitySet="LegaSys_Client_Projects">
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
           <ScalarProperty Name="ClientProjectID" ColumnName="ClientProjectID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_ClientDetails">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ClientDetails">
         <MappingFragment StoreEntitySet="LegaSys_ClientDetails">
-          <ScalarProperty Name="EmailID4" ColumnName="EmailID4" />
-          <ScalarProperty Name="CoClient4" ColumnName="CoClient4" />
-          <ScalarProperty Name="CoClient3" ColumnName="CoClient3" />
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="EmailID3" ColumnName="EmailID3" />
-          <ScalarProperty Name="EmailID2" ColumnName="EmailID2" />
-          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-          <ScalarProperty Name="CoClient2" ColumnName="CoClient2" />
-          <ScalarProperty Name="CoClient" ColumnName="CoClient" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
           <ScalarProperty Name="ClientDetailID" ColumnName="ClientDetailID" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CoClient" ColumnName="CoClient" />
+          <ScalarProperty Name="CoClient2" ColumnName="CoClient2" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="EmailID2" ColumnName="EmailID2" />
+          <ScalarProperty Name="EmailID3" ColumnName="EmailID3" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="CoClient3" ColumnName="CoClient3" />
+          <ScalarProperty Name="CoClient4" ColumnName="CoClient4" />
+          <ScalarProperty Name="EmailID4" ColumnName="EmailID4" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_ClientStatus">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ClientStatus">
+        <MappingFragment StoreEntitySet="LegaSys_ClientStatus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ClientStatus" ColumnName="ClientStatus" />
+          <ScalarProperty Name="ClientStatusId" ColumnName="ClientStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_LeavesApplication">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_LeavesApplication">
+        <MappingFragment StoreEntitySet="LegaSys_LeavesApplication">
+          <ScalarProperty Name="LeaveID" ColumnName="LeaveID" />
+          <ScalarProperty Name="UserDetail_ID" ColumnName="UserDetail_ID" />
+          <ScalarProperty Name="Master_LeaveTypeID" ColumnName="Master_LeaveTypeID" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="AppliedOn" ColumnName="AppliedOn" />
+          <ScalarProperty Name="LeaveFromDate" ColumnName="LeaveFromDate" />
+          <ScalarProperty Name="LeaveToDate" ColumnName="LeaveToDate" />
+          <ScalarProperty Name="DaysCount" ColumnName="DaysCount" />
+          <ScalarProperty Name="ActionBy" ColumnName="ActionBy" />
+          <ScalarProperty Name="ActionOn" ColumnName="ActionOn" />
+          <ScalarProperty Name="Master_LeaveStatusID" ColumnName="Master_LeaveStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_Log_Clients">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Log_Clients">
+        <MappingFragment StoreEntitySet="LegaSys_Log_Clients">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="FieldDescription" ColumnName="FieldDescription" />
+          <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+          <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+          <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
+          <ScalarProperty Name="UserResponsible" ColumnName="UserResponsible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_Log_Projects">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Log_Projects">
+        <MappingFragment StoreEntitySet="LegaSys_Log_Projects">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="FieldDescription" ColumnName="FieldDescription" />
+          <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+          <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+          <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
+          <ScalarProperty Name="UserResponsible" ColumnName="UserResponsible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_Log_Resources">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Log_Resources">
+        <MappingFragment StoreEntitySet="LegaSys_Log_Resources">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="FieldDescription" ColumnName="FieldDescription" />
+          <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+          <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+          <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
+          <ScalarProperty Name="UserResponsible" ColumnName="UserResponsible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_Master_LeaveStatus">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_LeaveStatus">
+        <MappingFragment StoreEntitySet="LegaSys_Master_LeaveStatus">
+          <ScalarProperty Name="LeaveStatusID" ColumnName="LeaveStatusID" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_Master_LeaveTypes">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_LeaveTypes">
+        <MappingFragment StoreEntitySet="LegaSys_Master_LeaveTypes">
+          <ScalarProperty Name="LeaveTypeID" ColumnName="LeaveTypeID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Master_Locations">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_Locations">
         <MappingFragment StoreEntitySet="LegaSys_Master_Locations">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
           <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Master_MenuItems">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_MenuItems">
         <MappingFragment StoreEntitySet="LegaSys_Master_MenuItems">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
           <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Master_Roles">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_Roles">
         <MappingFragment StoreEntitySet="LegaSys_Master_Roles">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Master_Shifts">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_Shifts">
         <MappingFragment StoreEntitySet="LegaSys_Master_Shifts">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="EndTimeIST" ColumnName="EndTimeIST" />
-          <ScalarProperty Name="StartTimeIST" ColumnName="StartTimeIST" />
-          <ScalarProperty Name="WeekOff3" ColumnName="WeekOff3" />
-          <ScalarProperty Name="WeekOff2" ColumnName="WeekOff2" />
-          <ScalarProperty Name="WeekOff1" ColumnName="WeekOff1" />
           <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+          <ScalarProperty Name="WeekOff1" ColumnName="WeekOff1" />
+          <ScalarProperty Name="WeekOff2" ColumnName="WeekOff2" />
+          <ScalarProperty Name="WeekOff3" ColumnName="WeekOff3" />
+          <ScalarProperty Name="StartTimeIST" ColumnName="StartTimeIST" />
+          <ScalarProperty Name="EndTimeIST" ColumnName="EndTimeIST" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Master_TechDomains">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_TechDomains">
         <MappingFragment StoreEntitySet="LegaSys_Master_TechDomains">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
           <ScalarProperty Name="TechDomainID" ColumnName="TechDomainID" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Master_Technologies">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Master_Technologies">
         <MappingFragment StoreEntitySet="LegaSys_Master_Technologies">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="Master_DomainID" ColumnName="Master_DomainID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="TechnologyID" ColumnName="TechnologyID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Master_DomainID" ColumnName="Master_DomainID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_ProjectResources">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ProjectResources">
         <MappingFragment StoreEntitySet="LegaSys_ProjectResources">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
-          <ScalarProperty Name="Resource_ID" ColumnName="Resource_ID" />
           <ScalarProperty Name="ProjectResourceID" ColumnName="ProjectResourceID" />
+          <ScalarProperty Name="Resource_ID" ColumnName="Resource_ID" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_Projects">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Projects">
         <MappingFragment StoreEntitySet="LegaSys_Projects">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="ProjectDomain_ID" ColumnName="ProjectDomain_ID" />
-          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+          <ScalarProperty Name="ProjectDomain_ID" ColumnName="ProjectDomain_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_ProjectSubTasks">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ProjectSubTasks">
         <MappingFragment StoreEntitySet="LegaSys_ProjectSubTasks">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="Attachment_ID" ColumnName="Attachment_ID" />
-          <ScalarProperty Name="Project_Task_ID" ColumnName="Project_Task_ID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ProjectSubTaskID" ColumnName="ProjectSubTaskID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Project_Task_ID" ColumnName="Project_Task_ID" />
+          <ScalarProperty Name="Attachment_ID" ColumnName="Attachment_ID" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_ProjectTasks">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ProjectTasks">
         <MappingFragment StoreEntitySet="LegaSys_ProjectTasks">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
-          <ScalarProperty Name="Attachment_ID" ColumnName="Attachment_ID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ProjectTaskID" ColumnName="ProjectTaskID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Attachment_ID" ColumnName="Attachment_ID" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_ProjectTechnology">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ProjectTechnology">
         <MappingFragment StoreEntitySet="LegaSys_ProjectTechnology">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
-          <ScalarProperty Name="Master_Technology_ID" ColumnName="Master_Technology_ID" />
           <ScalarProperty Name="ProjectTechDetailID" ColumnName="ProjectTechDetailID" />
+          <ScalarProperty Name="Master_Technology_ID" ColumnName="Master_Technology_ID" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LegaSys_RoleMenus">
-      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_RoleMenus">
-        <MappingFragment StoreEntitySet="LegaSys_RoleMenus">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="Master_Menu_ID" ColumnName="Master_Menu_ID" />
-          <ScalarProperty Name="Master_Role_ID" ColumnName="Master_Role_ID" />
-          <ScalarProperty Name="MenuRoleID" ColumnName="MenuRoleID" />
+    <EntitySetMapping Name="LegaSys_UserActivityLog">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserActivityLog">
+        <MappingFragment StoreEntitySet="LegaSys_UserActivityLog">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="Userdetail_ID" ColumnName="Userdetail_ID" />
+          <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+          <ScalarProperty Name="LogoutDateTime" ColumnName="LogoutDateTime" />
+          <ScalarProperty Name="SessionDuration" ColumnName="SessionDuration" />
+          <ScalarProperty Name="IP_Address" ColumnName="IP_Address" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_UserDetails">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserDetails">
         <MappingFragment StoreEntitySet="LegaSys_UserDetails">
-          <ScalarProperty Name="Master_Role_ID" ColumnName="Master_Role_ID" />
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="ReportingHead_ID" ColumnName="ReportingHead_ID" />
-          <ScalarProperty Name="Master_Location_ID" ColumnName="Master_Location_ID" />
-          <ScalarProperty Name="Master_Shift_ID" ColumnName="Master_Shift_ID" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
-          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
-          <ScalarProperty Name="Middlename" ColumnName="Middlename" />
-          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
           <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Master_Shift_ID" ColumnName="Master_Shift_ID" />
+          <ScalarProperty Name="Master_Location_ID" ColumnName="Master_Location_ID" />
+          <ScalarProperty Name="ReportingHead_ID" ColumnName="ReportingHead_ID" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Master_Role_ID" ColumnName="Master_Role_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_UserLogin">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserLogin">
         <MappingFragment StoreEntitySet="LegaSys_UserLogin">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
-          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserLoginDetailID" ColumnName="UserLoginDetailID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LegaSys_UserTechnology">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserTechnology">
         <MappingFragment StoreEntitySet="LegaSys_UserTechnology">
-          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
-          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-          <ScalarProperty Name="UserDetail_ID" ColumnName="UserDetail_ID" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="Master_Technology_ID" ColumnName="Master_Technology_ID" />
           <ScalarProperty Name="UserTechDetailID" ColumnName="UserTechDetailID" />
+          <ScalarProperty Name="Master_Technology_ID" ColumnName="Master_Technology_ID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UserDetail_ID" ColumnName="UserDetail_ID" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="LegaSysModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="LegaSysModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="LegaSysModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="LegaSysModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="LegaSysModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LegaSysModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="LegaSysModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LegaSysModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="LegaSysModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="LegaSysModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="LegaSys_WhiteList_IP">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_WhiteList_IP">
+        <MappingFragment StoreEntitySet="LegaSys_WhiteList_IP">
+          <ScalarProperty Name="IP_Address" ColumnName="IP_Address" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

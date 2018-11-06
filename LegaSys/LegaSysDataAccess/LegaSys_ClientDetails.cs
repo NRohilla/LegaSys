@@ -37,12 +37,11 @@ namespace LegaSysDataAccess
         public string CoClient3 { get; set; }
         public string CoClient4 { get; set; }
         public string EmailID4 { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_Client_Projects> LegaSys_Client_Projects { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_Projects> LegaSys_Projects { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
     }
 }

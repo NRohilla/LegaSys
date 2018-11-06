@@ -23,8 +23,10 @@ namespace LegaSysDataAccess
     
         public int TechnologyID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Master_DomainID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int Master_DomainID { get; set; }
+        public bool IsActive { get; set; }
+        public Nullable<int> Created_By { get; set; }
+        public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
     

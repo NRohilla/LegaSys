@@ -19,7 +19,7 @@ namespace LegaSysServices
         {
             HttpConfiguration config = new HttpConfiguration();
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
+            AutofacWebapiConfig.Initialize(GlobalConfiguration.Configuration);
             config.MapHttpAttributeRoutes();
             ConfigureJWTTokenGeneration(app);
             ConfigureJWTTokenConsumption(app);

@@ -37,7 +37,9 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            model.Created_By = User.Identity.GetUserId();
+            int.TryParse(User.Identity.GetUserId(), out int createdBy);
+
+            model.Created_By = createdBy;
 
             int id = _uOWResources.CreateResoure(model);
 

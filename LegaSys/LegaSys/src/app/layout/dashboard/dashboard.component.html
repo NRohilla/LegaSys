@@ -1,6 +1,6 @@
 <div [@routerTransition]>
     <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12">
             <ngb-carousel>
                 <ng-template ngbSlide *ngFor="let slider of sliders">
@@ -13,51 +13,56 @@
             </ngb-carousel>
         </div>
     </div>
-    <hr>
+    <hr> -->
     <div class="row">
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
+            <app-stat [bgClass]="'primary'" [tag]="'Clients'" [icon]="'fa-users'" [count]="26" [label]="'Active'" [count1]="19" [label1]="'Inactive'" [totalcount]="45"></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
+            <app-stat [bgClass]="'warning'" [tag]="'Resources'" [icon]="'fa-users'" [count]="14" [label]="'Billable'" [count1]="12" [label1]="'Support'" [count2]="10" [label2]="'Bench'" [count3]="4" [label3]="'On Leave'" [totalcount]="40"></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
+            <app-stat [bgClass]="'success'" [tag]="'Projects'" [icon]="'fa-files-o'" [count]="9" [label]="'Current'" [count1]="1" [label1]="'Internal'"  [count2]="33" [label2]="'Closed'" [totalcount]="43"></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
+            <app-stat [bgClass]="'danger'" [tag]="'Tasks'" [icon]="'fa-file-text'" [count]="16" [label]="'Completed'" [count1]="2" [label1]="'In Progress'" [count2]="6" [label2]="'Pending'" [totalcount]="24"></app-stat>
         </div>
     </div>
-    <hr />
-    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
-    <hr />
-    <div class="row">
-        <div class="col-lg-8">
+    <!-- <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert> -->
+    <!-- <div class="row">
+        <div class="col-lg-6">
             <div class="card card-default">
                 <div class="card-header">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                    <i class="fa fa-comments fa-fw"></i> Clients
                 </div>
-                <!-- /.card-header -->
-                <app-timeline></app-timeline>
-                <!-- /.card-body -->
+                <app-clients></app-clients>
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="card card-default mb-3">
                 <div class="card-header">
-                    <i class="fa fa-bell fa-fw"></i> Notifications card
+                    <i class="fa fa-shopping-cart fa-fw"></i> Resources
                 </div>
-                <!-- /.card-header -->
-                <app-notification></app-notification>
-                <!-- /.card-body -->
+                <app-resources></app-resources>
             </div>
-            <!-- /.card -->
-
-            <app-chat></app-chat>
-            <!-- /.card .chat-card -->
         </div>
-        <!-- /.col-lg-4 -->
     </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-header">
+                    <i class="fa fa-clock-o fa-fw"></i> Projects
+                </div>
+                <app-projects></app-projects>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card card-default mb-3">
+                <div class="card-header">
+                    <i class="fa fa-tasks fa-fw"></i> Tasks
+                </div>
+                <app-tasks></app-tasks>
+            </div>
+        </div>
+    </div> -->
 </div>

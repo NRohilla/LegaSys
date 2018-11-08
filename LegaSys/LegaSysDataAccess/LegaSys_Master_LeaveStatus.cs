@@ -12,19 +12,23 @@ namespace LegaSysDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class LegaSys_RoleMenus
+    public partial class LegaSys_Master_LeaveStatus
     {
-        public int MenuRoleID { get; set; }
-        public int Master_Role_ID { get; set; }
-        public int Master_Menu_ID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LegaSys_Master_LeaveStatus()
+        {
+            this.LegaSys_LeavesApplication = new HashSet<LegaSys_LeavesApplication>();
+        }
+    
+        public int LeaveStatusID { get; set; }
+        public string StatusName { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<int> Created_By { get; set; }
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
     
-        public virtual LegaSys_Master_MenuItems LegaSys_Master_MenuItems { get; set; }
-        public virtual LegaSys_Master_Roles LegaSys_Master_Roles { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LegaSys_LeavesApplication> LegaSys_LeavesApplication { get; set; }
     }
 }

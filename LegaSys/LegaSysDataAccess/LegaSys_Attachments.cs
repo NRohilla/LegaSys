@@ -33,11 +33,9 @@ namespace LegaSysDataAccess
         public Nullable<int> AttachmentTypeID { get; set; }
     
         public virtual LegaSys_AttachmentTypes LegaSys_AttachmentTypes { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_ProjectSubTasks> LegaSys_ProjectSubTasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_ProjectTasks> LegaSys_ProjectTasks { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
     }
 }

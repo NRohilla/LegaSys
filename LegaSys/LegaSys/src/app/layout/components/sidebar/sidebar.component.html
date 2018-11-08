@@ -4,63 +4,87 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
-        <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
-            <span>{{ 'Charts' | translate }}</span>
+        <a [routerLink]="['/client']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-users"></i>&nbsp;
+            <span>{{ 'Clients' | translate }}</span>
         </a>
-        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-table"></i>&nbsp;
-            <span>{{ 'Tables' | translate }}</span>
+        <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-files-o"></i>&nbsp;
+            <span>{{ 'Projects' | translate }}</span>
         </a>
-        <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-edit"></i>&nbsp;
-            <span>{{ 'Forms' | translate }}</span>
+        <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-users"></i>&nbsp;
+            <span>{{ 'Resources' | translate }}</span>
         </a>
-        <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item" style="display: none">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;
             <span>{{ 'Bootstrap Element' | translate }}</span>
         </a>
-        <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item" style="display: none">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;
             <span>{{ 'Bootstrap Grid' | translate }}</span>
         </a>
-        <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item" style="display: none">
             <i class="fa fa-th-list"></i>&nbsp;
             <span>{{ 'Component' | translate }}</span>
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <i class="fa fa-plus"></i>&nbsp;
-                <span>{{ 'Menu' | translate }}</span>
+                <span>{{ 'Masters' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu' | translate }}</span>
+                            <span>{{ 'Technologies' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu' | translate }}</span>
+                            <span>{{ 'Domains' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu' | translate }}</span>
+                            <span>{{ 'Shifts' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Locations' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Leaves' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Leave Status' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Roles' | translate }}</span>
                         </a>
                     </li>
                 </ul>
             </li>
         </div>
-        <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item" style="display: none">
             <i class="fa fa-file-o"></i>&nbsp;
             <span>{{ 'Blank Page' | translate }}</span>
         </a>
-        <a href="http://www.strapui.com/" class="list-group-item">
+        <a href="http://www.strapui.com/" class="list-group-item" style="display: none">
             <i class="fa fa-caret-down"></i>&nbsp;
             <span>{{ 'More Themes' | translate }}</span>
         </a>

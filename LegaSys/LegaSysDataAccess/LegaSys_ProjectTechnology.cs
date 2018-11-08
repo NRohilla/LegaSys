@@ -24,7 +24,5 @@ namespace LegaSysDataAccess
     
         public virtual LegaSys_Master_Technologies LegaSys_Master_Technologies { get; set; }
         public virtual LegaSys_Projects LegaSys_Projects { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
     }
 }

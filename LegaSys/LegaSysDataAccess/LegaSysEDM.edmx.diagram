@@ -4,73 +4,60 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="511928ed5f1b4d57a21aac8e5c5cd71d" Name="Diagram1">
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Attachments" Width="1.5" PointX="8.25" PointY="16.25" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_AttachmentTypes" Width="1.5" PointX="6" PointY="9.125" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Client_Projects" Width="1.5" PointX="7.5" PointY="22.625" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ClientDetails" Width="1.5" PointX="5.25" PointY="30.25" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Locations" Width="1.5" PointX="0.75" PointY="21" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_MenuItems" Width="1.5" PointX="3" PointY="10.125" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Roles" Width="1.5" PointX="0.75" PointY="17" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Shifts" Width="1.5" PointX="0.75" PointY="13.5" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_TechDomains" Width="1.5" PointX="0.75" PointY="6.125" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Technologies" Width="1.5" PointX="3" PointY="5.875" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectResources" Width="1.5" PointX="15.75" PointY="19.5" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Projects" Width="1.5" PointX="10.5" PointY="22.875" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectSubTasks" Width="1.5" PointX="10.5" PointY="16.5" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectTasks" Width="1.5" PointX="12.75" PointY="18.25" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectTechnology" Width="1.5" PointX="15.75" PointY="15.5" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_RoleMenus" Width="1.5" PointX="5.25" PointY="16.625" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserDetails" Width="1.5" PointX="3" PointY="12.875" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserLogin" Width="1.5" PointX="5.25" PointY="22.25" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserTechnology" Width="1.5" PointX="5.25" PointY="12.625" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_A__Attac__778AC167" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__3E52440B" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_A__5070F446" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_A__5441852A" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__3F466844" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_C__Clien__7C4F7684" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_C__Creat__7D439ABD" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_C__Proje__7B5B524B" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_C__Updat__7E37BEF6" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__403A8C7D" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_C__48CFD27E" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__412EB0B6" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_U__619B8048" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__44FF419A" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__45F365D3" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__6383C8BA" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_U__628FA481" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_M__LegaS__3D5E1FD2" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__49C3F6B7" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__59063A47" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__6B24EA82" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__4BAC3F29" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__4CA06362" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__4E88ABD4" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_ORG_P__ORG_R__4316F928" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__47DBAE45" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5535A963" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5812160E" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__4AB81AF0" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__4F7CD00D" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5165187F" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__52593CB8" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__534D60F1" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__5629CD9C" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__571DF1D5" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__59FA5E80" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__4316F928" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__46E78A0C" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__5DCAEF64" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Creat__693CA210" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_R__5FB337D6" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_U__6A30C649" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__6477ECF3" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__Updat__6C190EBB" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_U__Creat__6D0D32F4" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_U__ORG_U__6E01572D" />
-        <AssociationConnector Association="LegaSysModel.FK__LegaSys_U__Updat__6EF57B66" />
+      <Diagram DiagramId="ea3d83c243b54267b0403f5510573fe4" Name="Diagram1">
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Attachments" Width="1.5" PointX="16" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_AttachmentTypes" Width="1.5" PointX="13.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Client_Projects" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ClientDetails" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ClientStatus" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_LeavesApplication" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Log_Clients" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Log_Projects" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Log_Resources" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_LeaveStatus" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_LeaveTypes" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Locations" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_MenuItems" Width="1.5" PointX="7.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Roles" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Shifts" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_TechDomains" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Technologies" Width="1.5" PointX="13" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectResources" Width="1.5" PointX="15.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Projects" Width="1.5" PointX="13" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectSubTasks" Width="1.5" PointX="20.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectTasks" Width="1.5" PointX="18.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectTechnology" Width="1.5" PointX="15.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserActivityLog" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserDetails" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserLogin" Width="1.5" PointX="7.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserTechnology" Width="1.5" PointX="15.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.sysdiagram" Width="1.5" PointX="9.75" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_A__Attac__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_A__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_A__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_C__Clien__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_C__Proje__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_C__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK_LeavesApplication_CreatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK_LeavesApplied_ActionBy" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK_LeavesApplied_UserDetail_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK_LeaveTypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK_StatusID" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK_Log_Clients_UserResponsible" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__Log_Projects_UserResponsible" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__Log_Resources_UserResponsible" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_U__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_U__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_M__LegaS__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__LegaS__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5165187F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_WhiteList_IP" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

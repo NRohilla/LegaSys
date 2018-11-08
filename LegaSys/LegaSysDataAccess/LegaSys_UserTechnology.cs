@@ -15,17 +15,14 @@ namespace LegaSysDataAccess
     public partial class LegaSys_UserTechnology
     {
         public int UserTechDetailID { get; set; }
-        public Nullable<int> Master_Technology_ID { get; set; }
+        public int Master_Technology_ID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> UserDetail_ID { get; set; }
+        public int UserDetail_ID { get; set; }
         public Nullable<int> Created_By { get; set; }
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
     
         public virtual LegaSys_Master_Technologies LegaSys_Master_Technologies { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails2 { get; set; }
     }
 }

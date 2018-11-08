@@ -14,18 +14,12 @@ namespace LegaSysDataAccess
     
     public partial class LegaSys_Master_MenuItems
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LegaSys_Master_MenuItems()
-        {
-            this.LegaSys_RoleMenus = new HashSet<LegaSys_RoleMenus>();
-        }
-    
         public int MenuID { get; set; }
         public string MenuName { get; set; }
+        public bool IsActive { get; set; }
+        public Nullable<int> Created_By { get; set; }
+        public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_RoleMenus> LegaSys_RoleMenus { get; set; }
     }
 }

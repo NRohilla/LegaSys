@@ -62,8 +62,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IDbFactory.cs" />
+    <Compile Include="Interface\IUOWClient.cs" />
+    <Compile Include="Interface\IUOWResources.cs" />
     <Compile Include="Interface\IUOWUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DbFactory.cs" />
+    <Compile Include="Repository\UOWClient.cs" />
+    <Compile Include="Repository\UOWResources.cs" />
     <Compile Include="Repository\UOWUsers.cs" />
   </ItemGroup>
   <ItemGroup>

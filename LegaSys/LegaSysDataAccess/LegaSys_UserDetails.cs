@@ -17,34 +17,12 @@ namespace LegaSysDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LegaSys_UserDetails()
         {
-            this.LegaSys_Attachments = new HashSet<LegaSys_Attachments>();
-            this.LegaSys_Attachments1 = new HashSet<LegaSys_Attachments>();
-            this.LegaSys_Client_Projects = new HashSet<LegaSys_Client_Projects>();
-            this.LegaSys_Client_Projects1 = new HashSet<LegaSys_Client_Projects>();
-            this.LegaSys_ClientDetails = new HashSet<LegaSys_ClientDetails>();
-            this.LegaSys_ClientDetails1 = new HashSet<LegaSys_ClientDetails>();
-            this.LegaSys_ProjectResources = new HashSet<LegaSys_ProjectResources>();
-            this.LegaSys_ProjectResources1 = new HashSet<LegaSys_ProjectResources>();
-            this.LegaSys_ProjectResources2 = new HashSet<LegaSys_ProjectResources>();
-            this.LegaSys_Projects = new HashSet<LegaSys_Projects>();
-            this.LegaSys_Projects1 = new HashSet<LegaSys_Projects>();
-            this.LegaSys_ProjectSubTasks = new HashSet<LegaSys_ProjectSubTasks>();
-            this.LegaSys_ProjectSubTasks1 = new HashSet<LegaSys_ProjectSubTasks>();
-            this.LegaSys_ProjectTasks = new HashSet<LegaSys_ProjectTasks>();
-            this.LegaSys_ProjectTasks1 = new HashSet<LegaSys_ProjectTasks>();
-            this.LegaSys_ProjectTechnology = new HashSet<LegaSys_ProjectTechnology>();
-            this.LegaSys_ProjectTechnology1 = new HashSet<LegaSys_ProjectTechnology>();
-            this.LegaSys_RoleMenus = new HashSet<LegaSys_RoleMenus>();
-            this.LegaSys_RoleMenus1 = new HashSet<LegaSys_RoleMenus>();
-            this.LegaSys_UserDetails1 = new HashSet<LegaSys_UserDetails>();
-            this.LegaSys_UserTechnology = new HashSet<LegaSys_UserTechnology>();
-            this.LegaSys_UserDetails11 = new HashSet<LegaSys_UserDetails>();
-            this.LegaSys_UserTechnology1 = new HashSet<LegaSys_UserTechnology>();
-            this.LegaSys_UserDetails12 = new HashSet<LegaSys_UserDetails>();
-            this.LegaSys_UserTechnology2 = new HashSet<LegaSys_UserTechnology>();
-            this.LegaSys_UserLogin = new HashSet<LegaSys_UserLogin>();
-            this.LegaSys_UserLogin1 = new HashSet<LegaSys_UserLogin>();
-            this.LegaSys_UserLogin2 = new HashSet<LegaSys_UserLogin>();
+            this.LegaSys_LeavesApplication = new HashSet<LegaSys_LeavesApplication>();
+            this.LegaSys_LeavesApplication1 = new HashSet<LegaSys_LeavesApplication>();
+            this.LegaSys_LeavesApplication2 = new HashSet<LegaSys_LeavesApplication>();
+            this.LegaSys_Log_Clients = new HashSet<LegaSys_Log_Clients>();
+            this.LegaSys_Log_Projects = new HashSet<LegaSys_Log_Projects>();
+            this.LegaSys_Log_Resources = new HashSet<LegaSys_Log_Resources>();
         }
     
         public int UserDetailID { get; set; }
@@ -53,78 +31,32 @@ namespace LegaSysDataAccess
         public string Lastname { get; set; }
         public Nullable<decimal> TotalExp { get; set; }
         public string EmailId { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> MobileNumber { get; set; }
+        public bool IsActive { get; set; }
         public string Remarks { get; set; }
-        public Nullable<int> Master_Shift_ID { get; set; }
-        public Nullable<int> Master_Location_ID { get; set; }
+        public int Master_Shift_ID { get; set; }
+        public int Master_Location_ID { get; set; }
         public Nullable<int> ReportingHead_ID { get; set; }
         public Nullable<int> Created_By { get; set; }
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
-        public Nullable<int> Master_Role_ID { get; set; }
+        public int Master_Role_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_Attachments> LegaSys_Attachments { get; set; }
+        public virtual ICollection<LegaSys_LeavesApplication> LegaSys_LeavesApplication { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_Attachments> LegaSys_Attachments1 { get; set; }
+        public virtual ICollection<LegaSys_LeavesApplication> LegaSys_LeavesApplication1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_Client_Projects> LegaSys_Client_Projects { get; set; }
+        public virtual ICollection<LegaSys_LeavesApplication> LegaSys_LeavesApplication2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_Client_Projects> LegaSys_Client_Projects1 { get; set; }
+        public virtual ICollection<LegaSys_Log_Clients> LegaSys_Log_Clients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ClientDetails> LegaSys_ClientDetails { get; set; }
+        public virtual ICollection<LegaSys_Log_Projects> LegaSys_Log_Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ClientDetails> LegaSys_ClientDetails1 { get; set; }
+        public virtual ICollection<LegaSys_Log_Resources> LegaSys_Log_Resources { get; set; }
         public virtual LegaSys_Master_Locations LegaSys_Master_Locations { get; set; }
         public virtual LegaSys_Master_Roles LegaSys_Master_Roles { get; set; }
         public virtual LegaSys_Master_Shifts LegaSys_Master_Shifts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectResources> LegaSys_ProjectResources { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectResources> LegaSys_ProjectResources1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectResources> LegaSys_ProjectResources2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_Projects> LegaSys_Projects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_Projects> LegaSys_Projects1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectSubTasks> LegaSys_ProjectSubTasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectSubTasks> LegaSys_ProjectSubTasks1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectTasks> LegaSys_ProjectTasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectTasks> LegaSys_ProjectTasks1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectTechnology> LegaSys_ProjectTechnology { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_ProjectTechnology> LegaSys_ProjectTechnology1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_RoleMenus> LegaSys_RoleMenus { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_RoleMenus> LegaSys_RoleMenus1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserDetails> LegaSys_UserDetails1 { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserTechnology> LegaSys_UserTechnology { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserDetails> LegaSys_UserDetails11 { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserTechnology> LegaSys_UserTechnology1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserDetails> LegaSys_UserDetails12 { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails4 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserTechnology> LegaSys_UserTechnology2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserLogin> LegaSys_UserLogin { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserLogin> LegaSys_UserLogin1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegaSys_UserLogin> LegaSys_UserLogin2 { get; set; }
     }
 }

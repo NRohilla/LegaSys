@@ -28,6 +28,7 @@ namespace LegaSysDataAccess
         public string Description { get; set; }
         public Nullable<int> Client_ID { get; set; }
         public Nullable<int> ProjectDomain_ID { get; set; }
+        public Nullable<short> Status { get; set; }
         public Nullable<int> Created_By { get; set; }
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
@@ -39,11 +40,9 @@ namespace LegaSysDataAccess
         public virtual LegaSys_Master_TechDomains LegaSys_Master_TechDomains { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_ProjectResources> LegaSys_ProjectResources { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_ProjectTasks> LegaSys_ProjectTasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_ProjectTechnology> LegaSys_ProjectTechnology { get; set; }
-        public virtual LegaSys_UserDetails LegaSys_UserDetails1 { get; set; }
     }
 }

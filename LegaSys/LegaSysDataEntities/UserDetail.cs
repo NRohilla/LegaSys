@@ -16,13 +16,16 @@ namespace LegaSysDataEntities
         public string EmailId { get; set; }
         public bool? IsActive { get; set; }
         public string Remarks { get; set; }
-        public int? Master_Shift_ID { get; set; }
+        public int Master_Shift_ID { get; set; }
         public string Shift { get; set; }
-        public int? Master_Location_ID { get; set; }
+        public int Master_Location_ID { get; set; }
         public string LocationAddress { get; set; }
         public int? ReportingHead_ID { get; set; }
         public string ReportingHead { get; set; }
-        public int? Master_UserRoles_ID { get; set; }
+        public int Master_Role_ID { get; set; }
         public string RoleName { get; set; }
+        public int Created_By { get; set; }
+        public int Updated_By { get; set; }
+        public int? MobileNumber { get; set; }
     }
 }

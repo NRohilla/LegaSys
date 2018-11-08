@@ -18,7 +18,27 @@ namespace LegaSysUOW.Repository
 
         public int CreateResoure(UserDetail userDetail)
         {
-            throw new NotImplementedException();
+            var model = new LegaSys_UserDetails
+            {
+                Firstname = userDetail.Firstname,
+                Middlename = userDetail.Middlename,
+                Lastname = userDetail.Lastname,
+                TotalExp = userDetail.TotalExp,
+                EmailId = userDetail.EmailId,
+                MobileNumber = userDetail.MobileNumber,
+                Master_Location_ID = userDetail.Master_Location_ID,
+                Master_Shift_ID = userDetail.Master_Shift_ID,
+                ReportingHead_ID = userDetail.ReportingHead_ID,
+                Master_Role_ID = userDetail.Master_Role_ID,
+                Remarks = userDetail.Remarks,
+                Created_Date = DateTime.Now,
+                Created_By = userDetail.Created_By
+            };
+
+            db.LegaSys_UserDetails.Add(model);
+            db.SaveChanges();
+
+            return model.UserDetailID;
         }
 
         public void DeleteResource(int id)
@@ -50,7 +70,7 @@ namespace LegaSysUOW.Repository
                         Shift = $"{x.shift.StartTimeIST} - {x.shift.EndTimeIST}",
                         ReportingHead_ID = x.user.ReportingHead_ID,
                         ReportingHead = $"{x.reporting.Firstname} {x.reporting.Lastname}",
-                        Master_UserRoles_ID = x.user.Master_Role_ID,
+                        Master_Role_ID = x.user.Master_Role_ID,
                         RoleName = x.role.Role,
                         Remarks = x.user.Remarks
                     });

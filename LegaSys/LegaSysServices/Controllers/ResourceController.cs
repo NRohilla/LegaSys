@@ -1,4 +1,6 @@
-﻿using LegaSysUOW.Interface;
+﻿using LegaSysDataEntities;
+using LegaSysUOW.Interface;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,26 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult GetAllResources()
         {
             return Json(_uOWResources.GetAllActiveResources());
+        }
+
+        [HttpPost]
+        [Route("resource/create")]
+        public IHttpActionResult GetAllResources(UserDetail model)
+        {
+            if (model == null)
+                return BadRequest("Model cannot be null");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            model.Created_By = User.Identity.GetUserId();
+
+            int id = _uOWResources.CreateResoure(model);
+
+            if (id <= 0)
+                return InternalServerError();
+
+            return Json(new { success = true, id });
         }
     }
 }

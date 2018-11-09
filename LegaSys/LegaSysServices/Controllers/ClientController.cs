@@ -16,8 +16,15 @@ namespace LegaSysServices.Controllers
 
        
 
-        IUOWClient ClientRepository = new UOWClient();
+      
         string Result = string.Empty;
+        private readonly IUOWClient ClientRepository;
+
+        public ClientController(UOWClient _uOWClient)
+        {
+            ClientRepository = _uOWClient;
+        }
+
 
 
         [HttpGet]
@@ -41,13 +48,13 @@ namespace LegaSysServices.Controllers
 
 
 
-
         [HttpPost]
 
         //Post client details
-        public ClientDetail AddClientDetails(ClientDetail Objclient)
+        public int AddClientDetails(ClientDetail Objclient)
         {
-            return ClientRepository.AddClientDetails(Objclient);
+            int Result;
+            return Result= ClientRepository.AddClientDetails(Objclient);
         
 
         }

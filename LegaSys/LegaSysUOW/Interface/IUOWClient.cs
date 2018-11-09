@@ -9,7 +9,7 @@ namespace LegaSysUOW.Interface
 {
     public interface IUOWClient
     {
-        ClientDetail AddClientDetails(ClientDetail objClient);
+        int AddClientDetails(ClientDetail objClient);
         ClientDetail GetClientById(Int32 Id);
         string UpdateClientDetails(ClientDetail objClient);
 

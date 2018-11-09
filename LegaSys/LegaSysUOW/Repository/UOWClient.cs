@@ -130,6 +130,7 @@ namespace LegaSysUOW.Repository
                     obj.Updated_By = objClient.Updated_By;
                     obj.Created_Date = System.DateTime.UtcNow;
                     obj.Updated_Date = System.DateTime.UtcNow;
+                    obj.IsActive = true;
                     db.LegaSys_ClientDetails.AddOrUpdate(obj);
                     db.SaveChanges();
                     Result = "Data updated successfully!";
@@ -153,14 +154,27 @@ namespace LegaSysUOW.Repository
                     var ClientDetail = db.LegaSys_ClientDetails.Where(p => p.ClientDetailID == Id).FirstOrDefault();
                     if (ClientDetail != null)
                     {
-                        obj.ClientDetailID = ClientDetail.ClientDetailID;
-                        obj.Updated_By = 1;
-                        obj.Updated_Date = System.DateTime.UtcNow;
-                        obj.IsActive = false;
-                        db.LegaSys_ClientDetails.AddOrUpdate(obj);
-                        db.SaveChanges();
-                        Result = "Data updated successfully!";
-                    }
+                    obj.ClientDetailID = ClientDetail.ClientDetailID;
+                    obj.ClientName = ClientDetail.ClientName;
+                    obj.Address = ClientDetail.Address;
+                    obj.Country = ClientDetail.Country;
+                    obj.CoClient = ClientDetail.CoClient;
+                    obj.CoClient2 = ClientDetail.CoClient2;
+                    obj.CoClient3 = ClientDetail.CoClient3;
+                    obj.CoClient4 = ClientDetail.CoClient4;
+                    obj.EmailID = ClientDetail.EmailID;
+                    obj.EmailID2 = ClientDetail.EmailID2;
+                    obj.EmailID3 = ClientDetail.EmailID3;
+                    obj.EmailID4 = ClientDetail.EmailID4;
+                    obj.Created_By = ClientDetail.Created_By;
+                    obj.Updated_By = 1;
+                    obj.Created_Date = System.DateTime.UtcNow;
+                    obj.Updated_Date = System.DateTime.UtcNow;
+                    obj.IsActive = false;
+                    db.LegaSys_ClientDetails.AddOrUpdate(obj);
+                    db.SaveChanges();
+                    Result = "Data updated successfully!";
+                }
 
                
             }
@@ -181,7 +195,7 @@ namespace LegaSysUOW.Repository
             {
                 using (LegaSysEntities db = new LegaSysEntities())
                 {
-                    lstClient = db.LegaSys_ClientDetails.Select(s =>
+                    lstClient = db.LegaSys_ClientDetails.Where(s=>s.IsActive==true).Select(s =>
                      new ClientDetail()
                      {
                          ClientDetailID = s.ClientDetailID,

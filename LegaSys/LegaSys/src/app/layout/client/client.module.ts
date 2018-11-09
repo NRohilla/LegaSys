@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageHeaderModule } from '../../shared';
+
 import { ClientRoutingModule } from './client-routing.module';
 import { ClientComponent } from './client.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
-import {ClientServiceService} from './client-service.service'
+import {ClientServiceService} from './client-service.service';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { PageHeaderModule } from '../../shared';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSortModule} from '@angular/material/sort';
+
+
 
 @NgModule({
   imports: [
@@ -23,11 +31,16 @@ import {ClientServiceService} from './client-service.service'
     MatInputModule,
     MatPaginatorModule,
     MatButtonModule,
-    PageHeaderModule
+    MatDialogModule,
+    FormsModule,
+    PageHeaderModule,
+    MatTabsModule,
+    MatSortModule
     
     
   ],
   providers: [ClientServiceService],
+  
   declarations: [ClientComponent]
 
 })

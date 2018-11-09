@@ -1,21 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TestBed, inject } from '@angular/core/testing';
 
+import { ClientServiceService } from './client-service.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ClientServiceService {
-  
-  // Created By VE team on 05 Nov 2018
-  // This is the client API URL
-  URL="http://localhost:58164/api/client";
+describe('ClientServiceService', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [ClientServiceService]
+    });
+  });
 
-  constructor(private http: HttpClient) { }
-
-// this function is used to fectch the details of all client present in database using get request 
-  GetClientDetails(){
-    return this.http.get(this.URL);
-
-  }
-}
+  it('should be created', inject([ClientServiceService], (service: ClientServiceService) => {
+    expect(service).toBeTruthy();
+  }));
+});

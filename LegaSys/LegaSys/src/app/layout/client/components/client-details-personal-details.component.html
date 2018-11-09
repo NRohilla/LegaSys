@@ -1,0 +1,58 @@
+<form class="example-form">
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field class="example-full-width" >
+                   <input matInput placeholder="Client Name "  [disabled]="disable"  [(ngModel)]="currentClientDetails.ClientName" name="currentClientDetails.ClientName" >
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field class="example-full-width" >
+                   <input matInput placeholder="Client Address "  [disabled]="disable" [(ngModel)]="currentClientDetails.Address" name="currentClientDetails.Address" >
+            </mat-form-field>
+        </div>
+  </div>
+  <div class="row">
+        <div class="col-md-4">
+            <mat-form-field class="example-full-width" >
+                   <input matInput placeholder="Client Email 1 "  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID" name="currentClientDetails.EmailID"  >
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field  class="example-full-width">
+                   <input matInput placeholder="Client  Email 2"  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID2" name="currentClientDetails.EmailID2" >
+            </mat-form-field>
+        </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+                 <input matInput placeholder="Client Email 3 "   [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID3" name="currentClientDetails.EmailID3" >
+          </mat-form-field>
+      </div>
+      <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+                 <input matInput placeholder="Client Email 4"  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID4" name="currentClientDetails.EmailID4">
+          </mat-form-field>
+      </div>
+</div>
+
+  
+
+  </form>
+   <div class="row">
+    <div class="col-md-2" *ngIf="disable">
+        
+            <button mat-raised-button color="primary" (click)=" MakeFieldEditable()" >Edit</button>
+       
+    </div>
+    <div class="col-md-2" *ngIf="!disable">
+       
+            <button mat-raised-button color="accent" (click)="UpdateClient()">Save</button>
+        
+    </div>
+    <div class="col-md-2">
+     
+            <button mat-raised-button color="warn">Discard</button>
+      
+    </div><br><br>
+</div> 

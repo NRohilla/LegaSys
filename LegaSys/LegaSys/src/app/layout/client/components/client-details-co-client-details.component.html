@@ -1,0 +1,46 @@
+<form class="example-form">
+  <div class="row">
+      <div class="col-md-4">
+          <mat-form-field class="example-full-width" >
+                 <input matInput placeholder="Co Client 1 " [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient" name="currentClientDetails.CoClient" >
+          </mat-form-field>
+      </div>
+      <div class="col-md-4">
+          <mat-form-field class="example-full-width" >
+                 <input matInput placeholder="Co Client 2 "  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient2" name="currentClientDetails.CoClient2" >
+          </mat-form-field>
+      </div>
+</div>
+<div class="row">
+      <div class="col-md-4">
+          <mat-form-field class="example-full-width" >
+                 <input matInput placeholder="Co Client 3 "  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient3" name="currentClientDetails.CoClient3"  >
+          </mat-form-field>
+      </div>
+      <div class="col-md-4">
+          <mat-form-field  class="example-full-width">
+                 <input matInput placeholder="Co Client 4"  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient4" name="currentClientDetails.CoClient4" >
+          </mat-form-field>
+      </div>
+</div>
+
+
+</form>
+
+ <div class="row">
+  <div class="col-md-2"  *ngIf="disable">
+      
+          <button mat-raised-button color="primary" (click)=" MakeFieldEditable()">Edit</button>
+     
+  </div>
+  <div class="col-md-2" *ngIf="!disable">
+     
+          <button mat-raised-button color="accent" >Save</button>
+      
+  </div>
+  <div class="col-md-2">
+   
+          <button mat-raised-button color="warn">Discard</button>
+    
+  </div><br><br>
+</div> 

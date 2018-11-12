@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     debugger;
+                    //console.log(data.access_token);
+                    //this.storage.get('UserToken').access_token
                     this.storage.set("UserToken", data);
                     localStorage.setItem('isLoggedin', 'true');
                     this.router.navigateByUrl("/dashboard");

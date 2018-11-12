@@ -16,7 +16,8 @@ const routes: Routes = [
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-            { path: 'client', loadChildren: './client/client.module#ClientModule'}
+            { path: 'client', loadChildren: './client/client.module#ClientModule'},
+            { path: 'resource', loadChildren: './resource/resource.module#ResourceModule' }
         ]
     }
 ];

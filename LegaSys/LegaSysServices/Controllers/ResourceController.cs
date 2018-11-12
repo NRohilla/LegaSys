@@ -37,7 +37,7 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int.TryParse(User.Identity.GetUserId(), out int createdBy);
+            int.TryParse(User.Identity.GetUserId(), out var createdBy);
 
             model.Created_By = createdBy;
 

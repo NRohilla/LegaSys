@@ -8,6 +8,8 @@ using LegaSysDataAccess;
 using LegaSysUOW.Interface;
 using System.Data.Entity;
 
+//Test
+
 namespace LegaSysUOW.Repository
 {
    public class UOWClient:IUOWClient

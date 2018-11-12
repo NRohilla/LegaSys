@@ -1,86 +1,83 @@
-<<<<<<< HEAD
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-<div >
-  <app-page-header [heading]="'Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
-<div >
-  <button type="button"  [routerLink]="['/resource-details']" class="btn btn-info" style="margin-bottom: 1%;">Create New Resource</button>
-  
-  <mat-grid-list cols="2  " rowHeight="2:1">
-    <mat-grid-tile>1</mat-grid-tile>
-     </mat-grid-list>
+<div>
+    <app-page-header [heading]="'Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+    <div>
+        <button type="button" [routerLink]="['/resource-details']" class="btn btn-info" style="margin-bottom: 1%;">Create New Resource</button>
+
+        <mat-grid-list cols="2  " rowHeight="2:1">
+            <mat-grid-tile>1</mat-grid-tile>
+        </mat-grid-list>
+    </div>
 </div>
-</div>
-=======
 <!-- <button mat-stroked-button color="primary">New Resource</button> -->
 <br> <br><br>
 <!-- <mat-toolbar color="primary"> -->
-   
-     <h2 style="background-color:lightgrey"><b>Resource</b></h2>
-    
-      <!-- </mat-toolbar> -->
 
-      <!-- <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field> -->
-  <table mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8" >
+<h2 style="background-color:lightgrey"><b>Resource</b></h2>
+
+<!-- </mat-toolbar> -->
+<!-- <mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field> -->
+<table mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-        
     <!-- Position Column -->
     <ng-container matColumnDef="UserDetailID">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header > Resource ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.UserDetailID}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Resource ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.UserDetailID}} </td>
     </ng-container>
-  
+
     <!-- Name Column -->
     <ng-container matColumnDef="FullName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header > Full Name </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
         <td mat-cell *matCellDef="let element"> {{element.Firstname+ ' '+element.Middlename+' '+element.Lastname}} </td>
-      </ng-container>
-      
- <!-- TotalExp Column -->
- <ng-container matColumnDef="TotalExp">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Exp </th>
-    <td mat-cell *matCellDef="let element"> {{element.TotalExp}} </td>
-  </ng-container>
-<!-- EmailId Column -->
-<ng-container matColumnDef="EmailId">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-    <td mat-cell *matCellDef="let element"> {{element.EmailId}} </td>
-  </ng-container>
-  <!-- Shift Column -->
-<ng-container matColumnDef="Shift_ID">
+    </ng-container>
+
+    <!-- TotalExp Column -->
+    <ng-container matColumnDef="TotalExp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Exp </th>
+        <td mat-cell *matCellDef="let element"> {{element.TotalExp}} </td>
+    </ng-container>
+    <!-- EmailId Column -->
+    <ng-container matColumnDef="EmailId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.EmailId}} </td>
+    </ng-container>
+    <!-- Shift Column -->
+    <ng-container matColumnDef="Shift_ID">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Shift ID </th>
         <td mat-cell *matCellDef="let element"> {{element.Shift_ID}} </td>
-      </ng-container>
-   <!-- Location Column -->
-<ng-container matColumnDef="Location_ID">
+    </ng-container>
+    <!-- Location Column -->
+    <ng-container matColumnDef="Location_ID">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Location ID</th>
         <td mat-cell *matCellDef="let element"> {{element.Location_ID}} </td>
-      </ng-container>
- <!-- Location Column -->
- <ng-container matColumnDef="ReportingHead_ID">
+    </ng-container>
+    <!-- Location Column -->
+    <ng-container matColumnDef="ReportingHead_ID">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Reporting Head ID</th>
         <td mat-cell *matCellDef="let element"> {{element.ReportingHead_ID}} </td>
-      </ng-container>
+    </ng-container>
 
-      <ng-container matColumnDef="Action">
-            <th mat-header-cell *matHeaderCellDef>  </th>
-            <td mat-cell *matCellDef="let element">  <button mat-raised-button color="primary"  >View Details</button> 
-               <!-- &nbsp; <button mat-stroked-button color="warn" >Delete</button> </td> -->
-            
-      </ng-container>
+    <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary">View Details</button>
+            <!-- &nbsp; <button mat-stroked-button color="warn" >Delete</button> </td> -->
+
+    </ng-container>
 
 
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
 
-<!-- 
+<!--
 <div>
   <a href="#" class="btn btn-info">Add New</a>
 
@@ -157,7 +154,7 @@
     <th>Total Experience</th>
     <th>Shift Info</th>
     <th>Action</th>
-    
+
 
   </tr>
   </thead>
@@ -181,5 +178,4 @@
 
 </table> -->
 <!-- </div>
-</div> --> 
->>>>>>> Bder
+</div> -->

@@ -1,3 +1,18 @@
+<<<<<<< HEAD
 mat-grid-tile {
     background: lightblue;
   }
+=======
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+table {
+    width: 100%;
+  }
+  
+  .mat-cell,.mat-header-cell{
+    // font-size: 14px;
+    // min-height: 48px;
+    text-align: center;
+    border-right: 1px solid lightgrey;
+}
+ 
+>>>>>>> Bder

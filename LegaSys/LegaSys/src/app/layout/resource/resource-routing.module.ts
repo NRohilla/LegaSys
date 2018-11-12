@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+<<<<<<< HEAD
 import {ResourceComponent} from './resource.component';
 
 
@@ -15,6 +16,14 @@ const routes: Routes = [
     ]
   }
   
+=======
+import { ResourceComponent } from './resource.component';
+
+const routes: Routes = [
+  {
+    path:'', component:ResourceComponent
+  }
+>>>>>>> Bder
 ];
 
 @NgModule({
@@ -22,4 +31,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ResourceRoutingModule { }
+<<<<<<< HEAD
  
+=======
+>>>>>>> Bder

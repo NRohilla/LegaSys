@@ -18,3 +18,4 @@ import { HeaderComponent } from './components/header/header.component';
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
 })
 export class LayoutModule {}
+

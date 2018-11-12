@@ -58,6 +58,7 @@
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5812160E" ManuallyRouted="false" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5165187F" ManuallyRouted="false" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_WhiteList_IP" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ErrorLogs" Width="1.5" PointX="17.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

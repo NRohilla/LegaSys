@@ -872,6 +872,7 @@
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
     <EntitySet Name="LegaSys_WhiteList_IP" EntityType="LegaSysModel.LegaSys_WhiteList_IP" />
+    <EntitySet Name="LegaSys_ErrorLogs" EntityType="LegaSysModel.LegaSys_ErrorLogs" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -890,5 +891,22 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IP_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LegaSys_ErrorLogs">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsHandled" Type="Boolean" Nullable="false" />
+    <Property Name="ResourceUri" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="QueryString" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorDatetimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ErrorMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ExceptionDetail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IpAddress" Type="String" Nullable="false" MaxLength="45" FixedLength="true" Unicode="false" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ReferingUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="UserAgent" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

@@ -14,7 +14,7 @@ namespace LegaSysServices.Controllers
     public class ClientController : ApiController
     {
 
-        //Test comitted by Suraj
+       
 
         IUOWClient ClientRepository = new UOWClient();
         string Result = string.Empty;

@@ -64,3 +64,25 @@ D:\PMS\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CopyComplete
 D:\PMS\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.dll
 D:\PMS\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.pdb
 D:\PMS\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csprojAssemblyReference.cache
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysUOW.dll.config
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysUOW.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysUOW.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.SqlServer.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.SqlServerCompact.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataAccess.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataEntities.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\Newtonsoft.Json.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\System.Data.SqlServerCe.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.xml
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.SqlServer.xml
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\EntityFramework.SqlServerCompact.xml
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataAccess.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataAccess.dll.config
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\LegaSysDataEntities.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\bin\Debug\Newtonsoft.Json.xml
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CoreCompileInputs.cache
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CopyComplete
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.dll
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csprojAssemblyReference.cache

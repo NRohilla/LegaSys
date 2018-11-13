@@ -44,5 +44,6 @@ namespace LegaSysDataAccess
         public virtual ICollection<LegaSys_ProjectTasks> LegaSys_ProjectTasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_ProjectTechnology> LegaSys_ProjectTechnology { get; set; }
+       
     }
 }

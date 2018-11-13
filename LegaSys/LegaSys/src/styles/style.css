@@ -1,1 +1,3 @@
+body { font-size: 14px; }
 .client-detail .mat-tab-labels .mat-tab-label { color: #ffffff; opacity: 1 !important; text-transform: uppercase; font-size: 12px; font-weight: 600; }
+.table-active { background: #eeeeee; }

@@ -39,12 +39,12 @@
   </form>
    <div class="w-100 float-left d-block table-info px-4 py-2 table-info">
     <div class="px-2 float-right" *ngIf="disable">        
-            <button class="btn btn-info" (click)=" MakeFieldEditable()" >Edit</button>       
+            <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>       
     </div>
     <div class="px-2 float-right" *ngIf="!disable">       
-            <button class="btn btn-success" (click)="UpdateClient()">Save</button>        
+            <button mat-button class="btn btn-success" (click)="UpdateClient()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>        
     </div>
     <div class="px-2 float-right">     
-            <button class="btn btn-warning"(click)="DiscardChanges()">Cancel</button>      
+            <button mat-button class="btn btn-secondary"(click)="DiscardChanges()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>      
     </div>
 </div> 

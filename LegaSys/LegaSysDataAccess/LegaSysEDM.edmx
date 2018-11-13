@@ -70,6 +70,23 @@
           <Property Name="ClientStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ClientStatusId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="LegaSys_ErrorLogs">
+          <Key>
+            <PropertyRef Name="ErrorLogID" />
+          </Key>
+          <Property Name="ErrorLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsHandled" Type="bit" Nullable="false" />
+          <Property Name="ResourceUri" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="QueryString" Type="varchar(max)" Nullable="false" />
+          <Property Name="ErrorDatetimeUtc" Type="datetime" Nullable="false" />
+          <Property Name="ErrorMessage" Type="varchar(max)" Nullable="false" />
+          <Property Name="ExceptionDetail" Type="varchar(max)" Nullable="false" />
+          <Property Name="StackTrace" Type="varchar(max)" Nullable="false" />
+          <Property Name="IpAddress" Type="char" MaxLength="45" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="200" />
+          <Property Name="ReferingUrl" Type="varchar" MaxLength="250" />
+          <Property Name="UserAgent" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
         <EntityType Name="LegaSys_LeavesApplication">
           <Key>
             <PropertyRef Name="LeaveID" />
@@ -712,6 +729,7 @@
           <EntitySet Name="LegaSys_Client_Projects" EntityType="Self.LegaSys_Client_Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_ClientDetails" EntityType="Self.LegaSys_ClientDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_ClientStatus" EntityType="Self.LegaSys_ClientStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LegaSys_ErrorLogs" EntityType="Self.LegaSys_ErrorLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_LeavesApplication" EntityType="Self.LegaSys_LeavesApplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_Log_Clients" EntityType="Self.LegaSys_Log_Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_Log_Projects" EntityType="Self.LegaSys_Log_Projects" Schema="dbo" store:Type="Tables" />
@@ -1712,6 +1730,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="LegaSys_WhiteList_IP" EntityType="LegaSysModel.LegaSys_WhiteList_IP" />
+          <EntitySet Name="LegaSys_ErrorLogs" EntityType="LegaSysModel.LegaSys_ErrorLogs" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1730,6 +1749,23 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IP_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LegaSys_ErrorLogs">
+          <Key>
+            <PropertyRef Name="ErrorLogID" />
+          </Key>
+          <Property Name="ErrorLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsHandled" Type="Boolean" Nullable="false" />
+          <Property Name="ResourceUri" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="QueryString" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorDatetimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ErrorMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExceptionDetail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IpAddress" Type="String" Nullable="false" MaxLength="45" FixedLength="true" Unicode="false" />
+          <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ReferingUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UserAgent" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2155,6 +2191,24 @@
               <MappingFragment StoreEntitySet="LegaSys_WhiteList_IP">
                 <ScalarProperty Name="IP_Address" ColumnName="IP_Address" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LegaSys_ErrorLogs">
+            <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ErrorLogs">
+              <MappingFragment StoreEntitySet="LegaSys_ErrorLogs">
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="ReferingUrl" ColumnName="ReferingUrl" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="ExceptionDetail" ColumnName="ExceptionDetail" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ErrorDatetimeUtc" ColumnName="ErrorDatetimeUtc" />
+                <ScalarProperty Name="QueryString" ColumnName="QueryString" />
+                <ScalarProperty Name="ResourceUri" ColumnName="ResourceUri" />
+                <ScalarProperty Name="IsHandled" ColumnName="IsHandled" />
+                <ScalarProperty Name="ErrorLogID" ColumnName="ErrorLogID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

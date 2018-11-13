@@ -1,7 +1,9 @@
-﻿using System;
+﻿using LegaSysServices.ExceptionHandling;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace LegaSysServices
 {
@@ -16,6 +18,9 @@ namespace LegaSysServices
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;
+            config.Services.Add(typeof(IExceptionLogger), new LegaSysExceptionLogger());
         }
     }
 }

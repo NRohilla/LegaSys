@@ -82,6 +82,9 @@
     <Compile Include="LegaSys_Client_Projects.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="LegaSys_ErrorLogs.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="LegaSys_LeavesApplication.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>

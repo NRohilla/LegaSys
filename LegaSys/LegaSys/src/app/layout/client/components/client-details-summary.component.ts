@@ -13,7 +13,7 @@ currentClientDetails:any;
 currentClientID:any;
   constructor(private clientService:ClientServiceService,private currentClientdataService:CurrentClientdataServiceService) { }
   GetClientsWithID(ID){
-
+      debugger;
     this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
       suc => {
        console.log(suc);

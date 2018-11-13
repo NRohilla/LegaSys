@@ -7,6 +7,7 @@ import { MatFormFieldModule,MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ClientServiceService} from '../client-service.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {ClientServiceService} from '../client-service.service';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [ClientServiceService],
     declarations: [AddclientComponent]

@@ -11,15 +11,15 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   disable:boolean=true;
   currentClientDetails:any;
   currentClientID:any;
+  currentClientDetailsBackup:any;
     constructor(private clientService:ClientServiceService,private currentClientdataService:CurrentClientdataServiceService) { }
     GetClientsWithID(ID){
     
       this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
         suc => {
          console.log(suc);
-         this.currentClientDetails=suc;
-         console.log(this.currentClientDetails);
-        
+         this.currentClientDetails=suc; 
+         this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc));                 
         },
         err =>{
           console.log(err);
@@ -31,6 +31,25 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
     MakeFieldEditable()
     {
       this.disable=false;
+    }
+    DiscardChanges(){
+      debugger;
+      console.log(this.currentClientDetailsBackup);
+      this.currentClientDetails=this.currentClientDetailsBackup;
+      console.log(this.currentClientDetails);
+      this.disable=true;
+    }
+  
+    UpdateClient(){
+     
+      this.clientService.UpdateDetailsWithID(this.currentClientDetails).subscribe(
+        suc => {
+         this.currentClientDetails=suc;              
+        },
+        err =>{
+          console.log(err);    
+        }
+        );
     }
   
     ngOnInit() {

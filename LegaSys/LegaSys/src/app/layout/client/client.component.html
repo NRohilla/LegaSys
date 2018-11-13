@@ -15,40 +15,40 @@
   
     <!-- client name column -->
     <ng-container matColumnDef="ClientName">
-      <th  class="lightcoral" mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </th>
+      <th  class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </th>
       <td mat-cell *matCellDef="let element"> {{element.ClientName}} </td>
     </ng-container>
   
     <!-- client email Column -->
     <ng-container matColumnDef="Email">
-      <th class="lightcoral" mat-header-cell *matHeaderCellDef mat-sort-header>Email </th>
+      <th class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>Email </th>
       <td mat-cell *matCellDef="let element"> {{element.EmailID}} </td>
     </ng-container>
   
     <!--client address Column -->
     <ng-container matColumnDef="Address">
-      <th class="lightcoral" mat-header-cell *matHeaderCellDef mat-sort-header>Address </th>
+      <th class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>Address </th>
       <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
     </ng-container>
   
     <!-- client country Column -->
     <ng-container matColumnDef="Country">
-      <th class="lightcoral" mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
+      <th class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
       <td mat-cell *matCellDef="let element"> {{element.Country}} </td>
     </ng-container>
     <!-- co client  Column -->
     <ng-container matColumnDef="CoClient">
-        <th class="lightcoral" mat-header-cell *matHeaderCellDef mat-sort-header>  Co Client </th>
+        <th class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  Co Client </th>
         <td mat-cell *matCellDef="let element"> {{element.CoClient}} </td>
       </ng-container>
     <!--Action  Column, will contains button for View,Edit and Delete -->
       <ng-container matColumnDef="action">
-        <th class="lightcoral" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <th class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
         <td mat-cell *matCellDef="let element">
           <!-- [routerLink]="['/client-details'] -->
-            <button mat-button  (click)="ViewClientDetails(element.ClientDetailID)">View</button>
+            <button (click)="ViewClientDetails(element.ClientDetailID)"  class="btn btn-info">View</button>
           
-            <button mat-button (click)= "DeleteClientWithID(element.ClientDetailID)">Delete</button>
+            <button mat-button (click)= "DeleteClientWithID(element.ClientDetailID)" class="btn btn-danger">Delete</button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -59,9 +59,9 @@
 
 </div>
 
-<div>
+<div class="w-100 float-left table-info px-4 py-2 text-right">
   <!-- This button will be used to add client into the database-->
 
-  <button mat-flat-button color="primary" [routerLink]="['/add-client']">Add Client</button>
+  <button class="btn btn-info" [routerLink]="['/add-client']">Add Client</button>
 </div>
     

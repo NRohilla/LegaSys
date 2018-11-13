@@ -1,69 +1,68 @@
-<!-- <div [@routerTransition]>
-        <app-page-header [heading]="'Client'" [icon]="'fa-table'"></app-page-header>
-</div> -->
-<div _ngcontent-c4="" class="card mb-3">
-    <div _ngcontent-c4="" class="card-header"> <mat-label class="labeltext">Client Info </mat-label></div>
+<div [@routerTransition]>
+        <app-page-header [heading]="'Add New Client '" [icon]="'fa fa-plus'"></app-page-header>
+</div>
+<div class="card mb-3">
+    <div class="card-header bg-info"> <mat-label class="labeltext text-white text-uppercase">Client Info </mat-label></div>
     <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
-    <div class="row"> 
-       
-      <div class="col-lg-6">
+    <div class="w-100 table-active py-3 px-2 float-left">        
+      <div class="w-100 float-left">
           <!-- <form role="form"> -->
-              <fieldset class="form-group">
-              <mat-form-field class="inputfield">
-                  <input matInput  placeholder="Client Name" formControlName="ClientName" name="ClientName" class="form-control" id="ClientName">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+              <mat-form-field class="w-100" >
+                  <input matInput  placeholder="Client Name" formControlName="ClientName" name="ClientName" id="ClientName">
+                  
                 </mat-form-field>
-              </fieldset>
+            </div>
 
-              <fieldset class="form-group">
-                <mat-form-field  class="inputfield">
-                    <input matInput placeholder="Primary Email" formControlName="EmailID" name="EmailID" class="form-control" id="EmailID" >
+              <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <mat-form-field  class="w-100">
+                    <input matInput placeholder="Primary Email" formControlName="EmailID" name="EmailID" id="EmailID" >
                   </mat-form-field>
-              </fieldset>
-              <fieldset class="form-group">
-                  <mat-form-field  class="inputfield">
-                      <input matInput placeholder="Primary Co Client" formControlName="CoClient" name="CoClient" class="form-control" id="CoClient">
+                </div>
+      </div>
+      <div class="w-100 float-left">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                  <mat-form-field  class="w-100">
+                      <input matInput placeholder="Primary Co Client" formControlName="CoClient" name="CoClient" id="CoClient">
                     </mat-form-field>
-                </fieldset>
-                <fieldset class="form-group">
-                    <mat-form-field  class="inputfield">
-                        <textarea matInput placeholder="Address" formControlName="Address" name="Address" class="form-control" id="Address"></textarea>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                    <mat-form-field  class="w-100">
+                            <input matInput placeholder="Address" formControlName="Address" name="Address" id="CoClient">
+                        <!-- <textarea matInput placeholder="Address" formControlName="Address" name="Address" id="Address"></textarea> -->
                       </mat-form-field>
-                  </fieldset>
+                    </div>
           <!-- </form> -->
 
       </div>
 
 
-      <div class="col-lg-6">
+      <div class="w-100 float-left">
           <!-- <form role="form"> -->
-              <fieldset class="form-group">
-              <mat-form-field  class="inputfield">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+              <mat-form-field  class="w-100">
                   <input matInput placeholder="Country" formControlName="Country" name="Country" class="form-control" id="Country">
                 </mat-form-field>
-              </fieldset>
+            </div>
 
-              <fieldset class="form-group">
-                <mat-form-field  class="inputfield">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <mat-form-field  class="w-100">
                     <input matInput placeholder="Secondary Email" formControlName="EmailID2" name="EmailID2" class="form-control" id="EmailID2">
                   </mat-form-field>
-              </fieldset>
-
-              <fieldset class="form-group">
-                  <mat-form-field  class="inputfield">
+                </div>
+      </div>
+      <div class="w-100 float-left">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                  <mat-form-field  class="w-100">
                       <input matInput placeholder="Scondry Co Client" formControlName="CoClient2" name="CoClient2" class="form-control" id="CoClient2">
                     </mat-form-field>
-                </fieldset>
-
-             <button class="btn btn-default" >Submit!</button>
-                        
+                </div>            
           <!-- </form> -->
-
       </div>
-
-
-
+    </div>
+    <div class="w-100 float-left table-info px-4 py-2 text-right">
+            <button class="btn btn-info">Submit!</button>                        
     </div> 
-    </form> 
-   
+    </form>    
  </div> 

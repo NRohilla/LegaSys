@@ -19,7 +19,7 @@ export class ClientComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
    // This is an aaray for Header in Grid displaying client details
   displayedColumns: string[] = ['ClientName', 'Email', 'Address', 'Country', 'CoClient', 'action'];
-  clientDetails: any;  // This array will hold the all client details
+  clientDetails: any=[];  // This array will hold the all client details
   //dataSource:any;
   constructor(private modalService: NgbModal, private clientService: ClientServiceService, private router: Router, private currentClientdataService: CurrentClientdataServiceService) {
  
@@ -27,7 +27,7 @@ export class ClientComponent implements OnInit {
   // this fuction is used for sorting the grid
   ViewClientDetails(element: any) {
     console.log(element);
-    this.currentClientdataService.currentClientID = parseInt(element);
+    this.currentClientdataService.currentClientID = element;
     this.router.navigate(['/client-details']);
   }
 
@@ -41,6 +41,7 @@ export class ClientComponent implements OnInit {
         this.clientDetails.sort = this.sort;
       },
       err => {
+         console.log(err);
       }
     );
   }

@@ -1,46 +1,37 @@
-<form class="example-form">
-  <div class="row">
-      <div class="col-md-4">
-          <mat-form-field class="example-full-width" >
-                 <input matInput placeholder="Co Client 1 " [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient" name="currentClientDetails.CoClient" >
-          </mat-form-field>
-      </div>
-      <div class="col-md-4">
-          <mat-form-field class="example-full-width" >
-                 <input matInput placeholder="Co Client 2 "  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient2" name="currentClientDetails.CoClient2" >
-          </mat-form-field>
-      </div>
-</div>
-<div class="row">
-      <div class="col-md-4">
-          <mat-form-field class="example-full-width" >
-                 <input matInput placeholder="Co Client 3 "  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient3" name="currentClientDetails.CoClient3"  >
-          </mat-form-field>
-      </div>
-      <div class="col-md-4">
-          <mat-form-field  class="example-full-width">
-                 <input matInput placeholder="Co Client 4"  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient4" name="currentClientDetails.CoClient4" >
-          </mat-form-field>
-      </div>
-</div>
 
-
-</form>
-
- <div class="row">
-  <div class="col-md-2"  *ngIf="disable">
-      
-          <button mat-raised-button color="primary" (click)=" MakeFieldEditable()">Edit</button>
-     
-  </div>
-  <div class="col-md-2" *ngIf="!disable">
-     
-          <button mat-raised-button color="accent" >Save</button>
-      
-  </div>
-  <div class="col-md-2">
-   
-          <button mat-raised-button color="warn">Discard</button>
-    
-  </div><br><br>
-</div> 
+<form class="w-100 float-left table-active py-5 px-2">
+        <div class="row m-0">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <mat-form-field class="w-100">
+                        <input matInput placeholder="Co Client 1 " [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient" name="currentClientDetails.CoClient" >
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <mat-form-field class="w-100" >
+                        <input matInput placeholder="Co Client 2 "  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient2" name="currentClientDetails.CoClient2" >
+                </mat-form-field>
+            </div>
+      </div>
+      <div class="row m-0">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <mat-form-field class="w-100" >
+                        <input matInput placeholder="Co Client 3 "  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient3" name="currentClientDetails.CoClient3"  > </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <mat-form-field  class="w-100">
+                        <input matInput placeholder="Co Client 4"  [disabled]="disable"  [(ngModel)]="currentClientDetails.CoClient4" name="currentClientDetails.CoClient4" >
+         </mat-form-field>
+            </div>
+      </div>     
+      </form>
+       <div class="w-100 float-left d-block table-info px-4 py-2 table-info">
+            <div class="px-2 float-right" *ngIf="disable">        
+                    <button class="btn btn-info" (click)=" MakeFieldEditable()" >Edit</button>       
+            </div>
+            <div class="px-2 float-right" *ngIf="!disable">       
+                    <button class="btn btn-success" (click)="UpdateClient()">Save</button>        
+            </div>
+            <div class="px-2 float-right">     
+                    <button class="btn btn-warning"(click)="DiscardChanges()">Cancel</button>      
+            </div>
+    </div> 

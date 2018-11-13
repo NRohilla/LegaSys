@@ -19,11 +19,7 @@ export class ClientServiceService {
     return this.http.get(this.URL);
 
   }
-  CreateNewClient(client:object){
-    console.log(client);
-    return this.http.post(this.URL,client);
-  }
-  GetDetailsOfClientwhoseID(ID){
+   GetDetailsOfClientwhoseID(ID){
     return this.http.get(this.URL+'/'+ID);
 
   }

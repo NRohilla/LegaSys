@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ClientServiceService} from '../client-service.service';
 import{CurrentClientdataServiceService} from '../../../current-clientdata-service.service';
+import { Router } from '@angular/router';
 //import {ClientTestingService} from '../../clienttesting.service';
 
 
@@ -12,20 +13,19 @@ import{CurrentClientdataServiceService} from '../../../current-clientdata-servic
 export class ClientDetailsPersonalDetailsComponent implements OnInit {
   disable:boolean=true;
   currentClientDetails:any;
+  currentClientDetailsBackup:any;
   currentClientID:any;
-    constructor(private clientService:ClientServiceService,private currentClientdataService:CurrentClientdataServiceService) { }
+    constructor(private clientService:ClientServiceService,private currentClientdataService:CurrentClientdataServiceService, private router: Router) { }
     GetClientsWithID(ID){
-
+debugger;
       this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
         suc => {
-         console.log(suc);
          this.currentClientDetails=suc;
-         console.log(this.currentClientDetails);
-        
+         this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc));      
+              
         },
         err =>{
-          console.log(err);
-    
+          console.log(err);    
         }
         );
     }
@@ -33,22 +33,24 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     {
       this.disable=false;
     }
+
+    DiscardChanges(){
+      debugger;
+      this.currentClientDetails=this.currentClientDetailsBackup;
+      this.disable=true;
+    }
   
     UpdateClient(){
-     
+     debugger;
       this.clientService.UpdateDetailsWithID(this.currentClientDetails).subscribe(
         suc => {
-         console.log(suc);
          this.currentClientDetails=suc;
-         console.log(this.currentClientDetails);
-        
+         this.router.navigate(['/client-details']);              
         },
         err =>{
-          console.log(err);
-    
+          console.log(err);    
         }
         );
-
     }
     ngOnInit() {
    

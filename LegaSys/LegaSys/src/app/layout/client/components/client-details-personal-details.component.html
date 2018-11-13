@@ -1,58 +1,50 @@
-<form class="example-form">
-    <div class="row">
-        <div class="col-md-4">
-            <mat-form-field class="example-full-width" >
+
+<form class="w-100 float-left table-active py-5 px-2">
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <mat-form-field class="w-100">
                    <input matInput placeholder="Client Name "  [disabled]="disable"  [(ngModel)]="currentClientDetails.ClientName" name="currentClientDetails.ClientName" >
             </mat-form-field>
         </div>
-        <div class="col-md-4">
-            <mat-form-field class="example-full-width" >
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <mat-form-field class="w-100" >
                    <input matInput placeholder="Client Address "  [disabled]="disable" [(ngModel)]="currentClientDetails.Address" name="currentClientDetails.Address" >
             </mat-form-field>
         </div>
   </div>
-  <div class="row">
-        <div class="col-md-4">
-            <mat-form-field class="example-full-width" >
+  <div class="row m-0">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <mat-form-field class="w-100" >
                    <input matInput placeholder="Client Email 1 "  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID" name="currentClientDetails.EmailID"  >
             </mat-form-field>
         </div>
-        <div class="col-md-4">
-            <mat-form-field  class="example-full-width">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <mat-form-field  class="w-100">
                    <input matInput placeholder="Client  Email 2"  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID2" name="currentClientDetails.EmailID2" >
             </mat-form-field>
         </div>
   </div>
-  <div class="row">
-      <div class="col-md-4">
-          <mat-form-field class="example-full-width">
+  <div class="row m-0">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+          <mat-form-field class="w-100">
                  <input matInput placeholder="Client Email 3 "   [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID3" name="currentClientDetails.EmailID3" >
           </mat-form-field>
       </div>
-      <div class="col-md-4">
-          <mat-form-field class="example-full-width">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+          <mat-form-field class="w-100">
                  <input matInput placeholder="Client Email 4"  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID4" name="currentClientDetails.EmailID4">
           </mat-form-field>
       </div>
 </div>
-
-  
-
   </form>
-   <div class="row">
-    <div class="col-md-2" *ngIf="disable">
-        
-            <button mat-raised-button color="primary" (click)=" MakeFieldEditable()" >Edit</button>
-       
+   <div class="w-100 float-left d-block table-info px-4 py-2 table-info">
+    <div class="px-2 float-right" *ngIf="disable">        
+            <button class="btn btn-info" (click)=" MakeFieldEditable()" >Edit</button>       
     </div>
-    <div class="col-md-2" *ngIf="!disable">
-       
-            <button mat-raised-button color="accent" (click)="UpdateClient()">Save</button>
-        
+    <div class="px-2 float-right" *ngIf="!disable">       
+            <button class="btn btn-success" (click)="UpdateClient()">Save</button>        
     </div>
-    <div class="col-md-2">
-     
-            <button mat-raised-button color="warn">Discard</button>
-      
-    </div><br><br>
+    <div class="px-2 float-right">     
+            <button class="btn btn-warning"(click)="DiscardChanges()">Cancel</button>      
+    </div>
 </div> 

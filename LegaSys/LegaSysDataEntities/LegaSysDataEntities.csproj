@@ -41,8 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientDetail.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="ProjectDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="Shift.cs" />
     <Compile Include="UserDetail.cs" />
     <Compile Include="UserLoginDetails.cs" />
   </ItemGroup>

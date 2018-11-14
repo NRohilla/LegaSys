@@ -21,6 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "src/styles/app.scss"
             ],
@@ -76,6 +77,7 @@
               "node_modules/chart.js/dist/Chart.js"
             ],
             "styles": [
+              "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "src/styles/app.scss"
             ],

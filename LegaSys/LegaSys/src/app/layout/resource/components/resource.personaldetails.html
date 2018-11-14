@@ -1,38 +1,83 @@
+
+
 <form >
-    <div class="row">
+ <div class="example-container" >
+    <div class="row" >
+        <div class="col-md-4">
+                        <mat-form-field >
+                   <input matInput placeholder="First Name " [(ngModel)] = "currentResourceDetails.Firstname" name="currentResourceDetails.Firstname">
+            </mat-form-field>
+        </div>
         <div class="col-md-4">
             <mat-form-field  >
-                   <input matInput placeholder="Name " >
+                   <input matInput placeholder="Middle Name " [(ngModel)] = "currentResourceDetails.Middlename" name="currentResourceDetails.Middlename" >
             </mat-form-field>
         </div>
         <div class="col-md-4">
-            <mat-form-field >
-                   <input matInput placeholder="Address " >
+            <mat-form-field  >
+                   <input matInput placeholder="Last Name " [(ngModel)] = "currentResourceDetails.Lastname" name="currentResourceDetails.Lastname"  >
             </mat-form-field>
         </div>
   </div>
+</div>
   <div class="row">
         <div class="col-md-4">
             <mat-form-field >
-                   <input matInput placeholder="Email 1 "  >
+                   <input matInput placeholder="Total Experience " [(ngModel)] = "currentResourceDetails.TotalExp" name="currentResourceDetails.TotalExp" >
             </mat-form-field>
         </div>
         <div class="col-md-4">
             <mat-form-field >
-                   <input matInput placeholder="Email 2" >
+                   <input matInput placeholder="Email ID" [(ngModel)] = "currentResourceDetails.EmailId" name="currentResourceDetails.EmailId">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field >
+                   <input matInput placeholder="Remarks" [(ngModel)] = "currentResourceDetails.Remarks" name="currentResourceDetails.Remarks" >
             </mat-form-field>
         </div>
   </div>
   <div class="row">
       <div class="col-md-4">
-          <mat-form-field >
-                 <input matInput placeholder="Email 3 "  >
-          </mat-form-field>
+        <mat-select placeholder="Shift">
+            <mat-option *ngFor="let Shift of getAllShift" [value]="Shift.ShiftID" >
+              {{Shift.StartTimeIST +'-'+ Shift.EndTimeIST }}
+            </mat-option>
+          </mat-select>
       </div>
       <div class="col-md-4">
-          <mat-form-field >
-                 <input matInput placeholder="Email 4" >
-          </mat-form-field>
+        <mat-select placeholder="Location Address">
+            <mat-option *ngFor="let location of getLocation" [value]="location.LocationID">
+              {{location.LocationAddress}}
+            </mat-option>
+          </mat-select>
+      </div>
+      <div class="col-md-4">
+        <mat-select placeholder="Reporting Head">
+            <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option> -->
+          </mat-select>
       </div>
 </div> 
+<div class="row">
+    <div class="col-md-4">
+      <mat-select placeholder="Role">
+        <mat-option *ngFor="let Role of getAllRole" [value]="Role.UserRoleID">
+            {{Role.RoleName}}
+          </mat-option>
+        </mat-select>
+    </div>
+    </div>
   </form>
+  <div >
+    <!-- <div class="px-2 float-right" *ngIf="disable">        
+            <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>       
+    </div> -->
+    <div >       
+            <button mat-button class="btn btn-success" (click)="UpdateResource()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>        
+    </div>
+    <div>     
+            <button mat-button class="btn btn-secondary"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>      
+    </div>
+</div> 

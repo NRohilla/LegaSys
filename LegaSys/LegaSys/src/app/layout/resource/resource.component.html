@@ -1,19 +1,10 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <div>
-    <app-page-header [heading]="'Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
-    <div>
-        <button type="button" [routerLink]="['/resource-details']" class="btn btn-info" style="margin-bottom: 1%;">Create New Resource</button>
-
-        <mat-grid-list cols="2  " rowHeight="2:1">
-            <mat-grid-tile>1</mat-grid-tile>
-        </mat-grid-list>
-    </div>
+    <app-page-header [heading]="'Resource'" [style]="'background-color:lightgrey'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+    
 </div>
 <!-- <button mat-stroked-button color="primary">New Resource</button> -->
-<br> <br><br>
 <!-- <mat-toolbar color="primary"> -->
-
-<h2 style="background-color:lightgrey"><b>Resource</b></h2>
 
 <!-- </mat-toolbar> -->
 <!-- <mat-form-field>
@@ -64,118 +55,11 @@
     <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary">View Details</button>
-            <!-- &nbsp; <button mat-stroked-button color="warn" >Delete</button> </td> -->
-
+            <button (click)="ViewResourceDetails(element.UserDetailID)" mat-raised-button color="primary">View Details</button>
+            
     </ng-container>
-
-
-
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
 
-<!--
-<div>
-  <a href="#" class="btn btn-info">Add New</a>
-
-<br><br>
-<div class=" row" >
-
-    <div class="col col-xl-12 col-lg-12">
-        <div class="card mb-3">
-            <div class="card-header">
-               Resource List
-            </div>
-            <div class="card-body table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Designation</th>
-                        <th>Email</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                          <a href="" class="btn btn-primary">Edit</a>&nbsp;
-                          <a href="" class="btn btn-info">View</a>&nbsp;
-                          <a href="" class="btn btn-success">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>
-                            <a href="" class="btn btn-primary">Edit</a>&nbsp;
-                          <a href="" class="btn btn-info">View</a>&nbsp;
-                          <a href="" class="btn btn-success">Delete</a>
-                          </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>
-                            <a href="" class="btn btn-primary">Edit</a>&nbsp;
-                          <a href="" class="btn btn-info">View</a>&nbsp;
-                          <a href="" class="btn btn-success">Delete</a>
-                          </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
- <table class= "table table-responsive "  >
-<thead class="">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Designation</th>
-    <th>Email</th>
-    <th>Reporting Head</th>
-    <th>Location</th>
-    <th>Total Experience</th>
-    <th>Shift Info</th>
-    <th>Action</th>
-
-
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <td>Firstname</td>
-    <td>Lastname</td>
-    <td>Designation</td>
-    <td>Email</td>
-    <td>Reporting Head</td>
-    <td>Location</td>
-    <td>Total Experience</td>
-    <td>Shift Info</td>
-    <td>
-      <a href="#" class="btn btn-primary">Edit</a>
-      <a href="#" class="btn btn-success">Delete</a>
-      <a href="#" class="btn btn-info">View</a>
-    </td>
-  </tr>
-  </tbody>
-
-</table> -->
-<!-- </div>
-</div> -->

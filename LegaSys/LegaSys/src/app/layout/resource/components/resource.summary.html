@@ -1,31 +1,23 @@
-<div class="row">
-    <div class="col-md-2"><strong>First Name :</strong></div>
-    <div class="col-md-2"> {{currentClientDetails.ClientName}}</div>
-    <div class="col-md-2"><strong>Middle Name :</strong></div>
-    <div class="col-md-2">{{currentClientDetails.Address}}</div>
+<div class="row" >
+    <div class="col-md-2"><strong> Name :</strong></div>
+    <div class="col-md-2"> {{resoursedetails.Firstname+ ' '+ resoursedetails.Middlename+' '+ resoursedetails.Lastname}}</div>
+    <div class="col-md-2"><strong>TotalExp:</strong></div>
+    <div class="col-md-2">{{resoursedetails.TotalExp}}</div>
   </div><br><br>
-  <div class="row">
-        <div class="col-md-2"><strong>Last Name:</strong></div>
-        <div class="col-md-2"> {{currentClientDetails.EmailID}}</div>
-        <div class="col-md-2"><strong>TotalExp:</strong></div>
-        <div class="col-md-2">{{currentClientDetails.EmailID2}}</div>
-        
-      </div><br><br>
       <div class="row">
             <div class="col-md-2"><strong>EmailId:</strong></div>
-            <div class="col-md-2">{{currentClientDetails.EmailID3}}</div>
+            <div class="col-md-2">{{resoursedetails.EmailId}}</div>
             <div class="col-md-2"><strong>Location Address:</strong></div>
-            <div class="col-sm-2">{{currentClientDetails.EmailID4}}</div>
+            <div class="col-sm-2">{{resoursedetails.LocationAddress}}</div>
       </div><br><br>
       <div class="row">
             <div class="col-md-2"><strong>Remarks :</strong></div>
-            <div class="col-md-2">{{currentClientDetails.CoClient}}</div>
+            <div class="col-md-2">{{resoursedetails.Remarks}}</div>
             <div class="col-md-2"><strong>Shift :</strong></div>
-            <div class="col-sm-2">{{currentClientDetails.CoClient2}}</div>
+            <div class="col-sm-2">{{resoursedetails.Shift}}</div>
       </div><br><br>
       <div class="row">
             <div class="col-md-2"><strong>Reporting Head:</strong></div>
-            <div class="col-md-2">{{currentClientDetails.CoClient3}}</div>
-            <!-- <div class="col-md-2"><strong>CoClient 4 :</strong></div>
-            <div class="col-md-2">{{currentClientDetails.CoClient4}}</div> -->
+            <div class="col-md-2">{{resoursedetails.ReportingHead}}</div>
+           
       </div><br><br>

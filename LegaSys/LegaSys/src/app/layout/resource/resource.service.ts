@@ -9,7 +9,7 @@ import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
     providedIn: 'root'
 })
 export class ResourceService {
-
+  currentresoursedetails : any;
     baseUrl: string = 'http://localhost:58164/resource/getall';
 
     constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
@@ -17,7 +17,7 @@ export class ResourceService {
 
     getResource() {
 
-        debugger;
+       
         var token = this.storage.get('UserToken');
         console.log(token);
         if (token != null) {
@@ -39,28 +39,92 @@ export class ResourceService {
         //return this.http.get(this.baseUrl, { headers: new HttpHeaders({'Authorization': 'Bearer ' + token})});
     }
 
-    // this.currentValue = 'bearer ' + this.storage.get('UserToken');
-    // authReq = req.clone({ headers: req.headers.set('Authorization', this.currentValue) });
-
-
-    // getResource(){
-    //   return this.http.get<Resource[]>(this.baseUrl);
-    // }
-
 
     getResourceById(UserId: number) {
-        return this.http.get<Resource[]>(this.baseUrl + '/' + UserId);
+        var token = this.storage.get('UserToken');
+        console.log(token);
+        if (token != null) {
+            var atoken = token.access_token;
+        }
+
+        var abc = 'Bearer ' + token.access_token;
+        console.log(abc);
+        //  var reqHeader = new HttpHeaders({'Authorization': });
+        let headerss = new HttpHeaders();
+        headerss = headerss.append('Authorization', abc);
+
+        return this.http.get<Resource[]>('http://localhost:58164/resource/' + UserId, { headers: headerss });
     }
 
     addResource(resource: Resource) {
         return this.http.post(this.baseUrl, resource);
     }
     updateResource(resource: Resource) {
-        return this.http.put(this.baseUrl + '/' + resource.UserDetailID, resource);
+        var token = this.storage.get('UserToken');
+        console.log(token);
+        if (token != null) {
+            var atoken = token.access_token;
+        }
+
+        var abc = 'Bearer ' + token.access_token;
+        console.log(abc);
+        //  var reqHeader = new HttpHeaders({'Authorization': });
+        let headerss = new HttpHeaders();
+        headerss = headerss.append('Authorization', abc);
+        return this.http.put<Resource[]>(this.baseUrl + '/' + resource.UserDetailID, resource);
     }
     deleteResource(UserId: number) {
         return this.http.delete<Resource[]>(this.baseUrl + UserId)
     }
+//to get All Role From webApi
+      getRole()
+      {
+        var token = this.storage.get('UserToken');
+        console.log(token);
+        if (token != null) {
+            var atoken = token.access_token;
+        }
 
+        var abc = 'Bearer ' + token.access_token;
+        console.log(abc);
+        //  var reqHeader = new HttpHeaders({'Authorization': });
+        let headerss = new HttpHeaders();
+        headerss = headerss.append('Authorization', abc);
+          return this.http.get<Resource>('http://localhost:58164/role/getall', { headers: headerss })
+      }
+
+ //to get All Shift From webApi
+     getShift()
+     {
+        var token = this.storage.get('UserToken');
+        console.log(token);
+        if (token != null) {
+            var atoken = token.access_token;
+        }
+
+        var abc = 'Bearer ' + token.access_token;
+        console.log(abc);
+        //  var reqHeader = new HttpHeaders({'Authorization': });
+        let headerss = new HttpHeaders();
+        headerss = headerss.append('Authorization', abc);
+        return this.http.get<Resource>('http://localhost:58164/shift/getall', { headers: headerss })
+     }
+
+     //to get All Shift From webApi
+     getLocation()
+     {
+        var token = this.storage.get('UserToken');
+        console.log(token);
+        if (token != null) {
+            var atoken = token.access_token;
+        }
+
+        var abc = 'Bearer ' + token.access_token;
+        console.log(abc);
+        //  var reqHeader = new HttpHeaders({'Authorization': });
+        let headerss = new HttpHeaders();
+        headerss = headerss.append('Authorization', abc);
+        return this.http.get<Resource>('http://localhost:58164/location/getall', { headers: headerss })
+     }
 
 }

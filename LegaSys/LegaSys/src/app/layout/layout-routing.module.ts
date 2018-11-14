@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { ShiftsComponent } from './masters/shifts/shifts.component';
 //import { ResourceDetailsComponent } from './resource/resource-details/resource-details.component';
+import { CreateResourceComponent } from './resource/create-resource.component';
+
 
 const routes: Routes = [
     {
@@ -22,6 +24,7 @@ const routes: Routes = [
             { path: 'resource', loadChildren: './resource/resource.module#ResourceModule' },
             { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
             { path: 'shifts', loadChildren: './masters/shifts/shifts.module#ShiftsModule' },
+            { path:'create-resource',component: CreateResourceComponent}
         ]
     }
 ];

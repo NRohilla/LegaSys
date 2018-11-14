@@ -1,24 +1,21 @@
-export class resource {
 
-    UserDetailID: number;
-    Firstname: string;
-    Middlename: string;
-    Lastname: string;
-    TotalExp: number;
-    EmailId: string;
-    Remarks: string;
-    Master_Shift_ID: number;
-    LocationAddress: string;
-}
 
 export class Resource {
     UserDetailID: number;
     Firstname: string;
     Middlename: string;
     Lastname: string;
+    Fullname:string;
     TotalExp: string;
     EmailId: string;
-    Shift_ID: string;
-    Location_ID: string;
-    ReportingHead_ID: string;
+    ShiftID: string;
+    StartTimeIST:string;
+    EndTimeIST:string;
+    LocationID: string;
+    LocationAddress:string;
+    ReportingHeadID: string;
+    ReportingHead:string;
+    IsActive : boolean;
+    UserRoleID:string;
+    RoleName:string;
 }

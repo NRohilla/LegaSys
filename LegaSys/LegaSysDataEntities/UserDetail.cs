@@ -12,6 +12,7 @@ namespace LegaSysDataEntities
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
+        public string Fullname { get; set; }
         public decimal? TotalExp { get; set; }
         public string EmailId { get; set; }
         public bool? IsActive { get; set; }

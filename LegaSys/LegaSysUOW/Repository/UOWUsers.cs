@@ -29,5 +29,19 @@ namespace LegaSysUOW.Repository
                 Username = GetUserDetails.Username,
             };
         }
+
+        public List<UserDetail> GetUserList()
+        {
+            List<UserDetail> list = null;
+            using (LegaSysEntities db = new LegaSysEntities())
+            {
+                list = db.LegaSys_UserDetails.Where(x => x.IsActive).AsEnumerable().Select(y => new UserDetail
+                {
+                    UserDetailID = y.UserDetailID,
+                    Fullname = $"{y.Firstname} {y.Lastname}"
+                }).ToList();
+            }
+            return list;
+        }
     }
 }

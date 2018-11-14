@@ -9,6 +9,7 @@ using System.Security.Claims;
 using Microsoft.Owin.Security;
 using LegaSysUOW.Repository;
 using LegaSysDataEntities;
+using LegaSysUOW.Interface;
 
 namespace LegaSysServices.App_Start
 {
@@ -21,8 +22,7 @@ namespace LegaSysServices.App_Start
         }
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            UOWUsers ObjUsers = new UOWUsers();
-            UserLoginDetails user = ObjUsers.AuthenticateAndFetchUserDetail(context.UserName, context.Password);
+            UserLoginDetails user = AutofacWebapiConfig.ResolveRequestInstance<IUOWUsers>().AuthenticateAndFetchUserDetail(context.UserName, context.Password);
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect");

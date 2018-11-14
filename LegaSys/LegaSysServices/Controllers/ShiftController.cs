@@ -24,5 +24,12 @@ namespace LegaSysServices.Controllers
         {
             return Json(_uOWShifts.GetAllShifts());
         }
+
+        [HttpGet]
+        [Route("shift/{id}")]
+        public IHttpActionResult GetShiftById(int id)
+        {
+            return Json(_uOWShifts.GetShiftById(id));
+        }
     }
 }

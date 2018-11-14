@@ -48,5 +48,26 @@ namespace LegaSysServices.Controllers
 
             return Json(new { success = true, id });
         }
+
+
+        [HttpPost]
+        [Route("resource/update")]
+        public IHttpActionResult UpdateResource(UserDetail model)
+        {
+            if (model == null)
+                return BadRequest("Model cannot be null");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            int.TryParse(User.Identity.GetUserId(), out var createdBy);
+
+            model.Created_By = createdBy;
+
+            if (_uOWResources.UpdateResource(model))
+                return NotFound();
+
+            return Json(new { success = true });
+        }
     }
 }

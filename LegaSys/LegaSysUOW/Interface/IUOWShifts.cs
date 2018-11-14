@@ -6,5 +6,6 @@ namespace LegaSysUOW.Interface
     public interface IUOWShifts
     {
         IQueryable<Shift> GetAllShifts();
+        Shift GetShiftById(int id);
     }
 }

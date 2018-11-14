@@ -41,9 +41,20 @@ namespace LegaSysUOW.Repository
             return model.UserDetailID;
         }
 
-        public void DeleteResource(int id)
+        public bool DeleteResource(int id, int userId)
         {
-            throw new NotImplementedException();
+            var existingModel = db.LegaSys_UserDetails.FirstOrDefault(x => x.UserDetailID == id);
+
+            if (existingModel == null)
+                return false;
+
+            existingModel.IsActive = false;
+            existingModel.Updated_Date = DateTime.Now;
+            existingModel.Updated_By = userId;
+
+            db.SaveChanges();
+
+            return true;
         }
 
         public IEnumerable<UserDetail> GetAllActiveResources()
@@ -63,16 +74,16 @@ namespace LegaSysUOW.Repository
                         Lastname = x.user.Lastname,
                         TotalExp = x.user.TotalExp,
                         EmailId = x.user.EmailId,
-                        IsActive = x.user.IsActive,
-                        Master_Location_ID = x.user.Master_Location_ID,
+                        //IsActive = x.user.IsActive,
+                        //Master_Location_ID = x.user.Master_Location_ID,
                         LocationAddress = x.location.LocationAddress,
-                        Master_Shift_ID = x.user.Master_Shift_ID,
+                        //Master_Shift_ID = x.user.Master_Shift_ID,
                         Shift = $"{x.shift.StartTimeIST} - {x.shift.EndTimeIST}",
-                        ReportingHead_ID = x.user.ReportingHead_ID,
+                        //ReportingHead_ID = x.user.ReportingHead_ID,
                         ReportingHead = $"{x.reporting.Firstname} {x.reporting.Lastname}",
-                        Master_Role_ID = x.user.Master_Role_ID,
-                        RoleName = x.role.Role,
-                        Remarks = x.user.Remarks
+                        //Master_Role_ID = x.user.Master_Role_ID,
+                        //RoleName = x.role.Role,
+                        //Remarks = x.user.Remarks
                     });
         }
 
@@ -81,9 +92,30 @@ namespace LegaSysUOW.Repository
             throw new NotImplementedException();
         }
 
-        public void UpdateResource(UserDetail userDetail)
+        public bool UpdateResource(UserDetail userDetail)
         {
-            throw new NotImplementedException();
+            var existingModel = db.LegaSys_UserDetails.FirstOrDefault(x => x.UserDetailID == userDetail.UserDetailID);
+
+            if (existingModel == null)
+                return false;
+
+            existingModel.Firstname = userDetail.Firstname;
+            existingModel.Middlename = userDetail.Middlename;
+            existingModel.Lastname = userDetail.Lastname;
+            existingModel.TotalExp = userDetail.TotalExp;
+            existingModel.EmailId = userDetail.EmailId;
+            existingModel.MobileNumber = userDetail.MobileNumber;
+            existingModel.Master_Location_ID = userDetail.Master_Location_ID;
+            existingModel.Master_Shift_ID = userDetail.Master_Shift_ID;
+            existingModel.ReportingHead_ID = userDetail.ReportingHead_ID;
+            existingModel.Master_Role_ID = userDetail.Master_Role_ID;
+            existingModel.Remarks = userDetail.Remarks;
+            existingModel.Updated_Date = DateTime.Now;
+            existingModel.Updated_By = userDetail.Created_By;
+
+            db.SaveChanges();
+
+            return true;
         }
     }
 }

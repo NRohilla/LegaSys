@@ -8,28 +8,26 @@ namespace LegaSysUOW.Repository
 {
     public class UOWUsers : IUOWUsers
     {
+        private readonly LegaSysEntities db;
+
+        public UOWUsers(IDbFactory dbFactory)
+        {
+            db = dbFactory.Init();
+        }
+
         public UserLoginDetails AuthenticateAndFetchUserDetail(string Username, string Password)
         {
-            //declare the object to return
-            UserLoginDetails ObjUserInfo = null;
+            //validate user credentials
+            var GetUserDetails = db.LegaSys_UserLogin.Where(p => p.Username.ToLower().Trim() == Username.ToLower().Trim()).FirstOrDefault();
 
-            using (LegaSysEntities db = new LegaSysEntities())
+            if (GetUserDetails == null)
+                return null;
+
+            return new UserLoginDetails()
             {
-                //validate user credentials
-                var GetUserDetails = db.LegaSys_UserLogin.Where(p => p.Username.ToLower().Trim() == Username.ToLower().Trim()).FirstOrDefault();
-                if (GetUserDetails != null)
-                {
-                    //initialize the object
-                    //ObjUserInfo = new List<UserLoginDetails>();
-                    ObjUserInfo = new LegaSysDataEntities.UserLoginDetails()
-                    {
-                        UserLoginDetailID = GetUserDetails.UserLoginDetailID,
-                        Username = GetUserDetails.Username,
-
-                    };
-                }
-            }
-            return ObjUserInfo;
+                UserLoginDetailID = GetUserDetails.UserLoginDetailID,
+                Username = GetUserDetails.Username,
+            };
         }
     }
 }

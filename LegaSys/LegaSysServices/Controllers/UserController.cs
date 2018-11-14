@@ -10,7 +10,6 @@ using LegaSysDataEntities;
 
 namespace LegaSysServices.Controllers
 {
-	//Testing
     [RoutePrefix("LegaSysAPI/Users")]
     public class UserController : ApiController
     {
@@ -21,6 +20,17 @@ namespace LegaSysServices.Controllers
         public UserLoginDetails AuthenticateAndFetchUserDetail(string UserEmailId, string password)
         {
             return UsersRepository.AuthenticateAndFetchUserDetail(UserEmailId, password);
+        }
+
+        [HttpGet]
+        [Route("getuserlist")]
+        public IHttpActionResult GetUserList()
+        {
+            return Json(UsersRepository.GetUserList().Select(x => new
+            {
+                x.UserDetailID,
+                x.Fullname
+            }));
         }
     }
 }

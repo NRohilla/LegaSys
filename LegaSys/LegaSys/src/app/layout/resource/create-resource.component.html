@@ -1,0 +1,52 @@
+<h2>Create Resource</h2>
+<form >
+<div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Firstname" formControlName="firstname">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Middlename" formControlName="middlename">
+      </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Lastname" formControlName="lastname">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Total Experience" formControlName="totalexp">
+      </mat-form-field>
+    <!-- <mat-form-field>
+      <textarea matInput placeholder="Location Address"></textarea>
+    </mat-form-field> -->
+    <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+            <mat-select placeholder="Select Shift" formControlName="shift">
+              <mat-option *ngFor="let option of shift " [value]="option.ShiftID">{{option.StartTimeIST +'-'+option.EndTimeIST}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+
+    <mat-form-field>
+      <mat-select placeholder="Select Location" formControlName="location">
+        <mat-option *ngFor="let option of location" [value]="option.LocationID">{{option.LocationAddress}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+            <mat-select placeholder="Select Role" formControlName="role">
+              <mat-option *ngFor="let option of role" [value]="option.UserRoleID">{{option.RoleName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Select Reporting Head" formControlName="head">
+              <mat-option *ngFor="let option of rHead" [value]="option.UserDetailID">{{option.Fullname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <button type="submit" mat-raised-button color="primary">Submit</button>
+    
+
+  </div>
+</form>

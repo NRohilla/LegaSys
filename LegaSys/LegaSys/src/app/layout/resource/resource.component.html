@@ -2,31 +2,19 @@
 <div>
     <app-page-header [heading]="'Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
     <div>
-        <button type="button" [routerLink]="['/resource-details']" class="btn btn-info" style="margin-bottom: 1%;">Create New Resource</button>
-
-        <mat-grid-list cols="2  " rowHeight="2:1">
-            <mat-grid-tile>1</mat-grid-tile>
-        </mat-grid-list>
+        <button type="button" [routerLink]="['/create-resource']" class="btn btn-info" style="margin-bottom: 1%;">Create Resource</button>
+      
     </div>
 </div>
-<!-- <button mat-stroked-button color="primary">New Resource</button> -->
-<br> <br><br>
-<!-- <mat-toolbar color="primary"> -->
 
-<h2 style="background-color:lightgrey"><b>Resource</b></h2>
-
-<!-- </mat-toolbar> -->
-<!-- <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field> -->
 <table mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
     <!-- Position Column -->
     <ng-container matColumnDef="UserDetailID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Resource ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.UserDetailID}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Resource ID </th>
+        <td mat-cell *matCellDef="let element" hidden> {{element.UserDetailID}} </td>
     </ng-container>
 
     <!-- Name Column -->
@@ -46,19 +34,19 @@
         <td mat-cell *matCellDef="let element"> {{element.EmailId}} </td>
     </ng-container>
     <!-- Shift Column -->
-    <ng-container matColumnDef="Shift_ID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Shift ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.Shift_ID}} </td>
+    <ng-container matColumnDef="Shift">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Shift  </th>
+        <td mat-cell *matCellDef="let element"> {{element.Shift}} </td>
     </ng-container>
     <!-- Location Column -->
     <ng-container matColumnDef="Location_ID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Location ID</th>
-        <td mat-cell *matCellDef="let element"> {{element.Location_ID}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+        <td mat-cell *matCellDef="let element"> {{element.LocationAddress}} </td>
     </ng-container>
     <!-- Location Column -->
     <ng-container matColumnDef="ReportingHead_ID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reporting Head ID</th>
-        <td mat-cell *matCellDef="let element"> {{element.ReportingHead_ID}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reporting Head </th>
+        <td mat-cell *matCellDef="let element"> {{element.ReportingHead}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Action">

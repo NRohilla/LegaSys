@@ -10,57 +10,67 @@ import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 })
 export class ResourceService {
 
-    baseUrl: string = 'http://localhost:58164/resource/getall';
+    //baseUrl: string = 'http://localhost:58164/resource/getall';
 
     constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
     ) { }
 
-    getResource() {
-
-        debugger;
-        var token = this.storage.get('UserToken');
-        console.log(token);
+    getToken(){
+        var token = this.storage.get('UserToken');       
         if (token != null) {
-            var atoken = token.access_token;
-        }
+        //var atoken = token.access_token;        
+        var bearerToken = 'Bearer ' + token.access_token;                               
+        let newHeaders = new HttpHeaders();
+        newHeaders = newHeaders.append('Authorization', bearerToken); 
+        return newHeaders;  
+    }
+    }
+    getResource() {
+                
+        return this.http.get('http://localhost:58164/resource/getall', { headers:this.getToken() })
+    }
+  
 
-        var abc = 'Bearer ' + token.access_token;
-        console.log(abc);
-        //  var reqHeader = new HttpHeaders({'Authorization': });
-        let headerss = new HttpHeaders();
-        headerss = headerss.append('Authorization', abc);
-
-        //this.http.head()
-        // return this.http.get(this.baseUrl, {headers:new HttpHeaders()('Authorization', `bearer ${token}`)});
-        return this.http.get(this.baseUrl, { headers: headerss })
-
-
-
-        //return this.http.get(this.baseUrl, { headers: new HttpHeaders({'Authorization': 'Bearer ' + token})});
+    getLocation(){
+        debugger;
+            
+        return this.http.get<Resource[]>('http://localhost:58164/location/getall', { headers: this.getToken() })
     }
 
-    // this.currentValue = 'bearer ' + this.storage.get('UserToken');
-    // authReq = req.clone({ headers: req.headers.set('Authorization', this.currentValue) });
+    getShift(){
+        debugger;
+            
+        return this.http.get<Resource[]>('http://localhost:58164/shift/getall', { headers: this.getToken() })
+    }
 
-
+    getRoles(){
+        debugger;
+            
+        return this.http.get<Resource[]>('http://localhost:58164/role/getall', { headers: this.getToken() })
+    }
+    getReportingHead(){
+        debugger;
+            
+        return this.http.get<Resource[]>('http://localhost:58164/LegaSysAPI/Users/getuserlist')
+    }
     // getResource(){
     //   return this.http.get<Resource[]>(this.baseUrl);
     // }
 
 
-    getResourceById(UserId: number) {
-        return this.http.get<Resource[]>(this.baseUrl + '/' + UserId);
-    }
+    // getResourceById(UserId: number) {
+    //     return this.http.get<Resource[]>(this.baseUrl + '/' + UserId);
+    // }
 
-    addResource(resource: Resource) {
-        return this.http.post(this.baseUrl, resource);
-    }
-    updateResource(resource: Resource) {
-        return this.http.put(this.baseUrl + '/' + resource.UserDetailID, resource);
-    }
-    deleteResource(UserId: number) {
-        return this.http.delete<Resource[]>(this.baseUrl + UserId)
-    }
+    // addResource(resource: Resource) {
+    //     return this.http.post(this.baseUrl, resource);
+    // }
+    // updateResource(resource: Resource) {
+    //     return this.http.put(this.baseUrl + '/' + resource.UserDetailID, resource);
+    // }
+    // deleteResource(UserId: number) {
+    //     return this.http.delete<Resource[]>(this.baseUrl + UserId)
+    // }
 
 
 }

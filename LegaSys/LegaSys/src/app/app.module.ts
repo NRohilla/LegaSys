@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import{ResourceDataServiceService} from './resource-data-service.service'
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -40,6 +41,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     ],
     declarations: [AppComponent],
     providers: [
+        ResourceDataServiceService,
         AuthGuard,
         {
             provide: HTTP_INTERCEPTORS,

@@ -1,9 +1,26 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Resource } from './resource.model';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
-import { ResourceService } from './resource.service'
+import { ResourceService } from './resource.service';
+import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
+import { ResourceDataServiceService } from '../../resource-data-service.service'
 
+// const ELEMENT_DATA: Resource[] = [
+//     { UserDetailID: 1, Firstname: 'Virtual ', Middlename: 'I', Lastname: 'Block', TotalExp: "1.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 2, Firstname: 'Virtual', Middlename: 'K', Lastname: 'Block', TotalExp: "2.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 3, Firstname: 'Virtual', Middlename: 'L', Lastname: 'Block', TotalExp: "3.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 4, Firstname: 'Virtual', Middlename: 'M', Lastname: 'Block', TotalExp: "4.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 5, Firstname: 'Virtual', Middlename: 'N', Lastname: 'Block', TotalExp: "5.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 6, Firstname: 'Virtual', Middlename: 'O', Lastname: 'Block', TotalExp: "6.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 7, Firstname: 'Virtual', Middlename: 'P', Lastname: 'Block', TotalExp: "7.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 8, Firstname: 'Virtual', Middlename: 'Q', Lastname: 'Block', TotalExp: "8.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 9, Firstname: 'Virtual', Middlename: 'R', Lastname: 'Block', TotalExp: "9.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 10, Firstname: 'Virtual', Middlename: 'S', Lastname: 'Block', TotalExp: "10.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 11, Firstname: 'Virtual', Middlename: 'T', Lastname: 'Block', TotalExp: "11.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+//     { UserDetailID: 12, Firstname: 'Virtual', Middlename: 'U', Lastname: 'Block', TotalExp: "12.5", EmailId: "aaa@gmail.com", Shift_ID: "S01", Location_ID: "L01", ReportingHead_ID: "RH01" },
+
+// ];
 @Component({
     selector: 'app-resource',
     templateUrl: './resource.component.html',
@@ -13,7 +30,7 @@ import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 export class ResourceComponent implements OnInit {
 
     dataSource: any = [];
-   
+
     displayedColumns: string[] = ['UserDetailID', 'FullName', 'TotalExp', 'EmailId', 'Shift', 'Location_ID', 'ReportingHead_ID', 'Action'];
     //dataSource = ELEMENT_DATA;
     //dataSource = new MatTableDataSource<Resource>();
@@ -24,7 +41,15 @@ export class ResourceComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    constructor(public dataService: ResourceService) { }
+    constructor(public dataService: ResourceService, private router: Router, private ResourceDataService: ResourceDataServiceService) {
+
+    }
+
+    ViewResourceDetails(element: any) {
+        debugger;
+        this.ResourceDataService.currentresoursedetails = element;
+        this.router.navigate(['/resource-details']);
+    }
 
     ngOnInit() {
 

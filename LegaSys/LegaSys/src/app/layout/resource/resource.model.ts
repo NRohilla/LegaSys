@@ -1,5 +1,3 @@
-
-
 export class Resource {
     UserDetailID: number;
     Firstname: string;
@@ -18,4 +16,13 @@ export class Resource {
     IsActive : boolean;
     UserRoleID:string;
     RoleName:string;
+    Remarks : string;
+    Master_Shift_ID : number;
+    Shift : string;
+    Master_Location_ID : number;
+    ReportingHead_ID : number;
+    Master_Role_ID : number;
+    Shift_ID: string;
+    Location_ID: string;
+    MobileNumber : number;
 }

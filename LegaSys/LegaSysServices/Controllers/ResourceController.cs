@@ -27,6 +27,13 @@ namespace LegaSysServices.Controllers
             return Json(_uOWResources.GetAllActiveResources());
         }
 
+        [HttpGet]
+        [Route("resource/{id}")]
+        public IHttpActionResult GetResourceById(int id)
+         {
+            return Json(_uOWResources.GetResourceById(id));
+        }
+
         [HttpPost]
         [Route("resource/create")]
         public IHttpActionResult GetAllResources(UserDetail model)

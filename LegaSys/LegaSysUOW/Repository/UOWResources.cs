@@ -89,7 +89,33 @@ namespace LegaSysUOW.Repository
 
         public UserDetail GetResourceById(int id)
         {
-            throw new NotImplementedException();
+            return (from user in db.LegaSys_UserDetails.Where(x => x.IsActive)
+                    join shift in db.LegaSys_Master_Shifts.Where(x => x.IsActive) on user.Master_Shift_ID equals shift.ShiftID
+                    join location in db.LegaSys_Master_Locations.Where(x => x.IsActive) on user.Master_Location_ID equals location.LocationID
+                    join role in db.LegaSys_Master_Roles.Where(x => x.IsActive) on user.Master_Role_ID equals role.UserRoleID
+                    join head in db.LegaSys_UserDetails.Where(x => x.IsActive) on user.ReportingHead_ID equals head.UserDetailID into reportinghead
+                    from reporting in reportinghead.DefaultIfEmpty()
+                    where user.UserDetailID == id
+                    select new { user, shift, location, role, reporting }).AsEnumerable()
+                    .Select(x => new UserDetail
+                    {
+                        UserDetailID = x.user.UserDetailID,
+                        Firstname = x.user.Firstname,
+                        Middlename = x.user.Middlename,
+                        Lastname = x.user.Lastname,
+                        TotalExp = x.user.TotalExp,
+                        EmailId = x.user.EmailId,
+                        IsActive = x.user.IsActive,
+                        Master_Location_ID = x.user.Master_Location_ID,
+                        LocationAddress = x.location.LocationAddress,
+                        Master_Shift_ID = x.user.Master_Shift_ID,
+                        Shift = $"{x.shift.StartTimeIST} - {x.shift.EndTimeIST}",
+                        ReportingHead_ID = x.user.ReportingHead_ID,
+                        ReportingHead = $"{x.reporting.Firstname} {x.reporting.Lastname}",
+                        Master_Role_ID = x.user.Master_Role_ID,
+                        RoleName = x.role.Role,
+                        Remarks = x.user.Remarks
+                    }).FirstOrDefault();
         }
 
         public bool UpdateResource(UserDetail userDetail)

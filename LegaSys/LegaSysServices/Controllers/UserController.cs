@@ -31,7 +31,7 @@ namespace LegaSysServices.Controllers
         [Route("getuserlist")]
         public IHttpActionResult GetUserList()
         {
-            return Json(UsersRepository.GetUserList().Select(x => new
+            return Json(_uOWUsers.GetUserList().Select(x => new
             {
                 x.UserDetailID,
                 x.Fullname

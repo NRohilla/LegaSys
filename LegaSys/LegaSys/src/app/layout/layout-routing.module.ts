@@ -20,11 +20,11 @@ const routes: Routes = [
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-            { path: 'client', loadChildren: './client/client.module#ClientModule'},
+            { path: 'client', loadChildren: './client/client.module#ClientModule' },
             { path: 'resource', loadChildren: './resource/resource.module#ResourceModule' },
             { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
             { path: 'shifts', loadChildren: './masters/shifts/shifts.module#ShiftsModule' },
-            { path:'create-resource',component: CreateResourceComponent}
+            { path: 'create-resource', component: CreateResourceComponent }
         ]
     }
 ];
@@ -33,4 +33,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class LayoutRoutingModule {}
+export class LayoutRoutingModule { }

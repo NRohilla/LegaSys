@@ -29,6 +29,7 @@ namespace LegaSysServices.App_Start
 
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
             builder.RegisterType<UOWResources>().As<IUOWResources>().InstancePerRequest();
+            builder.RegisterType<UOWClient>().As<IUOWClient>().InstancePerRequest();
 
             //Set the dependency resolver to be Autofac.  
             Container = builder.Build();

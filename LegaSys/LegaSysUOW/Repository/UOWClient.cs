@@ -30,6 +30,8 @@ namespace LegaSysUOW.Repository
            
             try
             {
+                
+
                 var model = new LegaSys_ClientDetails
                 {
                     ClientDetailID = Objclient.ClientDetailID,

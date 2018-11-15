@@ -12,7 +12,7 @@ export class ClientServiceService {
   
   currentClientDetails:object;
   // This is the client API URL
-  URL="http://localhost:58164/api/client";
+  URL="http://localhost:58164/client/";
   constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) { }
   CreateHeader(){
     let token = this.storage.get('UserToken');
@@ -29,24 +29,24 @@ export class ClientServiceService {
 
   GetClientDetails(){   
       
-    return this.http.get(this.URL, { headers: this.CreateHeader() });
+    return this.http.get(this.URL+'GetAllClient', { headers: this.CreateHeader() });
 
   }
    GetDetailsOfClientwhoseID(ID){
-    return this.http.get(this.URL+'/'+ID,{ headers: this.CreateHeader() });
+    return this.http.get(this.URL+'GetClientById/'+ID,{ headers: this.CreateHeader() });
 
   }
   AddClientDetails(client: Client)
   {
 
-    return this.http.post(this.URL,client,{ headers: this.CreateHeader() });
+    return this.http.post(this.URL+'AddClientDetails',client,{ headers: this.CreateHeader() });
 
   }
   UpdateDetailsWithID(client: Client){
-    return this.http.put(this.URL,client,{ headers: this.CreateHeader() });
+    return this.http.put(this.URL+'UpdateClientDetails',client,{ headers: this.CreateHeader() });
   }
   DeleteClient(ID){
-    return this.http.delete(this.URL+'/'+ID,{ headers: this.CreateHeader() });
+    return this.http.delete(this.URL+'DeleteClientById/'+ID,{ headers: this.CreateHeader() });
   }
  
 }

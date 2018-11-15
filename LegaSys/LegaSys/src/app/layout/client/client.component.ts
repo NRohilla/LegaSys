@@ -32,6 +32,7 @@ export class ClientComponent implements OnInit {
   }
  /*********** Writen By Shubham Mishra on 6 nov 2018 following method is used to gell all  client details from database   */
   GetAllClients(){
+    debugger;
     this.clientService.GetClientDetails().subscribe(
       suc => {
         console.log(suc);

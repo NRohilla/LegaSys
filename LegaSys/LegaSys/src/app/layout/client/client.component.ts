@@ -19,18 +19,18 @@ export class ClientComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
    // This is an aaray for Header in Grid displaying client details
   displayedColumns: string[] = ['ClientName', 'Email', 'Address', 'Country', 'CoClient', 'action'];
-  clientDetails: any=[];  // This array will hold the all client details
-  //dataSource:any;
+  clientDetails:any=[];  // This array will hold the all client details
+  
   constructor(private modalService: NgbModal, private clientService: ClientServiceService, private router: Router, private currentClientdataService: CurrentClientdataServiceService) {
  
   }
-  // this fuction is used for sorting the grid
+   /*********** Writen By Shubham Mishra on 8 nov 2018 following method is used for geting selected client id from fornt end and 
+    *********** it to a property in created in a service and redirecting user to a client details page   */
   ViewClientDetails(element: any) {
-    console.log(element);
     this.currentClientdataService.currentClientID = element;
     this.router.navigate(['/client-details']);
   }
-
+ /*********** Writen By Shubham Mishra on 6 nov 2018 following method is used to gell all  client details from database   */
   GetAllClients(){
     this.clientService.GetClientDetails().subscribe(
       suc => {
@@ -46,6 +46,8 @@ export class ClientComponent implements OnInit {
     );
   }
 
+ /*********** Writen By Shubham Mishra on 8 nov 2018 following method is used for deleteing a perticular client   */
+
   DeleteClientWithID(ID){
     debugger;
     this.clientService.DeleteClient(ID).subscribe(
@@ -60,10 +62,7 @@ export class ClientComponent implements OnInit {
   }
   ngOnInit() {
     // Following fuction will execute and call to client service to get all client from database
-     this.GetAllClients();      
-    
+     this.GetAllClients();   
   
   }
-
-
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import{CurrentClientdataServiceService} from '../../../current-clientdata-service.service';
-import {ClientServiceService} from '../client-service.service';
+import { CurrentClientdataServiceService } from '../../../current-clientdata-service.service';
+import { ClientServiceService } from '../client-service.service';
 
 @Component({
   selector: 'app-client-details-co-client-details',
@@ -8,56 +8,57 @@ import {ClientServiceService} from '../client-service.service';
   styleUrls: ['./client-details-co-client-details.component.scss']
 })
 export class ClientDetailsCoClientDetailsComponent implements OnInit {
-  disable:boolean=true;
-  currentClientDetails:any;
-  currentClientID:any;
-  currentClientDetailsBackup:any;
-    constructor(private clientService:ClientServiceService,private currentClientdataService:CurrentClientdataServiceService) { }
-    GetClientsWithID(ID){
-    
-      this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
-        suc => {
-         console.log(suc);
-         this.currentClientDetails=suc; 
-         this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc));                 
-        },
-        err =>{
-          console.log(err);
-    
-        }
-        );
-    }
 
-    MakeFieldEditable()
-    {
-      this.disable=false;
-    }
-    DiscardChanges(){
-      debugger;
-      console.log(this.currentClientDetailsBackup);
-      this.currentClientDetails=this.currentClientDetailsBackup;
-      console.log(this.currentClientDetails);
-      this.disable=true;
-    }
-  
-    UpdateClient(){
-     
-      this.clientService.UpdateDetailsWithID(this.currentClientDetails).subscribe(
-        suc => {
-         this.currentClientDetails=suc;              
-        },
-        err =>{
-          console.log(err);    
-        }
-        );
-    }
-  
-    ngOnInit() {
-  
-      
-      this.currentClientID=this.currentClientdataService.currentClientID;
-      this.GetClientsWithID(this.currentClientID);
-     
-      
+  /********************** Created By Shubham Mishr on 10-Nov-2018 **************/
+  disable: boolean = true;
+  currentClientDetails: any; // this variable is used to hold details of select client whose details user want to view 
+  currentClientID: number;      // this varibale will have Id of client whse details client want to view and this varibale will be passed to service to get details of perticular client
+  currentClientDetailsBackup: any; // this variable will hold same data as varible currentClientDetails, if user click cancel button after edditing some field this varible is used to get the old data
+  constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService) { }
+
+  /**** this function is used to get details of perticuler client, user has selected to view, this method is making a call to a service with client id as parameter */
+  GetClientsWithID(ID) {
+    this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
+      suc => {
+        console.log(suc);
+        this.currentClientDetails = suc;
+        this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc));
+      },
+      err => {
+        console.log(err);
+
       }
+    );
+  }
+
+  /****** This fuction is used to make the form field editable  */
+  MakeFieldEditable() {
+    this.disable = false;
+  }
+
+  /****** This function is used to discard changes done by user, and replace changed data with previous data */
+  DiscardChanges() {
+    debugger;
+    console.log(this.currentClientDetailsBackup);
+    this.currentClientDetails = this.currentClientDetailsBackup;
+    console.log(this.currentClientDetails);
+    this.disable = true;
+  }
+  /***** This function is used to update details of a client, following fucntion is making a call to api and sending the modal as parameter */
+  UpdateClient() {
+
+    this.clientService.UpdateDetailsWithID(this.currentClientDetails).subscribe(
+      suc => {
+        this.currentClientDetails = suc;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  ngOnInit() {
+    this.currentClientID = this.currentClientdataService.currentClientID;
+    this.GetClientsWithID(this.currentClientID);
+  }
 }

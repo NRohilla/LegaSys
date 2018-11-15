@@ -4,10 +4,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
-
-
-
-
 @Component({
   selector: 'app-addclient',
   templateUrl: './addclient.component.html',
@@ -32,9 +28,9 @@ export class AddclientComponent implements OnInit {
        Country: ['',Validators.required],
        Address: ['',Validators.required],
        CoClient: ['',Validators.required],
-       CoClient2: ['',Validators.required],
-       EmailID: ['',[Validators.required, Validators.email]],
-       EmailID2: ['',[Validators.required, Validators.email]]
+       CoClient2: [''],
+       EmailID: [''],
+       EmailID2: ['']
 
      });
    

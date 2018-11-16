@@ -3,36 +3,36 @@
     <strong>Name :</strong>
     {{currentClientDetails.ClientName}}
 </label>  -->
-<div class="w-100 float-left table-active py-5 px-2">
+<div class="w-100 float-left table-active py-5 px-2" *ngIf="currentClientDetails">
       <div class="row m-0">
         <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Name :</strong></div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"> {{currentClientDetails.ClientName}}</div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left">{{currentClientDetails.ClientName}}</div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Address:</strong></div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left">{{currentClientDetails.Address}}</div>
       </div><br><br>
       <div class="row m-0">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Email ID 1 :</strong></div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Primary Email ID :</strong></div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"> {{currentClientDetails.EmailID}}</div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Email ID 2 :</strong></div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Secondry Email ID :</strong></div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left">{{currentClientDetails.EmailID2}}</div>
             
           </div><br><br>
           <div class="row m-0">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Email ID 3 :</strong></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Email ID Other :</strong></div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left">{{currentClientDetails.EmailID3}}</div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Email ID 4:</strong></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Email ID Other:</strong></div>
                 <div class="col-sm-3">{{currentClientDetails.EmailID4}}</div>
           </div><br><br>
           <div class="row m-0">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>CoClient 1 :</strong></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Primary Co-Client  :</strong></div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left">{{currentClientDetails.CoClient}}</div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>CoClient 2:</strong></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Secondry Co-Client:</strong></div>
                 <div class="col-sm-3">{{currentClientDetails.CoClient2}}</div>
           </div><br><br>
           <div class="row m-0">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>CoClient 3 :</strong></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong> Co-Client Other  :</strong></div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left">{{currentClientDetails.CoClient3}}</div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>CoClient 4 :</strong></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left"><strong>Co-Client Other :</strong></div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12 float-left">{{currentClientDetails.CoClient4}}</div>
           </div><br><br>
       </div>    

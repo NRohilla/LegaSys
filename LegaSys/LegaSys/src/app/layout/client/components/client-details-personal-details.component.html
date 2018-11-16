@@ -1,50 +1,70 @@
-
-<form class="w-100 float-left table-active py-5 px-2">
+<form class="w-100 float-left table-active py-5 px-2" [formGroup]="personalDetailsForm" *ngIf="currentClientDetails">
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                   <input matInput placeholder="Client Name "  [disabled]="disable"  [(ngModel)]="currentClientDetails.ClientName" name="currentClientDetails.ClientName" >
+                <input formControlName="clientName" matInput placeholder="Client Name " [(ngModel)]="currentClientDetails.ClientName"
+                    name="currentClientDetails.ClientName">
+                <mat-error *ngIf="personalDetailsForm.controls['clientName'].invalid  && (personalDetailsForm.controls['clientName'].dirty || personalDetailsForm.controls['clientName'].touched)">Only
+                    Enter Alphabet</mat-error>
+                 
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
-            <mat-form-field class="w-100" >
-                   <input matInput placeholder="Client Address "  [disabled]="disable" [(ngModel)]="currentClientDetails.Address" name="currentClientDetails.Address" >
-            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input formControlName="clientAddress" matInput placeholder="Client Address " [(ngModel)]="currentClientDetails.Address"
+                    name="currentClientDetails.Address">
+                    <mat-error *ngIf="personalDetailsForm.controls['clientAddress'].invalid  && (personalDetailsForm.controls['clientAddress'].dirty || personalDetailsForm.controls['clientAddress'].touched)">Client address can not be empty</mat-error>
+                 
+                </mat-form-field>
         </div>
-  </div>
-  <div class="row m-0">
+    </div>
+    <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
-            <mat-form-field class="w-100" >
-                   <input matInput placeholder="Client Email 1 "  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID" name="currentClientDetails.EmailID"  >
+            <mat-form-field class="w-100">
+                <input type="email" formControlName="clientEmail" matInput placeholder="Primary Client Email" [(ngModel)]="currentClientDetails.EmailID"name="currentClientDetails.EmailID">
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
+                    Enter Valid Email ID</mat-error>
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
-            <mat-form-field  class="w-100">
-                   <input matInput placeholder="Client  Email 2"  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID2" name="currentClientDetails.EmailID2" >
+            <mat-form-field class="w-100">
+                <input formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " [(ngModel)]="currentClientDetails.EmailID2"
+                    name="currentClientDetails.EmailID2">
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Enter Valid Email ID</mat-error>
             </mat-form-field>
         </div>
-  </div>
-  <div class="row m-0">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
-          <mat-form-field class="w-100">
-                 <input matInput placeholder="Client Email 3 "   [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID3" name="currentClientDetails.EmailID3" >
-          </mat-form-field>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
-          <mat-form-field class="w-100">
-                 <input matInput placeholder="Client Email 4"  [disabled]="disable" [(ngModel)]="currentClientDetails.EmailID4" name="currentClientDetails.EmailID4">
-          </mat-form-field>
-      </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <mat-form-field class="w-100">
+                <input formControlName="clientEmail3" matInput placeholder="Other Client Email  " [(ngModel)]="currentClientDetails.EmailID3"
+                    name="currentClientDetails.EmailID3">
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Enter Valid Email ID</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <mat-form-field class="w-100">
+                <input formControlName="clientEmail4" matInput placeholder="Other Client Email " [(ngModel)]="currentClientDetails.EmailID4"
+                    name="currentClientDetails.EmailID4">
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Enter Valid Email ID</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
+<div class="w-100 float-left d-block table-info px-4 py-2 table-info">
+    <div class="px-2 float-right" *ngIf="disable">
+        <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
+                aria-hidden="true"></i> Edit</button>
+    </div>
+    <div class="px-2 float-right" *ngIf="!disable">
+        <button mat-button class="btn btn-success" [disabled]="!personalDetailsForm.valid" (click)="UpdateClient()"><i class="fa fa-save" aria-hidden="true"></i>
+            Save</button>
+    </div>
+    <div class="px-2 float-right" *ngIf="!disable">
+        <button mat-button class="btn btn-secondary" (click)="DiscardChanges()"><i class="fa fa-times" aria-hidden="true"></i>
+            Cancel</button>
+    </div>
+    <div class="px-2 float-right">
+            <button  mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
+            </div>
 </div>
-  </form>
-   <div class="w-100 float-left d-block table-info px-4 py-2 table-info">
-    <div class="px-2 float-right" *ngIf="disable">        
-            <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>       
-    </div>
-    <div class="px-2 float-right" *ngIf="!disable">       
-            <button mat-button class="btn btn-success" (click)="UpdateClient()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>        
-    </div>
-    <div class="px-2 float-right">     
-            <button mat-button class="btn btn-secondary"(click)="DiscardChanges()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>      
-    </div>
-</div> 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges} from '@angular/core';
 import {ClientServiceService} from '../client-service.service';
 import{CurrentClientdataServiceService} from '../../../current-clientdata-service.service';
 //import {ClientTestingService} from '../../clienttesting.service';
@@ -14,7 +14,9 @@ currentClientDetails:any;// this variable is used to bind the disabled attribute
 
 currentClientID:any;// this varibale is used to hold the current client details of client selected by uesr
 
-  constructor(private clientService:ClientServiceService,private currentClientdataService:CurrentClientdataServiceService) { }
+  constructor(private clientService:ClientServiceService,private currentClientdataService:CurrentClientdataServiceService) {
+    this.GetClientsWithID(this.currentClientID);
+   }
   /**** this function is used to get details of perticuler client, user has selected to view, this method is making a call to a service with client id as parameter */
  
   GetClientsWithID(ID){
@@ -32,11 +34,18 @@ currentClientID:any;// this varibale is used to hold the current client details 
       }
       );
   }
+  OnChanges(){
+    debugger;
+    this.currentClientID=this.currentClientdataService.currentClientID;
+    this.GetClientsWithID(this.currentClientID);
+  }
 
   ngOnInit() {
     
     this.currentClientID=this.currentClientdataService.currentClientID;
-    this.GetClientsWithID(this.currentClientID);
+    if(this.currentClientID!=null && this.currentClientID!=''){
+        this.GetClientsWithID(this.currentClientID);
+    }
    
     
     }

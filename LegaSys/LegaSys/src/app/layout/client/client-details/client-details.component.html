@@ -1,0 +1,9 @@
+<app-page-header [heading]="'Client Details'" [icon]="'fa fa-info-circle'"></app-page-header>
+
+
+
+<mat-tab-group class="client-detail ">
+  <mat-tab label="Summery" (selectedTabChange)="onLinkClick($event)"> <app-client-details-summary></app-client-details-summary> </mat-tab>
+  <mat-tab label="Personal Details"><app-client-details-personal-details></app-client-details-personal-details>  </mat-tab>
+  <mat-tab label="Co client Details"><app-client-details-co-client-details></app-client-details-co-client-details>  </mat-tab>
+</mat-tab-group>

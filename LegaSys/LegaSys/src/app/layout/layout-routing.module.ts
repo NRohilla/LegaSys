@@ -19,7 +19,7 @@ const routes: Routes = [
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'client', loadChildren: './client/client.module#ClientModule'},
             { path: 'resource', loadChildren: './resource/resource.module#ResourceModule' },
-            { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' }
+            { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
             { path: 'client', loadChildren: './client/client.module#ClientModule'},
             { path: 'client-details', loadChildren: './client/client-details/client-details.module#ClientDetailsModule'},
             { path: 'add-client', loadChildren: './client/addclient/addclient.module#AddclientModule'}

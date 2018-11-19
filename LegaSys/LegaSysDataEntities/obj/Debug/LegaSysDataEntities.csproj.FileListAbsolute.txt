@@ -8,3 +8,13 @@ D:\PMS\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.pdb
 D:\PMS\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csproj.CoreCompileInputs.cache
 D:\PMS\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.dll
 D:\PMS\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.dll
+D:\New folder\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csproj.CoreCompileInputs.cache
+D:\New folder\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.dll
+D:\New folder\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.pdb
+D:\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.dll
+D:\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.pdb
+D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csproj.CoreCompileInputs.cache
+D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.dll
+D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.pdb

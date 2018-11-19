@@ -37,3 +37,31 @@ D:\PMS\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.Core
 D:\PMS\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CopyComplete
 D:\PMS\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.dll
 D:\PMS\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll.config
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.pdb
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.dll
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.dll
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.xml
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.xml
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csprojAssemblyReference.cache
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CoreCompileInputs.cache
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CopyComplete
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.dll
+D:\New folder\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.pdb
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll.config
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.pdb
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.dll
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.dll
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.xml
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.xml
+D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csprojAssemblyReference.cache
+D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CoreCompileInputs.cache
+D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CopyComplete
+D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.dll
+D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.pdb

@@ -65,6 +65,23 @@
     <Property Name="ClientStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ClientStatusId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="LegaSys_ErrorLogs">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsHandled" Type="bit" Nullable="false" />
+    <Property Name="ResourceUri" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="QueryString" Type="varchar(max)" Nullable="false" />
+    <Property Name="ErrorDatetimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="ErrorMessage" Type="varchar(max)" Nullable="false" />
+    <Property Name="ExceptionDetail" Type="varchar(max)" Nullable="false" />
+    <Property Name="StackTrace" Type="varchar(max)" Nullable="false" />
+    <Property Name="IpAddress" Type="char" MaxLength="45" Nullable="false" />
+    <Property Name="UserID" Type="varchar" MaxLength="200" />
+    <Property Name="ReferingUrl" Type="varchar" MaxLength="250" />
+    <Property Name="UserAgent" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
   <EntityType Name="LegaSys_LeavesApplication">
     <Key>
       <PropertyRef Name="LeaveID" />
@@ -707,6 +724,7 @@
     <EntitySet Name="LegaSys_Client_Projects" EntityType="Self.LegaSys_Client_Projects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_ClientDetails" EntityType="Self.LegaSys_ClientDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_ClientStatus" EntityType="Self.LegaSys_ClientStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LegaSys_ErrorLogs" EntityType="Self.LegaSys_ErrorLogs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_LeavesApplication" EntityType="Self.LegaSys_LeavesApplication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_Log_Clients" EntityType="Self.LegaSys_Log_Clients" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_Log_Projects" EntityType="Self.LegaSys_Log_Projects" Schema="dbo" store:Type="Tables" />

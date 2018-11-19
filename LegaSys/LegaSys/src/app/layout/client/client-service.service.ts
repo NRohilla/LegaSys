@@ -43,6 +43,7 @@ export class ClientServiceService {
 
   }
   UpdateDetailsWithID(client: Client){
+    
     return this.http.put(this.URL+'UpdateClientDetails',client,{ headers: this.CreateHeader() });
   }
   DeleteClient(ID){

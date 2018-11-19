@@ -27,15 +27,15 @@ export class ClientComponent implements OnInit {
    /*********** Writen By Shubham Mishra on 8 nov 2018 following method is used for geting selected client id from fornt end and 
     *********** it to a property in created in a service and redirecting user to a client details page   */
   ViewClientDetails(element: any) {
-    this.currentClientdataService.currentClientID = element;
+    //this.currentClientdataService.currentClientID = element;
+    sessionStorage.setItem("currentClientID",element);
     this.router.navigate(['/client-details']);
   }
  /*********** Writen By Shubham Mishra on 6 nov 2018 following method is used to gell all  client details from database   */
   GetAllClients(){
     debugger;
     this.clientService.GetClientDetails().subscribe(
-      suc => {
-        console.log(suc);
+      suc => {        
         this.clientDetails = suc;
         this.clientDetails = new MatTableDataSource<Client>(this.clientDetails);
         this.clientDetails.paginator = this.paginator;
@@ -52,8 +52,7 @@ export class ClientComponent implements OnInit {
   DeleteClientWithID(ID){
     debugger;
     this.clientService.DeleteClient(ID).subscribe(
-      suc=>{
-        console.log(suc);
+      suc=>{      
         this.GetAllClients(); 
       },
       err=>{
@@ -63,7 +62,6 @@ export class ClientComponent implements OnInit {
   }
   ngOnInit() {
     // Following fuction will execute and call to client service to get all client from database
-     this.GetAllClients();   
-  
+     this.GetAllClients();    
   }
 }

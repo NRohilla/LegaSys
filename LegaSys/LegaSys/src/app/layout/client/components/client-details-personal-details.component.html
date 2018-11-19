@@ -21,14 +21,22 @@
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail" matInput placeholder="Primary Client Email" [(ngModel)]="currentClientDetails.EmailID"name="currentClientDetails.EmailID">
+                <input type="email" formControlName="clientEmail" matInput placeholder="Primary Client Email" [(ngModel)]="currentClientDetails.EmailID">
                 <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
                     Enter Valid Email ID</mat-error>
+                    <!-- <mat-error *ngIf="personalDetailsForm.controls.clientEmail.invalid"> 
+                        <span [hidden]="!personalDetailsForm.controls['clientEmail'].errors.required">
+                             Email is required.
+                       </span>
+                         <span [hidden]="!personalDetailsForm.controls['clientEmail'].errors.pattern">
+                                Please Enter Valid Email
+                              </span>  
+                      </mat-error> -->
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " [(ngModel)]="currentClientDetails.EmailID2"
+                <input type="email" formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " [(ngModel)]="currentClientDetails.EmailID2"
                     name="currentClientDetails.EmailID2">
                 <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Enter Valid Email ID</mat-error>
             </mat-form-field>
@@ -37,21 +45,21 @@
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input formControlName="clientEmail3" matInput placeholder="Other Client Email  " [(ngModel)]="currentClientDetails.EmailID3"
+                <input type="email" formControlName="clientEmail3" matInput placeholder="Other Client Email  " [(ngModel)]="currentClientDetails.EmailID3"
                     name="currentClientDetails.EmailID3">
                 <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Enter Valid Email ID</mat-error>
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input formControlName="clientEmail4" matInput placeholder="Other Client Email " [(ngModel)]="currentClientDetails.EmailID4"
+                <input type="email" formControlName="clientEmail4" matInput placeholder="Other Client Email " [(ngModel)]="currentClientDetails.EmailID4"
                     name="currentClientDetails.EmailID4">
                 <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Enter Valid Email ID</mat-error>
             </mat-form-field>
         </div>
     </div>
 </form>
-<div class="w-100 float-left d-block table-info px-4 py-2 table-info">
+<div class="w-100 float-left d-block table-info px-4 py-2 table-info footer-height" >
     <div class="px-2 float-right" *ngIf="disable">
         <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
                 aria-hidden="true"></i> Edit</button>

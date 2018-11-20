@@ -4,14 +4,14 @@ import {ResourceDataServiceService} from '../../../resource-data-service.service
 import { Resource } from '../resource.model';
 @Component({
   selector: 'app-resource-summary',
-  templateUrl: './resource.summary.html'
+  templateUrl: './resource.summary.html',
+  styleUrls: ['./resource.summary.component.scss']
 })
 export class ResourceSummaryComponent implements OnInit {
-resoursedetails : Resource[];
+resoursedetails : any;
   constructor(private resourceService :ResourceService,private ResourceDataService:ResourceDataServiceService) { }
 
   ngOnInit() {
-   //alert(this.ResourceDataService.currentresoursedetails);
    debugger;
    this.resourceService.getResourceById(this.ResourceDataService.currentresoursedetails).subscribe(
      suc=>{

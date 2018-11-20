@@ -1,83 +1,128 @@
+<br />
+<div class="example-container">
+<form [formGroup]="personalDetailsForm" *ngIf="resoursedetails">
+   
+        <div style="padding:0 15px;">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <mat-form-field style="width:250px !important">
+                        <input formControlName="Firstname" type="text" matInput placeholder="First Name" [(ngModel)]="resoursedetails.Firstname"
+                            name="resoursedetails.Firstname">
+
+                        <mat-error *ngIf="personalDetailsForm.controls['Firstname'].invalid  && (personalDetailsForm.controls['Firstname'].dirty || personalDetailsForm.controls['Firstname'].touched)">First Name Should 
+                           be in Alphabet.</mat-error>
+                    </mat-form-field>
+                </div>
 
 
-<form >
- <div class="example-container" >
-    <div class="row" >
-        <div class="col-md-4">
-                        <mat-form-field >
-                   <input matInput placeholder="First Name " [(ngModel)] = "currentResourceDetails.Firstname" name="currentResourceDetails.Firstname">
-            </mat-form-field>
+                <div class="col-md-4">
+                    <mat-form-field style="width:250px !important">
+                        <input matInput placeholder="Middle Name " [(ngModel)]="resoursedetails.Middlename" name="resoursedetails.Middlename"
+                            formControlName="Middlename">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                    <mat-form-field style="width:250px !important">
+                        <input formControlName="Lastname" matInput placeholder="Last Name " [(ngModel)]="resoursedetails.Lastname"
+                            name="resoursedetails.Lastname">
+                        <mat-error *ngIf="personalDetailsForm.controls['Lastname'].invalid  && (personalDetailsForm.controls['Lastname'].dirty || personalDetailsForm.controls['Lastname'].touched)">Last Name Should 
+                                be in Alphabet.</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+
+                    <mat-form-field style="width:250px !important">
+                        <input formControlName="TotalExp" type="number" min="0" max="60" matInput min="0" max="60" placeholder="Total Experience"
+                            [(ngModel)]="resoursedetails.TotalExp" name="resoursedetails.TotalExp">
+                            <mat-error *ngIf="personalDetailsForm.controls['TotalExp'].invalid  && (personalDetailsForm.controls['TotalExp'].dirty || personalDetailsForm.controls['TotalExp'].touched)">Only
+                                    Enter Alphabet</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+
+                    <mat-form-field style="width:250px !important">
+                        <input formControlName="EmailId" matInput placeholder="Email ID" [(ngModel)]="resoursedetails.EmailId"
+                            name="resoursedetails.EmailId" email >
+                        <mat-error *ngIf="personalDetailsForm.controls['EmailId'].invalid  && (personalDetailsForm.controls['EmailId'].dirty || personalDetailsForm.controls['EmailId'].touched)">
+                            Enter Valid Email ID</mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field style="width:250px !important">
+                        <mat-select formControlName="Master_Role_ID" placeholder="Role" [(ngModel)]="resoursedetails.Master_Role_ID"
+                            name="resoursedetails.Master_Role_ID" >
+                            <mat-option *ngFor="let Role of getAllRole" [value]="Role.UserRoleID">
+                                {{Role.RoleName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field style="width:250px !important">
+                        <mat-select placeholder="Shift" [(ngModel)]="resoursedetails.Master_Shift_ID" name="resoursedetails.Master_Shift_ID"
+                            formControlName="Master_Shift_ID">
+
+                            <mat-option *ngFor="let Shift of getAllShift" [value]="Shift.ShiftID">
+                                {{Shift.StartTimeIST +'-'+ Shift.EndTimeIST }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field style="width:250px !important">
+                        <mat-select placeholder="Location Address" [(ngModel)]="resoursedetails.Master_Location_ID"
+                            name="resoursedetails.Master_Location_ID" formControlName="Master_Location_ID">
+                            <mat-option *ngFor="let location of getLocation" [value]="location.LocationID">
+                                {{location.LocationAddress}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field style="width:250px !important">
+                        <mat-select placeholder="Reporting Head" [(ngModel)]="resoursedetails.UserDetailID" name="resoursedetails.UserDetailID"
+                              formControlName="UserDetailID">
+                            <mat-option *ngFor="let reportinghead of getReportingHead" [value]="reportinghead.UserDetailID">
+                                {{reportinghead.Fullname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field style="width:1400px !important">
+                        <textarea matInput placeholder="Remarks" [(ngModel)]="resoursedetails.Remarks" name="resoursedetails.Remarks"
+                            formControlName="Remarks"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <mat-form-field  >
-                   <input matInput placeholder="Middle Name " [(ngModel)] = "currentResourceDetails.Middlename" name="currentResourceDetails.Middlename" >
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field  >
-                   <input matInput placeholder="Last Name " [(ngModel)] = "currentResourceDetails.Lastname" name="currentResourceDetails.Lastname"  >
-            </mat-form-field>
-        </div>
-  </div>
+    
+</form>
+<div style=" background: #bee5eb; padding: 10px;">
+    <div *ngIf="disable" class="float-right">
+        <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
+                aria-hidden="true"></i> Edit</button>
+    </div>
+    <div *ngIf="!disable" class="float-right ml-2">
+        <button mat-button class="btn btn-success" [disabled]="personalDetailsForm.invalid" (click)="onSubmit()"><i class="fa fa-save"
+                aria-hidden="true"></i> Update</button>
+    </div>
+    <div *ngIf="!disable" class="float-right ml-2">
+        <button mat-button class="btn btn-secondary" (click)="Cancel()"><i class="fa fa-times" aria-hidden="true"></i>
+            Cancel</button>
+    </div>
 </div>
-  <div class="row">
-        <div class="col-md-4">
-            <mat-form-field >
-                   <input matInput placeholder="Total Experience " [(ngModel)] = "currentResourceDetails.TotalExp" name="currentResourceDetails.TotalExp" >
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field >
-                   <input matInput placeholder="Email ID" [(ngModel)] = "currentResourceDetails.EmailId" name="currentResourceDetails.EmailId">
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field >
-                   <input matInput placeholder="Remarks" [(ngModel)] = "currentResourceDetails.Remarks" name="currentResourceDetails.Remarks" >
-            </mat-form-field>
-        </div>
-  </div>
-  <div class="row">
-      <div class="col-md-4">
-        <mat-select placeholder="Shift">
-            <mat-option *ngFor="let Shift of getAllShift" [value]="Shift.ShiftID" >
-              {{Shift.StartTimeIST +'-'+ Shift.EndTimeIST }}
-            </mat-option>
-          </mat-select>
-      </div>
-      <div class="col-md-4">
-        <mat-select placeholder="Location Address">
-            <mat-option *ngFor="let location of getLocation" [value]="location.LocationID">
-              {{location.LocationAddress}}
-            </mat-option>
-          </mat-select>
-      </div>
-      <div class="col-md-4">
-        <mat-select placeholder="Reporting Head">
-            <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
-              {{food.viewValue}}
-            </mat-option> -->
-          </mat-select>
-      </div>
-</div> 
-<div class="row">
-    <div class="col-md-4">
-      <mat-select placeholder="Role">
-        <mat-option *ngFor="let Role of getAllRole" [value]="Role.UserRoleID">
-            {{Role.RoleName}}
-          </mat-option>
-        </mat-select>
-    </div>
-    </div>
-  </form>
-  <div >
-    <!-- <div class="px-2 float-right" *ngIf="disable">        
-            <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>       
-    </div> -->
-    <div >       
-            <button mat-button class="btn btn-success" (click)="UpdateResource()"><i class="fa fa-save" aria-hidden="true"></i> Save</button>        
-    </div>
-    <div>     
-            <button mat-button class="btn btn-secondary"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>      
-    </div>
-</div> 
+</div>

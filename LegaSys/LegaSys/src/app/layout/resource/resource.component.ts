@@ -15,8 +15,9 @@ import { ResourceDataServiceService } from '../../resource-data-service.service'
 export class ResourceComponent implements OnInit {
 
     dataSource: any = [];
-    displayedColumns: string[] = ['UserDetailID', 'FullName', 'TotalExp', 'EmailId', 'Shift', 'Location_ID', 'ReportingHead_ID', 'Action'];
 
+    displayedColumns: string[] = [ 'FullName', 'TotalExp', 'EmailId', 'Shift', 'Location_ID', 'ReportingHead_ID', 'Action'];
+  
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     applyFilter(filterValue: string) {

@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule, MatFormFieldModule } from '@angular/material';
 import { ResourceService } from './resource.service';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
-//import { NewreseouseComponent } from './newreseouse/newreseouse.component';
+
 
 
 @NgModule({

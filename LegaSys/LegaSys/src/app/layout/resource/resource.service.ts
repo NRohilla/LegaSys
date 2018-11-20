@@ -64,7 +64,8 @@ export class ResourceService {
     }
 
     updateResource(resource: Resource) {
-        return this.http.put<Resource[]>(this.baseUrl + '/' + resource.UserDetailID, resource, { headers: this.getToken() });
+        debugger;
+        return this.http.post('http://localhost:58164/resource/update' , resource, { headers: this.getToken() });
     }
 
     deleteResource(UserId: number) {

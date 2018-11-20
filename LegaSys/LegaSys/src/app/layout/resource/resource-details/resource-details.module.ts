@@ -8,11 +8,13 @@ import { PageHeaderModule } from './../../../shared/modules/page-header/page-hea
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import{MatSelectModule} from '@angular/material';
-import { FormsModule } from '@angular/forms';
+//import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
-    ResourceDetailsRoutingModule,PageHeaderModule,MatTabsModule,MatFormFieldModule,MatSelectModule,FormsModule
+    ResourceDetailsRoutingModule,PageHeaderModule,MatTabsModule,MatFormFieldModule,MatSelectModule,FormsModule,MatInputModule,ReactiveFormsModule
   ],
   declarations: [ResourceDetailsComponent,ResourceSummaryComponent,ResourcePersonaldetailsComponent]
 })

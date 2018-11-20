@@ -18,24 +18,32 @@ namespace LegaSysUOW.Repository
         public UserLoginDetails AuthenticateAndFetchUserDetail(string Username, string Password)
         {
             //validate user credentials
-            var GetUserDetails = db.LegaSys_UserLogin.Where(p => p.Username.ToLower().Trim() == Username.ToLower().Trim()).FirstOrDefault();
+            var user = (from login in db.LegaSys_UserLogin.Where(x => x.IsActive.HasValue)
+                        join details in db.LegaSys_UserDetails.Where(x => x.IsActive) on login.UserDetailID equals details.UserDetailID
+                        where login.Username.ToLower().Trim() == Username.ToLower().Trim() && login.Password.Trim() == Password.Trim()
+                        select new
+                        {
+                            login,
+                            details
+                        }).FirstOrDefault();
 
-            if (GetUserDetails == null)
+            if (user == null)
                 return null;
 
-            return new UserLoginDetails()
+            return new UserLoginDetails
             {
-                UserLoginDetailID = GetUserDetails.UserLoginDetailID,
-                Username = GetUserDetails.Username,
+                UserLoginDetailID = user.login.UserLoginDetailID,
+                Username = user.login.Username,
+                Name = user.details.Firstname
             };
         }
 
-        public List<UserDetail> GetUserList()
+        public List<UserDetail> GetUserList(int roleId)
         {
             List<UserDetail> list = null;
             using (LegaSysEntities db = new LegaSysEntities())
             {
-                list = db.LegaSys_UserDetails.Where(x => x.IsActive).AsEnumerable().Select(y => new UserDetail
+                list = db.LegaSys_UserDetails.Where(x => (x.IsActive && x.Master_Role_ID < roleId) || x.Master_Role_ID == 2).AsEnumerable().Select(y => new UserDetail
                 {
                     UserDetailID = y.UserDetailID,
                     Fullname = $"{y.Firstname} {y.Lastname}"

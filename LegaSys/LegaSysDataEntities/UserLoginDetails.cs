@@ -11,6 +11,7 @@ namespace LegaSysDataEntities
         public int UserLoginDetailID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Name { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
         public Nullable<int> UserDetailID { get; set; }
         public Nullable<bool> IsActive { get; set; }

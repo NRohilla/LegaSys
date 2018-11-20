@@ -7,5 +7,8 @@ namespace LegaSysUOW.Interface
     {
         IQueryable<Shift> GetAllShifts();
         Shift GetShiftById(int id);
+        bool ChangeStatus(int id);
+        int CreateShift(Shift model, int userId);
+        bool UpdateShift(Shift model, int userId);
     }
 }

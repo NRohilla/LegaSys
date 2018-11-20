@@ -5,11 +5,12 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';import { HeaderComponent } from './components/header/header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component'; import { HeaderComponent } from './components/header/header.component';
 import { CreateResourceComponent } from './resource/create-resource.component';
-import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatButtonModule } from '@angular/material';
-//import { CreateResourceComponent } from './resource/create-resource.component';
-//import { ResourceDetailsComponent } from './resource/resource-details/resource-details.component';
+import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatButtonModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { DialogComponent } from './masters/dialog/dialog.component';
+import { PageHeaderModule } from '../shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -21,9 +22,15 @@ import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, M
         MatButtonModule,
         LayoutRoutingModule,
         TranslateModule,
-        NgbDropdownModule.forRoot()
+        NgbDropdownModule.forRoot(),
+        MatDialogModule,
+        PageHeaderModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent,CreateResourceComponent]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, CreateResourceComponent, DialogComponent],
+    entryComponents: [DialogComponent]
 })
-export class LayoutModule {}
+export class LayoutModule { }
 

@@ -34,11 +34,20 @@ namespace LegaSysServices.App_Start
             identity.AddClaim(new Claim("Username", user.Username));
             var props = new AuthenticationProperties(new Dictionary<string, string>()
             {
-                {
-                    "audience", context.ClientId ??string.Empty                 }
+                { "audience", context.ClientId ??string.Empty },
+                { "name", user.Name }
             });
             var ticket = new AuthenticationTicket(identity, props);
             context.Validated(ticket);
+            return Task.FromResult<object>(null);
+        }
+
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
             return Task.FromResult<object>(null);
         }
     }

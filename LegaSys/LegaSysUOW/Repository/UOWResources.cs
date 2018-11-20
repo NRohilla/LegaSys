@@ -32,7 +32,8 @@ namespace LegaSysUOW.Repository
                 Master_Role_ID = userDetail.Master_Role_ID,
                 Remarks = userDetail.Remarks,
                 Created_Date = DateTime.Now,
-                Created_By = userDetail.Created_By
+                Created_By = userDetail.Created_By,
+                IsActive = true
             };
 
             db.LegaSys_UserDetails.Add(model);

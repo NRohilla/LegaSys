@@ -1,9 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 //import 'rxjs/add/operator/map';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Resource } from './resource.model'
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
+import { throwError } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -25,6 +26,7 @@ export class ResourceService {
         }
     }
     getResource() {
+        debugger;
         return this.http.get('http://localhost:58164/resource/getall', { headers: this.getToken() })
     }
 
@@ -43,17 +45,28 @@ export class ResourceService {
     getRoles() {
         return this.http.get<Resource[]>('http://localhost:58164/role/getall', { headers: this.getToken() })
     }
-    getReportingHead() {
-        return this.http.get<Resource[]>('http://localhost:58164/LegaSysAPI/Users/getuserlist')
+
+    getReportingHead(id) {
+        return this.http.get<Resource[]>('http://localhost:58164/LegaSysAPI/Users/getuserlist/' + id)
     }
 
     addResource(resource: Resource) {
-        return this.http.post(this.baseUrl, resource);
+        return this.http.post('http://localhost:58164/resource/create', resource, { headers: this.getToken() })
+            .pipe(
+                map(res => res),
+                catchError(this.errorHandler)
+            );
+    }
+
+    errorHandler(error: Response) {
+        console.log(error);
+        return throwError(error);
     }
 
     updateResource(resource: Resource) {
         return this.http.put<Resource[]>(this.baseUrl + '/' + resource.UserDetailID, resource, { headers: this.getToken() });
     }
+
     deleteResource(UserId: number) {
         return this.http.delete<Resource[]>(this.baseUrl + UserId)
     }

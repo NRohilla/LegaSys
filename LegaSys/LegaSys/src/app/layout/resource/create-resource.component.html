@@ -1,52 +1,154 @@
-<h2>Create Resource</h2>
-<form >
-<div class="example-container">
-    <mat-form-field>
-      <input matInput placeholder="Firstname" formControlName="firstname">
+<div>
+  <app-page-header [heading]="'Create Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+</div>
+
+<form [formGroup]="resourceForm" #formDirective="ngForm" (ngSubmit)="onSubmit(resourceForm, formDirective)">
+  <div class="example-container ">
+    <mat-form-field hidden>
+      <input matInput formControlName="UserDetailID">
     </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Middlename" formControlName="middlename">
-      </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Lastname" formControlName="lastname">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Total Experience" formControlName="totalexp">
-      </mat-form-field>
-    <!-- <mat-form-field>
-      <textarea matInput placeholder="Location Address"></textarea>
-    </mat-form-field> -->
-    <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email">
-      </mat-form-field>
+    <div class=" row form-group">
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <input matInput placeholder="Firstname" formControlName="firstname" required>
+          <mat-hint align="end">
+            Maximum Length {{resourceForm.controls.firstname.value?.length}}/25
+          </mat-hint>
+          <!-- input field error -->
+          <mat-error *ngIf="resourceForm.controls.firstname.invalid">
+            <span [hidden]="!resourceForm.controls['firstname'].errors.required">
+              Firstname is required.
+            </span>
+            <span [hidden]="!resourceForm.controls['firstname'].errors.maxlength">
+              Maximum allowed characters are 25.
+            </span>
+            <span [hidden]="!resourceForm.controls['firstname'].errors.pattern ">
+              Special characters and numbers are not allowed.
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-            <mat-select placeholder="Select Shift" formControlName="shift">
-              <mat-option *ngFor="let option of shift " [value]="option.ShiftID">{{option.StartTimeIST +'-'+option.EndTimeIST}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <input matInput placeholder="Middlename" formControlName="middlename">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <input matInput placeholder="Lastname" formControlName="lastname" required>
+          <mat-hint align="end">
+            Maximum Length {{resourceForm.controls.lastname.value?.length}}/25
+          </mat-hint>
+          <mat-error *ngIf="resourceForm.controls.lastname.invalid">
+            <span [hidden]="!resourceForm.controls['lastname'].errors.required">
+              Lastname is required.
+            </span>
+            <span [hidden]="!resourceForm.controls['lastname'].errors.maxlength">
+              Maximum allowed characters are 25.
+            </span>
+            <span [hidden]="!resourceForm.controls['lastname'].errors.pattern ">
+              Special characters and numbers are not allowed.
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <input matInput placeholder="Total Experience" formControlName="totalexp" required>
+          <mat-error *ngIf="resourceForm.controls.totalexp.invalid">
+            <span [hidden]="!resourceForm.controls['totalexp'].errors.required">
+              Total Experience is required.
+            </span>
+            <span [hidden]="!resourceForm.controls['totalexp'].errors.pattern">
+              Only positive numbers allowed from 0-60.
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <input matInput placeholder="Email" formControlName="emailId" email required>
+          <!-- <mat-error *ngIf="emailId.invalid">{{getErrorMessage()}}</mat-error> -->
+          <mat-error *ngIf="resourceForm.controls.emailId.invalid ">
+            <span [hidden]="!resourceForm.controls['emailId'].errors.required">
+              Email is required
+            </span>
+            <!-- <span [hidden]="resourceForm.controls['emailId'].errors.pattern">
+                      Invalid Email
+                     </span>  -->
+            <mat-error *ngIf="resourceForm.controls['emailId'].errors.pattern ">Invalid Email</mat-error>
 
-    <mat-form-field>
-      <mat-select placeholder="Select Location" formControlName="location">
-        <mat-option *ngFor="let option of location" [value]="option.LocationID">{{option.LocationAddress}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <input matInput placeholder="Mobile" formControlName="mobile" type="number" required>
+          <mat-error *ngIf="resourceForm.controls.mobile.invalid ">
+            <span [hidden]="!resourceForm.controls['mobile'].errors.required">
+              Mobile No is required
+            </span>
 
-    <mat-form-field>
-            <mat-select placeholder="Select Role" formControlName="role">
-              <mat-option *ngFor="let option of role" [value]="option.UserRoleID">{{option.RoleName}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+            <mat-error *ngIf="resourceForm.controls['mobile'].errors.pattern ">Mobile No must be 10 digit long</mat-error>
+          </mat-error>
 
-          <mat-form-field>
-            <mat-select placeholder="Select Reporting Head" formControlName="head">
-              <mat-option *ngFor="let option of rHead" [value]="option.UserDetailID">{{option.Fullname}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-      
-          <button type="submit" mat-raised-button color="primary">Submit</button>
-    
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <mat-select placeholder="Select Shift" formControlName="Master_Shift_ID" required>
+            <mat-option *ngFor="let option of shift " [value]="option.ShiftID">{{option.StartTimeIST
+              +'-'+option.EndTimeIST}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="resourceForm.controls['Master_Shift_ID'].errors?.required ">Shift is required.</mat-error>
+        </mat-form-field>
+      </div>
 
+
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <mat-select placeholder="Select Location" formControlName="Master_Location_ID" required>
+            <mat-option *ngFor="let option of location" [value]="option.LocationID">{{option.LocationAddress}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="resourceForm.controls['Master_Location_ID'].errors?.required ">Location is required.</mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <mat-select placeholder="Select Role" formControlName="Master_Role_ID" (selectionChange)="roleChanged($event.value)" required>
+            <mat-option *ngFor="let option of role" [value]="option.UserRoleID">{{option.RoleName}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="resourceForm.controls['Master_Role_ID'].errors?.required ">Role is required.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-4">
+        <mat-form-field style="width:250px !important">
+          <mat-select placeholder="Select Reporting Head" formControlName="ReportingHead_ID" required>
+            <mat-option *ngFor="let option of rHead" [value]="option.UserDetailID">{{option.Fullname}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="resourceForm.controls['ReportingHead_ID'].errors?.required ">Reporting Head is required.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-8">
+        <mat-form-field style="width:700px !important">
+          <textarea matInput placeholder="Extra Remarks" formControlName="remarks"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <br />
+    <div>
+      <button class="col-md-2" type="submit" [disabled]="!resourceForm.valid" mat-raised-button color="primary">Add
+        Resource</button>
+    </div>
   </div>
 </form>

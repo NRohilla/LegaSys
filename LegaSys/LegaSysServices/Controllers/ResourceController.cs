@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace LegaSysServices.Controllers
@@ -30,8 +31,17 @@ namespace LegaSysServices.Controllers
         [HttpGet]
         [Route("resource/{id}")]
         public IHttpActionResult GetResourceById(int id)
-         {
+        {
             return Json(_uOWResources.GetResourceById(id));
+        }
+
+        [HttpGet]
+        [Route("resource/delete{id}")]
+        public IHttpActionResult DeleteResource(int id)
+        {
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+
+            return Json(new { success = _uOWResources.DeleteResource(id, userId) });
         }
 
         [HttpPost]
@@ -44,7 +54,7 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int.TryParse(User.Identity.GetUserId(), out var createdBy);
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
             model.Created_By = createdBy;
 
@@ -67,11 +77,11 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int.TryParse(User.Identity.GetUserId(), out var createdBy);
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
             model.Created_By = createdBy;
 
-            if (_uOWResources.UpdateResource(model))
+            if (!_uOWResources.UpdateResource(model))
                 return NotFound();
 
             return Json(new { success = true });

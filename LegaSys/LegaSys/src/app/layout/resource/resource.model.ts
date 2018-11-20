@@ -14,7 +14,7 @@ export class Resource {
     ReportingHeadID: string;
     ReportingHead:string;
     IsActive : boolean;
-    UserRoleID:string;
+    UserRoleID:number;
     RoleName:string;
     Remarks : string;
     Master_Shift_ID : number;
@@ -25,4 +25,5 @@ export class Resource {
     Shift_ID: string;
     Location_ID: string;
     MobileNumber : number;
+   
 }

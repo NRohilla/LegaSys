@@ -4,21 +4,23 @@ table {
     width: 100%;
 }
 
-.mat-cell, .mat-header-cell {
-    // font-size: 14px;
-    // min-height: 48px;
-    text-align: center;
-    border-right: 1px solid lightgrey;
-}
-
-// .mat-grid-tile {
-//     background: lightblue;
+// .mat-cell, .mat-header-cell {
+//     // font-size: 14px;
+//     // min-height: 48px;
+//     text-align: center;
+//     border-right: 1px solid lightgrey;
 // }
-// .example-container {
-//     display: flex;
-//     flex-direction: column;
-//   }
+
+.mat-form-field {
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  th.mat-sort-header-sorted {
+    color:#ffffff;
+  }
   
-//   .example-container > * {
-//     width: 100%;
-//   }
+.resource-grid .mat-cell,.resource-grid .mat-footer-cell,.resource-grid .mat-header-cell {
+
+    justify-content: center;
+}

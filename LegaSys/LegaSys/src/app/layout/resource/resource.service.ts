@@ -44,7 +44,7 @@ export class ResourceService {
         return this.http.get<Resource[]>('http://localhost:58164/role/getall', { headers: this.getToken() })
     }
     getReportingHead() {
-        return this.http.get<Resource[]>('http://localhost:58164/LegaSysAPI/Users/getuserlist')
+        return this.http.get<Resource[]>('http://localhost:58164/LegaSysAPI/Users/getuserlist',{ headers: this.getToken() })
     }
 
     addResource(resource: Resource) {
@@ -52,7 +52,8 @@ export class ResourceService {
     }
 
     updateResource(resource: Resource) {
-        return this.http.put<Resource[]>(this.baseUrl + '/' + resource.UserDetailID, resource, { headers: this.getToken() });
+        debugger;
+        return this.http.post('http://localhost:58164/resource/update' , resource, { headers: this.getToken() });
     }
     deleteResource(UserId: number) {
         return this.http.delete<Resource[]>(this.baseUrl + UserId)

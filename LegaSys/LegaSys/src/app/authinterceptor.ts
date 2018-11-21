@@ -10,15 +10,14 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     currentValue: any;
     loginUrl: string;
     constructor(@Inject(SESSION_STORAGE) private storage: StorageService) {
-        
+
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-     
-       debugger;
+
        var authReq:any;
-      
-     
+
+
        if(req.url=="http://localhost:58164/api/token"){
              authReq = req.clone();
        }
@@ -30,7 +29,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
               else{
                     //this.currentValue = 'bearer ' + this.storage.get('UserToken');
                     this.currentValue = 'bearer ' + this.storage.get('UserToken').access_token;
-                    
+
                     authReq = req.clone({ headers: req.headers.set('Authorization', this.currentValue) });
               }
        }

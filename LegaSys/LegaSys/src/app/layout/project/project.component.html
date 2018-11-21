@@ -1,0 +1,52 @@
+<div  [@routerTransition]>
+        <app-page-header [heading]="'Project'" [icon]="'fa fa-users'"></app-page-header>
+
+      </div>
+        <div  *ngIf="disableforadd">
+        <mat-table [dataSource]="dataSource" matSort class="table-active">
+
+          <ng-container matColumnDef="ProjectID">
+            <mat-header-cell class="bg-info" hidden mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">Project ID</span> </mat-header-cell>
+            <mat-cell *matCellDef="let element" hidden> {{element.ProjectID}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="ClientName">
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">ClientName </span> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ClientName}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Description">
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Description</span> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="DomainName">
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">DomainName</span> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.DomainName}} </mat-cell>
+          </ng-container>
+          <!-- co client  Column -->
+          <!-- <ng-container matColumnDef="CoClient">
+              <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  <span class="text-white text-uppercase">Co Client</span> </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.CoClient}} </mat-cell>
+            </ng-container> -->
+          <!--Action  Column, will contains button for View,Edit and Delete -->
+            <ng-container matColumnDef="actions">
+              <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="text-right">
+                <!-- [routerLink]="['/client-details'] -->
+                  <button mat-button (click)="editproject(element)"  class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View</button>
+
+                  <button mat-button (click)="deleteproject(element.ProjectID,element.Status)"  *ngIf="element.Status=='0'" class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
+                  <button mat-button (click)="deleteproject(element.ProjectID,element.Status)" mat-raised-button color="accent" *ngIf="element.Status=='1'" class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Activate </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <!-- this code is for pagignator -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+
+      </div>
+
+      <div class="w-100 float-left table-info px-4 py-2 text-right">
+        <!-- This button will be used to add client into the database-->
+
+        <button  mat-button class="btn btn-info" (click)="addProject()"><i class="fa fa-plus" aria-hidden="true"></i> Add Project</button>
+      </div>

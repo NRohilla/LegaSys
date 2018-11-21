@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-width: 650px;
+  }
+
+  .container > * {
+    width: 100%;
+  }
+
+  .form {
+    display: flex;
+    padding-top: 6px;
+  }
+
+  .mat-form-field {
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  .contactlist-container, #paginator {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-height: 700px;
+    overflow: auto;
+    margin: 0 auto;
+  }
+  ::ng-deep .mat-tab-label-container{
+    background-color: cadetblue;
+
+  }
+  ::ng-deep .mat-tab-label {
+
+    color:white;
+    background-color: cadetblue;
+
+
+}
+::ng-deep .mat-success {
+    background-color: green;
+    color: #fff;
+}
+
+
+.margin-left{
+    margin-left: 90%;
+}
+
+

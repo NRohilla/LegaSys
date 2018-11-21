@@ -12,7 +12,7 @@ import {ClientServiceService} from './client-service.service'
   animations: [routerTransition()]
 })
 export class ClientComponent implements OnInit {
-  // Created By VE team on 05 Nov 2018 
+  // Created By VE team on 05 Nov 2018
 
   clientDetails:any= [];  // This array will hold the all client details
   constructor(private modalService: NgbModal,private clientService:ClientServiceService ) { }
@@ -28,13 +28,12 @@ applyFilter(filterValue: string) {
 displayedColumns: string[] = ['ClientName', 'Email', 'Address', 'Country','CoClient','action']; // This is an aaray for Header in Grid displaying client details
   ngOnInit() {
     // Following fuction will execute and call to client service to get all client from database
-    debugger;
     this.clientService.GetClientDetails().subscribe(
       suc => {
        console.log(suc);
        this.clientDetails=suc;
        console.log(this.clientDetails);
-      
+
       },
       err =>{
         console.log(err);

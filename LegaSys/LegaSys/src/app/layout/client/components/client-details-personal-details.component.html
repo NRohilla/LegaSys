@@ -19,61 +19,36 @@
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail" matInput placeholder="Primary Client Email" >
-                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
-                    Enter Valid Email ID</mat-error> -->
-                    <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].touched">
-                        <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid"> -->
-                        <!-- {{ValidateForm()}}  -->
-                        <span  *ngIf="personalDetailsForm.controls['clientEmail'].invalid" >
-                            Enter Vaid Email ID
-                       </span>
-                         
-                      </mat-error>
+                <input  formControlName="clientEmail" matInput placeholder="Primary Client Email" >
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
+                    Enter Valid Email ID</mat-error>
+                   
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " >
-                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Enter Valid Email ID</mat-error>
-            -->
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].touched">
-                        <!-- {{ValidateForm()}}  -->
-                        <span  *ngIf="personalDetailsForm.controls['clientEmail2'].invalid" >
-                             Enter valid Email Id
-                       </span>
-                         
-                      </mat-error>
+                <input  formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " >
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Enter Valid Email ID</mat-error>
+           
+              
             </mat-form-field>
         </div>
     </div>
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail3" matInput placeholder="Other Client Email  " >
-                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Enter Valid Email ID</mat-error>
-                -->
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].touched"> 
-                        <!-- {{ValidateForm()}}  -->
-                        <span  *ngIf="personalDetailsForm.controls['clientEmail3'].invalid" >
-                            Enter Valid Email ID
-                       </span>
-                         
-                      </mat-error>
+                <input  formControlName="clientEmail3" matInput placeholder="Other Client Email  " >
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Enter Valid Email ID</mat-error>
+               
+               
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail4" matInput placeholder="Other Client Email " >
-                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Enter Valid Email ID</mat-error>
-           -->
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].touched"> 
-                        <!-- {{ValidateForm()}}  -->
-                        <span  *ngIf="personalDetailsForm.controls['clientEmail4'].invalid" >
-                            Enter Valid Email ID
-                       </span>
-                         
-                      </mat-error>
+                <input  formControlName="clientEmail4" matInput placeholder="Other Client Email " >
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Enter Valid Email ID</mat-error>
+          
+                
             </mat-form-field>
         </div>
         

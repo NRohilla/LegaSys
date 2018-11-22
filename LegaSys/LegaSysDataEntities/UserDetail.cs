@@ -27,6 +27,6 @@ namespace LegaSysDataEntities
         public string RoleName { get; set; }
         public int Created_By { get; set; }
         public int Updated_By { get; set; }
-        public int? MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
     }
 }

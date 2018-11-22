@@ -152,6 +152,12 @@
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="spGetAllProjects_Result.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetProjectDetailsById_Result.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>

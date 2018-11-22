@@ -326,9 +326,9 @@
     <Property Name="Firstname" Type="nvarchar" MaxLength="100" />
     <Property Name="Middlename" Type="nvarchar" MaxLength="100" />
     <Property Name="Lastname" Type="nvarchar" MaxLength="100" />
-    <Property Name="TotalExp" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TotalExp" Type="decimal" Precision="18" Scale="2" />
     <Property Name="EmailId" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="MobileNumber" Type="int" />
+    <Property Name="MobileNumber" Type="varchar" MaxLength="10" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
     <Property Name="Master_Shift_ID" Type="int" Nullable="false" />
@@ -718,6 +718,21 @@
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spAddProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetAllProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetProjectDetailsById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="projectId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUpdateProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="projectID" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="LegaSysModelStoreContainer">
     <EntitySet Name="LegaSys_Attachments" EntityType="Self.LegaSys_Attachments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LegaSys_AttachmentTypes" EntityType="Self.LegaSys_AttachmentTypes" Schema="dbo" store:Type="Tables" />

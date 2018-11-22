@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <div>
-    <app-page-header [heading]="'Resource'" [style]="'background-color:lightgrey'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+    <app-page-header [heading]="'Resources'" [style]="'background-color:lightgrey'" [icon]="'fa fa-fw fa-users'"></app-page-header>
     <!-- <div>
         <button type="button" [routerLink]="['/create-resource']" class="btn btn-info" style="margin-bottom: 1%;">Create
             Resource</button>
@@ -12,50 +12,60 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
     <!-- Position Column -->
-    <ng-container matColumnDef="UserDetailID" >
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">Resource ID</span> </mat-header-cell>
-        <mat-cell *matCellDef="let element" > {{element.UserDetailID}} </mat-cell>>
+    <ng-container matColumnDef="UserDetailID">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">Resource
+                ID</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.UserDetailID}} </mat-cell>>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="FullName">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Name</span> </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Firstname+ ' '+element.Middlename+' '+element.Lastname}} </mat-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Name</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Firstname+ ' '+element.Middlename+' '+element.Lastname}}
+        </mat-cell>
     </ng-container>
 
     <!-- TotalExp Column -->
     <ng-container matColumnDef="TotalExp">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Total Exp</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Total
+                Exp</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.TotalExp}} </mat-cell>
     </ng-container>
     <!-- EmailId Column -->
     <ng-container matColumnDef="EmailId">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Email</span> </mat-header-cell>
-        <mat-cell *matCellDef="let element" > {{element.EmailId}} </mat-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Email</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.EmailId}} </mat-cell>
     </ng-container>
     <!-- Shift Column -->
     <ng-container matColumnDef="Shift">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Shift</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Shift</span>
+        </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.Shift}} </mat-cell>
     </ng-container>
     <!-- Location Column -->
     <ng-container matColumnDef="Location_ID">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Location</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Location</span>
+        </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.LocationAddress}} </mat-cell>
     </ng-container>
     <!-- ReportingHead Column -->
     <ng-container matColumnDef="ReportingHead_ID">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Reporting Head</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Reporting
+                Head</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.ReportingHead}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef class="bg-info"> </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            
-            <button mat-button (click)="ViewResourceDetails(element.UserDetailID)" class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>  <span class="action-btn">View</span></button>
-            <button mat-button (click)= "DeleteClientWithID(element.ClientDetailID)" class="btn btn-danger mx-1"><i class="fa fa-trash-o" aria-hidden="true"></i>  <span class="action-btn">Delete</span></button>
-            </mat-cell>
+
+            <button mat-button (click)="ViewResourceDetails(element.UserDetailID)" class="btn btn-info mx-1"><i class="fa fa-pencil-square-o"
+                    aria-hidden="true"></i> <span class="action-btn">View</span></button>
+            <button mat-button (click)="DeleteResource(element.UserDetailID)" class="btn btn-danger mx-1"><i class="fa fa-trash-o"
+                    aria-hidden="true"></i> <span class="action-btn">Delete</span></button>
+        </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -63,8 +73,8 @@
 <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
 
 <div class="w-100 float-left table-info px-4 py-2 text-right">
-        <!-- This button will be used to add resource into the database-->
-      
-        <button  mat-button class="btn btn-info" [routerLink]="['/create-resource']"><i class="fa fa-plus" aria-hidden="true"></i> Add Resource</button>
-      </div>
-          
+    <!-- This button will be used to add resource into the database-->
+
+    <button mat-button class="btn btn-info" [routerLink]="['/create-resource']"><i class="fa fa-plus" aria-hidden="true"></i>
+        Add Resource</button>
+</div>

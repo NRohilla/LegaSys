@@ -56,10 +56,6 @@ export class CreateResourceComponent implements OnInit {
 
   }
 
-  private getTotalExp() {
-    const numberPatern = '^[0-9.,]+$';
-  }
-
   onSubmit(formData: any, formDirective: FormGroupDirective) {
     debugger;
     console.log(this.resourceForm.value);

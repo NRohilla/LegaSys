@@ -73,6 +73,23 @@
     <Property Name="ClientStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ClientStatusId" Type="Int32" Nullable="false" />
   </EntityType>
+  <EntityType Name="LegaSys_ErrorLogs">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsHandled" Type="Boolean" Nullable="false" />
+    <Property Name="ResourceUri" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="QueryString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ErrorDatetimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ExceptionDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IpAddress" Type="String" MaxLength="45" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ReferingUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="UserAgent" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
   <EntityType Name="LegaSys_LeavesApplication">
     <Key>
       <PropertyRef Name="LeaveID" />
@@ -349,9 +366,9 @@
     <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Middlename" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="TotalExp" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TotalExp" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="EmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MobileNumber" Type="Int32" />
+    <Property Name="MobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Master_Shift_ID" Type="Int32" Nullable="false" />
@@ -402,6 +419,13 @@
     <Property Name="Created_Date" Type="DateTime" Precision="3" />
     <Property Name="Updated_Date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="LegaSys_Master_Technologies" Relationship="Self.FK__LegaSys_O__LegaS__6B24EA82" FromRole="LegaSys_UserTechnology" ToRole="LegaSys_Master_Technologies" />
+  </EntityType>
+  <EntityType Name="LegaSys_WhiteList_IP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IP_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -719,6 +743,7 @@
     <EntitySet Name="LegaSys_Client_Projects" EntityType="Self.LegaSys_Client_Projects" />
     <EntitySet Name="LegaSys_ClientDetails" EntityType="Self.LegaSys_ClientDetails" />
     <EntitySet Name="LegaSys_ClientStatus" EntityType="Self.LegaSys_ClientStatus" />
+    <EntitySet Name="LegaSys_ErrorLogs" EntityType="Self.LegaSys_ErrorLogs" />
     <EntitySet Name="LegaSys_LeavesApplication" EntityType="Self.LegaSys_LeavesApplication" />
     <EntitySet Name="LegaSys_Log_Clients" EntityType="Self.LegaSys_Log_Clients" />
     <EntitySet Name="LegaSys_Log_Projects" EntityType="Self.LegaSys_Log_Projects" />
@@ -740,6 +765,7 @@
     <EntitySet Name="LegaSys_UserDetails" EntityType="Self.LegaSys_UserDetails" />
     <EntitySet Name="LegaSys_UserLogin" EntityType="Self.LegaSys_UserLogin" />
     <EntitySet Name="LegaSys_UserTechnology" EntityType="Self.LegaSys_UserTechnology" />
+    <EntitySet Name="LegaSys_WhiteList_IP" EntityType="Self.LegaSys_WhiteList_IP" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK__LegaSys_A__Attac__778AC167" Association="Self.FK__LegaSys_A__Attac__778AC167">
       <End Role="LegaSys_AttachmentTypes" EntitySet="LegaSys_AttachmentTypes" />
@@ -871,8 +897,21 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <EntitySet Name="LegaSys_WhiteList_IP" EntityType="LegaSysModel.LegaSys_WhiteList_IP" />
-    <EntitySet Name="LegaSys_ErrorLogs" EntityType="LegaSysModel.LegaSys_ErrorLogs" />
+    <FunctionImport Name="spAddProject">
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllProjects" ReturnType="Collection(LegaSysModel.spGetAllProjects_Result)" />
+    <FunctionImport Name="spGetProjectDetailsById" ReturnType="Collection(LegaSysModel.spGetProjectDetailsById_Result)">
+      <Parameter Name="projectId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateProject">
+      <Parameter Name="projectID" Mode="In" Type="Int32" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -885,28 +924,59 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
-  <EntityType Name="LegaSys_WhiteList_IP">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IP_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="LegaSys_ErrorLogs">
-    <Key>
-      <PropertyRef Name="ErrorLogID" />
-    </Key>
-    <Property Name="ErrorLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IsHandled" Type="Boolean" Nullable="false" />
-    <Property Name="ResourceUri" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="QueryString" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="ErrorDatetimeUtc" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ErrorMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="ExceptionDetail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="IpAddress" Type="String" Nullable="false" MaxLength="45" FixedLength="true" Unicode="false" />
-    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="ReferingUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="UserAgent" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-  </EntityType>
+  <ComplexType Name="spGetAllProjects_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Client_ID" Nullable="true" />
+    <Property Type="Int32" Name="ProjectDomain_ID" Nullable="true" />
+    <Property Type="Int16" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="Created_By" Nullable="true" />
+    <Property Type="Int32" Name="Updated_By" Nullable="true" />
+    <Property Type="DateTime" Name="Created_Date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Updated_Date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spGetProjectDetailsById_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Client_ID" Nullable="true" />
+    <Property Type="Int32" Name="ProjectDomain_ID" Nullable="true" />
+    <Property Type="Int16" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="ClientDetailID" Nullable="false" />
+    <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CoClient" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CoClient2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EmailID2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EmailID3" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CoClient3" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CoClient4" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailID4" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="String" Name="DomainName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Resource_ID" Nullable="true" />
+    <Property Type="String" Name="Firstname" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Middlename" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Lastname" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="TotalExp" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="EmailId1" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="10" />
+    <Property Type="Boolean" Name="ResourceStatus" Nullable="false" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Master_Shift_ID" Nullable="false" />
+    <Property Type="Int32" Name="Master_Location_ID" Nullable="false" />
+    <Property Type="Int32" Name="ReportingHead_ID" Nullable="true" />
+    <Property Type="Int32" Name="Master_Role_ID" Nullable="false" />
+    <Property Type="Int32" Name="ProjectTaskID" Nullable="false" />
+    <Property Type="String" Name="Title1" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TaskDescription" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="TaskAttachmentID" Nullable="true" />
+    <Property Type="Int32" Name="ProjectSubTaskID" Nullable="false" />
+    <Property Type="String" Name="Title2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SubTaskDescription" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="SubTaskAttachmentID" Nullable="true" />
+  </ComplexType>
 </Schema>

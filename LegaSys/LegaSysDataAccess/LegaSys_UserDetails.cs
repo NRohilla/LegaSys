@@ -31,7 +31,7 @@ namespace LegaSysDataAccess
         public string Lastname { get; set; }
         public Nullable<decimal> TotalExp { get; set; }
         public string EmailId { get; set; }
-        public Nullable<int> MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
         public bool IsActive { get; set; }
         public string Remarks { get; set; }
         public int Master_Shift_ID { get; set; }

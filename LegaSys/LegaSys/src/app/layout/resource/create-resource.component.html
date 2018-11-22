@@ -1,15 +1,19 @@
 <div>
-  <app-page-header [heading]="'Create Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+  <app-page-header [heading]="'Add Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
 </div>
-
+<div class="card mb-3">
+  <div class="card-header bg-info text-center">
+    <mat-label class="labeltext text-white text-uppercase ">Resource Details</mat-label>
+  </div>
+</div>
 <form [formGroup]="resourceForm" #formDirective="ngForm" (ngSubmit)="onSubmit(resourceForm, formDirective)">
-  <div class="example-container ">
+  <div class="">
     <mat-form-field hidden>
       <input matInput formControlName="UserDetailID">
     </mat-form-field>
-    <div class=" row form-group">
+    <div class=" row">
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <input matInput placeholder="Firstname" formControlName="firstname" required>
           <mat-hint align="end">
             Maximum Length {{resourceForm.controls.firstname.value?.length}}/25
@@ -28,14 +32,13 @@
           </mat-error>
         </mat-form-field>
       </div>
-
       <div class="col-md-4">
         <mat-form-field style="width:250px !important">
           <input matInput placeholder="Middlename" formControlName="middlename">
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <input matInput placeholder="Lastname" formControlName="lastname" required>
           <mat-hint align="end">
             Maximum Length {{resourceForm.controls.lastname.value?.length}}/25
@@ -54,9 +57,9 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <input matInput placeholder="Total Experience" formControlName="totalexp" required>
           <mat-error *ngIf="resourceForm.controls.totalexp.invalid">
             <span [hidden]="!resourceForm.controls['totalexp'].errors.required">
@@ -69,7 +72,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <input matInput placeholder="Email" formControlName="emailId" email required>
           <!-- <mat-error *ngIf="emailId.invalid">{{getErrorMessage()}}</mat-error> -->
           <mat-error *ngIf="resourceForm.controls.emailId.invalid ">
@@ -85,7 +88,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <input matInput placeholder="Mobile" formControlName="mobile" type="number" required>
           <mat-error *ngIf="resourceForm.controls.mobile.invalid ">
             <span [hidden]="!resourceForm.controls['mobile'].errors.required">
@@ -98,9 +101,9 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <mat-select placeholder="Select Shift" formControlName="Master_Shift_ID" required>
             <mat-option *ngFor="let option of shift " [value]="option.ShiftID">{{option.StartTimeIST
               +'-'+option.EndTimeIST}}</mat-option>
@@ -111,7 +114,7 @@
 
 
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <mat-select placeholder="Select Location" formControlName="Master_Location_ID" required>
             <mat-option *ngFor="let option of location" [value]="option.LocationID">{{option.LocationAddress}}</mat-option>
           </mat-select>
@@ -121,17 +124,18 @@
 
 
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
-          <mat-select placeholder="Select Role" formControlName="Master_Role_ID" (selectionChange)="roleChanged($event.value)" required>
+        <mat-form-field style="width:350px !important">
+          <mat-select placeholder="Select Role" formControlName="Master_Role_ID" (selectionChange)="roleChanged($event.value)"
+            required>
             <mat-option *ngFor="let option of role" [value]="option.UserRoleID">{{option.RoleName}}</mat-option>
           </mat-select>
           <mat-error *ngIf="resourceForm.controls['Master_Role_ID'].errors?.required ">Role is required.</mat-error>
         </mat-form-field>
       </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-md-4">
-        <mat-form-field style="width:250px !important">
+        <mat-form-field style="width:350px !important">
           <mat-select placeholder="Select Reporting Head" formControlName="ReportingHead_ID" required>
             <mat-option *ngFor="let option of rHead" [value]="option.UserDetailID">{{option.Fullname}}</mat-option>
           </mat-select>
@@ -140,15 +144,19 @@
       </div>
 
       <div class="col-md-8">
-        <mat-form-field style="width:700px !important">
+        <mat-form-field style="width:910px !important">
           <textarea matInput placeholder="Extra Remarks" formControlName="remarks"></textarea>
         </mat-form-field>
       </div>
     </div>
-    <br />
-    <div>
-      <button class="col-md-2" type="submit" [disabled]="!resourceForm.valid" mat-raised-button color="primary">Add
-        Resource</button>
+    <div class="w-100 float-left table-info px-4 py-2 text-right footer-height">
+      <!-- <div class="px-2 float-right">
+        <button mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward" aria-hidden="true"></i>
+          Back</button>
+      </div> -->
+      <!-- <button class="btn btn-info" [disabled]="!clientForm.valid"><i class="fa fa-paper-plane" aria-hidden="true"></i> Submit</button> -->
+      <button class="btn btn-info mat-button" type="submit" [disabled]="!resourceForm.valid" mat-raised-button><i class="fa fa-save"
+          aria-hidden="true"></i> Add Resource</button>
     </div>
   </div>
 </form>

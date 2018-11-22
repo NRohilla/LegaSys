@@ -13,34 +13,39 @@
   </ng-container>
 
   <ng-container matColumnDef="WeekOff1">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Week Off 1 </th>
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Week
+        Off 1 </span></th>
     <td mat-cell *matCellDef="let element"> {{element.WeekOff1}} </td>
   </ng-container>
 
   <ng-container matColumnDef="WeekOff2">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Week Off 2 </th>
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Week
+        Off 2 </span></th>
     <td mat-cell *matCellDef="let element"> {{element.WeekOff2}} </td>
   </ng-container>
 
   <ng-container matColumnDef="WeekOff3">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Week Off 3 </th>
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Week
+        Off 3 </span></th>
     <td mat-cell *matCellDef="let element"> {{element.WeekOff3}} </td>
   </ng-container>
 
   <ng-container matColumnDef="StartTimeIST">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Time IST </th>
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">
+        Start Time IST </span></th>
     <td mat-cell *matCellDef="let element"> {{element.StartTimeIST}} </td>
   </ng-container>
 
   <ng-container matColumnDef="EndTimeIST">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> End Time IST </th>
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> End
+        Time IST </span></th>
     <td mat-cell *matCellDef="let element"> {{element.EndTimeIST}} </td>
   </ng-container>
 
   <ng-container matColumnDef="IsActive">
-    <th mat-header-cell *matHeaderCellDef> </th>
+    <th mat-header-cell class="bg-info" *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="$event.stopPropagation(); status(element.ShiftID, element.IsActive)" mat-raised-button color="primary">
+      <button (click)="$event.stopPropagation(); status(element.ShiftID, element.IsActive)" mat-raised-button [ngClass]="{'btn-info': !element.IsActive, 'btn-danger': element.IsActive}">
         <mat-icon *ngIf="!element.IsActive">verified_user</mat-icon>
         <mat-icon *ngIf="element.IsActive">not_interested</mat-icon>
         {{element.IsActive ? 'Deactivate' : 'Activate'}}
@@ -103,8 +108,12 @@
         </mat-form-field>
       </div>
     </div>
-    <button type="submit" [disabled]="!shiftForm.valid" mat-raised-button color="primary">{{formType}}
-      Shift</button>&nbsp;
-    <button type="button" (click)="formReset(shiftForm, formDirective);" mat-raised-button color="primary">Cancel</button>
+    <div class="w-100 float-left table-info px-4 py-2 text-right">
+      <button type="submit" class="btn-info mat-button mr-1" [disabled]="!shiftForm.valid" mat-raised-button><i class="fa fa-save"
+          aria-hidden="true"></i><span class="action-btn">{{formType}}
+          Shift</span></button>
+      <button type="button" class="btn-danger mat-button" (click)="formReset(shiftForm, formDirective);"
+        mat-raised-button><i class="fa fa-times" aria-hidden="true"></i> <span class="action-btn">Cancel</span></button>
+    </div>
   </div>
 </form>

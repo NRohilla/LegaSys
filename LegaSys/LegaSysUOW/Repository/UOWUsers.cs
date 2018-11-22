@@ -3,6 +3,7 @@ using System.Linq;
 using LegaSysUOW.Interface;
 using LegaSysDataAccess;
 using LegaSysDataEntities;
+using System;
 
 namespace LegaSysUOW.Repository
 {
@@ -18,7 +19,7 @@ namespace LegaSysUOW.Repository
         public UserLoginDetails AuthenticateAndFetchUserDetail(string Username, string Password)
         {
             //validate user credentials
-            var user = (from login in db.LegaSys_UserLogin.Where(x => x.IsActive.HasValue)
+            var user = (from login in db.LegaSys_UserLogin.Where(x => x.IsActive.Value)
                         join details in db.LegaSys_UserDetails.Where(x => x.IsActive) on login.UserDetailID equals details.UserDetailID
                         where login.Username.ToLower().Trim() == Username.ToLower().Trim() && login.Password.Trim() == Password.Trim()
                         select new
@@ -30,11 +31,16 @@ namespace LegaSysUOW.Repository
             if (user == null)
                 return null;
 
+            var lastLogin = user.login.LastLogin;
+            user.login.LastLogin = DateTime.Now;
+            db.SaveChanges();
+
             return new UserLoginDetails
             {
                 UserLoginDetailID = user.login.UserLoginDetailID,
                 Username = user.login.Username,
-                Name = user.details.Firstname
+                Name = user.details.Firstname,
+                LastLogin = lastLogin
             };
         }
 

@@ -1,34 +1,31 @@
 <br />
 <div class="example-container">
-<form [formGroup]="personalDetailsForm" *ngIf="resoursedetails">
-   
+    <form [formGroup]="personalDetailsForm" *ngIf="resoursedetails">
+
         <div style="padding:0 15px;">
             <div class="row">
                 <div class="col-md-4">
-
-                    <mat-form-field style="width:250px !important">
+                    <mat-form-field style="width:350px !important">
                         <input formControlName="Firstname" type="text" matInput placeholder="First Name" [(ngModel)]="resoursedetails.Firstname"
                             name="resoursedetails.Firstname">
-
-                        <mat-error *ngIf="personalDetailsForm.controls['Firstname'].invalid  && (personalDetailsForm.controls['Firstname'].dirty || personalDetailsForm.controls['Firstname'].touched)">First Name Should 
-                           be in Alphabet.</mat-error>
+                        <mat-error *ngIf="personalDetailsForm.controls['Firstname'].invalid  && (personalDetailsForm.controls['Firstname'].dirty || personalDetailsForm.controls['Firstname'].touched)">First
+                            Name Should
+                            be in Alphabet.</mat-error>
                     </mat-form-field>
                 </div>
 
-
                 <div class="col-md-4">
-                    <mat-form-field style="width:250px !important">
+                    <mat-form-field style="width:350px !important">
                         <input matInput placeholder="Middle Name " [(ngModel)]="resoursedetails.Middlename" name="resoursedetails.Middlename"
                             formControlName="Middlename">
                     </mat-form-field>
                 </div>
                 <div class="col-md-4">
-
-                    <mat-form-field style="width:250px !important">
+                    <mat-form-field style="width:350px !important">
                         <input formControlName="Lastname" matInput placeholder="Last Name " [(ngModel)]="resoursedetails.Lastname"
                             name="resoursedetails.Lastname">
-                        <mat-error *ngIf="personalDetailsForm.controls['Lastname'].invalid  && (personalDetailsForm.controls['Lastname'].dirty || personalDetailsForm.controls['Lastname'].touched)">Last Name Should 
-                                be in Alphabet.</mat-error>
+                        <mat-error *ngIf="personalDetailsForm.controls['Lastname'].invalid  && (personalDetailsForm.controls['Lastname'].dirty || personalDetailsForm.controls['Lastname'].touched)">Last
+                            Name Should be in Alphabet.</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -36,39 +33,34 @@
             <div class="row">
                 <div class="col-md-4">
 
-                    <mat-form-field style="width:250px !important">
-                        <input formControlName="TotalExp" type="number" min="0" max="60" matInput min="0" max="60" placeholder="Total Experience"
-                            [(ngModel)]="resoursedetails.TotalExp" name="resoursedetails.TotalExp">
-                            <mat-error *ngIf="personalDetailsForm.controls['TotalExp'].invalid  && (personalDetailsForm.controls['TotalExp'].dirty || personalDetailsForm.controls['TotalExp'].touched)">Only
-                                    Enter Alphabet</mat-error>
+                    <mat-form-field style="width:350px !important">
+                        <input formControlName="TotalExp" type="number" min="0" max="60" matInput min="0" max="60"
+                            placeholder="Total Experience" [(ngModel)]="resoursedetails.TotalExp" name="resoursedetails.TotalExp">
+                        <mat-error *ngIf="personalDetailsForm.controls['TotalExp'].invalid  && (personalDetailsForm.controls['TotalExp'].dirty || personalDetailsForm.controls['TotalExp'].touched)">Only
+                            Only positive numbers allowed from 0-60</mat-error>
                     </mat-form-field>
                 </div>
-
                 <div class="col-md-4">
-
-                    <mat-form-field style="width:250px !important">
+                    <mat-form-field style="width:350px !important">
                         <input formControlName="EmailId" matInput placeholder="Email ID" [(ngModel)]="resoursedetails.EmailId"
-                            name="resoursedetails.EmailId" email >
+                            name="resoursedetails.EmailId" email>
                         <mat-error *ngIf="personalDetailsForm.controls['EmailId'].invalid  && (personalDetailsForm.controls['EmailId'].dirty || personalDetailsForm.controls['EmailId'].touched)">
                             Enter Valid Email ID</mat-error>
                     </mat-form-field>
-
                 </div>
-
                 <div class="col-md-4">
-                    <mat-form-field style="width:250px !important">
-                        <mat-select formControlName="Master_Role_ID" placeholder="Role" [(ngModel)]="resoursedetails.Master_Role_ID"
-                            name="resoursedetails.Master_Role_ID" >
-                            <mat-option *ngFor="let Role of getAllRole" [value]="Role.UserRoleID">
-                                {{Role.RoleName}}
-                            </mat-option>
-                        </mat-select>
+                    <mat-form-field style="width:350px !important">
+                        <input matInput placeholder="Mobile" formControlName="mobile" [(ngModel)]="resoursedetails.MobileNumber"
+                            name="resoursedetails.MobileNumber" type="number" required>
+                        <mat-error *ngIf="personalDetailsForm.controls['mobile'].invalid && (personalDetailsForm.controls['mobile'].dirty || personalDetailsForm.controls['mobile'].touched)">
+                            Enter a valid Mobile Number </mat-error>
                     </mat-form-field>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-4">
-                    <mat-form-field style="width:250px !important">
+                    <mat-form-field style="width:350px !important">
                         <mat-select placeholder="Shift" [(ngModel)]="resoursedetails.Master_Shift_ID" name="resoursedetails.Master_Shift_ID"
                             formControlName="Master_Shift_ID">
 
@@ -79,7 +71,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                    <mat-form-field style="width:250px !important">
+                    <mat-form-field style="width:350px !important">
                         <mat-select placeholder="Location Address" [(ngModel)]="resoursedetails.Master_Location_ID"
                             name="resoursedetails.Master_Location_ID" formControlName="Master_Location_ID">
                             <mat-option *ngFor="let location of getLocation" [value]="location.LocationID">
@@ -89,40 +81,50 @@
                     </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                    <mat-form-field style="width:250px !important">
-                        <mat-select placeholder="Reporting Head" [(ngModel)]="resoursedetails.UserDetailID" name="resoursedetails.UserDetailID"
-                              formControlName="UserDetailID">
+                    <mat-form-field style="width:350px !important">
+                        <mat-select formControlName="Master_Role_ID" (selectionChange)="roleChanged($event.value)"
+                            placeholder="Role" [(ngModel)]="resoursedetails.Master_Role_ID" name="resoursedetails.Master_Role_ID">
+                            <mat-option *ngFor="let Role of getAllRole" [value]="Role.UserRoleID">
+                                {{Role.RoleName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field style="width:350px !important">
+                        <mat-select placeholder="Reporting Head" [(ngModel)]="resoursedetails.ReportingHead_ID" name="resoursedetails.ReportingHead_ID"
+                            formControlName="UserDetailID">
                             <mat-option *ngFor="let reportinghead of getReportingHead" [value]="reportinghead.UserDetailID">
                                 {{reportinghead.Fullname}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-4">
-                    <mat-form-field style="width:1400px !important">
+                <div class="col-md-8">
+                    <mat-form-field style="width:910px !important">
                         <textarea matInput placeholder="Remarks" [(ngModel)]="resoursedetails.Remarks" name="resoursedetails.Remarks"
                             formControlName="Remarks"></textarea>
                     </mat-form-field>
                 </div>
             </div>
         </div>
-    
-</form>
-<div style=" background: #bee5eb; padding: 10px;">
-    <div *ngIf="disable" class="float-right">
-        <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
-                aria-hidden="true"></i> Edit</button>
+
+    </form>
+    <div style=" background: #bee5eb; padding: 10px;">
+        <div *ngIf="disable" class="float-right">
+            <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
+                    aria-hidden="true"></i> Edit</button>
+        </div>
+        <div *ngIf="!disable" class="float-right ml-2">
+            <button mat-button class="btn btn-success" [disabled]="personalDetailsForm.invalid" (click)="onSubmit()"><i
+                    class="fa fa-save" aria-hidden="true"></i> Update</button>
+        </div>
+        <div *ngIf="!disable" class="float-right ml-2">
+            <button mat-button class="btn btn-secondary" (click)="Cancel()"><i class="fa fa-times" aria-hidden="true"></i>
+                Cancel</button>
+        </div>
     </div>
-    <div *ngIf="!disable" class="float-right ml-2">
-        <button mat-button class="btn btn-success" [disabled]="personalDetailsForm.invalid" (click)="onSubmit()"><i class="fa fa-save"
-                aria-hidden="true"></i> Update</button>
-    </div>
-    <div *ngIf="!disable" class="float-right ml-2">
-        <button mat-button class="btn btn-secondary" (click)="Cancel()"><i class="fa fa-times" aria-hidden="true"></i>
-            Cancel</button>
-    </div>
-</div>
 </div>

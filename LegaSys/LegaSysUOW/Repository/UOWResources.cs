@@ -44,14 +44,19 @@ namespace LegaSysUOW.Repository
 
         public bool DeleteResource(int id, int userId)
         {
-            var existingModel = db.LegaSys_UserDetails.FirstOrDefault(x => x.UserDetailID == id);
+            var existingUserDetail = db.LegaSys_UserDetails.FirstOrDefault(x => x.UserDetailID == id && x.IsActive);
+            var existingUser = db.LegaSys_UserLogin.FirstOrDefault(x => x.UserDetailID == id && x.IsActive.Value);
 
-            if (existingModel == null)
+            if (existingUserDetail == null || existingUser == null)
                 return false;
 
-            existingModel.IsActive = false;
-            existingModel.Updated_Date = DateTime.Now;
-            existingModel.Updated_By = userId;
+            existingUserDetail.IsActive = false;
+            existingUserDetail.Updated_Date = DateTime.Now;
+            existingUserDetail.Updated_By = userId;
+
+            existingUser.IsActive = false;
+            existingUser.Updated_Date = DateTime.Now;
+            existingUser.Updated_By = userId;
 
             db.SaveChanges();
 
@@ -75,16 +80,9 @@ namespace LegaSysUOW.Repository
                         Lastname = x.user.Lastname,
                         TotalExp = x.user.TotalExp,
                         EmailId = x.user.EmailId,
-                        //IsActive = x.user.IsActive,
-                        //Master_Location_ID = x.user.Master_Location_ID,
                         LocationAddress = x.location.LocationAddress,
-                        //Master_Shift_ID = x.user.Master_Shift_ID,
                         Shift = $"{x.shift.StartTimeIST} - {x.shift.EndTimeIST}",
-                        //ReportingHead_ID = x.user.ReportingHead_ID,
                         ReportingHead = $"{x.reporting.Firstname} {x.reporting.Lastname}",
-                        //Master_Role_ID = x.user.Master_Role_ID,
-                        //RoleName = x.role.Role,
-                        //Remarks = x.user.Remarks
                     });
         }
 
@@ -115,7 +113,8 @@ namespace LegaSysUOW.Repository
                         ReportingHead = $"{x.reporting.Firstname} {x.reporting.Lastname}",
                         Master_Role_ID = x.user.Master_Role_ID,
                         RoleName = x.role.Role,
-                        Remarks = x.user.Remarks
+                        Remarks = x.user.Remarks,
+                        MobileNumber = x.user.MobileNumber
                     }).FirstOrDefault();
         }
 

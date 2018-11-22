@@ -36,7 +36,7 @@ namespace LegaSysServices.Controllers
         }
 
         [HttpGet]
-        [Route("resource/delete{id}")]
+        [Route("resource/delete/{id}")]
         public IHttpActionResult DeleteResource(int id)
         {
             int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);

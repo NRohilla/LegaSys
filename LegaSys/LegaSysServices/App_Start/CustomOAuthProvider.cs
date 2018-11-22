@@ -35,7 +35,8 @@ namespace LegaSysServices.App_Start
             var props = new AuthenticationProperties(new Dictionary<string, string>()
             {
                 { "audience", context.ClientId ??string.Empty },
-                { "name", user.Name }
+                { "name", user.Name },
+                {"lastlogin", user.LastLogin.HasValue ? Convert.ToString(user.LastLogin.Value) : string.Empty }
             });
             var ticket = new AuthenticationTicket(identity, props);
             context.Validated(ticket);

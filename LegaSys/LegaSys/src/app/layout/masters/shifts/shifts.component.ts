@@ -3,6 +3,7 @@ import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatSnackBar } fro
 import { ShiftsService } from './shifts.service';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-shifts',
@@ -24,15 +25,16 @@ export class ShiftsComponent implements OnInit {
   displayedColumns: string[] = ['WeekOff1', 'WeekOff2', 'StartTimeIST', 'EndTimeIST', 'IsActive'];
   weekList: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday', 'Sunday'];
   timeList: string[] = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
-  formType: string = "Create";
+  formType: string = "Add";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(public shiftsService: ShiftsService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+  constructor(public shiftsService: ShiftsService, public dialog: MatDialog, public snackBar: MatSnackBar, private titleService: Title) {
     this.dataSource = new MatTableDataSource(this.dataSource);
+    titleService.setTitle("LegaSys - Shifts");
   }
 
   getErrorMessage(fieldName: string) {
@@ -60,10 +62,10 @@ export class ShiftsComponent implements OnInit {
     let start = shift.StartTimeIST.replace(':', '')
     let end = shift.EndTimeIST.replace(':', '')
     if (+end - (+start) == 900) {
-      if (this.formType == "Create") {
+      if (this.formType == "Add") {
         this.shiftsService.createShift(shift).subscribe(res => {
           if (res) {
-            this.snackBar.open("Shift created successfully", "Ok", {
+            this.snackBar.open("Shift added successfully", "Ok", {
               duration: 2000,
             });
           }
@@ -75,14 +77,12 @@ export class ShiftsComponent implements OnInit {
             this.snackBar.open("Shift updated successfully", "Ok", {
               duration: 2000,
             });
+            this.ngOnInit();
+            this.formType = "Add";
           }
         });
-
-        setTimeout(() => {
-          this.ngOnInit();
-        }, 30);
-        this.formType = "Create";
       }
+
       formDirective.resetForm();
       this.shiftForm.reset();
     }
@@ -109,16 +109,13 @@ export class ShiftsComponent implements OnInit {
   }
 
   changeStatus(id) {
-    this.shiftsService.changeStatus(id).subscribe(res => res);
-    setTimeout(() => {
-      this.ngOnInit();
-    }, 30);
+    this.shiftsService.changeStatus(id).subscribe(res => { this.ngOnInit(); });
   }
 
   formReset(formData: any, formDirective: FormGroupDirective) {
     formDirective.resetForm();
     this.shiftForm.reset();
-    this.formType = "Create";
+    this.formType = "Add";
   }
 
   highlight(row) {

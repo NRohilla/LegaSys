@@ -60,7 +60,6 @@ D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.dll
 D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.xml
 D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.xml
 D:\LegaSys\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.xml
-D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csprojAssemblyReference.cache
 D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CoreCompileInputs.cache
 D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CopyComplete
 D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.dll

@@ -11,7 +11,7 @@ import { throwError } from 'rxjs';
 })
 export class ResourceService {
     currentresoursedetails: any;
-    baseUrl: string = 'http://localhost:58164/resource/getall';
+    baseUrl: string = 'http://localhost:58164/resource/';
 
     constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
     ) { }
@@ -25,13 +25,14 @@ export class ResourceService {
             return newHeaders;
         }
     }
+
     getResource() {
         debugger;
-        return this.http.get('http://localhost:58164/resource/getall', { headers: this.getToken() })
+        return this.http.get(this.baseUrl + 'getall', { headers: this.getToken() })
     }
 
     getResourceById(UserId: number) {
-        return this.http.get<Resource[]>('http://localhost:58164/resource/' + UserId, { headers: this.getToken() });
+        return this.http.get<Resource[]>(this.baseUrl + UserId, { headers: this.getToken() });
     }
 
     getLocation() {
@@ -51,7 +52,7 @@ export class ResourceService {
     }
 
     addResource(resource: Resource) {
-        return this.http.post('http://localhost:58164/resource/create', resource, { headers: this.getToken() })
+        return this.http.post(this.baseUrl + 'create', resource, { headers: this.getToken() })
             .pipe(
                 map(res => res),
                 catchError(this.errorHandler)
@@ -65,11 +66,11 @@ export class ResourceService {
 
     updateResource(resource: Resource) {
         debugger;
-        return this.http.post('http://localhost:58164/resource/update' , resource, { headers: this.getToken() });
+        return this.http.post(this.baseUrl + 'update', resource, { headers: this.getToken() });
     }
 
-    deleteResource(UserId: number) {
-        return this.http.delete<Resource[]>(this.baseUrl + UserId)
+    deleteResource(id) {
+        return this.http.get(this.baseUrl + 'delete/' + id)
     }
 
     getRole() {

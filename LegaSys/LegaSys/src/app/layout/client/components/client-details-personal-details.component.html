@@ -2,8 +2,7 @@
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input formControlName="clientName" matInput placeholder="Client Name " [(ngModel)]="currentClientDetails.ClientName"
-                    name="currentClientDetails.ClientName">
+                <input formControlName="clientName" matInput placeholder="Client Name ">
                 <mat-error *ngIf="personalDetailsForm.controls['clientName'].invalid  && (personalDetailsForm.controls['clientName'].dirty || personalDetailsForm.controls['clientName'].touched)">Only
                     Enter Alphabet</mat-error>
                  
@@ -11,8 +10,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input formControlName="clientAddress" matInput placeholder="Client Address " [(ngModel)]="currentClientDetails.Address"
-                    name="currentClientDetails.Address">
+                <input formControlName="clientAddress" matInput placeholder="Client Address " >
                     <mat-error *ngIf="personalDetailsForm.controls['clientAddress'].invalid  && (personalDetailsForm.controls['clientAddress'].dirty || personalDetailsForm.controls['clientAddress'].touched)">Client address can not be empty</mat-error>
                  
                 </mat-form-field>
@@ -21,42 +19,64 @@
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail" matInput placeholder="Primary Client Email" [(ngModel)]="currentClientDetails.EmailID">
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
-                    Enter Valid Email ID</mat-error>
-                    <!-- <mat-error *ngIf="personalDetailsForm.controls.clientEmail.invalid"> 
-                        <span [hidden]="!personalDetailsForm.controls['clientEmail'].errors.required">
-                             Email is required.
+                <input type="email" formControlName="clientEmail" matInput placeholder="Primary Client Email" >
+                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
+                    Enter Valid Email ID</mat-error> -->
+                    <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].touched">
+                        <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid"> -->
+                        <!-- {{ValidateForm()}}  -->
+                        <span  *ngIf="personalDetailsForm.controls['clientEmail'].invalid" >
+                            Enter Vaid Email ID
                        </span>
-                         <span [hidden]="!personalDetailsForm.controls['clientEmail'].errors.pattern">
-                                Please Enter Valid Email
-                              </span>  
-                      </mat-error> -->
+                         
+                      </mat-error>
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " [(ngModel)]="currentClientDetails.EmailID2"
-                    name="currentClientDetails.EmailID2">
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Enter Valid Email ID</mat-error>
+                <input type="email" formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " >
+                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Enter Valid Email ID</mat-error>
+            -->
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].touched">
+                        <!-- {{ValidateForm()}}  -->
+                        <span  *ngIf="personalDetailsForm.controls['clientEmail2'].invalid" >
+                             Enter valid Email Id
+                       </span>
+                         
+                      </mat-error>
             </mat-form-field>
         </div>
     </div>
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail3" matInput placeholder="Other Client Email  " [(ngModel)]="currentClientDetails.EmailID3"
-                    name="currentClientDetails.EmailID3">
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Enter Valid Email ID</mat-error>
+                <input type="email" formControlName="clientEmail3" matInput placeholder="Other Client Email  " >
+                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Enter Valid Email ID</mat-error>
+                -->
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].touched"> 
+                        <!-- {{ValidateForm()}}  -->
+                        <span  *ngIf="personalDetailsForm.controls['clientEmail3'].invalid" >
+                            Enter Valid Email ID
+                       </span>
+                         
+                      </mat-error>
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
-                <input type="email" formControlName="clientEmail4" matInput placeholder="Other Client Email " [(ngModel)]="currentClientDetails.EmailID4"
-                    name="currentClientDetails.EmailID4">
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Enter Valid Email ID</mat-error>
+                <input type="email" formControlName="clientEmail4" matInput placeholder="Other Client Email " >
+                <!-- <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Enter Valid Email ID</mat-error>
+           -->
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].touched"> 
+                        <!-- {{ValidateForm()}}  -->
+                        <span  *ngIf="personalDetailsForm.controls['clientEmail4'].invalid" >
+                            Enter Valid Email ID
+                       </span>
+                         
+                      </mat-error>
             </mat-form-field>
         </div>
+        
     </div>
 </form>
 <div class="w-100 float-left d-block table-info px-4 py-2 table-info footer-height" >
@@ -65,7 +85,7 @@
                 aria-hidden="true"></i> Edit</button>
     </div>
     <div class="px-2 float-right" *ngIf="!disable">
-        <button mat-button class="btn btn-success" [disabled]="!personalDetailsForm.valid" (click)="UpdateClient()"><i class="fa fa-save" aria-hidden="true"></i>
+        <button mat-button class="btn btn-success" [disabled]="!personalDetailsForm.valid " (click)="UpdateClient()"><i class="fa fa-save" aria-hidden="true"></i>
             Save</button>
     </div>
     <div class="px-2 float-right" *ngIf="!disable">

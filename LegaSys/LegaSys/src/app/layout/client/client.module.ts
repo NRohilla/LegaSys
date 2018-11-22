@@ -9,6 +9,9 @@ import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule,
 import { ClientServiceService } from './client-service.service';
 import { FormsModule } from '@angular/forms';
 import { PageHeaderModule } from '../../shared';
+
+    
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +27,8 @@ import { PageHeaderModule } from '../../shared';
     FormsModule,
     PageHeaderModule,
     MatTabsModule,
-    MatSortModule
+    MatSortModule,
+   
   ],
   providers: [ClientServiceService],
   declarations: [ClientComponent]

@@ -9,7 +9,7 @@ import { CurrentClientdataServiceService } from '../../../current-clientdata-ser
 
 export class ClientDetailsSummaryComponent implements OnInit {
   /****** Created By Shubham Mishra on 19-Nov-2018 ************/  
-  @Input('currentClientDetails') currentClientDetails: any; // this property will hold the all details of client selected by user
+  @Input('currentClientDetails') currentClientDetails: object; // this property will hold the all details of client selected by user
   constructor() {}
   ngOnInit() {}
 

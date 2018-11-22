@@ -29,7 +29,7 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   }
   /****** This fuction is used to make the form field editable  */
   MakeFieldEditable() {
-    debugger;
+
     if (this.disable) {
       this.disable = false;
       this.personalDetailsForm.enable();
@@ -80,13 +80,32 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
       this.LoadValuesInPersonalDetailsForm();
     }
   }
+  
+/******** Created by SHubham Kumar Mishra on 22 nov 2018 **********
+ ********* following method are used for geting validation error message dynamically **********/
+
+  GetEmailErrorMessage(control:any){
+    if(this.personalDetailsForm.controls['clientEmail'].errors.required){
+      return "Primary Email can not be empty";
+    }
+    if(this.personalDetailsForm.controls['clientEmail'].errors.pattern){
+      return "Please enter valid Email";
+    }
+  }
+
+  GetClientNameErrorMessage(){
+    if(this.personalDetailsForm.controls['clientName'].errors.required){
+      return "Client name can not be empty";
+    }
+    if(this.personalDetailsForm.controls['clientName'].errors.pattern){
+      return "Client name can only contails text";
+    }
+  }
 
 /******* Created by Shubham Kumar Mishra on 22 Nov 2018 ***********
  * ******* Following method is to load the values into the form ********/
 
   LoadValuesInPersonalDetailsForm() {
-    debugger;
-    console.log(this.currentClientDetails);
     this.personalDetailsForm.controls['clientName'].setValue(this.currentClientDetails.ClientName);
     this.personalDetailsForm.controls['clientAddress'].setValue(this.currentClientDetails.Address);
 

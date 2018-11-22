@@ -3,8 +3,8 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
                 <input formControlName="clientName" matInput placeholder="Client Name ">
-                <mat-error *ngIf="personalDetailsForm.controls['clientName'].invalid  && (personalDetailsForm.controls['clientName'].dirty || personalDetailsForm.controls['clientName'].touched)">Only
-                    Enter Alphabet</mat-error>
+                <mat-error *ngIf="personalDetailsForm.controls['clientName'].invalid  && (personalDetailsForm.controls['clientName'].dirty || personalDetailsForm.controls['clientName'].touched)">
+                    {{GetClientNameErrorMessage()}}</mat-error>
                  
             </mat-form-field>
         </div>
@@ -21,14 +21,14 @@
             <mat-form-field class="w-100">
                 <input  formControlName="clientEmail" matInput placeholder="Primary Client Email" >
                 <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
-                    Enter Valid Email ID</mat-error>
+                   {{GetEmailErrorMessage()}}</mat-error>
                    
             </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
                 <input  formControlName="clientEmail2" matInput placeholder=" Secondary Client  Email " >
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Enter Valid Email ID</mat-error>
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Please enter valid Email</mat-error>
            
               
             </mat-form-field>
@@ -38,7 +38,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
                 <input  formControlName="clientEmail3" matInput placeholder="Other Client Email  " >
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Enter Valid Email ID</mat-error>
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Please enter valid Email</mat-error>
                
                
             </mat-form-field>
@@ -46,7 +46,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
             <mat-form-field class="w-100">
                 <input  formControlName="clientEmail4" matInput placeholder="Other Client Email " >
-                <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Enter Valid Email ID</mat-error>
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Please enter valid Email</mat-error>
           
                 
             </mat-form-field>

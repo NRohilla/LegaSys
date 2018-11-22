@@ -29,11 +29,11 @@ export class ClientServiceService {
 
   GetClientDetails(){   
       
-    return this.http.get(this.URL+'GetAllClient', { headers: this.CreateHeader() });
+    return this.http.get<Client[]>(this.URL+'GetAllClient', { headers: this.CreateHeader() });
 
   }
    GetDetailsOfClientwhoseID(ID){
-    return this.http.get(this.URL+'GetClientById/'+ID,{ headers: this.CreateHeader() });
+    return this.http.get<Client>(this.URL+'GetClientById/'+ID,{ headers: this.CreateHeader() });
 
   }
   AddClientDetails(client: Client)
@@ -43,6 +43,10 @@ export class ClientServiceService {
 
   }
   UpdateDetailsWithID(client: Client){
+
+    debugger;
+    console.log(client);
+    
     return this.http.put(this.URL+'UpdateClientDetails',client,{ headers: this.CreateHeader() });
   }
   DeleteClient(ID){

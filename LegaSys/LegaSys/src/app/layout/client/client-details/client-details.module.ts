@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ClientDetailsSummaryComponent } from '../components/client-details-summary.component';
 import { ClientDetailsPersonalDetailsComponent } from '../components/client-details-personal-details.component';
 import { ClientDetailsCoClientDetailsComponent } from '../components/client-details-co-client-details.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
 
 
   ],

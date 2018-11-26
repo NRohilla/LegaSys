@@ -6,19 +6,23 @@
         <mat-table [dataSource]="dataSource" matSort class="table-active">
 
           <ng-container matColumnDef="ProjectID">
-            <mat-header-cell class="bg-info" hidden mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">Project ID</span> </mat-header-cell>
+            <mat-header-cell class="bg-info" hidden mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white ">Project ID</span> </mat-header-cell>
             <mat-cell *matCellDef="let element" hidden> {{element.ProjectID}} </mat-cell>
           </ng-container>
+          <ng-container matColumnDef="Title">
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white  pl-3">Project Name </span> </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="pl-3"> {{element.Title}} </mat-cell>
+          </ng-container>
           <ng-container matColumnDef="ClientName">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">ClientName </span> </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ClientName}} </mat-cell>
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white pl-3">Client Name </span> </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="pl-3"> {{element.ClientName}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="Description">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Description</span> </mat-header-cell>
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white  pl-3">Description</span> </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="DomainName">
-            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">DomainName</span> </mat-header-cell>
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white  pl-3">Domain Name</span> </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.DomainName}} </mat-cell>
           </ng-container>
           <!-- co client  Column -->

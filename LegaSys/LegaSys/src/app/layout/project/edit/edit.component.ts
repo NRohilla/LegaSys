@@ -28,6 +28,9 @@ export class EditComponent implements OnInit {
     Role: any;
     disablediv: Boolean = true;
     disableSummary: Boolean =  true;
+    date:Date;
+    TechnicalDomainList:any;
+    Technologylist:any;
     
     notfound: Boolean =  false;
     constructor(private route: ActivatedRoute, public dataService: SharedService,
@@ -36,7 +39,7 @@ export class EditComponent implements OnInit {
         debugger;
         this.dataService.GetProjectById(id).subscribe(
             res => {
-               // debugger;
+                debugger;
                 //if (res.message = 'Record Not Found.') {
                   //  this.notfound = true;
 
@@ -45,6 +48,9 @@ export class EditComponent implements OnInit {
                    console.log(res);
                 this.projectdetails = res;
                 this.clientdetails = res;
+                this.date=new Date('12/11/2018');
+                debugger;
+                console.log(this.date);
                 this.resourcedetails = res;
                 this.taskdetails = res;
            // }
@@ -53,6 +59,16 @@ export class EditComponent implements OnInit {
                this.router.navigate(['/project']);
         const errorresult = 'No Result';
             }
+            );
+            this.dataService.GetAllTechnologyByDomain(id).subscribe(
+                res=>{
+                console.log(res);
+                this.Technologylist= res;
+                },error => {
+                    alert("Invalid Domain!");
+                //    this.router.navigate(['/project']);
+            const errorresult = 'No Result';
+                }
             );
             this.GetAllClientStatus();
             this.GetAllShift();
@@ -139,5 +155,13 @@ this.disablediv = false;
        res => {
            this.Role = res;
        });
+   }
+   public GetAllTechDomain()
+   {
+      this.dataService.getalltechdomains().subscribe(
+          res=>{
+              this.TechnicalDomainList=res;
+          }
+      ); 
    }
 }

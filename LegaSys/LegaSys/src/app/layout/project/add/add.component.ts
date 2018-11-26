@@ -1,4 +1,4 @@
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA,MatDialog, MatDialogRef} from '@angular/material';
 import {Component, Inject, OnInit} from '@angular/core';
 import {SharedService} from '../../Shared/shared.service';
 import {FormControl, Validators} from '@angular/forms';
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add.component.scss'],
   animations: [routerTransition()] ,
 })
+
 export class AddComponent implements OnInit {
     selectedValue: String = '';
     regiForm: FormGroup;
@@ -29,23 +30,21 @@ export class AddComponent implements OnInit {
         //@Inject(MAT_DIALOG_DATA) public data: Project,
         public dataService: SharedService, private fb: FormBuilder, private router: Router) {
             this.regiForm = fb.group({
-                'Title' : [null, Validators.required],
-                'Description' :  [null, Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(500)])],
-                // 'DomainName' : [null, Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(500)])],
+                'Title' : ["", Validators.required],
+                'Description' :  ["", Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(500)])],
+               
                 'DomainName' : [null, Validators.required],
-                //'DOB' : [null, Validators.required],
-                //'Gender': [null, Validators.required],
-               // 'Blog': [null, Validators.required],
-               // 'Email': [null, Validators.compose([Validators.required, Validators.email])],
-                //'IsAccepted': [null],
-                'Client_ID' : [null, Validators.required],
-                'ProjectDomain_ID' : [null, Validators.required],
+               
+                'Client_ID' : [0, Validators.required],
+                'ProjectDomain_ID' : [0, Validators.required],
               });
             this.getClient();
-            this.GetAllTechnology();
+            //this.GetAllDomain();
+            this.GetAllTechdomains();
          }
     clientdetails: any;
     technologydetails: any;
+    technologylist: any;
 
 formControl = new FormControl('', [
 Validators.required
@@ -57,13 +56,29 @@ return this.formControl.hasError('required') ? 'Required field' :
 this.formControl.hasError('email') ? 'Not a valid email' :
   '';
 }
+onSelect(id) {  
+    debugger;
+     this.dataService.GetAllTechnologyByDomain(id).subscribe(
+        res=>{
+            this.technologylist=res;
+            console.log("technology list"+JSON.stringify(this.technologylist));
+        }
+    );  
+} 
 onFormSubmit(form: NgForm) {
-    this.dataService.addProject( form).subscribe(
-        res => {
-
-            this.dataService.getAllProject();
-           this.router.navigate(['project']);
-        });
+    debugger;
+    if(form['Title']!=""&&form['Client_ID']!=null&&form['ProjectDomain_ID']!=null)
+    {
+        this.dataService.addProject(form).subscribe(
+            res => {
+    
+                this.dataService.getAllProject();
+               this.router.navigate(['project']);
+            });
+    }
+    else
+    return;
+    
   //console.log(form);
 }
 // onNoClick(): void {
@@ -75,12 +90,13 @@ res => {
     this.clientdetails = res;
     });
 }
-public GetAllTechnology() {
-    this.dataService.getalltechnology().subscribe(
+public GetAllTechdomains() {
+    this.dataService.getalltechdomains().subscribe(
 res => {
     this.technologydetails = res;
     });
 }
+
 onNoClick(): void {
     this.router.navigate(['project']);
 }

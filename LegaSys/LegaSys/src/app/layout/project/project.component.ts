@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { stringify } from '@angular/core/src/render3/util';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { MatTable, MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatTable, MatTableDataSource, MatPaginator, MatSort, MatDialog  } from '@angular/material';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { SharedService } from '../Shared/shared.service';
 import { Observable } from 'rxjs';
@@ -23,7 +23,7 @@ import { BehaviorSubject, fromEvent } from 'rxjs';
 
 export class ProjectComponent implements OnInit, AfterViewInit {
     project: any;
-    displayedColumns = ['ProjectID', 'ClientName', 'DomainName', 'Description', 'actions'];
+    displayedColumns = ['ProjectID','Title', 'ClientName', 'DomainName', 'Description', 'actions'];
     projectdetails: any;
     exampleDatabase: SharedService | null;
     index: number;
@@ -69,6 +69,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                     this.dataSource = new MatTableDataSource(this.project);
                     this.dataSource.paginator = this.paginator;
                     this.dataSource.sort = this.sort;
+                    console.log("project"+JSON.stringify (this.project));
                 },
                 error => {
                     console.log('There was an error while retrieving Posts !!!' + error);
@@ -82,7 +83,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     private refreshTable() {
     }
     deleteproject(id, status) {
-
+        // const dialogRef = this.dialog.open("Test", {
+        //     width: '250px',
+        //   //data: {name: this.name, animal: this.animal}
+        //   });
         if (status = 1) {
             const Id = id;
             if (confirm('Are you sure to Activate this record ?' + id) === true) {

@@ -10,9 +10,8 @@
 
   .form {
     display: flex;
-    padding-top: 6px;
+    // padding-top: 6px;
   }
-
   .mat-form-field {
     font-size: 16px;
     flex-grow: 1;
@@ -25,14 +24,14 @@
     overflow: auto;
     margin: 0 auto;
   }
-  ::ng-deep .mat-tab-label-container{
-    background-color: cadetblue;
+  // ::ng-deep .mat-tab-label-container{
+  //   // background-color: cadetblue;
 
-  }
+  // }
   ::ng-deep .mat-tab-label {
 
     color:white;
-    background-color: cadetblue;
+    // background-color: cadetblue;
 
 
 }

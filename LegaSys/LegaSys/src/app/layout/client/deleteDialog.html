@@ -1,0 +1,7 @@
+<div mat-dialog-content >
+        <p *ngIf="currentClientDetails">Are you sure you want to delete {{currentClientDetails.ClientName}}</p>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-raised-button class="btn btn-info" (click)="onNoClick()"> Cancel</button>
+        <button mat-raised-button class="btn btn-success" [mat-dialog-close]="data.confirm" cdkFocusInitial> Yes</button>
+      </div>

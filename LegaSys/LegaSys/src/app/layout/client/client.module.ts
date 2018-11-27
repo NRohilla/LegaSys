@@ -13,6 +13,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
 
 
+import {DeleteDialog} from './deleteDialog';
+
     
 
 @NgModule({
@@ -36,6 +38,7 @@ import {MatCardModule} from '@angular/material/card';
    
   ],
   providers: [ClientServiceService],
-  declarations: [ClientComponent]
+  entryComponents: [DeleteDialog],
+  declarations: [ClientComponent,DeleteDialog]
 })
 export class ClientModule { }

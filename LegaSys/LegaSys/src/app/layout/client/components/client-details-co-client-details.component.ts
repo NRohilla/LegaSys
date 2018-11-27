@@ -64,7 +64,6 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
    * ******* This fucntion is used to create a reactive form ************/
 
   CreateCoClientForm(){
-    debugger;
     this.coClientForm = this.formBuilder.group({
       coClient: [this.currentClientDetails.CoClient, Validators.pattern('^[a-zA-Z ]+$')],
       coClient2: [this.currentClientDetails.CoClient2, Validators.pattern('^[a-zA-Z ]+$')],
@@ -72,31 +71,23 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
       coClient4: [this.currentClientDetails.CoClient4, Validators.pattern('^[a-zA-Z ]+$')]
     });
   }
-  GetPlaceHolder(){
-    
+  /******** Created on 27 nov 2018 ********/
+  /******** Following method will be used to get the place holder ********/
+  GetPlaceHolder(controlName:string){
     if(!this.readOnly){
-      return "Other Co Client";
-    }
-    else{
-      return " ";
-    }
+      switch(controlName){
+          case 'coClient' :  return "Primary Co client ";
+          case 'coClient2' :  return "Secondary Co Client";
+          case 'coClient3' :  return "Other Co Client "; 
+          case 'coClient4' :  return "Other Co Client "; 
+         
+      }
+   }
+   else{
+    return " ";
+   }
   }
-  GetSecondryPlaceHolder(){
-    if(!this.readOnly){
-      return "Secondary Co Client";
-    }
-    else{
-      return " ";
-    }
-  }
-  GetPrimaryPlaceHolder(){
-    if(!this.readOnly){
-      return "Primary Co Client";
-    }
-    else{
-      return " ";
-    }
-  }
+  
   
   ngOnInit() {
    if(this.currentClientDetails){

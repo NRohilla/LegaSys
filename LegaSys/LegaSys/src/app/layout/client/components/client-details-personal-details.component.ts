@@ -99,38 +99,40 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     }
   }
   private _filter(value: string): string[] {
-    debugger;
     const filterValue = value.toLowerCase();
-
     return this.CountryList.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
   
 /******** Created by SHubham Kumar Mishra on 22 nov 2018 **********
  ********* following method are used for geting validation error message dynamically **********/
 
-  GetEmailErrorMessage(control:any){
-    if(this.personalDetailsForm.controls['clientEmail'].errors.required){
-      return "Primary Email can not be empty";
-    }
-    if(this.personalDetailsForm.controls['clientEmail'].errors.pattern){
-      return "Please enter valid Email";
-    }
-  }
+ 
+  GetErrorMessage(controlName:string){
+    switch(controlName){
+      case 'clientName' : if(this.personalDetailsForm.controls['clientName'].errors.required){
+                              return "Client name can not be empty";
+                          }
+                         if(this.personalDetailsForm.controls['clientName'].errors.pattern){
+                            return "Client name can only contails text";
+                          }
+                         
+      case 'clientEmail' : if(this.personalDetailsForm.controls['clientEmail'].errors.required){
+                               return "Primary Email can not be empty";
+                             }
+                            if(this.personalDetailsForm.controls['clientEmail'].errors.pattern){
+                               return "Please enter valid Email";
+                            }   
+                            
 
-  GetClientNameErrorMessage(){
-    if(this.personalDetailsForm.controls['clientName'].errors.required){
-      return "Client name can not be empty";
+       default : return " ";          
     }
-    if(this.personalDetailsForm.controls['clientName'].errors.pattern){
-      return "Client name can only contails text";
-    }
+
   }
 
 /******* Created by Shubham Kumar Mishra on 22 Nov 2018 ***********
  * ******* Following method is to load the values into the form ********/
 
   LoadValuesInPersonalDetailsForm() {
-    debugger;
     this.personalDetailsForm.controls['clientName'].setValue(this.currentClientDetails.ClientName);
     this.personalDetailsForm.controls['clientAddress'].setValue(this.currentClientDetails.Address);
 
@@ -149,4 +151,26 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     this.personalDetailsForm.controls['country'].setValue(this.currentClientDetails.Country);
     //this.personalDetailsForm.disable();
   }
+
+  /****** Created on 27 Nov 2017 ************/
+  /****** Following method will be used to det the placeholder for mat input  ************/
+
+  GetPlaceHolder(str:string){
+    if(!this.readOnly){
+      switch(str){
+          case 'clientName' :  return "Client Name "; 
+          case 'clientAddress' :  return "Client Address "; 
+          case 'country' :  return "Country "; 
+          case 'clientEmail' :  return "Primary Email  "; 
+          case 'clientEmail2' :  return "Secondary Email "; 
+          case 'clientEmail3' :  return "Other Email";
+          case 'clientEmail4' :  return "Other Email";
+          default : return " "; 
+      }
+   }
+   else{
+    return " ";
+   }
+  }
+  
 }

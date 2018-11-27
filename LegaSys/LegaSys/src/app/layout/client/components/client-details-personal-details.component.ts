@@ -54,6 +54,7 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   /****** This function is used to discard changes done by user, and replace changed data with previous data */
   DiscardChanges() {
     this.currentClientDetails = this.currentClientDetailsBackup;
+    this.LoadValuesInPersonalDetailsForm();
     this.onCancel.emit(this.currentClientDetails);
     this.MakeFieldEditable();
   }

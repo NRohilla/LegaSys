@@ -64,7 +64,6 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
    * ******* This fucntion is used to create a reactive form ************/
 
   CreateCoClientForm(){
-    debugger;
     this.coClientForm = this.formBuilder.group({
       coClient: [this.currentClientDetails.CoClient, Validators.pattern('^[a-zA-Z ]+$')],
       coClient2: [this.currentClientDetails.CoClient2, Validators.pattern('^[a-zA-Z ]+$')],
@@ -75,7 +74,6 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   /******** Created on 27 nov 2018 ********/
   /******** Following method will be used to get the place holder ********/
   GetPlaceHolder(controlName:string){
-    debugger;
     if(!this.readOnly){
       switch(controlName){
           case 'coClient' :  return "Primary Co client ";

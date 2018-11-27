@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
 import { MatPaginator, MatSort } from '@angular/material';
 import { ClientServiceService } from './client-service.service';
 import { Router } from '@angular/router';
 import { CurrentClientdataServiceService } from '../../current-clientdata-service.service';
 import { Client } from './model/client.model';
-
+import {DeleteDialog} from './deleteDialog';
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -26,7 +26,10 @@ export class ClientComponent implements OnInit {
   isLoading = true;// this varibale will be used to display progressive spinner
 
 
-  constructor(private modalService: NgbModal, private clientService: ClientServiceService, private router: Router,private currentClientdataService: CurrentClientdataServiceService,) {
+  constructor(public dialog: MatDialog,private modalService: NgbModal,
+     private clientService: ClientServiceService, 
+     private router: Router,
+     private currentClientdataService: CurrentClientdataServiceService,) {
    
 
   }
@@ -72,6 +75,28 @@ export class ClientComponent implements OnInit {
     this.successMessage = "Client Deleted Succesfully";
     setTimeout(() => this.Message = false, 2500)
   }
+
+
+  openDialog(dailogID): void {
+    sessionStorage.setItem("currentClientdailogID",dailogID);
+    const dialogRef = this.dialog.open(DeleteDialog, {
+      width: '320px',
+      data: {confirm: true }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      
+      if (result)
+      this.DeleteClientWithID(dailogID);
+    });
+  
+  }
+
+
+
+
+
   ngOnInit() {
     // Following fuction will execute and call to client service to get all client from database
     this.GetAllClients();

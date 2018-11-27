@@ -99,32 +99,14 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     }
   }
   private _filter(value: string): string[] {
-    debugger;
     const filterValue = value.toLowerCase();
-
     return this.CountryList.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
   
 /******** Created by SHubham Kumar Mishra on 22 nov 2018 **********
  ********* following method are used for geting validation error message dynamically **********/
 
-  // GetEmailErrorMessage(control:any){
-  //   if(this.personalDetailsForm.controls['clientEmail'].errors.required){
-  //     return "Primary Email can not be empty";
-  //   }
-  //   if(this.personalDetailsForm.controls['clientEmail'].errors.pattern){
-  //     return "Please enter valid Email";
-  //   }
-  // }
-
-  // GetClientNameErrorMessage(){
-  //   if(this.personalDetailsForm.controls['clientName'].errors.required){
-  //     return "Client name can not be empty";
-  //   }
-  //   if(this.personalDetailsForm.controls['clientName'].errors.pattern){
-  //     return "Client name can only contails text";
-  //   }
-  // }
+ 
   GetErrorMessage(controlName:string){
     switch(controlName){
       case 'clientName' : if(this.personalDetailsForm.controls['clientName'].errors.required){
@@ -151,7 +133,6 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
  * ******* Following method is to load the values into the form ********/
 
   LoadValuesInPersonalDetailsForm() {
-    debugger;
     this.personalDetailsForm.controls['clientName'].setValue(this.currentClientDetails.ClientName);
     this.personalDetailsForm.controls['clientAddress'].setValue(this.currentClientDetails.Address);
 
@@ -175,7 +156,6 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   /****** Following method will be used to det the placeholder for mat input  ************/
 
   GetPlaceHolder(str:string){
-    debugger;
     if(!this.readOnly){
       switch(str){
           case 'clientName' :  return "Client Name "; 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-//import { ResourceDetailsComponent } from './resource/resource-details/resource-details.component';
 
 const routes: Routes = [
     {
@@ -24,6 +23,8 @@ const routes: Routes = [
             { path: 'client-details', loadChildren: './client/client-details/client-details.module#ClientDetailsModule'},
             { path: 'add-client', loadChildren: './client/addclient/addclient.module#AddclientModule'}
 
+            { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
+            { path: 'project', loadChildren: './project/project.module#ProjectModule' },
         ]
     }
 ];

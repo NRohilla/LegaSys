@@ -25,5 +25,39 @@ namespace LegaSysDataEntities
         public string  CoClient { get; set; }
         public string  EmailID3 { get; set; }
         public string Country { get; set; }
+
+        
+
+        public string CoClient2 { get; set; }
+        public string CoClient3 { get; set; }
+        public string CoClient4 { get; set; }
+
+        
+        public string ProjectDomainName { get; set; }
+        public int Resource_ID { get; set; }
+
+        public int ProjectTaskID { get; set; }
+        public string TaskTitle { get; set; }
+
+        public string TaskDescription { get; set; }
+        public int TaskAttachmentID { get; set; }
+        public int ProjectSubTaskID { get; set; }
+        public string SubTaskTitle { get; set; }
+        public string SubTaskDescription { get; set; }
+
+        public int SubTaskAttachmentID { get; set; }
+
+        public string ResourceFirstname { get; set; }
+        public string ResourceMiddlename { get; set; }
+        public string ResourceLastname { get; set; }
+        public Decimal? TotalExp { get; set; }
+        public string ResourceEmailId { get; set; }
+        public int? ResourceMobileNumber { get; set; }
+        public Boolean Resource_IsActive { get; set; }
+        public string Remarks { get; set; }
+        public int? Master_Shift_ID { get; set; }
+        public int? Master_Location_ID { get; set; }
+        public int? ReportingHead_ID { get; set; }
+        public int? Master_Role_ID { get; set; }
     }
 }

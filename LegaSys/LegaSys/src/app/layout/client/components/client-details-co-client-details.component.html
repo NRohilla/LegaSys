@@ -1,34 +1,41 @@
 <form class="w-100 float-left table-active py-5 px-2" [formGroup]="coClientForm" *ngIf="currentClientDetails">
         <div class="row m-0">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
                         <mat-form-field class="w-100">
-                                <input formControlName="coClient" matInput placeholder="Co Client  " [disabled]="disable"
+                               <label *ngIf="readOnly"><strong>Co CLient </strong></label>
+                                <input [readonly]="readOnly" formControlName="coClient" matInput  [placeholder]="GetPrimaryPlaceHolder()"
                                         name="currentClientDetails.CoClient">
-                                <mat-error *ngIf="coClientForm.controls['coClient'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">Only Enter Alphabet</mat-error>
+                                <mat-error *ngIf="coClientForm.controls['coClient'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">can only contails text</mat-error>
                         </mat-form-field>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
                         <mat-form-field class="w-100">
-                                <input formControlName="coClient2" matInput placeholder="Secondary Co Client  "
-                                        [disabled]="disable" >
-                                <mat-error *ngIf="coClientForm.controls['coClient2'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">Only Enter Alphabet</mat-error>
+                                        <label *ngIf="readOnly"><strong>Secondary Co Client </strong></label>
+                                <input [readonly]="readOnly" formControlName="coClient2" matInput [placeholder]="GetSecondryPlaceHolder()" >
+                                        
+                                <mat-error *ngIf="coClientForm.controls['coClient2'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">can only contails text</mat-error>
                         </mat-form-field>
                 </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                                <mat-form-field class="w-100">
+                                                <label *ngIf="readOnly"><strong>Other Co Client </strong></label>
+                                        <input [readonly]="readOnly" formControlName="coClient3" matInput [placeholder]="GetPlaceHolder()" >
+                                        <mat-error *ngIf="coClientForm.controls['coClient3'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">can only contails text</mat-error>
+                                </mat-form-field>
+                        </div>
         </div>
         <div class="row m-0">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+              
+                <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
                         <mat-form-field class="w-100">
-                                <input formControlName="coClient3" matInput placeholder="Other Co Client " [disabled]="disable">
-                                <mat-error *ngIf="coClientForm.controls['coClient3'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">Only Enter Alphabet</mat-error>
-                        </mat-form-field>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
-                        <mat-form-field class="w-100">
-                                <input formControlName="coClient4" matInput placeholder="Other Co Client" [disabled]="disable">
-                                <mat-error *ngIf="coClientForm.controls['coClient4'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">Only Enter Alphabet</mat-error>
+                                <label *ngIf="readOnly"><strong>Other Co Client </strong></label>
+                                <input  [readonly]="readOnly"formControlName="coClient4" matInput   [placeholder]="GetPlaceHolder()">
+                                <mat-error *ngIf="coClientForm.controls['coClient4'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">can only contails text</mat-error>
                         </mat-form-field>
                 </div>
         </div>
+        
+        
 </form>
 <div class="w-100 float-left d-block table-info px-4 py-2 table-info footer-height" >
                 

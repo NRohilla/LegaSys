@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { Client } from '../model/client.model';
 import { isError } from 'util';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-client-details-personal-details',
@@ -23,6 +25,13 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   disable: boolean = true; // this variable is used to bind the disabled attribute of input to make input fields editable and non editable
   personalDetailsForm: FormGroup; // This formgroup is for Client Personal Details form
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';// this regex will be used to validate email pattern
+  
+  /**** Writen on 23 Nov 2018 ***********/
+  readOnly:boolean=true;// this variable will be used to make the form field non editable
+ // following array will hold the list of country and willbe used to shown as dropdown in country field 
+  CountryList: string[] = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
+  filteredOptions: Observable<string[]>;// this variable will hold the returned list of autocomplete
+
 
   constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService, private router: Router, private formBuilder: FormBuilder) {
 
@@ -32,11 +41,13 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
 
     if (this.disable) {
       this.disable = false;
-      this.personalDetailsForm.enable();
+      this.readOnly=false;
+      //this.personalDetailsForm.enable();
     }
     else {
       this.disable = true;
-      this.personalDetailsForm.disable();
+      this.readOnly=true;
+      //this.personalDetailsForm.disable();
     }
 
   }
@@ -55,6 +66,7 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     this.currentClientDetails.EmailID2 = this.personalDetailsForm.controls['clientEmail2'].value;
     this.currentClientDetails.EmailID3 = this.personalDetailsForm.controls['clientEmail3'].value;
     this.currentClientDetails.EmailID4 = this.personalDetailsForm.controls['clientEmail4'].value;
+    this.currentClientDetails.Country = this.personalDetailsForm.controls['country'].value;
 
     this.onClientDetailsChange.emit(this.currentClientDetails);
 
@@ -71,14 +83,26 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
       clientEmail: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       clientEmail2: ['', Validators.pattern(this.emailPattern)],
       clientEmail3: ['', Validators.pattern(this.emailPattern)],
-      clientEmail4: ['', Validators.pattern(this.emailPattern)]
+      clientEmail4: ['', Validators.pattern(this.emailPattern)],
+      country:['',Validators.required]
     });
   }
   ngOnInit() {
     if (this.currentClientDetails) {
       this.CreatePersonalDetailsForm();
       this.LoadValuesInPersonalDetailsForm();
+     
+      this.filteredOptions = this.personalDetailsForm.controls['country'].valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
     }
+  }
+  private _filter(value: string): string[] {
+    debugger;
+    const filterValue = value.toLowerCase();
+
+    return this.CountryList.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
   
 /******** Created by SHubham Kumar Mishra on 22 nov 2018 **********
@@ -106,21 +130,23 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
  * ******* Following method is to load the values into the form ********/
 
   LoadValuesInPersonalDetailsForm() {
+    debugger;
     this.personalDetailsForm.controls['clientName'].setValue(this.currentClientDetails.ClientName);
     this.personalDetailsForm.controls['clientAddress'].setValue(this.currentClientDetails.Address);
 
-    if (this.currentClientDetails.EmailID != null && this.currentClientDetails.EmailID != '' && this.currentClientDetails.EmailID3 != undefined) {
+    if (this.currentClientDetails.EmailID != null && this.currentClientDetails.EmailID != '' && this.currentClientDetails.EmailID != undefined) {
       this.personalDetailsForm.controls['clientEmail'].setValue(this.currentClientDetails.EmailID.trim());
     }
-    if (this.currentClientDetails.EmailID2 != null && this.currentClientDetails.EmailID2 != '' && this.currentClientDetails.EmailID3 != undefined) {
+    if (this.currentClientDetails.EmailID2 != null && this.currentClientDetails.EmailID2 != '' && this.currentClientDetails.EmailID2 != undefined) {
       this.personalDetailsForm.controls['clientEmail2'].setValue(this.currentClientDetails.EmailID2.trim());
     }
     if (this.currentClientDetails.EmailID3 != null && this.currentClientDetails.EmailID3 != '' && this.currentClientDetails.EmailID3 != undefined) {
       this.personalDetailsForm.controls['clientEmail3'].setValue(this.currentClientDetails.EmailID3.trim());
     }
-    if (this.currentClientDetails.EmailID4 != null && this.currentClientDetails.EmailID4 != '' && this.currentClientDetails.EmailID3 != undefined) {
+    if (this.currentClientDetails.EmailID4 != null && this.currentClientDetails.EmailID4 != '' && this.currentClientDetails.EmailID4 != undefined) {
       this.personalDetailsForm.controls['clientEmail4'].setValue(this.currentClientDetails.EmailID4.trim());
     }
-    this.personalDetailsForm.disable();
+    this.personalDetailsForm.controls['country'].setValue(this.currentClientDetails.Country);
+    //this.personalDetailsForm.disable();
   }
 }

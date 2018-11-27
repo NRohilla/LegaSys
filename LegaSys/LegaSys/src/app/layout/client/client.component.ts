@@ -23,6 +23,8 @@ export class ClientComponent implements OnInit {
   clientDetails: any = [];  // This array will hold the all client details
   Message: boolean = false;
   successMessage: string;
+  isLoading = true;// this varibale will be used to display progressive spinner
+
 
   constructor(private modalService: NgbModal, private clientService: ClientServiceService, private router: Router,private currentClientdataService: CurrentClientdataServiceService,) {
    
@@ -37,9 +39,9 @@ export class ClientComponent implements OnInit {
   }
   /*********** Writen By Shubham Mishra on 6 nov 2018 following method is used to gell all  client details from database   */
   GetAllClients() {
-    debugger;
-    this.clientService.GetClientDetails().subscribe(
+      this.clientService.GetClientDetails().subscribe(
       suc => {
+        this.isLoading = false;
         this.clientDetails = suc;
         this.clientDetails = new MatTableDataSource<Client>(this.clientDetails);
         this.clientDetails.paginator = this.paginator;
@@ -54,7 +56,6 @@ export class ClientComponent implements OnInit {
   /*********** Writen By Shubham Mishra on 8 nov 2018 following method is used for deleteing a perticular client   */
 
   DeleteClientWithID(ID) {
-    debugger;
     this.clientService.DeleteClient(ID).subscribe(
       suc => {
         this.GetAllClients();

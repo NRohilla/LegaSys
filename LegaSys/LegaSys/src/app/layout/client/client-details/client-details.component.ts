@@ -15,7 +15,8 @@ export class ClientDetailsComponent implements OnInit {
   successMessage:any;
   currentClientID: any;  // Property used for holding id of client selected by user
   currentClientDetails: Client; // property used for holding the details of client selecte dby user
-  currentClientDetailsBackup: object; // this property is used for as reference to previous data, it will be used to cancel button
+  currentClientDetailsBackup: Client; // this property is used for as reference to previous data, it will be used to cancel button
+  isLoading=true;
   constructor(private currentClientdataService: CurrentClientdataServiceService, private clientService: ClientServiceService) { }
 
   /***** This method is used for Geting details of client selecte dby user. This method is calling client service with parameter ID which is ID of 
@@ -24,7 +25,7 @@ export class ClientDetailsComponent implements OnInit {
   GetClientsWithID(ID: any) {
     this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
       suc => {
-        
+        this.isLoading=false;
         this.currentClientDetails = suc;
         this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc));
       
@@ -37,10 +38,8 @@ export class ClientDetailsComponent implements OnInit {
   /***** This method is used for updating  details of client modified by  user. This method is calling client service with parameter model *****************************************************************************************************/
 
   updateClent(client: any) {
-    debugger;
-    this.clientService.UpdateDetailsWithID(client).subscribe(
+     this.clientService.UpdateDetailsWithID(client).subscribe(
       suc => {
-        debugger;
         this.GetClientsWithID(this.currentClientID);
        // alert("Client Details Updeted Successfully ");
        this.show();
@@ -52,7 +51,7 @@ export class ClientDetailsComponent implements OnInit {
       }
     );
 
-    console.log(this.currentClientDetails);
+
   }
   onCancel(client:any){
     this.currentClientDetails=client;

@@ -46,6 +46,7 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   /****** This function is used to discard changes done by user, and replace changed data with previous data */
   DiscardChanges() {
     this.currentClientDetails = this.currentClientDetailsBackup;
+    this.LoadCoClientForm();
     this.onCancel.emit(this.currentClientDetails);
     this.MakeFieldEditable();
   }
@@ -65,10 +66,10 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
 
   CreateCoClientForm(){
     this.coClientForm = this.formBuilder.group({
-      coClient: [this.currentClientDetails.CoClient, Validators.pattern('^[a-zA-Z ]+$')],
-      coClient2: [this.currentClientDetails.CoClient2, Validators.pattern('^[a-zA-Z ]+$')],
-      coClient3: [this.currentClientDetails.CoClient3, Validators.pattern('^[a-zA-Z ]+$')],
-      coClient4: [this.currentClientDetails.CoClient4, Validators.pattern('^[a-zA-Z ]+$')]
+      coClient: ['', Validators.pattern('^[a-zA-Z ]+$')],
+      coClient2: ['', Validators.pattern('^[a-zA-Z ]+$')],
+      coClient3: ['', Validators.pattern('^[a-zA-Z ]+$')],
+      coClient4: ['', Validators.pattern('^[a-zA-Z ]+$')]
     });
   }
   /******** Created on 27 nov 2018 ********/
@@ -92,9 +93,17 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   ngOnInit() {
    if(this.currentClientDetails){
     this.CreateCoClientForm();
+    this.LoadCoClientForm();
     this.coClientForm.markAsTouched();
    }
     
    
   }
+  LoadCoClientForm(){
+    this.coClientForm.controls['coClient'].setValue(this.currentClientDetails.CoClient);
+    this.coClientForm.controls['coClient2'].setValue(this.currentClientDetails.CoClient2);
+    this.coClientForm.controls['coClient3'].setValue(this.currentClientDetails.CoClient3);
+    this.coClientForm.controls['coClient4'].setValue(this.currentClientDetails.CoClient4);
+  }
+    
 }

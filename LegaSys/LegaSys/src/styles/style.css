@@ -1,4 +1,11 @@
 body { font-size: 14px; }
-.client-detail .mat-tab-labels .mat-tab-label { color: #ffffff; opacity: 1 !important; text-transform: uppercase; font-size: 12px; font-weight: 600; }
+.client-detail .mat-tab-labels .mat-tab-label { color: #ffffff; opacity: 1 !important; font-weight: 500; }
 .table-active { background: #eeeeee; }
 .footer-height { height:50px !important;}
+.font-14 { font-size: 14px !important; }
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color:#eeeeee;
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #17a2b8 !important;
+}

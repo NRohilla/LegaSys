@@ -1,8 +1,8 @@
 
 <app-page-header [heading]="'Client Details'" [icon]="'fa fa-info-circle'"></app-page-header>
 <ngb-alert style="width:40%;" *ngIf="Message" type="success" (close)="Message = null">{{ successMessage }}</ngb-alert>
-<mat-tab-group class="client-detail ">
+<mat-tab-group class="client-detail "  >
   <mat-tab label="Summary"> <app-client-details-summary  [currentClientDetails]="currentClientDetails" ></app-client-details-summary> </mat-tab>
   <mat-tab label="Personal Details"><app-client-details-personal-details *ngIf="currentClientDetails" (onCancel)="onCancel($event)"  (onClientDetailsChange)="updateClent($event)" [currentClientDetails]="currentClientDetails" [currentClientDetailsBackup]="currentClientDetailsBackup"></app-client-details-personal-details>  </mat-tab>
-  <mat-tab label="Co client Details" ><app-client-details-co-client-details *ngIf="currentClientDetails" (onCancel)="onCancel($event)"  (onClientDetailsChange)="updateClent($event)" [currentClientDetails]="currentClientDetails" [currentClientDetailsBackup]="currentClientDetailsBackup"></app-client-details-co-client-details>  </mat-tab>
+  <mat-tab label="Co Client Details" ><app-client-details-co-client-details *ngIf="currentClientDetails" (onCancel)="onCancel($event)"  (onClientDetailsChange)="updateClent($event)" [currentClientDetails]="currentClientDetails" [currentClientDetailsBackup]="currentClientDetailsBackup"></app-client-details-co-client-details>  </mat-tab>
 </mat-tab-group>

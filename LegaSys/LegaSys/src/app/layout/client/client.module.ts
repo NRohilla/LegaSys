@@ -9,6 +9,9 @@ import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule,
 import { ClientServiceService } from './client-service.service';
 import { FormsModule } from '@angular/forms';
 import { PageHeaderModule } from '../../shared';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
+
 
     
 
@@ -28,6 +31,8 @@ import { PageHeaderModule } from '../../shared';
     PageHeaderModule,
     MatTabsModule,
     MatSortModule,
+    MatProgressSpinnerModule,
+    MatCardModule
    
   ],
   providers: [ClientServiceService],

@@ -42,10 +42,7 @@ export class ClientServiceService {
     return this.http.post(this.URL+'AddClientDetails',client,{ headers: this.CreateHeader() });
 
   }
-  UpdateDetailsWithID(client: Client){
-
-    debugger;
-    console.log(client);
+  UpdateDetailsWithID(client: Client){   
     
     return this.http.put(this.URL+'UpdateClientDetails',client,{ headers: this.CreateHeader() });
   }

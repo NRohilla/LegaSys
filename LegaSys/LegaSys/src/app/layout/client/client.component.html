@@ -15,30 +15,30 @@
   
     <!-- client name column -->
     <ng-container matColumnDef="ClientName">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">Client Name</span> </mat-header-cell>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Client Name</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.ClientName}} </mat-cell>
     </ng-container>
   
     <!-- client email Column -->
     <ng-container matColumnDef="Email">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Email</span> </mat-header-cell>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Email</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.EmailID}} </mat-cell>
     </ng-container>
   
     <!--client address Column -->
     <ng-container matColumnDef="Address">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Address</span> </mat-header-cell>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Address</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Address}} </mat-cell>
     </ng-container>
   
     <!-- client country Column -->
     <ng-container matColumnDef="Country">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">Country</span> </mat-header-cell>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Country</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Country}} </mat-cell>
     </ng-container>
     <!-- co client  Column -->
     <ng-container matColumnDef="CoClient">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  <span class="text-white text-uppercase">Co Client</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  <span class="text-white font-14">Co Client</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.CoClient}} </mat-cell>
       </ng-container>
     <!--Action  Column, will contains button for View,Edit and Delete -->
@@ -54,6 +54,13 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+    <mat-progress-spinner 
+      color="primary" 
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </mat-card>
+  
   <!-- this code is for pagignator -->
   <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
 
@@ -64,4 +71,6 @@
 
   <button  mat-button class="btn btn-info" [routerLink]="['/add-client']"><i class="fa fa-plus" aria-hidden="true"></i> Add Client</button>
 </div>
+
+
     

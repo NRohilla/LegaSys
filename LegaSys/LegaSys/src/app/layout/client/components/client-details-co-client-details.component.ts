@@ -20,6 +20,7 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   disable: boolean = true; //this variable is used to bind the disabled attribute of input to make input fields editable and non editable
   coClientForm: FormGroup;// this is form group for co client 
   client:Client; // This is model of client
+  readOnly:boolean=true;
   constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService, private formBuilder: FormBuilder) {
     
   }
@@ -27,23 +28,30 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   MakeFieldEditable() {
     if (this.disable) {
       this.disable = false;
-      this.coClientForm.enable();      
+      this.readOnly=false;
+      //this.coClientForm.enable();      
     }
     else {
       this.disable = true;
-      this.coClientForm.disable();
+      this.readOnly=true;
+     // this.coClientForm.disable();
     }
   }
+
+  // MakeReadonly(){
+  //   if(this.currentClientDetails.CoClient==undefined && this.currentClientDetails==null){
+    
+  //   }
+  // }
   /****** This function is used to discard changes done by user, and replace changed data with previous data */
   DiscardChanges() {
     this.currentClientDetails = this.currentClientDetailsBackup;
     this.onCancel.emit(this.currentClientDetails);
-    alert(this.currentClientDetails.CoClient);
     this.MakeFieldEditable();
   }
   /***** This function is used to update details of a client, following fucntion is emiting a event  */
   UpdateClient() {
-    debugger;
+    
   this.currentClientDetails.CoClient=this.coClientForm.controls['coClient'].value;
   this.currentClientDetails.CoClient2=this.coClientForm.controls['coClient2'].value;
   this.currentClientDetails.CoClient3=this.coClientForm.controls['coClient3'].value;
@@ -56,6 +64,7 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
    * ******* This fucntion is used to create a reactive form ************/
 
   CreateCoClientForm(){
+    debugger;
     this.coClientForm = this.formBuilder.group({
       coClient: [this.currentClientDetails.CoClient, Validators.pattern('^[a-zA-Z ]+$')],
       coClient2: [this.currentClientDetails.CoClient2, Validators.pattern('^[a-zA-Z ]+$')],
@@ -63,13 +72,38 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
       coClient4: [this.currentClientDetails.CoClient4, Validators.pattern('^[a-zA-Z ]+$')]
     });
   }
+  GetPlaceHolder(){
+    
+    if(!this.readOnly){
+      return "Other Co Client";
+    }
+    else{
+      return " ";
+    }
+  }
+  GetSecondryPlaceHolder(){
+    if(!this.readOnly){
+      return "Secondary Co Client";
+    }
+    else{
+      return " ";
+    }
+  }
+  GetPrimaryPlaceHolder(){
+    if(!this.readOnly){
+      return "Primary Co Client";
+    }
+    else{
+      return " ";
+    }
+  }
   
   ngOnInit() {
    if(this.currentClientDetails){
     this.CreateCoClientForm();
+    this.coClientForm.markAsTouched();
    }
-    this.coClientForm.disable();
- 
+    
    
   }
 }

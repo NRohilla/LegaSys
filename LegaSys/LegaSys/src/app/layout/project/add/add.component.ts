@@ -25,6 +25,7 @@ export class AddComponent implements OnInit {
   Blog: String = '';
   Email: String = '';
   IsAccepted: Number = 0;
+  //testing 27/11/2018
     // constructor(public dialogRef: MatDialogRef<AddComponent>,
     constructor(
         //@Inject(MAT_DIALOG_DATA) public data: Project,
@@ -103,4 +104,4 @@ onNoClick(): void {
 }
 
 
-////redited for push on git27/11/2018
+////redited/testing for push on git 27/11/2018

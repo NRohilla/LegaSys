@@ -5,7 +5,7 @@ import { AddComponent } from './add.component';
 describe('AddComponent', () => {
   let component: AddComponent;
   let fixture: ComponentFixture<AddComponent>;
-
+//testing 27/11/2018
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AddComponent ]
@@ -23,3 +23,6 @@ describe('AddComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+// testing 27112018 

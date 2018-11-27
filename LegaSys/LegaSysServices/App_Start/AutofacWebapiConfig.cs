@@ -38,6 +38,7 @@ namespace LegaSysServices.App_Start
             builder.RegisterType<UOWShifts>().As<IUOWShifts>().InstancePerRequest();
             builder.RegisterType<UOWLocations>().As<IUOWLocations>().InstancePerRequest();
             builder.RegisterType<UOWClient>().As<IUOWClient>().InstancePerRequest();
+            builder.RegisterType<UOWProjects>().As<IUOWProjects>().InstancePerRequest();
 
             Container = builder.Build();
 

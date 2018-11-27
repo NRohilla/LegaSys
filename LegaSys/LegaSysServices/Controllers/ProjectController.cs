@@ -72,7 +72,29 @@ namespace LegaSysServices.Controllers
             return Json(new { message = "Project deleted  successfully." });
         }
 
+        [HttpGet]
+        [Route("project/gettechdomains")]
+        public IHttpActionResult GetAllTechDomains()
+        {
+            return Json(_projects.GetAllTechDomains());
+        }
 
+        [HttpGet]
+        [Route("project/getalltechnology")]
+        public IHttpActionResult GetAllTechnology()
+        {
+            var project = _projects.GetAllTechnology();
+            if (project == null)
+                return NotFound();
+            return Json(project);
+        }
+
+        [HttpGet]
+        [Route("project/getalltechnologybydomain/{id}")]
+        public IHttpActionResult GetAllTechnologyByDomainId(int id)
+        {
+            return Json(_projects.GetAllTechnologyByDomainId(id));
+        }
 
     }
 }

@@ -7,6 +7,8 @@
 
 <!-- Actual content starts from here -->
 <!-- <mat-card-content> -->
+
+    
 <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)" class="add-project table-active">
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 colsm-6 col-12 float-left">
@@ -17,6 +19,7 @@
                 <span *ngIf="!regiForm.get('Title').valid && regiForm.get('Title').touched">Please enter Title Name </span>
             </mat-error>
         </div>
+        <!-- testing 27112018 -->
         <div class="col-lg-6 col-md-6 colsm-6 col-12 float-left">
             <mat-form-field class="w-100">
                 <textarea formControlName="Description" matInput placeholder="Description" matTextareaAutosize
@@ -96,3 +99,5 @@
 
 </form>
 <!-- </mat-card-content> -->
+
+<!-- testing 27112018 -->

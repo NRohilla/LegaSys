@@ -18,7 +18,6 @@ namespace LegaSysUOW.Repository
             db = dbFactory.Init();
         }
 
-
         public ProjectDetail GetProject(int id)
         {
             return (from projects in db.LegaSys_Projects
@@ -151,6 +150,56 @@ namespace LegaSysUOW.Repository
                 db.SaveChanges();
             }
            
+        }
+
+        public IEnumerable<ProjectDetail> GetAllTechnology()
+        {
+            return (from projects in db.LegaSys_Master_TechDomains
+                    select new { projects }).AsEnumerable()
+                  .Select(x => new ProjectDetail
+                  {
+                      ProjectDomain_ID = x.projects.TechDomainID,
+                      DomainName = x.projects.DomainName,
+                  });
+        }
+
+        public IEnumerable<ProjectDetail> GetAllTechDomains()
+        {
+            try
+            {
+                return (from projects in db.LegaSys_Master_TechDomains
+                        select new { projects }).AsEnumerable()
+                 .Select(x => new ProjectDetail
+                 {
+                     ProjectDomain_ID = x.projects.TechDomainID,
+                     DomainName = x.projects.DomainName,
+                 });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<LegaSys_Master_Technologies> GetAllTechnologyByDomainId(int id)
+        {
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    var tech = db.LegaSys_Master_Technologies.AsEnumerable().Where(x => x.Master_DomainID == id).Select(x => new LegaSys_Master_Technologies
+                    {
+                        TechnologyID = x.TechnologyID,
+                        Name = x.Name
+                    }).ToList();
+                    return tech;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

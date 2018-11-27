@@ -25,13 +25,14 @@ export class AddComponent implements OnInit {
   Blog: String = '';
   Email: String = '';
   IsAccepted: Number = 0;
+  //testing 27/11/2018
     // constructor(public dialogRef: MatDialogRef<AddComponent>,
     constructor(
         //@Inject(MAT_DIALOG_DATA) public data: Project,
         public dataService: SharedService, private fb: FormBuilder, private router: Router) {
             this.regiForm = fb.group({
                 'Title' : ["", Validators.required],
-                'Description' :  ["", Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(500)])],
+                'Description' :  ["", Validators.compose([Validators.required,  Validators.maxLength(500)])],
                
                 'DomainName' : [null, Validators.required],
                
@@ -67,7 +68,7 @@ onSelect(id) {
 } 
 onFormSubmit(form: NgForm) {
     debugger;
-    if(form['Title']!=""&&form['Client_ID']!=null&&form['ProjectDomain_ID']!=null)
+    if(form['Title']!=""&&form['Client_ID']!= 0 &&form['ProjectDomain_ID']!=null)
     {
         this.dataService.addProject(form).subscribe(
             res => {
@@ -93,7 +94,7 @@ res => {
 public GetAllTechdomains() {
     this.dataService.getalltechdomains().subscribe(
 res => {
-    this.technologydetails = res;
+    this.technologydetails = res;    
     });
 }
 
@@ -101,3 +102,6 @@ onNoClick(): void {
     this.router.navigate(['project']);
 }
 }
+
+
+////redited/testing for push on git 27/11/2018

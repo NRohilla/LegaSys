@@ -52,13 +52,20 @@ export class SharedService {
     public GetClient() {
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.get('http://localhost:58164/api/Client/GetAllClient', this.headers);
+        return this.http.get('http://localhost:58164/client/GetAllClient', this.headers);
     }
     public getalltechnology() {
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.get('http://localhost:58164/project/getalltechnology', this.headers);
     }
+    public GetAllTechnologyByDomain(id:any) {
+        debugger;
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.get('http://localhost:58164/project/getalltechnologybydomain/'+id, this.headers);
+    }
+
     public getallclientstatus() {
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
@@ -85,6 +92,7 @@ export class SharedService {
         return this.http.get('http://localhost:58164/role/getall', this.headers);
     }
     public getalltechdomains() {
+        debugger;
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.get('http://localhost:58164/project/gettechdomains', this.headers);

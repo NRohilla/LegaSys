@@ -21,10 +21,8 @@ const routes: Routes = [
             { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
             { path: 'client', loadChildren: './client/client.module#ClientModule'},
             { path: 'client-details', loadChildren: './client/client-details/client-details.module#ClientDetailsModule'},
-            { path: 'add-client', loadChildren: './client/addclient/addclient.module#AddclientModule'}
-
-            { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
-            { path: 'project', loadChildren: './project/project.module#ProjectModule' },
+            { path: 'add-client', loadChildren: './client/addclient/addclient.module#AddclientModule'},
+            { path: 'project', loadChildren: './project/project.module#ProjectModule' }
         ]
     }
 ];

@@ -34,11 +34,11 @@ export class SharedService {
     public addProject(issue: any) {
         return this.http.post('http://localhost:58164/project/create', issue, this.headers);
     }
-    public editProject(issue: any) {
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.post('http://localhost:58164/project/update', issue, this.headers);
-    }
+    // public editProject(issue: any) {
+    //     const headers = new Headers();
+    //     headers.append(this.storage.get('UserToken').access_token, '');
+    //     return this.http.post('http://localhost:58164/project/update', issue, this.headers);
+    // }
     public GetProjectById(id) {
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
@@ -54,10 +54,12 @@ export class SharedService {
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.get('http://localhost:58164/api/Client/GetAllClient', this.headers);
     }
-    public getalltechnology() {
+    
+    public GetAllTechnologyByDomain(id:any) {
+        debugger;
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.get('http://localhost:58164/project/getalltechnology', this.headers);
+        return this.http.get('http://localhost:58164/project/getalltechnologybydomain/'+id, this.headers);
     }
     public getallclientstatus() {
         const headers = new Headers();
@@ -84,12 +86,17 @@ export class SharedService {
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.get('http://localhost:58164/role/getall', this.headers);
     }
+    //new
     public getalltechdomains() {
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.get('http://localhost:58164/project/gettechdomains', this.headers);
+        return this.http.get('http://localhost:58164/project/GetAllTechDomains', this.headers);
     }
+
+    
     public updateProject(issue: any) {
+        debugger;
+        console.log(issue);
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.post('http://localhost:58164/project/update', issue, this.headers);

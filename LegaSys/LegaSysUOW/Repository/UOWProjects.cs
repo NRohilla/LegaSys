@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LegaSysUOW.Repository
 {
-   public class UOWProjects: IUOWProjects
+    public class UOWProjects : IUOWProjects
     {
         private readonly LegaSysEntities db;
 
@@ -36,13 +36,22 @@ namespace LegaSysUOW.Repository
                         Description = projects.Description,
                         Client_ID = projects.Client_ID.Value,
                         ClientName = clients.ClientName,
+                        Country = clients.Country,
+                        CoClient = clients.CoClient,
+                        CoClient2 = clients.CoClient2,
+                        CoClient3 = clients.CoClient3,
+                        CoClient4 = clients.CoClient4,
+                        EmailID = clients.EmailID,
+                        EmailID2 = clients.EmailID2,
+                        EmailID3 = clients.EmailID3,
+                        EmailID4 = clients.EmailID4,
+
                         ProjectDomain_ID = projects.ProjectDomain_ID.Value,
                         DomainName = domain.DomainName,
                         Created_By = projects.Created_By,
                         Updated_By = projects.Updated_By,
                         Created_Date = projects.Created_Date,
-                        Updated_Date = projects.Updated_Date,                        
-                        
+                        Updated_Date = projects.Updated_Date,
                         ProjectDomainName = domain.DomainName,
                         Resource_ID = resources.Resource_ID.Value,
                         ResourceFirstname = resourcedetail.Firstname,
@@ -70,30 +79,43 @@ namespace LegaSysUOW.Repository
 
         public IEnumerable<ProjectDetail> GetAllProjects()
         {
-            return (from projects in db.LegaSys_Projects
-                   join clients in db.LegaSys_ClientDetails on projects.Client_ID equals clients.ClientDetailID
-                   join domain in db.LegaSys_Master_TechDomains on projects.ProjectDomain_ID equals domain.TechDomainID
-                   select new { projects, clients, domain }).AsEnumerable()
+            var allprojects = (from projects in db.LegaSys_Projects
+                               join clients in db.LegaSys_ClientDetails on projects.Client_ID equals clients.ClientDetailID
+                               join domain in db.LegaSys_Master_TechDomains on projects.ProjectDomain_ID equals domain.TechDomainID
+
+                               select new { projects, clients, domain }).AsEnumerable()
                   .Select(x => new ProjectDetail
-                   {
-                       ProjectID = x.projects.ProjectID,
-                       Title = x.projects.Title,
-                       Description =x. projects.Description,
-                       Client_ID = x.projects.Client_ID.Value,
-                       ClientName = x.clients.ClientName,
-                       ProjectDomain_ID = x.projects.ProjectDomain_ID.Value,
-                       DomainName =x. domain.DomainName,
-                       Created_By =x.projects.Created_By,
-                       Updated_By =x.projects.Updated_By,
-                       Created_Date =x.projects.Created_Date,
-                       Updated_Date = x.projects.Updated_Date,
-                       Status =x.projects.Status,
-                       Country = x.clients.Country,
-                       EmailID = x.clients.EmailID,
-                       EmailID2 = x.clients.EmailID2,
-                       EmailID3=x.clients.EmailID3,
-                       CoClient=x.clients.CoClient
-                   });
+                  {
+                      ProjectID = x.projects.ProjectID,
+                      Title = x.projects.Title,
+                      Description = x.projects.Description,
+                      Client_ID = x.projects.Client_ID.Value,
+                      ClientName = x.clients.ClientName,
+                      ProjectDomain_ID = x.projects.ProjectDomain_ID.Value,
+                      DomainName = x.domain.DomainName,
+                      Created_By = x.projects.Created_By,
+                      Updated_By = x.projects.Updated_By,
+                      Created_Date = x.projects.Created_Date,
+                      Updated_Date = x.projects.Updated_Date,
+                      Status = x.projects.Status,
+                      Country = x.clients.Country,
+                      EmailID = x.clients.EmailID,
+                      EmailID2 = x.clients.EmailID2,
+                      EmailID3 = x.clients.EmailID3,
+                      CoClient = x.clients.CoClient,
+
+                      ProjectDomainName = x.domain.DomainName,
+                      //Resource_ID = x.resources.Resource_ID.Value,
+                      //ProjectTaskID = x.task.ProjectTaskID,
+                      //TaskTitle = x.task.Title,
+                      //TaskDescription = x.task.Description,
+                      //TaskAttachmentID = x.task.Attachment_ID.Value,
+                      //ProjectSubTaskID = x.subtask.ProjectSubTaskID,
+                      //SubTaskTitle = x.subtask.Title,
+                      //SubTaskDescription = x.subtask.Description,
+                      //SubTaskAttachmentID = x.subtask.Attachment_ID.Value
+                  });
+            return allprojects;
         }
         public int CreateProjectDetail(ProjectDetail projectDetail)
         {
@@ -150,7 +172,56 @@ namespace LegaSysUOW.Repository
                 project.Status = 0;
                 db.SaveChanges();
             }
-           
+
         }
+
+        public IEnumerable<ProjectDetail> GetAllTechnology()
+        {
+            return (from projects in db.LegaSys_Master_TechDomains
+                    select new { projects }).AsEnumerable()
+                  .Select(x => new ProjectDetail
+                  {
+                      ProjectDomain_ID = x.projects.TechDomainID,
+                      DomainName = x.projects.DomainName,
+                  });
+        }
+
+        //public List<LegaSys_ClientStatus> GetClientStatus()
+        //{
+        //    var status = db.LegaSys_ClientStatus.AsEnumerable().Select(x=> new LegaSys_ClientStatus
+        //    {
+        //        ClientStatusId =  x.ClientStatusId ,
+        //        ClientStatus =  x.ClientStatus
+        //    }).ToList();
+        //    return status;           
+
+        //}
+
+        //public List<LegaSys_Master_TechDomains> GetAllTechDomains()
+        //{
+        //    try
+        //    {
+
+        //        using (LegaSysEntities db = new LegaSysEntities())
+        //        {
+        //            var domains =  db.LegaSys_Master_TechDomains.AsEnumerable().Select(x=>new LegaSys_Master_TechDomains
+        //            {
+        //                TechDomainID = x.TechDomainID,
+        //                DomainName = x.DomainName
+        //            }).ToList();
+        //            return domains;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+
+
+
+
+
+        //}
     }
 }

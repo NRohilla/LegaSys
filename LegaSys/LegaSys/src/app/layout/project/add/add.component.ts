@@ -62,7 +62,7 @@ onSelect(id) {
      this.dataService.GetAllTechnologyByDomain(id).subscribe(
         res=>{
             this.technologylist=res;
-            console.log("technology list"+JSON.stringify(this.technologylist));
+        
         }
     );  
 } 
@@ -80,11 +80,9 @@ onFormSubmit(form: NgForm) {
     else
     return;
     
-  //console.log(form);
+ 
 }
-// onNoClick(): void {
-// this.dialogRef.close();
-// }
+
 public getClient() {
     this.dataService.GetClient().subscribe(
 res => {

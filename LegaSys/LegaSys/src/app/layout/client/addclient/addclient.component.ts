@@ -84,7 +84,7 @@ export class AddclientComponent implements OnInit {
     }
     onSubmit() 
   {
-    console.log(this.clientForm.value);
+  
       this.clientservice.AddClientDetails(this.clientForm.value)
       .subscribe(        
         suc=>{

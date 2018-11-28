@@ -45,12 +45,12 @@ export class EditComponent implements OnInit {
 
                // } else {
                    debugger;
-                   console.log(res);
+                   
                 this.projectdetails = res;
                 this.clientdetails = res;
                 this.date=new Date('12/11/2018');
                 debugger;
-                console.log(this.date);
+             
                 this.resourcedetails = res;
                 this.taskdetails = res;
            // }
@@ -62,7 +62,7 @@ export class EditComponent implements OnInit {
             );
             this.dataService.GetAllTechnologyByDomain(id).subscribe(
                 res=>{
-                console.log(res);
+        
                 this.Technologylist= res;
                 },error => {
                     alert("Invalid Domain!");
@@ -100,10 +100,7 @@ this.disablediv = false;
 
     this.disablediv = true;
 }
-            // debugger;
-            // console.log('event => ', event);
-            // console.log('index => ', event.index);
-            // console.log('tab => ', event.tab);
+         
     }
     onNoClick(): void {
         this.router.navigate(['project']);

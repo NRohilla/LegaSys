@@ -32,9 +32,9 @@ export class AddComponent implements OnInit {
         public dataService: SharedService, private fb: FormBuilder, private router: Router) {
             this.regiForm = fb.group({
                 'Title' : ["", Validators.required],
-                'Description' :  ["", Validators.compose([Validators.required, Validators.minLength(30), Validators.maxLength(500)])],
+                'Description' :  ["", Validators.compose([Validators.required, Validators.maxLength(500)])],
                
-                'DomainName' : [null, Validators.required],
+                //'DomainName' : [null, Validators.required],
                
                 'Client_ID' : [0, Validators.required],
                 'ProjectDomain_ID' : [0, Validators.required],
@@ -67,8 +67,9 @@ onSelect(id) {
     );  
 } 
 onFormSubmit(form: NgForm) {
+    console.log(this.regiForm.value);
     debugger;
-    if(form['Title']!=""&&form['Client_ID']!=null&&form['ProjectDomain_ID']!=null)
+    if(form['Title']!=""&&form['Client_ID']!=0&&form['ProjectDomain_ID']!=0)
     {
         this.dataService.addProject(form).subscribe(
             res => {

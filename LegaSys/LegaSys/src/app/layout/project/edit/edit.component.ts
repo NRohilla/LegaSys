@@ -64,7 +64,7 @@ export class EditComponent implements OnInit {
                 res=>{
                 console.log(res);
                 this.Technologylist= res;
-                },error => {
+                },error => {                    
                     alert("Invalid Domain!");
                 //    this.router.navigate(['/project']);
             const errorresult = 'No Result';

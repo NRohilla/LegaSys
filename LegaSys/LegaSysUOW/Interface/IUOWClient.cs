@@ -18,6 +18,7 @@ namespace LegaSysUOW.Interface
         List<ClientDetail> GetAllClient();
 
         string DeleteClientById(Int32 Id);
+        List<LegaSysDataAccess.LegaSys_ClientStatus> GetClientStatus();
 
     }
 }

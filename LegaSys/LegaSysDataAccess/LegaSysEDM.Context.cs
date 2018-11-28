@@ -56,6 +56,9 @@ namespace LegaSysDataAccess
         public virtual DbSet<LegaSys_UserTechnology> LegaSys_UserTechnology { get; set; }
         public virtual DbSet<LegaSys_WhiteList_IP> LegaSys_WhiteList_IP { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<LegaSys_UserBackground> LegaSys_UserBackground { get; set; }
+        public virtual DbSet<LegaSys_UserCertification> LegaSys_UserCertification { get; set; }
+        public virtual DbSet<LegaSys_UserQualification> LegaSys_UserQualification { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

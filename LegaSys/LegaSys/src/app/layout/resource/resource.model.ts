@@ -23,4 +23,9 @@ export class Resource {
     UserRoleID :number;
     ReportingHead_ID :number;
     Master_Location_ID :number;
+    IsExperienced:boolean;
+    DateOfJoining:Date;
+
+    
+
 }

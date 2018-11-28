@@ -114,7 +114,10 @@ namespace LegaSysUOW.Repository
                         Master_Role_ID = x.user.Master_Role_ID,
                         RoleName = x.role.Role,
                         Remarks = x.user.Remarks,
-                        MobileNumber = x.user.MobileNumber
+                        MobileNumber = x.user.MobileNumber,
+                        IsExperienced = x.user.IsExperienced,
+                        DateOfJoining = x.user.DateOfJoining.Value
+
                     }).FirstOrDefault();
         }
 
@@ -142,6 +145,20 @@ namespace LegaSysUOW.Repository
             db.SaveChanges();
 
             return true;
+        }
+
+
+        public IEnumerable<UserBackground> GetUserBackground(int id)
+        {
+            return db.LegaSys_UserBackground.Where(x => x.UserDetailID == id).Select(y => new UserBackground
+            {
+                BackgroundID = y.BackgroundID,
+                CompanyName = y.CompanyName,
+                Designation = y.Designation,
+                JoiningDate = y.JoiningDate,
+                LeavingDate = y.LeavingDate
+
+            }).ToList();
         }
     }
 }

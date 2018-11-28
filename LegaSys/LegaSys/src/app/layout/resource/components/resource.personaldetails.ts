@@ -93,7 +93,7 @@ export class ResourcePersonaldetailsComponent implements OnInit {
       suc => {
         this.resoursedetails = suc;
         this.currentResourceDetailsCancel = JSON.parse(JSON.stringify(suc));
-
+        localStorage.setItem("DateOfJoining", this.resoursedetails.Master_Role_ID);
         this.resourceService.getReportingHead(this.resoursedetails.Master_Role_ID).subscribe(
 
           res => {

@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Resource } from './resource.model'
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { throwError } from 'rxjs';
+import { UserBackgrnd } from './components/resource.backgrounddetails.component';
 
 @Injectable({
     providedIn: 'root'
@@ -32,7 +33,7 @@ export class ResourceService {
     }
 
     getResourceById(UserId: number) {
-        return this.http.get<Resource[]>(this.baseUrl + UserId, { headers: this.getToken() });
+        return this.http.get<Resource>(this.baseUrl + UserId, { headers: this.getToken() });
     }
 
     getLocation() {
@@ -84,5 +85,10 @@ export class ResourceService {
     getAllLocation() {
         return this.http.get<Resource>('http://localhost:58164/location/getallactive', { headers: this.getToken() })
     }
+    getBackGroundDetails(id){
+        debugger
+        return this.http.get<UserBackgrnd>('http://localhost:58164/resource/getuserbackground/'+ id,{headers:this.getToken()})
+    } 
+
 
 }

@@ -139,10 +139,19 @@
     <Compile Include="LegaSys_UserActivityLog.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="LegaSys_UserBackground.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserCertification.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="LegaSys_UserDetails.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="LegaSys_UserLogin.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserQualification.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="LegaSys_UserTechnology.cs">

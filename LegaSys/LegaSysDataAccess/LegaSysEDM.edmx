@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LegaSysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LegaSysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LegaSys_Attachments">
           <Key>
             <PropertyRef Name="AttachmentID" />
@@ -323,6 +323,30 @@
           <Property Name="SessionDuration" Type="varchar" MaxLength="50" />
           <Property Name="IP_Address" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="LegaSys_UserBackground">
+          <Key>
+            <PropertyRef Name="BackgroundID" />
+          </Key>
+          <Property Name="BackgroundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDetailID" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" />
+          <Property Name="JoiningDate" Type="date" Nullable="false" />
+          <Property Name="LeavingDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LegaSys_UserCertification">
+          <Key>
+            <PropertyRef Name="CertificationID" />
+          </Key>
+          <Property Name="CertificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDetailID" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CertificateNumber" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Stream" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Institution" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Marks" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="LegaSys_UserDetails">
           <Key>
             <PropertyRef Name="UserDetailID" />
@@ -344,6 +368,27 @@
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Updated_Date" Type="datetime" />
           <Property Name="Master_Role_ID" Type="int" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="100" />
+          <Property Name="MotherName" Type="varchar" MaxLength="100" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="20" />
+          <Property Name="WorkEmail" Type="varchar" MaxLength="100" />
+          <Property Name="AadharNumber" Type="varchar" MaxLength="18" />
+          <Property Name="BloodGroup" Type="varchar" MaxLength="10" />
+          <Property Name="PermanentAddress" Type="varchar(max)" />
+          <Property Name="CurrentAddress" Type="varchar(max)" />
+          <Property Name="Nationality" Type="varchar" MaxLength="30" />
+          <Property Name="PassportNumber" Type="varchar" MaxLength="20" />
+          <Property Name="EmergencyContact" Type="varchar" MaxLength="10" />
+          <Property Name="PanNumber" Type="varchar" MaxLength="10" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="MaritalStatus" Type="varchar" MaxLength="20" />
+          <Property Name="SpouseName" Type="varchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="IsExperienced" Type="bit" />
+          <Property Name="PrimarySkillSet" Type="varchar(max)" />
+          <Property Name="SecondarySkillSet" Type="varchar(max)" />
+          <Property Name="Qualification" Type="varchar" MaxLength="100" />
+          <Property Name="DateOfJoining" Type="date" />
         </EntityType>
         <EntityType Name="LegaSys_UserLogin">
           <Key>
@@ -360,6 +405,18 @@
           <Property Name="Updated_By" Type="int" />
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Updated_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LegaSys_UserQualification">
+          <Key>
+            <PropertyRef Name="QualificationID" />
+          </Key>
+          <Property Name="QualificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDetailID" Type="int" Nullable="false" />
+          <Property Name="Qualification" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stream" Type="varchar" MaxLength="50" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="BoardUniversity" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Marks" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="LegaSys_UserTechnology">
           <Key>
@@ -596,6 +653,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__LegaSys_P__Attac__39237A9A">
+          <End Role="LegaSys_Attachments" Type="Self.LegaSys_Attachments" Multiplicity="0..1" />
+          <End Role="LegaSys_ProjectSubTasks" Type="Self.LegaSys_ProjectSubTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegaSys_Attachments">
+              <PropertyRef Name="AttachmentID" />
+            </Principal>
+            <Dependent Role="LegaSys_ProjectSubTasks">
+              <PropertyRef Name="Attachment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LegaSys_P__Attac__3B0BC30C">
+          <End Role="LegaSys_Attachments" Type="Self.LegaSys_Attachments" Multiplicity="0..1" />
+          <End Role="LegaSys_ProjectTasks" Type="Self.LegaSys_ProjectTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegaSys_Attachments">
+              <PropertyRef Name="AttachmentID" />
+            </Principal>
+            <Dependent Role="LegaSys_ProjectTasks">
+              <PropertyRef Name="Attachment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LegaSys_P__Proje__3A179ED3">
+          <End Role="LegaSys_ProjectTasks" Type="Self.LegaSys_ProjectTasks" Multiplicity="0..1" />
+          <End Role="LegaSys_ProjectSubTasks" Type="Self.LegaSys_ProjectSubTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegaSys_ProjectTasks">
+              <PropertyRef Name="ProjectTaskID" />
+            </Principal>
+            <Dependent Role="LegaSys_ProjectSubTasks">
+              <PropertyRef Name="Project_Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Log_Projects_UserResponsible">
           <End Role="LegaSys_UserDetails" Type="Self.LegaSys_UserDetails" Multiplicity="1" />
           <End Role="LegaSys_Log_Projects" Type="Self.LegaSys_Log_Projects" Multiplicity="*" />
@@ -763,8 +856,11 @@
           <EntitySet Name="LegaSys_ProjectTasks" EntityType="Self.LegaSys_ProjectTasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_ProjectTechnology" EntityType="Self.LegaSys_ProjectTechnology" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_UserActivityLog" EntityType="Self.LegaSys_UserActivityLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LegaSys_UserBackground" EntityType="Self.LegaSys_UserBackground" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LegaSys_UserCertification" EntityType="Self.LegaSys_UserCertification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_UserDetails" EntityType="Self.LegaSys_UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_UserLogin" EntityType="Self.LegaSys_UserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LegaSys_UserQualification" EntityType="Self.LegaSys_UserQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_UserTechnology" EntityType="Self.LegaSys_UserTechnology" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LegaSys_WhiteList_IP" EntityType="Self.LegaSys_WhiteList_IP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -836,6 +932,18 @@
             <End Role="LegaSys_Master_Shifts" EntitySet="LegaSys_Master_Shifts" />
             <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK__LegaSys_P__Attac__39237A9A" Association="Self.FK__LegaSys_P__Attac__39237A9A">
+            <End Role="LegaSys_Attachments" EntitySet="LegaSys_Attachments" />
+            <End Role="LegaSys_ProjectSubTasks" EntitySet="LegaSys_ProjectSubTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LegaSys_P__Attac__3B0BC30C" Association="Self.FK__LegaSys_P__Attac__3B0BC30C">
+            <End Role="LegaSys_Attachments" EntitySet="LegaSys_Attachments" />
+            <End Role="LegaSys_ProjectTasks" EntitySet="LegaSys_ProjectTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LegaSys_P__Proje__3A179ED3" Association="Self.FK__LegaSys_P__Proje__3A179ED3">
+            <End Role="LegaSys_ProjectTasks" EntitySet="LegaSys_ProjectTasks" />
+            <End Role="LegaSys_ProjectSubTasks" EntitySet="LegaSys_ProjectSubTasks" />
+          </AssociationSet>
           <AssociationSet Name="FK__Log_Projects_UserResponsible" Association="Self.FK__Log_Projects_UserResponsible">
             <End Role="LegaSys_UserDetails" EntitySet="LegaSys_UserDetails" />
             <End Role="LegaSys_Log_Projects" EntitySet="LegaSys_Log_Projects" />
@@ -869,8 +977,7 @@
             <End Role="LegaSys_LeavesApplication" EntitySet="LegaSys_LeavesApplication" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LegaSysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1262,6 +1369,27 @@
           <NavigationProperty Name="LegaSys_Master_Locations" Relationship="Self.FK__LegaSys_O__ORG_U__619B8048" FromRole="LegaSys_UserDetails" ToRole="LegaSys_Master_Locations" />
           <NavigationProperty Name="LegaSys_Master_Roles" Relationship="Self.FK__LegaSys_O__LegaS__6383C8BA" FromRole="LegaSys_UserDetails" ToRole="LegaSys_Master_Roles" />
           <NavigationProperty Name="LegaSys_Master_Shifts" Relationship="Self.FK__LegaSys_O__ORG_U__628FA481" FromRole="LegaSys_UserDetails" ToRole="LegaSys_Master_Shifts" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MotherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WorkEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AadharNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmergencyContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PanNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SpouseName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="IsExperienced" Type="Boolean" />
+          <Property Name="PrimarySkillSet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SecondarySkillSet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfJoining" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="LegaSys_UserLogin">
           <Key>
@@ -1778,7 +1906,7 @@
           </FunctionImport>
           <FunctionImport Name="spGetAllProjects" ReturnType="Collection(LegaSysModel.spGetAllProjects_Result)" />
           <FunctionImport Name="spGetProjectDetailsById" ReturnType="Collection(LegaSysModel.spGetProjectDetailsById_Result)">
-            <Parameter Name="projectId" Mode="In" Type="Int32" />
+          <Parameter Name="projectId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spUpdateProject">
             <Parameter Name="projectID" Mode="In" Type="Int32" />
@@ -1786,6 +1914,9 @@
             <Parameter Name="Description" Mode="In" Type="String" />
             <Parameter Name="Status" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="LegaSys_UserBackground" EntityType="LegaSysModel.LegaSys_UserBackground" />
+          <EntitySet Name="LegaSys_UserCertification" EntityType="LegaSysModel.LegaSys_UserCertification" />
+          <EntitySet Name="LegaSys_UserQualification" EntityType="LegaSysModel.LegaSys_UserQualification" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1853,6 +1984,42 @@
           <Property Type="String" Name="SubTaskDescription" Nullable="true" MaxLength="500" />
           <Property Type="Int32" Name="SubTaskAttachmentID" Nullable="true" />
         </ComplexType>
+        <EntityType Name="LegaSys_UserBackground">
+          <Key>
+            <PropertyRef Name="BackgroundID" />
+          </Key>
+          <Property Name="BackgroundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDetailID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LeavingDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LegaSys_UserCertification">
+          <Key>
+            <PropertyRef Name="CertificationID" />
+          </Key>
+          <Property Name="CertificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDetailID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CertificateNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Stream" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Institution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Marks" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LegaSys_UserQualification">
+          <Key>
+            <PropertyRef Name="QualificationID" />
+          </Key>
+          <Property Name="QualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDetailID" Type="Int32" Nullable="false" />
+          <Property Name="Qualification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stream" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="BoardUniversity" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Marks" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2204,6 +2371,27 @@
           <EntitySetMapping Name="LegaSys_UserDetails">
             <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserDetails">
               <MappingFragment StoreEntitySet="LegaSys_UserDetails">
+                <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="SecondarySkillSet" ColumnName="SecondarySkillSet" />
+                <ScalarProperty Name="PrimarySkillSet" ColumnName="PrimarySkillSet" />
+                <ScalarProperty Name="IsExperienced" ColumnName="IsExperienced" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PanNumber" ColumnName="PanNumber" />
+                <ScalarProperty Name="EmergencyContact" ColumnName="EmergencyContact" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="AadharNumber" ColumnName="AadharNumber" />
+                <ScalarProperty Name="WorkEmail" ColumnName="WorkEmail" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
                 <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Middlename" ColumnName="Middlename" />
@@ -2363,6 +2551,45 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spUpdateProject" FunctionName="LegaSysModel.Store.spUpdateProject" />
+          <EntitySetMapping Name="LegaSys_UserBackground">
+            <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserBackground">
+              <MappingFragment StoreEntitySet="LegaSys_UserBackground">
+                <ScalarProperty Name="LeavingDate" ColumnName="LeavingDate" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+                <ScalarProperty Name="BackgroundID" ColumnName="BackgroundID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LegaSys_UserCertification">
+            <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserCertification">
+              <MappingFragment StoreEntitySet="LegaSys_UserCertification">
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Stream" ColumnName="Stream" />
+                <ScalarProperty Name="CertificateNumber" ColumnName="CertificateNumber" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+                <ScalarProperty Name="CertificationID" ColumnName="CertificationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LegaSys_UserQualification">
+            <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserQualification">
+              <MappingFragment StoreEntitySet="LegaSys_UserQualification">
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="BoardUniversity" ColumnName="BoardUniversity" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Stream" ColumnName="Stream" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+                <ScalarProperty Name="QualificationID" ColumnName="QualificationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -11,6 +11,7 @@ export class ResourceSummaryComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
     this.resourceService.getResourceById(+localStorage.getItem('element')).subscribe(
       suc => {
         this.resoursedetails = suc;

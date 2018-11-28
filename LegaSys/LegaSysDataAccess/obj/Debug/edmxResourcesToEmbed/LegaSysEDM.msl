@@ -346,6 +346,27 @@
     <EntitySetMapping Name="LegaSys_UserDetails">
       <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserDetails">
         <MappingFragment StoreEntitySet="LegaSys_UserDetails">
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="SecondarySkillSet" ColumnName="SecondarySkillSet" />
+          <ScalarProperty Name="PrimarySkillSet" ColumnName="PrimarySkillSet" />
+          <ScalarProperty Name="IsExperienced" ColumnName="IsExperienced" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PanNumber" ColumnName="PanNumber" />
+          <ScalarProperty Name="EmergencyContact" ColumnName="EmergencyContact" />
+          <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+          <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+          <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+          <ScalarProperty Name="AadharNumber" ColumnName="AadharNumber" />
+          <ScalarProperty Name="WorkEmail" ColumnName="WorkEmail" />
+          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
           <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
           <ScalarProperty Name="Firstname" ColumnName="Firstname" />
           <ScalarProperty Name="Middlename" ColumnName="Middlename" />
@@ -505,5 +526,44 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spUpdateProject" FunctionName="LegaSysModel.Store.spUpdateProject" />
+    <EntitySetMapping Name="LegaSys_UserBackground">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserBackground">
+        <MappingFragment StoreEntitySet="LegaSys_UserBackground">
+          <ScalarProperty Name="LeavingDate" ColumnName="LeavingDate" />
+          <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+          <ScalarProperty Name="BackgroundID" ColumnName="BackgroundID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_UserCertification">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserCertification">
+        <MappingFragment StoreEntitySet="LegaSys_UserCertification">
+          <ScalarProperty Name="Marks" ColumnName="Marks" />
+          <ScalarProperty Name="Institution" ColumnName="Institution" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Stream" ColumnName="Stream" />
+          <ScalarProperty Name="CertificateNumber" ColumnName="CertificateNumber" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+          <ScalarProperty Name="CertificationID" ColumnName="CertificationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LegaSys_UserQualification">
+      <EntityTypeMapping TypeName="LegaSysModel.LegaSys_UserQualification">
+        <MappingFragment StoreEntitySet="LegaSys_UserQualification">
+          <ScalarProperty Name="Marks" ColumnName="Marks" />
+          <ScalarProperty Name="BoardUniversity" ColumnName="BoardUniversity" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Stream" ColumnName="Stream" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+          <ScalarProperty Name="QualificationID" ColumnName="QualificationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

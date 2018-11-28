@@ -388,6 +388,27 @@
     <NavigationProperty Name="LegaSys_Master_Locations" Relationship="Self.FK__LegaSys_O__ORG_U__619B8048" FromRole="LegaSys_UserDetails" ToRole="LegaSys_Master_Locations" />
     <NavigationProperty Name="LegaSys_Master_Roles" Relationship="Self.FK__LegaSys_O__LegaS__6383C8BA" FromRole="LegaSys_UserDetails" ToRole="LegaSys_Master_Roles" />
     <NavigationProperty Name="LegaSys_Master_Shifts" Relationship="Self.FK__LegaSys_O__ORG_U__628FA481" FromRole="LegaSys_UserDetails" ToRole="LegaSys_Master_Shifts" />
+    <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MotherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="WorkEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AadharNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Nationality" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmergencyContact" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PanNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SpouseName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="IsExperienced" Type="Boolean" />
+    <Property Name="PrimarySkillSet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SecondarySkillSet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Qualification" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfJoining" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="LegaSys_UserLogin">
     <Key>
@@ -912,6 +933,9 @@
       <Parameter Name="Description" Mode="In" Type="String" />
       <Parameter Name="Status" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="LegaSys_UserBackground" EntityType="LegaSysModel.LegaSys_UserBackground" />
+    <EntitySet Name="LegaSys_UserCertification" EntityType="LegaSysModel.LegaSys_UserCertification" />
+    <EntitySet Name="LegaSys_UserQualification" EntityType="LegaSysModel.LegaSys_UserQualification" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -979,4 +1003,40 @@
     <Property Type="String" Name="SubTaskDescription" Nullable="true" MaxLength="500" />
     <Property Type="Int32" Name="SubTaskAttachmentID" Nullable="true" />
   </ComplexType>
+  <EntityType Name="LegaSys_UserBackground">
+    <Key>
+      <PropertyRef Name="BackgroundID" />
+    </Key>
+    <Property Name="BackgroundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserDetailID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LeavingDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="LegaSys_UserCertification">
+    <Key>
+      <PropertyRef Name="CertificationID" />
+    </Key>
+    <Property Name="CertificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserDetailID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CertificateNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Stream" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Institution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Marks" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="LegaSys_UserQualification">
+    <Key>
+      <PropertyRef Name="QualificationID" />
+    </Key>
+    <Property Name="QualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserDetailID" Type="Int32" Nullable="false" />
+    <Property Name="Qualification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Stream" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="BoardUniversity" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Marks" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
 </Schema>

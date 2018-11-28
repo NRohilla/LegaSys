@@ -28,5 +28,7 @@ namespace LegaSysDataEntities
         public int Created_By { get; set; }
         public int Updated_By { get; set; }
         public string MobileNumber { get; set; }
+        public DateTime? DateOfJoining { get; set; }
+        public bool? IsExperienced { get; set; }
     }
 }

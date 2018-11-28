@@ -42,6 +42,27 @@ namespace LegaSysDataAccess
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
         public int Master_Role_ID { get; set; }
+        public string FatherName { get; set; }
+        public string MotherName { get; set; }
+        public string WorkPhone { get; set; }
+        public string WorkEmail { get; set; }
+        public string AadharNumber { get; set; }
+        public string BloodGroup { get; set; }
+        public string PermanentAddress { get; set; }
+        public string CurrentAddress { get; set; }
+        public string Nationality { get; set; }
+        public string PassportNumber { get; set; }
+        public string EmergencyContact { get; set; }
+        public string PanNumber { get; set; }
+        public string Gender { get; set; }
+        public string MaritalStatus { get; set; }
+        public string SpouseName { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public Nullable<bool> IsExperienced { get; set; }
+        public string PrimarySkillSet { get; set; }
+        public string SecondarySkillSet { get; set; }
+        public string Qualification { get; set; }
+        public Nullable<System.DateTime> DateOfJoining { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_LeavesApplication> LegaSys_LeavesApplication { get; set; }

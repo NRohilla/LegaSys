@@ -86,5 +86,13 @@ namespace LegaSysServices.Controllers
 
             return Json(new { success = true });
         }
+
+        [Route("resource/getuserbackground/{id}")]
+        public IHttpActionResult GetUserBackground(int id)
+        {
+            return Json(_uOWResources.GetUserBackground(id));
+        }
+
+
     }
 }

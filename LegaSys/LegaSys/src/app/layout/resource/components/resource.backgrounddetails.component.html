@@ -1,0 +1,111 @@
+<div style="background-color: white">
+    <label>Experienced </label>
+    <mat-form-field style="margin-left: 100px" >
+    <mat-select [(ngModel)]="selected" (ngModelChange)="onChange($event)" [disabled]='isExp'>
+      <mat-option value="false">No</mat-option>
+      <mat-option value="true">Yes</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div style="background-color: white">
+    <label>Current Experience: {{currentExp}} </label>
+    <br><br>
+</div>
+<div style="background-color: white">
+  <label>Total Experience </label>
+  <br><br>
+</div>
+ 
+ <div *ngIf="showExp">
+
+<mat-table [dataSource]="backgroundDetails" matSort class="example-container mat-elevation-z8 resource-grid">
+
+    <ng-container matColumnDef="CompanyName">
+        <mat-header-cell  mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.CompanyName}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="Designation">
+        <mat-header-cell  mat-header-cell *matHeaderCellDef mat-sort-header>Designation </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Designation}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="JoiningDate">
+        <mat-header-cell  mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.JoiningDate| date}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="LeavingDate">
+        <mat-header-cell  mat-header-cell *matHeaderCellDef mat-sort-header>Leaving Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.LeavingDate| date}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="Duration">
+        <mat-header-cell  mat-header-cell *matHeaderCellDef mat-sort-header>Duration </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{calcExperience(element.JoiningDate, element.LeavingDate)}}  </mat-cell>>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <!-- <mat-footer-row *matFooterRowDef>
+       
+    </mat-footer-row > -->
+
+  </mat-table>
+
+
+
+
+<mat-accordion>
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size: smaller;color: steelblue">
+         Click to add item
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- Type your name and age -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <mat-form-field>
+        <input matInput placeholder="Company Name" [(ngModel)]="value1">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder="Designation" [(ngModel)]="value2">
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="JoiningDate" type="date" [(ngModel)]="value3">
+        </mat-form-field>
+    
+        <mat-form-field>
+          <input matInput placeholder="Leaving Date" type="date" [(ngModel)]="value4">
+        </mat-form-field>
+        <button class="btn btn-info" (click)="addExperience()">Add Experience</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+
+</div>
+ <!-- <label>Experience in VE</label>
+  <div class="row">
+      
+    <input type="text" placeholder="Company Name" class="form-control col-md-3"/>
+    <input type="text" placeholder="Designation" class="form-control col-md-3"/>
+    <input type="date"  class="form-control col-md-3"/>
+    <input type="date"  class="form-control col-md-3"/>
+  </div> -->
+
+  <div style=" background: #bee5eb; padding: 10px;" >
+      <!-- <div *ngIf="isDisabled" class="float-right"> -->
+          <button type="button" mat-button class="btn btn-info" (click)="edit()"  ><i class="fa fa-pencil-square-o"
+                  ></i> Edit</button>
+      <!-- </div> -->
+      <div *ngIf="!disable" class="float-right ml-2">
+          <button mat-button class="btn btn-success"  (click)="onSubmit()"><i
+                  class="fa fa-save" aria-hidden="true"></i> Update</button>
+      </div>
+      <div *ngIf="!disable" class="float-right ml-2">
+          <button mat-button class="btn btn-secondary" (click)="Cancel()"><i class="fa fa-times" aria-hidden="true"></i>
+              Cancel</button>
+      </div>
+</div>
+
+ 
+

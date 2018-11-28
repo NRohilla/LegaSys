@@ -53,7 +53,8 @@ namespace LegaSysServices.Controllers
         }
 
         [HttpPost]
-        [Route("project/{id}/update")]
+        //[Route("project/{id}/update")]
+        [Route("project/update")]
         public IHttpActionResult Put([FromBody]ProjectDetail objProjects)
         {
             var lsProjects = _projects.UpdateProjectDetail(objProjects);

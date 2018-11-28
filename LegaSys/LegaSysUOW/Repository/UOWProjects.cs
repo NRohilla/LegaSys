@@ -101,11 +101,12 @@ namespace LegaSysUOW.Repository
                 Title = projectDetail.Title,
                 Description = projectDetail.Description,
                 Client_ID = projectDetail.Client_ID,
-                Status = projectDetail.Status,
+                ProjectDomain_ID = projectDetail.ProjectDomain_ID,
+                Status = 0,//projectDetail.Status,
                 Created_By = projectDetail.Created_By,
                 Updated_By = projectDetail.Updated_By,
-                Created_Date = projectDetail.Created_Date,
-                Updated_Date = projectDetail.Updated_Date,
+                Created_Date = DateTime.Now,//projectDetail.Created_Date,
+                Updated_Date = DateTime.Now,//projectDetail.Updated_Date,
             };
 
             db.LegaSys_Projects.Add(projectModel);
@@ -124,11 +125,11 @@ namespace LegaSysUOW.Repository
                 objProjectDetail.Title = projectDetail.Title;
                 objProjectDetail.Description = projectDetail.Description;
                 objProjectDetail.Client_ID = projectDetail.Client_ID;
-                objProjectDetail.Status = projectDetail.Status;
+                //objProjectDetail.Status = projectDetail.Status;
                 objProjectDetail.Created_By = projectDetail.Created_By;
                 objProjectDetail.Updated_By = projectDetail.Updated_By;
                 objProjectDetail.Created_Date = projectDetail.Created_Date;
-                objProjectDetail.Updated_Date = (projectDetail.Updated_Date != null) ? projectDetail.Updated_Date : DateTime.Now;
+                objProjectDetail.Updated_Date = DateTime.Now;// (projectDetail.Updated_Date != null) ? projectDetail.Updated_Date : DateTime.Now;
                 db.SaveChanges();
             }
 

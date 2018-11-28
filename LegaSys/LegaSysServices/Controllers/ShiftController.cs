@@ -29,6 +29,13 @@ namespace LegaSysServices.Controllers
         }
 
         [HttpGet]
+        [Route("shift/getallactive")]
+        public IHttpActionResult GetAllActiveShifts()
+        {
+            return Json(_uOWShifts.GetAllActiveShifts());
+        }
+
+        [HttpGet]
         [Route("shift/{id}")]
         public IHttpActionResult GetShiftById(int id)
         {
@@ -64,7 +71,7 @@ namespace LegaSysServices.Controllers
 
         [HttpPost]
         [Route("shift/update")]
-        public IHttpActionResult UpdateResource(Shift model)
+        public IHttpActionResult UpdateShift(Shift model)
         {
             if (model == null)
                 return BadRequest("Model cannot be null");

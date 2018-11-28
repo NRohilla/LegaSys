@@ -68,6 +68,7 @@ export class ShiftsComponent implements OnInit {
             this.snackBar.open("Shift added successfully", "Ok", {
               duration: 2000,
             });
+            this.ngOnInit();
           }
         });
       }
@@ -77,8 +78,8 @@ export class ShiftsComponent implements OnInit {
             this.snackBar.open("Shift updated successfully", "Ok", {
               duration: 2000,
             });
-            this.ngOnInit();
             this.formType = "Add";
+            this.ngOnInit();
           }
         });
       }

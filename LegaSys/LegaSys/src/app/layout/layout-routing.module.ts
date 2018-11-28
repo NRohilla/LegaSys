@@ -24,7 +24,9 @@ const routes: Routes = [
             { path: 'resource', loadChildren: './resource/resource.module#ResourceModule' },
             { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
             { path: 'shifts', loadChildren: './masters/shifts/shifts.module#ShiftsModule' },
-            { path: 'create-resource', component: CreateResourceComponent }
+            { path: 'create-resource', component: CreateResourceComponent },
+            { path: 'locations', loadChildren: './masters/locations/locations.module#LocationsModule' },
+            { path: 'roles', loadChildren: './masters/roles/roles.module#RolesModule' }
         ]
     }
 ];

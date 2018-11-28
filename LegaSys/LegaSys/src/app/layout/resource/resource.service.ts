@@ -36,15 +36,15 @@ export class ResourceService {
     }
 
     getLocation() {
-        return this.http.get<Resource[]>('http://localhost:58164/location/getall', { headers: this.getToken() })
+        return this.http.get<Resource[]>('http://localhost:58164/location/getallactive', { headers: this.getToken() })
     }
 
     getShift() {
-        return this.http.get<Resource[]>('http://localhost:58164/shift/getall', { headers: this.getToken() })
+        return this.http.get<Resource[]>('http://localhost:58164/shift/getallactive', { headers: this.getToken() })
     }
 
     getRoles() {
-        return this.http.get<Resource[]>('http://localhost:58164/role/getall', { headers: this.getToken() })
+        return this.http.get<Resource[]>('http://localhost:58164/role/getallactive', { headers: this.getToken() })
     }
 
     getReportingHead(id) {
@@ -74,15 +74,15 @@ export class ResourceService {
     }
 
     getRole() {
-        return this.http.get<Resource>('http://localhost:58164/role/getall', { headers: this.getToken() })
+        return this.http.get<Resource>('http://localhost:58164/role/getallactive', { headers: this.getToken() })
     }
 
     getAllShift() {
-        return this.http.get<Resource>('http://localhost:58164/shift/getall', { headers: this.getToken() })
+        return this.http.get<Resource>('http://localhost:58164/shift/getallactive', { headers: this.getToken() })
     }
 
     getAllLocation() {
-        return this.http.get<Resource>('http://localhost:58164/location/getall', { headers: this.getToken() })
+        return this.http.get<Resource>('http://localhost:58164/location/getallactive', { headers: this.getToken() })
     }
 
 }

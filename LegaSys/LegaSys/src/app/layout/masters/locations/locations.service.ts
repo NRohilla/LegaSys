@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 import { map, catchError } from 'rxjs/operators';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { throwError } from 'rxjs';
-import { Shift } from './shifts.component';
+import { LocationModel } from './locations.component';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ShiftsService {
+export class LocationsService {
 
-    baseUrl: string = 'http://localhost:58164/shift/';
+    baseUrl: string = 'http://localhost:58164/location/';
 
     constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
     ) { }
@@ -25,7 +25,7 @@ export class ShiftsService {
         }
     }
 
-    getAllShifts() {
+    getAllLocations() {
         return this.http.get(this.baseUrl + "getall", { headers: this.getToken() })
     }
 
@@ -33,25 +33,24 @@ export class ShiftsService {
         return this.http.get(this.baseUrl + "changestatus/" + id, { headers: this.getToken() })
     }
 
-    createShift(shift: Shift) {
-        return this.http.post(this.baseUrl + "create", shift, { headers: this.getToken() })
-        .pipe(
-            map(res=>res),
-            catchError(this.errorHandler)
-        );
+    createLocation(location: LocationModel) {
+        return this.http.post(this.baseUrl + "create", location, { headers: this.getToken() })
+            .pipe(
+                map(res => res),
+                catchError(this.errorHandler)
+            );
     }
 
-    updateShift(shift: Shift) {
-        return this.http.post(this.baseUrl + "update", shift, { headers: this.getToken() })
-        .pipe(
-            map(res=>res),
-            catchError(this.errorHandler)
-        );
+    updateLocation(location: LocationModel) {
+        return this.http.post(this.baseUrl + "update", location, { headers: this.getToken() })
+            .pipe(
+                map(res => res),
+                catchError(this.errorHandler)
+            );
     }
 
     errorHandler(error: Response) {
         console.log(error);
         return throwError(error);
     }
-
 }

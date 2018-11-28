@@ -42,7 +42,8 @@ namespace LegaSysUOW.Repository
                 StartTimeIST = model.StartTimeIST,
                 EndTimeIST = model.EndTimeIST,
                 Created_Date = DateTime.Now,
-                Created_By = userId
+                Created_By = userId,
+                IsActive = true
             };
 
             db.LegaSys_Master_Shifts.Add(shift);
@@ -51,7 +52,17 @@ namespace LegaSysUOW.Repository
             return shift.ShiftID;
         }
 
+        public IQueryable<Shift> GetAllActiveShifts()
+        {
+            return FetchShifts().Where(x => x.IsActive);
+        }
+
         public IQueryable<Shift> GetAllShifts()
+        {
+            return FetchShifts();
+        }
+
+        private IQueryable<Shift> FetchShifts()
         {
             return db.LegaSys_Master_Shifts.Select(y => new Shift
             {
@@ -67,16 +78,7 @@ namespace LegaSysUOW.Repository
 
         public Shift GetShiftById(int id)
         {
-            return db.LegaSys_Master_Shifts.Where(x => x.ShiftID == id).Select(y => new Shift
-            {
-                ShiftID = y.ShiftID,
-                WeekOff1 = y.WeekOff1,
-                WeekOff2 = y.WeekOff2,
-                WeekOff3 = y.WeekOff3,
-                StartTimeIST = y.StartTimeIST,
-                EndTimeIST = y.EndTimeIST,
-                IsActive = y.IsActive
-            }).FirstOrDefault();
+            return FetchShifts().FirstOrDefault(x => x.ShiftID == id);
         }
 
         public bool UpdateShift(Shift model, int userId)

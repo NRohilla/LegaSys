@@ -12,9 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatCardModule} from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   imports: [
     CommonModule,
@@ -29,11 +29,7 @@ import {MatCardModule} from '@angular/material/card';
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatCardModule
-
-
   ],
-
-
   declarations: [ClientDetailsComponent, ClientDetailsSummaryComponent, ClientDetailsPersonalDetailsComponent, ClientDetailsCoClientDetailsComponent]
 })
 export class ClientDetailsModule { }

@@ -69,9 +69,8 @@
                     <mat-form-field class="w-100">
                             <label *ngIf="readOnly" ><strong>Other Client Email </strong></label>
                         <input  [readonly]="readOnly" formControlName="clientEmail4" matInput [placeholder]="GetPlaceHolder('clientEmail4')"  >
-                        <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Please enter valid Email</mat-error>
-                  
-                        
+                       <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Please enter valid Email</mat-error>
+                                        
                     </mat-form-field>
                 </div>       
         

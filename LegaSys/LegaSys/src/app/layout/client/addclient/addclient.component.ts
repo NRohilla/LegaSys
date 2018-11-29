@@ -80,7 +80,7 @@ export class AddclientComponent implements OnInit {
     show() {
       this.Message = true;
       this.successMessage = "Client Added Succesfully";
-      setTimeout(() => this.Message = false, 2500)
+      setTimeout(() => this.Message = false, 1500)
     }
     onSubmit() 
   {

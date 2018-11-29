@@ -1,8 +1,3 @@
-<!-- 
-<label>
-    <strong>Name :</strong>
-    {{currentClientDetails.ClientName}}
-</label>  -->
 <div class="w-100 float-left table-active py-4 px-2" *ngIf="currentClientDetails">
       <div class="row mx-0 my-2">
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
@@ -14,16 +9,16 @@
                   <div class="float-left">{{currentClientDetails.Address}}</div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                        <div class="summary-lebel float-left"><strong>Country:</strong></div>
-                        <div class="float-left">{{currentClientDetails.Country}}</div>
-                  </div>
-            
+                  <div class="summary-lebel float-left"><strong>Country:</strong></div>
+                  <div class="float-left">{{currentClientDetails.Country}}</div>
+            </div>
+
       </div>
       <div class="row mx-0 my-2">
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                              <div class="summary-lebel float-left"><strong>Primary Email ID :</strong></div>
-                              <div class="float-left">{{currentClientDetails.EmailID}}</div>
-                        </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                  <div class="summary-lebel float-left"><strong>Primary Email ID :</strong></div>
+                  <div class="float-left">{{currentClientDetails.EmailID}}</div>
+            </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>Secondry Email ID :</strong></div>
                   <div class="float-left">{{currentClientDetails.EmailID2}}</div>
@@ -32,13 +27,13 @@
                   <div class="summary-lebel float-left"><strong>Email ID Other :</strong></div>
                   <div class="float-left">{{currentClientDetails.EmailID2}}</div>
             </div>
-          
+
       </div>
       <div class="row mx-0 my-2">
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                              <div class="summary-lebel float-left"><strong>Email ID Other:</strong></div>
-                              <div class="float-left">{{currentClientDetails.EmailID4}}</div>
-                        </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                  <div class="summary-lebel float-left"><strong>Email ID Other:</strong></div>
+                  <div class="float-left">{{currentClientDetails.EmailID4}}</div>
+            </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>Primary Co-Client :</strong></div>
                   <div class="float-left">{{currentClientDetails.CoClient}}</div>
@@ -47,33 +42,18 @@
                   <div class="summary-lebel float-left"><strong>Secondry Co-Client:</strong></div>
                   <div class="float-left">{{currentClientDetails.CoClient2}}</div>
             </div>
-            
+
       </div>
       <div class="row mx-0 my-2">
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                              <div class="summary-lebel float-left"><strong> Co-Client Other :</strong></div>
-                              <div class="float-left">{{currentClientDetails.CoClient3}}</div>
-                        </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                  <div class="summary-lebel float-left"><strong> Co-Client Other :</strong></div>
+                  <div class="float-left">{{currentClientDetails.CoClient3}}</div>
+            </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>Co-Client Other :</strong></div>
                   <div class="float-left">{{currentClientDetails.CoClient4}}</div>
             </div>
       </div>
 </div>
-<div class="w-100 float-left d-block table-info px-4 py-2 table-info footer-height">
-      <!-- <div class="px-2 float-right" *ngIf="disable">
-                <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
-                        aria-hidden="true"></i> Edit</button>
-            </div>
-            <div class="px-2 float-right" *ngIf="!disable">
-                <button mat-button class="btn btn-success" [disabled]="!personalDetailsForm.valid" (click)="UpdateClient()"><i class="fa fa-save" aria-hidden="true"></i>
-                    Save</button>
-            </div>
-            <div class="px-2 float-right" *ngIf="!disable">
-                <button mat-button class="btn btn-secondary" (click)="DiscardChanges()"><i class="fa fa-times" aria-hidden="true"></i>
-                    Cancel</button>
-            </div>
-            <div class="px-2 float-right">
-                    <button  mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
-                    </div> -->
+<div class="w-100 float-left d-block table-info px-4 py-2 table-info footer-height">   
 </div>

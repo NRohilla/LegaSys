@@ -76,11 +76,12 @@ export class ClientComponent implements OnInit {
     setTimeout(() => this.Message = false, 2500)
   }
 
-
+/******* Created on 27 Nov 2018 By Vaibhav ******/
   openDialog(dailogID): void {
     sessionStorage.setItem("currentClientdailogID",dailogID);
     const dialogRef = this.dialog.open(DeleteDialog, {
-      width: '320px',
+      width: '370px',
+
       data: {confirm: true }
     });
 

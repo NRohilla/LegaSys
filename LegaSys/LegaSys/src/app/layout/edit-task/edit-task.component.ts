@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { TaskServiceService } from '../taskservice.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-task',
@@ -21,7 +22,7 @@ export class EditTaskComponent implements OnInit {
   myprojects:any
 
 
-  constructor(public Formbuilder: FormBuilder, public dataService: TaskServiceService) {
+  constructor(public Formbuilder: FormBuilder, public dataService: TaskServiceService,public router:Router) {
 
     this.taskeditForm = this.Formbuilder.group
       ({
@@ -82,7 +83,7 @@ export class EditTaskComponent implements OnInit {
               debugger;
               console.log(res);
               alert(JSON.stringify(res));
-              this.taskeditForm.reset();
+              this.router.navigate(['/ListTasksPath']);
             },
             err => {
               console.log(err);

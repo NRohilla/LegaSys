@@ -21,7 +21,7 @@ export class ListTaskComponent implements OnInit {
 
  
 
-  displayedColumns: string[] = ['TaskTitle', 'Description', 'Updated_By', 'Updated_Date', 'Project_Title','Project_Description' ,'ProjectUpdated_By','projectUpdated_Date','Action'];
+  displayedColumns: string[] = ['TaskTitle', 'Description', 'Updated_By', 'Updated_Date', 'Project_Title','Project_Description' ,'Action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   applyFilter(filterValue: string) {

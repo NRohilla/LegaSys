@@ -11,11 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { PageHeaderModule } from '../../shared';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
-
-
-import {DeleteDialog} from './deleteDialog';
-
-    
+import {DeleteDialog} from './deleteDialog';   
 
 @NgModule({
   imports: [

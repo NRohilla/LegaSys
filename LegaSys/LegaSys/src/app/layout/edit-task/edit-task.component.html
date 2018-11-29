@@ -1,0 +1,110 @@
+
+<div>
+    <app-page-header [heading]="'Edit Task'" [icon]="'fa fa-users'"></app-page-header>
+  
+  </div>
+
+<br>
+<form [formGroup]="taskeditForm" >
+    <div class="example-container ">    
+        <div class="row">    
+           <div class="col-md-4">
+                <!-- Task Title Coloumn -->
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Task Title" formControlName=TaskTitle  [(ngModel)]="dataSource.TaskTitle">
+    
+                    <!-- Validation Error Message -->
+                    <mat-error *ngIf="taskeditForm.controls.TaskTitle.invalid">
+                        <span [hidden]="!taskeditForm.controls['TaskTitle'].errors.required">
+                            Task Title is required.
+                        </span>
+                        <span [hidden]="!taskeditForm.controls['TaskTitle'].errors.maxlength">
+                            Maximum allowed characters are 25
+                        </span>
+    
+                        <span [hidden]="!taskeditForm.controls['TaskTitle'].errors.pattern">
+                            Special characters are not allowed here.
+                        </span>
+    
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+        <!-- //Task Client name list *Sadhana-->
+
+            <div class="col-md-4">
+                    <mat-form-field class="w-100">
+                              <mat-select placeholder="Client Name" formControlName=ClientName [(ngModel)]="dataSource.Client_ID">
+                                  
+                                          <mat-option *ngFor="let clients of myclients" [value]="clients.ClientDetailID">
+                                            {{clients.ClientName}}
+                                          </mat-option>
+       
+                    </mat-select>
+                                <!-- Validation Error Message -->
+                             <mat-error *ngIf="taskeditForm.controls.ClientName.invalid">
+                                    <span [hidden]="!taskeditForm.controls['ClientName'].errors.required">
+                                        Select is required.
+                                    </span>
+                                </mat-error>
+                     </mat-form-field> 
+            
+                    </div>
+   
+             <!-- Select Project Name -->
+     
+            <div class="col-md-4">
+           <mat-form-field class="w-100">
+                    <mat-select placeholder="Project Name" formControlName=Project_ID [(ngModel)]="dataSource.Project_ID" >        
+                                       <mat-option *ngFor="let projects of myprojects" [value]="projects.ProjectID">
+                                           {{projects.Title}}
+                                       </mat-option>
+   
+                   </mat-select>
+   
+                    <!-- Validation Error Message -->
+                    <mat-error *ngIf="taskeditForm.controls.Project_ID.invalid">
+                             <span [hidden]="!taskeditForm.controls['Project_ID'].errors.required">
+                               Select is required.
+                           </span>
+                       </mat-error>
+                   
+            </mat-form-field>
+           </div>
+        </div>
+          
+           <!-- Task Description Coloumn -->
+         <div class="row">
+                        <div class="col-md-4">
+                <mat-form-field class="w-100">
+                    <textarea matInput placeholder="Description" formControlName=Description  [(ngModel)]="dataSource.Description"> </textarea>
+    
+                    <!-- Validation Error Message -->
+                    <mat-error *ngIf="taskeditForm.controls.Description.invalid">
+                        <span [hidden]="!taskeditForm.controls['Description'].errors.required">
+                            Task Description is required.
+                        </span>
+                    </mat-error>
+    
+    
+                </mat-form-field>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="w-100 float-left table-info px-4 py-2 text-right">
+        <!-- This button will be used to  Edit Task -->
+        <div *ngIf="disable" >
+                     <button mat-button class="btn btn-info"  (click)="MakeFieldEditable()" ><i class="fa fa-edit" aria-hidden="true"></i>Edit</button>
+        </div>
+        <!-- This button will be used to  Update Task -->
+        <div *ngIf="!disable" >
+                      <button mat-button class="btn btn-info" (click)="UpdateTaskByID()"><i class="fa fa-plus" aria-hidden="true" ></i>Update</button>
+                   
+        
+       <button mat-button class="btn btn-info ml-3"   [routerLink]="['/ListTasksPath']"><i class="fa fa-arrow-left" aria-hidden="true"></i>Cancel</button> </div>
+                    
+     </div>
+ 
+</form>

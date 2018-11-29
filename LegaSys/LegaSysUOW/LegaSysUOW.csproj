@@ -73,6 +73,7 @@
     <Compile Include="Interface\IUOWResources.cs" />
     <Compile Include="Interface\IUOWRoles.cs" />
     <Compile Include="Interface\IUOWShifts.cs" />
+    <Compile Include="Interface\IUOWTask.cs" />
     <Compile Include="Interface\IUOWUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DbFactory.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Repository\UOWResources.cs" />
     <Compile Include="Repository\UOWRoles.cs" />
     <Compile Include="Repository\UOWShifts.cs" />
+    <Compile Include="Repository\UOWTask.cs" />
     <Compile Include="Repository\UOWUsers.cs" />
   </ItemGroup>
   <ItemGroup>

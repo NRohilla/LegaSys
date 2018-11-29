@@ -22,7 +22,10 @@ const routes: Routes = [
             { path: 'client', loadChildren: './client/client.module#ClientModule'},
             { path: 'client-details', loadChildren: './client/client-details/client-details.module#ClientDetailsModule'},
             { path: 'add-client', loadChildren: './client/addclient/addclient.module#AddclientModule'},
-            { path: 'project', loadChildren: './project/project.module#ProjectModule' }
+            { path: 'project', loadChildren: './project/project.module#ProjectModule' },
+            { path: 'TasksPath', loadChildren: './my-project/my-project.module#MyprojectModule' },
+            { path: 'ListTasksPath', loadChildren: './list-task/list-task.module#ListTaskModule' },
+            { path: 'EditTasksPath', loadChildren: './edit-task/edit-task.module#EditTaskModule' }
         ]
     }
 ];

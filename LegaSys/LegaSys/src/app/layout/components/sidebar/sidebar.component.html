@@ -12,6 +12,10 @@
             <i class="fa fa-fw fa-files-o"></i>&nbsp;
             <span>{{ 'Projects' | translate }}</span>
         </a>
+        <a [routerLink]="['/ListTasksPath']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-files-o"></i>&nbsp;
+            <span>{{ 'Tasks' | translate }}</span>
+        </a>
         <a [routerLink]="['/resource']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-users"></i>&nbsp;
             <span>{{ 'Resources' | translate }}</span>

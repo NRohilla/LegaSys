@@ -1,0 +1,34 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.example-container > * {
+    width: 100%;
+    font-weight: bold;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.example-container > * {
+    width: 100%;
+    font-weight: bold;
+}
+
+:-ms-input-placeholder { 
+    font-size: 14px; 
+    color: #d0cdfa;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+   }
+   input::placeholder {
+    color: red;
+    font-size: 1.2em;
+    font-weight: bold;
+  }

@@ -11,6 +11,11 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import{CurrentClientdataServiceService} from './current-clientdata-service.service';
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { TosterService } from './shared/services/toster.service';
+
+
+
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -30,6 +35,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         BrowserAnimationsModule,
         HttpClientModule,
         StorageServiceModule,
+        ToastrModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -42,6 +48,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     declarations: [AppComponent],
     providers: [
         CurrentClientdataServiceService,
+        TosterService,
         AuthGuard,
         {
             provide: HTTP_INTERCEPTORS,

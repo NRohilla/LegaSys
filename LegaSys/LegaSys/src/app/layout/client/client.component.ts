@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { CurrentClientdataServiceService } from '../../current-clientdata-service.service';
 import { Client } from './model/client.model';
 import {DeleteDialog} from './deleteDialog';
+import { TosterService } from '../../shared/services/toster.service';
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -26,10 +27,8 @@ export class ClientComponent implements OnInit {
   isLoading = true;// this varibale will be used to display progressive spinner
 
 
-  constructor(public dialog: MatDialog,private modalService: NgbModal,
-     private clientService: ClientServiceService, 
-     private router: Router,
-     private currentClientdataService: CurrentClientdataServiceService,) {
+  constructor(public dialog: MatDialog,private modalService: NgbModal,private clientService: ClientServiceService, 
+     private router: Router, private currentClientdataService: CurrentClientdataServiceService,public tosterService:TosterService) {
    
 
   }
@@ -61,9 +60,15 @@ export class ClientComponent implements OnInit {
   DeleteClientWithID(ID) {
     this.clientService.DeleteClient(ID).subscribe(
       suc => {
-        this.GetAllClients();
-        //alert("Client Deleted Succesfully");
-        this.show();
+        if(suc=="Data deleted successfully!"){
+          this.tosterService.showSuccess("Client Delete successfully");
+          //this.show();
+           this.GetAllClients();          
+        }else{
+          this.tosterService.showError("Client Deletion Failed");
+        }
+
+      
       },
       err => {
         console.log(err);
@@ -93,11 +98,6 @@ export class ClientComponent implements OnInit {
     });
   
   }
-
-
-
-
-
   ngOnInit() {
     // Following fuction will execute and call to client service to get all client from database
     this.GetAllClients();

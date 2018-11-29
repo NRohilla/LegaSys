@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -29,6 +30,8 @@ import { MatCardModule } from '@angular/material/card';
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatCardModule
+   
+   
   ],
   declarations: [ClientDetailsComponent, ClientDetailsSummaryComponent, ClientDetailsPersonalDetailsComponent, ClientDetailsCoClientDetailsComponent]
 })

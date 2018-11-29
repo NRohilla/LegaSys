@@ -1,5 +1,5 @@
 <app-page-header [heading]="'Client Details'" [icon]="'fa fa-info-circle'"></app-page-header>
-<ngb-alert style="width:40%;" *ngIf="Message" type="success" (close)="Message = null">{{ successMessage }}</ngb-alert>
+<!-- <ngb-alert style="width:40%;" *ngIf="Message" type="success" (close)="Message = null">{{ successMessage }}</ngb-alert> -->
 <mat-tab-group class="client-detail ">
   <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
     <mat-progress-spinner color="primary" mode="indeterminate">

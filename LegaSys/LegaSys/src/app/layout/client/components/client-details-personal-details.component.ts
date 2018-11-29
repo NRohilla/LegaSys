@@ -89,6 +89,7 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
       );
     }
   }
+  /**** This function is used to filter the name of country from country List  */
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.CountryList.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
@@ -131,7 +132,6 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     if (this.currentClientDetails.EmailID4 != null && this.currentClientDetails.EmailID4 != '' && this.currentClientDetails.EmailID4 != undefined) {
       this.personalDetailsForm.controls['clientEmail4'].setValue(this.currentClientDetails.EmailID4.trim());    }
     this.personalDetailsForm.controls['country'].setValue(this.currentClientDetails.Country);
-    //this.personalDetailsForm.disable();
   }
 
   /****** Created on 27 Nov 2017 ************/

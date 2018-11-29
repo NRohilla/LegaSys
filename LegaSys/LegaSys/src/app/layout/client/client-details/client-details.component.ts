@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CurrentClientdataServiceService } from '../../../current-clientdata-service.service';
 import { ClientServiceService } from '../client-service.service';
 import { Client } from '../model/client.model';
+import { TosterService } from '../../../shared/services/toster.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-client-details',
@@ -17,7 +19,8 @@ export class ClientDetailsComponent implements OnInit {
   currentClientDetails: Client; // property used for holding the details of client selecte dby user
   currentClientDetailsBackup: Client; // this property is used for as reference to previous data, it will be used to cancel button
   isLoading = true;
-  constructor(private currentClientdataService: CurrentClientdataServiceService, private clientService: ClientServiceService) { }
+  constructor(private currentClientdataService: CurrentClientdataServiceService, private clientService: ClientServiceService,
+    public toastr: ToastrManager,public tosterService:TosterService) { }
 
   /***** This method is used for Geting details of client selecte dby user. This method is calling client service with parameter ID which is ID of 
    ***** client selected by user to view *****************************************************************************************************/
@@ -38,9 +41,15 @@ export class ClientDetailsComponent implements OnInit {
   updateClent(client: any) {
     this.clientService.UpdateDetailsWithID(client).subscribe(
       suc => {
-        this.GetClientsWithID(this.currentClientID);
-        // alert("Client Details Updeted Successfully ");
-        this.show();
+        if(suc=="Data updated successfully!"){
+          this.tosterService.showSuccess("Client Updated Succesfully");
+           this.GetClientsWithID(this.currentClientID);
+           //this.show();           
+        }
+        else{
+          this.tosterService.showError("Client Updation Failed");
+        }
+      
       },
       err => {
         console.log(err);
@@ -48,6 +57,7 @@ export class ClientDetailsComponent implements OnInit {
     );
   }
   onCancel(client: any) {
+    this.tosterService.showInfo("cancelled");
         this.currentClientDetails = client;
   }
   show() {

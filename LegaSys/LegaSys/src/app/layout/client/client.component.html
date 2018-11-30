@@ -8,6 +8,7 @@
  
  <!-- This function is for filter the grid -->
   <div >
+      <div class="card mb-3">
   <mat-table [dataSource]="clientDetails" matSort class="table-active">
 
     <!--- Note that these columns can be defined in any order.
@@ -63,14 +64,15 @@
   
   <!-- this code is for pagignator -->
   <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
-
+  <div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
+      <!-- This button will be used to add client into the database-->
+    
+      <button  mat-button class="btn btn-info" [routerLink]="['/add-client']"><i class="fa fa-plus" aria-hidden="true"></i> Add Client</button>
+    </div>
 </div>
 
-<div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
-  <!-- This button will be used to add client into the database-->
 
-  <button  mat-button class="btn btn-info" [routerLink]="['/add-client']"><i class="fa fa-plus" aria-hidden="true"></i> Add Client</button>
-</div>
+
 
 
     

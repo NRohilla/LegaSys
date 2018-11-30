@@ -43,13 +43,13 @@ export class ClientDetailsComponent implements OnInit {
       suc => {
         if(suc=="Data updated successfully!"){
           this.tosterService.showSuccess("Client Updated Succesfully");
-           this.GetClientsWithID(this.currentClientID);
+          this.currentClientDetails=client;
+           //this.GetClientsWithID(this.currentClientID);
            //this.show();           
         }
         else{
           this.tosterService.showError("Client Updation Failed");
-        }
-      
+        }      
       },
       err => {
         console.log(err);

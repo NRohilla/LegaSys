@@ -36,6 +36,7 @@ namespace LegaSysUOW.Repository
                         Description = projects.Description,
                         Client_ID = projects.Client_ID.Value,
                         ClientName = clients.ClientName,
+                        Address=clients.Address,
                         Country = clients.Country,
                         CoClient = clients.CoClient,
                         CoClient2 = clients.CoClient2,
@@ -45,6 +46,7 @@ namespace LegaSysUOW.Repository
                         EmailID2 = clients.EmailID2,
                         EmailID3 = clients.EmailID3,
                         EmailID4 = clients.EmailID4,
+                        ClientStatus= clients.IsActive,
 
                         ProjectDomain_ID = projects.ProjectDomain_ID.Value,
                         DomainName = domain.DomainName,
@@ -124,11 +126,12 @@ namespace LegaSysUOW.Repository
                 Title = projectDetail.Title,
                 Description = projectDetail.Description,
                 Client_ID = projectDetail.Client_ID,
-                Status = projectDetail.Status,
+                ProjectDomain_ID = projectDetail.ProjectDomain_ID,
+                Status = 0,//projectDetail.Status,
                 Created_By = projectDetail.Created_By,
                 Updated_By = projectDetail.Updated_By,
-                Created_Date = projectDetail.Created_Date,
-                Updated_Date = projectDetail.Updated_Date,
+                Created_Date = DateTime.Now,
+                Updated_Date = DateTime.Now,
             };
 
             db.LegaSys_Projects.Add(projectModel);
@@ -147,11 +150,11 @@ namespace LegaSysUOW.Repository
                 objProjectDetail.Title = projectDetail.Title;
                 objProjectDetail.Description = projectDetail.Description;
                 objProjectDetail.Client_ID = projectDetail.Client_ID;
-                objProjectDetail.Status = projectDetail.Status;
+                //objProjectDetail.Status = projectDetail.Status;
                 objProjectDetail.Created_By = projectDetail.Created_By;
                 objProjectDetail.Updated_By = projectDetail.Updated_By;
                 objProjectDetail.Created_Date = projectDetail.Created_Date;
-                objProjectDetail.Updated_Date = (projectDetail.Updated_Date != null) ? projectDetail.Updated_Date : DateTime.Now;
+                objProjectDetail.Updated_Date = DateTime.Now;//(projectDetail.Updated_Date != null) ? projectDetail.Updated_Date : DateTime.Now;
                 db.SaveChanges();
             }
 
@@ -197,31 +200,31 @@ namespace LegaSysUOW.Repository
 
         //}
 
-        //public List<LegaSys_Master_TechDomains> GetAllTechDomains()
-        //{
-        //    try
-        //    {
+        public List<LegaSys_Master_TechDomains> GetAllTechDomains()
+        {
+            try
+            {
 
-        //        using (LegaSysEntities db = new LegaSysEntities())
-        //        {
-        //            var domains =  db.LegaSys_Master_TechDomains.AsEnumerable().Select(x=>new LegaSys_Master_TechDomains
-        //            {
-        //                TechDomainID = x.TechDomainID,
-        //                DomainName = x.DomainName
-        //            }).ToList();
-        //            return domains;
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    var domains = db.LegaSys_Master_TechDomains.AsEnumerable().Select(x => new LegaSys_Master_TechDomains
+                    {
+                        TechDomainID = x.TechDomainID,
+                        DomainName = x.DomainName
+                    }).ToList();
+                    return domains;
+                }
+            }
+            catch (Exception)
+            {
 
-        //        throw;
-        //    }
-
-
+                throw;
+            }
 
 
 
-        //}
+
+
+        }
     }
 }

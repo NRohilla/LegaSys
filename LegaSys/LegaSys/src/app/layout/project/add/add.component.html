@@ -10,6 +10,9 @@
 
     
 <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)" class="add-project table-active">
+        <div class="card-header bg-info">
+                <mat-label class="labeltext text-white text-uppercase">Project Info </mat-label>
+            </div>
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 colsm-6 col-12 float-left">
             <mat-form-field class="w-100 mt-4">
@@ -38,9 +41,9 @@
                 <input formControlName="DomainName" matInput placeholder="DomainName">
             </mat-form-field> -->
             <mat-form-field class="w-100">
-                <mat-select formControlName="ProjectDomain_ID" placeholder="Select Technical Domain" (selectionChange)="onSelect($event.value)">
+                <mat-select formControlName="ProjectDomain_ID" placeholder="Select Technical Domain">
                     <mat-option>-- Select Technical Domain--</mat-option>
-                    <mat-option *ngFor="let technologydetail of technologydetails" [value]="technologydetail.ProjectDomain_ID">
+                    <mat-option *ngFor="let technologydetail of technologydetails" [value]="technologydetail.TechDomainID">
                         {{technologydetail.DomainName}}
                     </mat-option>
                 </mat-select>
@@ -64,7 +67,7 @@
                 </mat-select>
                 <mat-error>
                     <span *ngIf="!regiForm.get('Client_ID').valid && regiForm.get('Client_ID').touched">Please
-                        select any client </span>
+                        select client </span>
                 </mat-error>
             </mat-form-field>
         </div>
@@ -88,12 +91,11 @@
 
 
     
-    <div class="w-100 float-left table-info px-4 py-2 text-right">
-
-        <button mat-button class="btn btn-info mx-2" [disabled]="!regiForm.valid || regiForm.get('ProjectDomain_ID').value==0 || regiForm.get('Client_ID').value==0 "><i class="fa fa-plus" aria-hidden="true"></i> Submit</button>
+    <div class="w-100 float-left table-info px-4 py-2 text-right">            
+            <button mat-button class="btn btn-secondary" (click)="onNoClick()" tabindex="-1"><i class="fa fa-times"  aria-hidden="true"></i> Cancel </button>
+            <button mat-button class="btn btn-info mx-2" [disabled]="!regiForm.valid || regiForm.get('ProjectDomain_ID').value==0 || regiForm.get('Client_ID').value==0 "><i class="fa fa-plus" aria-hidden="true"></i> Submit</button>
         <!-- <div class="px-2 float-right"> -->
-        <button mat-button class="btn btn-secondary" (click)="onNoClick()" tabindex="-1"><i class="fa fa-times"
-                aria-hidden="true"></i> Cancel</button>
+        
         <!-- </div> -->
     </div>
 

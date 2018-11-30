@@ -1,4 +1,4 @@
-import {MAT_DIALOG_DATA,MatDialog, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA,MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {Component, Inject, OnInit} from '@angular/core';
 import {SharedService} from '../../Shared/shared.service';
 import {FormControl, Validators} from '@angular/forms';
@@ -7,6 +7,8 @@ import { routerTransition } from '../../../router.animations';
 import {Observable} from 'rxjs';
 import { FormBuilder, FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SnackBarComponentExampleComponent } from '../../project/snack-bar-component-example/snack-bar-component-example.component';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -29,7 +31,7 @@ export class AddComponent implements OnInit {
     // constructor(public dialogRef: MatDialogRef<AddComponent>,
     constructor(
         //@Inject(MAT_DIALOG_DATA) public data: Project,
-        public dataService: SharedService, private fb: FormBuilder, private router: Router) {
+        public dataService: SharedService, private fb: FormBuilder, private router: Router,public snackBar: MatSnackBar) {
             this.regiForm = fb.group({
                 'Title' : ["", Validators.required],
                 'Description' :  ["", Validators.compose([Validators.required, Validators.maxLength(500)])],
@@ -73,7 +75,9 @@ onFormSubmit(form: NgForm) {
     {
         this.dataService.addProject(form).subscribe(
             res => {
-    
+                sessionStorage.setItem('message','added');
+                //this.openSnackBar();
+                this.snackBar.open('Project added successfully','ok',{duration: 2500});    
                 this.dataService.getAllProject();
                this.router.navigate(['project']);
             });
@@ -102,7 +106,12 @@ res => {
 onNoClick(): void {
     this.router.navigate(['project']);
 }
+openSnackBar() {
+    this.snackBar.openFromComponent(SnackBarComponentExampleComponent, {
+      duration: 2000,
+    });
+}
 }
 
 
-////redited/testing for push on git 27/11/2018
+////reedited/testing for push on git 29/11/2018

@@ -10,44 +10,47 @@ using LegaSysDataEntities;
 
 namespace LegaSysServices.Controllers
 {
-    
+    [Authorize]
     public class ClientController : ApiController
     {
-
-       
-
-        IUOWClient ClientRepository = new UOWClient();
         string Result = string.Empty;
-
+        private readonly IUOWClient _ClientRepository;
+      
+        public ClientController(IUOWClient ClientRepository)
+        {
+            _ClientRepository = ClientRepository;
+        }
 
         [HttpGet]
-        //Get all client list
+        [Route("client/GetAllClient")]
         public List<ClientDetail> GetAllClient()
         {
 
-            return ClientRepository.GetAllClient();
+            return _ClientRepository.GetAllClient();
 
         }
 
 
         [HttpGet]
+        [Route("client/GetClientById/{id}")]
+
         //Get client detail by Id
         public ClientDetail GetClientById(Int32 Id)
         {
 
-            return ClientRepository.GetClientById(Id);
+            return _ClientRepository.GetClientById(Id);
 
         }
 
 
 
-
         [HttpPost]
-
+        [Route("client/AddClientDetails")]
         //Post client details
-        public ClientDetail AddClientDetails(ClientDetail Objclient)
+        public int AddClientDetails(ClientDetail Objclient)
         {
-            return ClientRepository.AddClientDetails(Objclient);
+            int Result;
+            return Result= _ClientRepository.AddClientDetails(Objclient);
         
 
         }
@@ -55,23 +58,26 @@ namespace LegaSysServices.Controllers
 
         
         [HttpPut]
+        [Route("client/UpdateClientDetails")]
         //Update client details
         public string UpdateClientDetails(ClientDetail objClient)
         {
            
-            Result= ClientRepository.UpdateClientDetails(objClient);
+            Result= _ClientRepository.UpdateClientDetails(objClient);
             return Result;
 
         }
 
+
         
 
         [HttpDelete]
-        //Delete client 
+        [Route("client/DeleteClientById/{id}")]
+        //Delete client
         public string DeleteClientById(Int32 Id)
         {
            
-            Result = ClientRepository.DeleteClientById(Id);
+            Result = _ClientRepository.DeleteClientById(Id);
 
             return Result;
 

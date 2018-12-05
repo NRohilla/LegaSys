@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageHeaderModule } from '../../shared';
+
 import { ClientRoutingModule } from './client-routing.module';
 import { ClientComponent } from './client.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatTableModule} from '@angular/material';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatButtonModule} from '@angular/material/button';
-import {ClientServiceService} from './client-service.service'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatButtonModule, MatDialogModule, MatTabsModule, MatSortModule } from '@angular/material';
+import { ClientServiceService } from './client-service.service';
+import { FormsModule } from '@angular/forms';
+import { PageHeaderModule } from '../../shared';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
+import {DeleteDialog} from './deleteDialog';   
 
 @NgModule({
   imports: [
@@ -23,12 +24,17 @@ import {ClientServiceService} from './client-service.service'
     MatInputModule,
     MatPaginatorModule,
     MatButtonModule,
-    PageHeaderModule
-    
-    
+    MatDialogModule,
+    FormsModule,
+    PageHeaderModule,
+    MatTabsModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatCardModule
+   
   ],
   providers: [ClientServiceService],
-  declarations: [ClientComponent]
-
+  entryComponents: [DeleteDialog],
+  declarations: [ClientComponent,DeleteDialog]
 })
 export class ClientModule { }

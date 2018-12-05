@@ -1,0 +1,95 @@
+<form class="w-100 float-left table-active py-5 px-2" [formGroup]="personalDetailsForm" *ngIf="currentClientDetails">
+    <div class="row m-0">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+            <mat-form-field class="w-100">
+                    <label *ngIf="readOnly"><strong>Client Name  </strong></label>
+                <input [readonly]="readOnly" formControlName="clientName" matInput [placeholder]="GetPlaceHolder('clientName')">
+                <mat-error *ngIf="personalDetailsForm.controls['clientName'].invalid  && (personalDetailsForm.controls['clientName'].dirty || personalDetailsForm.controls['clientName'].touched)">
+                    {{ GetErrorMessage('clientName')}}</mat-error>
+                 
+            </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+            <mat-form-field class="w-100">
+                    <label *ngIf="readOnly"><strong>Client Address </strong></label>
+                <input [readonly]="readOnly" formControlName="clientAddress" matInput  [placeholder]="GetPlaceHolder('clientAddress')">
+                    <mat-error *ngIf="personalDetailsForm.controls['clientAddress'].invalid  && (personalDetailsForm.controls['clientAddress'].dirty || personalDetailsForm.controls['clientAddress'].touched)">Client address can not be empty</mat-error>
+                 
+                </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                <mat-form-field class="w-100">
+                    <label *ngIf="readOnly"><strong>Country</strong></label>
+        <input  [readonly]="readOnly" type="text" matInput formControlName="country" [matAutocomplete]="auto" [placeholder]="GetPlaceHolder('country')">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="max-height: 200px !important">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="personalDetailsForm.controls['country'].invalid  && (personalDetailsForm.controls['country'].dirty || personalDetailsForm.controls['country'].touched)">Country can not be blank</mat-error>
+                   
+    </mat-form-field>
+    </div>
+        
+    </div>
+    <div class="row m-0">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                    <mat-form-field class="w-100">
+                            <label *ngIf="readOnly"><strong>Primary Client Email </strong></label>
+                        <input [readonly]="readOnly" formControlName="clientEmail" matInput [placeholder]="GetPlaceHolder('clientEmail')"  >
+                        <mat-error *ngIf="personalDetailsForm.controls['clientEmail'].invalid  && (personalDetailsForm.controls['clientEmail'].dirty || personalDetailsForm.controls['clientEmail'].touched)">
+                           {{ GetErrorMessage('clientEmail')}}</mat-error>
+                           
+                    </mat-form-field>
+                </div>
+       
+        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+            <mat-form-field class="w-100">
+                    <label *ngIf="readOnly"><strong>Secondary Client  Email </strong></label>
+                <input [readonly]="readOnly" formControlName="clientEmail2" matInput [placeholder]="GetPlaceHolder('clientEmail2')">
+                <mat-error *ngIf="personalDetailsForm.controls['clientEmail2'].invalid  && (personalDetailsForm.controls['clientEmail2'].dirty || personalDetailsForm.controls['clientEmail2'].touched)">Please enter valid Email</mat-error>
+           
+              
+            </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                <mat-form-field class="w-100">
+                        <label *ngIf="readOnly"><strong>Other Client Email </strong></label>
+                    <input [readonly]="readOnly" formControlName="clientEmail3" matInput [placeholder]="GetPlaceHolder('clientEmail3')" >
+                    <mat-error *ngIf="personalDetailsForm.controls['clientEmail3'].invalid  && (personalDetailsForm.controls['clientEmail3'].dirty || personalDetailsForm.controls['clientEmail3'].touched)">Please enter valid Email</mat-error>
+                   
+                   
+                </mat-form-field>
+            </div>
+         
+    </div>
+    <div class="row m-0">       
+      
+            <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                    <mat-form-field class="w-100">
+                            <label *ngIf="readOnly" ><strong>Other Client Email </strong></label>
+                        <input  [readonly]="readOnly" formControlName="clientEmail4" matInput [placeholder]="GetPlaceHolder('clientEmail4')"  >
+                       <mat-error *ngIf="personalDetailsForm.controls['clientEmail4'].invalid  && (personalDetailsForm.controls['clientEmail4'].dirty || personalDetailsForm.controls['clientEmail4'].touched)">Please enter valid Email</mat-error>
+                                        
+                    </mat-form-field>
+                </div>       
+        
+    </div>
+</form>
+<div class="w-100 float-left d-block table-info px-4 py-2 table-info footer-height" >
+    <div class="px-2 float-right" *ngIf="disable">
+        <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
+                aria-hidden="true"></i> Edit</button>
+    </div>
+    <div class="px-2 float-right" *ngIf="!disable">
+        <button mat-button class="btn btn-success" [disabled]="!personalDetailsForm.valid " (click)="UpdateClient()"><i class="fa fa-save" aria-hidden="true"></i>
+            Save</button>
+    </div>
+    <div class="px-2 float-right" *ngIf="!disable">
+        <button mat-button class="btn btn-secondary" (click)="DiscardChanges()"><i class="fa fa-times" aria-hidden="true"></i>
+            Cancel</button>
+    </div>
+    <div class="px-2 float-right">
+            <button  mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
+            </div>
+</div>

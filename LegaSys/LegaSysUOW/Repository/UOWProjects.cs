@@ -18,12 +18,15 @@ namespace LegaSysUOW.Repository
             db = dbFactory.Init();
         }
 
-
         public ProjectDetail GetProject(int id)
         {
             return (from projects in db.LegaSys_Projects
                     join clients in db.LegaSys_ClientDetails on projects.Client_ID equals clients.ClientDetailID
                     join domain in db.LegaSys_Master_TechDomains on projects.ProjectDomain_ID equals domain.TechDomainID
+                    join resources in db.LegaSys_ProjectResources on projects.ProjectID equals resources.Project_ID
+                    join resourcedetail in db.LegaSys_UserDetails on resources.Resource_ID equals resourcedetail.UserDetailID
+                    join task in db.LegaSys_ProjectTasks on projects.ProjectID equals task.Project_ID
+                    join subtask in db.LegaSys_ProjectSubTasks on task.ProjectTaskID equals subtask.Project_Task_ID
                     where projects.ProjectID == id
                     select new ProjectDetail
                     {
@@ -37,7 +40,30 @@ namespace LegaSysUOW.Repository
                         Created_By = projects.Created_By,
                         Updated_By = projects.Updated_By,
                         Created_Date = projects.Created_Date,
-                        Updated_Date = projects.Updated_Date
+                        Updated_Date = projects.Updated_Date,                        
+                        
+                        ProjectDomainName = domain.DomainName,
+                        Resource_ID = resources.Resource_ID.Value,
+                        ResourceFirstname = resourcedetail.Firstname,
+                        ResourceMiddlename = resourcedetail.Middlename,
+                        ResourceLastname = resourcedetail.Lastname,
+                        TotalExp = resourcedetail.TotalExp,
+                        ResourceEmailId = resourcedetail.EmailId,
+                        ResourceMobileNumber = resourcedetail.MobileNumber,
+                        Resource_IsActive = resourcedetail.IsActive,
+                        Remarks = resourcedetail.Remarks,
+                        Master_Shift_ID = resourcedetail.Master_Shift_ID,
+                        Master_Location_ID = resourcedetail.Master_Location_ID,
+                        ReportingHead_ID = resourcedetail.ReportingHead_ID,
+                        Master_Role_ID = resourcedetail.Master_Role_ID,
+                        ProjectTaskID = task.ProjectTaskID,
+                        TaskTitle = task.Title,
+                        TaskDescription = task.Description,
+                        TaskAttachmentID = task.Attachment_ID.Value,
+                        ProjectSubTaskID = subtask.ProjectSubTaskID,
+                        SubTaskTitle = subtask.Title,
+                        SubTaskDescription = subtask.Description,
+                        SubTaskAttachmentID = subtask.Attachment_ID.Value
                     }).FirstOrDefault();
         }
 
@@ -75,11 +101,12 @@ namespace LegaSysUOW.Repository
                 Title = projectDetail.Title,
                 Description = projectDetail.Description,
                 Client_ID = projectDetail.Client_ID,
-                Status = projectDetail.Status,
+                ProjectDomain_ID = projectDetail.ProjectDomain_ID,
+                Status = 0,//projectDetail.Status,
                 Created_By = projectDetail.Created_By,
                 Updated_By = projectDetail.Updated_By,
-                Created_Date = projectDetail.Created_Date,
-                Updated_Date = projectDetail.Updated_Date,
+                Created_Date = DateTime.Now,//projectDetail.Created_Date,
+                Updated_Date = DateTime.Now,//projectDetail.Updated_Date,
             };
 
             db.LegaSys_Projects.Add(projectModel);
@@ -98,11 +125,11 @@ namespace LegaSysUOW.Repository
                 objProjectDetail.Title = projectDetail.Title;
                 objProjectDetail.Description = projectDetail.Description;
                 objProjectDetail.Client_ID = projectDetail.Client_ID;
-                objProjectDetail.Status = projectDetail.Status;
+                //objProjectDetail.Status = projectDetail.Status;
                 objProjectDetail.Created_By = projectDetail.Created_By;
                 objProjectDetail.Updated_By = projectDetail.Updated_By;
                 objProjectDetail.Created_Date = projectDetail.Created_Date;
-                objProjectDetail.Updated_Date = (projectDetail.Updated_Date != null) ? projectDetail.Updated_Date : DateTime.Now;
+                objProjectDetail.Updated_Date = DateTime.Now;// (projectDetail.Updated_Date != null) ? projectDetail.Updated_Date : DateTime.Now;
                 db.SaveChanges();
             }
 
@@ -124,6 +151,56 @@ namespace LegaSysUOW.Repository
                 db.SaveChanges();
             }
            
+        }
+
+        public IEnumerable<ProjectDetail> GetAllTechnology()
+        {
+            return (from projects in db.LegaSys_Master_TechDomains
+                    select new { projects }).AsEnumerable()
+                  .Select(x => new ProjectDetail
+                  {
+                      ProjectDomain_ID = x.projects.TechDomainID,
+                      DomainName = x.projects.DomainName,
+                  });
+        }
+
+        public IEnumerable<ProjectDetail> GetAllTechDomains()
+        {
+            try
+            {
+                return (from projects in db.LegaSys_Master_TechDomains
+                        select new { projects }).AsEnumerable()
+                 .Select(x => new ProjectDetail
+                 {
+                     ProjectDomain_ID = x.projects.TechDomainID,
+                     DomainName = x.projects.DomainName,
+                 });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<LegaSys_Master_Technologies> GetAllTechnologyByDomainId(int id)
+        {
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    var tech = db.LegaSys_Master_Technologies.AsEnumerable().Where(x => x.Master_DomainID == id).Select(x => new LegaSys_Master_Technologies
+                    {
+                        TechnologyID = x.TechnologyID,
+                        Name = x.Name
+                    }).ToList();
+                    return tech;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

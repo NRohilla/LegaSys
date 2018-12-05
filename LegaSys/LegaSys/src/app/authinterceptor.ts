@@ -29,7 +29,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
               else{
                     //this.currentValue = 'bearer ' + this.storage.get('UserToken');
                     this.currentValue = 'bearer ' + this.storage.get('UserToken').access_token;
-                    
+
                     authReq = req.clone({ headers: req.headers.set('Authorization', this.currentValue) });
               }
        }

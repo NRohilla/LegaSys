@@ -1,63 +1,76 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Clients'" [icon]="'fa fa-users'"></app-page-header>
 
-<app-page-header [heading]="'Clients'" [icon]="'fa fa-user'"></app-page-header>
+</div>
+ <!-- This button will be used to add client into the database-->
+ <!-- <ngb-alert style="width:40%;" *ngIf="Message" type="success" (close)="Message = null">{{ successMessage }}</ngb-alert> -->
 
-<div>
-  <!-- This button will be used to add client into the database-->
-   <button mat-flat-button color="primary">Add Client</button>
  
+ <!-- This function is for filter the grid -->
+  <div >
+  <mat-table [dataSource]="clientDetails" matSort class="table-active">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
   
-  <!-- This function is for filter the grid -->
-   <mat-form-field>
-     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Clients">
-   </mat-form-field>
-   <table mat-table [dataSource]="clientDetails" class="mat-elevation-z8 "  >
- 
-     <!--- Note that these columns can be defined in any order.
-           The actual rendered columns are set as a property on the row definition" -->
-   
-     <!-- client name column -->
-     <ng-container matColumnDef="ClientName">
-       <th mat-header-cell *matHeaderCellDef> Client Name </th>
-       <td mat-cell *matCellDef="let element"> {{element.ClientName}} </td>
-     </ng-container>
-   
-     <!-- client email Column -->
-     <ng-container matColumnDef="Email">
-       <th mat-header-cell *matHeaderCellDef>Email </th>
-       <td mat-cell *matCellDef="let element"> {{element.EmailID}} </td>
-     </ng-container>
-   
-     <!--client address Column -->
-     <ng-container matColumnDef="Address">
-       <th mat-header-cell *matHeaderCellDef>Address </th>
-       <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
-     </ng-container>
-   
-     <!-- client country Column -->
-     <ng-container matColumnDef="Country">
-       <th mat-header-cell *matHeaderCellDef> Country </th>
-       <td mat-cell *matCellDef="let element"> {{element.Country}} </td>
-     </ng-container>
-     <!-- co client  Column -->
-     <ng-container matColumnDef="CoClient">
-         <th mat-header-cell *matHeaderCellDef> Co Client </th>
-         <td mat-cell *matCellDef="let element"> {{element.CoClient}} </td>
-       </ng-container>
-     <!--Action  Column, will contains button for View,Edit and Delete -->
-       <ng-container matColumnDef="action">
-         <th mat-header-cell *matHeaderCellDef> Action </th>
-         <td mat-cell *matCellDef="let element">
-             <button mat-button>View Details</button>
-             <button mat-button>Delete</button>
-         </td>
-       </ng-container>
-      
-     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-   </table>
-   <!-- this code is for pagignator -->
-   <mat-paginator [pageSizeOptions]="[2, 3, 5]" showFirstLastButtons></mat-paginator>
- 
- 
-     
- 
+    <!-- client name column -->
+    <ng-container matColumnDef="ClientName">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Client Name</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ClientName}} </mat-cell>
+    </ng-container>
+  
+    <!-- client email Column -->
+    <ng-container matColumnDef="Email">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Email</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.EmailID}} </mat-cell>
+    </ng-container>
+  
+    <!--client address Column -->
+    <ng-container matColumnDef="Address">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Address</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Address}} </mat-cell>
+    </ng-container>
+  
+    <!-- client country Column -->
+    <ng-container matColumnDef="Country">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Country</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Country}} </mat-cell>
+    </ng-container>
+    <!-- co client  Column -->
+    <ng-container matColumnDef="CoClient">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  <span class="text-white font-14">Co Client</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.CoClient}} </mat-cell>
+      </ng-container>
+    <!--Action  Column, will contains button for View,Edit and Delete -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="text-right">
+          <!-- [routerLink]="['/client-details'] -->
+            <button mat-button (click)="ViewClientDetails(element.ClientDetailID)"  class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View</button>
+          
+            <button mat-button (click)= "openDialog(element.ClientDetailID)" class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+    <mat-progress-spinner 
+      color="primary" 
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </mat-card>
+  
+  <!-- this code is for pagignator -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+
+</div>
+
+<div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
+  <!-- This button will be used to add client into the database-->
+
+  <button  mat-button class="btn btn-info" [routerLink]="['/add-client']"><i class="fa fa-plus" aria-hidden="true"></i> Add Client</button>
+</div>
+
+
+    

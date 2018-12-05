@@ -41,6 +41,9 @@ namespace LegaSysServices.App_Start
             builder.RegisterType<UOWDomains>().As<IUOWDomains>().InstancePerRequest();
             builder.RegisterType<UOWTechnologies>().As<IUOWTechnologies>().InstancePerRequest();
             builder.RegisterType<UOWLeaves>().As<IUOWLeaves>().InstancePerRequest();
+            builder.RegisterType<UOWClient>().As<IUOWClient>().InstancePerRequest();
+            builder.RegisterType<UOWProjects>().As<IUOWProjects>().InstancePerRequest();
+            builder.RegisterType<UOWTask>().As<IUOWTask>().InstancePerRequest();
 
             Container = builder.Build();
 

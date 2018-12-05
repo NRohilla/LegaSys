@@ -1,0 +1,103 @@
+<!-- <div class="w-100 float-left table-info px-4 py-2 text-right"></div> -->
+<app-page-header [heading]="'Add Project '" [icon]="'fa-bar-chart-o'"></app-page-header>
+<!-- Title of an Card -->
+<!-- <mat-card-title class="bg-info w-100 float-left table-info px-4 py-2 text-left">
+       Add Project
+    </mat-card-title> -->
+
+<!-- Actual content starts from here -->
+<!-- <mat-card-content> -->
+
+    
+<form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)" class="add-project table-active">
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-6 colsm-6 col-12 float-left">
+            <mat-form-field class="w-100 mt-4">
+                <input formControlName="Title" matInput placeholder="Title">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!regiForm.get('Title').valid && regiForm.get('Title').touched">Please enter Title Name </span>
+            </mat-error>
+        </div>
+        <!-- testing 27112018 -->
+        <div class="col-lg-6 col-md-6 colsm-6 col-12 float-left">
+            <mat-form-field class="w-100">
+                <textarea formControlName="Description" matInput placeholder="Description" matTextareaAutosize
+                    matAutosizeMinRows="2"></textarea>
+
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!regiForm.get('Description').valid && regiForm.get('Description').touched">Please
+                    enter Description </span>
+            </mat-error>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-6 colsm-6 col-12 float-left">
+            <!-- <mat-form-field class="w-100">
+                <input formControlName="DomainName" matInput placeholder="DomainName">
+            </mat-form-field> -->
+            <mat-form-field class="w-100">
+                <mat-select formControlName="ProjectDomain_ID" placeholder="Select Technical Domain" (selectionChange)="onSelect($event.value)">
+                    <mat-option>-- Select Technical Domain--</mat-option>
+                    <mat-option *ngFor="let technologydetail of technologydetails" [value]="technologydetail.ProjectDomain_ID">
+                        {{technologydetail.DomainName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="!regiForm.get('ProjectDomain_ID').valid && regiForm.get('ProjectDomain_ID').touched">Please
+                        select technology </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!regiForm.get('DomainName').valid && regiForm.get('DomainName').touched">Please enter
+                    Domain Name </span>
+            </mat-error>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <mat-form-field class="w-100">
+                <mat-select formControlName="Client_ID" placeholder="Select Client">
+                    <mat-option>-- Select Client --</mat-option>
+                    <mat-option *ngFor="let client of clientdetails" [value]="client.ClientDetailID">
+                        {{client.ClientName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="!regiForm.get('Client_ID').valid && regiForm.get('Client_ID').touched">Please
+                        select any client </span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 float-left">
+            <!-- <mat-form-field class="w-100">
+                <mat-select formControlName="TechnologyID" placeholder="Select Technology">
+                    <mat-option>-- Select Technology --</mat-option>
+                    <mat-option *ngFor="let technology of technologylist" [value]="technology.TechnologyID">
+                        {{technology.Name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error> 
+                   <span *ngIf="!regiForm.get('TechnologyID').valid && regiForm.get('TechnologyID').touched">Please
+                        select any technology </span> 
+                </mat-error>
+            </mat-form-field>-->
+        </div>
+    </div> 
+
+
+    
+    <div class="w-100 float-left table-info px-4 py-2 text-right">
+
+        <button mat-button class="btn btn-info mx-2" ><i class="fa fa-plus" aria-hidden="true"></i> Submit</button>
+        <!-- <div class="px-2 float-right"> -->
+        <button mat-button class="btn btn-secondary" (click)="onNoClick()" tabindex="-1"><i class="fa fa-times"
+                aria-hidden="true"></i> Cancel</button>
+        <!-- </div> -->
+    </div>
+
+</form>
+<!-- </mat-card-content> -->
+
+<!-- testing 27112018 -->

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { MatPaginator, MatSort } from '@angular/material';
 import { ClientServiceService } from './client-service.service';
 import { Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class ClientComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog,private modalService: NgbModal,private clientService: ClientServiceService, 
-     private router: Router, private currentClientdataService: CurrentClientdataServiceService,public tosterService:TosterService) {
+     private router: Router, private currentClientdataService: CurrentClientdataServiceService,public tosterService:TosterService,public snackBar: MatSnackBar) {
    
 
   }
@@ -54,7 +54,9 @@ export class ClientComponent implements OnInit {
       }
     );
   }
-
+  applyFilter(filterValue: string) {
+    this.clientDetails.filter = filterValue.trim().toLowerCase();
+  }
   /*********** Writen By Shubham Mishra on 8 nov 2018 following method is used for deleteing a perticular client   */
 
   DeleteClientWithID(ID) {
@@ -62,6 +64,7 @@ export class ClientComponent implements OnInit {
       suc => {
         if(suc=="Data deleted successfully!"){
           this.tosterService.showSuccess("Client Delete successfully");
+          this.openSnackBar();
           //this.show();
            this.GetAllClients();          
         }else{
@@ -102,4 +105,20 @@ export class ClientComponent implements OnInit {
     // Following fuction will execute and call to client service to get all client from database
     this.GetAllClients();
   }
+  openSnackBar() {
+    this.snackBar.open("Client Deleted Successfully'","Close", {
+      duration: 500,
+    });
+  }
 }
+
+@Component({
+  selector: 'client-deletion',
+  template: '<p class="example-pizza-party">Client Deleted Successfully </p>',
+  styles: [`
+    .example-pizza-party {
+      color: hotpink;
+    }
+  `],
+})
+export class ClientUpdatedComponent {}

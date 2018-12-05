@@ -12,6 +12,8 @@ import { PageHeaderModule } from '../../shared';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
 import {DeleteDialog} from './deleteDialog';   
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import {DeleteDialog} from './deleteDialog';
     MatTabsModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule,
+    MatSnackBarModule
    
   ],
   providers: [ClientServiceService],

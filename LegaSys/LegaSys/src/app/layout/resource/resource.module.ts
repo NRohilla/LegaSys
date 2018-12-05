@@ -7,17 +7,13 @@ import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule, MatFormFieldModule } from '@angular/material';
+import { MatToolbarModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { ResourceService } from './resource.service';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
-
-
-
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    
+
     imports: [
         CommonModule,
         ResourceRoutingModule,
@@ -25,7 +21,9 @@ import { PageHeaderModule } from '../../shared/modules/page-header/page-header.m
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        MatButtonModule, MatToolbarModule, MatFormFieldModule, PageHeaderModule,
+        FormsModule,
+        MatButtonModule, MatToolbarModule, MatFormFieldModule, PageHeaderModule, MatIconModule,
+        MatInputModule
     ],
     providers: [ResourceService],
     declarations: [ResourceComponent],

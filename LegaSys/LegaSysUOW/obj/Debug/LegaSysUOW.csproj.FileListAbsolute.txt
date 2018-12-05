@@ -109,4 +109,3 @@ D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CoreCompileInputs.cach
 D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CopyComplete
 D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.dll
 D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.pdb
-D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csprojAssemblyReference.cache

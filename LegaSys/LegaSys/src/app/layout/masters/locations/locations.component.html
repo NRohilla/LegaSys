@@ -1,9 +1,12 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <app-page-header [heading]="'Locations'" [icon]="'fa fa-fw fa-users'"></app-page-header>
 
-<!-- <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field> -->
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="value" placeholder="Filter">
+  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; applyFilter('');">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
 
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -13,7 +16,8 @@
   </ng-container>
 
   <ng-container matColumnDef="LocationAddress">
-    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Location Address </span></th>
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">
+        Location Address </span></th>
     <td mat-cell *matCellDef="let element"> {{element.LocationAddress}} </td>
   </ng-container>
 
@@ -52,7 +56,7 @@
       <button type="submit" class="btn-info mat-button mr-1" [disabled]="!locationForm.valid" mat-raised-button><i
           class="fa fa-save" aria-hidden="true"></i><span class="action-btn">{{formType}}
           Location</span></button>
-      <button type="button" class="btn-danger mat-button" (click)="formReset(locationForm, formDirective);"
+      <button type="button" class="btn-danger mat-button" (click)="formReset(formDirective);"
         mat-raised-button><i class="fa fa-times" aria-hidden="true"></i> <span class="action-btn">Cancel</span></button>
     </div>
   </div>

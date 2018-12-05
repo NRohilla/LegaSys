@@ -36,7 +36,6 @@ namespace LegaSysUOW.Repository
                 IsActive = true
             };
 
-            db.LegaSys_UserDetails.Add(model);
             db.SaveChanges();
 
             return model.UserDetailID;

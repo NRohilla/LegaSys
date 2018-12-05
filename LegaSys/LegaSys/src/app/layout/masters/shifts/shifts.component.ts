@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
+import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatSnackBar, MatFormFieldControl } from '@angular/material';
 import { ShiftsService } from './shifts.service';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -113,7 +113,7 @@ export class ShiftsComponent implements OnInit {
     this.shiftsService.changeStatus(id).subscribe(res => { this.ngOnInit(); });
   }
 
-  formReset(formData: any, formDirective: FormGroupDirective) {
+  formReset(formDirective: FormGroupDirective) {
     formDirective.resetForm();
     this.shiftForm.reset();
     this.formType = "Add";

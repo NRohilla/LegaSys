@@ -76,7 +76,7 @@ export class RolesComponent implements OnInit {
     this.roleForm.setValue({ role: row.RoleName, description: row.Description });
   }
 
-  onSubmit(formData: any, formDirective: FormGroupDirective) {
+  onSubmit(formDirective: FormGroupDirective) {
     var role = new RoleModel();
     role.RoleName = this.roleForm.controls['role'].value;
     role.Description = this.roleForm.controls['description'].value;

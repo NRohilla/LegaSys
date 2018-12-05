@@ -30,7 +30,7 @@ namespace LegaSysServices.App_Start
             }
             var identity = new ClaimsIdentity("JWT");
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim("userid", user.UserLoginDetailID.ToString()));
+            identity.AddClaim(new Claim("userid", user.UserDetailID.ToString()));
             identity.AddClaim(new Claim("Username", user.Username));
             var props = new AuthenticationProperties(new Dictionary<string, string>()
             {

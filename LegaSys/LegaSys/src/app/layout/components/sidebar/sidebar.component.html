@@ -36,15 +36,15 @@
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/domains']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Technologies' | translate }}</span>
+                            <span>{{ 'Domains' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/technologies']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Domains' | translate }}</span>
+                            <span>{{ 'Technologies' | translate }}</span>
                         </a>
                     </li>
                     <li>
@@ -60,13 +60,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/leavetype']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Leaves' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/leaves']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Leave Status' | translate }}</span>
                         </a>

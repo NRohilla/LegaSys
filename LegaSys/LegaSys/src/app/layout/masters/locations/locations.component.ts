@@ -63,7 +63,6 @@ export class LocationsComponent implements OnInit {
 
     formDirective.resetForm();
     this.locationForm.reset();
-    this.ngOnInit();
   }
 
   status(id, isActive): void {
@@ -81,7 +80,7 @@ export class LocationsComponent implements OnInit {
     this.locationsService.changeStatus(id).subscribe(res => { this.ngOnInit(); });
   }
 
-  formReset(formData: any, formDirective: FormGroupDirective) {
+  formReset(formDirective: FormGroupDirective) {
     formDirective.resetForm();
     this.locationForm.reset();
     this.formType = "Add";

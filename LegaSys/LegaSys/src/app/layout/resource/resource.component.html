@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <div>
     <app-page-header [heading]="'Resources'" [style]="'background-color:lightgrey'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="value" placeholder="Filter">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; applyFilter('');">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
     <!-- <div>
         <button type="button" [routerLink]="['/create-resource']" class="btn btn-info" style="margin-bottom: 1%;">Create
             Resource</button>

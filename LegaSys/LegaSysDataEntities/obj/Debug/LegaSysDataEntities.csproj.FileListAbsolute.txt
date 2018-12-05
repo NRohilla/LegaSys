@@ -18,4 +18,3 @@ D:\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.pdb
 D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csproj.CoreCompileInputs.cache
 D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.dll
 D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.pdb
-D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csprojAssemblyReference.cache

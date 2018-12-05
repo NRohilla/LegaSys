@@ -26,7 +26,11 @@ const routes: Routes = [
             { path: 'shifts', loadChildren: './masters/shifts/shifts.module#ShiftsModule' },
             { path: 'create-resource', component: CreateResourceComponent },
             { path: 'locations', loadChildren: './masters/locations/locations.module#LocationsModule' },
-            { path: 'roles', loadChildren: './masters/roles/roles.module#RolesModule' }
+            { path: 'roles', loadChildren: './masters/roles/roles.module#RolesModule' },
+            { path: 'domains', loadChildren: './masters/domains/domains.module#DomainsModule' },
+            { path: 'technologies', loadChildren: './masters/technologies/technologies.module#TechnologiesModule' },
+            { path: 'leaves', loadChildren: './masters/leaves/leaves.module#LeavesModule' },
+            { path: 'leavetype', loadChildren: './masters/leavetype/leavetype.module#LeavetypeModule' }
         ]
     }
 ];

@@ -56,7 +56,7 @@ namespace LegaSysDataEntities
         public Decimal? TotalExp { get; set; }
         public string ResourceEmailId { get; set; }
         public string ResourceMobileNumber { get; set; }
-        public Boolean Resource_IsActive { get; set; }
+        public Boolean? Resource_IsActive { get; set; }
         public string Remarks { get; set; }
         public int? Master_Shift_ID { get; set; }
         public int? Master_Location_ID { get; set; }

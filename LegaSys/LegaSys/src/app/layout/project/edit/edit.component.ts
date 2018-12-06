@@ -42,6 +42,7 @@ export class EditComponent implements OnInit {
     isCancelDisabled= false;
     notfound: Boolean =  false;
     projectid:any;
+    
     constructor(private route: ActivatedRoute, public dataService: SharedService,
         private router: Router, private project: Project,public snackBar: MatSnackBar) {
         const id = this.route.snapshot.paramMap.get('ProjectID');
@@ -123,7 +124,7 @@ onLinkClick(event: MatTabChangeEvent) {
          this.disable = true;
     }
     edit() {
-         this.disableSummary = true;
+         //this.disableSummary = true;
          this.disable = false;
          
          this.isSave= true;       
@@ -144,6 +145,18 @@ onLinkClick(event: MatTabChangeEvent) {
 
 
     }
+    GetPlaceHolder(controlName: string) {
+        if (!this.disable) {
+          switch (controlName) {
+            case 'ProjectDomain_ID': return "Select Technical Domain ";
+            case 'ProjectStartDate': return "Select Start Date";
+            case 'ProjectEndDate': return "Select End Date";            
+          }
+        }
+        else {
+          return " ";
+        }
+      }
     public GetAllClientStatus() {
         this.dataService. getallclientstatus().subscribe(
            res => {

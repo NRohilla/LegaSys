@@ -8,7 +8,7 @@
                                         mat-align-tabs="left">
 
                                         <mat-tab label="Summary">
-                                                <div class="py-4 px-1">
+                                                <!-- <div class="py-4 px-1">
                                                         <div class="form-group">
                                                                 <div class="col-lg-12" style="margin-bottom: 1%;">
                                                                         <div class="row">
@@ -93,7 +93,7 @@
                                                                                                         name="ProjectEndDate"
                                                                                                         placeholder="Choose a date">
                                                                                                 <mat-datepicker-toggle
-                                                                                                        matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                                                                                                        matSuffix [for]="endpicker" [disabled]="disableSummary"></mat-datepicker-toggle>
                                                                                                 <mat-datepicker
                                                                                                         #endpicker></mat-datepicker>
                                                                                                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
@@ -116,6 +116,43 @@
                                                                 </div>
                                                         </div>
 
+                                                </div> -->
+                                                <div class="card mb-3">
+                                                        <div class="w-100 float-left table-active py-4 px-2">
+                                                                <div class="row mx-0 my-2">
+                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                                                                <div class="summary-lebel float-left"><strong>Project
+                                                                                                Title :</strong></div>
+                                                                                <div class="float-left">{{projectdetails.Title}}</div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                                                                <div class="summary-lebel float-left"><strong>Description :</strong></div>
+                                                                                <div class="float-left">{{projectdetails.Description}}</div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                                                                <div class="summary-lebel float-left"><strong>Domain Name:</strong></div>
+                                                                                <div class="float-left">{{projectdetails.DomainName}}</div>
+                                                                        </div>
+
+                                                                </div>
+                                                                <div class="row mx-0 my-2">
+                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                                                                <div class="summary-lebel float-left"><strong>Start Date :</strong></div>
+                                                                                <div class="float-left">{{projectdetails.StartDate}}</div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                                                                <div class="summary-lebel float-left"><strong>End Date :</strong></div>
+                                                                                <div class="float-left">{{projectdetails.EndDate}}</div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                                                                <div class="summary-lebel float-left"><strong>Duration :</strong></div>
+                                                                                <div class="float-left">{{projectdetails.Duration}}</div>
+                                                                        </div>
+
+                                                                </div>
+
+                                                        </div>
+
                                                 </div>
                                         </mat-tab>
 
@@ -127,6 +164,7 @@
                                                                         <div class="row">
                                                                                 <div class="col-md-2" style="display:none">
                                                                                         <mat-form-field class="w-100">
+                                                                                                <label class="summary-lebel float-left"><strong>:</strong></label>
                                                                                                 <mat-label>Project ID</mat-label>
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disable"
@@ -139,7 +177,8 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Title</mat-label>
+                                                                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Title: </strong></label>
+                                                                                                <mat-label *ngIf="!disable">Title</mat-label>
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disable"
                                                                                                         [(ngModel)]="projectdetails.Title"
@@ -150,7 +189,8 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Description</mat-label>
+                                                                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Description: </strong></label>
+                                                                                                <mat-label *ngIf="!disable">Description</mat-label>
                                                                                                 <textarea matInput
                                                                                                         [disabled]="disable"
                                                                                                         [(ngModel)]="projectdetails.Description"
@@ -161,10 +201,11 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Technical
+                                                                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Technical Domain: </strong></label>
+                                                                                                <mat-label *ngIf="!disable">Technical
                                                                                                         Domain</mat-label>
-                                                                                                <mat-select name="ProjectDomain_ID"
-                                                                                                        placeholder="Select Technical Domain"
+                                                                                                <mat-select name="ProjectDomain_ID"                                                                                                        
+                                                                                                        [placeholder]="GetPlaceHolder('coClient3')"
                                                                                                         [disabled]="disable"
                                                                                                         [(ngModel)]="projectdetails.ProjectDomain_ID">
                                                                                                         <mat-option>--
@@ -191,13 +232,14 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <!-- [(ngModel)]="projectdetails.StartDate"  -->
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Project
+                                                                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Project Start Date:</strong></label>
+                                                                                                <mat-label *ngIf="!disable">Project
                                                                                                         Start Date</mat-label>
                                                                                                 <input matInput
                                                                                                         [matDatepicker]="startpicker"
                                                                                                         [disabled]="disable"
                                                                                                         name="ProjectStartDate"
-                                                                                                        placeholder="Choose a date"
+                                                                                                        [placeholder]="GetPlaceHolder('ProjectStartDate')"
                                                                                                         [value]="date">
                                                                                                 <mat-datepicker-toggle
                                                                                                         matSuffix [for]="startpicker"></mat-datepicker-toggle>
@@ -210,14 +252,15 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Project End
+                                                                                                <label class="summary-lebel float-left" *ngIf="disable" ><strong> Project End Date:</strong></label>
+                                                                                                <mat-label *ngIf="!disable">Project End
                                                                                                         Date</mat-label>
                                                                                                 <input matInput
                                                                                                         [matDatepicker]="endpicker"
                                                                                                         [(ngModel)]="projectdetails.EndDate"
                                                                                                         [disabled]="disable"
                                                                                                         name="ProjectEndDate"
-                                                                                                        placeholder="Choose a date"
+                                                                                                        [placeholder]="GetPlaceHolder('ProjectEndDate')"
                                                                                                         [value]="date.value">
                                                                                                 <mat-datepicker-toggle
                                                                                                         matSuffix [for]="endpicker"></mat-datepicker-toggle>
@@ -229,7 +272,8 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Duration</mat-label>
+                                                                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Duration:</strong></label>
+                                                                                                <mat-label *ngIf="!disable">Duration</mat-label>
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disable"
                                                                                                         [(ngModel)]="projectdetails.Duration"
@@ -253,6 +297,7 @@
                                                                         <div class="row">
                                                                                 <div class="col-md-2" style="display:none">
                                                                                         <mat-form-field class="w-100">
+                                                                                                <label class="summary-lebel float-left"><strong>:</strong></label>
                                                                                                 <mat-label>ID</mat-label>
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
@@ -264,7 +309,8 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Name</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Name:</strong></label>
+                                                                                                <!-- <mat-label>Name</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.ClientName"
@@ -274,7 +320,8 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Address</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Address:</strong></label>
+                                                                                                <!-- <mat-label>Address</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.Address"
@@ -285,7 +332,8 @@
 
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Country</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Country:</strong></label>
+                                                                                                <!-- <mat-label>Country</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.Country"
@@ -295,10 +343,11 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Client
-                                                                                                        Status</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Client Status:</strong></label>
+                                                                                                <!-- <mat-label>Client
+                                                                                                        Status</mat-label> -->
 
-                                                                                                <mat-select placeholder="Select Client Status"
+                                                                                                <mat-select 
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="projectdetails.ClientStatus"
                                                                                                         name="Status">
@@ -323,7 +372,8 @@
                                                                         <div class="row">
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>CoClient</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>CoClient :</strong></label>
+                                                                                                <!-- <mat-label>CoClient</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.CoClient"
@@ -333,7 +383,8 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>CoClient2</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>CoClient2:</strong></label>
+                                                                                                <!-- <mat-label>CoClient2</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.CoClient2"
@@ -342,8 +393,9 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>CoClient2
-                                                                                                        Email</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>CoClient2 Email:</strong></label>
+                                                                                                <!-- <mat-label>CoClient2
+                                                                                                        Email</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.EmailID2"
@@ -355,7 +407,8 @@
                                                                         <div class="row">
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>CoClient3</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>CoClient3:</strong></label>
+                                                                                                <!-- <mat-label>CoClient3</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.CoClient3"
@@ -365,8 +418,9 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>CoClient3
-                                                                                                        Email</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>CoClient3 Email:</strong></label>
+                                                                                                <!-- <mat-label>CoClient3
+                                                                                                        Email</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.EmailID3"
@@ -377,7 +431,8 @@
 
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>CoClient 4</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>CoClient 4:</strong></label>
+                                                                                                <!-- <mat-label>CoClient 4</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.CoClient4"
@@ -387,8 +442,9 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>CoClient4
-                                                                                                        Email ID</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>CoClient4 Email ID:</strong></label>
+                                                                                                <!-- <mat-label>CoClient4
+                                                                                                        Email ID</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="clientdetails.EmailID4"
@@ -409,7 +465,8 @@
                                                                         <div class="row">
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Name</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Name :</strong></label>
+                                                                                                <!-- <mat-label>Name</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.ResourceFirstname"
@@ -419,8 +476,9 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Total
-                                                                                                        Experience</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Total Experience:</strong></label>
+                                                                                                <!-- <mat-label>Total
+                                                                                                        Experience</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.TotalExp"
@@ -429,7 +487,8 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Email ID</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Email ID:</strong></label>
+                                                                                                <!-- <mat-label>Email ID</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.ResourceEmailId"
@@ -438,8 +497,9 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Mobile
-                                                                                                        Number</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Mobile Number:</strong></label>
+                                                                                                <!-- <mat-label>Mobile
+                                                                                                        Number</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.ResourceMobileNumber"
@@ -451,7 +511,8 @@
                                                                         <div class="row">
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Status</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Status:</strong></label>
+                                                                                                <!-- <mat-label>Status</mat-label> -->
 
                                                                                                 <mat-select [(ngModel)]="resourcedetails.Resource_IsActive"
                                                                                                         [disabled]="disableSummary"
@@ -468,7 +529,8 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Remarks</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Remarks:</strong></label>
+                                                                                                <!-- <mat-label>Remarks</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.Remarks"
@@ -478,9 +540,10 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Shift</mat-label>
+                                                                                                <!-- <mat-label>Shift</mat-label> -->
+                                                                                                <label class="summary-lebel float-left"><strong>Shift:</strong></label>
 
-                                                                                                <mat-select placeholder="Select Shift"
+                                                                                                <mat-select 
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.Master_Shift_ID"
                                                                                                         name="Master_Shift_ID">
@@ -495,9 +558,10 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Location</mat-label>
+                                                                                                <!-- <mat-label>Location</mat-label> -->
+                                                                                                <label class="summary-lebel float-left"><strong>Location:</strong></label>
 
-                                                                                                <mat-select placeholder="Select Location"
+                                                                                                <mat-select 
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.Master_Location_ID"
                                                                                                         name="Master_Location">
@@ -513,10 +577,11 @@
                                                                         <div class="row">
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Reporting
-                                                                                                        Head</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Reporting Head:</strong></label>
+                                                                                                <!-- <mat-label>Reporting
+                                                                                                        Head</mat-label> -->
 
-                                                                                                <mat-select placeholder="Select Reporting Head"
+                                                                                                <mat-select 
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.ReportingHead_ID"
                                                                                                         name="ReportingHead_ID">
@@ -534,9 +599,10 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Role</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Role:</strong></label>
+                                                                                                <!-- <mat-label>Role</mat-label> -->
 
-                                                                                                <mat-select placeholder="Select Role"
+                                                                                                <mat-select 
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="resourcedetails.Master_Role_ID"
                                                                                                         name="Master_Role">
@@ -563,7 +629,8 @@
                                                                         <div class="row">
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Title</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Title:</strong></label>
+                                                                                                <!-- <mat-label>Title</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="taskdetails.TaskTitle"
@@ -575,7 +642,8 @@
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Description</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Description:</strong></label>
+                                                                                                <!-- <mat-label>Description</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="taskdetails.TaskDescription"
@@ -585,8 +653,9 @@
                                                                                 </div>
                                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                                                                         <mat-form-field class="w-100">
-                                                                                                <mat-label>Task
-                                                                                                        Attachment</mat-label>
+                                                                                                <label class="summary-lebel float-left"><strong>Task Attachment:</strong></label>
+                                                                                                <!-- <mat-label>Task
+                                                                                                        Attachment</mat-label> -->
                                                                                                 <input matInput #input
                                                                                                         [disabled]="disableSummary"
                                                                                                         [(ngModel)]="taskdetails.TaskAttachmentID"
@@ -614,7 +683,7 @@
                                 <button mat-button class="btn btn-secondary" tabindex="-1" (click)="onNoClick()"><i
                                                 class="fa fa-backward" aria-hidden="true"></i> Back</button>
                         </div>
-                        <div class="px-2 float-right" >
+                        <div class="px-2 float-right">
                                 <button mat-button class="btn btn-info" (click)="edit()" *ngIf="!isSave"><i class="fa fa-pencil-square-o"
                                                 aria-hidden="true"></i> Edit</button>
                         </div>
@@ -623,7 +692,7 @@
                                                 aria-hidden="true"></i> Save</button>
                         </div>
                         <div class="px-2 float-right">
-                                <button mat-button class="btn btn-secondary" tabindex="-1"  *ngIf="isSave" (click)="onCancelClick()"><i
+                                <button mat-button class="btn btn-secondary" tabindex="-1" *ngIf="isSave" (click)="onCancelClick()"><i
                                                 class="fa fa-times" aria-hidden="true"></i> Cancel</button>
                         </div>
 

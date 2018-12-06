@@ -59,15 +59,16 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+  <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;background: #eee;padding-top: 20px;">
     <mat-progress-spinner 
-      color="primary" 
+       
       mode="indeterminate">
     </mat-progress-spinner>
-  </mat-card>
+  </div>
   
   <!-- this code is for pagignator -->
-  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+  
+  <mat-paginator  [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
   <div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
       <!-- This button will be used to add client into the database-->
     

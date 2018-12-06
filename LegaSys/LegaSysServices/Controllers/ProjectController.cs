@@ -53,7 +53,7 @@ namespace LegaSysServices.Controllers
         }
 
         [HttpPost]
-        [Route("project/{id}/update")]
+        [Route("project/update")]
         public IHttpActionResult Put([FromBody]ProjectDetail objProjects)
         {
             var lsProjects = _projects.UpdateProjectDetail(objProjects);
@@ -72,12 +72,12 @@ namespace LegaSysServices.Controllers
             return Json(new { message = "Project deleted  successfully." });
         }
 
-        //[HttpGet]
-        //[Route("project/gettechdomains")]
-        //public IHttpActionResult GetAllTechDomains()
-        //{            
-        //    return Json(_projects.GetAllTechDomains());
-        //}
+        [HttpGet]
+        [Route("project/GetAllTechDomains")]
+        public IHttpActionResult GetAllTechDomains()
+        {
+            return Json(_projects.GetAllTechDomains());
+        }
         [HttpGet]
         [Route("project/getalltechnology")]
         public IHttpActionResult GetAllTechnology()
@@ -87,5 +87,7 @@ namespace LegaSysServices.Controllers
                 return NotFound();
             return Json(project);
         }
+
+        //commented for update on GIT 06/12/2018
     }
 }

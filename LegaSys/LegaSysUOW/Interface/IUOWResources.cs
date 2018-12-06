@@ -14,7 +14,7 @@ namespace LegaSysUOW.Interface
         int CreateResoure(UserDetail userDetail);
         bool UpdateResource(UserDetail userDetail);
         bool DeleteResource(int id, int userId);
-
         IEnumerable<UserBackground> GetUserBackground(int id);
+        bool CreateUserBackground(int id, bool isExp, List<UserBackground> userBackground);
     }
 }

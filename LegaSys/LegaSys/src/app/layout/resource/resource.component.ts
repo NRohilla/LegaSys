@@ -30,13 +30,14 @@ export class ResourceComponent implements OnInit {
         titleService.setTitle("LegaSys - Resources");
     }
 
-    ViewResourceDetails(element: any) {
-        localStorage.setItem('element', element);
+    ViewResourceDetails(userDetailID: any, isExperienced: any) {
+        localStorage.setItem('UserDetailID', userDetailID);
+        localStorage.setItem('IsExperienced', isExperienced);
         this.router.navigate(['/resource-details']);
     }
 
     DeleteResource(id): void {
-        
+
         const dialogRef = this.dialog.open(DialogComponent, {
             width: '325px',
             data: { status: "delete", confirm: true }

@@ -15,6 +15,10 @@ namespace LegaSysDataEntities
         public DateTime JoiningDate { get; set; }
         public DateTime LeavingDate { get;set; }
 
+        public int Created_By { get; set; }
+        public int Updated_By { get; set; }
+
+       // public bool IsExperienced { get; set; }
 
     }
 }

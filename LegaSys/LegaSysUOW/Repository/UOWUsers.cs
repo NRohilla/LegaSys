@@ -37,7 +37,7 @@ namespace LegaSysUOW.Repository
 
             return new UserLoginDetails
             {
-                UserLoginDetailID = user.login.UserLoginDetailID,
+                UserDetailID = user.details.UserDetailID,
                 Username = user.login.Username,
                 Name = user.details.Firstname,
                 LastLogin = lastLogin

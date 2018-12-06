@@ -29,7 +29,7 @@ const routes: Routes = [
             { path: 'project', loadChildren: './project/project.module#ProjectModule' },
             { path: 'TasksPath', loadChildren: './my-project/my-project.module#MyprojectModule' },
             { path: 'ListTasksPath', loadChildren: './list-task/list-task.module#ListTaskModule' },
-            { path: 'EditTasksPath', loadChildren: './edit-task/edit-task.module#EditTaskModule' }
+            { path: 'EditTasksPath', loadChildren: './edit-task/edit-task.module#EditTaskModule' },
             { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
             { path: 'shifts', loadChildren: './masters/shifts/shifts.module#ShiftsModule' },
             { path: 'create-resource', component: CreateResourceComponent },

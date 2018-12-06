@@ -51,24 +51,28 @@
 <h2>{{formType}} Technology</h2>
 <form [formGroup]="technologyForm" #formDirective="ngForm" (ngSubmit)="onSubmit(technologyForm, formDirective)">
   <div class="example-container">
-    <mat-form-field>
-      <input matInput formControlName="name" placeholder="Name" />
-      <mat-error *ngIf="technologyForm.controls['name'].invalid  && (technologyForm.controls['name'].dirty || technologyForm.controls['name'].touched)">
-        Technology is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-select placeholder="Select Domain" formControlName="master_DomainID">
-        <mat-option *ngFor="let domain of domainList " [value]="domain.TechDomainID">{{domain.DomainName}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
+    <div class="row">
+      <div class="col-xl-6">
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Name" />
+          <mat-error *ngIf="technologyForm.controls['name'].invalid  && (technologyForm.controls['name'].dirty || technologyForm.controls['name'].touched)">
+            Technology is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-6">
+        <mat-form-field>
+          <mat-select placeholder="Select Domain" formControlName="master_DomainID">
+            <mat-option *ngFor="let domain of domainList " [value]="domain.TechDomainID">{{domain.DomainName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
     <div class="w-100 float-left table-info px-4 py-2 text-right">
       <button type="submit" class="btn-info mat-button mr-1" [disabled]="!technologyForm.valid" mat-raised-button><i
           class="fa fa-save" aria-hidden="true"></i><span class="action-btn">{{formType}}
           Technology</span></button>
-      <button type="button" class="btn-danger mat-button" (click)="formReset(formDirective);"
-        mat-raised-button><i class="fa fa-times" aria-hidden="true"></i> <span class="action-btn">Cancel</span></button>
+      <button type="button" class="btn-danger mat-button" (click)="formReset(formDirective);" mat-raised-button><i
+          class="fa fa-times" aria-hidden="true"></i> <span class="action-btn">Cancel</span></button>
     </div>
   </div>
 </form>

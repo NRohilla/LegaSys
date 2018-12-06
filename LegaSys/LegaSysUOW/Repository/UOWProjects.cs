@@ -35,6 +35,7 @@ namespace LegaSysUOW.Repository
                         Description = projects.Description,
                         Client_ID = projects.Client_ID.Value,
                         ClientName = clients.ClientName,
+                        Address=clients.Address,
                         Country = clients.Country,
                         CoClient = clients.CoClient,
                         CoClient2 = clients.CoClient2,
@@ -44,6 +45,7 @@ namespace LegaSysUOW.Repository
                         EmailID2 = clients.EmailID2,
                         EmailID3 = clients.EmailID3,
                         EmailID4 = clients.EmailID4,
+                        ClientStatus= clients.IsActive,
 
                         ProjectDomain_ID = projects.ProjectDomain_ID.Value,
                         DomainName = domain.DomainName,
@@ -127,8 +129,8 @@ namespace LegaSysUOW.Repository
                 Status = 0,//projectDetail.Status,
                 Created_By = projectDetail.Created_By,
                 Updated_By = projectDetail.Updated_By,
-                Created_Date = DateTime.Now,//projectDetail.Created_Date,
-                Updated_Date = DateTime.Now,//projectDetail.Updated_Date,
+                Created_Date = DateTime.Now,
+                Updated_Date = DateTime.Now,
             };
 
             db.LegaSys_Projects.Add(projectModel);

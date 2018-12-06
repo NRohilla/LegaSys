@@ -49,27 +49,20 @@ namespace LegaSysServices.Controllers
         //Post client details
         public int AddClientDetails(ClientDetail Objclient)
         {
-            int Result;
-            return Result= _ClientRepository.AddClientDetails(Objclient);
-        
-
+            return ClientRepository.AddClientDetails(Objclient);
         }
 
 
-        
+
         [HttpPut]
         [Route("client/UpdateClientDetails")]
         //Update client details
         public string UpdateClientDetails(ClientDetail objClient)
         {
-           
-            Result= _ClientRepository.UpdateClientDetails(objClient);
+            Result = ClientRepository.UpdateClientDetails(objClient);
             return Result;
 
         }
-
-
-        
 
         [HttpDelete]
         [Route("client/DeleteClientById/{id}")]
@@ -83,9 +76,14 @@ namespace LegaSysServices.Controllers
 
         }
 
+        //added by MohitK 15/11/2018
+        [HttpGet]
+        [Route("api/Client/GetAllClientStatus")]
+        //List of Client Status 
+        public List<LegaSysDataAccess.LegaSys_ClientStatus> GetAllClientStatus()
+        {
+            return ClientRepository.GetClientStatus() ;
 
-
-
-
+        }
     }
 }

@@ -36,9 +36,9 @@ const routes: Routes = [
             { path: 'technologies', loadChildren: './masters/technologies/technologies.module#TechnologiesModule' },
             { path: 'leaves', loadChildren: './masters/leaves/leaves.module#LeavesModule' },
             { path: 'leavetype', loadChildren: './masters/leavetype/leavetype.module#LeavetypeModule' },
-            // { path: 'add-task', loadChildren: './tasks/add-task/add-task.module#AddTaskModule' },
-            // { path: 'tasks', loadChildren: './tasks/tasks.module#TasksModule' },
-            // { path: 'edit-task', loadChildren: './tasks/edit-task/edit-task.module#EditTaskModule' }
+            { path: 'addtask', loadChildren: './tasks/addtask/addtask.module#AddtaskModule' },
+            { path: 'tasks', loadChildren: './tasks/tasks.module#TasksModule' },
+            { path: 'edittask', loadChildren: './tasks/edittask/edittask.module#EdittaskModule' }
         ]
     }
 ];

@@ -27,7 +27,6 @@ namespace LegaSysUOW.Repository
             return (from tasks in db.LegaSys_ProjectTasks
                     join Projects in db.LegaSys_Projects on tasks.Project_ID equals Projects.ProjectID
                     join clients in db.LegaSys_ClientDetails on Projects.Client_ID equals clients.ClientDetailID
-
                     where tasks.ProjectTaskID == id
                     select new TaskDetail
                     {
@@ -40,21 +39,17 @@ namespace LegaSysUOW.Repository
                         Updated_By = tasks.Updated_By,
                         Created_Date = tasks.Created_Date,
                         Updated_Date = tasks.Updated_Date,
-                        Project_Title=Projects.Title,
-                        Client_ID=clients.ClientDetailID,
-                        Client_Name =clients.ClientName
-                     
-
-
+                        Project_Title = Projects.Title,
+                        Client_ID = clients.ClientDetailID,
+                        Client_Name = clients.ClientName
                     }).FirstOrDefault();
         }
         //Method for get all Task.
         public IEnumerable<TaskDetail> GetAllProjectsTask()
         {
-            var taskdetail=
-            (from tasks in db.LegaSys_ProjectTasks
-                    join Projects in db.LegaSys_Projects on tasks.Project_ID equals Projects.ProjectID
-                    select new { tasks, Projects }).AsEnumerable()
+            var taskdetail = (from tasks in db.LegaSys_ProjectTasks
+                              join Projects in db.LegaSys_Projects on tasks.Project_ID equals Projects.ProjectID
+                              select new { tasks, Projects }).AsEnumerable()
                   .Select(x => new TaskDetail
                   {
                       ProjectTaskID = x.tasks.ProjectTaskID,
@@ -69,21 +64,19 @@ namespace LegaSysUOW.Repository
                       Project_Title = x.Projects.Title,
                       Project_Description = x.Projects.Description,
                       Client_ID = x.Projects.Client_ID,
-                      //Client_Name=x.
+                      //User= user,
                       Project_Domain_ID = x.Projects.ProjectDomain_ID,
                       Project_Status = x.Projects.Status,
                       ProjectCreated_By = x.Projects.Created_By,
                       ProjectUpdated_By = x.Projects.Updated_By,
                       ProjectCreated_Date = x.Projects.Created_Date,
                       projectUpdated_Date = x.Projects.Updated_Date
-
-
                   });
             return taskdetail;
         }
 
-          //Method for creating new task.
-         public int CreateProjectTaskDetail(TaskDetail projectTaskDetail)
+        //Method for creating new task.
+        public int CreateProjectTaskDetail(TaskDetail projectTaskDetail)
         {
             //adding data to attechment table
 
@@ -92,24 +85,21 @@ namespace LegaSysUOW.Repository
                 AttachmentPath = projectTaskDetail.AttachmentPath,
                 Title = projectTaskDetail.TaskTitle,
                 Description = projectTaskDetail.Description,
+                Created_By = projectTaskDetail.Created_By,
                 Created_Date = (projectTaskDetail.Created_Date != null) ? projectTaskDetail.Created_Date : DateTime.Now,
-                AttachmentTypeID= attachmentTypeId
+                AttachmentTypeID = attachmentTypeId
             };
             db.LegaSys_Attachments.Add(attachment);
-
-
 
             //declaration of object attachmentType
             var Typeattachment = new LegaSys_AttachmentTypes
             {
-                AttachmentType = projectTaskDetail .AttachmentType,
-                Description =projectTaskDetail .Description ,
-                Created_Date= (projectTaskDetail.Created_Date != null) ? projectTaskDetail.Created_Date : DateTime.Now,
+                AttachmentType = projectTaskDetail.AttachmentType,
+                Description = projectTaskDetail.Description,
+                Created_Date = (projectTaskDetail.Created_Date != null) ? projectTaskDetail.Created_Date : DateTime.Now,
             };
 
-             db.LegaSys_AttachmentTypes.Add(Typeattachment);
-          
-
+            db.LegaSys_AttachmentTypes.Add(Typeattachment);
 
             //adding data to project task table
             var taskModel = new LegaSys_ProjectTasks
@@ -119,16 +109,16 @@ namespace LegaSysUOW.Repository
                 //fk need dropdown from project TABLE DATASOURCE
                 Attachment_ID = attachmentid,
                 //fk need dropdown from project TABLE DATASOURCE
-                Project_ID = projectTaskDetail .Project_ID,
+                Project_ID = projectTaskDetail.Project_ID,
                 Created_By = projectTaskDetail.Created_By,
                 Updated_By = projectTaskDetail.Updated_By,
-                Created_Date = (projectTaskDetail.Created_Date != null)?projectTaskDetail.Created_Date:DateTime.Now,
+                Created_Date = (projectTaskDetail.Created_Date != null) ? projectTaskDetail.Created_Date : DateTime.Now,
                 Updated_Date = projectTaskDetail.Updated_Date,
-                
+
             };
 
             //assingment of Global variable to access in any table
-            attachmentid=attachment.AttachmentID;
+            attachmentid = attachment.AttachmentID;
             attachmentTypeId = Typeattachment.AttachmentTypeID;
             db.LegaSys_ProjectTasks.Add(taskModel);
             db.SaveChanges();
@@ -136,20 +126,22 @@ namespace LegaSysUOW.Repository
             return taskModel.ProjectTaskID;
         }
 
+
+        //method to update task
         public int UpdateProjectTaskDetail(TaskDetail projectTaskDetail)
         {
             var objProjecttaskDetail = db.LegaSys_ProjectTasks.Where(x => x.ProjectTaskID == projectTaskDetail.ProjectTaskID).FirstOrDefault();
             if (objProjecttaskDetail != null)
             {
                 objProjecttaskDetail.ProjectTaskID = projectTaskDetail.ProjectTaskID;
-                objProjecttaskDetail.Title = projectTaskDetail .TaskTitle;
-                objProjecttaskDetail.Description=projectTaskDetail .Description;
-                objProjecttaskDetail.Attachment_ID =projectTaskDetail.Attachment_ID;
-                objProjecttaskDetail.Project_ID= projectTaskDetail .Project_ID;
+                objProjecttaskDetail.Title = projectTaskDetail.TaskTitle;
+                objProjecttaskDetail.Description = projectTaskDetail.Description;
+                objProjecttaskDetail.Attachment_ID = projectTaskDetail.Attachment_ID;
+                objProjecttaskDetail.Project_ID = projectTaskDetail.Project_ID;
                 objProjecttaskDetail.Created_By = projectTaskDetail.Created_By;
                 objProjecttaskDetail.Updated_By = projectTaskDetail.Updated_By;
                 objProjecttaskDetail.Created_Date = projectTaskDetail.Created_Date;
-                objProjecttaskDetail.Updated_Date = (projectTaskDetail.Updated_Date != null) ? projectTaskDetail.Updated_Date :DateTime.Now;
+                objProjecttaskDetail.Updated_Date = (projectTaskDetail.Updated_Date != null) ? projectTaskDetail.Updated_Date : DateTime.Now;
                 db.SaveChanges();
             }
 
@@ -160,23 +152,18 @@ namespace LegaSysUOW.Repository
         public void DeleteProjectTask(int id)
         {
             //var Task = db.LegaSys_ProjectTasks.FirstOrDefault(x => x.ProjectTaskID == id);
-            //if (Task.Status == 0)
-            //{
-            //    Task.Status = 1;
-            //    db.SaveChanges();
-            //}
-            //else
-            //{
-            //    Task.Status = 0;
-            //    db.SaveChanges();
-            //}
+            //        if (Task.Status == 0)
+            //         {
+            //              Task.Status = 1;
+            //              db.SaveChanges();
+            //         }
+            //        else
+
+            //        {
+            //                Task.Status = 0;
+            //                db.SaveChanges();
+            //         }
 
         }
-
-        
-
-      
     }
 }
-
-

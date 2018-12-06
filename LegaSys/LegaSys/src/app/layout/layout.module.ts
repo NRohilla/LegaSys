@@ -12,10 +12,6 @@ import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, M
 import { DialogComponent } from './masters/dialog/dialog.component';
 import { PageHeaderModule } from '../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DomainsComponent } from './masters/domains/domains.component';
-import { TechnologiesComponent } from './masters/technologies/technologies.component';
-import { LeavesComponent } from './masters/leaves/leaves.component';
-import { LeavetypeComponent } from './masters/leavetype/leavetype.component';
 
 @NgModule({
     imports: [

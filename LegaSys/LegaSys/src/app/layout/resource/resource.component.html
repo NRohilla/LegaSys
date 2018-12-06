@@ -67,7 +67,7 @@
         <mat-header-cell *matHeaderCellDef class="bg-info"> </mat-header-cell>
         <mat-cell *matCellDef="let element">
 
-            <button mat-button (click)="ViewResourceDetails(element.UserDetailID)" class="btn btn-info mx-1"><i class="fa fa-pencil-square-o"
+            <button mat-button (click)="ViewResourceDetails(element.UserDetailID, element.IsExperienced)" class="btn btn-info mx-1"><i class="fa fa-pencil-square-o"
                     aria-hidden="true"></i> <span class="action-btn">View</span></button>
             <button mat-button (click)="DeleteResource(element.UserDetailID)" class="btn btn-danger mx-1"><i class="fa fa-trash-o"
                     aria-hidden="true"></i> <span class="action-btn">Delete</span></button>

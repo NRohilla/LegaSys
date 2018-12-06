@@ -934,8 +934,8 @@
       <Parameter Name="Status" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="LegaSys_UserBackground" EntityType="LegaSysModel.LegaSys_UserBackground" />
-    <EntitySet Name="LegaSys_UserCertification" EntityType="LegaSysModel.LegaSys_UserCertification" />
     <EntitySet Name="LegaSys_UserQualification" EntityType="LegaSysModel.LegaSys_UserQualification" />
+    <EntitySet Name="LegaSys_UserCertification" EntityType="LegaSysModel.LegaSys_UserCertification" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -1013,6 +1013,26 @@
     <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="LeavingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Updated_By" Type="Int32" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="LegaSys_UserQualification">
+    <Key>
+      <PropertyRef Name="QualificationID" />
+    </Key>
+    <Property Name="QualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserDetailID" Type="Int32" Nullable="false" />
+    <Property Name="Qualification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Stream" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="BoardUniversity" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Marks" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Updated_By" Type="Int32" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="LegaSys_UserCertification">
     <Key>
@@ -1026,17 +1046,9 @@
     <Property Name="Year" Type="Int32" Nullable="false" />
     <Property Name="Institution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Marks" Type="Decimal" Precision="18" Scale="2" />
-  </EntityType>
-  <EntityType Name="LegaSys_UserQualification">
-    <Key>
-      <PropertyRef Name="QualificationID" />
-    </Key>
-    <Property Name="QualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserDetailID" Type="Int32" Nullable="false" />
-    <Property Name="Qualification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Stream" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Year" Type="Int32" Nullable="false" />
-    <Property Name="BoardUniversity" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="Marks" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Updated_By" Type="Int32" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

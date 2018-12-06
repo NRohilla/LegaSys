@@ -82,6 +82,7 @@ namespace LegaSysUOW.Repository
                         LocationAddress = x.location.LocationAddress,
                         Shift = $"{x.shift.StartTimeIST} - {x.shift.EndTimeIST}",
                         ReportingHead = $"{x.reporting.Firstname} {x.reporting.Lastname}",
+                        IsExperienced = x.user.IsExperienced
                     });
         }
 
@@ -149,15 +150,43 @@ namespace LegaSysUOW.Repository
 
         public IEnumerable<UserBackground> GetUserBackground(int id)
         {
+
             return db.LegaSys_UserBackground.Where(x => x.UserDetailID == id).Select(y => new UserBackground
             {
                 BackgroundID = y.BackgroundID,
+                UserDetailID = y.UserDetailID,
                 CompanyName = y.CompanyName,
                 Designation = y.Designation,
                 JoiningDate = y.JoiningDate,
                 LeavingDate = y.LeavingDate
-
             }).ToList();
+
+        }
+
+
+        public bool CreateUserBackground(int id, bool isExp, List<UserBackground> userBackground)
+        {
+            var user = db.LegaSys_UserDetails.FirstOrDefault(x => x.UserDetailID == id);
+            user.IsExperienced = isExp;
+
+            if (isExp)
+            {
+                var models = userBackground.Select(x => new LegaSys_UserBackground
+                {
+                    BackgroundID = x.BackgroundID,
+                    CompanyName = x.CompanyName,
+                    UserDetailID = x.UserDetailID,
+                    Designation = x.Designation,
+                    JoiningDate = x.JoiningDate,
+                    LeavingDate = x.LeavingDate,
+                });
+
+                db.BulkMerge(models);
+            }
+
+            db.SaveChanges();
+
+            return true;
         }
     }
 }

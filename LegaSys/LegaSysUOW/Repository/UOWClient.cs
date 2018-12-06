@@ -13,7 +13,7 @@ using System.Data.Entity.Migrations;
 
 namespace LegaSysUOW.Repository
 {
-   public class UOWClient:IUOWClient
+    public class UOWClient : IUOWClient
     {
         private readonly LegaSysEntities db;
 
@@ -28,6 +28,9 @@ namespace LegaSysUOW.Repository
             //Insert User details
             int Result = 0;
            
+            //Declare the object to return
+
+            ClientDetail obj = new ClientDetail();
             try
             {
                 
@@ -55,7 +58,7 @@ namespace LegaSysUOW.Repository
                 db.LegaSys_ClientDetails.Add(model);
                 db.SaveChanges();
                 return Result= model.ClientDetailID;
-               
+                }
             }
              
          
@@ -214,7 +217,7 @@ namespace LegaSysUOW.Repository
                          //EmailID4 = s.EmailID4,
                          //Created_By = s.Created_By,
                          //Updated_By = s.Updated_By,
-                         IsActive=   (bool)s.IsActive
+                         IsActive = (bool)s.IsActive
                      }).ToList();
                 }
             }
@@ -222,7 +225,31 @@ namespace LegaSysUOW.Repository
             {
                 throw;
             }
-                return lstClient;
+            return lstClient;
+        }
+
+        //added by MohitK for fetching all the ClientStatus
+        public List<LegaSys_ClientStatus> GetClientStatus()
+        {
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+
+                    var status = db.LegaSys_ClientStatus.AsEnumerable().Select(x => new LegaSys_ClientStatus
+                    {
+                        ClientStatusId = x.ClientStatusId,
+                        ClientStatus = x.ClientStatus
+                    }).ToList();
+                    return status;
+                }
+
             }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }

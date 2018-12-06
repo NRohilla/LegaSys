@@ -16,9 +16,12 @@ namespace LegaSysUOW.Interface
         IEnumerable<ProjectDetail> GetAllProjects();
         ProjectDetail GetProject(int id);
         void DeleteProject(int id);
-        IEnumerable<ProjectDetail> GetAllTechnology();
         IEnumerable<ProjectDetail> GetAllTechDomains();
         List<LegaSysDataAccess.LegaSys_Master_Technologies> GetAllTechnologyByDomainId(int masterdomainid);
+        //List<LegaSysDataAccess.LegaSys_ClientStatus> GetClientStatus();
+        //List<LegaSysDataAccess.LegaSys_Master_TechDomains> GetAllTechDomains();
+        IEnumerable<ProjectDetail> GetAllTechnology();
+
 
     }
 }

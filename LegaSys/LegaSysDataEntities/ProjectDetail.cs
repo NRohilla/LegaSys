@@ -63,7 +63,7 @@ namespace LegaSysDataEntities
         public int? ReportingHead_ID { get; set; }
         public int? Master_Role_ID { get; set; }
 
-
+        //commented for update on GIT 06/12/2018
 
 
     }

@@ -20,6 +20,7 @@ namespace LegaSysUOW.Interface
         List<LegaSysDataAccess.LegaSys_Master_TechDomains> GetAllTechDomains();
         IEnumerable<ProjectDetail> GetAllTechnology();
 
+        //for updating the GIT on 06/12/2018
 
     }
 }

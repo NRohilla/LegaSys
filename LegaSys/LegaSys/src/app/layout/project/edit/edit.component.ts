@@ -198,7 +198,7 @@ onLinkClick(event: MatTabChangeEvent) {
       ); 
    }
    openSnackBar() {
-    this.snackBar.openFromComponent(SnackBarComponentExampleComponent {
+    this.snackBar.openFromComponent(SnackBarComponentExampleComponent, {
       duration: 1000,
     });
     

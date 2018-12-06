@@ -27,7 +27,6 @@ namespace LegaSysDataEntities
         public string EmailID3 { get; set; }
         public string Country { get; set; }
 
-        public string CoClient { get; set; }
 
         public string CoClient2 { get; set; }
         public string CoClient3 { get; set; }
@@ -35,11 +34,8 @@ namespace LegaSysDataEntities
 
         public string DomainName { get; set; }
         
-        public string EmailID2 { get; set; }
-        public string EmailID3 { get; set; }
         
         public string  EmailID4 { get; set; }
-        public string Country { get; set; }
         
         public string ProjectDomainName { get; set; }
         public int? Resource_ID { get; set; }

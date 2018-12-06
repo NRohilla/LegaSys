@@ -49,7 +49,7 @@ namespace LegaSysServices.Controllers
         //Post client details
         public int AddClientDetails(ClientDetail Objclient)
         {
-            return ClientRepository.AddClientDetails(Objclient);
+            return _ClientRepository.AddClientDetails(Objclient);
         }
 
 
@@ -59,7 +59,7 @@ namespace LegaSysServices.Controllers
         //Update client details
         public string UpdateClientDetails(ClientDetail objClient)
         {
-            Result = ClientRepository.UpdateClientDetails(objClient);
+            Result = _ClientRepository.UpdateClientDetails(objClient);
             return Result;
 
         }
@@ -82,7 +82,7 @@ namespace LegaSysServices.Controllers
         //List of Client Status 
         public List<LegaSysDataAccess.LegaSys_ClientStatus> GetAllClientStatus()
         {
-            return ClientRepository.GetClientStatus() ;
+            return _ClientRepository.GetClientStatus() ;
 
         }
     }

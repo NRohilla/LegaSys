@@ -115,95 +115,92 @@ export class EditComponent implements OnInit {
         this.disablediv = true;
     }
 
-}
-onNoClick(): void {
-    this.router.navigate(['project']);
-}
-onCancelClick(){
+    onNoClick(): void {
+        this.router.navigate(['project']);
+    }
+    onCancelClick() {
 
-    this.dataService.GetProjectById(this.projectid).subscribe(res => { this.projectdetails = res; });
-    this.isSave = false;
-    //this.disableSummary = true;
-    this.disable = true;
-}
-edit() {
-    //this.disableSummary = true;
-    this.disable = false;
+        this.dataService.GetProjectById(this.projectid).subscribe(res => { this.projectdetails = res; });
+        this.isSave = false;
+        //this.disableSummary = true;
+        this.disable = true;
+    }
+    edit() {
+        //this.disableSummary = true;
+        this.disable = false;
 
-    this.isSave = true;
+        this.isSave = true;
 
-    //this.isCancelVisible= true;
+        //this.isCancelVisible= true;
 
-}
-save() {
-    this.dataService.updateProject(this.projectdetails).subscribe(
-        res => {
-            sessionStorage.setItem('message', 'updated');
-            //this.openSnackBar();  
-            this.snackBar.open('Project edited successfully', 'ok', { duration: 2500 });
-            this.dataService.getAllProject();
-            this.disable = true;
-            this.isSave = false;
-        });
+    }
+    save() {
+        this.dataService.updateProject(this.projectdetails).subscribe(
+            res => {
+                sessionStorage.setItem('message', 'updated');
+                //this.openSnackBar();  
+                this.snackBar.open('Project edited successfully', 'ok', { duration: 2500 });
+                this.dataService.getAllProject();
+                this.disable = true;
+                this.isSave = false;
+            });
 
 
-}
-GetPlaceHolder(controlName: string) {
-    if (!this.disable) {
-        switch (controlName) {
-            case 'ProjectDomain_ID': return "Select Technical Domain ";
-            case 'ProjectStartDate': return "Select Start Date";
-            case 'ProjectEndDate': return "Select End Date";
+    }
+    GetPlaceHolder(controlName: string) {
+        if (!this.disable) {
+            switch (controlName) {
+                case 'ProjectDomain_ID': return "Select Technical Domain ";
+                case 'ProjectStartDate': return "Select Start Date";
+                case 'ProjectEndDate': return "Select End Date";
+            }
+        }
+        else {
+            return " ";
         }
     }
-    else {
-        return " ";
-    }
-}
     public GetAllClientStatus() {
-    this.dataService.getallclientstatus().subscribe(
-        res => {
-            this.Status = res;
-        });
-}
-   public GetAllShift() {
-    this.dataService.getallshift().subscribe(
-        res => {
-            this.Shift = res;
-        });
-}
+        this.dataService.getallclientstatus().subscribe(
+            res => {
+                this.Status = res;
+            });
+    }
+    public GetAllShift() {
+        this.dataService.getallshift().subscribe(
+            res => {
+                this.Shift = res;
+            });
+    }
 
-   public GetAllLocation() {
-    this.dataService.getalllocation().subscribe(
-        res => {
-            this.Location = res;
+    public GetAllLocation() {
+        this.dataService.getalllocation().subscribe(
+            res => {
+                this.Location = res;
+            });
+    }
+    public GetAllReportingHead() {
+        this.dataService.getallreportinghead().subscribe(
+            res => {
+                this.ReportingHead = res;
+            });
+    }
+    public GetAllRole() {
+        this.dataService.getallrole().subscribe(
+            res => {
+                this.Role = res;
+            });
+    }
+    public GetAllTechDomain() {
+        this.dataService.getalltechdomains().subscribe(
+            res => {
+                this.TechnicalDomainList = res;
+                //console.log("TechnicalDomainList:"+JSON.stringify(this.TechnicalDomainList) )
+            }
+        );
+    }
+    openSnackBar() {
+        this.snackBar.openFromComponent(SnackBarComponentExampleComponent, {
+            duration: 1000,
         });
-}
-   public GetAllReportingHead() {
-    this.dataService.getallreportinghead().subscribe(
-        res => {
-            this.ReportingHead = res;
-        });
-}
-   public GetAllRole() {
-    this.dataService.getallrole().subscribe(
-        res => {
-            this.Role = res;
-        });
-}
-   public GetAllTechDomain()
-{
-    this.dataService.getalltechdomains().subscribe(
-        res => {
-            this.TechnicalDomainList = res;
-            //console.log("TechnicalDomainList:"+JSON.stringify(this.TechnicalDomainList) )
-        }
-    );
-}
-openSnackBar() {
-    this.snackBar.openFromComponent(SnackBarComponentExampleComponent {
-        duration: 1000,
-    });
-
-}
+    }
 }

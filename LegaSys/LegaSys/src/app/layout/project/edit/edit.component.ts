@@ -56,14 +56,15 @@ export class EditComponent implements OnInit {
 
                 // } else {
                 //debugger;
-                //console.log(res);
+                
                 this.projectdetails = res;
                 this.clientdetails = res;
-                this.date = new Date('12/11/2018');
-                debugger;
+                this.date = new Date('12/11/2018');                
+                 debugger;
 
                 this.resourcedetails = res;
                 this.taskdetails = res;
+                console.log("project details:" +JSON.stringify(this.projectdetails) );
                 // }
             }, error => {
                 alert("Invalid Request!");

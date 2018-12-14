@@ -14,13 +14,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResourceBackgrounddetailsComponent } from '../components/resource.backgrounddetails.component';
 import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion';
 import {MatNativeDateModule} from '@angular/material';
+import { ResourceQualificationComponent } from '../components/resource.qualification.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ResourceDetailsRoutingModule,PageHeaderModule,MatTabsModule,MatFormFieldModule,MatSelectModule,FormsModule,MatInputModule,ReactiveFormsModule,MatTableModule,MatExpansionModule,MatSnackBarModule,MatNativeDateModule,MatDatepickerModule
   ],
-  declarations: [ResourceDetailsComponent,ResourceSummaryComponent,ResourcePersonaldetailsComponent,ResourceBackgrounddetailsComponent],
+  declarations: [ResourceDetailsComponent,ResourceSummaryComponent,ResourcePersonaldetailsComponent,ResourceBackgrounddetailsComponent,ResourceQualificationComponent],
   providers: [DatePipe]
 })
 export class ResourceDetailsModule { }

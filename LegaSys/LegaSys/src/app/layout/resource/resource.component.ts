@@ -30,9 +30,12 @@ export class ResourceComponent implements OnInit {
         titleService.setTitle("LegaSys - Resources");
     }
 
-    ViewResourceDetails(userDetailID: any, isExperienced: any) {
+    ViewResourceDetails(userDetailID: any, isExperienced: any, primarySkillSet:any, secondarySkillSet:any) {
+        debugger;
         localStorage.setItem('UserDetailID', userDetailID);
         localStorage.setItem('IsExperienced', isExperienced);
+        localStorage.setItem('PrimarySkillSet',primarySkillSet);
+        localStorage.setItem('SecondarySkillSet',secondarySkillSet);
         this.router.navigate(['/resource-details']);
     }
 
@@ -68,7 +71,7 @@ export class ResourceComponent implements OnInit {
                 res => {
                     this.dataSource = new MatTableDataSource<Resource>();
                     this.dataSource.data = res;
-
+console.log(res);
                     this.dataSource.paginator = this.paginator;
                     this.dataSource.sort = this.sort;
                 },

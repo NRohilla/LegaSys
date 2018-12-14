@@ -56,7 +56,7 @@
   </mat-table>
 
 </div>
-<form [formGroup]="uBackgrndForm" #formDirective="ngForm">
+<form [formGroup]="uBackgrndForm" #formDirective="ngForm" (ngSubmit)="addExperience(uBackgrndForm, formDirective)">
   <div *ngIf="isAddItem">
     <mat-accordion>
       <mat-expansion-panel>
@@ -65,15 +65,10 @@
             Click to add item
           </mat-panel-title>
           <mat-panel-description>
-            <!-- Type your name and age -->
+            <!-- Type description if any!!! -->
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <div class="row">
-
-          <!-- <mat-form-field hidden>
-                  <input matInput  formControlName="BackgroundID">
-                  
-                </mat-form-field> -->
+        <div class="row">        
 
           <div class="col-xl-3">
             <mat-form-field style="width:300px">
@@ -141,7 +136,7 @@
             
           </div>
           <div class="col-xl-1">
-            <button type="submit" class="btn btn-info float-right" (click)="addExperience()"><i class="fa fa-plus" aria-hidden="true" ></i>{{formType}} Experience</button>
+            <button type="submit" class="btn btn-info float-right" ><i class="fa fa-plus" aria-hidden="true" ></i>{{formType}} Experience</button>
           </div>
           <div class="col-xl-1">
             <button type="reset" class="btn btn-secondary" (click)="formReset(uBackgrndForm, formDirective);"><i class="fa fa-times" aria-hidden="true"></i>Cancel</button>

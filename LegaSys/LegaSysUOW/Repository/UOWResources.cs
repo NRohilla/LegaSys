@@ -82,7 +82,10 @@ namespace LegaSysUOW.Repository
                         LocationAddress = x.location.LocationAddress,
                         Shift = $"{x.shift.StartTimeIST} - {x.shift.EndTimeIST}",
                         ReportingHead = $"{x.reporting.Firstname} {x.reporting.Lastname}",
-                        IsExperienced = x.user.IsExperienced
+                        IsExperienced = x.user.IsExperienced,
+                        PrimarySkillSet = x.user.PrimarySkillSet,
+                        SecondarySkillSet = x.user.SecondarySkillSet,
+                        Qualification = x.user.Qualification
                     });
         }
 
@@ -117,7 +120,9 @@ namespace LegaSysUOW.Repository
                         MobileNumber = x.user.MobileNumber,
                         IsExperienced = x.user.IsExperienced,
                         DateOfJoining = x.user.DateOfJoining.Value
-
+                        //PrimarySkillSet=x.user.PrimarySkillSet,
+                        //SecondarySkillSet=x.user.SecondarySkillSet,
+                        //Qualification=x.user.Qualification
                     }).FirstOrDefault();
         }
 
@@ -183,6 +188,178 @@ namespace LegaSysUOW.Repository
 
                 db.BulkMerge(models);
             }
+
+            db.SaveChanges();
+
+            return true;
+        }
+        public IEnumerable<UserEducationModel> GetUserQualification(int id)
+        {
+
+            var data = (from user in db.LegaSys_UserDetails
+                        join qualify in db.LegaSys_UserQualification on user.UserDetailID equals qualify.UserDetailID
+                        // join certify in db.LegaSys_UserCertification on qualify.UserDetailID equals certify.UserDetailID
+                        where user.UserDetailID == id
+                        select new { user, qualify }).AsEnumerable()
+                       .Select(x => new UserEducationModel
+                       {
+                           PrimarySkillSet = x.user.PrimarySkillSet,
+                           SecondarySkillSet = x.user.SecondarySkillSet,
+                           HQualification = x.user.Qualification,
+                           QualificationID = x.qualify.QualificationID,
+                           Qualification = x.qualify.Qualification,
+                           QStream = x.qualify.Stream,
+                           QYear = x.qualify.Year,
+                           BoardUniversity = x.qualify.BoardUniversity,
+                           QMarks = x.qualify.Marks,
+                           //CertificationID = x.certify.CertificationID,
+                           //CertificateNumber = x.certify.CertificateNumber,
+                           //Type = x.certify.Type,
+                           //CStream = x.certify.Stream,
+                           //CYear = x.certify.Year,
+                           //Institution = x.certify.Institution,
+                           //CMarks = x.certify.Marks
+
+
+                       }).ToList();
+
+            return data;
+            ////var skill = db.LegaSys_UserDetails.Where(y => y.UserDetailID == id).Select(x => new UserDetail
+            //var userQualification = db.LegaSys_UserDetails.Where(y => y.UserDetailID == id).Select(x => new UserEducationModel
+            //{
+            //     PrimarySkillSet = x.PrimarySkillSet,
+            //     SecondarySkillSet = x.SecondarySkillSet,
+            //     HQualification = x.Qualification
+            //});
+
+            ////List<UserQualification> q = db.LegaSys_UserQualification.Where(x => x.UserDetailID == id).Select(y => new UserQualification
+            //  userQualification= db.LegaSys_UserQualification.Where(x => x.UserDetailID == id).Select(y => new UserEducationModel
+            //{
+
+
+            //    QualificationID = y.QualificationID,
+            //    Qualification = y.Qualification,
+            //    Stream = y.Stream,
+            //    Year = y.Year,
+            //    BoardUniversity = y.BoardUniversity,
+            //    Marks = y.Marks
+            // }).ToList();
+
+            //List<UserCertification> c = db.LegaSys_UserCertification.Where(x => x.UserDetailID == id).Select(y => new UserCertification
+            //{
+            //    CertificationID = y.CertificationID,
+            //    CertificateNumber = y.CertificateNumber,
+            //    Type = y.Type,
+            //    Stream = y.Stream,
+            //    Year = y.Year,
+            //    Institution = y.Institution,
+            //    Marks = y.Marks
+
+            //}).ToList();
+
+
+
+
+            //return db.LegaSys_UserQualification.Where(x => x.UserDetailID == id).Select(y => new UserQualification
+            //{
+            //    QualificationID = y.QualificationID,
+            //    UserDetailID = y.UserDetailID,
+            //    Qualification = y.Qualification,
+            //    Stream = y.Stream,
+            //    Year = y.Year,
+            //    BoardUniversity = y.BoardUniversity,
+            //    Marks = y.Marks
+            //}).ToList();
+
+        }
+
+        public IEnumerable<UserEducationModel> GetUserCertification(int id)
+        {
+
+            var data = (from user in db.LegaSys_UserDetails
+                            //join qualify in db.LegaSys_UserQualification on user.UserDetailID equals qualify.UserDetailID
+                        join certify in db.LegaSys_UserCertification on user.UserDetailID equals certify.UserDetailID
+                        where user.UserDetailID == id
+                        select new { user, certify }).AsEnumerable()
+                      .Select(x => new UserEducationModel
+                      {
+                          PrimarySkillSet = x.user.PrimarySkillSet,
+                          SecondarySkillSet = x.user.SecondarySkillSet,
+                          HQualification = x.user.Qualification,
+                          //QualificationID = x.qualify.QualificationID,
+                          //Qualification = x.qualify.Qualification,
+                          //QStream = x.qualify.Stream,
+                          //QYear = x.qualify.Year,
+                          //BoardUniversity = x.qualify.BoardUniversity,
+                          //QMarks = x.qualify.Marks,
+                          CertificationID = x.certify.CertificationID,
+                          CertificateNumber = x.certify.CertificateNumber,
+                          Type = x.certify.Type,
+                          CStream = x.certify.Stream,
+                          CYear = x.certify.Year,
+                          Institution = x.certify.Institution,
+                          CMarks = x.certify.Marks
+
+
+                      }).ToList();
+
+            return data;
+
+            //return db.LegaSys_UserCertification.Where(x => x.UserDetailID == id).Select(y => new UserCertification
+            //{
+            //    CertificationID=y.CertificationID,
+            //    UserDetailID=y.UserDetailID,
+            //    Type=y.Type,
+            //    CertificateNumber=y.CertificateNumber,
+            //    Stream=y.Stream,
+            //    Year=y.Year,
+            //    Institution=y.Institution,
+            //    Marks=y.Marks
+
+            //}).ToList();
+        }
+
+        public bool CreateUserQualification(int id, List<UserEducationModel> models)
+        {
+
+            var user = db.LegaSys_UserDetails.FirstOrDefault(x => x.UserDetailID == id);
+
+            var skills = models.FirstOrDefault();
+
+            user.PrimarySkillSet = skills.PrimarySkillSet;
+            user.SecondarySkillSet = skills.SecondarySkillSet;
+            user.Qualification = skills.HQualification;
+
+            var qualifications = models.Select(x => new LegaSys_UserQualification
+            {
+                QualificationID = x.QualificationID,
+                Qualification = x.Qualification,
+                BoardUniversity = x.BoardUniversity,
+                Stream = x.QStream,
+                Year = x.QYear,
+                Marks = x.QMarks,
+                UserDetailID = x.UserDetailID
+
+
+
+            });
+
+            db.BulkMerge(qualifications);
+
+            var certifications = models.Select(x => new LegaSys_UserCertification
+            {
+                CertificationID = x.CertificationID,
+                CertificateNumber = x.CertificateNumber,
+                Type = x.Type,
+                Stream = x.CStream,
+                Year = x.CYear,
+                Institution = x.Institution,
+                Marks = x.CMarks,
+                UserDetailID = x.UserDetailID
+
+            });
+
+            db.BulkMerge(certifications);
 
             db.SaveChanges();
 

@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourceService } from '../resource.service';
 import { MatTableDataSource } from '@angular/material';
-import { FormArray, FormControl, FormGroup, FormGroupDirective, FormBuilder, Validators, NgModel, ValidatorFn, AbstractControl } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Resource } from '../resource.model';
+import { FormGroup, FormGroupDirective, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { Observable, observable } from 'rxjs';
-import { formControlBinding } from '@angular/forms/src/directives/reactive_directives/form_control_directive';
-import { resource } from 'selenium-webdriver/http';
-import { NgbDatepickerDayView } from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker.module';
+
 @Component({
   selector: 'app-resource-background',
   templateUrl: './resource.backgrounddetails.component.html',
@@ -59,7 +54,7 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
     this.isExp = true;
     this.isAddItem = false;
     this.disableFooter = true;
-   // this.selected = 'false';
+    this.selected = 'false';
   }
 
 
@@ -115,7 +110,7 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
   }
 
   matchval(group: FormGroup) {
-    debugger
+    
     // let c1 = group.controls['CompanyName'].value;
     // let c2 = group.controls['Designation'].value;
     let c3 = group.controls['JoiningDate'].value;
@@ -187,7 +182,7 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
     var endDate = new Date(eDate);
     var increment;
     /// new Array<Duraaastion>();
-    console.log("abd");
+   // console.log("abd");
     this.cday = parseInt((endDate.getDate() - startDate.getDate()).toString().replace('-', ''));
    
     if ((startDate.getMonth()) > endDate.getMonth()) {
@@ -204,7 +199,7 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
     return this.cYear + " Year(s)" + ' ' + this.cmonth + " Month(s)" + ' ' + this.cday + " Day(s)";
   }
 
-  addExperience() {    
+  addExperience(formData: any, formDirective: FormGroupDirective) {    
     this.inputuBackgrnd = this.uBackgrndForm.value;
     this.inputuBackgrnd.BackgroundID = 0;
     this.inputuBackgrnd.UserDetailID = this.userDetailId;
@@ -242,7 +237,8 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
       }
       //this.uBackgrndForm.reset();
     }
-
+    formDirective.resetForm();
+    this.uBackgrndForm.reset();
     //formDirective.resetForm();
     if (this.backgroundDetails.data.length > 0) {
       this.disableSave = true;
@@ -305,8 +301,7 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
     );
   }
   Save() {
-    console.log(JSON.stringify(this.backgroundDetails.data));
-   
+    //console.log(JSON.stringify(this.backgroundDetails.data)); 
 
     var id = +localStorage.getItem('UserDetailID');
     this.dataService.AddUserBackGound(id, this.showExp, this.backgroundDetails.data)

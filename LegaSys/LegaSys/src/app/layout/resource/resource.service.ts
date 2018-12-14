@@ -6,6 +6,7 @@ import { Resource } from './resource.model'
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { throwError, Observable } from 'rxjs';
 import { UserBackgrnd } from './components/resource.backgrounddetails.component';
+import { Qualification } from './components/resource.qualification.component';
 
 @Injectable({
     providedIn: 'root'
@@ -86,14 +87,24 @@ export class ResourceService {
         return this.http.get<Resource>('http://localhost:58164/location/getallactive', { headers: this.getToken() })
     }
 
-    getBackGroundDetails(id,exp:boolean=true){
-        debugger
-        return this.http.get<UserBackgrnd[]>('http://localhost:58164/resource/getuserbackground/'+ id,{headers:this.getToken()})
-    } 
-    AddUserBackGound(id:number,isExp:boolean,background:UserBackgrnd[]){
-        debugger;
-        console.log(background);
-        return this.http.post('http://localhost:58164/resource/createbackground/'+id+'?isExp='+isExp,background,{headers:this.getToken()})
-    }
+    getBackGroundDetails(id, exp: boolean = true) {
 
+        return this.http.get<UserBackgrnd[]>('http://localhost:58164/resource/getuserbackground/' + id, { headers: this.getToken() })
+    }
+    AddUserBackGound(id: number, isExp: boolean, background: UserBackgrnd[]) {
+
+        console.log(background);
+        return this.http.post('http://localhost:58164/resource/createbackground/' + id + '?isExp=' + isExp, background, { headers: this.getToken() })
+    }
+    getUserQualification(id: number) {
+        debugger;
+        return this.http.get<Qualification[]>('http://localhost:58164/resource/getuserqualification/' + id, { headers: this.getToken() })
+    }
+    getUserCertification(id: number) {
+        return this.http.get<Qualification[]>('http://localhost:58164/resource/getusercertification/' + id, { headers: this.getToken() })
+    }
+    AddUserQualification(id: number, educationModel: Qualification[]) {
+        return this.http.post('http://localhost:58164/resource/createqualification/' + id, educationModel, { headers: this.getToken()  })
+    }
+    
 }

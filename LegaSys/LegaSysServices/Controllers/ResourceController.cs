@@ -107,5 +107,30 @@ namespace LegaSysServices.Controllers
 
             return Json(new { success = true });
         }
+        [Route("resource/getuserqualification/{id}")]
+        public IHttpActionResult GetUserQualification(int id)
+        {
+            return Json(_uOWResources.GetUserQualification(id));
+        }
+        [Route("resource/getusercertification/{id}")]
+        public IHttpActionResult GetUserCertification(int id)
+        {
+            return Json(_uOWResources.GetUserCertification(id));
+        }
+        [HttpPost]
+        [Route("resource/createqualification/{id}")]
+        public IHttpActionResult AddUserQualification([FromUri]int id, List<UserEducationModel> model)
+        {
+            if (model == null || model?.Count == 0)
+                return BadRequest("Model cannot be null");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _uOWResources.CreateUserQualification(id, model);
+
+            return Json(new { success = true });
+        }
+
     }
 }

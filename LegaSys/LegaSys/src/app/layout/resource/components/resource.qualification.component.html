@@ -1,0 +1,290 @@
+<form [formGroup]="uQualificationForm">
+  <div class="bg-white">
+    <label><b>Primary Skill Set</b> </label>
+    <mat-form-field style="margin-left: 80px;width:350px !important">
+      <input matInput formControlName="PrimarySkillSet" value="{{primaryskillSet}}">
+    </mat-form-field>
+  </div>
+  <div class="bg-white">
+    <label><b>Secondary Skill Set</b> </label>
+    <mat-form-field style="margin-left: 60px;width:350px !important">
+      <input matInput formControlName="SecondarySkillSet" value="{{secondaryskillSet}}">
+    </mat-form-field>
+  </div>
+
+  <div class="bg-white">
+    <label><b>Highest Qualification</b> </label>
+    <mat-form-field style=" margin-left: 50px;width:350px !important">
+      <mat-select formControlName="HQualification" (ngModelChange)="onChange($event)">
+        <mat-option value="">Under 10th</mat-option>
+        <mat-option value="10">10th</mat-option>
+        <mat-option value="12">12th</mat-option>
+        <mat-option value="Graduate">Graduate</mat-option>
+        <mat-option value="PG">Post Graduate</mat-option>
+        <mat-option value="HQ">Higher Qualification</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="showQTable">
+    <div formArrayName="Qgrid">
+      <mat-table [dataSource]="qualificationDS" matSort class="example-container mat-elevation-z8 resource-grid">
+        <ng-container matColumnDef="QualificationID">
+          <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Qualification ID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.QualificationID}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Qualification">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Qualification</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Qualification}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Stream">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Stream</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.QStream}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Year">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Year</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.QYear}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="BoardUniversity">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Board/University</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.BoardUniversity}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Marks">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Marks</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.QMarks}} </mat-cell>>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.QualificationID}"
+          (click)="highlight(row)"></mat-row>
+
+      </mat-table>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title style="font-size: smaller;color: steelblue;">
+              Click to Add Qualification
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <mat-select placeholder="Select Qualification" formControlName="Qualification">
+                  <mat-option value="10">10th</mat-option>
+                  <mat-option value="12">12th</mat-option>
+                  <mat-option value="Graduate">Graduate</mat-option>
+                  <mat-option value="PG">Post Graduate</mat-option>
+                  <mat-option value="HQ">Higher Qualification</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Stream" formControlName="QStream">
+                <!-- <mat-error *ngIf="uQualificationForm.controls.Qgrid.Stream.invalid">
+                <span [hidden]="!uQualificationForm.controls.Qgrid.Stream.errors.required">
+                    Stream is required.
+                </span>
+              </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Year" formControlName="QYear">
+                <!-- <mat-error *ngIf="uQualificationForm.controls.Qgrid.Year.invalid">
+                  <span [hidden]="!uQualificationForm.controls.Qgrid.Year.errors.required">
+                      Year is required.
+                  </span>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Board/University" formControlName="BoardUniversity">
+                <!-- <mat-error *ngIf="uQualificationForm.controls.Qgrid.BoardUniversity.invalid">
+                    <span [hidden]="!uQualificationForm.controls.Qgrid.BoardUniversity.errors.required">
+                        Board/University is required.
+                    </span>
+                  </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:200px">
+                <input matInput placeholder="Marks" formControlName="QMarks">
+                <!-- <mat-error *ngIf="uQualificationForm.controls.Qgrid.Marks.invalid">
+                      <span [hidden]="!uQualificationForm.controls.Qgrid.Marks.errors.required">
+                          Marks is required.
+                      </span>
+                    </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-9">
+
+              <button type="button" class="btn btn-secondary float-right ml-2" (click)="formResetQ();"><i class="fa fa-times"
+                  aria-hidden="true"></i>Cancel</button>
+              <button type="button" class="btn btn-info float-right" (click)="addQualification()"><i class="fa fa-plus"
+                  aria-hidden="true"></i>
+                {{qformType}} Qualification</button>
+
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <!-- //////////////// -->
+    <br><br>
+    <div formGroupName="Cgrid">
+      <mat-table [dataSource]="certificationDS" matSort class="example-container mat-elevation-z8 resource-grid">
+        <ng-container matColumnDef="CertificationID">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header>Certification ID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CertificationID}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="CertificateNumber">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Certification
+              Number </span></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CertificateNumber}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Type">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Certification
+              Type</span> </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Type}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Stream">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Stream</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CStream}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Year">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Year</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CYear}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Institution">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Institution</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Institution}} </mat-cell>>
+        </ng-container>
+        <ng-container matColumnDef="Marks">
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Marks
+            </span></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CMarks}} </mat-cell>>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedCertColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedCertColumns;" [ngClass]="{'highlight': selectedRowIndex1 == row.CertificationID}"
+          (click)="highlightCert(row)"></mat-row>
+
+      </mat-table>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title style="font-size: smaller;color: steelblue;">
+              Click to Add Certification
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xl-3">
+              <mat-form-field style="width: 300px;">
+                <input matInput placeholder="Certificate Number" formControlName="CertificateNumber">
+                <!-- <mat-error *ngIf="uQualificationForm.controls['CertificateNumber'].invalid">
+                  <span [hidden]="!uQualificationForm.controls['CertificateNumber'].errors.required">
+                    Certification Number is required.
+                  </span>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Type" formControlName="Type">
+                <!-- <mat-error *ngIf="uQualificationForm.controls['Type'].invalid">
+                  <span [hidden]="!uQualificationForm.controls['Type'].errors.required">
+                    Type is required.
+                  </span>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Stream" formControlName="CStream">
+                <!-- <mat-error *ngIf="uQualificationForm.controls['Stream'].invalid">
+                  <span [hidden]="!uQualificationForm.controls['Stream'].errors.required">
+                    Stream is required.
+                  </span>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Year" formControlName="CYear">
+                <!-- <mat-error *ngIf="uQualificationForm.controls['Year'].invalid">
+                  <span [hidden]="!uQualificationForm.controls['Year'].errors.required">
+                    Year is required.
+                  </span>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Institution" formControlName="Institution">
+                <!-- <mat-error *ngIf="uQualificationForm.controls['Institution'].invalid">
+                  <span [hidden]="!uQualificationForm.controls['Institution'].errors.required">
+                    Institute is required.
+                  </span>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-xl-3">
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Marks" formControlName="CMarks">
+                <!-- <mat-error *ngIf="uQualificationForm.controls['Marks'].invalid">
+                  <span [hidden]="!uQualificationForm.controls['Marks'].errors.required">
+                    Marks is required.
+                  </span>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+
+            <div class="col-xl-6">
+
+              <button type="button" class="btn btn-secondary float-right ml-2" (click)="formResetC();"><i class="fa fa-times"
+                  aria-hidden="true"></i>Cancel</button>
+              <button type="button" class="btn btn-info float-right" (click)="addCertification()"><i class="fa fa-plus"
+                  aria-hidden="true"></i>
+                {{cformType}} Certification</button>
+
+            </div>
+            <!-- <div class="col-xl-3">
+              
+            </div>
+             -->
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <div style=" background: #bee5eb; padding: 10px; float: left; width: 100%;">
+    <div *ngIf="disableFooter" class="float-right ml-2">
+      <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Edit</button>
+    </div>
+    <div *ngIf="!disableFooter" class="float-right ml-2">
+      <button type="submit" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save"
+          aria-hidden="true"></i> Save</button>
+      <button mat-button class="btn btn-secondary" (click)="discard()"><i class="fa fa-times" aria-hidden="true"></i>
+        Discard</button>
+    </div>
+
+  </div>
+</form>

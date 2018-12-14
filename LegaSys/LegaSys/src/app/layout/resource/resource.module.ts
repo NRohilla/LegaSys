@@ -11,6 +11,7 @@ import { MatToolbarModule, MatFormFieldModule, MatIconModule, MatInputModule } f
 import { ResourceService } from './resource.service';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
 import { FormsModule } from '@angular/forms';
+//import { Resource } from './components/resource.qualification/resource.qualification.component';
 
 @NgModule({
 
@@ -26,7 +27,7 @@ import { FormsModule } from '@angular/forms';
         MatInputModule
     ],
     providers: [ResourceService],
-    declarations: [ResourceComponent],
+    declarations: [ResourceComponent ],
 })
 
 export class ResourceModule { }

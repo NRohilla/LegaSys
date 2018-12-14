@@ -1,12 +1,12 @@
 
-<div>
+<!-- <div>
   <app-page-header [heading]="'Edit Task'" [icon]="'fa fa-users'"></app-page-header>
 
-</div>
+</div> -->
 <div class="card">
-<div class="card-header bg-info">
+<!-- <div class="card-header bg-info">
   <mat-label class="labeltext text-white" style="font-size:17px;"> Edit Task </mat-label>
-</div>
+</div> -->
 
 <br>
 <form [formGroup]="taskeditForm">
@@ -15,7 +15,7 @@
          <div class="col-md-4">
               <!-- Task Title Coloumn -->
               <mat-form-field class="w-100">
-                      <mat-label style="font-weight:bold;font-size:25px;color: black">Task Title</mat-label>
+                      <mat-label style="font-weight:bold;font-size:19px;color: black">Task Title</mat-label>
                       <BR>
                   <input matInput placeholder="Task Title" formControlName=TaskTitle  [(ngModel)]="dataSource.TaskTitle" [readonly]="issreadOnly">
   
@@ -40,7 +40,7 @@
 
           <div class="col-md-4">
                   <mat-form-field class="w-100">
-                          <mat-label style="font-weight:bold;font-size:25px;color: black">Client Name</mat-label>
+                          <mat-label style="font-weight:bold;font-size:19px;color: black">Client Name</mat-label>
                           <BR>
                             <mat-select placeholder="Client Name" formControlName=ClientName [(ngModel)]="dataSource.Client_ID"  [disabled]="disable">
                                 
@@ -63,7 +63,7 @@
    
           <div class="col-md-4">
          <mat-form-field class="w-100">
-              <mat-label style="font-weight:bold;font-size:25px;color: black">Project Name</mat-label>
+              <mat-label style="font-weight:bold;font-size:19px;color: black">Project Name</mat-label>
               <BR>
                   <mat-select placeholder="Project Name" formControlName=Project_ID [(ngModel)]="dataSource.Project_ID" [disabled]="disable" >        
                                      <mat-option *ngFor="let projects of myprojects" [value]="projects.ProjectID">
@@ -86,7 +86,7 @@
        <div class="row">
                       <div class="col-md-4">
               <mat-form-field class="w-100">
-                      <mat-label style="font-weight:bold;font-size:25px ;color: black">Description</mat-label>
+                      <mat-label style="font-weight:bold;font-size:19px ;color: black">Description</mat-label>
                       <BR>
                   <textarea matInput placeholder="Description" formControlName=Description  [(ngModel)]="dataSource.Description" [readonly]= "isReadOnly"> </textarea>
   
@@ -109,15 +109,16 @@
       <div *ngIf="disable" >
           <button mat-button class="btn btn-info"  (click)="MakeFieldEditable()" ><i class="fa fa-edit" aria-hidden="true"></i>Edit</button>
          <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
-    </div>
+      </div>
       <!-- This button will be used to  Update Task -->
-      <div *ngIf="!disable" >
-       <button mat-button class="btn btn-success ml-3" (click)="UpdateTaskByID()"><i class="fa fa-save" aria-hidden="true" ></i> Update</button>     
-       <button mat-button class="btn btn-secondary ml-3"  (click)=" MakeFieldEditable()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button> 
-       <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
+       <div *ngIf="!disable" >
+           <button mat-button class="btn btn-success ml-3" (click)="UpdateTaskByID()"><i class="fa fa-save" aria-hidden="true" ></i> Update</button>     
+           <button mat-button class="btn btn-secondary ml-3"  (click)=" MakeFieldEditable()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button> 
+           <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
        </div>
      
    </div>
 
 </form>
 </div>
+

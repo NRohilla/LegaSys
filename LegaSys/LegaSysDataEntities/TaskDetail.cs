@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LegaSysDataEntities
 {
-   public  class TaskDetail
+    //Entity Class ******SADHANA********
+    public class TaskDetail
     {
       
         public int ProjectTaskID { get; set; }

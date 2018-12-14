@@ -224,7 +224,8 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
         
     }
     else if (this.formType == "Update") {
-      if (this.inputuBackgrnd.CompanyName !== "" && this.inputuBackgrnd.Designation !== "" && new Date(this.uBackgrndForm.controls['LeavingDate'].value) > new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
+        if (this.inputuBackgrnd.CompanyName !== "" && this.inputuBackgrnd.Designation !== "" && new Date(this.uBackgrndForm.controls['LeavingDate'].value) > new Date(this.uBackgrndForm.controls['JoiningDate'].value))
+        {
         this.backgroundDetails.data.forEach(element => {
           if (element.BackgroundID == this.selectedRowIndex) {
             element.CompanyName = this.inputuBackgrnd.CompanyName;

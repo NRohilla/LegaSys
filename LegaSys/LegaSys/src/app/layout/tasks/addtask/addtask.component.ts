@@ -16,8 +16,7 @@ export class AddtaskComponent implements OnInit {
   myclients: any = []
   public files: any[];
   myModel: TaskModel;
-  localUrl: any[]
-
+ 
   constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: ToastrManager) {
     this.files = [];
     this.myModel = new TaskModel();

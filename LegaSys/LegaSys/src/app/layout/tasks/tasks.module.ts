@@ -7,10 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatButtonModule, MatDialogModule, MatTabsModule, MatSortModule, MatSpinner } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { ViewChild } from '@angular/core'
 import { TaskComponent } from './tasks.component';
 import { TasksService } from './tasks.service';
 import { TasksRoutingModule } from './task-routing.module';
+
 
 @NgModule({
     imports: [CommonModule,

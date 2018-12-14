@@ -15,7 +15,7 @@
       <div class="col-md-4" >
           <!-- Task Title Coloumn -->
           <mat-form-field class="w-100">
-                  <mat-label style="font-weight:bold;font-size:18px;color: black">Task Title</mat-label>
+                  <mat-label style="font-weight:bold;font-size:14px;color: black">Task Title</mat-label>
                   <BR>
               <input matInput placeholder="Task Title" formControlName=TaskTitle>
               
@@ -39,7 +39,7 @@
        <!-- Select Client Name -->
       <div class="col-md-4">
               <mat-form-field class="w-100">
-                      <mat-label style="font-weight:bold;font-size:18px; color: black">Client Name</mat-label>
+                      <mat-label style="font-weight:bold;font-size:15px; color: black">Client Name</mat-label>
                       <BR>
                         <mat-select placeholder="ClientName" formControlName=ClientName>
                              
@@ -61,7 +61,7 @@
         <!-- Select Project Name -->
       <div class="col-md-4">
               <mat-form-field class="w-100">
-                      <mat-label style="font-weight:bold;font-size:18px;color: black">Project Name</mat-label>
+                      <mat-label style="font-weight:bold;font-size:15px;color: black">Project Name</mat-label>
                       <BR>
                        <mat-select placeholder="Project Name" formControlName=Project_ID >
              
@@ -87,7 +87,7 @@
       <!-- Task Description Coloumn -->
       <div class="col-md-4">
           <mat-form-field class="w-100">
-                  <mat-label style="font-weight:bold;font-size:18px;color: black">Description</mat-label>
+                  <mat-label style="font-weight:bold;font-size:15px;color: black">Description</mat-label>
                   <BR>
               <textarea matInput placeholder="Description" formControlName=Description> </textarea>
               <!-- Validation Error Message -->
@@ -102,7 +102,7 @@
       </div>
                      
          <div class="col-md-4 " style="margin-top:22px">
-          <label style="font-weight:bold;font-size:17px;color: black; font-family: Roboto, Arial, sans-serif" >Upload Document</label>
+          <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif" >Upload Document</label>
               <br>
                    <input type="file" name="file"  (change)="onFileChanged($event)" />
            

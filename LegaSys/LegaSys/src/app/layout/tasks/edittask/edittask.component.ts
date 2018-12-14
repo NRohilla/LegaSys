@@ -43,10 +43,7 @@ export class EdittaskComponent implements OnInit {
     this.GetProject();
   }
 
-  //METHOD FOR SEARCH
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  
 
   // Method For Fetch Data
   GetTaskByID(ID) {
@@ -130,3 +127,13 @@ export class EdittaskComponent implements OnInit {
     this.toastr.infoToastr('Task Cancelled', 'Cancel');
   }
 }
+  
+
+
+
+
+
+
+
+
+

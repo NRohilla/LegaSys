@@ -7,6 +7,8 @@ using LegaSysDataEntities;
 
 namespace LegaSysUOW.Interface
 {
+
+    //Interface
     public interface IUOWTask
     {
         int CreateProjectTaskDetail(TaskDetail projectTaskDetail);

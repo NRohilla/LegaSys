@@ -21,7 +21,7 @@ namespace LegaSysUOW.Repository
             db = dbFactory.Init();
         }
 
-        //Method for get any perticuler Task by Id
+        //Method for get any perticuler Task by Id******SADHANA********
         public TaskDetail GetProjectTaskbyId(int id)
         {
             return (from tasks in db.LegaSys_ProjectTasks
@@ -35,16 +35,13 @@ namespace LegaSysUOW.Repository
                         Description = tasks.Description,
                         Attachment_ID = tasks.Attachment_ID,
                         Project_ID = tasks.Project_ID,
-                        Created_By = tasks.Created_By,
-                        Updated_By = tasks.Updated_By,
-                        Created_Date = tasks.Created_Date,
-                        Updated_Date = tasks.Updated_Date,
                         Project_Title = Projects.Title,
                         Client_ID = clients.ClientDetailID,
                         Client_Name = clients.ClientName
                     }).FirstOrDefault();
         }
-        //Method for get all Task.
+
+        //Method for get all Task.******SADHANA********
         public IEnumerable<TaskDetail> GetAllProjectsTask()
         {
             var taskdetail = (from tasks in db.LegaSys_ProjectTasks
@@ -57,10 +54,6 @@ namespace LegaSysUOW.Repository
                       Description = x.tasks.Description,
                       Attachment_ID = x.tasks.Attachment_ID,
                       Project_ID = x.tasks.Project_ID,
-                      Created_By = x.tasks.Created_By,
-                      Updated_By = x.tasks.Updated_By,
-                      Created_Date = x.tasks.Created_Date,
-                      Updated_Date = x.tasks.Updated_Date,
                       Project_Title = x.Projects.Title,
                       Project_Description = x.Projects.Description,
                       Client_ID = x.Projects.Client_ID,
@@ -75,7 +68,7 @@ namespace LegaSysUOW.Repository
             return taskdetail;
         }
 
-        //Method for creating new task.
+        //Method for creating new task.******SADHANA********
         public int CreateProjectTaskDetail(TaskDetail projectTaskDetail)
         {
             //adding data to attechment table
@@ -111,9 +104,9 @@ namespace LegaSysUOW.Repository
                 //fk need dropdown from project TABLE DATASOURCE
                 Project_ID = projectTaskDetail.Project_ID,
                 Created_By = projectTaskDetail.Created_By,
-                Updated_By = projectTaskDetail.Updated_By,
+              
                 Created_Date = (projectTaskDetail.Created_Date != null) ? projectTaskDetail.Created_Date : DateTime.Now,
-                Updated_Date = projectTaskDetail.Updated_Date,
+              
 
             };
 
@@ -127,7 +120,7 @@ namespace LegaSysUOW.Repository
         }
 
 
-        //method to update task
+        //method to update task******SADHANA********
         public int UpdateProjectTaskDetail(TaskDetail projectTaskDetail)
         {
             var objProjecttaskDetail = db.LegaSys_ProjectTasks.Where(x => x.ProjectTaskID == projectTaskDetail.ProjectTaskID).FirstOrDefault();
@@ -138,9 +131,9 @@ namespace LegaSysUOW.Repository
                 objProjecttaskDetail.Description = projectTaskDetail.Description;
                 objProjecttaskDetail.Attachment_ID = projectTaskDetail.Attachment_ID;
                 objProjecttaskDetail.Project_ID = projectTaskDetail.Project_ID;
-                objProjecttaskDetail.Created_By = projectTaskDetail.Created_By;
+              
                 objProjecttaskDetail.Updated_By = projectTaskDetail.Updated_By;
-                objProjecttaskDetail.Created_Date = projectTaskDetail.Created_Date;
+               
                 objProjecttaskDetail.Updated_Date = (projectTaskDetail.Updated_Date != null) ? projectTaskDetail.Updated_Date : DateTime.Now;
                 db.SaveChanges();
             }
@@ -149,6 +142,8 @@ namespace LegaSysUOW.Repository
 
         }
 
+
+        //Method For Delet Project******SADHANA********
         public void DeleteProjectTask(int id)
         {
             //var Task = db.LegaSys_ProjectTasks.FirstOrDefault(x => x.ProjectTaskID == id);

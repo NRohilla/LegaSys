@@ -6,45 +6,57 @@ import { throwError } from 'rxjs';
 import { URLSearchParams } from '@angular/http';
 import { TaskModel } from './tasks.component';
 
+
+
 @Injectable({
     providedIn: 'root'
 })
 export class TasksService {
 
-    constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) {
+    constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) 
+    {
     }
     headers: any;
 
-    GetProjectTaskbyId(ID) {
+    GetProjectTaskbyId(ID) 
+    {
+        
                 
         return this.http.get('http://localhost:58164/task/'+ ID)
     }
 
-    GetAllProjectsTask(){
-     
-        return this.http.get('http://localhost:58164/task/getall')
+    GetAllProjectsTask()
+    {
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+
+        return this.http.get('http://localhost:58164/task/getall',this.headers)
     }
 
-    CreateProjectTaskDetail(taskmodel : TaskModel){
-        debugger;
+    CreateProjectTaskDetail(taskmodel : TaskModel)
+    {
+     
             
         return this.http.post<TaskModel[]>('http://localhost:58164/task/create',taskmodel)
     }
 
-    UpdateProjectTaskDetail(taskmodel : TaskModel){
+    UpdateProjectTaskDetail(taskmodel : TaskModel)
+    {
         
         
             
         return this.http.post<TaskModel[]>('http://localhost:58164/task/update',taskmodel)
     }
 
-    DeleteProjectTask(ID){
+    DeleteProjectTask(ID)
+    {
         
             
         return this.http.get<TaskModel[]>('http://localhost:58164/task/{id}/delete'+ID)
     }
     
-    GetAllProjects(){
+    GetAllProjects()
+    {
         debugger;
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
@@ -52,21 +64,49 @@ export class TasksService {
         return this.http.get('http://localhost:58164/project/getall', this.headers)
     }    
 
-    public GetAllClients() {
+    public GetAllClients() 
+    {
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.get('http://localhost:58164/client/GetAllClient', this.headers);
     }
 
-    errorHandler(error:Response){
+    errorHandler(error:Response)
+    {
         console.log(error);
         return throwError(error);
     }
    
-    public GetUserName(){
+    public GetUserName()
+    {
 
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.get('http://localhost:58164/client/AuthenticateLogin', this.headers);
     }
+
+
+    public GetAllProjectsSubTask()
+    {
+
+        return this.http.get('http://localhost:58164/subtask/getall')
+
+    }
+
+    GetProjectSubTaskbyId(ID)
+    {
+       debugger; 
+                
+        return this.http.get('http://localhost:58164/task/'+ ID)
+    }
+
+
+    public CreateProjectSubTask(id:number,subtaskDetail:TaskModel[])
+    {
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+
+            return this.http.post<TaskModel[]>('http://localhost:58164/subtask/create/'+id, subtaskDetail);
+    }
+   
 }

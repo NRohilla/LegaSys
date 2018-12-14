@@ -27,13 +27,14 @@ export class TaskComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit() {
+  ngOnInit()
+   {
     this.FetchDataTable();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+   
   }
 
   //  Method to get data from database
+  
   FetchDataTable() {
     this.dataService.GetAllProjectsTask().subscribe(
       res => {
@@ -51,22 +52,27 @@ export class TaskComponent implements OnInit {
   //send id
   ViewTask(ID) {
     sessionStorage.setItem("currentId", ID);
-    this.router.navigate(['/edittask']);
+    this.router.navigate(['/viewtask']);
   }
 
 
 }
 
 export class TaskModel {
+  //Fields Of Task Table
+
   ProjectTaskID : number ;
   TaskTitle : string;
   Description: string;
   Attachment_ID : number;
-  Project_ID :number;
   Created_By : number;
   Updated_By : number;
   Created_Date : Date ;
   Updated_Date : Date ;
+
+  //Fields For Projects Table
+
+  Project_ID :number;
   Project_Title : string;
   Project_Description : string ;
   Client_ID : number ;
@@ -77,6 +83,22 @@ export class TaskModel {
   ProjectCreated_Date :Date;
   projectUpdated_Date : Date;
   Project_Status : Number ;
+
+  //Fields For Attachment Table
+
   AttachmentPath : string;
   AttachmentType :string;
+
+  //Fields For SubTask Table
+
+  ProjectSubTaskID:number;
+  SubTask_Title:string;
+  SubTask_Description: string;
+  SubTaskCreated_By : number ;
+  SubTaskUpdated_By : number ;
+  SubTaskCreated_Date :Date;
+  SubTaskUpdated_Date : Date;
+
+
+
 }

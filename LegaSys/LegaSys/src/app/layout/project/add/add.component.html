@@ -43,7 +43,7 @@
             <mat-form-field class="w-100">
                 <mat-select formControlName="ProjectDomain_ID" placeholder="Select Technical Domain">
                     <mat-option>-- Select Technical Domain--</mat-option>
-                    <mat-option *ngFor="let technologydetail of technologydetails" [value]="technologydetail.TechDomainID">
+                    <mat-option *ngFor="let technologydetail of technologydetails" [value]="technologydetail.ProjectDomain_ID">
                         {{technologydetail.DomainName}}
                     </mat-option>
                 </mat-select>

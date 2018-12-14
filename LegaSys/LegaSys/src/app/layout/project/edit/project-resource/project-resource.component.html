@@ -1,0 +1,205 @@
+<div class="py-4 px-1">
+  <div class="form-group" >
+          <div class="col-lg-12" style="margin-bottom: 1%;">
+                  <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Name :</strong></label>
+                                          <label>{{resourcedetails.ResourceName}}</label>
+                                  
+                                           <!--<mat-form-field class="w-100">
+                                          
+                                          <mat-label>Name</mat-label> 
+                                          <input matInput #input
+                                                  [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.ResourceName"
+                                                  name="ResourceName">
+                                  </mat-form-field>-->
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Total Experience:</strong></label>        
+                                  <label>{{resourcedetails.TotalExp}}</label>
+
+                                   <!--<mat-form-field class="w-100">
+                                          
+                                          <mat-label>Total
+                                                  Experience</mat-label> 
+                                          <input matInput #input
+                                                  [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.TotalExp"
+                                                  name="TotalExp">
+                                  </mat-form-field>-->
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Email
+                                                          ID:</strong></label>
+                                          <label>{{resourcedetails.ResourceEmailId}}</label>
+                                  <!--<mat-form-field class="w-100">
+                                                  
+                                          
+                                           <mat-label>Email ID</mat-label> 
+                                          <input matInput #input
+                                                  [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.ResourceEmailId"
+                                                  name="ResourceEmailId">
+                                  </mat-form-field>-->
+                          </div>                                                                                
+                  </div>
+                  <!-- Resource Tab -->
+                  <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Mobile
+                                                          Number:</strong></label>        
+                                  <label>{{resourcedetails.ResourceMobileNumber}}</label>
+                                   <!--<mat-form-field class="w-100">
+                                          
+                                          <mat-label>Mobile
+                                                  Number</mat-label> 
+                                          <input matInput #input
+                                                  [disabled]="disableSummary"
+                                                  [(ngModel)]=""
+                                                  name="ResourceMobileNumber">
+                                  </mat-form-field>-->
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Status:</strong></label>
+                                          <label>{{resourcedetails.Resource_IsActive}}</label>
+                                  <!--<mat-form-field class="w-100">
+                                                 
+                                          
+                                           <mat-label>Status</mat-label> 
+
+                                          <mat-select [(ngModel)]="resourcedetails.Resource_IsActive"
+                                                  [disabled]="disableSummary"
+                                                  name="Resource_IsActive">
+                                                  <mat-option
+                                                          [value]="true">Active</mat-option>
+                                                  <mat-option
+                                                          [value]="false">InActive</mat-option>
+                                          </mat-select>
+
+
+                                  </mat-form-field>-->
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Remarks:</strong></label>
+                                          <label>{{resourcedetails.Remarks}}</label>
+
+                                   <!--<mat-form-field class="w-100">
+                                          <label class="summary-lebel float-left"><strong>Remarks:</strong></label>
+                                          <mat-label>Remarks</mat-label> 
+                                          <input matInput #input
+                                                  [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.Remarks"
+                                                  name="Remarks">
+
+                                  </mat-form-field>-->
+                          </div>                                                                                
+                  </div>
+                  <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Shift:</strong></label>        
+                                  <label>{{resourcedetails.Shift}}</label>
+                                   <!--<mat-form-field class="w-100">
+                                          <mat-label>Shift</mat-label> 
+                                          
+
+                                          <mat-select [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.Master_Shift_ID"
+                                                  name="Master_Shift_ID">
+                                                  <mat-option
+                                                          *ngFor="let shift of Shift"
+                                                          [value]="shift.ShiftID">
+                                                          {{shift.StartTimeIST}}-{{shift.EndTimeIST}}
+                                                  </mat-option>
+                                          </mat-select>
+
+                                  </mat-form-field>-->
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Location:</strong></label>
+                                          <label>{{resourcedetails.Location}}</label>
+                                  <!--<mat-form-field class="w-100">
+                                           <mat-label>Location</mat-label> 
+                                          <label class="summary-lebel float-left"><strong>Location:</strong></label>
+
+                                          <mat-select [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.Master_Location_ID"
+                                                  name="Master_Location">
+                                                  <mat-option
+                                                          *ngFor="let location of Location"
+                                                          [value]="location.LocationID">
+                                                          {{location.LocationAddress}}
+                                                  </mat-option>
+                                          </mat-select>
+                                  </mat-form-field>-->
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Reporting Head:</strong></label>
+                                          <label>{{resourcedetails.ReportingHeadName}}</label>
+                                  <!--<mat-form-field class="w-100" style="display:none">
+                                          
+                                           <mat-label>Reporting
+                                                  Head</mat-label> 
+
+                                          <mat-select [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.ReportingHead_ID"
+                                                  name="ReportingHead_ID">
+                                                  <mat-option
+                                                          *ngFor="let reportingHead of ReportingHead"
+                                                          [value]="reportingHead.UserDetailID">
+                                                          {{reportingHead.Firstname}}
+                                                          {{reportingHead.Middlename}}
+                                                          {{reportingHead.Lastname}}
+                                                  </mat-option>
+                                          </mat-select>
+                                  </mat-form-field>-->
+                                  
+                                  
+                          </div>                                                                                
+                  </div>
+                  <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                          <label class="summary-lebel float-left pr-2"><strong>Role:</strong></label>
+                                          <label>{{resourcedetails.Master_Role}}</label>
+
+                                  <!-- <mat-form-field class="w-100">
+                                          
+                                          <mat-label>Role</mat-label> 
+
+                                          <mat-select [disabled]="disableSummary"
+                                                  [(ngModel)]="resourcedetails.Master_Role_ID"
+                                                  name="Master_Role">
+                                                  <mat-option
+                                                          *ngFor="let role of Role"
+                                                          [value]="role.UserRoleID">
+                                                          {{role.RoleName}}
+                                                  </mat-option>
+                                          </mat-select>
+
+                                  </mat-form-field>-->
+                          </div>
+                  </div>
+          </div>
+  </div>
+
+</div>
+<!-- <div class="w-100 float-left d-block table-info px-4 py-2 table-info">
+        <div class="px-2 float-right">
+                <button mat-button class="btn btn-secondary" tabindex="-1" (click)="onNoClick()"><i
+                                class="fa fa-backward" aria-hidden="true"></i> Back</button>
+        </div>
+        <div class="px-2 float-right">
+                <button mat-button class="btn btn-info" (click)="edit()" *ngIf="!isSave"><i class="fa fa-pencil-square-o"
+                                aria-hidden="true"></i> Edit</button>
+        </div>
+        <div class="px-2 float-right" *ngIf="isSave">
+                <button mat-button class="btn btn-success" (click)="save()"><i class="fa fa-save"
+                                aria-hidden="true"></i> Save</button>
+        </div>
+        <div class="px-2 float-right">
+                <button mat-button class="btn btn-secondary" tabindex="-1" *ngIf="isSave" (click)="onCancelClick()"><i
+                                class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+        </div>
+
+
+</div> -->

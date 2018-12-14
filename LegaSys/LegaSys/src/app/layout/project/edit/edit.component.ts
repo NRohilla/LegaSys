@@ -5,12 +5,15 @@ import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 // import { Project,Client,Domain,Resource } from '../project/projectModel';
-import { Project, Client, Domain, Resource } from '../projenctModel';
+import { Project} from '../projenctModel';
 import { routerTransition } from '../../../router.animations';
 import { SnackBarComponentExampleComponent } from '../../project/snack-bar-component-example/snack-bar-component-example.component';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ok } from 'assert';
-
+import {ProjectInfoComponent} from './project-info/project-info.component';
+import {ProjectClientComponent} from './project-client/project-client.component';
+import {ProjectResourceComponent} from './project-resource/project-resource.component';
+import {ProjectTaskComponent} from './project-task/project-task.component'
 @Component({
     selector: 'app-edit',
     templateUrl: './edit.component.html',
@@ -58,10 +61,9 @@ export class EditComponent implements OnInit {
                 //debugger;
                 
                 this.projectdetails = res;
-                this.clientdetails = res;
+                this.clientdetails = res;                
                 this.date = new Date('12/11/2018');                
                  debugger;
-
                 this.resourcedetails = res;
                 this.taskdetails = res;
                 console.log("project details:" +JSON.stringify(this.projectdetails) );
@@ -135,7 +137,8 @@ export class EditComponent implements OnInit {
         //this.isCancelVisible= true;
 
     }
-    save() {
+    save(projectdetails:Project) {
+        debugger;
         this.dataService.updateProject(this.projectdetails).subscribe(
             res => {
                 sessionStorage.setItem('message', 'updated');
@@ -148,6 +151,7 @@ export class EditComponent implements OnInit {
 
 
     }
+   
     GetPlaceHolder(controlName: string) {
         if (!this.disable) {
             switch (controlName) {

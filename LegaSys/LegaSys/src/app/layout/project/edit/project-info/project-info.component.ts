@@ -68,6 +68,9 @@ onCancelClick() {
   //this.disableSummary = true;
   this.disable = true;
 }
+onNoClick(): void {
+  this.router.navigate(['project']);
+}
 save(){
   // this.currentProjectDetails.ProjectName=this.projectinfo.controls['Title'].value ;
   // this.currentProjectDetails.Description =this.projectinfo.controls['ProjectDescription'].value ;

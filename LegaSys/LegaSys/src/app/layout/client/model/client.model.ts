@@ -16,3 +16,16 @@ export class Client {
      IsActive: boolean;
    
 }
+export class ClientProject{
+     ProjectID:number;
+      Title:string;
+      Description:string;
+      Client_ID:number;
+      ProjectDomain_ID:number;
+      Status:number;
+      Created_By:number;
+      Updated_By:number;
+      Created_Date:Date;
+       Updated_Date:Date;
+ }
+ 

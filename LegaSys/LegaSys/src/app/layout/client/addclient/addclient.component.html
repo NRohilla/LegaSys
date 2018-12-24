@@ -4,7 +4,7 @@
 <!-- <ngb-alert style="width:40%;" *ngIf="Message" type="success" (close)="Message = null">{{ successMessage }}</ngb-alert> -->
 <div class="card mb-3">
     <div class="card-header bg-info">
-        <mat-label class="labeltext text-white">Client Info </mat-label>
+        <mat-label class="labeltext text-white ">Client Information </mat-label>
     </div>
     <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
@@ -97,7 +97,7 @@
                         aria-hidden="true"></i> Back</button>
             </div>
 
-            <button class="btn btn-success" [disabled]="!clientForm.valid"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+            <button mat-button class="btn btn-success" [disabled]="!clientForm.valid"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                 Submit</button>
 
         </div>

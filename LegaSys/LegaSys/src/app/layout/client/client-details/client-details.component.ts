@@ -4,6 +4,7 @@ import { ClientServiceService } from '../client-service.service';
 import { Client } from '../model/client.model';
 import { TosterService } from '../../../shared/services/toster.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-client-details',
@@ -19,8 +20,9 @@ export class ClientDetailsComponent implements OnInit {
   currentClientDetails: Client; // property used for holding the details of client selecte dby user
   currentClientDetailsBackup: Client; // this property is used for as reference to previous data, it will be used to cancel button
   isLoading = true;
+  clientProjectsList: any;
   constructor(private currentClientdataService: CurrentClientdataServiceService, private clientService: ClientServiceService,
-    public toastr: ToastrManager,public tosterService:TosterService) { }
+    public toastr: ToastrManager,public tosterService:TosterService,public snackBar: MatSnackBar) { }
 
   /***** This method is used for Geting details of client selecte dby user. This method is calling client service with parameter ID which is ID of 
    ***** client selected by user to view *****************************************************************************************************/
@@ -42,14 +44,16 @@ export class ClientDetailsComponent implements OnInit {
     this.clientService.UpdateDetailsWithID(client).subscribe(
       suc => {
         if(suc=="Data updated successfully!"){
-          this.tosterService.showSuccess("Client Updated Succesfully");
-           this.GetClientsWithID(this.currentClientID);
-           //this.show();           
+         this.tosterService.showSuccess("Client Updated Succesfully");
+         //this.show(); 
+          this.openSnackBar();
+          this.currentClientDetails=client;
+           //this.GetClientsWithID(this.currentClientID);
+                     
         }
         else{
           this.tosterService.showError("Client Updation Failed");
-        }
-      
+        }      
       },
       err => {
         console.log(err);
@@ -69,8 +73,25 @@ export class ClientDetailsComponent implements OnInit {
     this.currentClientID = sessionStorage.getItem("currentClientID");
     if (this.currentClientID != null && this.currentClientID != '') {
       this.GetClientsWithID(this.currentClientID);
+      this.GetAllClientProject(parseInt(this.currentClientID));
     }
+  }
+  GetAllClientProject(id:number){
+    
+    this.clientService.GetClientAllProject(id).subscribe(
+      suc=>{
+        
+        console.log(suc);
+        this.clientProjectsList=suc;
+      }
+    );
+  }
+  openSnackBar() {
+    this.snackBar.open("Client updated Successfully'","Close", {
+      duration: 1000,
+    });
   }
 
 
 }
+

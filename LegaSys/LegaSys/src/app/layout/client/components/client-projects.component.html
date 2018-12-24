@@ -1,0 +1,39 @@
+<mat-table [dataSource]="clientProjectsList" matSort class="table-active">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- client name column -->
+    <ng-container matColumnDef="Title">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-info font-14">Title</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
+    </ng-container>
+  
+    <!-- client email Column -->
+    <ng-container matColumnDef="Description">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-info font-14">Description</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+    </ng-container>
+  
+    <!--client address Column -->
+    
+      <ng-container matColumnDef="action">
+        <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="text-right">
+          <!-- [routerLink]="['/client-details'] -->
+            <button mat-button (click)="ViewClientDetails(element.ClientDetailID)"  class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View</button>
+          
+            <!-- <button mat-button (click)= "openDialog(element.ClientDetailID)" class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Delete</button> -->
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+  <div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
+  <!-- This button will be used to add client into the database-->
+  
+  
+  </div>
+  
+  

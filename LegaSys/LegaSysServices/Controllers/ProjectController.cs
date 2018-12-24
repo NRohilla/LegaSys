@@ -88,6 +88,16 @@ namespace LegaSysServices.Controllers
             return Json(project);
         }
 
+        [HttpGet]
+        [Route("project/getallresourceonproject/{projectid}")]
+        public IHttpActionResult GetAllResourceOnProject(int projectid)
+        {
+            var resource = _projects.GetAllResourceOnProject(projectid);
+            if (resource == null)
+                return NotFound();
+            return Json(resource);
+        }
+
         //commented for update on GIT 06/12/2018
     }
 }

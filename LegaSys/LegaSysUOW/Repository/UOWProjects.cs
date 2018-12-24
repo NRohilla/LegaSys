@@ -371,5 +371,39 @@ namespace LegaSysUOW.Repository
                 throw;
             }
         }
+
+        public List<ProjectDetail> GetAllResourceOnProject(int projectid) {
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    var projectIdParameter = new SqlParameter("@projectId", projectid);
+
+                    var result = db.Database
+                        .SqlQuery<ProjectDetail>("sp_GetResourceonProject @projectId", projectIdParameter)
+                        .ToList();
+                    
+                    //objPd.Title = result[0].Title; 
+                    //objPd.Resource_ID = result[0].Resource_ID;
+                    //objPd.ResourceName = result[0].ResourceName;
+                    //objPd.TotalExp = result[0].TotalExp;
+                    //objPd.ResourceEmailId = result[0].ResourceEmailId; 
+                    //objPd.Master_Shift_ID = result[0].Master_Shift_ID;
+                    //objPd.Shift = result[0].Shift;
+                    //objPd.Master_Location_ID = result[0].Master_Location_ID;
+                    //objPd.Location = result[0].Location;
+                    //objPd.ReportingHead_ID = result[0].ReportingHead_ID;
+                    //objPd.ReportingHeadName = result[0].ReportingHeadName;
+                    //objPd.Master_Role_ID = result[0].Master_Role_ID;
+                    //objPd.Master_Role = result[0].Master_Role;
+                   
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

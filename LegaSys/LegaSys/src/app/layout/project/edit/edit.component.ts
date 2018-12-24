@@ -66,25 +66,14 @@ export class EditComponent implements OnInit {
                  debugger;
                 this.resourcedetails = res;
                 this.taskdetails = res;
-                console.log("project details:" +JSON.stringify(this.projectdetails) );
+                //console.log("project details:" +JSON.stringify(this.projectdetails) );
                 // }
             }, error => {
                 alert("Invalid Request!");
                 this.router.navigate(['/project']);
                 const errorresult = 'No Result';
             }
-        );
-        this.dataService.GetAllTechnologyByDomain(id).subscribe(
-            res => {
-
-                this.Technologylist = res;
-            }
-            //,     error => {                    
-            //         alert("Invalid Domain!");
-            //     //    this.router.navigate(['/project']);
-            // const errorresult = 'No Result';
-            //     }
-        );
+        );        
         this.GetAllClientStatus();
         this.GetAllShift();
         this.GetAllLocation();

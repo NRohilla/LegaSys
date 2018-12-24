@@ -6,7 +6,7 @@
                                         <mat-form-field class="w-100">
                                                 <label class="summary-lebel float-left"><strong>:</strong></label>
                                                 <mat-label>Project ID</mat-label>
-                                                <input matInput #input [disabled]="disable" [(ngModel)]="projectdetails.ProjectID"
+                                                <input matInput #input [disabled]="disable" [(ngModel)]="currentProjectDetails.ProjectID"
                                                         name="ProjectID" required>
                                                 <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
                                         </mat-form-field>
@@ -27,7 +27,7 @@
                                                 <label class="summary-lebel float-left" *ngIf="disable"><strong>Description:
                                                         </strong></label>
                                                 <mat-label *ngIf="!disable">Description</mat-label>
-                                                <textarea matInput [disabled]="disable" [(ngModel)]="projectdetails.Description"
+                                                <textarea matInput [disabled]="disable" [(ngModel)]="currentProjectDetails.Description"
                                                         name="ProjectDescription" required style="height:25px"></textarea>
                                                 <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
                                         </mat-form-field>
@@ -54,7 +54,7 @@
                                                   </mat-option>
                                           </mat-select> -->
 
-                                                <mat-select name="ProjectDomain_ID" [disabled]="disable" [(ngModel)]="projectdetails.ProjectDomain_ID">
+                                                <mat-select name="ProjectDomain_ID" [disabled]="disable" [(ngModel)]="currentProjectDetails.ProjectDomain_ID">
                                                         <mat-option>--
                                                                 Select
                                                                 Technical
@@ -107,11 +107,12 @@
                                                                 Project End Date:</strong></label>
                                                 <mat-label *ngIf="!disable">Project End
                                                         Date</mat-label>
-                                                <input matInput [matDatepicker]="endpicker" [(ngModel)]="projectdetails.EndDate"
+                                                <input matInput [matDatepicker]="endpicker" 
                                                         [disabled]="disable" name="ProjectEndDate">
                                                 <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
                                                 <mat-datepicker #endpicker></mat-datepicker>
                                                 <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                                                <!-- [(ngModel)]="projectdetails.EndDate" -->
                                         </mat-form-field>
 
                                 </div>
@@ -119,9 +120,10 @@
                                         <mat-form-field class="w-100">
                                                 <label class="summary-lebel float-left" *ngIf="disable"><strong>Duration:</strong></label>
                                                 <mat-label *ngIf="!disable">Duration</mat-label>
-                                                <input matInput #input [disabled]="disable" [(ngModel)]="projectdetails.Duration"
+                                                <input matInput #input [disabled]="disable" 
                                                         name="ProjectDuration">
                                         </mat-form-field>
+                                        <!-- [(ngModel)]="projectdetails.Duration" -->
                                 </div>
 
 

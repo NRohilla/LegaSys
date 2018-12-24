@@ -16,8 +16,8 @@ export class ProjectClientComponent implements OnInit {
   
 
   ngOnInit() {
-    debugger;
-    console.log("heeelo : "+JSON.stringify(this.clientDetails));
+    //debugger;
+    //console.log("heeelo : "+JSON.stringify(this.clientDetails));
   }
 
 }

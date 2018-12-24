@@ -55,13 +55,7 @@ export class SharedService {
         return this.http.get('http://localhost:58164/client/GetAllClient', this.headers);
     }
 
-    public GetAllTechnologyByDomain(id: any) {
-        debugger;
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.get('http://localhost:58164/project/getalltechnologybydomain/' + id, this.headers);
-    }
-    // public GetAllTechnologyByDomain(id:any) {
+     // public GetAllTechnologyByDomain(id:any) {
     //     debugger;
     //     const headers = new Headers();
     //     headers.append(this.storage.get('UserToken').access_token, '');
@@ -108,5 +102,11 @@ export class SharedService {
         const headers = new Headers();
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.post('http://localhost:58164/project/update', issue, this.headers);
+    }
+
+    public getAllResourceOnProject(projectid:any){
+         const headers = new Headers();
+         headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.get('http://localhost:58164/project/getallresourceonproject/' + projectid,this.headers);
     }
 }

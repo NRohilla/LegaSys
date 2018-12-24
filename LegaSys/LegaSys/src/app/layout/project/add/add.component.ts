@@ -59,15 +59,15 @@ export class AddComponent implements OnInit {
             this.formControl.hasError('email') ? 'Not a valid email' :
                 '';
     }
-    onSelect(id) {
-        debugger;
-        this.dataService.GetAllTechnologyByDomain(id).subscribe(
-            res => {
-                this.technologylist = res;
+    // onSelect(id) {
+    //     debugger;
+    //     this.dataService.GetAllTechnologyByDomain(id).subscribe(
+    //         res => {
+    //             this.technologylist = res;
 
-            }
-        );
-    }
+    //         }
+    //     );
+    // }
     onFormSubmit(form: NgForm) {
         console.log(this.regiForm.value);
         debugger;

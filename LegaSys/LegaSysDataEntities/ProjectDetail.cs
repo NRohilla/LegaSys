@@ -73,6 +73,7 @@ namespace LegaSysDataEntities
         public string ReportingHeadName { get; set; }
         public int? Master_Role_ID { get; set; }
         public string Master_Role { get; set; }
+        public int? ProjectResourceID { get; set; }
 
-    }
+}
 }

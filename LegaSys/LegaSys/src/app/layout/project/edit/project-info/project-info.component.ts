@@ -38,7 +38,7 @@ projectinfo:FormGroup;
         debugger;
         this.projectdetails = res;
         this.date = new Date('12/11/2018'); //demo date
-        console.log("project details:" + JSON.stringify(this.projectdetails));
+        //console.log("a" + JSON.stringify(this.projectdetails));
         // }
       }, error => {
         alert("Invalid Request!");
@@ -51,7 +51,7 @@ projectinfo:FormGroup;
 
   ngOnInit() {
 debugger;
-    console.log("current"+ JSON.stringify(this.currentProjectDetails) );
+    //console.log("current"+ JSON.stringify(this.currentProjectDetails) );
    
   }
   edit() {

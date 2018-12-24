@@ -79,6 +79,7 @@ namespace LegaSysUOW.Repository
             {
                
                     var ClientDetail = db.LegaSys_ClientDetails.Where(p => p.ClientDetailID == Id).FirstOrDefault();
+
                     if (ClientDetail != null)
                     {
                         ObjClientInfo = new ClientDetail()
@@ -96,7 +97,8 @@ namespace LegaSysUOW.Repository
                             EmailID3 = ClientDetail.EmailID3,
                             EmailID4 = ClientDetail.EmailID4,
                             Created_By = ClientDetail.Created_By,
-                            Updated_By = ClientDetail.Updated_By
+                            Updated_By = ClientDetail.Updated_By,
+
                         };
                     }
                
@@ -175,7 +177,7 @@ namespace LegaSysUOW.Repository
                     obj.IsActive = false;
                     db.LegaSys_ClientDetails.AddOrUpdate(obj);
                     db.SaveChanges();
-                    Result = "Data updated successfully!";
+                    Result = "Data deleted successfully!";
                 }
 
                
@@ -224,5 +226,29 @@ namespace LegaSysUOW.Repository
             }
                 return lstClient;
             }
+        public List<ClientProjects> GetAllProjectOfClient(Int32 Id)
+        {
+            List<ClientProjects> clientProjectList = null;
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    clientProjectList = db.LegaSys_Projects.Where(s => s.Client_ID == Id).Select(s =>
+                     new ClientProjects()
+                     {
+                         ProjectID = s.ProjectID,
+                         Client_ID = s.Client_ID,
+                         Title = s.Title,
+                         Description = s.Description
+
+                     }).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return clientProjectList;
+        }
     }
 }

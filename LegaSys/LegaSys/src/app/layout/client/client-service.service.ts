@@ -15,6 +15,7 @@ export class ClientServiceService {
   URL="http://localhost:58164/client/";
   constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) { }
   CreateHeader(){
+   
     let token = this.storage.get('UserToken');
     if (token != null) {
         var accessToken = 'Bearer ' + token.access_token;
@@ -48,6 +49,9 @@ export class ClientServiceService {
   }
   DeleteClient(ID){
     return this.http.delete(this.URL+'DeleteClientById/'+ID,{ headers: this.CreateHeader() });
+  }
+  GetClientAllProject(ID:number){
+    return this.http.get(this.URL+'GetProjectsByClientId/'+ID,{ headers: this.CreateHeader() });
   }
  
 }

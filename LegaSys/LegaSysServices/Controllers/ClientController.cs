@@ -7,6 +7,8 @@ using System.Web.Http;
 using LegaSysUOW.Repository;
 using LegaSysUOW.Interface;
 using LegaSysDataEntities;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 
 namespace LegaSysServices.Controllers
 {
@@ -49,6 +51,9 @@ namespace LegaSysServices.Controllers
         //Post client details
         public int AddClientDetails(ClientDetail Objclient)
         {
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+
+            Objclient.Created_By = createdBy;
             int Result;
             return Result= _ClientRepository.AddClientDetails(Objclient);
         
@@ -62,8 +67,10 @@ namespace LegaSysServices.Controllers
         //Update client details
         public string UpdateClientDetails(ClientDetail objClient)
         {
-           
-            Result= _ClientRepository.UpdateClientDetails(objClient);
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
+
+            objClient.Updated_By = updatedBy;
+            Result = _ClientRepository.UpdateClientDetails(objClient);
             return Result;
 
         }
@@ -80,6 +87,17 @@ namespace LegaSysServices.Controllers
             Result = _ClientRepository.DeleteClientById(Id);
 
             return Result;
+
+        }
+
+        [HttpGet]
+        [Route("client/GetProjectsByClientId/{id}")]
+
+        //Get client detail by Id
+        public List<ClientProjects> GetProjectsByClientId(Int32 Id)
+        {
+
+            return _ClientRepository.GetAllProjectOfClient(Id);
 
         }
 

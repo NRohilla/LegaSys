@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ClientProject } from '../model/client.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-projects',
@@ -13,7 +14,7 @@ export class ClientProjectsComponent implements OnInit {
   //@ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['Title', 'Description', 'action'];
  
-  constructor() { }
+  constructor(private router:Router) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
@@ -25,5 +26,8 @@ export class ClientProjectsComponent implements OnInit {
          
 
         
+  }
+  ViewProjectDetails(ProjectID:any){
+    this.router.navigate(['./project/edit',ProjectID]);
   }
 }

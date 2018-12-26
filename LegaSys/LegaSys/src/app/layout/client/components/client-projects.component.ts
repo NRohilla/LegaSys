@@ -18,11 +18,15 @@ export class ClientProjectsComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-    if(this.clientProjectsList!=undefined){
+    
       console.log(this.clientProjectsList);
       this.clientProjectsList = new MatTableDataSource<ClientProject>(this.clientProjectsList);
           this.clientProjectsList.paginator = this.paginator;
-    }
-    
+         
+
+        
   }
+    ViewProjectDetails(ProjectID: any) {
+        this.router.navigate(['./project/edit', ProjectID]);
+    }
 }

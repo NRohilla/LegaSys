@@ -51,9 +51,8 @@ namespace LegaSysServices.Controllers
         //Post client details
         public int AddClientDetails(ClientDetail Objclient)
         {
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
-
-            Objclient.Created_By = createdBy;
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+            Objclient.Created_By = userId;
             int Result;
             return Result= _ClientRepository.AddClientDetails(Objclient);
         
@@ -67,9 +66,8 @@ namespace LegaSysServices.Controllers
         //Update client details
         public string UpdateClientDetails(ClientDetail objClient)
         {
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
-
-            objClient.Updated_By = updatedBy;
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+            objClient.Updated_By = userId;
             Result = _ClientRepository.UpdateClientDetails(objClient);
             return Result;
 
@@ -83,8 +81,9 @@ namespace LegaSysServices.Controllers
         //Delete client
         public string DeleteClientById(Int32 Id)
         {
-           
-            Result = _ClientRepository.DeleteClientById(Id);
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+            
+            Result = _ClientRepository.DeleteClientById(Id,userId);
 
             return Result;
 
@@ -93,7 +92,7 @@ namespace LegaSysServices.Controllers
         [HttpGet]
         [Route("client/GetProjectsByClientId/{id}")]
 
-        //Get client detail by Id
+        //Get project list client detail by Id
         public List<ClientProjects> GetProjectsByClientId(Int32 Id)
         {
 

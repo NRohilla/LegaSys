@@ -19,7 +19,7 @@ namespace LegaSysUOW.Interface
 
         List<ClientProjects> GetAllProjectOfClient(Int32 Id);
 
-        string DeleteClientById(Int32 Id);
+        string DeleteClientById(Int32 Id,Int32 userId);
 
     }
 }

@@ -149,7 +149,7 @@ namespace LegaSysUOW.Repository
         }
 
         //Delete client
-        public string DeleteClientById(Int32 Id)
+        public string DeleteClientById(Int32 Id,Int32 userId)
         {
             string Result = string.Empty;
             LegaSys_ClientDetails obj = new LegaSys_ClientDetails();
@@ -171,7 +171,7 @@ namespace LegaSysUOW.Repository
                     obj.EmailID3 = ClientDetail.EmailID3;
                     obj.EmailID4 = ClientDetail.EmailID4;
                     obj.Created_By = ClientDetail.Created_By;
-                    obj.Updated_By = 1;
+                    obj.Updated_By = userId;
                     obj.Created_Date = System.DateTime.UtcNow;
                     obj.Updated_Date = System.DateTime.UtcNow;
                     obj.IsActive = false;

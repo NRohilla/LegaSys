@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSnackBar } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSnackBar, MatSort } from '@angular/material';
 import { ClientProject, Client } from '../model/client.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -24,11 +24,13 @@ export class ClientProjectsComponent implements OnInit {
  
   constructor(private router:Router,private formBuilder:FormBuilder,private clientService: ClientServiceService,private snackBar:MatSnackBar) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {      
        this.timeSpan=this.calcTotExp(this.currentClientDetails.Created_Date,new Date());
       this.clientProjectsList = new MatTableDataSource<ClientProject>(this.clientProjectsList);      
           this.clientProjectsList.paginator = this.paginator; 
+          this.clientProjectsList.sort = this.sort; 
        
   }
   /******** This method will be called when user click on view the details of the project. this will redirect to project Details page  */

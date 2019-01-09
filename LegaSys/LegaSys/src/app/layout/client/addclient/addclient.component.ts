@@ -62,7 +62,7 @@ export class AddclientComponent implements OnInit {
        Address: ['',Validators.required],
        CompanyName: ['',[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
        CompanyAddress: ['', Validators.pattern('^[a-zA-Z ]+$')],
-       CompanyPhone: ['', Validators.pattern('^[a-zA-Z ]+$')],
+       CompanyPhone: ['', Validators.pattern('^[0-9 ]+$')],
        EmailID: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
        EmailID2: ['', Validators.pattern(this.emailPattern)],
        EmailID3: ['', Validators.pattern(this.emailPattern)],

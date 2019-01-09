@@ -12,8 +12,15 @@ export class Client {
      EmailID3: string;
      EmailID4: string;
      Created_By: number;
+     Created_date: Date;
      Updated_By: number;
-     IsActive: boolean;
+     IsActive: number;
+     CompanyName:string;
+     CompanyAddress:string;
+     ClientCountry:string;
+     ClientCountryZip:string;
+     CompanyPhone:string;
+     ClientCompanyFax:string;
    
 }
 export class ClientProject{
@@ -27,5 +34,8 @@ export class ClientProject{
       Updated_By:number;
       Created_Date:Date;
        Updated_Date:Date;
+       Start_Date:Date;
+       End_Date:Date;
+     
  }
  

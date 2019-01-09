@@ -42,49 +42,75 @@
             <div class="w-100 float-left">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Primary Email" formControlName="EmailID" name="EmailID" id="EmailID">
-                        <mat-error *ngIf="clientForm.controls['EmailID'].invalid">{{GetEmailErrorMessage()}}</mat-error>
+                        <input matInput placeholder="Company Email" formControlName="EmailID" name="EmailID" id="EmailID">
+                        <mat-error *ngIf="clientForm.controls['EmailID'].invalid">Enter Valid Company Email</mat-error>
 
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Secondary Email" formControlName="EmailID2" name="EmailID2" id="EmailID2">
-                        <mat-error *ngIf="clientForm.controls['EmailID2'].invalid">Enter Valid Email ID</mat-error>
+                        <input matInput placeholder="Personal Email" formControlName="EmailID2" name="EmailID2" id="EmailID2">
+                        <mat-error *ngIf="clientForm.controls['EmailID2'].invalid">Enter Valid Personal Email</mat-error>
 
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Other Email" formControlName="EmailID3" name="EmailID3" id="EmailID3">
-                        <mat-error *ngIf="clientForm.controls['EmailID3'].invalid">Enter Valid Email ID</mat-error>
-
+                        <input matInput placeholder="Company Name" formControlName="CompanyName" name="CompanyName" id="CompanyName">
+                        <mat-error *ngIf="clientForm.controls['CompanyName'].invalid">Company name is required</mat-error>
                     </mat-form-field>
                 </div>
 
+            </div>
+            <div class="w-100 float-left">
+               
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Company Address" formControlName="CompanyAddress" name="CompanyAddress"
+                            id="CompanyAddress">
+                        <mat-error *ngIf="clientForm.controls['CompanyAddress'].invalid">Invalid Compay Address</mat-error>
 
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Company Phone" formControlName="CompanyPhone" name="CompanyPhone" id="CompanyPhone">
+                        <mat-error *ngIf="clientForm.controls['CompanyPhone'].invalid">Company Phone is invalid</mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="ZIP" formControlName="ClientCountryZip" name="ClientCountryZip" id="ClientCountryZip" maxlength="6">
+                        <mat-error *ngIf="clientForm.controls['ClientCountryZip'].invalid">
+
+
+                            <span *ngIf="clientForm.controls['ClientCountryZip'].errors.required">
+                                ZIP can not be blank
+                          </span>               
+                          <span *ngIf="clientForm.controls['ClientCountryZip'].errors.pattern">
+                                 ZIP can contain only numbers
+                            </span>    
+
+
+
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- </form> -->
             </div>
 
 
-            <div class="w-100 float-left">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Primary Co Client" formControlName="CoClient" name="CoClient" id="CoClient">
-                        <mat-error *ngIf="clientForm.controls['CoClient'].invalid">{{GetPrimaryCoClientErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Secondary Co Client" formControlName="CoClient2" name="CoClient2"
-                            id="CoClient2">
-                        <mat-error *ngIf="clientForm.controls['CoClient2'].invalid">Can only contain text</mat-error>
 
-                    </mat-form-field>
-                </div>
+
+<!-- vaibhav sharma  -->
+            <div class="w-100 float-left">
+
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Other Co Client" formControlName="CoClient3" name="CoClient3" id="CoClient3">
-                        <mat-error *ngIf="clientForm.controls['CoClient3'].invalid">Can only contain text</mat-error>
+                        <input matInput placeholder="FAX" formControlName="ClientCompanyFax" name="ClientCompanyFax"
+                            id="ClientCompanyFax" maxlength="12">
+                        <mat-error *ngIf="clientForm.controls['ClientCompanyFax'].invalid"> Fax can only contain numbers</mat-error>
 
                     </mat-form-field>
                 </div>
@@ -103,3 +129,4 @@
         </div>
     </form>
 </div>
+

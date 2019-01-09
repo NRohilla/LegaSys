@@ -18,8 +18,10 @@ import { MatCardModule } from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ClientProjectsComponent } from '../components/client-projects.component';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatNativeDateModule, MatSelectModule } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ClientProfesionalDetailsComponent } from '../components/client-profesional-details.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
@@ -38,12 +40,16 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTooltipModule,
     MatSnackBarModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
    
    
    
   ],
   
-  declarations: [ClientDetailsComponent, ClientDetailsSummaryComponent, ClientDetailsPersonalDetailsComponent, ClientDetailsCoClientDetailsComponent,ClientProjectsComponent]
+  declarations: [ClientDetailsComponent, ClientDetailsSummaryComponent, ClientDetailsPersonalDetailsComponent, ClientDetailsCoClientDetailsComponent,
+    ClientProjectsComponent,ClientProfesionalDetailsComponent]
 })
 export class ClientDetailsModule { }

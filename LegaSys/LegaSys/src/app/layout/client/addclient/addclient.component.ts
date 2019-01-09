@@ -60,12 +60,14 @@ export class AddclientComponent implements OnInit {
        ClientName: ['',[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
        Country: ['',Validators.required],
        Address: ['',Validators.required],
-       CoClient: ['',[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-       CoClient2: ['', Validators.pattern('^[a-zA-Z ]+$')],
-       CoClient3: ['', Validators.pattern('^[a-zA-Z ]+$')],
+       CompanyName: ['',[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+       CompanyAddress: ['', Validators.pattern('^[a-zA-Z ]+$')],
+       CompanyPhone: ['', Validators.pattern('^[a-zA-Z ]+$')],
        EmailID: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
        EmailID2: ['', Validators.pattern(this.emailPattern)],
-       EmailID3: ['', Validators.pattern(this.emailPattern)]
+       EmailID3: ['', Validators.pattern(this.emailPattern)],
+       ClientCountryZip: ['',[Validators.required,Validators.pattern('^[0-9 ]+$')]],
+       ClientCompanyFax: ['',Validators.pattern('^[0-9 ]+$')],
 
      });
      this.filteredOptions = this.clientForm.controls['Country'].valueChanges.pipe(
@@ -92,19 +94,15 @@ export class AddclientComponent implements OnInit {
         suc=>{
                 if(suc>0)
                 {
-               //   this.show();
-                this.tosterService.showSuccess("Client Added Successfully");
-                this.openSnackBar();
-                // this.clientForm.reset();
-                // this.clientForm.valid;
+                this.openSnackBar()
               
                 }
                 else{
-                  alert("Client could not been Added ");
+                 // alert("Client could not been Added ");
                 }
         },
         err=>{
-              alert("Client could not been Added ");
+             // alert("Client could not been Added ");
         }
        
         );
@@ -115,8 +113,4 @@ export class AddclientComponent implements OnInit {
       duration: 500,
     });
   }
-
-  
- 
-
 }

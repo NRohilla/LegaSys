@@ -1,6 +1,6 @@
 import { Injectable,Inject } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpClientModule } from '@angular/common/http';
-import{Client} from './model/client.model';
+import{Client, ClientProject} from './model/client.model';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 
 
@@ -52,6 +52,11 @@ export class ClientServiceService {
   }
   GetClientAllProject(ID:number){
     return this.http.get(this.URL+'GetProjectsByClientId/'+ID,{ headers: this.CreateHeader() });
+  }
+  UpdateClientProjectWithId(projectDetails:ClientProject){
+    debugger;
+    return this.http.put(this.URL+'UpdateProjectDetailsWithId',projectDetails,{ headers: this.CreateHeader() });
+
   }
  
 }

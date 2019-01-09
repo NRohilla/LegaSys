@@ -63,12 +63,12 @@ export class ClientComponent implements OnInit {
     this.clientService.DeleteClient(ID).subscribe(
       suc => {
         if(suc=="Data deleted successfully!"){
-          this.tosterService.showSuccess("Client Delete successfully");
+        //  this.tosterService.showSuccess("Client Delete successfully");
           this.openSnackBar();
           //this.show();
            this.GetAllClients();          
         }else{
-          this.tosterService.showError("Client Deletion Failed");
+          //this.tosterService.showError("Client Deletion Failed");
         }
 
       

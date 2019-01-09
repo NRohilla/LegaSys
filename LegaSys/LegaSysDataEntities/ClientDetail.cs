@@ -25,6 +25,13 @@ namespace LegaSysDataEntities
         public string CoClient4 { get; set; }
         public string EmailID4 { get; set; }
         public bool IsActive { get; set; }
+        public string CompanyName { get; set; }
+        public string CompanyAddress { get; set; }
+        public string ClientCountry { get; set; }
+        public string ClientCountryZip { get; set; }
+        public string CompanyPhone { get; set; }
+        public string ClientCompanyFax { get; set; }
+
 
 
     }

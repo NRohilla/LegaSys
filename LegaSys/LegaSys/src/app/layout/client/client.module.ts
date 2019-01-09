@@ -15,6 +15,9 @@ import {DeleteDialog} from './deleteDialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
+import { ClientProjectsComponent } from './components/client-projects.component';
+
+
 @NgModule({
   imports: [
     CommonModule,

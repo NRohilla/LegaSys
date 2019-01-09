@@ -8,6 +8,7 @@ using LegaSysDataAccess;
 using LegaSysUOW.Interface;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using LegaSysUOW.Repository;
 
 //Test
 
@@ -50,7 +51,12 @@ namespace LegaSysUOW.Repository
                     Updated_By = Objclient.Updated_By,
                     Created_Date = System.DateTime.UtcNow,
                     Updated_Date = System.DateTime.UtcNow,
-                    IsActive = true
+                    IsActive = true,
+                    ClientCompanyFax = Objclient.ClientCompanyFax,
+                    ClientCountryZip = Objclient.ClientCountryZip,
+                    CompanyName = Objclient.CompanyName,
+                    CompanyAddress = Objclient.CompanyAddress,
+                    CompanyPhone = Objclient.CompanyPhone
                 };
                 db.LegaSys_ClientDetails.Add(model);
                 db.SaveChanges();
@@ -82,22 +88,32 @@ namespace LegaSysUOW.Repository
 
                     if (ClientDetail != null)
                     {
-                        ObjClientInfo = new ClientDetail()
-                        {
-                            ClientDetailID = ClientDetail.ClientDetailID,
-                            ClientName = ClientDetail.ClientName,
-                            Address = ClientDetail.Address,
-                            Country = ClientDetail.Country,
-                            CoClient = ClientDetail.CoClient,
-                            CoClient2 = ClientDetail.CoClient2,
-                            CoClient3 = ClientDetail.CoClient3,
-                            CoClient4 = ClientDetail.CoClient4,
-                            EmailID = ClientDetail.EmailID,
-                            EmailID2 = ClientDetail.EmailID2,
-                            EmailID3 = ClientDetail.EmailID3,
-                            EmailID4 = ClientDetail.EmailID4,
-                            Created_By = ClientDetail.Created_By,
-                            Updated_By = ClientDetail.Updated_By,
+                    ObjClientInfo = new ClientDetail()
+                    {
+                        ClientDetailID = ClientDetail.ClientDetailID,
+                        ClientName = ClientDetail.ClientName,
+                        Address = ClientDetail.Address,
+                        Country = ClientDetail.Country,
+                        CoClient = ClientDetail.CoClient,
+                        CoClient2 = ClientDetail.CoClient2,
+                        CoClient3 = ClientDetail.CoClient3,
+                        CoClient4 = ClientDetail.CoClient4,
+                        EmailID = ClientDetail.EmailID,
+                        EmailID2 = ClientDetail.EmailID2,
+                        EmailID3 = ClientDetail.EmailID3,
+                        EmailID4 = ClientDetail.EmailID4,
+                        Created_By = ClientDetail.Created_By,
+                        Created_Date=ClientDetail.Created_Date,
+                        IsActive=ClientDetail.IsActive,
+                        Updated_By = ClientDetail.Updated_By,
+                        CompanyName = ClientDetail.CompanyName,
+                        CompanyAddress = ClientDetail.CompanyAddress,
+                        CompanyPhone = ClientDetail.CompanyPhone,
+                        ClientCompanyFax = ClientDetail.ClientCompanyFax,
+                        ClientCountry = ClientDetail.ClientCountry,
+                        ClientCountryZip = ClientDetail.ClientCountryZip
+                           
+                            
 
                         };
                     }
@@ -132,7 +148,13 @@ namespace LegaSysUOW.Repository
                     obj.EmailID4 = objClient.EmailID4;
                     obj.Created_By = objClient.Created_By;
                     obj.Updated_By = objClient.Updated_By;
-                    obj.Created_Date = System.DateTime.UtcNow;
+                    obj.CompanyName = objClient.CompanyName;
+                obj.CompanyAddress = objClient.CompanyAddress;
+                obj.CompanyPhone = objClient.CompanyPhone;
+                obj.ClientCompanyFax = objClient.ClientCompanyFax;
+                obj.ClientCountry = objClient.ClientCountry;
+                obj.ClientCountryZip = objClient.ClientCountryZip;
+                
                     obj.Updated_Date = System.DateTime.UtcNow;
                     obj.IsActive = true;
                     db.LegaSys_ClientDetails.AddOrUpdate(obj);
@@ -172,7 +194,7 @@ namespace LegaSysUOW.Repository
                     obj.EmailID4 = ClientDetail.EmailID4;
                     obj.Created_By = ClientDetail.Created_By;
                     obj.Updated_By = userId;
-                    obj.Created_Date = System.DateTime.UtcNow;
+                 
                     obj.Updated_Date = System.DateTime.UtcNow;
                     obj.IsActive = false;
                     db.LegaSys_ClientDetails.AddOrUpdate(obj);
@@ -228,6 +250,7 @@ namespace LegaSysUOW.Repository
             }
         public List<ClientProjects> GetAllProjectOfClient(Int32 Id)
         {
+            
             List<ClientProjects> clientProjectList = null;
             try
             {
@@ -239,7 +262,9 @@ namespace LegaSysUOW.Repository
                          ProjectID = s.ProjectID,
                          Client_ID = s.Client_ID,
                          Title = s.Title,
-                         Description = s.Description
+                         Start_Date = s.Start_Date,
+                         End_Date = s.End_Date,
+                         Status = s.Status
 
                      }).ToList();
                 }
@@ -249,6 +274,26 @@ namespace LegaSysUOW.Repository
                 throw;
             }
             return clientProjectList;
+        }
+        public Boolean UpdateClientProjectDetailsWithId(ClientProjects objClientProject)
+        {
+            var objProjectDetail = db.LegaSys_Projects.Where(x => x.ProjectID == objClientProject.ProjectID).FirstOrDefault();
+            if (objProjectDetail != null)
+            {
+                objProjectDetail.ProjectID = objClientProject.ProjectID;
+                objProjectDetail.Title = objClientProject.Title;
+                objProjectDetail.Start_Date = objClientProject.Start_Date;
+                objProjectDetail.End_Date = objClientProject.End_Date;
+                objProjectDetail.Status = objClientProject.Status;
+                objProjectDetail.Updated_Date = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

@@ -99,6 +99,18 @@ namespace LegaSysServices.Controllers
             return _ClientRepository.GetAllProjectOfClient(Id);
 
         }
+        [HttpPut]
+        [Route("client/UpdateProjectDetailsWithId")]
+        //Update client details
+        public Boolean ProjectDetailsWithIdDetails(ClientProjects objClientProject)
+        {
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+            objClientProject.Updated_By = userId;
+           Boolean  responce = _ClientRepository.UpdateClientProjectDetailsWithId(objClientProject);
+            return responce;
+
+        }
+
 
 
 

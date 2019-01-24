@@ -38,10 +38,18 @@ export class ClientProjectsComponent implements OnInit {
         this.router.navigate(['./project/edit', ProjectID]);
     }
     /*********** Created on 7 jan 2019 this method will be used display client and project sataus *******/
-    GetStatus(Status:any){
-   
-   
-        if(parseInt(Status)==0 ){
+    // GetStatus(Status:any){
+  
+    //     if(parseInt(Status)==0 ){
+    //       return 'Active';
+    //     }
+    //     else{
+    //       return 'Inactive';
+    //     }
+    // }
+ GetStatus(endDate:Date){
+  
+        if(endDate==undefined ){
           return 'Active';
         }
         else{
@@ -53,7 +61,14 @@ export class ClientProjectsComponent implements OnInit {
     calcTotExp(sDate, eDate){
     
       var startDate = new Date(sDate);
-      var endDate = new Date(eDate);
+      var endDate;
+      if(eDate==undefined){
+        endDate = new Date();
+      }
+      else{
+        endDate = new Date(eDate);
+      }
+      
       var increment;    
       /// new Array<Duraaastion>(); 
   
@@ -90,7 +105,7 @@ export class ClientProjectsComponent implements OnInit {
 
     /****** This method will be used to highlight selected row  */
     highlight(row:any) {
-  debugger;
+ 
       this.selectedRowIndex = row.ProjectID;
       this.CreateProjectDetailsForm();
       this.showProjectDetailsForm=true;
@@ -119,14 +134,21 @@ export class ClientProjectsComponent implements OnInit {
       /******** This method will be used to update project details  */
       UpdateProjectDetails(){
         debugger;
-         const data=this.clientProjectsList.data;
+        var flag=0;
+        for(var i=0;i<this.clientProjectsList.data.length;i++){
+          if(this.clientProjectsList.data[i].Title==this.projectDetailsForm.controls['title'].value && i!=(this.selectedRowIndex-1)){
+              flag=1;
+          }
+        }
+        if(flag==0){
+          const data=this.clientProjectsList.data;
          for(var i=0;i<data.length;i++){
            if(data[i].ProjectID==this.selectedRowIndex){
              data[i].Title=this.projectDetailsForm.controls['title'].value;
              data[i].Start_Date=this.projectDetailsForm.controls['startDate'].value;
              data[i].End_Date=this.projectDetailsForm.controls['endDate'].value;
              console.log(this.projectDetailsForm.controls['serviceType'].value);
-             if(this.projectDetailsForm.controls['serviceType'].value=='Active'){
+             if(this.projectDetailsForm.controls['endDate'].value==undefined){
                data[i].Status=0;
              }
              else{
@@ -139,13 +161,19 @@ export class ClientProjectsComponent implements OnInit {
               this.projectDetailsForm.reset();
               this.selectedRowIndex=-1;
               this.showProjectDetailsForm=false;
-              this.openSnackBar();
+              this.openSuccessSnackBar();
+              this.projectDetailsForm.markAsPristine;
             }
                }
              )     
            }
         } 
-                 
+              
+        }
+        else{
+          this.openErrorSnackBar();
+        }
+            
       }
       /********** This function will be used to clear the content of projectdetils form and hide the form  */
       ClearSection(){
@@ -153,9 +181,14 @@ export class ClientProjectsComponent implements OnInit {
         this.selectedRowIndex=-1;
         this.showProjectDetailsForm=false;
       }
-      openSnackBar() {
+      openSuccessSnackBar() {
         this.snackBar.open("Project  updated Successfully'","Close", {
           duration: 1000,
+        });
+      }
+      openErrorSnackBar() {
+        this.snackBar.open("Project Title could not be same'","Close", {
+          duration: 10000,
         });
       }
       
@@ -164,7 +197,11 @@ export class ClientProjectsComponent implements OnInit {
  
     let s_date = group.controls['startDate'].value;
     let e_date = group.controls['endDate'].value;
-    if (e_date> s_date) {
+    if(e_date==null){
+      return null;
+
+    }
+    else if (e_date> s_date) {
       // alert("done");
       return null;
 
@@ -174,4 +211,13 @@ export class ClientProjectsComponent implements OnInit {
 
     }
   }
+  getToday(){
+    return new Date().toISOString().split('T')[0]
+  }
+  AddPrject(){
+    debugger;
+    sessionStorage.setItem('cllientIdToAddProject',sessionStorage.getItem('currentClientID'));
+    this.router.navigate(['./project/add']);
+  }
+  
 }

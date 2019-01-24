@@ -28,12 +28,14 @@ export class ClientDetailsComponent implements OnInit {
    ***** client selected by user to view *****************************************************************************************************/
   GetClientsWithID(ID: any) {
     this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
-      suc => {
-        debugger;
-        this.isLoading = false;
-        this.currentClientDetails = suc;
-        this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc));
-
+      (suc:any) => {
+        if(suc.success){
+          this.isLoading = false;
+          this.currentClientDetails = suc.data;
+          this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc.data));
+  
+        }
+      
       },
       err => {
         console.log(err);
@@ -43,17 +45,17 @@ export class ClientDetailsComponent implements OnInit {
   /***** This method is used for updating  details of client modified by  user. This method is calling client service with parameter model *****************************************************************************************************/
   updateClent(client: any) {
     this.clientService.UpdateDetailsWithID(client).subscribe(
-      suc => {
-        if(suc=="Data updated successfully!"){
-         //this.tosterService.showSuccess("Client Updated Succesfully");
+      (suc:any) => {
+        debugger;
+        if(suc.success){
+         this.tosterService.showSuccess("Client Updated Succesfully");
          //this.show(); 
           this.openSnackBar();
           this.currentClientDetails=client;
-           //this.GetClientsWithID(this.currentClientID);
-                     
+           //this.GetClientsWithID(this.currentClientID);                     
         }
         else{
-          //this.tosterService.showError("Client Updation Failed");
+          this.tosterService.showError("Client Updation Failed");
         }      
       },
       err => {
@@ -80,10 +82,11 @@ export class ClientDetailsComponent implements OnInit {
   GetAllClientProject(id:number){
     
     this.clientService.GetClientAllProject(id).subscribe(
-      suc=>{
-        
-        console.log(suc);
-        this.clientProjectsList=suc;
+      (suc:any)=>{    
+        if(suc.success){
+          debugger;
+            this.clientProjectsList=suc.data;
+        }             
       }
     );
   }

@@ -41,19 +41,23 @@ export class ClientComponent implements OnInit {
   }
   /*********** Writen By Shubham Mishra on 6 nov 2018 following method is used to gell all  client details from database   */
   GetAllClients() {
-      this.clientService.GetClientDetails().subscribe(
-      suc => {
+    this.clientService.GetClientDetails().subscribe(
+    (suc:any) => {
+        if(suc.success){
+          debugger;
         this.isLoading = false;
-        this.clientDetails = suc;
+        this.clientDetails = suc.data;
         this.clientDetails = new MatTableDataSource<Client>(this.clientDetails);
         this.clientDetails.paginator = this.paginator;
         this.clientDetails.sort = this.sort;
-      },
-      err => {
-        console.log(err);
       }
-    );
-  }
+   
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
   applyFilter(filterValue: string) {
     this.clientDetails.filter = filterValue.trim().toLowerCase();
   }
@@ -61,14 +65,14 @@ export class ClientComponent implements OnInit {
 
   DeleteClientWithID(ID) {
     this.clientService.DeleteClient(ID).subscribe(
-      suc => {
-        if(suc=="Data deleted successfully!"){
-        //  this.tosterService.showSuccess("Client Delete successfully");
+     (suc:any) => {
+        if(suc.success){
+          this.tosterService.showSuccess("Client Delete successfully");
           this.openSnackBar();
           //this.show();
            this.GetAllClients();          
         }else{
-          //this.tosterService.showError("Client Deletion Failed");
+          this.tosterService.showError("Client Deletion Failed");
         }
 
       

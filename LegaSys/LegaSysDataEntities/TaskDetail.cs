@@ -34,5 +34,10 @@ namespace LegaSysDataEntities
         public string AttachmentPath { get; set; }
 
         public string AttachmentType { get; set; }
+
+        //added on 21/01/2018
+        public string Status { get; set; }
+        public string Task_AssignTo { get; set; }
+
     }
 }

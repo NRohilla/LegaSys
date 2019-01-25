@@ -82,5 +82,14 @@ namespace LegaSysServices.Controllers
             _Taskdt.DeleteProjectTask(id);
             return Json(new { message = "Project deleted  successfully." });
         }
+
+
+        [HttpGet]
+        [Route("project/getalltaskofproject/{id}")]
+        public IHttpActionResult GetAllTaskOfProject(int id)
+        {
+
+            return Json(_Taskdt.GetAllTaskOfProject(id));
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace LegaSysUOW.Repository
     public class UOWClient : IUOWClient
     {
         private readonly LegaSysEntities db;
-
+        
         public UOWClient(IDbFactory dbFactory)
         {
             db = dbFactory.Init();
@@ -244,7 +244,7 @@ namespace LegaSysUOW.Repository
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
             return clientProjectList;
         }
@@ -253,7 +253,7 @@ namespace LegaSysUOW.Repository
         public List<LegaSys_ClientStatus> GetClientStatus()
         {
             try
-            {
+            {                
                 using (LegaSysEntities db = new LegaSysEntities())
                 {
 

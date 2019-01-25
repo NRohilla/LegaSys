@@ -93,7 +93,7 @@
                                                                 Start Date:</strong></label>
                                                 <mat-label *ngIf="!disable">Project
                                                         Start Date</mat-label>
-                                                <input matInput [matDatepicker]="startpicker" [disabled]="disable" name="ProjectStartDate">
+                                                <input matInput [matDatepicker]="startpicker" [disabled]="disable" name="Start_Date" [(ngModel)]="currentProjectDetails.Start_Date">
                                                 <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
                                                 <mat-datepicker #startpicker></mat-datepicker>
                                                 <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
@@ -108,7 +108,7 @@
                                                 <mat-label *ngIf="!disable">Project End
                                                         Date</mat-label>
                                                 <input matInput [matDatepicker]="endpicker" 
-                                                        [disabled]="disable" name="ProjectEndDate">
+                                                        [disabled]="disable" name="End_Date" [(ngModel)]="currentProjectDetails.End_Date" (dateChange)="calcDuration(currentProjectDetails.Start_Date,currentProjectDetails.End_Date)" >
                                                 <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
                                                 <mat-datepicker #endpicker></mat-datepicker>
                                                 <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
@@ -121,7 +121,7 @@
                                                 <label class="summary-lebel float-left" *ngIf="disable"><strong>Duration:</strong></label>
                                                 <mat-label *ngIf="!disable">Duration</mat-label>
                                                 <input matInput #input [disabled]="disable" 
-                                                        name="ProjectDuration">
+                                                        name="ProjectDuration" [(ngModel)]="durationtime">
                                         </mat-form-field>
                                         <!-- [(ngModel)]="projectdetails.Duration" -->
                                 </div>

@@ -19,6 +19,8 @@ namespace LegaSysDataEntities
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
+        public Nullable<System.DateTime> Start_Date { get; set; }
+        public Nullable<System.DateTime> End_Date { get; set; }
         public string ClientName { get; set; }
         public Boolean ClientStatus { get; set; }
         public string Address { get; set; }
@@ -27,26 +29,17 @@ namespace LegaSysDataEntities
         public string CoClient { get; set; }
         public string EmailID3 { get; set; }
         public string Country { get; set; }
-
-
         public string CoClient2 { get; set; }
         public string CoClient3 { get; set; }
         public string CoClient4 { get; set; }
-
-        public string DomainName { get; set; }
-        
-        
+        public string DomainName { get; set; }  
         public string  EmailID4 { get; set; }
-        
         public string ProjectDomainName { get; set; }
         public int? Resource_ID { get; set; }
-
         public string ResourceName { get; set; }
-
         public int? ProjectTaskID { get; set; }
         public string ProjectName { get; set; }
         public string TaskTitle { get; set; }
-
         public string TaskDescription { get; set; }
         public int? TaskAttachmentID { get; set; }
         public string TaskAttachmentName { get; set; }
@@ -54,9 +47,7 @@ namespace LegaSysDataEntities
         public string ProjectSubTaskName { get; set; }
         public string SubTaskTitle { get; set; }
         public string SubTaskDescription { get; set; }
-
         public int? SubTaskAttachmentID { get; set; }
-
         public string ResourceFirstname { get; set; }
         public string ResourceMiddlename { get; set; }
         public string ResourceLastname { get; set; }

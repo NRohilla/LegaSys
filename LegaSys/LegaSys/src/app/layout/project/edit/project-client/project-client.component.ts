@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { Project } from '../../projectModel';
+import { ProjectAll } from '../../projectModel';
 
 @Component({
   selector: 'app-project-client',
@@ -9,8 +9,8 @@ import { Project } from '../../projectModel';
 export class ProjectClientComponent implements OnInit {
   
   @Output('onprojectinformation') onprojectinformation  = new EventEmitter<any>(); //used  to emit event to parent controller 
-  @Input('clientDetails') clientDetails: Project; 
-  @Input('currentProjectDetailsBackup') currentProjectDetailsBackup: Project;
+  @Input('clientDetails') clientDetails: ProjectAll; 
+  @Input('currentProjectDetailsBackup') currentProjectDetailsBackup: ProjectAll;
 
   constructor() { }
   

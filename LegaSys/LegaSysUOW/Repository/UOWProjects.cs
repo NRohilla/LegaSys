@@ -144,7 +144,7 @@ namespace LegaSysUOW.Repository
         //                     Master_Role_ID = ud.Master_Role_ID,
         //                     //Master_Role = db.LegaSys_Master_Roles.Where(x => x.UserRoleID == ud.Master_Role_ID).Select(x => new { Name = x.Role }).ToString(),
         //                     ProjectTaskID = pt.ProjectTaskID,
-                             
+
         //                     TaskTitle = pt.Title,
         //                     TaskDescription = pt.Description,
         //                     TaskAttachmentID = pt.Attachment_ID.Value,
@@ -156,19 +156,22 @@ namespace LegaSysUOW.Repository
         //    return query;
         //}
 
-        public ProjectDetail GetProject(int id) {
+        public ProjectDetail GetProject(int id)
+        {
 
 
             var projectIdParameter = new SqlParameter("@projectId", id);
 
             var result = db.Database
                 .SqlQuery<ProjectDetail>("spGetProjectDetailsById @projectId", projectIdParameter)
-                .ToList();            
+                .ToList();
             ProjectDetail objPd = new ProjectDetail();
             objPd.ProjectID = result[0].ProjectID;
             objPd.Title = result[0].Title;
             objPd.Description = result[0].Description;
             objPd.ProjectDomain_ID = result[0].ProjectDomain_ID;
+            objPd.Start_Date = result[0].Start_Date;
+            objPd.End_Date = result[0].End_Date;
             objPd.Client_ID = result[0].Client_ID.Value;
             objPd.ClientName = result[0].ClientName;
             objPd.Address = result[0].Address;
@@ -181,14 +184,14 @@ namespace LegaSysUOW.Repository
             objPd.EmailID2 = result[0].EmailID2;
             objPd.EmailID3 = result[0].EmailID3;
             objPd.EmailID4 = result[0].EmailID4;
-            objPd.ClientStatus = result[0].ClientStatus;            
+            objPd.ClientStatus = result[0].ClientStatus;
             objPd.DomainName = result[0].DomainName;
             objPd.Created_By = result[0].Created_By;
             objPd.Updated_By = result[0].Updated_By;
             objPd.Created_Date = result[0].Created_Date;
-            objPd.Updated_Date = result[0].Updated_Date;            
+            objPd.Updated_Date = result[0].Updated_Date;
             objPd.Resource_ID = result[0].Resource_ID;
-            objPd.ResourceName = result[0].ResourceName;            
+            objPd.ResourceName = result[0].ResourceName;
             objPd.TotalExp = result[0].TotalExp;
             objPd.ResourceEmailId = result[0].ResourceEmailId;
             objPd.ResourceMobileNumber = result[0].ResourceMobileNumber;
@@ -201,15 +204,15 @@ namespace LegaSysUOW.Repository
             objPd.ReportingHead_ID = result[0].ReportingHead_ID;
             objPd.ReportingHeadName = result[0].ReportingHeadName;
             objPd.Master_Role_ID = result[0].Master_Role_ID;
-            objPd.Master_Role = result[0].Master_Role ;
+            objPd.Master_Role = result[0].Master_Role;
             objPd.ProjectTaskID = result[0].ProjectTaskID;
             objPd.TaskTitle = result[0].TaskTitle;
-            objPd.TaskDescription = result[0].TaskDescription;            
+            objPd.TaskDescription = result[0].TaskDescription;
             objPd.TaskAttachmentID = result[0].TaskAttachmentID;
             objPd.TaskAttachmentName = result[0].TaskAttachmentName;
             objPd.ProjectSubTaskID = result[0].ProjectSubTaskID;
             objPd.SubTaskTitle = result[0].SubTaskTitle;
-            objPd.SubTaskDescription = result[0].SubTaskDescription;            
+            objPd.SubTaskDescription = result[0].SubTaskDescription;
             objPd.SubTaskAttachmentID = result[0].SubTaskAttachmentID;
             //objPd.ProjectDomainName = result[0].DomainName;
             //objPd.ResourceMiddlename = result[0].Middlename;
@@ -224,11 +227,11 @@ namespace LegaSysUOW.Repository
         public IEnumerable<ProjectDetail> GetAllProjects()
         {
             var allprojects = (from projects in db.LegaSys_Projects
-                               join clients in db.LegaSys_ClientDetails.Where(x=>x.IsActive==true) on projects.Client_ID equals clients.ClientDetailID into c_join
+                               join clients in db.LegaSys_ClientDetails.Where(x => x.IsActive == true) on projects.Client_ID equals clients.ClientDetailID into c_join
                                from c in c_join.DefaultIfEmpty()
-                               join domain in db.LegaSys_Master_TechDomains.Where(x=>x.IsActive==true) on projects.ProjectDomain_ID equals domain.TechDomainID into t_join
+                               join domain in db.LegaSys_Master_TechDomains.Where(x => x.IsActive == true) on projects.ProjectDomain_ID equals domain.TechDomainID into t_join
                                from t in t_join.DefaultIfEmpty()
-                               
+
                                    //select new { projects, c, t_join }).AsEnumerable()
                                select new ProjectDetail
                                {
@@ -372,7 +375,8 @@ namespace LegaSysUOW.Repository
             }
         }
 
-        public List<ProjectDetail> GetAllResourceOnProject(int projectid) {
+        public List<ProjectDetail> GetAllResourceOnProject(int projectid)
+        {
             try
             {
                 using (LegaSysEntities db = new LegaSysEntities())
@@ -382,7 +386,7 @@ namespace LegaSysUOW.Repository
                     var result = db.Database
                         .SqlQuery<ProjectDetail>("sp_GetResourceonProject @projectId", projectIdParameter)
                         .ToList();
-                    
+
                     //objPd.Title = result[0].Title; 
                     //objPd.Resource_ID = result[0].Resource_ID;
                     //objPd.ResourceName = result[0].ResourceName;
@@ -396,7 +400,7 @@ namespace LegaSysUOW.Repository
                     //objPd.ReportingHeadName = result[0].ReportingHeadName;
                     //objPd.Master_Role_ID = result[0].Master_Role_ID;
                     //objPd.Master_Role = result[0].Master_Role;
-                   
+
                     return result.ToList();
                 }
             }
@@ -404,6 +408,80 @@ namespace LegaSysUOW.Repository
             {
                 throw;
             }
+        }
+
+        public int RemoveResource(ProjectDetail projectDetail)
+        {
+            try
+            {
+                var project = db.LegaSys_ProjectResources.FirstOrDefault(x => (x.Resource_ID == projectDetail.Resource_ID && x.Project_ID == projectDetail.ProjectID));
+                project.IsResourceActive = 0; //set resource to inactive/false
+                db.SaveChanges();
+                return project.Resource_ID.Value;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public void MapResource(ProjectDetail[] projectDetail)
+        {
+            try
+            {                
+                int pid = projectDetail.FirstOrDefault(x => x.ProjectID != 0).ProjectID;
+                int rid, msid;
+                
+                List<ProjectDetail> resourcelist = GetAllResourceOnProject(pid);
+                for (int i = 0; i < projectDetail.Length; i++)
+                {
+                    rid = projectDetail[i].Resource_ID.Value;
+                    msid = projectDetail[i].Master_Shift_ID.Value;
+                    var resource = resourcelist.Where(x => x.Resource_ID == projectDetail[i].Resource_ID).FirstOrDefault();
+                    if (resource != null) //  resource found working on project
+                    {                         
+                        var user = db.LegaSys_UserDetails.Where(x => x.UserDetailID == rid).FirstOrDefault();        
+                        if (user.Master_Shift_ID != msid)
+                        {
+                            user.Master_Shift_ID = msid;
+                        }
+                        var projectresource = db.LegaSys_ProjectResources.Where(x => x.ProjectResourceID == projectDetail[i].ProjectResourceID).FirstOrDefault();
+                        projectresource.IsResourceActive = projectDetail[i].Status;
+                        
+                    }
+                    else //no resource found working on project
+                    {
+                        var pr = new LegaSys_ProjectResources {
+                            Project_ID = pid,
+                            Resource_ID=projectDetail[i].Resource_ID,
+                            IsResourceActive=1
+                        };
+                        db.LegaSys_ProjectResources.Add(pr);
+                        //var ur= db.LegaSys_UserDetails.Where(x => x.UserDetailID == projectDetail[i].Resource_ID).FirstOrDefault();
+                        //CheckResourceShift(rid, msid);
+                    }
+                    CheckResourceShift(rid, msid);
+                }
+                db.SaveChanges();
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void CheckResourceShift(int resourceid,int msid)
+        {
+            var ur = db.LegaSys_UserDetails.Where(x => x.UserDetailID == resourceid).FirstOrDefault();
+            if (ur.Master_Shift_ID != msid)
+            {
+                ur.Master_Shift_ID = msid;
+                db.SaveChanges();
+            }
+           
         }
     }
 }

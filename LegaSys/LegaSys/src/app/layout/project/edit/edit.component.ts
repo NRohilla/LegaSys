@@ -45,9 +45,10 @@ export class EditComponent implements OnInit {
     isCancelDisabled = false;
     notfound: Boolean = false;
     projectid: any;
+    projectdetailsbackup: Project;
 
     constructor(private route: ActivatedRoute, public dataService: SharedService,
-        private router: Router, private project: Project, public snackBar: MatSnackBar) {
+        private router: Router, public project: Project, public snackBar: MatSnackBar) {
         const id = this.route.snapshot.paramMap.get('ProjectID');
         this.projectid = id;
         debugger;
@@ -61,12 +62,13 @@ export class EditComponent implements OnInit {
                 //debugger;
                 
                 this.projectdetails = res;
+                this.projectdetailsbackup=JSON.parse(JSON.stringify(res));
                 this.clientdetails = res;                
                 this.date = new Date('12/11/2018');                
-                 debugger;
+                 //debugger;
                 this.resourcedetails = res;
                 this.taskdetails = res;
-                //console.log("project details:" +JSON.stringify(this.projectdetails) );
+                //console.log("projectdetails: " +JSON.stringify(this.projectdetails) );
                 // }
             }, error => {
                 alert("Invalid Request!");
@@ -87,8 +89,8 @@ export class EditComponent implements OnInit {
     formControl = new FormControl('', [
         Validators.required
     ]);
-    ngOnInit() {
-    }
+    ngOnInit() {}
+
     getErrorMessage() {
         return this.formControl.hasError('required') ? 'Required field' :
             this.formControl.hasError('email') ? 'Not a valid email' :
@@ -197,4 +199,54 @@ export class EditComponent implements OnInit {
             duration: 1000,
         });
     }
+    Nav(clientid:any){
+        //alert(clientid);
+        sessionStorage.setItem("currentClientID", clientid);    
+    this.router.navigate(['/client-details']);
+
+    }
+    calcDuration(sDate, eDate){
+       // debugger;
+    
+        var startDate = new Date(sDate);
+        var endDate;
+        if(eDate==undefined){
+          endDate = new Date();
+        }
+        else{
+          endDate = new Date(eDate);
+        }
+        
+        var increment;    
+        /// new Array<Duraaastion>(); 
+    
+        var Days = parseInt((endDate.getDate() - startDate.getDate()).toString().replace('-', ''));
+        var month;
+        if ((startDate.getMonth()) > endDate.getMonth()) {
+          month = (endDate.getMonth() + 12) - (startDate.getMonth());
+          increment = 1;
+        }
+        else {
+          month = (endDate.getMonth()) - (startDate.getMonth());
+          increment = 0
+        }
+        var Year = endDate.getFullYear() - (startDate.getFullYear() + increment);
+    
+      //  var tottalExpy=tottalExpy+Year;
+      //  var tottalExpm=tottalExpm+month;
+      //  if(tottalExpm>12){
+      //  tottalExpy+=1;
+      //    tottalExpm=tottalExpm-12;
+      //  }
+      //  var tottalExpd=tottalExpd+Days;
+      //  {
+      //    if(tottalExpd>30){
+      //   tottalExpm+=1;
+      //     tottalExpd=tottalExpd-30;
+      //    }
+      //  }       
+        var duration=Year+" Year(s) "+month+" Month(s) "+Days+" Day(s)";
+        return duration;
+         
+      }
 }

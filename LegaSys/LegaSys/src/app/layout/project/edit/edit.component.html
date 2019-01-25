@@ -126,8 +126,9 @@
                                                                                 <div class="float-left">{{projectdetails.Title}}</div>
                                                                         </div>
                                                                         <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                                                                                <div class="summary-lebel float-left pr-2"><strong>Description :</strong></div>
-                                                                                <div class="float-left">{{projectdetails.Description}}</div>
+                                                                                <div class="summary-lebel float-left pr-2"><strong>Client :</strong></div>
+                                                                                <div class="float-left" hidden>{{projectdetails.Client_ID}}</div>
+                                                                                <div class="float-left"><a  role="button" (click)="Nav(projectdetails.Client_ID)" style="color:dodgerblue;text-decoration: underline; cursor: pointer; " >{{projectdetails.ClientName}}</a></div>
                                                                         </div>
                                                                         <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                                                                                 <div class="summary-lebel float-left pr-2"><strong>Domain Name:</strong></div>
@@ -138,15 +139,15 @@
                                                                 <div class="row mx-0 my-2">
                                                                         <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                                                                                 <div class="summary-lebel float-left pr-2"><strong>Start Date :</strong></div>
-                                                                                <div class="float-left">{{projectdetails.StartDate}}</div>
+                                                                                <div class="float-left">{{projectdetails.Start_Date|date}}</div>
                                                                         </div>
                                                                         <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                                                                                 <div class="summary-lebel float-left pr-2"><strong>End Date :</strong></div>
-                                                                                <div class="float-left">{{projectdetails.EndDate}}</div>
+                                                                                <div class="float-left" >{{projectdetails.End_Date|date}}</div>
                                                                         </div>
                                                                         <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                                                                                 <div class="summary-lebel float-left pr-2"><strong>Duration :</strong></div>
-                                                                                <div class="float-left">{{projectdetails.Duration}}</div>
+                                                                                <div class="float-left">{{calcDuration(projectdetails.Start_Date, projectdetails.End_Date)}}</div>
                                                                         </div>
 
                                                                 </div>
@@ -158,12 +159,12 @@
 
                                         <!-- Project Tab -->
                                         <mat-tab label="Project Information">
-                                                <app-project-info [projectInformation]="projectdetails" (onprojectinformationChange)="save($event)"></app-project-info>
+                                                <app-project-info *ngIf="projectdetails" [projectInformation]="projectdetails" [projectInformationbackup]="projectdetailsbackup" (onprojectinformationChange)="save($event)"></app-project-info>
                                         </mat-tab>
                                         <!-- Client Tab -->
-                                        <mat-tab label="Client Information">
+                                        <!-- <mat-tab label="Client Information">
                                                 <app-project-client  [clientDetails]="clientdetails"></app-project-client>
-                                        </mat-tab>
+                                        </mat-tab> -->
                                         <!-- Resource Tab -->
                                         <mat-tab label="Resource Information">
                                                 <app-project-resource [resourceDetails]="resourcedetails"></app-project-resource>

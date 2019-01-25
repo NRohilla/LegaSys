@@ -14,5 +14,7 @@ namespace LegaSysUOW.Interface
         IEnumerable<TaskDetail> GetAllProjectsTask();
         void DeleteProjectTask(int id);
         int UpdateProjectTaskDetail(TaskDetail projectTaskDetail);
+
+        List<TaskDetail> GetAllTaskOfProject(int id);
     }
 }

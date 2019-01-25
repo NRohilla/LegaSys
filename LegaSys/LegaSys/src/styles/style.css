@@ -12,3 +12,8 @@ body { font-size: 14px; }
 .mat-form-field-appearance-legacy .mat-form-field-label {
     color: black;
 }
+
+
+.mat-tooltip{
+    font-size:12px;
+}

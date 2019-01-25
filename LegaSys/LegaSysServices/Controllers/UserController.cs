@@ -37,5 +37,12 @@ namespace LegaSysServices.Controllers
                 x.Fullname
             }));
         }
+
+        [HttpPost]
+        [Route("getavailableresource")]
+        public IHttpActionResult GetUserList(int[] id)
+        {
+            return Json(_uOWUsers.GetAvailableUserListForProject(id));
+        }
     }
 }

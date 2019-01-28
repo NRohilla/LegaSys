@@ -3,6 +3,7 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TasksService } from './tasks.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-tasks',
@@ -13,13 +14,11 @@ export class TaskComponent implements OnInit {
 
   dataSource: any = [];
   isLoading = true;
+  ID : any;
 
-  //Project Updated Date and project Updated By will Change as required.........
-  //'ProjectUpdated_By','projectUpdated_Date', 'Updated_By' ,'Updated_Date',
+  displayedColumns: string[] = ['TaskTitle', 'Project_Title','Task_AssignTo','Task_Status','Task_Priority','Task_Activity','Start_Date','Target_Date','Action'];
 
-  displayedColumns: string[] = ['TaskTitle', 'Description', 'Project_Title', 'Project_Description', 'Action'];
-
-  constructor(public dataService: TasksService, private router: Router) { }
+  constructor(public dataService: TasksService, private router: Router, public toastr: ToastrManager) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,8 +35,10 @@ export class TaskComponent implements OnInit {
   //  Method to get data from database
   
   FetchDataTable() {
+    debugger;
     this.dataService.GetAllProjectsTask().subscribe(
       res => {
+        debugger;
         this.dataSource = new MatTableDataSource<TaskModel>();
         this.isLoading = false;
         this.dataSource.data = res;
@@ -54,6 +55,30 @@ export class TaskComponent implements OnInit {
     sessionStorage.setItem("currentId", ID);
     this.router.navigate(['/viewtask']);
   }
+ //tOASTER mETHODS
+ showSuccess()
+  {
+    this.toastr.successToastr('Task Deleted Successfully.', 'Success!');
+  }
+
+  deleteTask(ID)
+  {
+    debugger;
+     this.dataService.DeleteProjectTask(ID).subscribe(
+
+      res=>
+      {
+       this.dataSource=res;
+       this.ID = this.dataSource.ProjectTaskID;
+       this.showSuccess();
+      },
+      error =>
+      {
+        console.log('There was an error while retrieving data !!!' + error);
+ 
+      });
+  }
+  
 
 
 }
@@ -69,7 +94,26 @@ export class TaskModel {
   Updated_By : number;
   Created_Date : Date ;
   Updated_Date : Date ;
-
+  Original_Estimate:number;
+  Remaining:number;
+  Completed:number;
+  Task_Status:number;
+  Status_Icon:string;
+  Task_Priority:number;
+  Task_Risk: number;
+  Task_Activity:number;
+  Task_Assigne_Id:number;
+  Task_AssignTo:string;
+  Start_Date:Date;
+  Target_Date:Date;
+  Classification:string;
+  Acceptance_Criteria:string
+  Status_Id:number;
+  Priority_Id:number;
+  Risk_Id:number;
+  Activity_Id:number;
+ 
+  
   //Fields For Projects Table
 
   Project_ID :number;
@@ -85,9 +129,10 @@ export class TaskModel {
   Project_Status : Number ;
 
   //Fields For Attachment Table
-
+  AttachmentName :string;
   AttachmentPath : string;
   AttachmentType :string;
+  AttachmentTypeID:number;
 
   //Fields For SubTask Table
 
@@ -98,6 +143,8 @@ export class TaskModel {
   SubTaskUpdated_By : number ;
   SubTaskCreated_Date :Date;
   SubTaskUpdated_Date : Date;
+
+  
 
 
 

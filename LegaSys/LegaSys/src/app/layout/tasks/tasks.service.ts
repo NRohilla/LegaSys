@@ -13,100 +13,128 @@ import { TaskModel } from './tasks.component';
 })
 export class TasksService {
 
-    constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) 
-    {
+
+
+    constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) {
     }
+
+    getToken() {
+        var token = this.storage.get('UserToken');
+        if (token != null) {
+            var bearerToken = 'Bearer ' + token.access_token;
+            let newHeaders = new HttpHeaders();
+            newHeaders = newHeaders.append('Authorization', bearerToken);
+            return newHeaders;
+        }
+    }
+
     headers: any;
 
-    GetProjectTaskbyId(ID) 
-    {
-        
-                
-        return this.http.get('http://localhost:58164/task/'+ ID)
+    GetProjectTaskbyId(ID) {
+
+
+        return this.http.get('http://localhost:58164/task/' + ID, { headers: this.getToken() })
     }
 
-    GetAllProjectsTask()
-    {
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
+    GetAllProjectsTask() {
 
-        return this.http.get('http://localhost:58164/task/getall',this.headers)
+        return this.http.get('http://localhost:58164/task/getall', { headers: this.getToken() })
     }
 
-    CreateProjectTaskDetail(taskmodel : TaskModel)
-    {
-     
-            
-        return this.http.post<TaskModel[]>('http://localhost:58164/task/create',taskmodel)
-    }
-
-    UpdateProjectTaskDetail(taskmodel : TaskModel)
-    {
-        
-        
-            
-        return this.http.post<TaskModel[]>('http://localhost:58164/task/update',taskmodel)
-    }
-
-    DeleteProjectTask(ID)
-    {
-        
-            
-        return this.http.get<TaskModel[]>('http://localhost:58164/task/{id}/delete'+ID)
-    }
-    
-    GetAllProjects()
-    {
+    CreateProjectTaskDetail(taskmodel: TaskModel) {
         debugger;
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
-     
-        return this.http.get('http://localhost:58164/project/getall', this.headers)
-    }    
 
-    public GetAllClients() 
-    {
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.get('http://localhost:58164/client/GetAllClient', this.headers);
+
+        return this.http.post<TaskModel[]>('http://localhost:58164/task/create', taskmodel, { headers: this.getToken() })
     }
 
-    errorHandler(error:Response)
-    {
+    UpdateProjectTaskDetail(taskmodel: TaskModel) {
+
+
+
+        return this.http.post<TaskModel[]>('http://localhost:58164/task/update', taskmodel, { headers: this.getToken() })
+    }
+
+    DeleteProjectTask(ID) {
+
+
+        return this.http.delete('http://localhost:58164/task/delete/' + ID, { headers: this.getToken() })
+    }
+
+    GetAllProjects() {
+
+        return this.http.get('http://localhost:58164/project/getall', { headers: this.getToken() })
+    }
+
+    public GetAllClients() {
+
+        return this.http.get('http://localhost:58164/client/GetAllClient', { headers: this.getToken() });
+    }
+
+    errorHandler(error: Response) {
         console.log(error);
         return throwError(error);
     }
-   
-    public GetUserName()
-    {
 
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.get('http://localhost:58164/client/AuthenticateLogin', this.headers);
+    public GetUserName() {
+
+        return this.http.get('http://localhost:58164/client/AuthenticateLogin', { headers: this.getToken() });
     }
 
 
-    public GetAllProjectsSubTask()
-    {
 
-        return this.http.get('http://localhost:58164/subtask/getall')
+    GetAllProjectSubTaskbyTaskId(ID) {
+        debugger;
 
-    }
-
-    GetProjectSubTaskbyId(ID)
-    {
-       debugger; 
-                
-        return this.http.get('http://localhost:58164/task/'+ ID)
+        return this.http.get('http://localhost:58164/subtask/' + ID, { headers: this.getToken() })
     }
 
 
-    public CreateProjectSubTask(id:number,subtaskDetail:TaskModel[])
-    {
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
+    public CreateProjectSubTask(id: number, subtaskDetail: TaskModel[]) {
+        debugger;
 
-            return this.http.post<TaskModel[]>('http://localhost:58164/subtask/create/'+id, subtaskDetail);
+        return this.http.post<TaskModel[]>('http://localhost:58164/subtask/create/' + id, subtaskDetail, { headers: this.getToken() });
     }
-   
+
+
+     public addAttechmentatServer(formData:FormData) {
+         debugger;
+
+        return this.http.post('http://localhost:58164/attachment/create/', formData, { headers: this.getToken() });
+     }
+
+       public GetTaskStatus()
+       {
+           debugger
+         return this.http.get('http://localhost:58164/task/getstatus/' ,{ headers: this.getToken() })
+       }
+
+       
+       public GetTaskPriority()
+       {
+         debugger
+         return this.http.get('http://localhost:58164/task/getpriority/' ,{ headers: this.getToken() })
+       }
+
+       
+       public GetTaskRisk()
+       {
+         debugger
+         return this.http.get('http://localhost:58164/task/getrisk/' ,{ headers: this.getToken() })
+       }
+    
+       public GetTaskAssignee()
+       {
+         debugger
+         return this.http.get('http://localhost:58164/resource/getall/' ,{ headers: this.getToken() })
+       }
+
+
+       public GetTaskActivity()
+       {
+         debugger
+         return this.http.get('http://localhost:58164/task/getactivity/' ,{ headers: this.getToken() })
+       }
+
+  
 }

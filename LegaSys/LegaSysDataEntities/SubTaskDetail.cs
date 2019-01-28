@@ -28,7 +28,8 @@ namespace LegaSysDataEntities
             public string AttachmentType { get; set; }
             public int Project_ID { get; set; }
            public string Project_Title { get; set; }
-
+            public int? AttachmentTypeID { get; set; }
+            public string AttachmentName { get; set; }  
 
 
 

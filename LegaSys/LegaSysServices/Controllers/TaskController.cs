@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace LegaSysServices.Controllers
@@ -60,6 +61,7 @@ namespace LegaSysServices.Controllers
         [Route("task/create")]
         public IHttpActionResult Post([FromBody] TaskDetail objTask)
         {
+
             //Fetching UserId
             int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
             objTask.Created_By = createdBy;
@@ -69,7 +71,7 @@ namespace LegaSysServices.Controllers
             if (result <= 0)
                 return InternalServerError();
 
-            return Json(new { id = result, message = "Project Task created successfully." });
+            return Json(new { id = result });
         }
 
         //Method for update task PuT method 
@@ -89,15 +91,7 @@ namespace LegaSysServices.Controllers
         }
 
 
-        //DELETE Method
-        [HttpGet]
-        [Route("project/{id}/delete")]
-        public IHttpActionResult DeleteProjectTask(int id)
-        {
-            _Taskdt.DeleteProjectTask(id);
-            return Json(new { message = "ProjectTask deleted  successfully." });
-        }
-
+      
 
 
 
@@ -119,12 +113,12 @@ namespace LegaSysServices.Controllers
         [HttpGet]
         [Route("subtask/{id}")]
 
-        public IHttpActionResult GetProjectSubTaskbyId(int id)
+        public IHttpActionResult GetAllProjectSubTaskbyTaskId(int id)
         {
             if (id <= 0)
                 return BadRequest("Invalid Project Task Id.");
 
-            var projectsubTask = _uOWSubTask.GetProjectSubTaskbyId(id);
+            var projectsubTask = _uOWSubTask.GetAllProjectSubTaskbyTaskId(id);
 
             if (projectsubTask == null)
                 return NotFound();
@@ -137,19 +131,79 @@ namespace LegaSysServices.Controllers
 
         [HttpPost]
         [Route("subtask/create/{id}")]
-        public IHttpActionResult AddSubTask ([FromBody]int id, List<SubTaskDetail> subtaskDetail)
+        public IHttpActionResult AddSubTask(int id, List<SubTaskDetail> subtaskDetail)
         {
             //Fetching UserId
             int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
-            //subtaskDetail.= createdBy;
 
-            _uOWSubTask.CreateProjectSubTaskDetail(id,subtaskDetail);
+            _uOWSubTask.CreateProjectSubTaskDetail(id, subtaskDetail, createdBy);
 
             return Json(new { success = true });
         }
 
 
-      
+
+        //METHOD TO DELETE TASK
+        [HttpDelete]
+        [Route("task/delete/{id}")]
+
+        public IHttpActionResult DeleteProjectTask(int id)
+        {
+            _Taskdt.DeleteProjectTask(id);
+
+            return Json(new { success=true });
+
+        }
+
+       
+
+        //method to upload Attachment of SubTask on server
+
+        [HttpPost]
+
+        [Route("attachment/create")]
+        public string addAttechmentonServer()
+        {
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files[0];
+            var attechmentPath =  _uOWSubTask.addAttechmentonServer(postedFile);
+
+            return (attechmentPath);
+        }
+
+
+       // method to get status of task
+        [HttpGet]
+        [Route("task/getstatus")]
+        public IHttpActionResult GetTaskStatus()
+        {
+            return Json(_Taskdt.GetTaskStatus());
+        }
+        // method to get Priority of task
+        [HttpGet]
+        [Route("task/getpriority")]
+        public IHttpActionResult GetTaskPriority()
+        {
+            return Json(_Taskdt.GetTaskPriority());
+        }
+
+
+        // method to get Risk of task
+        [HttpGet]
+        [Route("task/getrisk")]
+        public IHttpActionResult GetTaskRisk()
+        {
+            return Json(_Taskdt.GetTaskRisk());
+        }
+
+
+        // method to get Risk of task
+        [HttpGet]
+        [Route("task/getactivity")]
+        public IHttpActionResult GetTaskActivity()
+        {
+            return Json(_Taskdt.GetTaskActivity());
+        }
 
     }
 }

@@ -14,6 +14,20 @@ body {
   float: right;
 }
 
-.form .mat-tab-header { background: #17a2b8 !important; }
-.form .mat-tab-label { opacity: 1;}
-.form .mat-input-element:disabled { color: rgba(0, 0, 0, .7); }
+.form .mat-tab-header 
+{ background: #17a2b8 !important; 
+
+}
+.form .mat-tab-label 
+{ 
+  opacity: 1;
+}
+.form .mat-input-element:disabled 
+{
+   color: rgba(0, 0, 0, .7);
+   }
+
+   /* To display a border for the input */
+.mat-input-flex.mat-form-field-flex{
+  border: 1px solid black;
+}

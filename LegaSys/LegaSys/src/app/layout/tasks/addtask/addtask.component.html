@@ -1,72 +1,28 @@
 
 <div>
-  <app-page-header [heading]="'Add Task'" [icon]="'fa fa-users'"></app-page-header>
+        <app-page-header [heading]="'Add Task'" [icon]="'fa fa-users'"></app-page-header>
 
 </div>
 <div class="card">
-<div class="card-header bg-info">
-  <mat-label class="labeltext text-white" style="font-size:17px;"> New Task </mat-label>
-</div>
+    <div class="card-header bg-info">
+        <mat-label class="labeltext text-white" style="font-size:15px;"> New Task </mat-label>
+    </div>
 
 <br>
 <form [formGroup]="taskForm" >
-<div class="example-container " style="padding-left:10px;padding-right: 10px;">    
-  <div class="row">    
-      <div class="col-md-4" >
-          <!-- Task Title Coloumn -->
-          <mat-form-field class="w-100">
-                  <mat-label style="font-weight:bold;font-size:14px;color: black">Task Title</mat-label>
-                  <BR>
-              <input matInput placeholder="Task Title" formControlName=TaskTitle>
-              
-
-              <!-- Validation Error Message -->
-              <mat-error *ngIf="taskForm.controls.TaskTitle.invalid">
-                  <span [hidden]="!taskForm.controls['TaskTitle'].errors.required">
-                      Task Title is required.
-                  </span>
-                  <span [hidden]="!taskForm.controls['TaskTitle'].errors.maxlength">
-                      Maximum allowed characters are 25
-                  </span>
-
-                  <!-- <span [hidden]="!taskForm.controls['TaskTitle'].errors.pattern">
-                      Special characters are not allowed here.
-                  </span> -->
-
-              </mat-error>
-          </mat-form-field>
-      </div>
-       <!-- Select Client Name -->
-      <div class="col-md-4">
-              <mat-form-field class="w-100">
-                      <mat-label style="font-weight:bold;font-size:15px; color: black">Client Name</mat-label>
-                      <BR>
-                        <mat-select placeholder="ClientName" formControlName=ClientName>
-                             
-                              <mat-option *ngFor="let clients of myclients" [value]="clients.ClientName">
-                                 {{clients.ClientName}}
-                                    </mat-option>
-      
-              </mat-select>
-                          <!-- Validation Error Message -->
-                       <mat-error *ngIf="taskForm.controls.ClientName.invalid">
-                              <span [hidden]="!taskForm.controls['ClientName'].errors.required">
-                                  Client Name is required.
-                              </span>
-                          </mat-error>
-               </mat-form-field> 
-      
-              </div>
-    
+    <div class="example-container " style="padding-left:10px;padding-right: 10px;">    
+        
+           
+    <div class="row">   
         <!-- Select Project Name -->
       <div class="col-md-4">
               <mat-form-field class="w-100">
-                      <mat-label style="font-weight:bold;font-size:15px;color: black">Project Name</mat-label>
+                      <mat-label style="font-weight:bold;font-size:15px;color: black">Project Title</mat-label>
                       <BR>
-                       <mat-select placeholder="Project Name" formControlName=Project_ID >
+                       <mat-select placeholder="Project Name" formControlName="Project_ID" >
              
                                           <mat-option *ngFor="let projects of myclients" [value]="projects.ProjectID">
-                                      {{projects.Title}}
+                                                {{projects.Title}}
                                             
                                           </mat-option>
       
@@ -75,39 +31,302 @@
                        <!-- Validation Error Message -->
                        <mat-error *ngIf="taskForm.controls.Project_ID.invalid">
                                 <span [hidden]="!taskForm.controls['Project_ID'].errors.required">
-                                   Project is required.
-                              </span>
-                          </mat-error>
+                                        Project is required.
+                                </span>
+                     </mat-error>
                       
                </mat-form-field>
               </div>
-  </div>
-  <div class="row mb-3">
-    
-      <!-- Task Description Coloumn -->
-      <div class="col-md-4">
-          <mat-form-field class="w-100">
-                  <mat-label style="font-weight:bold;font-size:15px;color: black">Description</mat-label>
-                  <BR>
-              <textarea matInput placeholder="Description" formControlName=Description> </textarea>
-              <!-- Validation Error Message -->
-               <!-- <mat-error *ngIf="taskForm.controls.Description.invalid">
-                  <span [hidden]="!taskForm.controls['Description'].errors.required">
-                      Task Description is required.
-                  </span>
-              </mat-error>  -->
-
-
-          </mat-form-field>
-      </div>
-                     
-         <div class="col-md-4 " style="margin-top:22px">
-          <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif" >Upload Document</label>
-              <br>
-                   <input type="file" name="file"  (change)="onFileChanged($event)" />
+    </div>
+             
+ <div class="row">    
+            <!-- Task Title Coloumn -->
+              <div class="col-md-4" >
+                       <mat-form-field class="w-100">
+                              <mat-label style="font-weight:bold;font-size:15px;color: black">Task Title</mat-label>
+                               <BR>
+                                   <input matInput placeholder="Task Title" formControlName=TaskTitle>
+                    
+      
+                    <!-- Validation Error Message -->
+                               <mat-error *ngIf="taskForm.controls.TaskTitle.invalid">
+                                   <span [hidden]="!taskForm.controls['TaskTitle'].errors.required">
+                                       Task Title is required.
+                                   </span>
+                                   <span [hidden]="!taskForm.controls['TaskTitle'].errors.maxlength">
+                                           Maximum allowed characters are 25
+                                   </span>
+                               </mat-error>
+                       </mat-form-field>
+             </div>
+                <!-- Select Task Status  -->
+            <div class="col-md-4">
+                    <mat-form-field class="w-100">
+                             <mat-label style="font-weight:bold;font-size:15px;color: black">Task Status</mat-label>
+                        <BR>
+                            <mat-select placeholder="Task Status" formControlName=Status_Id >
            
+                                         <mat-option *ngFor="let status of taskStatus" [value]="status.Status_Id">
+                                              {{status.Status_Type}}
+                                          
+                                        </mat-option> 
+    
+                            </mat-select>
+    
+                     <!-- Validation Error Message -->
+                        <mat-error *ngIf="taskForm.controls.Status_Id.invalid">
+                              <span [hidden]="!taskForm.controls['Status_Id'].errors.required">
+                                    Please select the Task Status.
+                              </span>
+                         </mat-error>
+                    
+                    </mat-form-field>
+            </div>
+
+              <!-- Select Task Priority  -->
+              <div class="col-md-4">
+                    <mat-form-field class="w-100">
+                             <mat-label style="font-weight:bold;font-size:15px;color: black">Task Priority</mat-label>
+                        <BR>
+                            <mat-select placeholder="Task Priority" formControlName=Priority_Id >
+           
+                                        <mat-option *ngFor="let priority of taskPriority" [value]="priority.Priority_Id">
+                                              {{priority.Priority_Type}}
+                                          
+                                        </mat-option>
+    
+                            </mat-select>
+    
+                     <!-- Validation Error Message -->
+                        <mat-error *ngIf="taskForm.controls.Priority_Id.invalid">
+                              <span [hidden]="!taskForm.controls['Priority_Id'].errors.required">
+                                      Please set the Task Priority.
+                              </span>
+                         </mat-error>
+                    
+                    </mat-form-field>
+            </div>
+
+
+              <!-- Select Task Risk  -->
+              <div class="col-md-4">
+                    <mat-form-field class="w-100">
+                             <mat-label style="font-weight:bold;font-size:15px;color: black">Task Risk</mat-label>
+                        <BR>
+                            <mat-select placeholder="Task Risk" formControlName=Risk_Id >
+           
+                                        <mat-option *ngFor="let risk of taskRisk" [value]="risk.Risk_Id">
+                                              {{risk.Risk_Type}}
+                                          
+                                        </mat-option> 
+ 
+                            </mat-select>
+    
+                     <!-- Validation Error Message -->
+                        <mat-error *ngIf="taskForm.controls.Risk_Id.invalid">
+                              <span [hidden]="!taskForm.controls['Risk_Id'].errors.required">
+                                    Please set the Task Risk.
+                              </span>
+                         </mat-error>
+                    
+                    </mat-form-field>
+            </div>
+
+
+             <!-- Select Task Activity  -->
+             <div class="col-md-4">
+                  <mat-form-field class="w-100">
+                           <mat-label style="font-weight:bold;font-size:15px;color: black">Task Activity</mat-label>
+                      <BR>
+                          <mat-select placeholder="Task Activity" formControlName=Activity_Id >
+         
+                                      <mat-option *ngFor="let activity of taskActivity" [value]="activity.Activity_Id">
+                                            {{activity.Task_Activity}}
+                                        
+                                      </mat-option> 
+
+                          </mat-select>
+  
+                   <!-- Validation Error Message -->
+                      <mat-error *ngIf="taskForm.controls.Activity_Id.invalid">
+                            <span [hidden]="!taskForm.controls['Activity_Id'].errors.required">
+                                  Please set the Task Activity Area.
+                            </span>
+                       </mat-error>
+                  
+                  </mat-form-field>
           </div>
-     </div>
+           
+              <!--  Assinged to coloumn  -->
+
+              <div class="col-md-4">
+                    <mat-form-field class="w-100">
+                             <mat-label style="font-weight:bold;font-size:15px;color: black">Assinged To</mat-label>
+                        <BR>
+                            <mat-select placeholder="Task_AssignTo" formControlName=Task_AssignTo>
+           
+                                         <mat-option *ngFor="let assignee of taskAssignee" [value]="assignee.Firstname">
+                                              {{assignee.Firstname}}
+                                          
+                                        </mat-option> 
+    
+                            </mat-select>
+    
+                     <!-- Validation Error Message -->
+                        <mat-error *ngIf="taskForm.controls.Task_AssignTo.invalid">
+                              <span [hidden]="!taskForm.controls['Task_AssignTo'].errors.required">
+                                    Please Assingn Task.
+                              </span>
+                         </mat-error>
+                    
+                    </mat-form-field>
+            </div>
+
+           
+             <!-- Task Start Date Coloumn -->
+             <div class="col-md-4">
+                    <mat-form-field  class="w-100" >
+                            <mat-label style="font-weight:bold;font-size:15px;color: black">Start Date</mat-label>
+                            <BR>
+                            <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" formControlName="Start_Date">
+                            <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerStart></mat-datepicker>
+             <!-- Validation Error Message -->
+                        <mat-error *ngIf="taskForm.controls.Start_Date.invalid">
+                                <span [hidden]="!taskForm.controls['Start_Date'].errors.required">
+                                        Please select the Start Date in Date Formate Only(Characters not allowed) .
+                                </span>
+                              
+                           </mat-error>
+
+                     </mat-form-field>
+                          
+            </div>
+
+             <!-- Task Target Date Coloumn -->
+             <div class="col-md-4">
+                    <mat-form-field  class="w-100" >
+                            <mat-label style="font-weight:bold;font-size:15px;color: black">Target Date</mat-label>
+                            <BR>
+                            <input matInput [matDatepicker]="pickerTarget" placeholder="Target Date" formControlName="Target_Date">
+                            <mat-datepicker-toggle matSuffix [for]="pickerTarget"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerTarget></mat-datepicker>
+
+             <!-- Validation Error Message -->
+                        <mat-error *ngIf="taskForm.controls.Target_Date.invalid">
+                                <span [hidden]="!taskForm.controls['Target_Date'].errors.required">
+                                      Please select the Target Date in Date Formate Only(Characters not allowed) .
+                                </span>
+
+                              <span class="alert alert-danger" *ngIf="taskForm.controls['Target_Date'].errors?.matchval" class="d-block w-100 border-0 mat-error">
+                                     Target date must be greater than Start date
+                              </span>
+                               
+                           </mat-error>
+                         
+                        
+                    </mat-form-field>
+                          
+            </div>
+
+             <!-- Select Task Classification -->
+             <div class="col-md-4">
+                  <mat-form-field class="w-100">
+                           <mat-label style="font-weight:bold;font-size:15px;color: black">Classification </mat-label>
+                      <BR>
+                          <mat-select placeholder="Classification" formControlName="Classification">
+         
+                                      <mat-option *ngFor="let classification of taskClassification" [value]="classification.value">
+                                            {{classification.viewValue}}
+                                        
+                                      </mat-option> 
+  
+                          </mat-select>
+  
+                   <!-- Validation Error Message -->
+                      <mat-error *ngIf="taskForm.controls.Classification.invalid">
+                            <span [hidden]="!taskForm.controls['Classification'].errors.required">
+                                  Please select Task Classification.
+                            </span>
+                       </mat-error>
+                  
+                  </mat-form-field>
+          </div>
+            
+        
+   </div>
+ <div class="row">
+ <!-- Task Description Coloumn -->
+
+ <div class="col-md-4">
+      <div class="w-100">
+        <mat-label style="font-weight:bold;font-size:15px;color: black;     display: block; margin-bottom: 5px;">Task Description</mat-label>
+     
+        <textarea class="form-control rounded-0" id="taskDescription" Placeholder="Description" rows="3" [(ngModel)]="taskDescription"  formControlName= "taskDescription"></textarea>
+      </div>      
+</div>
+
+<!-- Task Acceptance Criteria Coloumn -->
+
+<div class="col-md-4">
+<div class="w-100">
+<mat-label style="font-weight:bold;font-size:15px;color: black;  display: block; margin-bottom: 5px;">Acceptance Criteria</mat-label>
+
+<textarea class="form-control rounded-0" id="acceptancecriteria" Placeholder="acceptance criteria" rows="3" [(ngModel)]="acceptancecriteria"  formControlName= "acceptancecriteria"></textarea>
+</div>
+
+    </div>
+    <!-- upload coloumn  -->
+  <div class="row mb-4">
+            <div class="col-md-4 " style="margin-top:22px">
+             <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif" >Upload</label>
+                 <br>
+                      <input type="file" name="file"  (change)="onFileChanged($event)" />
+              
+             </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <!-- Efforts coloumn  -->
+             
+    <div class="col-md-4">
+      <mat-expansion-panel>
+           <mat-expansion-panel-header>
+             <mat-panel-title>
+                 <mat-label style="font-weight:bold;font-size:15px;color: black">Efforts</mat-label>
+             </mat-panel-title>
+             <mat-panel-description>
+               Type Original Estimate
+             </mat-panel-description>
+           </mat-expansion-panel-header>
+       
+           <mat-form-field class="w-100">
+             <input matInput placeholder="Original Estimate(hr)" formControlName="Original_Estimate" type="number" [(ngModel)]="Original_Estimate" >
+
+              <!-- Validation Error Message -->
+              <mat-error *ngIf="taskForm.controls.Original_Estimate.invalid">
+                  <span [hidden]="!taskForm.controls['Original_Estimate'].errors.required">  
+                        Please Add Original Estimate ,it should be Numeric only.
+                  </span>
+             </mat-error>
+
+           </mat-form-field>
+
+           <mat-form-field  class="w-100">
+             <input matInput placeholder="Remaining(hr)" formControlName="Remaining" type="number" [(ngModel)]="Remaining">
+             </mat-form-field>
+
+           <mat-form-field  class="w-100">
+            <input matInput placeholder="Completed(hr)" formControlName="Completed" type="number" [(ngModel)]="Completed">
+             </mat-form-field>
+          
+         </mat-expansion-panel>
+      </div>
+</div>      
+
+ 
+
+  
 
 </div>
 

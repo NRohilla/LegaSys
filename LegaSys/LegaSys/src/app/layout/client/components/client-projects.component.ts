@@ -136,7 +136,7 @@ export class ClientProjectsComponent implements OnInit {
         debugger;
         var flag=0;
         for(var i=0;i<this.clientProjectsList.data.length;i++){
-          if(this.clientProjectsList.data[i].Title==this.projectDetailsForm.controls['title'].value && i!=(this.selectedRowIndex-1)){
+          if(this.clientProjectsList.data[i].Title==this.projectDetailsForm.controls['title'].value && this.clientProjectsList.data[i].ProjectID!=(this.selectedRowIndex)){
               flag=1;
           }
         }
@@ -193,7 +193,7 @@ export class ClientProjectsComponent implements OnInit {
       }
       
   CompareDates(group: FormGroup) {
-    debugger
+        debugger;
  
     let s_date = group.controls['startDate'].value;
     let e_date = group.controls['endDate'].value;
@@ -214,10 +214,17 @@ export class ClientProjectsComponent implements OnInit {
   getToday(){
     return new Date().toISOString().split('T')[0]
   }
+  GetClientCreationDate(){
+    return new Date(this.currentClientDetails.Created_Date).toISOString().split('T')[0]
+  }
   AddPrject(){
     debugger;
     sessionStorage.setItem('cllientIdToAddProject',sessionStorage.getItem('currentClientID'));
     this.router.navigate(['./project/add']);
   }
+
+  
+  
   
 }
+

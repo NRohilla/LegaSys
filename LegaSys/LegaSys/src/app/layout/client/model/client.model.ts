@@ -21,6 +21,7 @@ export class Client {
      ClientCountryZip:string;
      CompanyPhone:string;
      ClientCompanyFax:string;
+     CoClientDetails:CoClientModal[]=[];
    
 }
 export class ClientProject{
@@ -38,4 +39,17 @@ export class ClientProject{
        End_Date:Date;
      
  }
- 
+ export class CoClientModal{
+     Name:string;
+     Email:string;
+     ContactNo:string;
+     Address:string;
+     Country:string;
+     CoClientID:number;
+     ClientDetailID:number;
+     Created_By:number;
+     Created_Date:Date;
+     Updated_By:number;
+     Updated_Date:Date;
+     
+}

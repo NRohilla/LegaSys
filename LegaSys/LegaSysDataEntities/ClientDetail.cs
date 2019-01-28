@@ -32,7 +32,25 @@ namespace LegaSysDataEntities
         public string CompanyPhone { get; set; }
         public string ClientCompanyFax { get; set; }
 
+        public List<CoClient> CoClientDetails { get; set; }
+
+        
 
 
+
+    }
+    public class CoClient
+    {
+        public Nullable<int> CoClientID { get; set; }
+        public Nullable<int> ClientDetailID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public string Country { get; set; }
+        public string Phone { get; set; }
+        public Nullable<int> Created_By { get; set; }
+        public Nullable<System.DateTime> Created_Date { get; set; }
+        public Nullable<int> Updated_By { get; set; }
+        public Nullable<System.DateTime> Updated_Date { get; set; }
     }
 }

@@ -65,7 +65,7 @@
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
           <mat-form-field >
-              <input matInput [matDatepicker]="picker"  placeholder="Start Date" formControlName="startDate"  [max]="getToday()">
+              <input matInput [matDatepicker]="picker"  placeholder="Start Date" formControlName="startDate"  [max]="getToday()" [min]="GetClientCreationDate()">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <!-- <mat-error *ngIf="uBackgrndForm.controls.JoiningDate.invalid ">
@@ -78,7 +78,7 @@
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
             <mat-form-field >
-              <input matInput [matDatepicker]="picker1"  placeholder="End  Date" formControlName="endDate"  [max]="getToday()">
+              <input matInput [matDatepicker]="picker1"  placeholder="End  Date" formControlName="endDate"  [max]="getToday()" [min]="GetClientCreationDate()">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
               <mat-error *ngIf="projectDetailsForm.controls['endDate'].errors?.CompareDates" class="d-block w-100 border-0 mat-error">

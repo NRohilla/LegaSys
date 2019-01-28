@@ -60,7 +60,31 @@ namespace LegaSysUOW.Repository
                 };
                 db.LegaSys_ClientDetails.Add(model);
                 db.SaveChanges();
-                return Result = model.ClientDetailID;
+                 Result = model.ClientDetailID;
+              for(int i=0;i< Objclient.CoClientDetails.Count;i++)
+                {
+                    var coClientModel = new LegaSys_CoClientDetails
+                    {
+                        CoClientName = Objclient.CoClientDetails[i].Name,
+                        ClientDetailID = Result,
+                        Address = Objclient.CoClientDetails[i].Address,
+                        Country = Objclient.ClientCountry,
+                        EmailID = Objclient.CoClientDetails[i].Email,
+                        Created_By = Objclient.Created_By,
+                        Updated_By = Objclient.Updated_By,
+                        Created_Date = System.DateTime.UtcNow,
+                        Updated_Date = System.DateTime.UtcNow,
+                        phone = Objclient.CoClientDetails[i].Phone
+
+
+                    };
+                    db.LegaSys_CoClientDetails.Add(coClientModel);
+                    db.SaveChanges();
+                   
+
+                }
+                return Result;
+
 
             }
 
@@ -83,6 +107,22 @@ namespace LegaSysUOW.Repository
 
             try
             {
+                List<CoClient> coClientList = db.LegaSys_CoClientDetails.Where(x => x.ClientDetailID == Id).Select(x=>
+                new CoClient
+                {
+                   CoClientID=x.CoClientID,
+                   ClientDetailID=x.ClientDetailID,
+                   Name=x.CoClientName,
+                   Address=x.Address,
+                   Email=x.EmailID,
+                   Country=x.Country,
+                   Updated_By=x.Updated_By,
+                   Updated_Date=x.Updated_Date,
+                   Created_Date=x.Created_Date,
+                   Created_By=x.Created_By,
+                   Phone=x.phone
+                }).ToList();
+
 
                 var ClientDetail = db.LegaSys_ClientDetails.Where(p => p.ClientDetailID == Id).FirstOrDefault();
 
@@ -111,7 +151,9 @@ namespace LegaSysUOW.Repository
                         CompanyPhone = ClientDetail.CompanyPhone,
                         ClientCompanyFax = ClientDetail.ClientCompanyFax,
                         ClientCountry = ClientDetail.ClientCountry,
-                        ClientCountryZip = ClientDetail.ClientCountryZip
+                        ClientCountryZip = ClientDetail.ClientCountryZip,
+                        CoClientDetails= coClientList
+
 
 
 

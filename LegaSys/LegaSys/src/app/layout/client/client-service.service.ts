@@ -58,5 +58,9 @@ export class ClientServiceService {
     return this.http.put(this.URL+'UpdateProjectDetailsWithId',projectDetails,{ headers: this.CreateHeader() });
 
   }
+  ActivateClienthavingId(ID:number){
+       return this.http.get(this.URL+'updateClientStatus/'+ID,{ headers: this.CreateHeader() });
+  }
+ 
  
 }

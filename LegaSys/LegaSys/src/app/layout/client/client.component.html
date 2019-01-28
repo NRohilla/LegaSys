@@ -43,8 +43,8 @@
     </ng-container>
     <!-- co client  Column -->
     <ng-container matColumnDef="CoClient">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  <span class="text-white font-14">Co Client</span> </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.CoClient}} </mat-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  <span class="text-white font-14">Status</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{GetStatus(element.IsActive)}} </mat-cell>
       </ng-container>
     <!--Action  Column, will contains button for View,Edit and Delete -->
       <ng-container matColumnDef="action">
@@ -52,9 +52,17 @@
         <mat-cell *matCellDef="let element" class="text-right">
           <!-- [routerLink]="['/client-details'] -->
             <button mat-button (click)="ViewClientDetails(element.ClientDetailID)"  class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View</button>
-          
-            <button mat-button (click)= "openDialog(element.ClientDetailID)" class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
-        </mat-cell>
+            <button mat-button *ngIf="!element.IsActive" (click)= "OpenActivationDialog(element.ClientDetailID)" class="btn btn-success mx-1"><i class="fa fa-check"></i> Activate</button>
+            
+            <button mat-button *ngIf="element.IsActive"(click)= "openDialog(element.ClientDetailID)" class="btn btn-danger mx-1"><i class="fa fa-ban" aria-hidden="true"></i> Detactivate</button>
+       
+        <!-- <button (click)="$event.stopPropagation(); status(element.TechDomainID, element.IsActive)" mat-raised-button
+      [ngClass]="{'btn-info': !element.IsActive, 'btn-danger': element.IsActive}">
+      <mat-icon *ngIf="!element.IsActive">verified_user</mat-icon>
+      <mat-icon *ngIf="element.IsActive">not_interested</mat-icon>
+      {{element.IsActive ? 'Deactivate' : 'Activate'}}
+    </button> -->
+          </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -68,16 +76,10 @@
   
   <!-- this code is for pagignator -->
   
-  <mat-paginator  [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+  <mat-paginator  [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons class="table-active"></mat-paginator>
   <div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
       <!-- This button will be used to add client into the database-->
     
       <button   mat-button class="btn btn-info" [routerLink]="['/add-client']"><i class="fa fa-plus" aria-hidden="true"></i> Add Client</button>
     </div>
 </div>
-
-
-
-
-
-    

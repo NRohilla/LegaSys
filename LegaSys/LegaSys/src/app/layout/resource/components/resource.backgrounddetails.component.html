@@ -1,5 +1,5 @@
 <div class="bg-white">
-  <label>Experienced </label>
+  <label><b>Experienced </b></label>
   <mat-form-field style="margin-left: 100px">
     <mat-select [(ngModel)]="selected" (ngModelChange)="onChange($event)" [disabled]='isExp'>
       <mat-option value="false">No</mat-option>
@@ -8,12 +8,12 @@
   </mat-form-field>
 </div>
 
-<div class="bg-white">
-  <label>Current Experience:<span style="margin-left: 40px;"> {{currentExp}}</span> </label>
+<div class="bg-white" *ngIf="joiningDate">
+  <label><b>Current Experience:</b><span style="margin-left: 40px;"> {{currentExp}} &nbsp;&nbsp;    DOJ:-({{joiningDate}}) </span> </label>
   <br><br>
 </div>
 <div class="bg-white">
-  <label>Total Experience: <span style="margin-left: 60px;">{{TotalExp}} </span></label>
+  <label><b>Total Experience:</b> <span style="margin-left: 60px;">{{TotalExp}} </span></label>
   <br><br>
 </div>
 
@@ -25,25 +25,33 @@
       <mat-cell *matCellDef="let element"> {{element.BackgroundID}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="CompanyName">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.CompanyName}} </mat-cell>>
+      <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header ><span class="text-white text-uppercase">Company Name</span>  </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.CompanyName|uppercase}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="Designation">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Designation </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Designation}} </mat-cell>>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Designation</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Designation|uppercase}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="JoiningDate">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Joining Date</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.JoiningDate| date}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="LeavingDate">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Leaving Date </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Leaving Date</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.LeavingDate| date}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="Duration">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Duration </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Duration</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{calcExperience(element.JoiningDate, element.LeavingDate)}} </mat-cell>>
     </ng-container>
+    <!-- <ng-container matColumnDef="Action">
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Action</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element" >
+          <button mat-button [disabled]='disableAction' (click)="RemoveBackground(element.BackgroundID)" class="btn btn-danger mx-1"><i class="fa fa-trash-o"
+            aria-hidden="true"></i> <span class="action-btn">Remove</span></button>
+      
+      </mat-cell>>
+    </ng-container> -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.BackgroundID}"
@@ -59,10 +67,11 @@
 <form [formGroup]="uBackgrndForm" #formDirective="ngForm" (ngSubmit)="addExperience(uBackgrndForm, formDirective)">
   <div *ngIf="isAddItem">
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+       
         <mat-expansion-panel-header>
           <mat-panel-title style="font-size: smaller;color: steelblue">
-            Click to add item
+            
           </mat-panel-title>
           <mat-panel-description>
             <!-- Type description if any!!! -->
@@ -72,7 +81,7 @@
 
           <div class="col-xl-3">
             <mat-form-field style="width:300px">
-              <input matInput placeholder="Company Name" formControlName="CompanyName">
+              <input matInput placeholder="Company Name" formControlName="CompanyName" class="text-uppercase"  >
               <mat-error *ngIf="uBackgrndForm.controls.CompanyName.invalid">
                 <span [hidden]="!uBackgrndForm.controls['CompanyName'].errors.required">
                   Company Name is required.
@@ -80,13 +89,19 @@
                 <span [hidden]="!uBackgrndForm.controls['CompanyName'].errors.maxlength">
                   Maximum allowed characters are 50.
                 </span>
-
+                <!-- <span [hidden]="uBackgrndForm.controls['CompanyName'].invalid">
+                 Only Alphebets allowed
+                </span> -->
+                <mat-error *ngIf="uBackgrndForm.controls['CompanyName'].errors.pattern">
+                  Only Letters allowed!!!
+                </mat-error> 
               </mat-error>
+             
             </mat-form-field>
           </div>
           <div class="col-xl-3">
             <mat-form-field style="width:300px">
-              <input matInput placeholder="Designation" formControlName="Designation">
+              <input matInput placeholder="Designation" formControlName="Designation" class="text-uppercase">
               <mat-error *ngIf="uBackgrndForm.controls.Designation.invalid">
                 <span [hidden]="!uBackgrndForm.controls['Designation'].errors.required">
                   Designation is required.
@@ -94,15 +109,17 @@
                 <span [hidden]="!uBackgrndForm.controls['Designation'].errors.maxlength">
                   Maximum allowed characters are 50.
                 </span>
-
+                <mat-error *ngIf="uBackgrndForm.controls['Designation'].errors.pattern">
+                  Only Letters allowed!!!
+                </mat-error> 
               </mat-error>
             </mat-form-field>
           </div>
           <div class="col-xl-2">
             <mat-form-field style="width: 200px;">
-              <input matInput [matDatepicker]="picker"  placeholder="Joining Date" formControlName="JoiningDate"  >
+              <input matInput [matDatepicker]="picker"  placeholder="Joining Date"  formControlName="JoiningDate" [min]="minDate" [max]="getToday() " disabled>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-datepicker #picker disabled="false"></mat-datepicker>
               <mat-error *ngIf="uBackgrndForm.controls.JoiningDate.invalid ">
                 <span [hidden]="!uBackgrndForm.controls['JoiningDate'].errors.required">
                   JoiningDate is required.
@@ -111,9 +128,14 @@
 
             </mat-form-field>
           </div>
+          <!-- <mat-form-field>
+            <input matInput [matDatepicker]="dp3" placeholder="Input disabled" disabled>
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+          </mat-form-field> -->
           <div class="col-xl-2" >
             <mat-form-field style="width:200px;">
-              <input matInput [matDatepicker]="picker1" placeholder="Leaving Date"  formControlName="LeavingDate" >
+              <input matInput [matDatepicker]="picker1" placeholder="Leaving Date"  formControlName="LeavingDate" [min]="minDate" [max]="getToday()" >
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
               <mat-error *ngIf="uBackgrndForm.controls.LeavingDate.invalid">
@@ -136,7 +158,7 @@
             
           </div>
           <div class="col-xl-1">
-            <button type="submit" class="btn btn-info float-right" ><i class="fa fa-plus" aria-hidden="true" ></i>{{formType}} Experience</button>
+            <button [disabled]="!uBackgrndForm.valid" type="submit" class="btn btn-info float-right" ><i class="fa fa-plus" aria-hidden="true" ></i>{{formType}} Experience</button>
           </div>
           <div class="col-xl-1">
             <button type="reset" class="btn btn-secondary" (click)="formReset(uBackgrndForm, formDirective);"><i class="fa fa-times" aria-hidden="true"></i>Cancel</button>
@@ -160,12 +182,13 @@
   width: 100%;">
     <div *ngIf="disableFooter" class="float-right">
       <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        Edit</button>
+        Add New</button>
+        <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/resource']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
     </div>
 
 
     <div *ngIf="!disableFooter" class="float-right ml-2">
-      <button *ngIf="disableSave" type="submit" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save" aria-hidden="true" ></i> Save</button>
+      <button *ngIf="disableSave" type="submit" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save" aria-hidden="true" ></i>Submit</button>
       <button mat-button class="btn btn-secondary" (click)="discard()"><i class="fa fa-times" aria-hidden="true" ></i>
         Discard</button>
     </div>

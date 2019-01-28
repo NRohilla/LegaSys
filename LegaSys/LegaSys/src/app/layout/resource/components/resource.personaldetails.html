@@ -6,11 +6,19 @@
             <div class="row">
                 <div class="col-md-4">
                     <mat-form-field style="width:350px !important">
-                        <input formControlName="Firstname" type="text" matInput placeholder="First Name" [(ngModel)]="resoursedetails.Firstname"
+                        <input formControlName="Firstname" required type="text" matInput placeholder="First Name" [(ngModel)]="resoursedetails.Firstname"
                             name="resoursedetails.Firstname">
-                        <mat-error *ngIf="personalDetailsForm.controls['Firstname'].invalid  && (personalDetailsForm.controls['Firstname'].dirty || personalDetailsForm.controls['Firstname'].touched)">First
+                        <!-- <mat-error *ngIf="personalDetailsForm.controls['Firstname'].invalid  && (personalDetailsForm.controls['Firstname'].dirty || personalDetailsForm.controls['Firstname'].touched)">First
                             Name Should
-                            be in Alphabet.</mat-error>
+                            be in Alphabet.</mat-error> -->
+                            <mat-error *ngIf="personalDetailsForm.controls.Firstname.invalid">
+                                <span [hidden]="!personalDetailsForm.controls['Firstname'].errors.required">
+                                  Firstname is required.
+                                </span>                               
+                                <span [hidden]="!personalDetailsForm.controls['Firstname'].errors.pattern ">
+                                  Special characters and numbers are not allowed.
+                                </span>
+                              </mat-error>
                     </mat-form-field>
                 </div>
 
@@ -24,8 +32,16 @@
                     <mat-form-field style="width:350px !important">
                         <input formControlName="Lastname" matInput placeholder="Last Name " [(ngModel)]="resoursedetails.Lastname"
                             name="resoursedetails.Lastname">
-                        <mat-error *ngIf="personalDetailsForm.controls['Lastname'].invalid  && (personalDetailsForm.controls['Lastname'].dirty || personalDetailsForm.controls['Lastname'].touched)">Last
-                            Name Should be in Alphabet.</mat-error>
+                        <!-- <mat-error *ngIf="personalDetailsForm.controls['Lastname'].invalid  && (personalDetailsForm.controls['Lastname'].dirty || personalDetailsForm.controls['Lastname'].touched)">Last
+                            Name Should be in Alphabet.</mat-error> -->
+                            <mat-error *ngIf="personalDetailsForm.controls.Lastname.invalid">
+                                <span [hidden]="!personalDetailsForm.controls['Lastname'].errors.required">
+                                    Lastname is required.
+                                </span>                               
+                                <span [hidden]="!personalDetailsForm.controls['Lastname'].errors.pattern ">
+                                  Special characters and numbers are not allowed.
+                                </span>
+                              </mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -36,8 +52,8 @@
                     <mat-form-field style="width:350px !important">
                         <input formControlName="TotalExp" type="number" min="0" max="60" matInput min="0" max="60"
                             placeholder="Total Experience" [(ngModel)]="resoursedetails.TotalExp" name="resoursedetails.TotalExp">
-                        <mat-error *ngIf="personalDetailsForm.controls['TotalExp'].invalid  && (personalDetailsForm.controls['TotalExp'].dirty || personalDetailsForm.controls['TotalExp'].touched)">Only
-                            Only positive numbers allowed from 0-60</mat-error>
+                        <mat-error *ngIf="personalDetailsForm.controls['TotalExp'].invalid && (personalDetailsForm.controls['TotalExp'].dirty || personalDetailsForm.controls['TotalExp'].touched)">
+                          Total experience is required </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-md-4">
@@ -117,6 +133,7 @@
         <div *ngIf="disable" class="float-right">
             <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
                     aria-hidden="true"></i> Edit</button>
+                    <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/resource']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
         </div>
         <div *ngIf="!disable" class="float-right ml-2">
             <button mat-button class="btn btn-success" [disabled]="personalDetailsForm.invalid" (click)="onSubmit()"><i

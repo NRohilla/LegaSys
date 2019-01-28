@@ -16,7 +16,7 @@ export class Resource {
     IsActive : boolean;
     Master_Role_ID:string;
     RoleName:string;
-    MobileNumber:number;
+    MobileNumber:string;
     Remarks:string;
     ShiftID :number;
     LocationID :number;
@@ -25,6 +25,8 @@ export class Resource {
     Master_Location_ID :number;
     IsExperienced:boolean;
     DateOfJoining:Date;
+    PrimarySkillSet:string;
+    SecondarySkillSet:string;
 
     
 

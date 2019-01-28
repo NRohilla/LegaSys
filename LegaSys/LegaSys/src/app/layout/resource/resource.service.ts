@@ -7,6 +7,8 @@ import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { throwError, Observable } from 'rxjs';
 import { UserBackgrnd } from './components/resource.backgrounddetails.component';
 import { Qualification } from './components/resource.qualification.component';
+import { ResourceProject } from './components/resource.allocation.component';
+import { skillset } from './components/resource.skillset.component';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +16,7 @@ import { Qualification } from './components/resource.qualification.component';
 export class ResourceService {
     currentresoursedetails: any;
     baseUrl: string = 'http://localhost:58164/resource/';
-
+    totalservice:any;
     constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
     ) { }
 
@@ -34,6 +36,7 @@ export class ResourceService {
     }
 
     getResourceById(UserId: number) {
+        debugger;
         return this.http.get<Resource>(this.baseUrl + UserId, { headers: this.getToken() });
     }
 
@@ -54,6 +57,7 @@ export class ResourceService {
     }
 
     addResource(resource: Resource) {
+        debugger;
         return this.http.post(this.baseUrl + 'create', resource, { headers: this.getToken() })
             .pipe(
                 map(res => res),
@@ -92,7 +96,7 @@ export class ResourceService {
         return this.http.get<UserBackgrnd[]>('http://localhost:58164/resource/getuserbackground/' + id, { headers: this.getToken() })
     }
     AddUserBackGound(id: number, isExp: boolean, background: UserBackgrnd[]) {
-
+debugger;
         console.log(background);
         return this.http.post('http://localhost:58164/resource/createbackground/' + id + '?isExp=' + isExp, background, { headers: this.getToken() })
     }
@@ -106,5 +110,15 @@ export class ResourceService {
     AddUserQualification(id: number, educationModel: Qualification[]) {
         return this.http.post('http://localhost:58164/resource/createqualification/' + id, educationModel, { headers: this.getToken()  })
     }
-    
+    GetResourceProject(id:number){
+        return this.http.get<ResourceProject[]>('http://localhost:58164/resource/getResourceProject/'+id, {headers:this.getToken() })
+    }
+    CheckEmail(email:string){
+        debugger;
+        return this.http.post('http://localhost:58164/resource/checkemail?email='+email,{headers:this.getToken()});
+    }
+    AddSkillset(skill:Resource){
+        debugger;
+        return this.http.post('http://localhost:58164/resource/addskillbyid',skill,{headers:this.getToken()});
+    }
 }

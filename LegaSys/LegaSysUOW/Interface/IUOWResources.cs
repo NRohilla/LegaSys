@@ -22,5 +22,10 @@ namespace LegaSysUOW.Interface
         IEnumerable<UserEducationModel> GetUserCertification(int id);
 
         bool CreateUserQualification(int id,List<UserEducationModel> userEducation);
+
+        IEnumerable<ResourceProject> getResourceProject(int id);
+
+        bool CheckEmail(string email);
+        bool AddSkillById( UserDetail userDetail);
     }
 }

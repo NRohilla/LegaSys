@@ -14,7 +14,7 @@ import { DialogComponent } from '../masters/dialog/dialog.component';
 })
 
 export class ResourceComponent implements OnInit {
-
+    isLoading=true;
     dataSource: any = [];
 
     displayedColumns: string[] = ['FullName', 'TotalExp', 'EmailId', 'Shift', 'Location_ID', 'ReportingHead_ID', 'Action'];
@@ -25,17 +25,19 @@ export class ResourceComponent implements OnInit {
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
-
+   
     constructor(public dataService: ResourceService, public dialog: MatDialog, private router: Router, public snackBar: MatSnackBar, public titleService: Title) {
         titleService.setTitle("LegaSys - Resources");
     }
 
-    ViewResourceDetails(userDetailID: any, isExperienced: any, primarySkillSet:any, secondarySkillSet:any) {
+    ViewResourceDetails(userDetailID: any, isExperienced: any,dateofJoining:any) {
         debugger;
         localStorage.setItem('UserDetailID', userDetailID);
         localStorage.setItem('IsExperienced', isExperienced);
-        localStorage.setItem('PrimarySkillSet',primarySkillSet);
-        localStorage.setItem('SecondarySkillSet',secondarySkillSet);
+        // localStorage.setItem('PrimarySkillSet',primarySkillSet);
+        // localStorage.setItem('SecondarySkillSet',secondarySkillSet);
+        // localStorage.setItem('Qualification',qualification);
+        localStorage.setItem('DateOfJoining',dateofJoining);
         this.router.navigate(['/resource-details']);
     }
 
@@ -51,13 +53,13 @@ export class ResourceComponent implements OnInit {
                 this.dataService.deleteResource(id).subscribe(res => {
                     if (res) {
                         this.snackBar.open("User deleted successfully", "Ok", {
-                            duration: 2000,
+                            duration: 3000,
                         });
                         this.ngOnInit();
                     }
                 });
             }
-        });
+        }); 
     }
 
     ngOnInit() {
@@ -67,16 +69,19 @@ export class ResourceComponent implements OnInit {
     RenderDataTable() {
         debugger;
         this.dataService.getResource()
-            .subscribe(
+            .subscribe( 
                 res => {
-                    this.dataSource = new MatTableDataSource<Resource>();
+                    debugger;
+                    this.isLoading=false;
+                    this.dataSource = new MatTableDataSource<Resource>();                   
                     this.dataSource.data = res;
-console.log(res);
+
+                    //console.log(res);
                     this.dataSource.paginator = this.paginator;
                     this.dataSource.sort = this.sort;
                 },
                 error => {
                     console.log('There was an error while retrieving data !!!' + error);
                 });
-    }
+    }   
 }

@@ -43,6 +43,25 @@ namespace LegaSysServices.Controllers
 
             return Json(new { success = _uOWResources.DeleteResource(id, userId) });
         }
+        [HttpPost]
+        [Route("resource/checkemail")]
+        public IHttpActionResult IfEmailAlreadyExists(string email)
+            {
+            bool msg = _uOWResources.CheckEmail(email);
+            if (msg)
+            {
+                return Json(new { success = false });
+            }
+            else
+            {
+                return Json(new { success = true });
+            }
+
+               
+
+           // return Json(new { success = true, uDetail.EmailId });
+        }
+
 
         [HttpPost]
         [Route("resource/create")]
@@ -60,12 +79,28 @@ namespace LegaSysServices.Controllers
 
             int id = _uOWResources.CreateResoure(model);
 
-            if (id <= 0)
+            if (id < 0)
                 return InternalServerError();
 
             return Json(new { success = true, id });
         }
+        [HttpPost]
+        [Route("resource/addskillbyid")]
+        public IHttpActionResult AddSkillbyId(UserDetail userDetail)
+        {
+            if(userDetail == null)
+                return BadRequest("Model cannot be null");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
+            userDetail.Created_By = createdBy;
+
+            if (!_uOWResources.AddSkillById(userDetail))
+                return NotFound();
+
+            return Json(new { success = true });
+        }
 
         [HttpPost]
         [Route("resource/update")]
@@ -131,6 +166,10 @@ namespace LegaSysServices.Controllers
 
             return Json(new { success = true });
         }
-
+        [Route("resource/getResourceProject/{id}")]
+        public IHttpActionResult GetResourceProject(int id)
+        {
+            return Json(_uOWResources.getResourceProject(id));
+        }
     }
 }

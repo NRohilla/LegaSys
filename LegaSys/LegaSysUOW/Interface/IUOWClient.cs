@@ -20,6 +20,8 @@ namespace LegaSysUOW.Interface
         string DeleteClientById(Int32 Id);
         List<LegaSysDataAccess.LegaSys_ClientStatus> GetClientStatus();
 
+        List<ClientProjects> GetAllProjectOfClient(Int32 Id);
+
     }
 }
 

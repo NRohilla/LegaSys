@@ -53,21 +53,26 @@ export class AddComponent implements OnInit {
         Validators.required
         // Validators.email,
     ]);
-    ngOnInit() { }
+    ngOnInit() {
+        var cllientId=sessionStorage.getItem('cllientIdToAddProject');
+        if(cllientId!=null){
+            this.regiForm.controls['Client_ID'].setValue(parseInt(cllientId));
+        }
+     }
     getErrorMessage() {
         return this.formControl.hasError('required') ? 'Required field' :
             this.formControl.hasError('email') ? 'Not a valid email' :
                 '';
     }
-    onSelect(id) {
-        debugger;
-        this.dataService.GetAllTechnologyByDomain(id).subscribe(
-            res => {
-                this.technologylist = res;
+    // onSelect(id) {
+    //     debugger;
+    //     this.dataService.GetAllTechnologyByDomain(id).subscribe(
+    //         res => {
+    //             this.technologylist = res;
 
-            }
-        );
-    }
+    //         }
+    //     );
+    // }
     onFormSubmit(form: NgForm) {
         console.log(this.regiForm.value);
         debugger;

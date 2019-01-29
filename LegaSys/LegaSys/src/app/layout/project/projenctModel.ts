@@ -1,3 +1,5 @@
+import { ProjectAll } from "./projectModel";
+
 export class Issue {
     id: number;
     title: string;
@@ -6,13 +8,14 @@ export class Issue {
     created_at: string;
     updated_at: string;
   }
-  export class  Project {
+  export class  Project extends ProjectAll {
     ProjectID: number;
     Description: string;
     ClientName: string;
     Title: string;
     DomainName: string;
     ClientDetailID: number;
+
     // updated_at: string;
   }
   export class Client{

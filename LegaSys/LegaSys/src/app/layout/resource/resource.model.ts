@@ -1,4 +1,3 @@
-
 export class Resource {
     UserDetailID: number;
     Firstname: string;
@@ -25,7 +24,5 @@ export class Resource {
     Master_Location_ID :number;
     IsExperienced:boolean;
     DateOfJoining:Date;
-
-    
-
+    ShiftName:string;
 }

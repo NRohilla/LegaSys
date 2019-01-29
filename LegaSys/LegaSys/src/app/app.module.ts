@@ -15,8 +15,6 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 import { TosterService } from './shared/services/toster.service';
 
 
-
-
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
     /* for development
@@ -46,9 +44,11 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule
     ],
     declarations: [AppComponent],
+   
     providers: [
         CurrentClientdataServiceService,
         TosterService,
+      
         AuthGuard,
         {
             provide: HTTP_INTERCEPTORS,

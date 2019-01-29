@@ -13,11 +13,16 @@ namespace LegaSysUOW.Interface
     {
         int AddClientDetails(ClientDetail objClient);
         ClientDetail GetClientById(Int32 Id);
-        string UpdateClientDetails(ClientDetail objClient);
+        Boolean UpdateClientDetails(ClientDetail objClient);
 
         List<ClientDetail> GetAllClient();
 
-        string DeleteClientById(Int32 Id);
+        List<ClientProjects> GetAllProjectOfClient(Int32 Id);
+
+        Boolean DeleteClientById(Int32 Id, Int32 userId);
+        Boolean UpdateClientProjectDetailsWithId(ClientProjects objClientProject);
+
+        Boolean ChangeClientStatus(Int32 ID, Int32 userId);
 
     }
 }

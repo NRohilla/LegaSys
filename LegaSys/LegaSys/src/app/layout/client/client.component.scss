@@ -13,3 +13,13 @@ table {
 th.mat-sort-header-sorted {
   color:#ffffff;
 }
+/deep/.mat-sort-header-arrow {
+  height: 12px;
+  width: 12px;
+  min-width: 12px;
+  position: relative;
+  display: flex;
+  opacity: 0;
+  color: white;
+}
+

@@ -1,6 +1,6 @@
 import { Injectable,Inject } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpClientModule } from '@angular/common/http';
-import{Client} from './model/client.model';
+import{Client, ClientProject} from './model/client.model';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 
 
@@ -15,6 +15,7 @@ export class ClientServiceService {
   URL="http://localhost:58164/client/";
   constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) { }
   CreateHeader(){
+   
     let token = this.storage.get('UserToken');
     if (token != null) {
         var accessToken = 'Bearer ' + token.access_token;
@@ -49,5 +50,17 @@ export class ClientServiceService {
   DeleteClient(ID){
     return this.http.delete(this.URL+'DeleteClientById/'+ID,{ headers: this.CreateHeader() });
   }
+  GetClientAllProject(ID:number){
+    return this.http.get(this.URL+'GetProjectsByClientId/'+ID,{ headers: this.CreateHeader() });
+  }
+  UpdateClientProjectWithId(projectDetails:ClientProject){
+    debugger;
+    return this.http.put(this.URL+'UpdateProjectDetailsWithId',projectDetails,{ headers: this.CreateHeader() });
+
+  }
+  ActivateClienthavingId(ID:number){
+       return this.http.get(this.URL+'updateClientStatus/'+ID,{ headers: this.CreateHeader() });
+  }
+ 
  
 }

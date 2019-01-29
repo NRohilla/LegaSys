@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { stringify } from '@angular/core/src/render3/util';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { MatTable, MatTableDataSource, MatPaginator, MatSort, MatDialog  } from '@angular/material';
+import { MatTable, MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar  } from '@angular/material';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { SharedService } from '../Shared/shared.service';
 import { Observable } from 'rxjs';
@@ -14,6 +14,7 @@ import { EditComponent } from './edit/edit.component';
 import { Project } from '../project/projenctModel';
 import { AddComponent } from './add/add.component';
 import { BehaviorSubject, fromEvent } from 'rxjs';
+//import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component';
 @Component({
     selector: 'app-project',
     templateUrl: './project.component.html',
@@ -45,7 +46,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
 
     // addProject(project: Project) {
-    addProject() {
+    addProject() {        
         this.router.navigate(['./project/add']);
         // {path: 'project', component: ProjectComponent}
 
@@ -113,4 +114,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
     }
+    // openSnackBar() {
+    //     this.snackBar.openFromComponent(SnackBarComponentExampleComponent, {
+    //       duration: 500,
+    //     });
+    // }
 }

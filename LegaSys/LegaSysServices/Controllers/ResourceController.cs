@@ -93,6 +93,19 @@ namespace LegaSysServices.Controllers
             return Json(_uOWResources.GetUserBackground(id));
         }
 
+        [HttpPost]
+        [Route("resource/createbackground/{id}")]
+        public IHttpActionResult AddUserBackground([FromUri] int id, bool isExp, List<UserBackground> model)
+        {
+            if (model == null)
+                return BadRequest("Model cannot be null");
 
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _uOWResources.CreateUserBackground(id, isExp, model);
+
+            return Json(new { success = true });
+        }
     }
 }

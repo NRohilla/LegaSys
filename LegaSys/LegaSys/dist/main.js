@@ -18,8 +18,8 @@ var map = {
 	],
 	"./bs-component/bs-component.module": [
 		"./src/app/layout/bs-component/bs-component.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~1406049a",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~30331c10",
 		"common",
 		"bs-component-bs-component-module"
 	],
@@ -33,18 +33,36 @@ var map = {
 		"common",
 		"charts-charts-module"
 	],
+	"./client/addclient/addclient.module": [
+		"./src/app/layout/client/addclient/addclient.module.ts",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~30331c10",
+		"common",
+		"client-addclient-addclient-module"
+	],
+	"./client/client-details/client-details.module": [
+		"./src/app/layout/client/client-details/client-details.module.ts",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~30331c10",
+		"common",
+		"client-client-details-client-details-module"
+	],
 	"./client/client.module": [
 		"./src/app/layout/client/client.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~1406049a",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~30331c10",
 		"common",
 		"client-client-module"
 	],
 	"./dashboard/dashboard.module": [
 		"./src/app/layout/dashboard/dashboard.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~1406049a",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~30331c10",
 		"common",
 		"dashboard-dashboard-module"
 	],
@@ -60,64 +78,72 @@ var map = {
 	],
 	"./layout/layout.module": [
 		"./src/app/layout/layout.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~1406049a",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~30331c10",
 		"common",
 		"layout-layout-module"
 	],
 	"./login/login.module": [
 		"./src/app/login/login.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
 		"common",
 		"login-login-module"
 	],
 	"./masters/domains/domains.module": [
 		"./src/app/layout/masters/domains/domains.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"masters-domains-domains-module"
 	],
 	"./masters/leaves/leaves.module": [
 		"./src/app/layout/masters/leaves/leaves.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"masters-leaves-leaves-module"
 	],
 	"./masters/leavetype/leavetype.module": [
 		"./src/app/layout/masters/leavetype/leavetype.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"masters-leavetype-leavetype-module"
 	],
 	"./masters/locations/locations.module": [
 		"./src/app/layout/masters/locations/locations.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"masters-locations-locations-module"
 	],
 	"./masters/roles/roles.module": [
 		"./src/app/layout/masters/roles/roles.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"masters-roles-roles-module"
 	],
 	"./masters/shifts/shifts.module": [
 		"./src/app/layout/masters/shifts/shifts.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"masters-shifts-shifts-module"
 	],
 	"./masters/technologies/technologies.module": [
 		"./src/app/layout/masters/technologies/technologies.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"masters-technologies-technologies-module"
 	],
@@ -125,17 +151,27 @@ var map = {
 		"./src/app/not-found/not-found.module.ts",
 		"not-found-not-found-module"
 	],
+	"./project/project.module": [
+		"./src/app/layout/project/project.module.ts",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
+		"common",
+		"project-project-module"
+	],
 	"./resource/resource-details/resource-details.module": [
 		"./src/app/layout/resource/resource-details/resource-details.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"resource-resource-details-resource-details-module"
 	],
 	"./resource/resource.module": [
 		"./src/app/layout/resource/resource.module.ts",
-		"bs-component-bs-component-module~client-client-module~dashboard-dashboard-module~layout-layout-modul~c2d5fe84",
-		"client-client-module~layout-layout-module~masters-domains-domains-module~masters-leaves-leaves-modul~56100bc6",
+		"bs-component-bs-component-module~client-addclient-addclient-module~client-client-details-client-deta~c32bf577",
+		"client-addclient-addclient-module~client-client-details-client-details-module~client-client-module~l~af668b81",
+		"client-addclient-addclient-module~client-client-module~layout-layout-module~masters-domains-domains-~ac652769",
 		"common",
 		"resource-resource-module"
 	],
@@ -309,12 +345,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared */ "./src/app/shared/index.ts");
 /* harmony import */ var angular_webstorage_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! angular-webstorage-service */ "./node_modules/angular-webstorage-service/bundles/angular-webstorage-service.es5.js");
+/* harmony import */ var _current_clientdata_service_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./current-clientdata-service.service */ "./src/app/current-clientdata-service.service.ts");
+/* harmony import */ var ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ng6-toastr-notifications */ "./node_modules/ng6-toastr-notifications/fesm5/ng6-toastr-notifications.js");
+/* harmony import */ var _shared_services_toster_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/services/toster.service */ "./src/app/shared/services/toster.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -348,6 +390,7 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
                 angular_webstorage_service__WEBPACK_IMPORTED_MODULE_11__["StorageServiceModule"],
+                ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_13__["ToastrModule"].forRoot(),
                 _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"].forRoot({
                     loader: {
                         provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateLoader"],
@@ -359,6 +402,8 @@ var AppModule = /** @class */ (function () {
             ],
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]],
             providers: [
+                _current_clientdata_service_service__WEBPACK_IMPORTED_MODULE_12__["CurrentClientdataServiceService"],
+                _shared_services_toster_service__WEBPACK_IMPORTED_MODULE_14__["TosterService"],
                 _shared__WEBPACK_IMPORTED_MODULE_10__["AuthGuard"],
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HTTP_INTERCEPTORS"],
@@ -439,6 +484,43 @@ var AuthHttpInterceptor = /** @class */ (function () {
         __metadata("design:paramtypes", [Object])
     ], AuthHttpInterceptor);
     return AuthHttpInterceptor;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/current-clientdata-service.service.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/current-clientdata-service.service.ts ***!
+  \*******************************************************/
+/*! exports provided: CurrentClientdataServiceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CurrentClientdataServiceService", function() { return CurrentClientdataServiceService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CurrentClientdataServiceService = /** @class */ (function () {
+    function CurrentClientdataServiceService() {
+    }
+    CurrentClientdataServiceService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], CurrentClientdataServiceService);
+    return CurrentClientdataServiceService;
 }());
 
 
@@ -860,6 +942,58 @@ var SharedPipesModule = /** @class */ (function () {
         })
     ], SharedPipesModule);
     return SharedPipesModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/services/toster.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/shared/services/toster.service.ts ***!
+  \***************************************************/
+/*! exports provided: TosterService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TosterService", function() { return TosterService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ng6-toastr-notifications */ "./node_modules/ng6-toastr-notifications/fesm5/ng6-toastr-notifications.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TosterService = /** @class */ (function () {
+    function TosterService(toastr) {
+        this.toastr = toastr;
+    }
+    TosterService.prototype.showSuccess = function (message) {
+        this.toastr.successToastr(message, 'Success!', { showCloseButton: true });
+    };
+    TosterService.prototype.showError = function (message) {
+        this.toastr.errorToastr(message, 'Oops!', { showCloseButton: true });
+    };
+    TosterService.prototype.showWarning = function (message) {
+        this.toastr.warningToastr(message, 'Alert!', { showCloseButton: true });
+    };
+    TosterService.prototype.showInfo = function (message) {
+        this.toastr.infoToastr(message, 'Info', { showCloseButton: true });
+    };
+    TosterService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_1__["ToastrManager"]])
+    ], TosterService);
+    return TosterService;
 }());
 
 

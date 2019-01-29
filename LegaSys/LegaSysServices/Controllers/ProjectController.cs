@@ -53,7 +53,6 @@ namespace LegaSysServices.Controllers
         }
 
         [HttpPost]
-        //[Route("project/{id}/update")]
         [Route("project/update")]
         public IHttpActionResult Put([FromBody]ProjectDetail objProjects)
         {
@@ -74,12 +73,11 @@ namespace LegaSysServices.Controllers
         }
 
         [HttpGet]
-        [Route("project/gettechdomains")]
+        [Route("project/GetAllTechDomains")]
         public IHttpActionResult GetAllTechDomains()
         {
             return Json(_projects.GetAllTechDomains());
         }
-
         [HttpGet]
         [Route("project/getalltechnology")]
         public IHttpActionResult GetAllTechnology()
@@ -90,12 +88,6 @@ namespace LegaSysServices.Controllers
             return Json(project);
         }
 
-        [HttpGet]
-        [Route("project/getalltechnologybydomain/{id}")]
-        public IHttpActionResult GetAllTechnologyByDomainId(int id)
-        {
-            return Json(_projects.GetAllTechnologyByDomainId(id));
-        }
-
+        //commented for update on GIT 06/12/2018
     }
 }

@@ -15,6 +15,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PageHeaderModule } from '../../shared';
 import { Project } from '../project/projenctModel';
 import { AddComponent } from './add/add.component';
+import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -49,11 +51,11 @@ import { AddComponent } from './add/add.component';
     MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule, PageHeaderModule,
+    MatFormFieldModule, PageHeaderModule 
 
   ],
-  declarations: [ProjectComponent, EditComponent, AddComponent],
-  entryComponents: [AddComponent],
+  declarations: [ProjectComponent, EditComponent, AddComponent, SnackBarComponentExampleComponent],
+  entryComponents: [AddComponent, SnackBarComponentExampleComponent],
   providers: [Project]
 })
 export class ProjectModule { }

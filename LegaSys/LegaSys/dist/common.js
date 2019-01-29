@@ -1,5 +1,80 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"],{
 
+/***/ "./src/app/layout/client/client-service.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/layout/client/client-service.service.ts ***!
+  \*********************************************************/
+/*! exports provided: ClientServiceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientServiceService", function() { return ClientServiceService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var angular_webstorage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! angular-webstorage-service */ "./node_modules/angular-webstorage-service/bundles/angular-webstorage-service.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+var ClientServiceService = /** @class */ (function () {
+    function ClientServiceService(http, storage) {
+        this.http = http;
+        this.storage = storage;
+        // This is the client API URL
+        this.URL = "http://localhost:58164/client/";
+    }
+    ClientServiceService.prototype.CreateHeader = function () {
+        var token = this.storage.get('UserToken');
+        if (token != null) {
+            var accessToken = 'Bearer ' + token.access_token;
+            var accessHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]();
+            accessHeader = accessHeader.append('Authorization', accessToken);
+            return accessHeader;
+        }
+    };
+    /*************** Created By Shubham Mishra on 8-Nov-2018  *********
+     * **********    Following fuction are used to call web API and perform respective fuction */
+    ClientServiceService.prototype.GetClientDetails = function () {
+        return this.http.get(this.URL + 'GetAllClient', { headers: this.CreateHeader() });
+    };
+    ClientServiceService.prototype.GetDetailsOfClientwhoseID = function (ID) {
+        return this.http.get(this.URL + 'GetClientById/' + ID, { headers: this.CreateHeader() });
+    };
+    ClientServiceService.prototype.AddClientDetails = function (client) {
+        return this.http.post(this.URL + 'AddClientDetails', client, { headers: this.CreateHeader() });
+    };
+    ClientServiceService.prototype.UpdateDetailsWithID = function (client) {
+        return this.http.put(this.URL + 'UpdateClientDetails', client, { headers: this.CreateHeader() });
+    };
+    ClientServiceService.prototype.DeleteClient = function (ID) {
+        return this.http.delete(this.URL + 'DeleteClientById/' + ID, { headers: this.CreateHeader() });
+    };
+    ClientServiceService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(angular_webstorage_service__WEBPACK_IMPORTED_MODULE_2__["SESSION_STORAGE"])),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], Object])
+    ], ClientServiceService);
+    return ClientServiceService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/layout/masters/dialog/dialog.component.html":
 /*!*************************************************************!*\
   !*** ./src/app/layout/masters/dialog/dialog.component.html ***!

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 import { map, catchError } from 'rxjs/operators';
 import { Resource } from './resource.model'
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { UserBackgrnd } from './components/resource.backgrounddetails.component';
 
 @Injectable({
@@ -85,10 +85,15 @@ export class ResourceService {
     getAllLocation() {
         return this.http.get<Resource>('http://localhost:58164/location/getallactive', { headers: this.getToken() })
     }
-    getBackGroundDetails(id){
-        debugger
-        return this.http.get<UserBackgrnd>('http://localhost:58164/resource/getuserbackground/'+ id,{headers:this.getToken()})
-    } 
 
+    getBackGroundDetails(id,exp:boolean=true){
+        debugger
+        return this.http.get<UserBackgrnd[]>('http://localhost:58164/resource/getuserbackground/'+ id,{headers:this.getToken()})
+    } 
+    AddUserBackGound(id:number,isExp:boolean,background:UserBackgrnd[]){
+        debugger;
+        console.log(background);
+        return this.http.post('http://localhost:58164/resource/createbackground/'+id+'?isExp='+isExp,background,{headers:this.getToken()})
+    }
 
 }

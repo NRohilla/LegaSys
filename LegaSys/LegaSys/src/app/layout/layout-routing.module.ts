@@ -23,13 +23,10 @@ const routes: Routes = [
             { path: 'client', loadChildren: './client/client.module#ClientModule' },
             { path: 'resource', loadChildren: './resource/resource.module#ResourceModule' },
             { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
-            { path: 'client', loadChildren: './client/client.module#ClientModule'},
-            { path: 'client-details', loadChildren: './client/client-details/client-details.module#ClientDetailsModule'},
-            { path: 'add-client', loadChildren: './client/addclient/addclient.module#AddclientModule'},
+            { path: 'client', loadChildren: './client/client.module#ClientModule' },
+            { path: 'client-details', loadChildren: './client/client-details/client-details.module#ClientDetailsModule' },
+            { path: 'add-client', loadChildren: './client/addclient/addclient.module#AddclientModule' },
             { path: 'project', loadChildren: './project/project.module#ProjectModule' },
-            { path: 'TasksPath', loadChildren: './my-project/my-project.module#MyprojectModule' },
-            { path: 'ListTasksPath', loadChildren: './list-task/list-task.module#ListTaskModule' },
-            { path: 'EditTasksPath', loadChildren: './edit-task/edit-task.module#EditTaskModule' }
             { path: 'resource-details', loadChildren: './resource/resource-details/resource-details.module#ResourceDetailsModule' },
             { path: 'shifts', loadChildren: './masters/shifts/shifts.module#ShiftsModule' },
             { path: 'create-resource', component: CreateResourceComponent },
@@ -38,7 +35,11 @@ const routes: Routes = [
             { path: 'domains', loadChildren: './masters/domains/domains.module#DomainsModule' },
             { path: 'technologies', loadChildren: './masters/technologies/technologies.module#TechnologiesModule' },
             { path: 'leaves', loadChildren: './masters/leaves/leaves.module#LeavesModule' },
-            { path: 'leavetype', loadChildren: './masters/leavetype/leavetype.module#LeavetypeModule' }
+            { path: 'leavetype', loadChildren: './masters/leavetype/leavetype.module#LeavetypeModule' },
+            { path: 'addtask', loadChildren: './tasks/addtask/addtask.module#AddtaskModule' },
+            { path: 'tasks', loadChildren: './tasks/tasks.module#TasksModule' },
+            { path: 'edittask', loadChildren: './tasks/edittask/edittask.module#EdittaskModule' },
+            {path: 'viewtask',loadChildren:'./tasks/viewdetail/viewdetail.module#viewdetailModule'}
         ]
     }
 ];

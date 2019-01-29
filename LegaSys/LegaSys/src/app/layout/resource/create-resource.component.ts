@@ -78,6 +78,7 @@ export class CreateResourceComponent implements OnInit {
           this.snackBar.open("Resource Added Successfully", "Ok", {
             duration: 2000,
           });
+          this.router.navigate(['resource']);
         }
 
       )

@@ -7,16 +7,12 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component'; import { HeaderComponent } from './components/header/header.component';
 import { CreateResourceComponent } from './resource/create-resource.component';
 import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatButtonModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { DialogComponent } from './masters/dialog/dialog.component';
 import { PageHeaderModule } from '../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DomainsComponent } from './masters/domains/domains.component';
-import { TechnologiesComponent } from './masters/technologies/technologies.component';
-import { LeavesComponent } from './masters/leaves/leaves.component';
-import { LeavetypeComponent } from './masters/leavetype/leavetype.component';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -33,7 +29,8 @@ import { LeavetypeComponent } from './masters/leavetype/leavetype.component';
         PageHeaderModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatPaginatorModule
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent, CreateResourceComponent, DialogComponent],
     entryComponents: [DialogComponent]

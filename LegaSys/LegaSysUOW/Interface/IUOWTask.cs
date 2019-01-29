@@ -7,12 +7,18 @@ using LegaSysDataEntities;
 
 namespace LegaSysUOW.Interface
 {
+
+    //Interface
     public interface IUOWTask
     {
         int CreateProjectTaskDetail(TaskDetail projectTaskDetail);
         TaskDetail GetProjectTaskbyId(int id);
         IEnumerable<TaskDetail> GetAllProjectsTask();
-        void DeleteProjectTask(int id);
+        bool DeleteProjectTask(int id);
         int UpdateProjectTaskDetail(TaskDetail projectTaskDetail);
+        IEnumerable<TaskDetail> GetTaskStatus();
+         IEnumerable<TaskDetail> GetTaskPriority();
+         IEnumerable<TaskDetail> GetTaskRisk();
+         IEnumerable<TaskDetail> GetTaskActivity();
     }
 }

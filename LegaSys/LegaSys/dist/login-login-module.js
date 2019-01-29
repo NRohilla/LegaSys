@@ -72,7 +72,6 @@ var LoginService = /** @class */ (function () {
         this._httpClient = _httpClient;
     }
     LoginService.prototype.authenticateUser = function (userName, password) {
-        debugger;
         var data = "username=" + userName + "&password=" + password + "&grant_type=password";
         var reqHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
         return this._httpClient.post('http://localhost:58164/api' + '/token', data, { headers: reqHeader });

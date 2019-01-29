@@ -59,9 +59,9 @@
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5535A963" ManuallyRouted="false" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5812160E" ManuallyRouted="false" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5165187F" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserBackground" Width="1.5" PointX="0.5" PointY="1.25" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserCertification" Width="1.5" PointX="17.75" PointY="0.75" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserQualification" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserBackground" Width="1.5" PointX="16.375" PointY="17.75" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserQualification" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserCertification" Width="1.5" PointX="18.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

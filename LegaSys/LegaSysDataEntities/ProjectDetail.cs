@@ -19,7 +19,8 @@ namespace LegaSysDataEntities
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
         public string ClientName { get; set; }
-        public string DomainName { get; set; }
+        public Boolean ClientStatus { get; set; }
+        public string Address { get; set; }
         public string EmailID { get; set; }
         public string EmailID2 { get; set; }
         public string CoClient { get; set; }
@@ -27,12 +28,15 @@ namespace LegaSysDataEntities
         public string Country { get; set; }
 
 
-
         public string CoClient2 { get; set; }
         public string CoClient3 { get; set; }
         public string CoClient4 { get; set; }
 
-
+        public string DomainName { get; set; }
+        
+        
+        public string  EmailID4 { get; set; }
+        
         public string ProjectDomainName { get; set; }
         public int? Resource_ID { get; set; }
 
@@ -53,11 +57,12 @@ namespace LegaSysDataEntities
         public Decimal? TotalExp { get; set; }
         public string ResourceEmailId { get; set; }
         public string ResourceMobileNumber { get; set; }
-        public Boolean Resource_IsActive { get; set; }
+        public Boolean? Resource_IsActive { get; set; }
         public string Remarks { get; set; }
         public int? Master_Shift_ID { get; set; }
         public int? Master_Location_ID { get; set; }
         public int? ReportingHead_ID { get; set; }
         public int? Master_Role_ID { get; set; }
+
     }
 }

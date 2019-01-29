@@ -79,3 +79,17 @@ D:\Bader\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.dll
 D:\Bader\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.pdb
 D:\Bader\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csprojAssemblyReference.cache
 D:\LegaSys\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csprojAssemblyReference.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll.config
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\LegaSysDataAccess.pdb
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.xml
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\bin\Debug\Newtonsoft.Json.xml
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csprojAssemblyReference.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CoreCompileInputs.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.csproj.CopyComplete
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataAccess\obj\Debug\LegaSysDataAccess.pdb

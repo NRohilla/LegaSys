@@ -12,6 +12,7 @@ namespace LegaSysDataEntities
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
+        public string Fullname { get; set; }
         public decimal? TotalExp { get; set; }
         public string EmailId { get; set; }
         public bool? IsActive { get; set; }
@@ -26,6 +27,8 @@ namespace LegaSysDataEntities
         public string RoleName { get; set; }
         public int Created_By { get; set; }
         public int Updated_By { get; set; }
-        public int? MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
+        public DateTime? DateOfJoining { get; set; }
+        public bool? IsExperienced { get; set; }
     }
 }

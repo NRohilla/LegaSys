@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace LegaSysServices.Controllers
@@ -27,6 +28,22 @@ namespace LegaSysServices.Controllers
             return Json(_uOWResources.GetAllActiveResources());
         }
 
+        [HttpGet]
+        [Route("resource/{id}")]
+        public IHttpActionResult GetResourceById(int id)
+        {
+            return Json(_uOWResources.GetResourceById(id));
+        }
+
+        [HttpGet]
+        [Route("resource/delete/{id}")]
+        public IHttpActionResult DeleteResource(int id)
+        {
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+
+            return Json(new { success = _uOWResources.DeleteResource(id, userId) });
+        }
+
         [HttpPost]
         [Route("resource/create")]
         public IHttpActionResult GetAllResources(UserDetail model)
@@ -37,7 +54,7 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int.TryParse(User.Identity.GetUserId(), out var createdBy);
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
             model.Created_By = createdBy;
 
@@ -47,6 +64,48 @@ namespace LegaSysServices.Controllers
                 return InternalServerError();
 
             return Json(new { success = true, id });
+        }
+
+
+        [HttpPost]
+        [Route("resource/update")]
+        public IHttpActionResult UpdateResource(UserDetail model)
+        {
+            if (model == null)
+                return BadRequest("Model cannot be null");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+
+            model.Created_By = createdBy;
+
+            if (!_uOWResources.UpdateResource(model))
+                return NotFound();
+
+            return Json(new { success = true });
+        }
+
+        [Route("resource/getuserbackground/{id}")]
+        public IHttpActionResult GetUserBackground(int id)
+        {
+            return Json(_uOWResources.GetUserBackground(id));
+        }
+
+        [HttpPost]
+        [Route("resource/createbackground/{id}")]
+        public IHttpActionResult AddUserBackground([FromUri] int id, bool isExp, List<UserBackground> model)
+        {
+            if (model == null)
+                return BadRequest("Model cannot be null");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _uOWResources.CreateUserBackground(id, isExp, model);
+
+            return Json(new { success = true });
         }
     }
 }

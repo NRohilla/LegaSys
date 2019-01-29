@@ -82,6 +82,9 @@
     <Compile Include="LegaSys_Client_Projects.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="LegaSys_ErrorLogs.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="LegaSys_LeavesApplication.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
@@ -136,10 +139,19 @@
     <Compile Include="LegaSys_UserActivityLog.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="LegaSys_UserBackground.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserCertification.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="LegaSys_UserDetails.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="LegaSys_UserLogin.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegaSys_UserQualification.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="LegaSys_UserTechnology.cs">
@@ -149,6 +161,12 @@
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="spGetAllProjects_Result.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetProjectDetailsById_Result.cs">
+      <DependentUpon>LegaSysEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>LegaSysEDM.tt</DependentUpon>
     </Compile>

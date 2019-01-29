@@ -8,11 +8,15 @@
             <i class="fa fa-fw fa-users"></i>&nbsp;
             <span>{{ 'Clients' | translate }}</span>
         </a>
-        <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/project']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-files-o"></i>&nbsp;
             <span>{{ 'Projects' | translate }}</span>
         </a>
-        <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/tasks']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-files-o"></i>&nbsp;
+            <span>{{ 'Tasks' | translate }}</span>
+        </a>
+        <a [routerLink]="['/resource']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-users"></i>&nbsp;
             <span>{{ 'Resources' | translate }}</span>
         </a>
@@ -36,43 +40,43 @@
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Technologies' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/domains']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Domains' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/technologies']" [routerLinkActive]="['router-link-active']">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Technologies' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/shifts']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Shifts' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/locations']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Locations' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/leavetype']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Leaves' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/leaves']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Leave Status' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/roles']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Roles' | translate }}</span>
                         </a>

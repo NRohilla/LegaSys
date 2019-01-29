@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 
 @Component({
     selector: 'app-header',
@@ -9,8 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
-
-    constructor(private translate: TranslateService, public router: Router) {
+    name: string;
+    lastLogin: string;
+    constructor(private translate: TranslateService, public router: Router,
+        @Inject(SESSION_STORAGE) private storage: StorageService) {
 
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
         this.translate.setDefaultLang('en');
@@ -28,7 +31,15 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    getName() {
+        var token = this.storage.get('UserToken');
+        if (token != null) {
+            this.name = token.name;
+            this.lastLogin = token.lastlogin;
+        }
+    }
+
+    ngOnInit() { this.getName() }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');

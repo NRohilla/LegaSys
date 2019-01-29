@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<app-page-header [heading]="'Locations'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="value" placeholder="Filter">
+  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; applyFilter('');">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <ng-container matColumnDef="LocationID">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Location ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.LocationID}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="LocationAddress">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">
+        Location Address </span></th>
+    <td mat-cell *matCellDef="let element"> {{element.LocationAddress}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="IsActive">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="$event.stopPropagation(); status(element.LocationID, element.IsActive)" mat-raised-button
+        [ngClass]="{'btn-info': !element.IsActive, 'btn-danger': element.IsActive}">
+        <mat-icon *ngIf="!element.IsActive">verified_user</mat-icon>
+        <mat-icon *ngIf="element.IsActive">not_interested</mat-icon>
+        {{element.IsActive ? 'Deactivate' : 'Activate'}}
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.LocationID}"
+    (click)="highlight(row)">
+  </tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
+
+<h2>{{formType}} Location</h2>
+<form [formGroup]="locationForm" #formDirective="ngForm" (ngSubmit)="onSubmit(locationForm, formDirective)">
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput formControlName="locationAddress" placeholder="Location Address" />
+      <!-- [(ngModel)]="dataSource.LocationAddress" name="dataSource.LocationAddress" -->
+      <mat-error *ngIf="locationForm.controls['locationAddress'].invalid  && (locationForm.controls['locationAddress'].dirty || locationForm.controls['locationAddress'].touched)">
+        Location is required</mat-error>
+    </mat-form-field>
+
+    <div class="w-100 float-left table-info px-4 py-2 text-right">
+      <button type="submit" class="btn-info mat-button mr-1" [disabled]="!locationForm.valid" mat-raised-button><i
+          class="fa fa-save" aria-hidden="true"></i><span class="action-btn">{{formType}}
+          Location</span></button>
+      <button type="button" class="btn-danger mat-button" (click)="formReset(formDirective);"
+        mat-raised-button><i class="fa fa-times" aria-hidden="true"></i> <span class="action-btn">Cancel</span></button>
+    </div>
+  </div>
+</form>

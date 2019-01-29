@@ -41,7 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientDetail.cs" />
+    <Compile Include="Domain.cs" />
+    <Compile Include="Leave.cs" />
+    <Compile Include="LeaveType.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="ProjectDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="Shift.cs" />
+    <Compile Include="TaskDetail.cs" />
+    <Compile Include="Technology.cs" />
+    <Compile Include="UserBackground.cs" />
     <Compile Include="UserDetail.cs" />
     <Compile Include="UserLoginDetails.cs" />
   </ItemGroup>

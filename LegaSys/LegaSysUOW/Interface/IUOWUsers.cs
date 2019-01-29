@@ -10,6 +10,8 @@ namespace LegaSysUOW.Interface
     public interface IUOWUsers
     {
         UserLoginDetails AuthenticateAndFetchUserDetail(string Username, string Password);
+        List<UserDetail> GetUserList(int roleId);
+        List<ProjectDetail> GetAvailableUserListForProject(int[] roleId);
     }
 }
     

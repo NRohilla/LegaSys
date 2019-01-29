@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+  }
+  .mat-form-field {
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  th.mat-sort-header-sorted {
+    color:#ffffff;
+  }
+  .labeltext
+{
+  margin-left: 40%;
+
+}
+.mat-row:nth-child(even){
+  background-color:light;
+  }
+
+.mat-row:nth-child(odd){
+  background-color:whitesmoke;
+  }

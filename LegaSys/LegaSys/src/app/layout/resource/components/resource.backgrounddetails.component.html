@@ -1,0 +1,183 @@
+<div class="bg-white">
+  <label>Experienced </label>
+  <mat-form-field style="margin-left: 100px">
+    <mat-select [(ngModel)]="selected" (ngModelChange)="onChange($event)" [disabled]='isExp'>
+      <mat-option value="false">No</mat-option>
+      <mat-option value="true">Yes</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="bg-white">
+  <label>Current Experience:<span style="margin-left: 40px;"> {{currentExp}}</span> </label>
+  <br><br>
+</div>
+<div class="bg-white">
+  <label>Total Experience: <span style="margin-left: 60px;">{{TotalExp}} </span></label>
+  <br><br>
+</div>
+
+<div *ngIf="showExp">
+
+  <mat-table [dataSource]="backgroundDetails" matSort class="example-container mat-elevation-z8 resource-grid">
+    <ng-container matColumnDef="BackgroundID">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>BackGround ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.BackgroundID}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="CompanyName">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.CompanyName}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="Designation">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Designation </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Designation}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="JoiningDate">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.JoiningDate| date}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="LeavingDate">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Leaving Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.LeavingDate| date}} </mat-cell>>
+    </ng-container>
+    <ng-container matColumnDef="Duration">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Duration </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{calcExperience(element.JoiningDate, element.LeavingDate)}} </mat-cell>>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.BackgroundID}"
+      (click)="highlight(row)"></mat-row>
+
+    <!-- <mat-footer-row *matFooterRowDef>
+       
+    </mat-footer-row > -->
+
+  </mat-table>
+
+</div>
+<form [formGroup]="uBackgrndForm" #formDirective="ngForm">
+  <div *ngIf="isAddItem">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-size: smaller;color: steelblue">
+            Click to add item
+          </mat-panel-title>
+          <mat-panel-description>
+            <!-- Type your name and age -->
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+
+          <!-- <mat-form-field hidden>
+                  <input matInput  formControlName="BackgroundID">
+                  
+                </mat-form-field> -->
+
+          <div class="col-xl-3">
+            <mat-form-field style="width:300px">
+              <input matInput placeholder="Company Name" formControlName="CompanyName">
+              <mat-error *ngIf="uBackgrndForm.controls.CompanyName.invalid">
+                <span [hidden]="!uBackgrndForm.controls['CompanyName'].errors.required">
+                  Company Name is required.
+                </span>
+                <span [hidden]="!uBackgrndForm.controls['CompanyName'].errors.maxlength">
+                  Maximum allowed characters are 50.
+                </span>
+
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3">
+            <mat-form-field style="width:300px">
+              <input matInput placeholder="Designation" formControlName="Designation">
+              <mat-error *ngIf="uBackgrndForm.controls.Designation.invalid">
+                <span [hidden]="!uBackgrndForm.controls['Designation'].errors.required">
+                  Designation is required.
+                </span>
+                <span [hidden]="!uBackgrndForm.controls['Designation'].errors.maxlength">
+                  Maximum allowed characters are 50.
+                </span>
+
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2">
+            <mat-form-field style="width: 200px;">
+              <input matInput [matDatepicker]="picker"  placeholder="Joining Date" formControlName="JoiningDate"  >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="uBackgrndForm.controls.JoiningDate.invalid ">
+                <span [hidden]="!uBackgrndForm.controls['JoiningDate'].errors.required">
+                  JoiningDate is required.
+                </span>
+              </mat-error>
+
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2" >
+            <mat-form-field style="width:200px;">
+              <input matInput [matDatepicker]="picker1" placeholder="Leaving Date"  formControlName="LeavingDate" >
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+              <mat-error *ngIf="uBackgrndForm.controls.LeavingDate.invalid">
+                <span [hidden]="!uBackgrndForm.controls['LeavingDate'].errors.required">
+                  LeavingDate is required.
+                </span>
+                <span class="alert alert-danger"
+                *ngIf="uBackgrndForm.controls['LeavingDate'].errors?.matchval" class="d-block w-100 border-0 mat-error">
+                 Leaving date must be greater than joining date</span>
+              </mat-error>
+              
+              <!-- <div *ngIf="uBackgrndForm.controls.LeavingDate.valid">
+                  {{hasSet()}}
+                <mat-error *ngIf="!s">
+                    Leaving date should be greter than joinoig date
+                  </mat-error>
+                </div> -->
+
+            </mat-form-field>
+            
+          </div>
+          <div class="col-xl-1">
+            <button type="submit" class="btn btn-info float-right" (click)="addExperience()"><i class="fa fa-plus" aria-hidden="true" ></i>{{formType}} Experience</button>
+          </div>
+          <div class="col-xl-1">
+            <button type="reset" class="btn btn-secondary" (click)="formReset(uBackgrndForm, formDirective);"><i class="fa fa-times" aria-hidden="true"></i>Cancel</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+
+  <!-- <label>Experience in VE</label>
+  <div class="row">
+      
+    <input type="text" placeholder="Company Name" class="form-control col-md-3"/>
+    <input type="text" placeholder="Designation" class="form-control col-md-3"/>
+    <input type="date"  class="form-control col-md-3"/>
+    <input type="date"  class="form-control col-md-3"/>
+  </div> -->
+
+  <div style=" background: #bee5eb; padding: 10px; float: left;
+  width: 100%;">
+    <div *ngIf="disableFooter" class="float-right">
+      <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Edit</button>
+    </div>
+
+
+    <div *ngIf="!disableFooter" class="float-right ml-2">
+      <button *ngIf="disableSave" type="submit" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save" aria-hidden="true" ></i> Save</button>
+      <button mat-button class="btn btn-secondary" (click)="discard()"><i class="fa fa-times" aria-hidden="true" ></i>
+        Discard</button>
+    </div>
+    <!-- <div *ngIf="!disable" class="float-right ml-2">
+          <button mat-button class="btn btn-secondary" (click)="Cancel()"><i class="fa fa-times" aria-hidden="true"></i>
+              Cancel</button>
+      </div> -->
+  </div>
+
+</form>

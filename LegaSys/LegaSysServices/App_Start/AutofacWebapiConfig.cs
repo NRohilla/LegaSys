@@ -1,9 +1,13 @@
 ﻿using Autofac;
+using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using LegaSysUOW.Interface;
 using LegaSysUOW.Repository;
+using System.Linq;
 using System.Reflection;
+using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace LegaSysServices.App_Start
 {
@@ -29,12 +33,35 @@ namespace LegaSysServices.App_Start
 
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
             builder.RegisterType<UOWResources>().As<IUOWResources>().InstancePerRequest();
+            builder.RegisterType<UOWExceptionLogger>().As<IUOWExceptionLogger>().InstancePerRequest();
+            builder.RegisterType<UOWRoles>().As<IUOWRoles>().InstancePerRequest();
+            builder.RegisterType<UOWShifts>().As<IUOWShifts>().InstancePerRequest();
+            builder.RegisterType<UOWLocations>().As<IUOWLocations>().InstancePerRequest();
+            builder.RegisterType<UOWUsers>().As<IUOWUsers>().InstancePerRequest();
+            builder.RegisterType<UOWDomains>().As<IUOWDomains>().InstancePerRequest();
+            builder.RegisterType<UOWTechnologies>().As<IUOWTechnologies>().InstancePerRequest();
+            builder.RegisterType<UOWLeaves>().As<IUOWLeaves>().InstancePerRequest();
             builder.RegisterType<UOWClient>().As<IUOWClient>().InstancePerRequest();
-
-            //Set the dependency resolver to be Autofac.  
+            builder.RegisterType<UOWProjects>().As<IUOWProjects>().InstancePerRequest();
+            builder.RegisterType<UOWTask>().As<IUOWTask>().InstancePerRequest();
+            builder.RegisterType<UOWSubTask>().As<IUOWSubTask>().InstancePerRequest();
+         
             Container = builder.Build();
 
             return Container;
+        }
+
+        public static T ResolveRequestInstance<T>()
+        {
+            if (DependencyResolver.Current.GetType() != typeof(AutofacDependencyResolver))
+            {
+                var context = HttpContext.Current.GetOwinContext();
+                var lifetimeScopeKey = context.Environment.Keys.Single(w => w.StartsWith("autofac:OwinLifetimeScope"));
+
+                return context.Get<Autofac.Core.Lifetime.LifetimeScope>(lifetimeScopeKey).Resolve<T>();
+            }
+
+            return AutofacDependencyResolver.Current.GetService<T>();
         }
     }
 }

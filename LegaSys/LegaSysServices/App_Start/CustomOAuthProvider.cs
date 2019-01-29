@@ -9,6 +9,7 @@ using System.Security.Claims;
 using Microsoft.Owin.Security;
 using LegaSysUOW.Repository;
 using LegaSysDataEntities;
+using LegaSysUOW.Interface;
 
 namespace LegaSysServices.App_Start
 {
@@ -21,8 +22,7 @@ namespace LegaSysServices.App_Start
         }
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            UOWUsers ObjUsers = new UOWUsers();
-            UserLoginDetails user = ObjUsers.AuthenticateAndFetchUserDetail(context.UserName, context.Password);
+            UserLoginDetails user = AutofacWebapiConfig.ResolveRequestInstance<IUOWUsers>().AuthenticateAndFetchUserDetail(context.UserName, context.Password);
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect");
@@ -30,15 +30,25 @@ namespace LegaSysServices.App_Start
             }
             var identity = new ClaimsIdentity("JWT");
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim("userid", user.UserLoginDetailID.ToString()));
+            identity.AddClaim(new Claim("userid", user.UserDetailID.ToString()));
             identity.AddClaim(new Claim("Username", user.Username));
             var props = new AuthenticationProperties(new Dictionary<string, string>()
             {
-                {
-                    "audience", context.ClientId ??string.Empty                 }
+                { "audience", context.ClientId ??string.Empty },
+                { "name", user.Name },
+                {"lastlogin", user.LastLogin.HasValue ? Convert.ToString(user.LastLogin.Value) : string.Empty }
             });
             var ticket = new AuthenticationTicket(identity, props);
             context.Validated(ticket);
+            return Task.FromResult<object>(null);
+        }
+
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
             return Task.FromResult<object>(null);
         }
     }

@@ -1,0 +1,120 @@
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<app-page-header [heading]="'Shifts'" [icon]="'fa fa-fw fa-users'"></app-page-header>
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="value" placeholder="Filter">
+  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; applyFilter('');">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <ng-container matColumnDef="ShiftID">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Shift ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.ShiftID}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="WeekOff1">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Week
+        Off 1 </span></th>
+    <td mat-cell *matCellDef="let element" style="display:disabled"> {{element.WeekOff1}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="WeekOff2">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Week
+        Off 2 </span></th>
+    <td mat-cell *matCellDef="let element"> {{element.WeekOff2}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="WeekOff3">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Week
+        Off 3 </span></th>
+    <td mat-cell *matCellDef="let element"> {{element.WeekOff3}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="StartTimeIST">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">
+        Start Time IST </span></th>
+    <td mat-cell *matCellDef="let element"> {{element.StartTimeIST}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="EndTimeIST">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> End
+        Time IST </span></th>
+    <td mat-cell *matCellDef="let element"> {{element.EndTimeIST}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="IsActive">
+    <th mat-header-cell class="bg-info" *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="$event.stopPropagation(); status(element.ShiftID, element.IsActive)" mat-raised-button [ngClass]="{'btn-info': !element.IsActive, 'btn-danger': element.IsActive}">
+        <mat-icon *ngIf="!element.IsActive">verified_user</mat-icon>
+        <mat-icon *ngIf="element.IsActive">not_interested</mat-icon>
+        {{element.IsActive ? 'Deactivate' : 'Activate'}}
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.ShiftID}"
+    (click)="highlight(row)">
+  </tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
+
+<h2>{{formType}} Shift</h2>
+<form [formGroup]="shiftForm" #formDirective="ngForm" (ngSubmit)="onSubmit(shiftForm, formDirective)">
+  <div class="example-container">
+    <div class="row">
+      <div class="col-xl-3">
+
+        <mat-form-field>
+          <mat-select placeholder="Select Week Off 1" formControlName="weekOff1">
+            <mat-option *ngFor="let week of weekList " [value]="week">{{week}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="shiftForm.get('weekOff1').invalid">{{getErrorMessage('weekOff1')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-3">
+        <mat-form-field>
+          <mat-select placeholder="Select Week Off 2" formControlName="weekOff2">
+            <mat-option *ngFor="let week of weekList " [value]="week">{{week}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field style="display:none">
+        <mat-select placeholder="Select Week Off 3" formControlName="weekOff3">
+          <mat-option *ngFor="let week of weekList " [value]="week">{{week}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="col-xl-3">
+        <mat-form-field>
+          <mat-select placeholder="Start Time IST" formControlName="startTimeIST">
+            <mat-option *ngFor="let time of timeList " [value]="time">{{time}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="shiftForm.get('startTimeIST').invalid">{{getErrorMessage('startTimeIST')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-3">
+        <mat-form-field>
+          <mat-select placeholder="End Time IST" formControlName="endTimeIST">
+            <mat-option *ngFor="let time of timeList " [value]="time">{{time}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="shiftForm.get('endTimeIST').invalid">{{getErrorMessage('endTimeIST')}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="w-100 float-left table-info px-4 py-2 text-right">
+      <button type="submit" class="btn-info mat-button mr-1" [disabled]="!shiftForm.valid" mat-raised-button><i class="fa fa-save"
+          aria-hidden="true"></i><span class="action-btn">{{formType}}
+          Shift</span></button>
+      <button type="button" class="btn-danger mat-button" (click)="formReset(formDirective);"
+        mat-raised-button><i class="fa fa-times" aria-hidden="true"></i> <span class="action-btn">Cancel</span></button>
+    </div>
+  </div>
+</form>

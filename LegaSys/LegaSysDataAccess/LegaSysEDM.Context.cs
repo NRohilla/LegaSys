@@ -32,6 +32,7 @@ namespace LegaSysDataAccess
         public virtual DbSet<LegaSys_Client_Projects> LegaSys_Client_Projects { get; set; }
         public virtual DbSet<LegaSys_ClientDetails> LegaSys_ClientDetails { get; set; }
         public virtual DbSet<LegaSys_ClientStatus> LegaSys_ClientStatus { get; set; }
+        public virtual DbSet<LegaSys_ErrorLogs> LegaSys_ErrorLogs { get; set; }
         public virtual DbSet<LegaSys_LeavesApplication> LegaSys_LeavesApplication { get; set; }
         public virtual DbSet<LegaSys_Log_Clients> LegaSys_Log_Clients { get; set; }
         public virtual DbSet<LegaSys_Log_Projects> LegaSys_Log_Projects { get; set; }
@@ -53,8 +54,11 @@ namespace LegaSysDataAccess
         public virtual DbSet<LegaSys_UserDetails> LegaSys_UserDetails { get; set; }
         public virtual DbSet<LegaSys_UserLogin> LegaSys_UserLogin { get; set; }
         public virtual DbSet<LegaSys_UserTechnology> LegaSys_UserTechnology { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<LegaSys_WhiteList_IP> LegaSys_WhiteList_IP { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<LegaSys_UserBackground> LegaSys_UserBackground { get; set; }
+        public virtual DbSet<LegaSys_UserQualification> LegaSys_UserQualification { get; set; }
+        public virtual DbSet<LegaSys_UserCertification> LegaSys_UserCertification { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -157,6 +161,58 @@ namespace LegaSysDataAccess
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int spAddProject(string title, string description, string status)
+        {
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spAddProject", titleParameter, descriptionParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<spGetAllProjects_Result> spGetAllProjects()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllProjects_Result>("spGetAllProjects");
+        }
+    
+        public virtual ObjectResult<spGetProjectDetailsById_Result> spGetProjectDetailsById(Nullable<int> projectId)
+        {
+            var projectIdParameter = projectId.HasValue ?
+                new ObjectParameter("projectId", projectId) :
+                new ObjectParameter("projectId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProjectDetailsById_Result>("spGetProjectDetailsById", projectIdParameter);
+        }
+    
+        public virtual int spUpdateProject(Nullable<int> projectID, string title, string description, string status)
+        {
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("projectID", projectID) :
+                new ObjectParameter("projectID", typeof(int));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUpdateProject", projectIDParameter, titleParameter, descriptionParameter, statusParameter);
         }
     }
 }

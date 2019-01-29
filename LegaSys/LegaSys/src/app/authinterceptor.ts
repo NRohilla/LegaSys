@@ -14,7 +14,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  
+     
        var authReq:any;
       
      
@@ -27,8 +27,9 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                       // window.location.href = this.loginUrl;
               }
               else{
-                this.currentValue = 'bearer ' + this.storage.get('UserToken').access_token;
                     //this.currentValue = 'bearer ' + this.storage.get('UserToken');
+                    this.currentValue = 'bearer ' + this.storage.get('UserToken').access_token;
+
                     authReq = req.clone({ headers: req.headers.set('Authorization', this.currentValue) });
               }
        }

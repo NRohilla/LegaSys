@@ -1,6 +1,9 @@
 body { font-size: 14px; }
+
 .client-detail .mat-tab-labels .mat-tab-label { color: #ffffff; opacity: 1 !important; font-weight: 500; }
+
 .table-active { background: #eeeeee; }
+
 .footer-height { height:50px !important;}
 .font-14 { font-size: 14px !important; }
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
@@ -11,4 +14,14 @@ body { font-size: 14px; }
 }
 .mat-form-field-appearance-legacy .mat-form-field-label {
     color: black;
+}
+
+.mat-sort-header-arrow {
+    color: #fff !important;
+    opacity: 1 !important;
+    }
+
+
+.mat-tooltip{
+    font-size:12px;
 }

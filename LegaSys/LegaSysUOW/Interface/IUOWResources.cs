@@ -12,7 +12,9 @@ namespace LegaSysUOW.Interface
         IEnumerable<UserDetail> GetAllActiveResources();
         UserDetail GetResourceById(int id);
         int CreateResoure(UserDetail userDetail);
-        void UpdateResource(UserDetail userDetail);
-        void DeleteResource(int id);
+        bool UpdateResource(UserDetail userDetail);
+        bool DeleteResource(int id, int userId);
+        IEnumerable<UserBackground> GetUserBackground(int id);
+        bool CreateUserBackground(int id, bool isExp, List<UserBackground> userBackground);
     }
 }

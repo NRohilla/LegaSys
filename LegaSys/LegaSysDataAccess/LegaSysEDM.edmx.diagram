@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ea3d83c243b54267b0403f5510573fe4" Name="Diagram1">
+      <Diagram DiagramId="40bd49dcafd040b8bb7ef369604f6c78" Name="Diagram1">
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Attachments" Width="1.5" PointX="16" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_AttachmentTypes" Width="1.5" PointX="13.75" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Client_Projects" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_ClientDetails" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_ClientStatus" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_ErrorLogs" Width="1.5" PointX="7.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_LeavesApplication" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Log_Clients" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Log_Projects" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
@@ -17,7 +18,7 @@
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_LeaveStatus" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_LeaveTypes" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Locations" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_MenuItems" Width="1.5" PointX="7.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_MenuItems" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Roles" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_Shifts" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_Master_TechDomains" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
@@ -27,11 +28,12 @@
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectSubTasks" Width="1.5" PointX="20.5" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectTasks" Width="1.5" PointX="18.25" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_ProjectTechnology" Width="1.5" PointX="15.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserActivityLog" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserActivityLog" Width="1.5" PointX="7.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserDetails" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserLogin" Width="1.5" PointX="7.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserLogin" Width="1.5" PointX="9.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserTechnology" Width="1.5" PointX="15.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LegaSysModel.sysdiagram" Width="1.5" PointX="9.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_WhiteList_IP" Width="1.5" PointX="11.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegaSysModel.sysdiagram" Width="1.5" PointX="13.75" PointY="17.75" IsExpanded="true" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_A__Attac__778AC167" ManuallyRouted="false" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_A__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_A__5441852A" ManuallyRouted="false" />
@@ -57,7 +59,9 @@
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5535A963" ManuallyRouted="false" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5812160E" ManuallyRouted="false" />
         <AssociationConnector Association="LegaSysModel.FK__LegaSys_O__ORG_P__5165187F" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LegaSysModel.LegaSys_WhiteList_IP" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserBackground" Width="1.5" PointX="16.375" PointY="17.75" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserQualification" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LegaSysModel.LegaSys_UserCertification" Width="1.5" PointX="18.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -10,17 +10,39 @@ using LegaSysDataEntities;
 
 namespace LegaSysServices.Controllers
 {
-	//Testing
     [RoutePrefix("LegaSysAPI/Users")]
     public class UserController : ApiController
     {
-        IUOWUsers UsersRepository = new UOWUsers();
+        private readonly IUOWUsers _uOWUsers;
+
+        public UserController(IUOWUsers uOWUsers)
+        {
+            _uOWUsers = uOWUsers;
+        }
 
         [HttpGet]
         [Route("AuthenticateLogin")]
         public UserLoginDetails AuthenticateAndFetchUserDetail(string UserEmailId, string password)
         {
-            return UsersRepository.AuthenticateAndFetchUserDetail(UserEmailId, password);
+            return _uOWUsers.AuthenticateAndFetchUserDetail(UserEmailId, password);
+        }
+
+        [HttpGet]
+        [Route("getuserlist/{id}")]
+        public IHttpActionResult GetUserList(int id)
+        {
+            return Json(_uOWUsers.GetUserList(id).Select(x => new
+            {
+                x.UserDetailID,
+                x.Fullname
+            }));
+        }
+
+        [HttpPost]
+        [Route("getavailableresource")]
+        public IHttpActionResult GetUserList(int[] id)
+        {
+            return Json(_uOWUsers.GetAvailableUserListForProject(id));
         }
     }
 }

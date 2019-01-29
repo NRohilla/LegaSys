@@ -10,6 +10,9 @@ using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security;
+using Autofac;
+using LegaSysUOW.Interface;
+
 [assembly: OwinStartup(typeof(LegaSysServices.Startup))]
 namespace LegaSysServices
 {
@@ -19,11 +22,13 @@ namespace LegaSysServices
         {
             HttpConfiguration config = new HttpConfiguration();
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            AutofacWebapiConfig.Initialize(GlobalConfiguration.Configuration);
             config.MapHttpAttributeRoutes();
+
+            AutofacWebapiConfig.Initialize(GlobalConfiguration.Configuration);
+            app.UseAutofacMiddleware(AutofacWebapiConfig.Container);
+
             ConfigureJWTTokenGeneration(app);
             ConfigureJWTTokenConsumption(app);
-
         }
         public void ConfigureJWTTokenGeneration(IAppBuilder app)
         {

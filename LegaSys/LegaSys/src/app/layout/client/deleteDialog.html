@@ -1,10 +1,8 @@
-<div mat-dialog-content >
-       <strong style="font-size:16px "><p *ngIf="currentClientDetails"> Are you sure, you want to Delete {{currentClientDetails.ClientName}}</p></strong>
-      </div>
-      <div mat-dialog-actions>
-          <div style="margin-left:118px;">
-        <button mat-raised-button class="btn btn-secondary mx-1" (click)="onNoClick()"> Cancel</button>
-        <button mat-raised-button class="btn btn-info mx-1" [mat-dialog-close]="data.confirm" cdkFocusInitial style="margin-left:28px "> Yes</button>
-       
-      </div>
-      </div>
+<h1 mat-dialog-title class="breadcrumb">Confirmation</h1>
+<div mat-dialog-content>
+  Are you sure you want to {{data.status}}?
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.confirm" cdkFocusInitial>Yes</button>
+  <button mat-button style="margin-left: 101px" (click)="onNoClick()">No</button>
+</div>

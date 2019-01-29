@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { CurrentClientdataServiceService } from '../../../current-clientdata-service.service';
 import { ClientServiceService } from '../client-service.service';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { Client } from '../model/client.model';
 
 @Component({
@@ -60,7 +60,28 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
       coClient2: ['', Validators.pattern('^[a-zA-Z ]+$')],
       coClient3: ['', Validators.pattern('^[a-zA-Z ]+$')],
       coClient4: ['', Validators.pattern('^[a-zA-Z ]+$')]
-    });
+    }, {
+      validator: this.matchval // your validation method
+    })
+  }
+  matchval(group: FormGroup){
+    let c1=group.controls['coClient'].value;
+    let c2=group.controls['coClient2'].value;
+    let c3=group.controls['coClient3'].value;
+    let c4=group.controls['coClient4'].value;
+    if(c4!=undefined ){
+      if(c3!=c4){
+        return null;
+
+ }
+ else{
+   return group.controls['coClient4'].setErrors({matchval: true});
+   
+ }
+    }
+    else{
+      return null;
+    }
   }
   /******** Created on 27 nov 2018 ********/
   /******** Following method will be used to get the place holder ********/

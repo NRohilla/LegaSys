@@ -3,6 +3,7 @@ using LegaSysDataEntities;
 using LegaSysUOW.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -288,6 +289,27 @@ namespace LegaSysUOW.Repository
          
             return true;
 
+        }
+
+        public List<TaskDetail> GetAllTaskOfProject(int id)
+        {           
+
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    var projectIdParameter = new SqlParameter("@projectId", id);
+
+                    var result = db.Database
+                        .SqlQuery<TaskDetail>("sp_GetAllTaskbyProjectId @projectId", projectIdParameter)
+                        .ToList();  
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

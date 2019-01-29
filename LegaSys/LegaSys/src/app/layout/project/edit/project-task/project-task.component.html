@@ -1,0 +1,49 @@
+<!-- <div class="py-4 px-1">
+        <div class="col-lg-12" style="margin-bottom: 1%;">
+                <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                <label><strong>Task Title : </strong></label>{{taskdetails.TaskTitle}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                <label><strong>Description: </strong></label>{{taskdetails.TaskDescription}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                <label><strong>Attachment : </strong></label>{{taskdetails.TaskAttachmentName}}
+                        </div>
+                </div> 
+        </div> -->
+<div class="py-4 px-1" *ngIf="tasklist">
+        <div class="table-responsive">
+
+                <table mat-table [dataSource]="tasklist" style="width:100%">
+                        <ng-container matColumnDef="ProjectTaskID">
+                                <th mat-header-cell *matHeaderCellDef hidden> <span class="text-white " style="font-size: 13px;">ProjectTaskID</span>  </th>
+                                <td mat-cell *matCellDef="let element" hidden> {{element.ProjectTaskID}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="TaskTitle">
+                                <th mat-header-cell *matHeaderCellDef><span class="text-white " style="font-size: 13px;">Title</span>  </th>
+                                <td mat-cell *matCellDef="let element"> {{element.TaskTitle}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Status">
+                                <th mat-header-cell *matHeaderCellDef><span class="text-white " style="font-size: 13px;">Status</span>   </th>
+                                <td mat-cell *matCellDef="let element"><a>{{element.Status}}</a></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Task_AssignTo">
+                                <th mat-header-cell *matHeaderCellDef><span class="text-white " style="font-size: 13px;">Task Assigned To</span> </th>
+                                <td mat-cell *matCellDef="let element"><a>{{element.Task_AssignTo}}</a></td>
+                        </ng-container>
+                        <ng-container matColumnDef="actions">
+                                <th  mat-header-cell *matHeaderCellDef>
+                                </th>
+                                <td mat-cell *matCellDef="let element" class="text-right">
+                                        <button mat-button class="btn btn-info mx-1" (click)="Navigate(element.ProjectTaskID)"><i class="fa fa-pencil-square-o"
+                                                        aria-hidden="true"></i> View</button>
+                                        </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-info" ></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+        </div>
+</div>

@@ -1,0 +1,132 @@
+
+<div class="card mb-3">
+  <div class="table-active" >
+      <label style="margin-top:20px;margin-bottom:20px;margin-left:5px;"><strong>Time Span: </strong> {{timeSpan}}</label><br>
+      <label style="margin-bottom:20px;margin-left:5px;" *ngIf="currentClientDetails.IsActive==true"><strong>Status: </strong> Active</label>
+      <label style="margin-bottom:20px;margin-left:5px;" *ngIf="currentClientDetails.IsActive==false"><strong>Status: </strong>Inactive</label>
+  <mat-table [dataSource]="clientProjectsList" matSort class="table-active">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- client name column -->
+      <ng-container matColumnDef="Title">
+        <mat-header-cell class="bg-info"  mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Title</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="start_date">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Start Date</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Start_Date | date}} </mat-cell>
+      </ng-container>
+      <!-- client email Column -->
+      <ng-container matColumnDef="End_date">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">End Date</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.End_Date | date}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="duration">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Duration </span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{calcTotExp(element.Start_Date,element.End_Date)}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="assign_type">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Assign Type</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element">Full time </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="service_type">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Service Type</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{GetStatus(element.End_Date)}} </mat-cell>
+      </ng-container>
+    
+      <!--client address Column -->
+      
+        <ng-container matColumnDef="action">
+          <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="text-right">
+              <button mat-button (click)="ViewProjectDetails(element.ProjectID)"  class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View</button>
+            
+             </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
+        <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.ProjectID}"
+        (click)="highlight(row)"></mat-row>
+    </mat-table>
+    <form *ngIf="showProjectDetailsForm" class="w-100 float-left table-active py-5 px-2" [formGroup]="projectDetailsForm">
+      <div class="row m-0">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
+              <mat-form-field >               
+              <input  formControlName="title" matInput placeholder="Title" maxlength="50" >                 
+              <!-- <mat-error *ngIf="professionalDetailsForm.controls['companyName'].invalid">
+                    <span *ngIf="professionalDetailsForm.controls['companyName'].errors.required">
+                          Company name can bot be blank
+                    </span>               
+              
+                 </mat-error> -->
+          </mat-form-field>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
+          <mat-form-field >
+              <input matInput [matDatepicker]="picker"  placeholder="Start Date" formControlName="startDate"  [max]="getToday()" [min]="GetClientCreationDate()">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <!-- <mat-error *ngIf="uBackgrndForm.controls.JoiningDate.invalid ">
+                <span [hidden]="!uBackgrndForm.controls['JoiningDate'].errors.required">
+                  JoiningDate is required.
+                </span>
+              </mat-error> -->
+  
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
+            <mat-form-field >
+              <input matInput [matDatepicker]="picker1"  placeholder="End  Date" formControlName="endDate"  [max]="getToday()" [min]="GetClientCreationDate()">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+              <mat-error *ngIf="projectDetailsForm.controls['endDate'].errors?.CompareDates" class="d-block w-100 border-0 mat-error">
+                
+                  Prject End date should be Greter than project Start date
+               
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
+            <mat-form-field>
+                <mat-select formControlName="serviceType" placeholder="Service type">
+                
+                  <mat-option value="Active">Active</mat-option>
+                  <mat-option value="Inactive">Inactive</mat-option>
+                 
+                </mat-select>
+              </mat-form-field>
+          </div>
+         -->
+          <div class="float-left w-100">
+            <div class="px-2 float-right" >
+              <button  mat-button class="btn btn-info" (click)="ClearSection()" ><i class="fa fa-times" aria-hidden="true"></i>
+                  Clear</button>
+          </div>
+          <div class="px-2 float-right">
+                  <button    [disabled]="!projectDetailsForm.valid" mat-button class="btn btn-success" (click)="UpdateProjectDetails()"><i class="fa fa-save" aria-hidden="true"></i> Update</button>
+                  </div>
+           </div>
+                     
+          </div>
+       
+        </form>
+      
+      
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+  </div>
+  
+    <div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
+    <!-- This button will be used to add client into the database-->
+    <div class="px-2 float-right">
+        <button   mat-button class="btn btn-info" (click)="AddPrject()"><i class="fa fa-plus" aria-hidden="true"></i> Add Project</button>
+        </div>
+    <div class="px-2 float-right">
+      <button   mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
+      </div>
+   
+    </div>
+  </div>
+    
+  

@@ -10,6 +10,7 @@ import {ClientServiceService} from '../client-service.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatAutocompleteModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MatStepperModule
   ],
   providers: [ClientServiceService],
     declarations: [AddclientComponent]

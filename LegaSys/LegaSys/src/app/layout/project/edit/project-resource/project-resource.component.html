@@ -1,0 +1,156 @@
+<div class="py-4 px-1">
+        <div class="form-group">
+
+                <table mat-table [dataSource]="datasource" style="width: 100%;">
+                        <ng-container matColumnDef="ProjectID">
+                                <th mat-header-cell *matHeaderCellDef hidden> ProjectID </th>
+                                <td mat-cell *matCellDef="let element" hidden> {{element.ProjectID}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Resource_ID">
+                                <th mat-header-cell *matHeaderCellDef hidden> ID </th>
+                                <td mat-cell *matCellDef="let element" hidden> {{element.Resource_ID}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ResourceName">
+                                <th mat-header-cell *matHeaderCellDef> Resource Name </th>
+                                <td mat-cell *matCellDef="let element"><a>{{element.ResourceName}}</a></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TotalExp">
+                                <th mat-header-cell *matHeaderCellDef> Total Experience </th>
+                                <td mat-cell *matCellDef="let element"> {{element.TotalExp}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ResourceEmailId">
+                                <th mat-header-cell *matHeaderCellDef>Email Id </th>
+                                <td mat-cell *matCellDef="let element"> {{element.ResourceEmailId}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Shift">
+                                <th mat-header-cell *matHeaderCellDef>Shift </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Shift}} </td>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="Master_Shift_ID" hidden>
+                                        <th mat-header-cell *matHeaderCellDef>Master_Shift_ID</th>                                        
+                                        <td mat-cell *matCellDef="let element" hidden> {{element.Master_Shift_ID}} </td>
+                                </ng-container>                       -->
+                        <ng-container matColumnDef="ReportingHeadName">
+                                <th mat-header-cell *matHeaderCellDef> Reporting Head </th>
+                                <td mat-cell *matCellDef="let element"> {{element.ReportingHeadName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Master_Role">
+                                <th mat-header-cell *matHeaderCellDef> Role </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Master_Role}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="actions">
+                                <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef>
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let element" class="text-right">
+                                        <!-- [routerLink]="['/client-details'] -->
+                                        <button mat-button class="btn btn-danger mx-1" (click)="RemoveResource(element)"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i> Remove</button>
+                                </mat-cell>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="Highlight(row)" [ngClass]="{'highlight': selectedRowIndex == row.Resource_ID}"></tr>
+                </table>
+        </div>
+</div>
+<div>
+
+</div>
+<form [formGroup]="ResourceInfoForm" #formDirective="ngForm" *ngIf="isSelected" >
+        <div class="row" >
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+
+                        <mat-form-field class="w-100">
+                                <!-- <label class="summary-lebel float-left" *ngIf="!disable"><strong>Resource Name:</strong></label> -->
+                                <mat-label>Resource Name</mat-label>
+                                <input matInput #input formControlName="ResourceName" readonly>
+                                <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                        </mat-form-field>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                        <mat-form-field style="width:350px !important">
+                                <!-- <label class="summary-lebel float-left" ><strong>Shift:</strong></label> -->
+                                <mat-select placeholder="Select Shift" formControlName="shiftName" required [disabled]="disable"
+                                        (selectionChange)="OnSelectionChange($event)">
+                                        <mat-option *ngFor="let option of shift" [value]="option.ShiftID">{{option.StartTimeIST
+                                                +' - '+option.EndTimeIST}}</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="resourceForm.controls['Master_Shift_ID'].errors?.required ">Shift is required.</mat-error> -->
+                        </mat-form-field>
+                        <input matInput #input formControlName="Master_Shift_ID" hidden>
+                </div>
+
+                <button mat-button mat-raised-button class="btn btn-info mx-1" (click)="Edit()" *ngIf="disable"><i
+                                class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button>
+                <button mat-button class="btn btn-success float-right ml-1" *ngIf="isEdit" (click)="UpdateRow()"><i
+                                class="fa fa-plus-square" aria-hidden="true"></i> Update</button>
+                <!-- <button mat-button class="btn btn-danger float-right ml-1" *ngIf="isEdit" (click)="DiscardRow()"><i class="fa fa-minus-circle"
+                                aria-hidden="true"></i> Discard</button> -->
+        </div>
+</form>
+<!-- <button *ngIf="ShowAddbtn" mat-button class="btn btn-success  mx-1" (click)="AddResourceClick()"><i class="fa fa-plus-square"
+                aria-hidden="true"></i>
+        Add Resource on Project</button> <br> -->
+
+<mat-accordion *ngIf="ShowAddbtn" (click)="AddResourceClick()">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                        <mat-panel-title>
+                                Add Resource on Project
+                        </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <form [formGroup]="AddResourceInfoForm" #formDirective="ngForm">
+                        <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+
+                                        <mat-form-field class="w-100">
+                                                <!-- <label class="summary-lebel float-left" *ngIf="!disable"><strong>Resource Name:</strong></label> -->
+                                                <!-- <mat-label>Resource Name</mat-label>
+                                                        <input matInput #input formControlName="ResourceName" readonly> -->
+                                                <mat-select placeholder="Select Resource" formControlName="aResourceName"
+                                                        #clientValue [(ngModel)]="option" required>
+                                                        <mat-option *ngFor="let option of ResourcesList" name="option.ResourceName"
+                                                                [value]="option.Resource_ID" (click)="SetResourceShift($event,option)">{{option.ResourceName}}
+                                                        </mat-option>
+                                                </mat-select>
+                                                <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                        <mat-form-field style="width:350px !important">
+                                                <!-- <label class="summary-lebel float-left" ><strong>Shift:</strong></label> -->
+                                                <mat-select placeholder="Select Shift" formControlName="aShiftName"
+                                                        required [disabled]="disable">
+                                                        <mat-option *ngFor="let option of shift" [value]="option.ShiftID"
+                                                                (click)="OnAShiftChange($event,shift)">{{option.StartTimeIST
+                                                                +' - '+option.EndTimeIST}}</mat-option>
+                                                </mat-select>
+                                                <!-- <mat-error *ngIf="resourceForm.controls['Master_Shift_ID'].errors?.required ">Shift is required.</mat-error> -->
+                                        </mat-form-field>
+                                        <input matInput #input formControlName="aMaster_Shift_ID" hidden>
+                                </div>
+
+                                <!-- <button mat-button mat-raised-button class="btn btn-info mx-1" (click)="Edit()" *ngIf="disable"><i
+                                                        class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button> -->
+                                <button mat-button class="btn btn-success float-right ml-1" (click)="PushData()" [disabled]="isDisableAddButton"><i
+                                                class="fa fa-upload" aria-hidden="true"></i> Add</button>
+                                
+                        </div>
+                </form>
+        </mat-expansion-panel>
+
+</mat-accordion>
+
+<div class="w-100 float-left d-block table-info px-4 py-2 table-info">
+        <div class="px-2 float-right">
+                <button mat-button class="btn btn-info mx-1" *ngIf="isSubmit" (click)="ResetChanges()"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+                        Discard</button> <br>
+        </div>
+        <div class="px-2 float-right">
+                <button *ngIf="isSubmit"  mat-button class="btn btn-success  mx-1" (click)="Submit()"><i class="fa fa-plus-square"
+                                aria-hidden="true"></i>
+                        Save</button>
+        </div>
+
+</div>

@@ -85,5 +85,16 @@ namespace LegaSysServices.Controllers
             return _ClientRepository.GetClientStatus() ;
 
         }
+
+        [HttpGet]
+        [Route("client/GetProjectsByClientId/{id}")]
+
+        //Get client detail by Id
+        public List<ClientProjects> GetProjectsByClientId(Int32 Id)
+        {
+
+            return _ClientRepository.GetAllProjectOfClient(Id);
+
+        }
     }
 }

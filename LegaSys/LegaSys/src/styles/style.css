@@ -5,9 +5,7 @@ body { font-size: 14px; }
 .table-active { background: #eeeeee; }
 
 .footer-height { height:50px !important;}
-
-.font-14 { font-size: 15px !important; }
-
+.font-14 { font-size: 14px !important; }
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color:#eeeeee;
 }
@@ -22,3 +20,8 @@ body { font-size: 14px; }
     color: #fff !important;
     opacity: 1 !important;
     }
+
+
+.mat-tooltip{
+    font-size:12px;
+}

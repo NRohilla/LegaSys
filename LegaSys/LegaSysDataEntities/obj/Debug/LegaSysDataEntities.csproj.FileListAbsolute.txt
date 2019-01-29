@@ -18,3 +18,8 @@ D:\LegaSys\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.pdb
 D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csproj.CoreCompileInputs.cache
 D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.dll
 D:\LegaSys\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.pdb
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.csproj.CoreCompileInputs.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataEntities\obj\Debug\LegaSysDataEntities.pdb
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysDataEntities\bin\Debug\LegaSysDataEntities.pdb

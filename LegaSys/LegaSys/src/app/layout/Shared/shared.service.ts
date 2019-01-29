@@ -55,12 +55,6 @@ export class SharedService {
         return this.http.get('http://localhost:58164/client/GetAllClient', this.headers);
     }
 
-    public GetAllTechnologyByDomain(id: any) {
-        debugger;
-        const headers = new Headers();
-        headers.append(this.storage.get('UserToken').access_token, '');
-        return this.http.get('http://localhost:58164/project/getalltechnologybydomain/' + id, this.headers);
-    }
     // public GetAllTechnologyByDomain(id:any) {
     //     debugger;
     //     const headers = new Headers();
@@ -109,4 +103,37 @@ export class SharedService {
         headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.post('http://localhost:58164/project/update', issue, this.headers);
     }
+
+    public getAllResourceOnProject(projectid: any) {
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.get('http://localhost:58164/project/getallresourceonproject/' + projectid, this.headers);
+    }
+    public RemoveResource(project: any) {
+        debugger;
+        // console.log(JSON.stringify(project));
+        //const headers = new Headers();
+        //headers.append(this.storage.get('UserToken').access_token, '');
+
+        return this.http.post('http://localhost:58164/project/removeresource/', project, this.headers);
+    }
+    public getAvailableResourceOnProject(id: any) {
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.post('http://localhost:58164/LegaSysAPI/Users/getavailableresource', id, this.headers);
+    }
+    public mapResourceOnProject(project: any) {
+        debugger;
+        console.log("shared service :" + JSON.stringify(project));
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.post('http://localhost:58164/project/mapresource', project, this.headers);
+    }
+    public getalltaskofproject(projectid: any) {
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.get('http://localhost:58164/project/getalltaskofproject/' + projectid, this.headers);
+
+    }
+
 }

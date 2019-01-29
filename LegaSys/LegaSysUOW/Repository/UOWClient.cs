@@ -16,7 +16,7 @@ namespace LegaSysUOW.Repository
     public class UOWClient : IUOWClient
     {
         private readonly LegaSysEntities db;
-
+        
         public UOWClient(IDbFactory dbFactory)
         {
             db = dbFactory.Init();
@@ -76,29 +76,29 @@ namespace LegaSysUOW.Repository
 
             try
             {
-
-                var ClientDetail = db.LegaSys_ClientDetails.Where(p => p.ClientDetailID == Id).FirstOrDefault();
-                if (ClientDetail != null)
-                {
-                    ObjClientInfo = new ClientDetail()
+               
+                    var ClientDetail = db.LegaSys_ClientDetails.Where(p => p.ClientDetailID == Id).FirstOrDefault();
+                    if (ClientDetail != null)
                     {
-                        ClientDetailID = ClientDetail.ClientDetailID,
-                        ClientName = ClientDetail.ClientName,
-                        Address = ClientDetail.Address,
-                        Country = ClientDetail.Country,
-                        CoClient = ClientDetail.CoClient,
-                        CoClient2 = ClientDetail.CoClient2,
-                        CoClient3 = ClientDetail.CoClient3,
-                        CoClient4 = ClientDetail.CoClient4,
-                        EmailID = ClientDetail.EmailID,
-                        EmailID2 = ClientDetail.EmailID2,
-                        EmailID3 = ClientDetail.EmailID3,
-                        EmailID4 = ClientDetail.EmailID4,
-                        Created_By = ClientDetail.Created_By,
-                        Updated_By = ClientDetail.Updated_By
-                    };
-                }
-
+                        ObjClientInfo = new ClientDetail()
+                        {
+                            ClientDetailID = ClientDetail.ClientDetailID,
+                            ClientName = ClientDetail.ClientName,
+                            Address = ClientDetail.Address,
+                            Country = ClientDetail.Country,
+                            CoClient = ClientDetail.CoClient,
+                            CoClient2 = ClientDetail.CoClient2,
+                            CoClient3 = ClientDetail.CoClient3,
+                            CoClient4 = ClientDetail.CoClient4,
+                            EmailID = ClientDetail.EmailID,
+                            EmailID2 = ClientDetail.EmailID2,
+                            EmailID3 = ClientDetail.EmailID3,
+                            EmailID4 = ClientDetail.EmailID4,
+                            Created_By = ClientDetail.Created_By,
+                            Updated_By = ClientDetail.Updated_By
+                        };
+                    }
+               
             }
             catch (Exception)
             {
@@ -174,7 +174,7 @@ namespace LegaSysUOW.Repository
                     obj.IsActive = false;
                     db.LegaSys_ClientDetails.AddOrUpdate(obj);
                     db.SaveChanges();
-                    Result = "Data updated successfully!";
+                    Result = "Data deleted successfully!";
                 }
 
 
@@ -221,14 +221,39 @@ namespace LegaSysUOW.Repository
             {
                 throw;
             }
-            return lstClient;
+                return lstClient;
+            }
+
+        public List<ClientProjects> GetAllProjectOfClient(Int32 Id)
+        {
+            List<ClientProjects> clientProjectList = null;
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    clientProjectList = db.LegaSys_Projects.Where(s => s.Client_ID == Id).Select(s =>
+                     new ClientProjects()
+                     {
+                         ProjectID = s.ProjectID,
+                         Client_ID = s.Client_ID,
+                         Title = s.Title,
+                         Description = s.Description
+
+                     }).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return clientProjectList;
         }
 
         //added by MohitK for fetching all the ClientStatus
         public List<LegaSys_ClientStatus> GetClientStatus()
         {
             try
-            {
+            {                
                 using (LegaSysEntities db = new LegaSysEntities())
                 {
 

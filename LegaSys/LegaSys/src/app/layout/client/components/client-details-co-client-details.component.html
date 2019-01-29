@@ -1,3 +1,4 @@
+<div class="card mb-3">
 <form class="w-100 float-left table-active py-5 px-2" [formGroup]="coClientForm" *ngIf="currentClientDetails">
         <div class="row m-0">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
@@ -33,31 +34,35 @@
                         <mat-form-field class="w-100">
                                 <label *ngIf="readOnly"><strong>Other Co Client </strong></label>
                                 <input [readonly]="readOnly" formControlName="coClient4" matInput [placeholder]="GetPlaceHolder('coClient4')">
-                                <mat-error *ngIf="coClientForm.controls['coClient4'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">can
+                                <!-- <mat-error *ngIf="coClientForm.controls['coClient4'].invalid  && (coClientForm.controls['coClient'].dirty || coClientForm.controls['coClient'].touched)">can
                                         only contails text</mat-error>
+                                        <mat-error  *ngIf="coClientForm.controls['coClient4'].errors?.matchval">Co Client should not be same </mat-error> -->
+                                        
+
                         </mat-form-field>
-                </div>
+                        </div>
         </div>
-
-
+                        
+                      
 </form>
 <div class="w-100 float-left d-block table-info px-4 py-2 table-info footer-height">
 
         <div class="px-2 float-right" *ngIf="disable">
-                <button mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
+                <button  mat-button class="btn btn-info" (click)=" MakeFieldEditable()"><i class="fa fa-pencil-square-o"
                                 aria-hidden="true"></i> Edit</button>
         </div>
         <div class="px-2 float-right" *ngIf="!disable">
-                <button mat-button class="btn btn-success" [disabled]="!coClientForm.valid" (click)="UpdateClient()">
+                <button mat-button  class="btn btn-success" [disabled]="!coClientForm.valid" (click)="UpdateClient()">
                         <i class="fa fa-save" aria-hidden="true"></i>
                         Save</button>
         </div>
         <div class="px-2 float-right" *ngIf="!disable">
-                <button mat-button class="btn btn-secondary" (click)="DiscardChanges()"><i class="fa fa-times"
+                <button  mat-button class="btn btn-secondary" (click)="DiscardChanges()"><i class="fa fa-times"
                                 aria-hidden="true"></i> Cancel</button>
         </div>
         <div class="px-2 float-right">
-                <button mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward"
+                <button  mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward"
                                 aria-hidden="true"></i> Back</button>
         </div>
+</div>
 </div>

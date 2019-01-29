@@ -1,105 +1,278 @@
 <div>
     <app-page-header [heading]="'Add New Client '" [icon]="'fa fa-plus'"></app-page-header>
 </div>
-<!-- <ngb-alert style="width:40%;" *ngIf="Message" type="success" (close)="Message = null">{{ successMessage }}</ngb-alert> -->
 <div class="card mb-3">
     <div class="card-header bg-info">
-        <mat-label class="labeltext text-white">Client Info </mat-label>
-    </div>
-    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-
-        <div class="w-100 table-active py-3 px-2 float-left">
-            <div class="w-100 float-left">
+            <mat-label class="labeltext text-white ">Client Information </mat-label>
+        </div>
+<mat-vertical-stepper [linear]="isLinear" #stepper class="table-active">
+    <mat-step [stepControl]="clientPersonalDetailsForm">
+      <form [formGroup]="clientPersonalDetailsForm">
+        <ng-template matStepLabel>Fill out client personal details</ng-template>
+        <div class="w-100 float-left">
                 <!-- <form role="form"> -->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Client Name" formControlName="ClientName" name="ClientName" id="ClientName">
-                        <mat-error *ngIf="clientForm.controls['ClientName'].invalid">{{GetClientNameErrorMessage()}}</mat-error>
+                        <input matInput placeholder="Name" formControlName="ClientName" name="ClientName" id="ClientName">
+                        <mat-error *ngIf="clientPersonalDetailsForm.controls['ClientName'].invalid">
+                            <span *ngIf="clientPersonalDetailsForm.controls['ClientName'].errors.required"> Name can not be empty</span>
+                            <span *ngIf="clientPersonalDetailsForm.controls['ClientName'].errors.pattern"> Name can only contain text</span>
+                        </mat-error>
+                    
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
                         <input matInput placeholder="Address" formControlName="Address" name="Address" id="CoClient">
-                        <mat-error *ngIf="clientForm.controls['Address'].invalid">Client Address Can Not Be Empty</mat-error>
-                        <!-- <textarea matInput placeholder="Address" formControlName="Address" name="Address" id="Address"></textarea> -->
+                        <mat-error *ngIf="clientPersonalDetailsForm.controls['Address'].invalid">
+                                <span *ngIf="clientPersonalDetailsForm.controls['Address'].errors.required"> Address can not be empty</span>
+                              
+                            </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input [readonly]="readOnly" type="text" matInput formControlName="Country" [matAutocomplete]="auto"
+                        <input  type="text" matInput formControlName="Country" [matAutocomplete]="auto"
                             placeholder="Country">
                         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important">
-                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="max-height: 200px !important">
+                            <mat-option *ngFor="let option of filteredOptionsForClientPersonalDetailsForm | async" [value]="option" style="max-height: 200px !important">
                                 {{option}}
                             </mat-option>
                         </mat-autocomplete>
-                        <mat-error *ngIf="clientForm.controls['Country'].invalid">Country can not be Empty</mat-error>
+                        <mat-error *ngIf="clientPersonalDetailsForm.controls['Country'].invalid">
+                                <span *ngIf="clientPersonalDetailsForm.controls['Country'].errors.required">Country can not be empty</span>
+                              
+                            </mat-error>
                     </mat-form-field>
                 </div>
 
 
             </div>
             <div class="w-100 float-left">
+                    <!-- <form role="form"> -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                        <mat-form-field class="w-100">
+                            <input matInput placeholder="Email" formControlName="personalEmailId" name="personalEmailId" id="personalEmailId">
+                            <mat-error *ngIf="clientPersonalDetailsForm.controls['personalEmailId'].invalid">
+                                    <span *ngIf="clientPersonalDetailsForm.controls['personalEmailId'].errors.required">Email can not be empty</span>
+                                    <span *ngIf="clientPersonalDetailsForm.controls['personalEmailId'].errors.pattern"> Please enter valid email</span>
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                        <mat-form-field class="w-100">
+                            <input matInput placeholder="Contact Number" formControlName="personalContactNo" name="personalContactNo" id="personalContactNo" maxlength="10"> 
+                            <mat-error *ngIf="clientPersonalDetailsForm.controls['personalContactNo'].invalid">
+                                    <span *ngIf="clientPersonalDetailsForm.controls['personalContactNo'].errors.required">Contact can not be empty</span>
+                                    <span *ngIf="clientPersonalDetailsForm.controls['personalContactNo'].errors.pattern">Contact number can cointain only numbers</span>
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                  
+    
+    
+                </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="clientProfestionalDetailsForm">
+      <form [formGroup]="clientProfestionalDetailsForm">
+        <ng-template matStepLabel>Fill out Client Professional Details</ng-template>
+        <div class="w-100 float-left">
+                <!-- <form role="form"> -->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Primary Email" formControlName="EmailID" name="EmailID" id="EmailID">
-                        <mat-error *ngIf="clientForm.controls['EmailID'].invalid">{{GetEmailErrorMessage()}}</mat-error>
-
+                        <input matInput placeholder="Company Name" formControlName="companyName" name="companyName" id="companyName">
+                        <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyName'].invalid">
+                            <span *ngIf="clientProfestionalDetailsForm.controls['companyName'].errors.required"> Company Name can not be empty</span>
+                           
+                        </mat-error>
+                    
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Secondary Email" formControlName="EmailID2" name="EmailID2" id="EmailID2">
-                        <mat-error *ngIf="clientForm.controls['EmailID2'].invalid">Enter Valid Email ID</mat-error>
-
+                        <input matInput placeholder="Address" formControlName="Address" name="Address" >
+                        <mat-error *ngIf="clientProfestionalDetailsForm.controls['Address'].invalid">
+                                <span *ngIf="clientProfestionalDetailsForm.controls['Address'].errors.required"> Address can not be empty</span>
+                              
+                            </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Other Email" formControlName="EmailID3" name="EmailID3" id="EmailID3">
-                        <mat-error *ngIf="clientForm.controls['EmailID3'].invalid">Enter Valid Email ID</mat-error>
-
+                        <input  type="text" matInput formControlName="Country" [matAutocomplete]="auto"
+                            placeholder="Country">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important">
+                            <mat-option *ngFor="let option of filteredOptionsForClientPersonalDetailsForm | async" [value]="option" style="max-height: 200px !important">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="clientProfestionalDetailsForm.controls['Country'].invalid">
+                                <span *ngIf="clientProfestionalDetailsForm.controls['Country'].errors.required">Country can not be empty</span>
+                              
+                            </mat-error>
                     </mat-form-field>
                 </div>
 
 
             </div>
-
-
             <div class="w-100 float-left">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Primary Co Client" formControlName="CoClient" name="CoClient" id="CoClient">
-                        <mat-error *ngIf="clientForm.controls['CoClient'].invalid">{{GetPrimaryCoClientErrorMessage()}}</mat-error>
-                    </mat-form-field>
+                    <!-- <form role="form"> -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                        <mat-form-field class="w-100">
+                            <input matInput placeholder="Company Email" formControlName="companyEmailId" name="companyEmailId" id="companyEmailId">
+                            <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].invalid">
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.required">Email can not be empty</span>
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.pattern"> Please enter valid email</span>
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                        <mat-form-field class="w-100">
+                            <input matInput placeholder="Contact Number" formControlName="companyContactNo" name="companyContactNo" id="companyContactNo" maxlength="11"> 
+                            <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].invalid">
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.required">Contact can not be empty</span>
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.pattern"> Contact number can only contain numbers</span>
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                            <mat-form-field class="w-100">
+                                <input matInput placeholder="Fax" formControlName="companyFax" name="companyFax" id="companyFax" maxlength="11"> 
+                                <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyFax'].invalid">
+                                  
+                                        <span *ngIf="clientProfestionalDetailsForm.controls['companyFax'].errors.pattern"> Fax can only contain text</span>
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                  
+    
+    
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Secondary Co Client" formControlName="CoClient2" name="CoClient2"
-                            id="CoClient2">
-                        <mat-error *ngIf="clientForm.controls['CoClient2'].invalid">Can only contain text</mat-error>
-
-                    </mat-form-field>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Other Co Client" formControlName="CoClient3" name="CoClient3" id="CoClient3">
-                        <mat-error *ngIf="clientForm.controls['CoClient3'].invalid">Can only contain text</mat-error>
-
-                    </mat-form-field>
-                </div>
-                <!-- </form> -->
-            </div>
+     
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
-        <div class="w-100 float-left table-info px-4 py-2 text-right footer-height">
-            <div class="px-2 float-right">
-                <button mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward"
-                        aria-hidden="true"></i> Back</button>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="coClientForm">
+            <form [formGroup]="coClientForm">
+              <ng-template matStepLabel>Fill out Co Client  Details</ng-template>
+              <div formArrayName="coClientDetails">
+                <!-- Check the correct way to iterate your form array -->
+                <div *ngFor="let coClientDetail of coClientForm.controls.coClientDetails.controls; let i=index"  [formGroupName]="i">
+                  <h4>Co Client {{ i + 1 }} </h4>
+                  <div class="form-group">
+                        <div class="w-100 float-left">
+                                <!-- <form role="form"> -->
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                    <mat-form-field class="w-100">
+                                        <input matInput placeholder="Name" formControlName="Name" name="Name" id="Name">
+                                        <!-- <mat-error *ngIf="coClientDetail['Name'].invalid">
+                                            enter name
+                                           
+                                        </mat-error> -->
+                                    
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                    <mat-form-field class="w-100">
+                                        <input matInput placeholder="Address" formControlName="Address" name="Address" >
+                                        <!-- <mat-error *ngIf="clientProfestionalDetailsForm.controls['Address'].invalid">
+                                                <span *ngIf="clientProfestionalDetailsForm.controls['Address'].errors.required"> Address can not be empty</span>
+                                              
+                                            </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                    <mat-form-field class="w-100">
+                                        <input matInput placeholder="Email" formControlName="email" name="email" id="email">
+                                        <!-- <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].invalid">
+                                                <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.required">Email can not be empty</span>
+                                                <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.pattern"> Please enter valid email</span>
+                                            </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                                <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                    <mat-form-field class="w-100">
+                                        <input  type="text" matInput formControlName="Country" [matAutocomplete]="auto"
+                                            placeholder="Country">
+                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important">
+                                            <mat-option *ngFor="let option of filteredOptionsForClientProfestionalDetailsForm | async" [value]="option" style="max-height: 200px !important">
+                                                {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                        <mat-error *ngIf="clientProfestionalDetailsForm.controls['Country'].invalid">
+                                                <span *ngIf="clientProfestionalDetailsForm.controls['Country'].errors.required">Country can not be empty</span>
+                                              
+                                            </mat-error>
+                                    </mat-form-field>
+                                </div> -->
+                
+                
+                            </div>
+                            <div class="w-100 float-left">
+                                    <!-- <form role="form"> -->
+                                   
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                        <mat-form-field class="w-100">
+                                            <input matInput placeholder="Contact Number" formControlName="contactNo" name="contactNo" id="contactNo" maxlength="11"> 
+                                            <!-- <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].invalid">
+                                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.required">Contact can not be empty</span>
+                                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.pattern"> Contact number can only contain numbers</span>
+                                                </mat-error> -->
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                            <mat-form-field class="w-100">
+                                                <input matInput placeholder="Fax" formControlName="companyFax" name="companyFax" id="companyFax" maxlength="11"> 
+                                                <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyFax'].invalid">
+                                                  
+                                                        <span *ngIf="clientProfestionalDetailsForm.controls['companyFax'].errors.pattern"> Fax can only contain text</span>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div> -->
+                                  
+                    
+                    
+                                </div>
+                                </div>
+                     
+                        <div>
+                            </div>
+                     
+                        </div>
+                        </div>
+                      </form>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                      <button *ngIf="CheckFlag()"mat-button (click)="AddNewCoCLientForm()">Add New Co Client</button>
+                      <button mat-button *ngIf="flag!=0" (click)="deleteRow(i)">Remove</button>
+                    </mat-step>
+         
+    
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+  <div class="w-100 float-left table-info px-4 py-2 text-right footer-height">
+        <div class="px-2 float-right">
+            <button mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward"
+                    aria-hidden="true"></i> Back</button>
+        </div>
+
+        <button mat-button class="btn btn-success" [disabled]="!clientPersonalDetailsForm.valid && !clientProfestionalDetailsForm.valid" (click)='AddClient()' ><i class="fa fa-paper-plane" aria-hidden="true"></i>Submit
+            </button>
             </div>
 
-            <button class="btn btn-success" [disabled]="!clientForm.valid"><i class="fa fa-paper-plane" aria-hidden="true"></i>
-                Submit</button>
-
-        </div>
-    </form>
 </div>

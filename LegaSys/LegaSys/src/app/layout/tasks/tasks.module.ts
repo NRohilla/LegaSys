@@ -7,10 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatButtonModule, MatDialogModule, MatTabsModule, MatSortModule, MatSpinner } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { ViewChild } from '@angular/core'
 import { TaskComponent } from './tasks.component';
 import { TasksService } from './tasks.service';
 import { TasksRoutingModule } from './task-routing.module';
+import { MatDatepickerModule,
+         MatIconModule,
+         MatNativeDateModule,} from '@angular/material'
+       
+
 
 @NgModule({
     imports: [CommonModule,
@@ -28,12 +32,17 @@ import { TasksRoutingModule } from './task-routing.module';
         MatTabsModule,
         MatSortModule,
         MatProgressSpinnerModule,
-        MatCardModule
+        MatCardModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatNativeDateModule,
     ],
 
 
-    providers: [TasksService],
-    declarations: [TaskComponent]
+    providers: [TasksService,MatDatepickerModule],
+    declarations: [TaskComponent],
+   
+
 })
 export class TasksModule { }
 

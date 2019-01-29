@@ -16,6 +16,10 @@ import { PageHeaderModule } from '../../shared';
 import { Project } from '../project/projenctModel';
 import { AddComponent } from './add/add.component';
 import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component';
+import { ProjectInfoComponent } from './edit/project-info/project-info.component';
+import { ProjectResourceComponent } from './edit/project-resource/project-resource.component';
+import { ProjectClientComponent } from './edit/project-client/project-client.component';
+import { ProjectTaskComponent } from './edit/project-task/project-task.component';
 
 @NgModule({
   imports: [
@@ -54,7 +58,7 @@ import { SnackBarComponentExampleComponent } from './snack-bar-component-example
     MatFormFieldModule, PageHeaderModule 
 
   ],
-  declarations: [ProjectComponent, EditComponent, AddComponent, SnackBarComponentExampleComponent],
+  declarations: [ProjectComponent, EditComponent, AddComponent, SnackBarComponentExampleComponent,ProjectInfoComponent, ProjectResourceComponent, ProjectClientComponent, ProjectTaskComponent],
   entryComponents: [AddComponent, SnackBarComponentExampleComponent],
   providers: [Project]
 })

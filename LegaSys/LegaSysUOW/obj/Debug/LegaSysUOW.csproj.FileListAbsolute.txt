@@ -109,3 +109,7 @@ D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CoreCompileInputs.cach
 D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CopyComplete
 D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.dll
 D:\LegaSys\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.pdb
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csprojAssemblyReference.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.csproj.CoreCompileInputs.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysUOW\obj\Debug\LegaSysUOW.pdb

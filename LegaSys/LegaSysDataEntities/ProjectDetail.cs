@@ -13,11 +13,14 @@ namespace LegaSysDataEntities
         public string Description { get; set; }
         public int? Client_ID { get; set; }
         public int? ProjectDomain_ID { get; set; }
+        public string ProjectDomain { get; set; }
         public short? Status { get; set; }
         public Nullable<int> Created_By { get; set; }
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
+        public Nullable<System.DateTime> Start_Date { get; set; }
+        public Nullable<System.DateTime> End_Date { get; set; }
         public string ClientName { get; set; }
         public Boolean ClientStatus { get; set; }
         public string Address { get; set; }
@@ -26,31 +29,25 @@ namespace LegaSysDataEntities
         public string CoClient { get; set; }
         public string EmailID3 { get; set; }
         public string Country { get; set; }
-
-
         public string CoClient2 { get; set; }
         public string CoClient3 { get; set; }
         public string CoClient4 { get; set; }
-
-        public string DomainName { get; set; }
-        
-        
+        public string DomainName { get; set; }  
         public string  EmailID4 { get; set; }
-        
         public string ProjectDomainName { get; set; }
         public int? Resource_ID { get; set; }
-
+        public string ResourceName { get; set; }
         public int? ProjectTaskID { get; set; }
+        public string ProjectName { get; set; }
         public string TaskTitle { get; set; }
-
         public string TaskDescription { get; set; }
         public int? TaskAttachmentID { get; set; }
+        public string TaskAttachmentName { get; set; }
         public int? ProjectSubTaskID { get; set; }
+        public string ProjectSubTaskName { get; set; }
         public string SubTaskTitle { get; set; }
         public string SubTaskDescription { get; set; }
-
         public int? SubTaskAttachmentID { get; set; }
-
         public string ResourceFirstname { get; set; }
         public string ResourceMiddlename { get; set; }
         public string ResourceLastname { get; set; }
@@ -60,9 +57,14 @@ namespace LegaSysDataEntities
         public Boolean? Resource_IsActive { get; set; }
         public string Remarks { get; set; }
         public int? Master_Shift_ID { get; set; }
+        public string Shift { get; set; }
         public int? Master_Location_ID { get; set; }
+        public string Location { get; set; }
         public int? ReportingHead_ID { get; set; }
+        public string ReportingHeadName { get; set; }
         public int? Master_Role_ID { get; set; }
+        public string Master_Role { get; set; }
+        public int? ProjectResourceID { get; set; }
 
-    }
+}
 }

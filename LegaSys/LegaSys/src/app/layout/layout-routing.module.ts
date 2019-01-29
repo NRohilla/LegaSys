@@ -38,7 +38,8 @@ const routes: Routes = [
             { path: 'leavetype', loadChildren: './masters/leavetype/leavetype.module#LeavetypeModule' },
             { path: 'addtask', loadChildren: './tasks/addtask/addtask.module#AddtaskModule' },
             { path: 'tasks', loadChildren: './tasks/tasks.module#TasksModule' },
-            { path: 'edittask', loadChildren: './tasks/edittask/edittask.module#EdittaskModule' }
+            { path: 'edittask', loadChildren: './tasks/edittask/edittask.module#EdittaskModule' },
+            {path: 'viewtask',loadChildren:'./tasks/viewdetail/viewdetail.module#viewdetailModule'}
         ]
     }
 ];

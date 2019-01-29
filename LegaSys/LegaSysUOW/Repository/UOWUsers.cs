@@ -57,5 +57,33 @@ namespace LegaSysUOW.Repository
             }
             return list;
         }
+        public List<ProjectDetail> GetAvailableUserListForProject(int[] Id)
+        {
+            List<ProjectDetail> list = null;
+            using (LegaSysEntities db = new LegaSysEntities())
+            {
+                list = (from d in db.LegaSys_UserDetails.Where(x => (!Id.Contains(x.UserDetailID)) && x.IsActive == true).AsEnumerable()
+                        join s in db.LegaSys_Master_Shifts on d.Master_Shift_ID equals s.ShiftID into s_join
+                        from s in s_join.DefaultIfEmpty()
+                        join r in db.LegaSys_Master_Roles on d.Master_Role_ID equals r.UserRoleID into r_join
+                        from r in r_join.DefaultIfEmpty()
+                        join rh in db.LegaSys_UserDetails on d.ReportingHead_ID equals rh.UserDetailID into rh_join
+                        from rh in rh_join.DefaultIfEmpty()                        
+                        select new ProjectDetail
+                        {
+                            Resource_ID = d.UserDetailID,
+                            ResourceName = $"{d.Firstname} {d.Lastname}",
+                            ResourceEmailId = d.EmailId,
+                            ReportingHead_ID = d.ReportingHead_ID,
+                            ReportingHeadName = $"{rh.Firstname} {rh.Lastname}",
+                            Master_Shift_ID = d.Master_Shift_ID,
+                            Shift = $"{s.StartTimeIST} {"-"} {s.EndTimeIST}",
+                            TotalExp = d.TotalExp,
+                            Master_Role_ID = d.Master_Role_ID,
+                            Master_Role = r.Role
+                        }).ToList();
+            }
+            return list;
+        }
     }
 }

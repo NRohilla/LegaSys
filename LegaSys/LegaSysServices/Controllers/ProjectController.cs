@@ -88,6 +88,30 @@ namespace LegaSysServices.Controllers
             return Json(project);
         }
 
+        [HttpGet]
+        [Route("project/getallresourceonproject/{projectid}")]
+        public IHttpActionResult GetAllResourceOnProject(int projectid)
+        {
+            var resource = _projects.GetAllResourceOnProject(projectid);
+            if (resource == null)
+                return NotFound();
+            return Json(resource);
+        }
+        [HttpPost]
+        [Route("project/removeresource")]
+        public IHttpActionResult RemoveResource(ProjectDetail projectDetail)
+        {
+            _projects.RemoveResource(projectDetail);
+            return Json(new { message = "Project deleted  successfully." });
+        }
+
+        [HttpPost]
+        [Route("project/mapresource")]
+        public IHttpActionResult MapResource(ProjectDetail[] projectDetail)
+        {
+            _projects.MapResource(projectDetail);
+            return Json(new { message = "Resource details updated successfully." });
+        }
         //commented for update on GIT 06/12/2018
     }
 }

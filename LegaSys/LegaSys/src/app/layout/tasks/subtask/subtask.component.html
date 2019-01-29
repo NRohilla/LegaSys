@@ -1,0 +1,202 @@
+<!--*********************Code for Sub Task Module********************-->
+<!-- <div class="card"> -->
+<!-- Filtering The Table -->
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+</mat-form-field>
+
+
+<!-- Code for Spinning Bar -->
+<mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner mode="indeterminate">
+
+  </mat-progress-spinner>
+</mat-card>
+
+
+
+<!-- 
+Lebel for Project Tittle,Task Tittle ,Task Description -->
+
+
+
+
+
+
+<!-- table-active -->
+
+<mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
+
+
+  <!-- SubTask Tittle column -->
+  <ng-container matColumnDef="SubTask_Title">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">SubTask
+      </span> </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.SubTask_Title}} </mat-cell>
+  </ng-container>
+
+  <!-- SubTask Description column -->
+  <ng-container matColumnDef="SubTask_Description">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Sub
+        Task Description</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.SubTask_Description}} </mat-cell>
+  </ng-container>
+
+  <!-- Task Title Coloumn -->
+  <ng-container matColumnDef="TaskTitle">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Task
+      </span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.TaskTitle}} </mat-cell>
+  </ng-container>
+
+  <!-- Task Description Coloumn -->
+  <ng-container matColumnDef="Description">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Task
+        Description </span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+  </ng-container>
+
+
+  Project Title Coloumn
+  <ng-container matColumnDef="Project_Title">
+    <mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white font-14">Project</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Project_Title}} </mat-cell>
+  </ng-container> 
+
+  <!-- Project SubTaskTitle ID -->
+  <ng-container matColumnDef="ProjectSubTaskID">
+    <mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white font-14">Subtaskid</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.ProjectSubTaskID}} </mat-cell>
+  </ng-container>
+
+
+
+  <!--These Buttons are Use to Edit Record and Delete-->
+
+  <ng-container matColumnDef="Action">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">
+      </span>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let element">
+      <button mat-button class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Select Table Row Data -->
+  <mat-header-row *matHeaderRowDef="displayedColumns">
+
+  </mat-header-row>
+
+  <!-- //Select Row Values -->
+  <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.ProjectSubTaskID}"
+    (click)="highlight(row)">
+  </mat-row>
+
+</mat-table>
+
+<div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+
+</div>
+
+
+<!-- Code for SubTask Registration Form -->
+
+<form [formGroup]="subtaskForm">
+
+  <div *ngIf="isAddItem">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-size: smaller;color: steelblue">
+            Click to add new Subtask
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+
+
+        <div class="example-container " style="padding-left:10px;padding-right: 10px;">
+          <div class="row">
+           
+            <div class="col-md-3">
+              <!-- SubTask Title Coloumn -->
+              <mat-form-field class="w-100">
+                <mat-label style="font-weight:bold;font-size:15px;color: black">SubTask Title</mat-label>
+                <br />
+                <input matInput placeholder="SubTask Title" formControlName=SubTask_Title [(ngModel)]="dataSource.SubTask_Title">
+
+                <!-- Validation Error Message -->
+
+                <mat-error *ngIf="subtaskForm.controls.SubTask_Title.invalid">
+                  <span [hidden]="!subtaskForm.controls['SubTask_Title'].errors.required">
+                    Task Title is required.
+                  </span>
+                  <span [hidden]="!subtaskForm.controls['SubTask_Title'].errors.maxlength">
+                    Maximum allowed characters are 25
+                  </span>
+
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- SubTask Description Coloumn -->
+            <div class="col-md-4">
+              <mat-form-field class="w-100">
+                <mat-label style="font-weight:bold;font-size:15px;color: black">Description</mat-label>
+
+                <textarea matInput placeholder="SubTask_Description" formControlName=SubTask_Description style="position: relative;top: 15px;"> </textarea>
+              </mat-form-field>
+            </div>
+
+            <!-- Upload documents -->
+            <div class="col-md-2">
+
+              <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif">Upload
+                Document</label>
+              <br />
+              <input type="file" name="file" (change)="onFileChanged($event)" />
+            </div>
+
+            <div class="col-md-3" style="margin-top:12px;">
+
+              <div>
+                <button type="submit" class="btn btn-info ml-3" (click)="addnewSubTaskInGrid()"><i class="fa fa-plus"
+                    aria-hidden="true"></i>{{formType}} Subtask</button>
+
+                <button type="reset" class="btn btn-secondary ml-3" (click)="reset()"><i class="fa fa-times" aria-hidden="true"></i>Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="w-100 float-left table-info px-4 py-2 text-right">
+    <!-- This button will be used to  Edit Task -->
+       <div *ngIf="disable">
+
+             <!-- (click)="MakeFieldEditable()" will call on grid rowchange event -->
+            <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-edit" aria-hidden="true"></i>Edit</button>
+            <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i>
+                   Back</button>
+        </div>
+              <!-- This button will be used to  Update Task -->
+        <div *ngIf="!disable">
+             <button mat-button class="btn btn-success ml-3"  (click)="SaveTaskInDB()"><i class="fa fa-save" aria-hidden="true"></i>Save</button>
+             <button mat-button class="btn btn-secondary ml-3" (click)="discard()"><i class="fa fa-times" aria-hidden="true"></i>
+                   Cancel</button>
+             <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i>
+                   Back</button>
+        </div>
+
+  </div>
+
+</form>

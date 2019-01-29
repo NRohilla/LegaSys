@@ -80,6 +80,7 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     });
   }
   ngOnInit() {
+    debugger;
     if (this.currentClientDetails) {
       this.CreatePersonalDetailsForm();
       this.LoadValuesInPersonalDetailsForm();

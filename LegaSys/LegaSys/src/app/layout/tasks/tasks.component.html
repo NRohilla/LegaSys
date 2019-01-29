@@ -4,93 +4,115 @@
    
   </div>
   <!-- //Filtering The Table -->
-
+<div class="col-md-3">
   <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-    </mat-form-field>
-  
+    </mat-form-field></div>
+
 <!-- table-active -->
-<mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
+<mat-table [dataSource]="dataSource" matSort >
 
   <!-- Task Tittle column -->
   <ng-container matColumnDef="TaskTitle">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white" style="font-size:17px;">Task
-        Title</span> </mat-header-cell>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Title</span> </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.TaskTitle}} </mat-cell>
   </ng-container>
 
-  <!-- Task Description column -->
-  <ng-container matColumnDef="Description">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">Description</span>
+   <!-- Task Project Title Coloumn -->
+   <ng-container matColumnDef="Project_Title">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Project Title</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.Project_Title}} </mat-cell>
   </ng-container>
 
+  <!-- Task Assingn to column-->
+  <ng-container matColumnDef="Task_AssignTo">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Assign To</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Task_AssignTo}} </mat-cell>
+  </ng-container> 
 
-   <!-- Task Updated By column -->
-  <!-- <ng-container matColumnDef="Updated_By">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">Updated By</span>
+
+   <!-- Task Status column -->
+  <ng-container matColumnDef="Task_Status">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Status</span>
       </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Updated_By}} </mat-cell>
+      <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
+      <mat-cell *matCellDef="let element"> {{element.Status_Type}} </mat-cell>
+     
+    </ng-container>
+
+     <!-- Task Status icon -->
+  <!-- <ng-container matColumnDef="Status_Icon">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14"> icon </span>
+      </mat-header-cell>
+    the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
+
+    <!--  <mat-cell *matCellDef="let element">
+    
+         <img src={{element.Status_Icon}}  height="42" width="42">  </mat-cell> 
+     
     </ng-container> -->
 
 
-<!-- Task Updated Date Coloumn -->
-    <!-- <ng-container matColumnDef="Updated_Date">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">Updated Date</span>
+
+<!-- Task Priority Coloumn -->
+    <ng-container matColumnDef="Task_Priority">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Priority</span>
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Updated_Date | date:"MM/dd/yy"}} </mat-cell>
-      </ng-container> -->
+        <mat-cell *matCellDef="let element"> {{element.Priority_Type}} </mat-cell>
+      </ng-container>
 
-  <!-- Task Project Title Coloumn -->
-  <ng-container matColumnDef="Project_Title">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">Project Title</span>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Project_Title}} </mat-cell>
-    </ng-container>
+  
 
-  <!-- Task Project_Description Coloumn -->
-  <ng-container matColumnDef="Project_Description">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">Project Description </span>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Project_Description}} </mat-cell>
-    </ng-container>
-
-
-<!-- Task Project Updated By Coloumn -->
-<!-- <ng-container matColumnDef="ProjectUpdated_By">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">Project Updated By </span>
+<!-- Task Project Activity Area Coloumn -->
+<ng-container matColumnDef="Task_Activity">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Activity</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.ProjectUpdated_By}} </mat-cell>
-  </ng-container> -->
+     <mat-cell *matCellDef="let element">{{element.Task_Activity}} </mat-cell> 
+  </ng-container>
 
 
+  <!-- Task Created Date Coloumn-->
+  <ng-container matColumnDef="Start_Date">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Start Date</span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Start_Date|date}} </mat-cell>
+    </ng-container> 
 
-<!-- Task Project Updated Date Coloumn -->
-<!-- <ng-container matColumnDef="projectUpdated_Date">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">project Updated Date</span>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.projectUpdated_Date | date:"MM/dd/yy"}} </mat-cell>
-  </ng-container> -->
+<!-- Task Project Target Date Coloumn -->
+<ng-container matColumnDef="Target_Date">
+  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Target Date</span>
+  </mat-header-cell>
+  <mat-cell *matCellDef="let element">{{element.Target_Date|date}} </mat-cell>
+</ng-container>
 
+<!-- Task OriginAL Estimate Coloumn -->
+<ng-container matColumnDef="Original_Estimate">
+  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class= "text-white font-14">Original Estimate</span>
+  </mat-header-cell>
+  <mat-cell *matCellDef="let element"> {{element.Original_Estimate} } </mat-cell>
+</ng-container>
 
  <!--These Buttons are Use to Edit Record and Delete-->
 
   <ng-container matColumnDef="Action">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white" style="font-size:17px;">  </span>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">  </span>
       </mat-header-cell>
-      <mat-cell *matCellDef="let element"><button  (click)="ViewTask(element.ProjectTaskID)" mat-button class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>View</button>
+    
+      <mat-cell *matCellDef="let element"><button (click)="ViewTask(element.ProjectTaskID)" style="line-height: 28px;"  mat-button class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-        <button mat-button class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>  </mat-cell>
+        <button mat-button class="btn btn-danger mx-1" (click)="deleteTask(element.ProjectTaskID)" style="line-height: 28px;" ><i class="fa fa-times"  aria-hidden="true"></i></button>  </mat-cell> 
     </ng-container>
   
  
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" style="min-height:36px;"></mat-row>
 </mat-table>
 
+
 <div>
-  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons class="table-active"></mat-paginator>
 
 </div>
 

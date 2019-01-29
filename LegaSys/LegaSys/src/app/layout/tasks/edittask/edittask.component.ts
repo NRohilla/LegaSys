@@ -18,19 +18,41 @@ export class EdittaskComponent implements OnInit {
   taskeditForm: FormGroup;
   disable: boolean = true;
   myclients: any = [];
-  myprojects: any
-  isReadOnly: boolean = true;
-  issreadOnly = true;
-
-  constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: ToastrManager) {
+  myprojects: any;
+  taskStatus : any=[];
+  taskPriority : any =[];
+  taskRisk :any =[];
+  taskAssignee: any =[];
+  startDate:any;
+  targetDate:any;
+  taskActivity:any=[];
+  taskClassification: any = 
+    [
+        {value: '1', viewValue: 'Functional'},
+        {value: '2', viewValue: 'Business'},
+     ];
+  
+   constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: ToastrManager) {
 
     this.taskeditForm = this.Formbuilder.group
       ({
-        //Validators.pattern(/^[a-zA-Z0-9]+$/) if needed will change
+       
         TaskTitle: ['', [Validators.required, Validators.maxLength(25)]],
         Description: [''],
         Project_ID: [0, Validators.required],
-        ClientName: ['', Validators.required],
+        projectDescription:[''],
+        Status_Id: ['', Validators.required],
+        Priority_Id: ['', Validators.required],
+        Risk_Id: ['', Validators.required],
+        Activity_Id:['', Validators.required],
+        Task_AssignTo:['',Validators.required],
+        Classification:['', Validators.required ],
+        Original_Estimate:['',Validators.required],
+        Remaining:[''],
+        Completed:[''],
+        ProjectTaskID:[''],
+        Target_Date:['',Validators.required],
+     
       });
   }
 
@@ -39,22 +61,25 @@ export class EdittaskComponent implements OnInit {
     //Fetching Id From Session.
     this.Id = sessionStorage.getItem("currentId");
     this.GetTaskByID(this.Id);
-    this.GetClientName();
-    this.GetProject();
+    this.GetTaskStatus();
+    this.GetTaskRisk();
+    this. GetTaskPriority();
+    this.GetAllAssignee();
+    this.GetTaskActivity();
+   // this.GetProject();
+    this.taskeditForm.disable();
   }
 
-  //METHOD FOR SEARCH
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  
 
   // Method For Fetch Data
   GetTaskByID(ID) {
-    debugger;
+debugger;
     this.dataService.GetProjectTaskbyId(ID).subscribe(
       res => {
+        debugger;
         this.dataSource = res;
-        //console.log("datasource" + JSON.stringify(this.dataSource));
+     
       },
       err => {
         console.log(err);
@@ -63,14 +88,18 @@ export class EdittaskComponent implements OnInit {
   }
 
   //Method For Update data
-  UpdateTaskByID() {
+  UpdateTaskByID()
+   {
+     debugger;
+
     this.taskeditForm.value.ProjectTaskID = this.Id;
+    this.taskeditForm.value.Project_ID = this.dataSource.Project_ID;
     this.dataService.UpdateProjectTaskDetail(this.taskeditForm.value).subscribe(
       res => {
-        //console.log(res);
-        this.showSuccess();
+       
+        this.showSuccessWithTimeout("Updated Successfully","Success","25000");
         this.MakeFieldEditable();
-        //this.router.navigate(['/ListTasksPath']); 
+       
       },
       err => {
         console.log(err);
@@ -82,19 +111,21 @@ export class EdittaskComponent implements OnInit {
   MakeFieldEditable() {
     if (this.disable) {
       this.disable = false;
-      this.issreadOnly = false;
-      this.isReadOnly = false;
+      // this.issreadOnly = false;
+      // this.isReadOnly = false;
+      this.taskeditForm.enable();
     }
     else {
       this.disable = true;
-      this.isReadOnly = true;
-      this.issreadOnly = true;
+      // this.isReadOnly = true;
+      // this.issreadOnly = true;
+      this.taskeditForm.disable();
     }
   }
 
   //method for binding drop down Client name
   GetClientName() {
-    debugger;
+  
     this.dataService.GetAllClients().subscribe
       (
       data => {
@@ -122,6 +153,12 @@ export class EdittaskComponent implements OnInit {
 
 
   //Toster Notifications
+  showSuccessWithTimeout(message, title, timespan){ 
+    debugger; 
+    this.toastr.successToastr(message, title ,{
+        timeOut :  timespan
+    })
+}
   showSuccess() {
     this.toastr.successToastr('Task Updated Successfully', 'Success!');
   }
@@ -129,4 +166,115 @@ export class EdittaskComponent implements OnInit {
   showCancel() {
     this.toastr.infoToastr('Task Cancelled', 'Cancel');
   }
+
+
+      //method for getting status from db
+      GetTaskStatus()
+      {
+        debugger;
+          this.dataService.GetTaskStatus().subscribe
+          (
+              data =>{
+  
+              this.taskStatus= data; // FILL THE ARRAY WITH DATA.
+              },
+              (err) =>
+              
+              {
+                console.log(err);
+              }
+  
+          );
+      }
+  
+  
+   //method for getting risk from db
+   GetTaskRisk()
+   {
+     debugger;
+       this.dataService.GetTaskRisk().subscribe
+       (
+           data =>{
+  
+           this.taskRisk= data; // FILL THE ARRAY WITH DATA.
+           },
+           (err) =>
+           
+           {
+             console.log(err);
+           }
+  
+       );
+   }
+  
+  
+    //method for getting risk from db
+    GetTaskPriority()
+    {
+      debugger;
+        this.dataService.GetTaskPriority().subscribe
+        (
+            data =>{
+   
+            this.taskPriority= data; // FILL THE ARRAY WITH DATA.
+            },
+            (err) =>
+            
+            {
+              console.log(err);
+            }
+   
+        );
+    }
+      
+  
+    //method for getting risk from db
+    GetAllAssignee()
+    {
+      debugger;
+        this.dataService.GetTaskAssignee().subscribe
+        (
+            data =>{
+   
+            this.taskAssignee= data; // FILL THE ARRAY WITH DATA.
+            },
+            (err) =>
+            
+            {
+              console.log(err);
+            }
+   
+        );
+    }
+  
+    //binding dropdown task activity
+    GetTaskActivity()
+    {
+      debugger;
+        this.dataService.GetTaskActivity().subscribe
+        (
+            data =>{
+   
+            this.taskActivity= data; // FILL THE ARRAY WITH DATA.
+            },
+            (err) =>
+            
+            {
+              console.log(err);
+            }
+   
+        );
+    }
+    
+  
 }
+  
+
+
+
+
+
+
+
+
+

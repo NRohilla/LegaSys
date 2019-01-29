@@ -24,7 +24,7 @@ import { BehaviorSubject, fromEvent } from 'rxjs';
 
 export class ProjectComponent implements OnInit, AfterViewInit {
     project: any;
-    displayedColumns = ['ProjectID','Title', 'ClientName', 'DomainName', 'Description', 'actions'];
+    displayedColumns = ['ProjectID','Title', 'ClientName', 'DomainName', 'Description','actions'];
     projectdetails: any;
     exampleDatabase: SharedService | null;
     index: number;
@@ -70,7 +70,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
                     this.dataSource = new MatTableDataSource(this.project);
                     this.dataSource.paginator = this.paginator;
                     this.dataSource.sort = this.sort;
-                    console.log("project"+JSON.stringify (this.project));
+                    //console.log("project"+JSON.stringify (this.project));
                 },
                 error => {
                     console.log('There was an error while retrieving Posts !!!' + error);

@@ -1145,3 +1145,7 @@ D:\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CoreCompileI
 D:\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CopyComplete
 D:\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.dll
 D:\LegaSys\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.pdb
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csprojAssemblyReference.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.csproj.CoreCompileInputs.cache
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.dll
+D:\Other Docs\Tutorials\angular6\LegaSys28012019\LegaSys\LegaSysServices\obj\Debug\LegaSysServices.pdb

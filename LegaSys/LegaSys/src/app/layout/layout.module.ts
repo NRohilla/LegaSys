@@ -12,6 +12,7 @@ import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, M
 import { DialogComponent } from './masters/dialog/dialog.component';
 import { PageHeaderModule } from '../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         PageHeaderModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatPaginatorModule
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent, CreateResourceComponent, DialogComponent],
     entryComponents: [DialogComponent]

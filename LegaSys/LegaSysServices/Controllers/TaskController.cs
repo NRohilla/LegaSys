@@ -205,5 +205,16 @@ namespace LegaSysServices.Controllers
             return Json(_Taskdt.GetTaskActivity());
         }
 
+
+        //[HttpGet] added on 30/01/2019
+        [Route("project/getalltaskofproject/{id}")]
+        public IHttpActionResult GetAllTaskOfProject(int id)
+        {
+
+            return Json(_Taskdt.GetAllTaskOfProject(id));
+        }
+
+
+
     }
 }

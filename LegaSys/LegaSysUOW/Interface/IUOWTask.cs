@@ -20,5 +20,9 @@ namespace LegaSysUOW.Interface
         IEnumerable<TaskDetail> GetTaskPriority();
         IEnumerable<TaskDetail> GetTaskRisk();
         IEnumerable<TaskDetail> GetTaskActivity();
+
+
+        //update the following code snippet in the Interface  IUOWTask on 31/01/2019
+        List<TaskDetail> GetAllTaskOfProject(int id);
     }
 }

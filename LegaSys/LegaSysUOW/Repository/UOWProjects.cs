@@ -432,7 +432,9 @@ namespace LegaSysUOW.Repository
             {                
                 int pid = projectDetail.FirstOrDefault(x => x.ProjectID != 0).ProjectID;
                 int rid, msid;
-                
+                var dprojectDetail = projectDetail.Distinct();
+
+
                 List<ProjectDetail> resourcelist = GetAllResourceOnProject(pid);
                 for (int i = 0; i < projectDetail.Length; i++)
                 {
@@ -446,7 +448,7 @@ namespace LegaSysUOW.Repository
                         {
                             user.Master_Shift_ID = msid;
                         }
-                        var projectresource = db.LegaSys_ProjectResources.Where(x => x.ProjectResourceID == projectDetail[i].ProjectResourceID).FirstOrDefault();
+                        var projectresource = db.LegaSys_ProjectResources.Where(x => x.ProjectResourceID == pid).FirstOrDefault();
                         projectresource.IsResourceActive = projectDetail[i].Status;
                         
                     }
@@ -454,7 +456,7 @@ namespace LegaSysUOW.Repository
                     {
                         var pr = new LegaSys_ProjectResources {
                             Project_ID = pid,
-                            Resource_ID=projectDetail[i].Resource_ID,
+                            Resource_ID=rid,
                             IsResourceActive=1
                         };
                         db.LegaSys_ProjectResources.Add(pr);

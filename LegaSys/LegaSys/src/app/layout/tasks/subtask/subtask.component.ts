@@ -18,6 +18,7 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
   styleUrls: ['./subtask.component.scss']
 })
 export class SubtaskComponent implements OnInit {
+  LebalForm :FormGroup;
   subtaskForm: FormGroup;
   dataSource: any;
   isSave: boolean = true;
@@ -41,9 +42,10 @@ export class SubtaskComponent implements OnInit {
   
  
 
-  displayedColumns: string[] = ['SubTask_Title', 'SubTask_Description', 'TaskTitle', 'Description', 'Project_Title'];
+  displayedColumns: string[] = ['SubTask_Title','SubTask_AssignTo','SubTask_Status','SubTask_Priority','SubTask_Activity','SubTaskStart_Date','SubTaskTarget_Date','SubTaskOriginal_Estimate','Action',];
 
-  constructor(public dataService: TasksService, private router: Router, public Formbuilder: FormBuilder, public toastr: ToastrManager) {
+  constructor(public dataService: TasksService, private router: Router, public Formbuilder: FormBuilder, public toastr: ToastrManager)
+   {
     this.subtaskForm = this.Formbuilder.group
       ({
         //for special char validation pattern ,Validators.pattern(/^[a-zA-Z0-9]+$/)
@@ -51,6 +53,15 @@ export class SubtaskComponent implements OnInit {
         SubTask_Title: ['', [Validators.required, Validators.maxLength(25)]],
         SubTask_Description: [''],
       });
+
+
+      this.LebalForm=this.Formbuilder.group
+      (
+        {
+          Project_ID:[''],
+          taskTitle:[''],
+        }
+      );
     this.files = [];
     this.myModel = new TaskModel();
 
@@ -78,9 +89,10 @@ export class SubtaskComponent implements OnInit {
   }
 
   //  Method For Fetch Data against ID
-  GetAllSubTaskByTaskID(ID) {
+  GetAllSubTaskByTaskID(ID) 
+  {
     debugger;
-
+//vaibhav
 
     this.dataService.GetAllProjectSubTaskbyTaskId(ID).subscribe(
       res => {

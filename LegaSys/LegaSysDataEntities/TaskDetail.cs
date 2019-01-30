@@ -9,7 +9,7 @@ namespace LegaSysDataEntities
     //Entity Class ******SADHANA********
     public class TaskDetail
     {
-      
+
         public int ProjectTaskID { get; set; }
         public string TaskTitle { get; set; }
         public string Description { get; set; }
@@ -56,7 +56,7 @@ namespace LegaSysDataEntities
         public string Task_Activity { get; set; }
 
         public string Acceptance_Criteria { get; set; }
-        
+
         public int? Task_Assigne_Id { get; set; }
 
         public string Task_AssignTo { get; set; }

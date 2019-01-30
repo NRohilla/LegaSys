@@ -4,6 +4,7 @@ import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TasksService } from './tasks.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-tasks',
@@ -143,6 +144,23 @@ export class TaskModel {
   SubTaskUpdated_By : number ;
   SubTaskCreated_Date :Date;
   SubTaskUpdated_Date : Date;
+  SubTask_Status:number;
+  SubTask_Status_Icon:string;
+  SubTask_Priority:number;
+  SubTask_Risk: number;
+  SubTask_Activity:number;
+  SubTask_Assigne_Id:number;
+  SubTask_AssignTo:string;
+  SubTaskStart_Date:Date;
+  SubTaskTarget_Date:Date;
+  SubTaskClassification:string;
+  SubTaskAcceptance_Criteria:string
+  SubTaskStatus_Id:number;
+  SubTaskPriority_Id:number;
+  SubTaskRisk_Id:number;
+  SubTaskActivity_Id:number;
+  SubTaskOriginal_Estimate:number;
+ 
 
   
 

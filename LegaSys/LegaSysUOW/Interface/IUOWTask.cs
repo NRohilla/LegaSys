@@ -17,8 +17,8 @@ namespace LegaSysUOW.Interface
         bool DeleteProjectTask(int id);
         int UpdateProjectTaskDetail(TaskDetail projectTaskDetail);
         IEnumerable<TaskDetail> GetTaskStatus();
-         IEnumerable<TaskDetail> GetTaskPriority();
-         IEnumerable<TaskDetail> GetTaskRisk();
-         IEnumerable<TaskDetail> GetTaskActivity();
+        IEnumerable<TaskDetail> GetTaskPriority();
+        IEnumerable<TaskDetail> GetTaskRisk();
+        IEnumerable<TaskDetail> GetTaskActivity();
     }
 }

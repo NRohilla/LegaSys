@@ -3,7 +3,7 @@
 
 <mat-tab-group class="client-detail ">
     <mat-tab label="Summary">
-     <app-client-details-summary [currentClientDetails]="currentClientDetails"></app-client-details-summary>
+     <app-client-details-summary *ngIf="clientProjectsList && currentClientDetails " [clientProjectsList]="clientProjectsList"  [currentClientDetails]="currentClientDetails"></app-client-details-summary>
   </mat-tab>
   <mat-tab label="Profession Details">
     <app-client-profesional-details *ngIf="currentClientDetails" (onCancel)="onCancel($event)"
@@ -15,11 +15,11 @@
       (onClientDetailsChange)="updateClent($event)" [currentClientDetails]="currentClientDetails"
       [currentClientDetailsBackup]="currentClientDetailsBackup"></app-client-details-personal-details>
   </mat-tab>
-  <!-- <mat-tab label="Co Client Details">
-     <app-client-details-co-client-details *ngIf="currentClientDetails "  (onCancel)="onCancel($event)"
-      (onClientDetailsChange)="updateClent($event)" [currentClientDetails]="currentClientDetails"
-      [currentClientDetailsBackup]="currentClientDetailsBackup"></app-client-details-co-client-details>
-  </mat-tab> -->
+  <mat-tab label="Co Client Details">
+    <app-client-details-co-client-details *ngIf="currentClientDetails" (onCancel)="onCancel($event)"
+     (onClientDetailsChange)="updateClent($event)" [currentClientDetails]="currentClientDetails"
+     [currentClientDetailsBackup]="currentClientDetailsBackup"></app-client-details-co-client-details>
+ </mat-tab>
   <mat-tab label="History"><app-client-projects *ngIf="clientProjectsList && currentClientDetails " [clientProjectsList]="clientProjectsList" [currentClientDetails]="currentClientDetails"></app-client-projects></mat-tab>
   
 

@@ -86,7 +86,7 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
     //this.selected = 'false';
     this.disableAction=true;
     this.GetBackgroundDetailsDS();
-
+    this.selectedRowIndex=-1;
   }  
 
 ngOnInit() {
@@ -165,8 +165,8 @@ getJoiningDate(){
   }
   leapYear(date){
     debugger;
-    date=new date(date);
-    var year=date.getFullYear().value;
+    date=new Date(date);
+    var year=date.getFullYear();
     if((0==year%4)&&(0!=year%100)||(0==year%400)){
       return true;
     }
@@ -175,6 +175,7 @@ getJoiningDate(){
     }
 
   }
+  //current Experience and datatable duration calculation
   calcExperience(sDate, eDate) {    
      //debugger
      var startDate = new Date(sDate);
@@ -182,7 +183,7 @@ getJoiningDate(){
      var increment=0;
      
      if(startDate.getDate()>endDate.getDate()){
-       increment = this.monthDay[startDate.getMonth() - 1];        
+       increment = this.monthDay[startDate.getMonth()];        
      }
      if(increment!=0){
        this.cday = (endDate.getDate()+ increment) - startDate.getDate();
@@ -202,11 +203,13 @@ getJoiningDate(){
        increment = 0
      }
      this.cYear = endDate.getFullYear() - (startDate.getFullYear() + increment);    
-
+  
    return this.cYear + " Year(s)" + ' ' + this.cmonth + " Month(s)" + ' ' + this.cday + " Day(s)";
  }
+
+
   calcTotExp(sDate, eDate) {
-   //debugger;
+   debugger;
      sDate=new Date(sDate);
      eDate=new Date(eDate);
       if(sDate>eDate){
@@ -218,10 +221,14 @@ getJoiningDate(){
         ToDate=eDate;
       }
       var increment=0;
-      if(fromDate.getDate()>ToDate.getDate()){
-        increment=this.monthDay[fromDate.getMonth()-1];
+   
+      if(fromDate.getDate()>=ToDate.getDate()){
+        increment=this.monthDay[fromDate.getMonth()];           
       }
-      if (increment== -1)
+      // if(this.leapYear(fromDate)){
+      //   increment=-1;
+      // }
+      if (increment== -1)  
       {
     if (this.leapYear(fromDate))
     {
@@ -233,15 +240,15 @@ getJoiningDate(){
     }
       }
       if(increment!=0){
+        console.log(ToDate.getDate());
+      console.log(fromDate.getDate());
         var Days = (ToDate.getDate()+ increment) - fromDate.getDate();
         increment = 1; 
 
       }
       else
-    {       
-      // console.log(ToDate.getDate());
-      // console.log(fromDate.getDate());
-       Days= ToDate.getDate() -fromDate.getDate();
+    {    
+        Days= ToDate.getDate() -fromDate.getDate();
     }
 
     if ((fromDate.getMonth() + increment) > ToDate.getMonth())
@@ -254,17 +261,18 @@ getJoiningDate(){
       month = (ToDate.getMonth()) - (fromDate.getMonth() + increment);
         increment = 0;
     }
-    var Year = ToDate.getFullYear() - (fromDate.getFullYear() + increment);
-
-    
+    var Year = ToDate.getFullYear() - (fromDate.getFullYear() + increment);    
     this.tottalExpd = this.tottalExpd + Days;
     {
-      if (this.tottalExpd >= 30) {
+      if (this.tottalExpd == 30) {
         this.tottalExpm += 1;
         this.tottalExpd = this.tottalExpd - 30;
       }
-    }
-  
+      else if(this.tottalExpd==31){
+        this.tottalExpm += 1;
+        this.tottalExpd = this.tottalExpd - 31;
+      }
+    }  
     this.tottalExpm = this.tottalExpm + month;
     if (this.tottalExpm >= 12) {
       this.tottalExpy += 1;
@@ -277,7 +285,7 @@ getJoiningDate(){
     //console.log(this.TotalExp);
 
   } 
-
+ //Calculate Total experience
   CalculateTotal() {
   debugger;
 
@@ -286,7 +294,7 @@ getJoiningDate(){
       this.tottalExpm += 1;
       this.tottalExpd = this.tottalExpd - 30;
     }
-    this.tottalExpm += this.cmonth
+    this.tottalExpm += this.cmonth;
     if (this.tottalExpm >= 12) {
 
       this.tottalExpy += 1;
@@ -323,22 +331,24 @@ getJoiningDate(){
             return;
           }
           if(  new Date(this.backgroundDetails.data[i].LeavingDate)>= new Date( this.inputuBackgrnd.JoiningDate)){
-            this.toster.showError("Joining Date of last company can't be lesser or equal to past company(s) leaving date");
+            this.toster.showError("Joining date of Last company(s) can't be lesser or equal to Leaving date of previous company(s)");
             return;
           }
           console.log(new Date(this.inputuBackgrnd.JoiningDate));
           console.log(new Date(this.joiningDate));
           console.log(new Date(this.inputuBackgrnd.LeavingDate));
           console.log(new Date(this.joiningDate));
-          if(new Date(this.inputuBackgrnd.JoiningDate)>= new Date(this.joiningDate)|| new Date(this.inputuBackgrnd.LeavingDate)>=new Date(this.joiningDate)){
-              this.toster.showError("Previous company(s) Joining Date/Leaving Date can't exceed Current Joining Date/Leaving Date")
-              return;
-            }
+         
+        }
+        if(new Date(this.inputuBackgrnd.JoiningDate)>= new Date(this.joiningDate)|| new Date(this.inputuBackgrnd.LeavingDate)>=new Date(this.joiningDate)){
+          this.toster.showError("Past company(s) Joining Date/Leaving Date can't exceed Current Joining Date/Leaving Date")
+          return;
         }
         const data = this.backgroundDetails.data;
         data.push(this.inputuBackgrnd);
         this.backgroundDetails.data = data;
       }
+      
       else if (new Date(this.uBackgrndForm.controls['LeavingDate'].value) < new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
         //this.isFailedMessage = true;
         // this.snackBar.open("Leaving Date must be greater than Joining Date", "Ok", {
@@ -346,9 +356,11 @@ getJoiningDate(){
         // });
         this.toster.showError("Leaving Date must be greater than Joining Date");
       }
+     
       else {
 
       }
+      this.selectedRowIndex=-1;
 
     }
     else if (this.formType == "Update") {
@@ -363,30 +375,45 @@ getJoiningDate(){
             flag=1;           
                   
           }
-         
+          if(parseInt(i)==this.backgroundDetails.data.length-2){
+            
+            if(new Date(this.inputuBackgrnd.JoiningDate)<=new Date(this.backgroundDetails.data[i].LeavingDate))
+            {
+              this.toster.showError("Joining date of Last company(s) can't be lesser or equal to Leaving date of previous company(s)");
+             
+              return;
+            }
+          }
+          
         }
         if(new Date(this.inputuBackgrnd.JoiningDate)>= new Date(this.joiningDate)||new Date(this.inputuBackgrnd.LeavingDate)>=new Date(this.joiningDate)){
-          this.toster.showError("Previous company(s) Joining Date/Leaving Date can't exceed Current Joining Date/Leaving Date")
+          this.toster.showError("Past company(s) Joining Date/Leaving Date can't exceed Current Joining Date/Leaving Date")
           return;
         }
-        // if(new Date(this.inputuBackgrnd.JoiningDate)<=new Date(this.backgroundDetails.data[i].LeavingDate)){
-        //   this.toster.showError("Error");
-        //   return;
-        // }
+      
+       // update date for the existing record
         if (flag != 0) {
           this.backgroundDetails.data.forEach(element => {
             if (element.BackgroundID == this.selectedRowIndex) {
               
+              // if(new Date(this.inputuBackgrnd.JoiningDate)<=new Date(element.LeavingDate))
+              // {
+              //   this.toster.showError("Joining date of Last company(s) can't be lesser or equal to Leaving date of previous company(s)");
+              //   return;
+              // }
+
                  if(new Date(element.JoiningDate).getTime()  !=new Date(this.inputuBackgrnd.JoiningDate).getTime()||
-                     new Date(element.LeavingDate).getTime()!= new Date(this.inputuBackgrnd.LeavingDate).getTime() )
+                     new Date(element.LeavingDate).getTime()!= new Date(this.inputuBackgrnd.LeavingDate).getTime()&&
+                     new Date(this.inputuBackgrnd.JoiningDate)>=new Date(element.LeavingDate) )
                  {
+                   
                    debugger;
-                 
+                  
                   element.JoiningDate = this.inputuBackgrnd.JoiningDate;
                   element.LeavingDate = this.inputuBackgrnd.LeavingDate;
                   flag=2;
                  }
-           
+                 
             
             }
           });
@@ -424,6 +451,7 @@ getJoiningDate(){
         this.toster.showError("Leaving Date must be greater than Joining Date");
       }
       //this.uBackgrndForm.reset();
+      this.selectedRowIndex=-1;
     }
     formDirective.resetForm();
     this.uBackgrndForm.reset();
@@ -496,7 +524,7 @@ getJoiningDate(){
 
   Save() {
     //console.log(JSON.stringify(this.backgroundDetails.data)); 
-
+    debugger;
     var id = +localStorage.getItem('UserDetailID');
     this.dataService.AddUserBackGound(id, this.showExp, this.backgroundDetails.data)
       .subscribe((result) => {

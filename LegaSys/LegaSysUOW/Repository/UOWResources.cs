@@ -231,6 +231,7 @@ namespace LegaSysUOW.Repository
 
             if (isExp)
             {
+               
 
                 foreach (var ub in userBackground)
                 {
@@ -433,7 +434,7 @@ namespace LegaSysUOW.Repository
                 Stream = x.QStream,
                 Year = x.QYear ?? -10,
                 Marks = x.QMarks ?? -10,
-                UserDetailID = x.UserDetailID
+                UserDetailID = x.UserDetailID.Value
             }).ToList();
             qualifications.RemoveAll(x => x.QualificationID == -10);
             foreach (var uq in qualifications)

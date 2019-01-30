@@ -16,7 +16,7 @@
   <label><b>Total Experience:</b> <span style="margin-left: 60px;">{{TotalExp}} </span></label>
   <br><br>
 </div>
-
+<p class="bg-white" style="color: #f44336;font-size: smaller">*Start with the first company</p>
 <div *ngIf="showExp">
 
   <mat-table [dataSource]="backgroundDetails" matSort class="example-container mat-elevation-z8 resource-grid">
@@ -25,7 +25,7 @@
       <mat-cell *matCellDef="let element"> {{element.BackgroundID}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="CompanyName">
-      <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header ><span class="text-white text-uppercase">Company Name</span>  </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header ><span class="text-white text-uppercase">Company Name*</span>  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.CompanyName|uppercase}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="Designation">
@@ -44,14 +44,14 @@
       <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Duration</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{calcExperience(element.JoiningDate, element.LeavingDate)}} </mat-cell>>
     </ng-container>
-    <!-- <ng-container matColumnDef="Action">
+    <ng-container matColumnDef="Action">
       <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Action</span> </mat-header-cell>
       <mat-cell *matCellDef="let element" >
-          <button mat-button [disabled]='disableAction' (click)="RemoveBackground(element.BackgroundID)" class="btn btn-danger mx-1"><i class="fa fa-trash-o"
-            aria-hidden="true"></i> <span class="action-btn">Remove</span></button>
+          <button mat-button [disabled]='disableAction' (click)="RemoveBackground(element.BackgroundID)" class="btn btn-danger mx-1"><i class="fa fa-times"
+            aria-hidden="true"></i> <span class="action-btn"></span></button>
       
       </mat-cell>>
-    </ng-container> -->
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.BackgroundID}"
@@ -117,7 +117,7 @@
           </div>
           <div class="col-xl-2">
             <mat-form-field style="width: 200px;">
-              <input matInput [matDatepicker]="picker"  placeholder="Joining Date"  formControlName="JoiningDate" [min]="minDate" [max]="getToday() " disabled>
+              <input matInput [matDatepicker]="picker"  placeholder="Joining Date (mm/dd/yyyy)"  formControlName="JoiningDate" [min]="minDate" [max]="getToday() " disabled>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker disabled="false"></mat-datepicker>
               <mat-error *ngIf="uBackgrndForm.controls.JoiningDate.invalid ">
@@ -135,7 +135,7 @@
           </mat-form-field> -->
           <div class="col-xl-2" >
             <mat-form-field style="width:200px;">
-              <input matInput [matDatepicker]="picker1" placeholder="Leaving Date"  formControlName="LeavingDate" [min]="minDate" [max]="getToday()" >
+              <input matInput [matDatepicker]="picker1" placeholder="Leaving Date (mm/dd/yyyy)"  formControlName="LeavingDate" [min]="minDate" [max]="getToday()" >
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
               <mat-error *ngIf="uBackgrndForm.controls.LeavingDate.invalid">

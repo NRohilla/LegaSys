@@ -13,10 +13,10 @@ namespace LegaSysUOW.Interface
     public interface IUOWSubTask
     {
         IEnumerable<SubTaskDetail> GetAllProjectsSubTask();
-        bool CreateProjectSubTaskDetail(int id, List<SubTaskDetail> subtaskDetail,int createdBy);
+        bool CreateProjectSubTaskDetail(int id, List<SubTaskDetail> subtaskDetail, int createdBy);
         IEnumerable<SubTaskDetail> GetAllProjectSubTaskbyTaskId(int id);
         void DeleteProjectSubTask(int id);
         int UpdateProjectSubTaskDetail(SubTaskDetail projectTaskDetail);
-        string addAttechmentonServer(HttpPostedFile postedFile);
+        // string addAttechmentonServer(HttpPostedFile postedFile);
     }
 }

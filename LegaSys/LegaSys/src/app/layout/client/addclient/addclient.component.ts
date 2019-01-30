@@ -21,6 +21,7 @@ export class AddclientComponent implements OnInit {
   clientPersonalDetailsForm: FormGroup;
   clientProfestionalDetailsForm: FormGroup;
   coClientForm:FormGroup;
+  showCoClientForm:boolean=false;
   clientDetails=new Client();
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';// this regex will be used to validate email pattern
   CountryList: string[] = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
@@ -45,6 +46,7 @@ export class AddclientComponent implements OnInit {
       companyEmailId: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       companyContactNo: ['', Validators.pattern('^[0-9 ]+$')],
       companyFax: ['', Validators.pattern('^[0-9 ]+$')],
+      zip: ['',[Validators.required, Validators.pattern('^[0-9 ]+$')]],
 
     });
     this.coClientForm=this.formBuilder.group({
@@ -83,6 +85,7 @@ AddClient()
   this.clientDetails.EmailID=this.clientProfestionalDetailsForm.controls['companyEmailId'].value;
   this.clientDetails.ClientCompanyFax=this.clientProfestionalDetailsForm.controls['companyFax'].value;
   this.clientDetails.CompanyPhone=this.clientProfestionalDetailsForm.controls['companyContactNo'].value;
+   this.clientDetails.ClientCountryZip=this.clientProfestionalDetailsForm.controls['zip'].value;
   var arrayControl = this.coClientForm.get('coClientDetails') as FormArray;
   for(var j=0;j<arrayControl.length;j++){
     console.log(arrayControl.controls[j].value);
@@ -90,7 +93,7 @@ AddClient()
       formArrayValue.Name=arrayControl.controls[j].value.Name;
       formArrayValue.Address=arrayControl.controls[j].value.Address;
       formArrayValue.Email=arrayControl.controls[j].value.email;
-      formArrayValue.ContactNo=arrayControl.controls[j].value.contactNo;
+      formArrayValue.Phone=arrayControl.controls[j].value.contactNo;
       this.clientDetails.CoClientDetails.push(formArrayValue);
   }
   debugger;
@@ -111,10 +114,10 @@ openSnackBar() {
 }
 InitCoClientForm(){
   return this.formBuilder.group({
-    Name:[''],
-    email:[''],
+    Name:['',Validators.pattern('^[a-zA-Z ]+$')],
+    email:['',Validators.email],
     Address:[''],
-    contactNo:['']
+    contactNo:['',Validators.pattern('^[0-9 ]+$')]
   });
 }
 AddNewCoCLientForm(){
@@ -127,18 +130,34 @@ AddNewCoCLientForm(){
 }
 
 deleteRow(index: number) {
+  debugger;
   // control refers to your formarray
   const control = <FormArray>this.coClientForm.controls['coClientDetails'];
   // remove the chosen row
   control.removeAt(index);
+  this.flag-=1;
+  if(this.flag==-1){
+    this.showCoClientForm=false;
+  }
 }
 CheckFlag(){
-  debugger;
+  
   if(this.flag==3){
+    return false;
+  }else if(this.flag==-1){
+    this.showCoClientForm=false;
     return false;
   }
   else{
     return true;
   }
+}
+ShowCoClient(){
+  if(this.showCoClientForm){
+    this.showCoClientForm=false;
+  }else{
+    this.showCoClientForm=true;
+  }
+
 }
 }

@@ -30,5 +30,9 @@ namespace LegaSysDataEntities
         public string MobileNumber { get; set; }
         public DateTime? DateOfJoining { get; set; }
         public bool? IsExperienced { get; set; }
+
+        public string PrimarySkillSet { get; set; }
+        public string SecondarySkillSet { get; set; }
+        public string Qualification { get; set; }
     }
 }

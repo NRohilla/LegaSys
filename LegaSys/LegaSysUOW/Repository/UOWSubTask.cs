@@ -20,7 +20,7 @@ namespace LegaSysUOW.Repository
             db = dbFactory.Init();
         }
 
-     
+
 
 
         //Method for get all SubTask.******SADHANA********
@@ -67,7 +67,23 @@ namespace LegaSysUOW.Repository
                                     Project_Task_ID = x.tasks.ProjectTaskID,
                                     TaskTitle = x.tasks.Title,
                                     Description = x.tasks.Description,
-                                    Project_Title = x.projects.Title
+                                    Project_Title = x.projects.Title,
+                                    SubTaskOriginal_Estimate = x.subtasks.SubTaskOriginal_Estimate,
+                                    Completed = (x.subtasks.SubTaskCompleted),
+                                    Remaining = (x.subtasks.SubTaskRemaining),
+                                    Status_Id = x.subtasks.SubTask_Status,
+
+                                    SubTaskStatus_Type = db.LegaSys_TaskStatus.SingleOrDefault(SubTaskStatus_obj => SubTaskStatus_obj.Status_Id == x.subtasks.SubTask_Status)?.Status_Type,
+                                    Priority_Id = x.subtasks.SubTask_Priority,
+                                    SubTask_Priority = db.LegaSys_Priority.SingleOrDefault(SubTaskPriority_obj => SubTaskPriority_obj.Priority_Id == x.subtasks.SubTask_Priority)?.Priority_Type,
+                                    Activity_Id = x.subtasks.SubTask_Activity,
+                                    SubTask_Activity = db.LegaSys_Activity.SingleOrDefault(SubTaskActivity_obj => SubTaskActivity_obj.Activity_Id == x.subtasks.SubTask_Activity)?.Activity_Name,
+
+                                    Risk_Id = x.subtasks.SubTask_Risk,
+                                    SubTask_AssignTo = x.tasks.Task_AssignTo,
+                                    SubTaskTarget_Date = x.subtasks.SubTarget_Date,
+                                    SubTaskStart_Date = x.subtasks.SubTaskStart_Date
+
 
                                 });
             return subtaskdetail;
@@ -78,22 +94,22 @@ namespace LegaSysUOW.Repository
         //Method for creating new Subtask.******SADHANA******** 26 Dec 2018
         //Method to add upload on server folder.
 
-        public string addAttechmentonServer(HttpPostedFile postedFile)
-        {
+        //public string addAttechmentonServer(HttpPostedFile postedFile)
+        //{
 
-            var AttachmentName = Path.GetFileName(postedFile.FileName);
-            var attachmentPath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/App_Data/Subtask Uploads"), AttachmentName);
-            postedFile.SaveAs(attachmentPath);
+        //    var AttachmentName = Path.GetFileName(postedFile.FileName);
+        //    var attachmentPath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/App_Data/Subtask Uploads"), AttachmentName);
+        //    postedFile.SaveAs(attachmentPath);
 
 
-            return (attachmentPath);
-        }
+        //    return (attachmentPath);
+        //}
 
 
         //Method for creating new Subtask.******SADHANA********
         public bool CreateProjectSubTaskDetail(int id, List<SubTaskDetail> subtaskDetail, int createdBy)
         {
-            
+
 
             var typeattachment = subtaskDetail.Select(z => new LegaSys_AttachmentTypes
             {
@@ -101,7 +117,7 @@ namespace LegaSysUOW.Repository
                 AttachmentType = z.AttachmentType,
                 Created_Date = DateTime.Now,
                 Description = z.SubTask_Description,
-               
+
             }).ToList();
 
             typeattachment.RemoveAll(x => x.AttachmentType == null);
@@ -112,14 +128,14 @@ namespace LegaSysUOW.Repository
                 if (type != null)
                     typeattachment.Remove(type);
             }
-            
+
             db.BulkInsert(typeattachment);
 
             var attachment = subtaskDetail.Select(y => new LegaSys_Attachments
             {
-                AttachmentPath =y.AttachmentPath,
+                AttachmentPath = y.AttachmentPath,
                 Title = y.SubTask_Title,
-                Description = y.SubTask_Description ,
+                Description = y.SubTask_Description,
                 Created_By = createdBy,
                 Created_Date = DateTime.Now,
                 AttachmentTypeID = db.LegaSys_AttachmentTypes.FirstOrDefault(P => P.AttachmentType == y.AttachmentType)?.AttachmentTypeID
@@ -136,7 +152,7 @@ namespace LegaSysUOW.Repository
                 Title = x.SubTask_Title,
                 Description = x.SubTask_Description,
                 Attachment_ID = db.LegaSys_Attachments.FirstOrDefault(z => z.AttachmentPath == x.AttachmentPath)?.AttachmentID
-                
+
             });
 
             db.BulkMerge(subtaskModel);

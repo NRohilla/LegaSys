@@ -32,7 +32,7 @@ export class ResourcePersonaldetailsComponent implements OnInit {
       Lastname: ['', [Validators.required, Validators.pattern(this.namePattern)]],
       Middlename: ['', ''],
       EmailId: ['', Validators.pattern(this.emailPattern)],
-      TotalExp: ['', [Validators.required, Validators.pattern(this.totexpPattern)]],
+      TotalExp: ['', [Validators.required, Validators.pattern('[0-9/.]+')]],
       Master_Role_ID: [this.getAllRole, [Validators.required]],
       Master_Shift_ID: [this.getAllShift, [Validators.required]],
       Master_Location_ID: [this.getLocation, [Validators.required]],
@@ -93,7 +93,7 @@ export class ResourcePersonaldetailsComponent implements OnInit {
       suc => {
         this.resoursedetails = suc;
         this.currentResourceDetailsCancel = JSON.parse(JSON.stringify(suc));
-        localStorage.setItem("DateOfJoining", this.resoursedetails.DateOfJoining);
+        //localStorage.setItem("DateOfJoining", this.resoursedetails.DateOfJoining);
         this.resourceService.getReportingHead(this.resoursedetails.Master_Role_ID).subscribe(
 
           res => {

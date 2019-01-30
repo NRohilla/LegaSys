@@ -7,10 +7,13 @@ import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatFormFieldModule, MatIconModule, MatInputModule, MatChipsModule, MatDividerModule, MatProgressBarModule, MatProgressSpinnerModule, MatCardModule, MatStepperModule, MatVerticalStepper } from '@angular/material';
 import { ResourceService } from './resource.service';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
 import { FormsModule } from '@angular/forms';
+//import { Resource } from './components/resource.skillset.component';
+//import { Resource } from './components/resource.allocation/resource.allocation.component';
+//import { Resource } from './components/resource.qualification/resource.qualification.component';
 
 @NgModule({
 
@@ -23,10 +26,10 @@ import { FormsModule } from '@angular/forms';
         MatSortModule,
         FormsModule,
         MatButtonModule, MatToolbarModule, MatFormFieldModule, PageHeaderModule, MatIconModule,
-        MatInputModule
+        MatInputModule,MatProgressSpinnerModule,MatCardModule
     ],
     providers: [ResourceService],
-    declarations: [ResourceComponent],
+    declarations: [ResourceComponent ],
 })
 
 export class ResourceModule { }

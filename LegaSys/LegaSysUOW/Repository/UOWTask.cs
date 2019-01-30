@@ -14,7 +14,7 @@ namespace LegaSysUOW.Repository
     {
         private readonly LegaSysEntities db;
         //declation of Global Variable to accept Id and Send To Perticuler db Table.
-      
+
         public UOWTask(IDbFactory dbFactory)
         {
             db = dbFactory.Init();
@@ -34,25 +34,21 @@ namespace LegaSysUOW.Repository
                         Description = tasks.Description,
                         Attachment_ID = tasks.Attachment_ID,
                         Project_ID = tasks.Project_ID,
-                        Project_Description=Projects.Description,
+                        Project_Description = Projects.Description,
                         Project_Title = Projects.Title,
                         Client_ID = clients.ClientDetailID,
                         Client_Name = clients.ClientName,
-                        Original_Estimate=tasks.Original_Estimate,
+                        Original_Estimate = tasks.Original_Estimate,
                         Completed = (tasks.Completed),
                         Remaining = (tasks.Remaining),
-                        Status_Id =tasks.Task_Status,
-                        Activity_Id=tasks.Task_Activity,
-                        Priority_Id=tasks.Task_Priority,
-                        Risk_Id=tasks.Task_Risk,
-                       Task_AssignTo=tasks.Task_AssignTo,
-                       Target_Date=tasks.Target_Date
-                       
-                        
+                        Status_Id = tasks.Task_Status,
+                        Activity_Id = tasks.Task_Activity,
+                        Priority_Id = tasks.Task_Priority,
+                        Risk_Id = tasks.Task_Risk,
+                        Task_AssignTo = tasks.Task_AssignTo,
+                        Target_Date = tasks.Target_Date
 
 
-                        
-                        
                     }).FirstOrDefault();
         }
 
@@ -60,7 +56,7 @@ namespace LegaSysUOW.Repository
         public IEnumerable<TaskDetail> GetAllProjectsTask()
         {
             var taskdetail = (from tasks in db.LegaSys_ProjectTasks
-                              join Projects in db.LegaSys_Projects on tasks.Project_ID equals Projects.ProjectID 
+                              join Projects in db.LegaSys_Projects on tasks.Project_ID equals Projects.ProjectID
                               select new { tasks, Projects }).AsEnumerable()
                   .Select(x => new TaskDetail
                   {
@@ -71,16 +67,16 @@ namespace LegaSysUOW.Repository
                       Project_ID = x.tasks.Project_ID,
                       Project_Title = x.Projects.Title,
                       Project_Description = x.Projects.Description,
-                      Target_Date=x.tasks.Target_Date,
-                      Start_Date=x.tasks.Start_Date,
-                      Status_Icon = db.LegaSys_TaskStatus.SingleOrDefault (TaskIcon_obj=> TaskIcon_obj.Status_Id == x.tasks.Task_Status)?.Status_Icon,
-                      Original_Estimate=x.tasks.Original_Estimate,
-                      Status_Type = db.LegaSys_TaskStatus.SingleOrDefault(TaskStatus_obj => TaskStatus_obj.Status_Id==x.tasks.Task_Status )?.Status_Type,
-                      Priority_Type= db.LegaSys_Priority.SingleOrDefault(TaskPriority_obj => TaskPriority_obj.Priority_Id == x.tasks.Task_Priority)?.Priority_Type,
-                      Risk_Type= db.LegaSys_Risk.SingleOrDefault(TaskRisk_obj => TaskRisk_obj.Risk_Id == x.tasks.Task_Risk)?.Risk_Type,
-                      Task_Activity=db.LegaSys_Activity.SingleOrDefault(TaskActivity_obj => TaskActivity_obj.Activity_Id == x.tasks.Task_Activity)?.Activity_Name,
-                      Task_AssignTo= db.LegaSys_UserDetails.SingleOrDefault(TaskAssignee_obj =>TaskAssignee_obj.Firstname == x.tasks.Task_AssignTo)?.Firstname,
-                    
+                      Target_Date = x.tasks.Target_Date,
+                      Start_Date = x.tasks.Start_Date,
+                      Status_Icon = db.LegaSys_TaskStatus.SingleOrDefault(TaskIcon_obj => TaskIcon_obj.Status_Id == x.tasks.Task_Status)?.Status_Icon,
+                      Original_Estimate = x.tasks.Original_Estimate,
+                      Status_Type = db.LegaSys_TaskStatus.SingleOrDefault(TaskStatus_obj => TaskStatus_obj.Status_Id == x.tasks.Task_Status)?.Status_Type,
+                      Priority_Type = db.LegaSys_Priority.SingleOrDefault(TaskPriority_obj => TaskPriority_obj.Priority_Id == x.tasks.Task_Priority)?.Priority_Type,
+                      Risk_Type = db.LegaSys_Risk.SingleOrDefault(TaskRisk_obj => TaskRisk_obj.Risk_Id == x.tasks.Task_Risk)?.Risk_Type,
+                      Task_Activity = db.LegaSys_Activity.SingleOrDefault(TaskActivity_obj => TaskActivity_obj.Activity_Id == x.tasks.Task_Activity)?.Activity_Name,
+                      Task_AssignTo = db.LegaSys_UserDetails.SingleOrDefault(TaskAssignee_obj => TaskAssignee_obj.Firstname == x.tasks.Task_AssignTo)?.Firstname,
+
 
                   });
             return taskdetail;
@@ -89,11 +85,11 @@ namespace LegaSysUOW.Repository
         //Method for creating new task.******SADHANA********
         public int CreateProjectTaskDetail(TaskDetail projectTaskDetail)
         {
-          
+
             //declaration of object attachmentType
             var Typeattachment = new LegaSys_AttachmentTypes
             {
-                AttachmentType = projectTaskDetail.AttachmentType, 
+                AttachmentType = projectTaskDetail.AttachmentType,
                 Description = projectTaskDetail.Description,
                 Created_Date = DateTime.Now,
             };
@@ -110,7 +106,7 @@ namespace LegaSysUOW.Repository
                 Created_By = projectTaskDetail.Created_By,
                 Created_Date = DateTime.Now,
                 AttachmentTypeID = Typeattachment.AttachmentTypeID
-             };
+            };
             db.LegaSys_Attachments.Add(attachment);
 
 
@@ -137,19 +133,19 @@ namespace LegaSysUOW.Repository
 
                 Task_Activity = projectTaskDetail.Activity_Id,
 
-                Task_AssignTo=projectTaskDetail.Task_AssignTo ,
+                Task_AssignTo = projectTaskDetail.Task_AssignTo,
 
-                Task_Priority=projectTaskDetail.Priority_Id,
+                Task_Priority = projectTaskDetail.Priority_Id,
 
-                Task_Risk=projectTaskDetail.Risk_Id,
+                Task_Risk = projectTaskDetail.Risk_Id,
 
-                Task_Status=projectTaskDetail.Status_Id,
+                Task_Status = projectTaskDetail.Status_Id,
 
-                Original_Estimate=projectTaskDetail .Original_Estimate,
+                Original_Estimate = projectTaskDetail.Original_Estimate,
 
-                Remaining =projectTaskDetail .Remaining ,
+                Remaining = projectTaskDetail.Remaining,
 
-                Completed=projectTaskDetail.Completed 
+                Completed = projectTaskDetail.Completed
 
 
             };
@@ -199,7 +195,7 @@ namespace LegaSysUOW.Repository
                 objProjecttaskDetail.Task_AssignTo = projectTaskDetail.Task_AssignTo;
                 objProjecttaskDetail.Target_Date = projectTaskDetail.Target_Date;
 
-              
+
 
                 db.SaveChanges();
             }
@@ -212,12 +208,12 @@ namespace LegaSysUOW.Repository
         //Method to get Status of Task
         public IEnumerable<TaskDetail> GetTaskStatus()
         {
-           var statusObj=  (from status in db.LegaSys_TaskStatus
-                    select new { status }).AsEnumerable()
-                  .Select(x => new TaskDetail
-                  {
-                      Status_Id = x.status.Status_Id,
-                      Status_Type=x.status.Status_Type,
+            var statusObj = (from status in db.LegaSys_TaskStatus
+                             select new { status }).AsEnumerable()
+                   .Select(x => new TaskDetail
+                   {
+                       Status_Id = x.status.Status_Id,
+                       Status_Type = x.status.Status_Type,
                       //Status_Icon=x.status.Status_Icon
                   });
             return statusObj;
@@ -229,12 +225,12 @@ namespace LegaSysUOW.Repository
         public IEnumerable<TaskDetail> GetTaskPriority()
         {
             var priorityObj = (from priority in db.LegaSys_Priority
-                             select new { priority }).AsEnumerable()
+                               select new { priority }).AsEnumerable()
                    .Select(x => new TaskDetail
                    {
                        Priority_Id = x.priority.Priority_Id,
                        Priority_Type = x.priority.Priority_Type,
-                       
+
                    });
             return priorityObj;
 
@@ -245,25 +241,25 @@ namespace LegaSysUOW.Repository
         public IEnumerable<TaskDetail> GetTaskRisk()
         {
             var riskObj = (from risk in db.LegaSys_Risk
-                             select new { risk }).AsEnumerable()
+                           select new { risk }).AsEnumerable()
                    .Select(x => new TaskDetail
                    {
-                       Risk_Id= x.risk.Risk_Id,
+                       Risk_Id = x.risk.Risk_Id,
                        Risk_Type = x.risk.Risk_Type,
-                     
+
                    });
             return riskObj;
 
         }
 
-        
+
 
 
         //Method to get Activity of Task
         public IEnumerable<TaskDetail> GetTaskActivity()
         {
             var activityObj = (from activity in db.LegaSys_Activity
-                             select new { activity }).AsEnumerable()
+                               select new { activity }).AsEnumerable()
                    .Select(x => new TaskDetail
                    {
                        Activity_Id = x.activity.Activity_Id,
@@ -274,25 +270,25 @@ namespace LegaSysUOW.Repository
 
         }
 
-        
+
 
 
         //Method For Delet Project******SADHANA********
         public bool DeleteProjectTask(int id)
         {
-            var Subtask=db.LegaSys_ProjectSubTasks.FirstOrDefault(x => x.Project_Task_ID == id);
-             db.LegaSys_ProjectSubTasks.Remove(Subtask);
+            var Subtask = db.LegaSys_ProjectSubTasks.FirstOrDefault(x => x.Project_Task_ID == id);
+            db.LegaSys_ProjectSubTasks.Remove(Subtask);
             var Task = db.LegaSys_ProjectTasks.FirstOrDefault(x => x.ProjectTaskID == id);
             db.LegaSys_ProjectTasks.Remove(Task);
-           
-                //db.SaveChanges();
-         
+
+            //db.SaveChanges();
+
             return true;
 
         }
 
         public List<TaskDetail> GetAllTaskOfProject(int id)
-        {           
+        {
 
             try
             {
@@ -302,7 +298,7 @@ namespace LegaSysUOW.Repository
 
                     var result = db.Database
                         .SqlQuery<TaskDetail>("sp_GetAllTaskbyProjectId @projectId", projectIdParameter)
-                        .ToList();  
+                        .ToList();
                     return result;
                 }
             }

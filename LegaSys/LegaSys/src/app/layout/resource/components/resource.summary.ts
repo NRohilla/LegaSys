@@ -11,10 +11,11 @@ export class ResourceSummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
+    //debugger;
     this.resourceService.getResourceById(+localStorage.getItem('UserDetailID')).subscribe(
       suc => {
         this.resoursedetails = suc;
+        
       },
       err => {
         console.log(err);

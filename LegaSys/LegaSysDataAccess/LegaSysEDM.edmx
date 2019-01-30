@@ -61,6 +61,12 @@
           <Property Name="CoClient4" Type="varchar" MaxLength="50" />
           <Property Name="EmailID4" Type="varchar" MaxLength="100" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="100" />
+          <Property Name="ClientCountry" Type="varchar" MaxLength="50" />
+          <Property Name="ClientCountryZip" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyPhone" Type="varchar" MaxLength="50" />
+          <Property Name="ClientCompanyFax" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LegaSys_ClientStatus">
           <Key>
@@ -256,6 +262,7 @@
           <Property Name="Updated_By" Type="int" />
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Updated_Date" Type="datetime" />
+          <Property Name="IsResourceActive" Type="smallint" />
         </EntityType>
         <EntityType Name="LegaSys_Projects">
           <Key>
@@ -271,6 +278,8 @@
           <Property Name="Updated_By" Type="int" />
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Updated_Date" Type="datetime" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="End_Date" Type="datetime" />
         </EntityType>
         <EntityType Name="LegaSys_ProjectSubTasks">
           <Key>
@@ -343,12 +352,12 @@
             <PropertyRef Name="CertificationID" />
           </Key>
           <Property Name="CertificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserDetailID" Type="int" Nullable="false" />
-          <Property Name="Type" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="CertificateNumber" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Stream" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
-          <Property Name="Institution" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDetailID" Type="int" />
+          <Property Name="Type" Type="varchar" MaxLength="30" />
+          <Property Name="CertificateNumber" Type="varchar" MaxLength="30" />
+          <Property Name="Stream" Type="varchar" MaxLength="100" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Institution" Type="varchar" MaxLength="100" />
           <Property Name="Marks" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Created_By" Type="int" />
           <Property Name="Updated_By" Type="int" />
@@ -1057,6 +1066,12 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="LegaSys_Client_Projects" Relationship="Self.FK__LegaSys_C__Clien__7C4F7684" FromRole="LegaSys_ClientDetails" ToRole="LegaSys_Client_Projects" />
           <NavigationProperty Name="LegaSys_Projects" Relationship="Self.FK__LegaSys_O__ORG_C__48CFD27E" FromRole="LegaSys_ClientDetails" ToRole="LegaSys_Projects" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClientCountryZip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClientCompanyFax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LegaSys_ClientStatus">
           <Key>
@@ -1271,6 +1286,7 @@
           <Property Name="Created_Date" Type="DateTime" Precision="3" />
           <Property Name="Updated_Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="LegaSys_Projects" Relationship="Self.FK__LegaSys_O__ORG_P__4CA06362" FromRole="LegaSys_ProjectResources" ToRole="LegaSys_Projects" />
+          <Property Name="IsResourceActive" Type="Int16" />
         </EntityType>
         <EntityType Name="LegaSys_Projects">
           <Key>
@@ -1292,6 +1308,8 @@
           <NavigationProperty Name="LegaSys_ProjectResources" Relationship="Self.FK__LegaSys_O__ORG_P__4CA06362" FromRole="LegaSys_Projects" ToRole="LegaSys_ProjectResources" />
           <NavigationProperty Name="LegaSys_ProjectTasks" Relationship="Self.FK__LegaSys_O__ORG_P__5535A963" FromRole="LegaSys_Projects" ToRole="LegaSys_ProjectTasks" />
           <NavigationProperty Name="LegaSys_ProjectTechnology" Relationship="Self.FK__LegaSys_O__ORG_P__5812160E" FromRole="LegaSys_Projects" ToRole="LegaSys_ProjectTechnology" />
+          <Property Name="Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="End_Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="LegaSys_ProjectSubTasks">
           <Key>
@@ -2032,12 +2050,12 @@
             <PropertyRef Name="CertificationID" />
           </Key>
           <Property Name="CertificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserDetailID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="CertificateNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Stream" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
-          <Property Name="Institution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserDetailID" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CertificateNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Stream" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Institution" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Marks" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Created_By" Type="Int32" />
           <Property Name="Updated_By" Type="Int32" />
@@ -2091,6 +2109,12 @@
           <EntitySetMapping Name="LegaSys_ClientDetails">
             <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ClientDetails">
               <MappingFragment StoreEntitySet="LegaSys_ClientDetails">
+                <ScalarProperty Name="ClientCompanyFax" ColumnName="ClientCompanyFax" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="ClientCountryZip" ColumnName="ClientCountryZip" />
+                <ScalarProperty Name="ClientCountry" ColumnName="ClientCountry" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="ClientDetailID" ColumnName="ClientDetailID" />
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -2311,6 +2335,7 @@
           <EntitySetMapping Name="LegaSys_ProjectResources">
             <EntityTypeMapping TypeName="LegaSysModel.LegaSys_ProjectResources">
               <MappingFragment StoreEntitySet="LegaSys_ProjectResources">
+                <ScalarProperty Name="IsResourceActive" ColumnName="IsResourceActive" />
                 <ScalarProperty Name="ProjectResourceID" ColumnName="ProjectResourceID" />
                 <ScalarProperty Name="Resource_ID" ColumnName="Resource_ID" />
                 <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
@@ -2324,6 +2349,8 @@
           <EntitySetMapping Name="LegaSys_Projects">
             <EntityTypeMapping TypeName="LegaSysModel.LegaSys_Projects">
               <MappingFragment StoreEntitySet="LegaSys_Projects">
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

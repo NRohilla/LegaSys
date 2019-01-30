@@ -1,0 +1,108 @@
+<form #uSkillForm="ngForm" >
+<div class="bg-white">
+    <label><b>Primary SkillSet:</b> </label>
+    <mat-form-field style="margin-left:50px; margin-top:30px ;width:550px !important">
+       <!-- <mat-label>Primary Skill Set</mat-label> -->
+      <!-- <input matInput formControlName="PrimarySkillSet" [(ngModel)]="primaryskillSet" [matAutocomplete]="auto"> -->
+      <!-- <mat-hint>comma(,)seperated</mat-hint> -->
+
+     
+      <mat-chip-list #chipList [disabled]="disabled" >
+      <mat-chip  style="background-color: #17a2b8" selected *ngFor="let skill of pSkills" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(skill)" >
+      {{skill}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+      <input matInput
+      [formControl]="fCtrl"
+      required
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+      [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let tResponse of tResponses" [value]="tResponse">
+            {{tResponse}}
+          </mat-option>
+          
+        </mat-autocomplete>
+      </mat-chip-list>
+      <!-- <mat-error *ngIf="uSkillForm.controls.PrimarySkillSet.hasError('required')"> -->
+          <!-- <mat-error > -->
+          <!-- Primary SkillSet is required.  -->
+        <!-- <span [hidden]="!uQualificationForm.controls.inputGroup['PrimarySkillSet'].errors.required"> -->
+             
+          <!-- </span> -->  
+         <mat-error> Primary SkillSet is required</mat-error>
+         <!-- </mat-error> -->
+    </mat-form-field>
+  </div>
+  <!-- <mat-toolbar>
+      <span><strong>Selected Fruits ::</strong> {{fruits | json }}</span>
+    </mat-toolbar> -->
+  
+  <div class="bg-white">  
+      <label><b>Secondary SkillSet:</b> </label> 
+    <mat-form-field style="margin-left:35px; margin-top:30px ; width:550px !important" >
+      <!-- <mat-label>Secondary Skill Set</mat-label> -->
+      <!-- <input matInput formControlName="SecondarySkillSet" [(ngModel)]="secondaryskillSet" > -->
+      <!-- <mat-error *ngIf="uQualificationForm.controls.SecondarySkillSet.invalid">
+          <span [hidden]="!uQualificationForm.controls['SecondarySkillSet'].errors.required">
+              SecondarySkill Set is required.
+          </span>         
+        </mat-error> -->
+        <mat-chip-list #chipList1 [disabled]="disabled" >
+            <mat-chip *ngFor="let skill of sSkills" [selectable]="selectable"
+                   [removable]="removable" (removed)="remove1(skill)" >
+            {{skill}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+            <input matInput
+            [formControl]="fCtrl"
+            
+            [matChipInputFor]="chipList1"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add1($event)"
+            [matAutocomplete]="auto1">
+            <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected1($event)">
+              <mat-option *ngFor="let tResponse of tResponses2" [value]="tResponse">
+                {{tResponse}}
+              </mat-option>
+              
+            </mat-autocomplete>
+          </mat-chip-list>
+    </mat-form-field>
+  </div>
+
+  <!-- <div class="bg-white">
+    <label><b>Highest Qualification</b> </label>
+    <mat-form-field style=" margin-left: 50px;width:350px !important">
+      <mat-select formControlName="HQualification" [(ngModel)]="hqualification" (ngModelChange)="onChange($event)">
+        <mat-option *ngFor="let Qualif of ddlHQualification" [value]="Qualif.id">{{Qualif.name}}</mat-option> -->
+        <!-- <mat-error *ngIf="uQualificationForm.controls.inputGroup.hasError('required', 'HQualification')"> -->
+            <!-- <span [hidden]="!uQualificationForm.controls.inputGroup['HQualification'].errors.required"> -->
+                <!-- HQualification is required. -->
+            <!-- </span> -->
+           
+          <!-- </mat-error> -->
+      <!-- </mat-select>
+    </mat-form-field>
+  </div> -->
+  <div style=" background: #bee5eb; padding: 10px; float: left; width: 100%;">
+      <div *ngIf="disableFooter" class="float-right ml-2">
+        <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          Edit</button>
+           <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/resource']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
+      </div>
+      <div *ngIf="!disableFooter" class="float-right ml-2">
+        <button [disabled]="chipList.errorState"  mat-button class="btn btn-success float-right ml-3"  (click)="Save(uSkillForm)"><i class="fa fa-save"
+            aria-hidden="true"></i> Save</button>
+        <button mat-button class="btn btn-secondary"  (click)="discard()"><i class="fa fa-times" aria-hidden="true"></i>
+          Discard</button>
+      </div>
+  
+    </div>
+    <!-- <div>{{uSkillForm.value | json}}</div> -->
+</form>

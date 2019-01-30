@@ -26,6 +26,8 @@ export class ClientProfesionalDetailsComponent implements OnInit {
   disable: boolean=true;
   constructor(private formBuilder:FormBuilder) { }
   ngOnInit() {    
+    debugger;
+    console.log(this.currentClientDetails);
     this.CreateProfessionalDetailsForm();
     this.LoadProfessionalDetailsForm();
    // this.professionalDetailsForm.controls['companyName'].setValue('IBM');

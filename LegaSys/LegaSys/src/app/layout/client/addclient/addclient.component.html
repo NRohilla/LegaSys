@@ -5,7 +5,7 @@
     <div class="card-header bg-info">
             <mat-label class="labeltext text-white ">Client Information </mat-label>
         </div>
-<mat-vertical-stepper [linear]="isLinear" #stepper class="table-active">
+<mat-horizontal-stepper [linear]="isLinear" #stepper class="table-active">
     <mat-step [stepControl]="clientPersonalDetailsForm">
       <form [formGroup]="clientPersonalDetailsForm">
         <ng-template matStepLabel>Fill out client personal details</ng-template>
@@ -73,7 +73,7 @@
     
                 </div>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button class="btn btn-info mx-2" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -152,10 +152,27 @@
     
     
                 </div>
+                <div class="w-100 float-left">
+                    <!-- <form role="form"> -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                        <mat-form-field class="w-100">
+                            <input matInput placeholder="ZIP" formControlName="zip" name="zip" id="zip" maxlength="6" minlength="6">
+                            <mat-error *ngIf="clientProfestionalDetailsForm.controls['zip'].invalid">
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['zip'].errors.required">Email can not be empty</span>
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['zip'].errors.pattern">can contains only numbers</span>
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                   
+              
+                  
+    
+    
+                </div>
      
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button class="btn btn-info mx-2" matStepperPrevious>Back</button>
+          <button class="btn btn-info mx-2" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -163,7 +180,7 @@
     <mat-step [stepControl]="coClientForm">
             <form [formGroup]="coClientForm">
               <ng-template matStepLabel>Fill out Co Client  Details</ng-template>
-              <div formArrayName="coClientDetails">
+              <div formArrayName="coClientDetails" *ngIf="showCoClientForm">
                 <!-- Check the correct way to iterate your form array -->
                 <div *ngFor="let coClientDetail of coClientForm.controls.coClientDetails.controls; let i=index"  [formGroupName]="i">
                   <h4>Co Client {{ i + 1 }} </h4>
@@ -173,11 +190,9 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                     <mat-form-field class="w-100">
                                         <input matInput placeholder="Name" formControlName="Name" name="Name" id="Name">
-                                        <!-- <mat-error *ngIf="coClientDetail['Name'].invalid">
-                                            enter name
-                                           
-                                        </mat-error> -->
-                                    
+                                        <mat-error *ngIf="coClientDetail.controls.Name.invalid">
+                                           Contain only text
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
@@ -192,10 +207,9 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                     <mat-form-field class="w-100">
                                         <input matInput placeholder="Email" formControlName="email" name="email" id="email">
-                                        <!-- <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].invalid">
-                                                <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.required">Email can not be empty</span>
-                                                <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.pattern"> Please enter valid email</span>
-                                            </mat-error> -->
+                                        <mat-error *ngIf="coClientDetail.controls.email.invalid">
+                                            Please enter valid email Id
+                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
@@ -221,11 +235,10 @@
                                    
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                         <mat-form-field class="w-100">
-                                            <input matInput placeholder="Contact Number" formControlName="contactNo" name="contactNo" id="contactNo" maxlength="11"> 
-                                            <!-- <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].invalid">
-                                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.required">Contact can not be empty</span>
-                                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.pattern"> Contact number can only contain numbers</span>
-                                                </mat-error> -->
+                                            <input matInput placeholder="Contact Number" formControlName="contactNo" name="contactNo" id="contactNo" maxlength="10" minlength="10"> 
+                                            <mat-error *ngIf="coClientDetail.controls.contactNo.invalid">
+                                                Can cointain only numbers
+                                             </mat-error>
                                         </mat-form-field>
                                     </div>
                                     <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
@@ -249,10 +262,11 @@
                         </div>
                         </div>
                       </form>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button matStepperNext>Next</button>
-                      <button *ngIf="CheckFlag()"mat-button (click)="AddNewCoCLientForm()">Add New Co Client</button>
-                      <button mat-button *ngIf="flag!=0" (click)="deleteRow(i)">Remove</button>
+                      <button matStepperPrevious class="btn btn-info mx-2">Back</button>
+                      <button matStepperNext class="btn btn-info mx-2">Next</button>
+                      <button  *ngIf="!showCoClientForm" (click)="ShowCoClient()" class="btn btn-info mx-2"> Add Co Client</button>
+                        <button  *ngIf="showCoClientForm && CheckFlag()" (click)="AddNewCoCLientForm()" class="btn btn-info mx-2">Add another Co Client</button>
+                                <button  *ngIf="showCoClientForm && flag>=0" (click)="deleteRow(i)" class="btn btn-info mx-2"> Remove Co Client</button>
                     </mat-step>
          
     
@@ -260,11 +274,11 @@
       <ng-template matStepLabel>Done</ng-template>
       You are now done.
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button matStepperPrevious class="btn btn-info mx-2">Back</button>
+        <button (click)="stepper.reset()" class="btn btn-info mx-2">Reset</button>
       </div>
     </mat-step>
-  </mat-vertical-stepper>
+  </mat-horizontal-stepper>
   <div class="w-100 float-left table-info px-4 py-2 text-right footer-height">
         <div class="px-2 float-right">
             <button mat-button class="btn btn-info" [routerLink]="['/client']"><i class="fa fa-backward"

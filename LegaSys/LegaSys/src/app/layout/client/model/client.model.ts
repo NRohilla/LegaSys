@@ -37,12 +37,13 @@ export class ClientProject{
        Updated_Date:Date;
        Start_Date:Date;
        End_Date:Date;
+       No_of_resource:number;
      
  }
  export class CoClientModal{
      Name:string;
      Email:string;
-     ContactNo:string;
+     Phone:string;
      Address:string;
      Country:string;
      CoClientID:number;
@@ -51,5 +52,5 @@ export class ClientProject{
      Created_Date:Date;
      Updated_By:number;
      Updated_Date:Date;
-     
+     IsActive:boolean;
 }

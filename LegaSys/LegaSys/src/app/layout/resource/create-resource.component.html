@@ -1,3 +1,5 @@
+
+
 <div>
   <app-page-header [heading]="'Add Resource'" [icon]="'fa fa-fw fa-users'"></app-page-header>
 </div>
@@ -50,9 +52,9 @@
             <span [hidden]="!resourceForm.controls['lastname'].errors.maxlength">
               Maximum allowed characters are 25.
             </span>
-            <span [hidden]="!resourceForm.controls['lastname'].errors.pattern ">
+            <!-- <span [hidden]="!resourceForm.controls['lastname'].errors.pattern ">
               Special characters and numbers are not allowed.
-            </span>
+            </span> -->
           </mat-error>
         </mat-form-field>
       </div>
@@ -60,20 +62,20 @@
     <div class="row">
       <div class="col-md-4">
         <mat-form-field style="width:350px !important">
-          <input matInput placeholder="Total Experience" formControlName="totalexp" required>
+          <input matInput placeholder="Total Experience" formControlName="totalexp" required type="number" pattern="[0-9/.]+">
           <mat-error *ngIf="resourceForm.controls.totalexp.invalid">
             <span [hidden]="!resourceForm.controls['totalexp'].errors.required">
               Total Experience is required.
             </span>
             <span [hidden]="!resourceForm.controls['totalexp'].errors.pattern">
-              Only positive numbers allowed from 0-60.
+              Only number is allowed.
             </span>
           </mat-error>
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field style="width:350px !important">
-          <input matInput placeholder="Email" formControlName="emailId" email required>
+          <input matInput placeholder="Email" formControlName="emailId" email required (keyup)="emailExists()">
           <!-- <mat-error *ngIf="emailId.invalid">{{getErrorMessage()}}</mat-error> -->
           <mat-error *ngIf="resourceForm.controls.emailId.invalid ">
             <span [hidden]="!resourceForm.controls['emailId'].errors.required">
@@ -89,13 +91,13 @@
       </div>
       <div class="col-md-4">
         <mat-form-field style="width:350px !important">
-          <input matInput placeholder="Mobile" formControlName="mobile" type="number" required>
-          <mat-error *ngIf="resourceForm.controls.mobile.invalid ">
-            <span [hidden]="!resourceForm.controls['mobile'].errors.required">
+          <input matInput placeholder="Mobile" formControlName="mobilenumber"  required>
+          <mat-error *ngIf="resourceForm.controls.mobilenumber.invalid ">
+            <span [hidden]="!resourceForm.controls['mobilenumber'].errors.required">
               Mobile No is required
-            </span>
+            </span> 
 
-            <mat-error *ngIf="resourceForm.controls['mobile'].errors.pattern ">Mobile No must be 10 digit long</mat-error>
+            <mat-error *ngIf="resourceForm.controls['mobilenumber'].errors.pattern ">Mobile No must be 10 digit long</mat-error>
           </mat-error>
 
         </mat-form-field>
@@ -155,8 +157,13 @@
           Back</button>
       </div> -->
       <!-- <button class="btn btn-info" [disabled]="!clientForm.valid"><i class="fa fa-paper-plane" aria-hidden="true"></i> Submit</button> -->
-      <button class="btn btn-info mat-button" type="submit" [disabled]="!resourceForm.valid" mat-raised-button><i class="fa fa-save"
+    
+      <button class="btn btn-info mat-button mr-3" type="submit" [disabled]="!resourceForm.valid" mat-raised-button><i class="fa fa-save"
           aria-hidden="true"></i> Add Resource</button>
-    </div>
+          <button mat-button class="btn btn-secondary mr-4" type="reset"  ><i class="fa fa-times-circle" aria-hidden="true"></i> Cancel</button>
+
+          <button mat-button class="btn btn-secondary ml-3 " [routerLink]="['/resource']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
+         
+        </div>
   </div>
 </form>

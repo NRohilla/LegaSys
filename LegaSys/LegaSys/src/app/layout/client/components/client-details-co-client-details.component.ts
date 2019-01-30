@@ -1,8 +1,8 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { CurrentClientdataServiceService } from '../../../current-clientdata-service.service';
 import { ClientServiceService } from '../client-service.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
-import { Client } from '../model/client.model';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from "@angular/forms";
+import { Client, CoClientModal } from '../model/client.model';
 
 @Component({
   selector: 'app-client-details-co-client-details',
@@ -21,6 +21,8 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   coClientForm: FormGroup;// this is form group for co client 
   client: Client; // This is model of client
   readOnly: boolean = true;
+  showCoClientForm:boolean=false;
+  flag:number=0;
   constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService, private formBuilder: FormBuilder) {
 
   }
@@ -45,10 +47,26 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   }
   /***** This function is used to update details of a client, following fucntion is emiting a event  */
   UpdateClient() {
-    this.currentClientDetails.CoClient = this.coClientForm.controls['coClient'].value;
-    this.currentClientDetails.CoClient2 = this.coClientForm.controls['coClient2'].value;
-    this.currentClientDetails.CoClient3 = this.coClientForm.controls['coClient3'].value;
-    this.currentClientDetails.CoClient4 = this.coClientForm.controls['coClient4'].value;
+    debugger;
+    var arrayControl = this.coClientForm.get('coClientDetails') as FormArray;
+    for(var j=0;j<arrayControl.length;j++){
+      console.log(arrayControl.controls[j].value);
+      if(j<this.currentClientDetails.CoClientDetails.length && this.currentClientDetails.CoClientDetails[j].IsActive!=false){
+        this.currentClientDetails.CoClientDetails[j].Name=arrayControl.controls[j].value.Name
+        this.currentClientDetails.CoClientDetails[j].Address=arrayControl.controls[j].value.Address
+        this.currentClientDetails.CoClientDetails[j].Phone=arrayControl.controls[j].value.contactNo
+        this.currentClientDetails.CoClientDetails[j].Email=arrayControl.controls[j].value.email
+      }
+      else{
+        let formArrayValue=new CoClientModal();
+              formArrayValue.Name=arrayControl.controls[j].value.Name;
+        formArrayValue.Address=arrayControl.controls[j].value.Address;
+        formArrayValue.Email=arrayControl.controls[j].value.email;
+        formArrayValue.Phone=arrayControl.controls[j].value.contactNo;
+        this.currentClientDetails.CoClientDetails.push(formArrayValue);
+      }
+     }
+     console.log(this.currentClientDetails);
     this.onClientDetailsChange.emit(this.currentClientDetails);
     this.MakeFieldEditable();
   }
@@ -99,18 +117,107 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
     }
   }
   ngOnInit() {
+    debugger;
     if (this.currentClientDetails) {
-      this.CreateCoClientForm();
-      this.LoadCoClientForm();
-      this.coClientForm.markAsTouched();
+      console.log(this.currentClientDetails);
+      this.coClientForm=this.formBuilder.group({
+        coClientDetails:this.formBuilder.array([this.InitCoClientForm()])
+      });
+       if(this.currentClientDetails.CoClientDetails.length>0){
+         this.showCoClientForm=true;
+         this.LoadCoClientForm();
+
+       }
+      
+      // this.CreateCoClientForm();
+      // this.LoadCoClientForm();
+      // this.coClientForm.markAsTouched();
     }
   }
   /********** Writen on 27 Nov 2018 **/
   LoadCoClientForm() {
-    this.coClientForm.controls['coClient'].setValue(this.currentClientDetails.CoClient);
-    this.coClientForm.controls['coClient2'].setValue(this.currentClientDetails.CoClient2);
-    this.coClientForm.controls['coClient3'].setValue(this.currentClientDetails.CoClient3);
-    this.coClientForm.controls['coClient4'].setValue(this.currentClientDetails.CoClient4);
+    debugger;
+    var arrayControl = this.coClientForm.get('coClientDetails') as FormArray;
+   for(var j=0;j<this.currentClientDetails.CoClientDetails.length;j++){
+    //
+    arrayControl.controls[j].setValue({Name:this.currentClientDetails.CoClientDetails[j].Name,Address:this.currentClientDetails.CoClientDetails[j].Address,
+      contactNo:this.currentClientDetails.CoClientDetails[j].Phone,email:this.currentClientDetails.CoClientDetails[j].Email.trim()});
+    if(j!=(this.currentClientDetails.CoClientDetails.length-1)){
+      this.AddNewCoCLientForm();
+    }
+    
+    //console.log(arrayControl.controls[j].value);
+    // =this.currentClientDetails.CoClientDetails[j].Name;
+    // console.log(arrayControl.controls[j].value);
+    //   let formArrayValue=new CoClientModal();
+    //   formArrayValue.Name=arrayControl.controls[j].value.Name;
+    //   formArrayValue.Address=arrayControl.controls[j].value.Address;
+    //   formArrayValue.Email=arrayControl.controls[j].value.email;
+    //   formArrayValue.ContactNo=arrayControl.controls[j].value.contactNo;
+    //   this.clientDetails.CoClientDetails.push(formArrayValue);
+  
+
+   }
   }
+/****** Writen on 28 Jan 2019 ************/
+/***** Following Function will be used for hidding/showing Co Clinet Form  */
+ShowCoClient(){
+  if(this.showCoClientForm){
+    this.showCoClientForm=false;
+  }else{
+    this.showCoClientForm=true;
+  }
+
+}
+InitCoClientForm(){
+  return this.formBuilder.group({
+    Name:['',Validators.pattern('^[a-zA-Z ]+$')],
+    email:['',Validators.email],
+    Address:[''],
+    contactNo:['',Validators.pattern('^[0-9 ]+$')]
+  });
+}
+AddNewCoCLientForm(){
+  if(this.flag>4){}
+  const control = <FormArray>this.coClientForm.controls['coClientDetails'];
+    // add new formgroup
+    control.push(this.InitCoClientForm());
+    this.flag+=1;
+
+}
+
+deleteRow(index: number) {
+  debugger;
+  // control refers to your formarray
+  const control = <FormArray>this.coClientForm.controls['coClientDetails'];
+  // remove the chosen row
+  control.removeAt(index);
+  if(this.currentClientDetails.CoClientDetails.length>0){
+    this.currentClientDetails.CoClientDetails[this.currentClientDetails.CoClientDetails.length-1].IsActive=false;
+  }
+  
+  this.flag-=1;
+  if(this.flag==-1){
+    this.showCoClientForm=false;
+  }
+
+}
+CheckFlag(){
+  
+  if(this.flag==3){
+    return false;
+  }else if(this.flag==-1){
+    this.showCoClientForm=false;
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+show(coClientDetail:any){
+  debugger;
+console.log(coClientDetail);
+}
+
 
 }

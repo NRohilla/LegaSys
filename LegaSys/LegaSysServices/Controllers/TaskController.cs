@@ -91,7 +91,7 @@ namespace LegaSysServices.Controllers
         }
 
 
-      
+
 
 
 
@@ -151,28 +151,28 @@ namespace LegaSysServices.Controllers
         {
             _Taskdt.DeleteProjectTask(id);
 
-            return Json(new { success=true });
+            return Json(new { success = true });
 
         }
 
-       
+
 
         //method to upload Attachment of SubTask on server
 
         [HttpPost]
 
         [Route("attachment/create")]
-        public string addAttechmentonServer()
-        {
-            var httpRequest = HttpContext.Current.Request;
-            var postedFile = httpRequest.Files[0];
-            var attechmentPath =  _uOWSubTask.addAttechmentonServer(postedFile);
+        //public string addAttechmentonServer()
+        //{
+        //    var httpRequest = HttpContext.Current.Request;
+        //    var postedFile = httpRequest.Files[0];
+        //    var attechmentPath =  _uOWSubTask.addAttechmentonServer(postedFile);
 
-            return (attechmentPath);
-        }
+        //    return (attechmentPath);
+        //}
 
 
-       // method to get status of task
+        // method to get status of task
         [HttpGet]
         [Route("task/getstatus")]
         public IHttpActionResult GetTaskStatus()

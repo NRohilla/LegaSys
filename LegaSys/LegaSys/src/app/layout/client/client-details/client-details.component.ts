@@ -83,8 +83,9 @@ export class ClientDetailsComponent implements OnInit {
     
     this.clientService.GetClientAllProject(id).subscribe(
       (suc:any)=>{    
+        debugger;
         if(suc.success){
-          debugger;
+       
             this.clientProjectsList=suc.data;
         }             
       }

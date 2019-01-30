@@ -8,28 +8,62 @@ namespace LegaSysDataEntities
 {
     public class SubTaskDetail
     {
-       
-            public int ProjectSubTaskID { get; set; }
-            public string SubTask_Title { get; set; }
-            public string SubTask_Description { get; set; }
-            public int? Attachment_ID { get; set; }
-            public int? Project_Task_ID { get; set; }
-            public Nullable<int> SubTask_Created_By { get; set; }
-            public Nullable<int> SubTask_Updated_By { get; set; }
-            public Nullable<System.DateTime> SubTask_Created_Date { get; set; }
-            public Nullable<System.DateTime> SubTask_Updated_Date { get; set; }
-            public string TaskTitle { get; set; }
-            public string Description { get; set; }
-            public Nullable<int> ProjectTask_Created_By { get; set; }
-            public Nullable<int> ProjectTask_Updated_By { get; set; }
-            public Nullable<System.DateTime> ProjectTask_Created_Date { get; set; }
-            public Nullable<System.DateTime> projectTask_Updated_Date { get; set; }
-            public string AttachmentPath { get; set; }
-            public string AttachmentType { get; set; }
-            public int Project_ID { get; set; }
-           public string Project_Title { get; set; }
-            public int? AttachmentTypeID { get; set; }
-            public string AttachmentName { get; set; }  
+
+        public int ProjectSubTaskID { get; set; }
+        public string SubTask_Title { get; set; }
+        public string SubTask_Description { get; set; }
+        public int? Attachment_ID { get; set; }
+        public int? Project_Task_ID { get; set; }
+        public Nullable<int> SubTask_Created_By { get; set; }
+        public Nullable<int> SubTask_Updated_By { get; set; }
+        public Nullable<System.DateTime> SubTask_Created_Date { get; set; }
+        public Nullable<System.DateTime> SubTask_Updated_Date { get; set; }
+        public string TaskTitle { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> ProjectTask_Created_By { get; set; }
+        public Nullable<int> ProjectTask_Updated_By { get; set; }
+        public Nullable<System.DateTime> ProjectTask_Created_Date { get; set; }
+        public Nullable<System.DateTime> projectTask_Updated_Date { get; set; }
+        public string AttachmentPath { get; set; }
+        public string AttachmentType { get; set; }
+        public int Project_ID { get; set; }
+        public string Project_Title { get; set; }
+        public int? AttachmentTypeID { get; set; }
+        public string AttachmentName { get; set; }
+        public int? Status_Id { get; set; }
+
+        public string SubTaskStatus_Type { get; set; }
+
+        public string SubTask_Status_Icon { get; set; }
+
+        public int? Priority_Id { get; set; }
+
+        public string SubTask_Priority { get; set; }
+
+
+        public int? Risk_Id { get; set; }
+
+        public string SubTask_Risk { get; set; }
+
+        public int? Activity_Id { get; set; }
+
+        public string SubTask_Activity { get; set; }
+
+        public string Acceptance_Criteria { get; set; }
+
+        public int? Task_Assigne_Id { get; set; }
+
+        public string SubTask_AssignTo { get; set; }
+
+        public Nullable<System.DateTime> SubTaskTarget_Date { get; set; }
+        public Nullable<System.DateTime> SubTaskStart_Date { get; set; }
+
+        public Nullable<double> SubTaskOriginal_Estimate { get; set; }
+
+        public Nullable<double> Remaining { get; set; }
+
+        public Nullable<double> Completed { get; set; }
+
 
 
 

@@ -1,11 +1,38 @@
 <!--*********************Code for Sub Task Module********************-->
 <!-- <div class="card"> -->
-<!-- Filtering The Table -->
 
+
+  <!-- Lebel for Project Tittle,Task Tittle ,Task Description -->
+  <form [formGroup]="LebalForm">
+      <div class="example-container" style="padding-left:10px;padding-right: 10px;">    
+         
+            <div class="row">
+                <div class="col-md-4">
+                   <mat-form-field class="w-100">
+                        
+                             <mat-label style ="font-weight:bold;font-size:15px;color: black">Project Title</mat-label>
+                                <input matInput placeholder="Project Title" formControlName=Project_ID  [readonly]="true">
+                       
+                     </mat-form-field>
+                 </div>
+                 <div class="col-md-4">
+                   <mat-form-field class="w-100">
+                       
+                              <mat-label style ="font-weight:bold;font-size:15px;color: black">Task Title</mat-label>
+                                  <input matInput placeholder="Task Title" formControlName=taskTitle  [readonly]="true">  
+                   </mat-form-field>
+                </div>
+             </div>
+       
+        </div>
+  </form>
+  
+<!-- Filtering The Table -->
+<div class="col-md-3">
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
 </mat-form-field>
-
+</div>
 
 <!-- Code for Spinning Bar -->
 <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
@@ -13,15 +40,6 @@
 
   </mat-progress-spinner>
 </mat-card>
-
-
-
-<!-- 
-Lebel for Project Tittle,Task Tittle ,Task Description -->
-
-
-
-
 
 
 <!-- table-active -->
@@ -38,41 +56,73 @@ Lebel for Project Tittle,Task Tittle ,Task Description -->
 
   <!-- SubTask Description column -->
   <ng-container matColumnDef="SubTask_Description">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Sub
-        Task Description</span>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Description</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.SubTask_Description}} </mat-cell>
   </ng-container>
 
-  <!-- Task Title Coloumn -->
-  <ng-container matColumnDef="TaskTitle">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Task
-      </span>
+  <!-- Task Assingn to column-->
+  <ng-container matColumnDef="SubTask_AssignTo">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Assign To</span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.SubTask_AssignTo}} </mat-cell>
+    </ng-container> 
+  
+  
+     <!-- Task Status column -->
+    <ng-container matColumnDef="SubTask_Status">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Status</span>
+        </mat-header-cell>
+        <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
+        <mat-cell *matCellDef="let element"> {{element.Status_Id}} </mat-cell>
+       
+      </ng-container>
+  
+    
+  
+  <!-- SubTask Priority Coloumn -->
+      <ng-container matColumnDef="SubTask_Priority">
+          <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Priority</span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Priority_Id}} </mat-cell>
+        </ng-container>
+  
+    
+  
+  <!-- SubTask Project Activity Area Coloumn -->
+  <ng-container matColumnDef="SubTask_Activity">
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Activity</span>
+      </mat-header-cell>
+       <mat-cell *matCellDef="let element">{{element.Activity_Id}} </mat-cell> 
+    </ng-container>
+  
+  
+    <!-- SubTask Created Date Coloumn-->
+    <ng-container matColumnDef="SubTaskStart_Date">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Start Date</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.SubTaskStart_Date|date}} </mat-cell>
+      </ng-container> 
+  
+  <!-- SubTask Project Target Date Coloumn -->
+  <ng-container matColumnDef="SubTaskTarget_Date">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Target Date</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.TaskTitle}} </mat-cell>
+    <mat-cell *matCellDef="let element">{{element.SubTaskTarget_Date|date}} </mat-cell>
   </ng-container>
-
-  <!-- Task Description Coloumn -->
-  <ng-container matColumnDef="Description">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Task
-        Description </span>
+  
+  <!-- SubTask OriginAL Estimate Coloumn -->
+  <ng-container matColumnDef="SubTaskOriginal_Estimate">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class= "text-white font-14">Original Estimate</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+    <mat-cell *matCellDef="let element">{{element.SubTaskOriginal_Estimate}}</mat-cell>
   </ng-container>
-
-
-  Project Title Coloumn
-  <ng-container matColumnDef="Project_Title">
-    <mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white font-14">Project</span>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.Project_Title}} </mat-cell>
-  </ng-container> 
 
   <!-- Project SubTaskTitle ID -->
   <ng-container matColumnDef="ProjectSubTaskID">
     <mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white font-14">Subtaskid</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.ProjectSubTaskID}} </mat-cell>
+    <mat-cell *matCellDef="let element">{{element.ProjectSubTaskID}} </mat-cell>
   </ng-container>
 
 
@@ -80,22 +130,21 @@ Lebel for Project Tittle,Task Tittle ,Task Description -->
   <!--These Buttons are Use to Edit Record and Delete-->
 
   <ng-container matColumnDef="Action">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">
-      </span>
-    </mat-header-cell>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">  </span>
+      </mat-header-cell>
+    
+      <mat-cell *matCellDef="let element"><button (click)="ViewTask(element.ProjectTaskID)" style="line-height: 28px;"  mat-button class="mat-button btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-    <mat-cell *matCellDef="let element">
-      <button mat-button class="btn btn-danger mx-1"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
-    </mat-cell>
-  </ng-container>
-
+        <button mat-button class="btn btn-danger mx-1 mat-button" (click)="deleteTask(element.ProjectTaskID)" style="line-height: 28px;" ><i class="fa fa-times"  aria-hidden="true"></i></button>  </mat-cell> 
+    </ng-container>
+  
   <!-- Select Table Row Data -->
   <mat-header-row *matHeaderRowDef="displayedColumns">
 
   </mat-header-row>
 
   <!-- //Select Row Values -->
-  <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.ProjectSubTaskID}"
+  <mat-row *matRowDef="let row; columns: displayedColumns;" style="min-height:36px;" [ngClass]="{'highlight': selectedRowIndex == row.ProjectSubTaskID}"
     (click)="highlight(row)">
   </mat-row>
 

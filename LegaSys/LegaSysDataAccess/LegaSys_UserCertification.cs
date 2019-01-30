@@ -15,11 +15,11 @@ namespace LegaSysDataAccess
     public partial class LegaSys_UserCertification
     {
         public int CertificationID { get; set; }
-        public int UserDetailID { get; set; }
+        public Nullable<int> UserDetailID { get; set; }
         public string Type { get; set; }
         public string CertificateNumber { get; set; }
         public string Stream { get; set; }
-        public int Year { get; set; }
+        public Nullable<int> Year { get; set; }
         public string Institution { get; set; }
         public Nullable<decimal> Marks { get; set; }
         public Nullable<int> Created_By { get; set; }

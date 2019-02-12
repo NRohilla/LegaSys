@@ -17,7 +17,7 @@ export class ResourceComponent implements OnInit {
     isLoading=true;
     dataSource: any = [];
 
-    displayedColumns: string[] = ['FullName', 'TotalExp', 'EmailId', 'Shift', 'Location_ID', 'ReportingHead_ID', 'Action'];
+    displayedColumns: string[] = ['Firstname', 'TotalExp', 'EmailId', 'Shift', 'Location_ID', 'ReportingHead_ID', 'Action'];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;

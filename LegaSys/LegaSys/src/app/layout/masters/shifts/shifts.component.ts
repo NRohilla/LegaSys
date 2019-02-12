@@ -12,7 +12,7 @@ import { Title } from '@angular/platform-browser';
 })
 
 export class ShiftsComponent implements OnInit {
-
+  value:any;
   shiftForm = new FormGroup({
     weekOff1: new FormControl('', [Validators.required]), //Validators.email
     weekOff2: new FormControl(''),

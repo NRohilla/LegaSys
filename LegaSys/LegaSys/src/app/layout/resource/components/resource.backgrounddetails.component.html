@@ -64,10 +64,10 @@
   </mat-table>
 
 </div>
-<form [formGroup]="uBackgrndForm" #formDirective="ngForm" (ngSubmit)="addExperience(uBackgrndForm, formDirective)">
+<form [formGroup]="uBackgrndForm" >
   <div *ngIf="isAddItem">
     <mat-accordion>
-      <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel [expanded]="true" [disabled]="true"  >
        
         <mat-expansion-panel-header>
           <mat-panel-title style="font-size: smaller;color: steelblue">
@@ -81,7 +81,7 @@
 
           <div class="col-xl-3">
             <mat-form-field style="width:300px">
-              <input matInput placeholder="Company Name" formControlName="CompanyName" class="text-uppercase"  >
+              <input matInput placeholder="Company Name" formControlName="CompanyName" class="text-uppercase" (change)="CheckForWhiteSpace('CompanyName')" >
               <mat-error *ngIf="uBackgrndForm.controls.CompanyName.invalid">
                 <span [hidden]="!uBackgrndForm.controls['CompanyName'].errors.required">
                   Company Name is required.
@@ -93,7 +93,7 @@
                  Only Alphebets allowed
                 </span> -->
                 <mat-error *ngIf="uBackgrndForm.controls['CompanyName'].errors.pattern">
-                  Only Letters allowed!!!
+                  Numbers, Special characters or Whitespace not allowed!!!
                 </mat-error> 
               </mat-error>
              
@@ -101,7 +101,7 @@
           </div>
           <div class="col-xl-3">
             <mat-form-field style="width:300px">
-              <input matInput placeholder="Designation" formControlName="Designation" class="text-uppercase">
+              <input matInput placeholder="Designation" formControlName="Designation" class="text-uppercase" (change)="CheckForWhiteSpace('Designation')">
               <mat-error *ngIf="uBackgrndForm.controls.Designation.invalid">
                 <span [hidden]="!uBackgrndForm.controls['Designation'].errors.required">
                   Designation is required.
@@ -110,7 +110,7 @@
                   Maximum allowed characters are 50.
                 </span>
                 <mat-error *ngIf="uBackgrndForm.controls['Designation'].errors.pattern">
-                  Only Letters allowed!!!
+                  Numbers, Special characters or Whitespace not allowed!!!
                 </mat-error> 
               </mat-error>
             </mat-form-field>
@@ -158,10 +158,10 @@
             
           </div>
           <div class="col-xl-1">
-            <button [disabled]="!uBackgrndForm.valid" type="submit" class="btn btn-info float-right" ><i class="fa fa-plus" aria-hidden="true" ></i>{{formType}} Experience</button>
+            <button [disabled]="!uBackgrndForm.valid" type="button" class="btn btn-info float-right" (click)="addExperience(uBackgrndForm, formDirective)"><i class="fa fa-plus" aria-hidden="true" ></i>{{formType}} Experience</button>
           </div>
           <div class="col-xl-1">
-            <button type="reset" class="btn btn-secondary" (click)="formReset(uBackgrndForm, formDirective);"><i class="fa fa-times" aria-hidden="true"></i>Cancel</button>
+            <button type="reset" class="btn btn-secondary" (click)="formReset(uBackgrndForm, formDirective);"><i class="fa fa-times" aria-hidden="true"></i>Reset</button>
           </div>
         </div>
       </mat-expansion-panel>
@@ -180,16 +180,16 @@
 
   <div style=" background: #bee5eb; padding: 10px; float: left;
   width: 100%;">
-    <div *ngIf="disableFooter" class="float-right">
-      <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        Add New</button>
-        <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/resource']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
-    </div>
+    <div *ngIf="disableFooter">
+      <!-- <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Add New</button> -->
+        <button mat-button class="btn btn-secondary float-right ml-3" [routerLink]="['/resource']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
+    <!-- </div> -->
 
 
-    <div *ngIf="!disableFooter" class="float-right ml-2">
-      <button *ngIf="disableSave" type="submit" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save" aria-hidden="true" ></i>Submit</button>
-      <button mat-button class="btn btn-secondary" (click)="discard()"><i class="fa fa-times" aria-hidden="true" ></i>
+    <!-- <div *ngIf="!disableFooter" class="float-right ml-2"> -->
+      <button *ngIf="disableSave" type="button" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save" aria-hidden="true" ></i>Submit</button>
+      <button type="button" mat-button class="btn btn-secondary float-right ml-2" (click)="discard()"><i class="fa fa-times" aria-hidden="true" ></i>
         Discard</button>
     </div>
     <!-- <div *ngIf="!disable" class="float-right ml-2">

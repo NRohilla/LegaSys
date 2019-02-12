@@ -2,8 +2,8 @@
 <div>
     <app-page-header [heading]="'Resources'" [style]="'background-color:lightgrey'" [icon]="'fa fa-fw fa-users'"></app-page-header>
     <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="value" placeholder="Filter">
-        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; applyFilter('');">
+        <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Filter">
+        <button mat-button  matSuffix mat-icon-button aria-label="Clear" >
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -25,10 +25,10 @@
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="FullName">
+    <ng-container matColumnDef="Firstname">
         <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Name</span>
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Firstname+ ' '+element.Middlename+' '+element.Lastname}}
+        <mat-cell *matCellDef="let element"> {{element.Firstname+' '+element.Middlename+' '+element.Lastname}}
         </mat-cell>
     </ng-container>
 
@@ -40,9 +40,9 @@
     </ng-container>
     <!-- EmailId Column -->
     <ng-container matColumnDef="EmailId">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Email</span>
+        <mat-header-cell class="bg-info" style="flex: 0 0 350px;" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Email</span>
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.EmailId}} </mat-cell>
+        <mat-cell *matCellDef="let element" style="flex: 0 0 350px;"> {{element.EmailId}} </mat-cell>
     </ng-container>
     <!-- Shift Column -->
     <ng-container matColumnDef="Shift">

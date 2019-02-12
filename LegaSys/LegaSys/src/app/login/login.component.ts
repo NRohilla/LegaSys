@@ -12,6 +12,8 @@ import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
+    userName:any;
+    password:any;
     constructor(public router: Router,
         private loginServiceOb: LoginService,
         @Inject(SESSION_STORAGE) private storage: StorageService

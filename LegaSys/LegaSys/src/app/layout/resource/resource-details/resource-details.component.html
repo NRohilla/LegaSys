@@ -1,5 +1,5 @@
 <app-page-header [heading]="'Resource Details'" [icon]="'fa fa-info-circle'"></app-page-header>
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
   <mat-tab label="Summary">
     <app-resource-summary> </app-resource-summary>
   </mat-tab>

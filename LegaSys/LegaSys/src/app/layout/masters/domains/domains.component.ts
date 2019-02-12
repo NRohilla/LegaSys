@@ -11,7 +11,7 @@ import { DomainsService } from './domains.service';
   styleUrls: ['./domains.component.scss']
 })
 export class DomainsComponent implements OnInit {
-
+  value:any;
   domainForm = new FormGroup({
     domainName: new FormControl('', [Validators.required, Validators.maxLength(100)])
   });

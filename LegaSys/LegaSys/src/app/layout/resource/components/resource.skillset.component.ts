@@ -195,7 +195,7 @@ export class ResourceSkillsetComponent implements OnInit {
     debugger;
    // this.primaryskillSet=this.globalresponse.PrimarySkillSet;
     //this.primaryskillSet=this.primaryskillSet.split(/;|,|\n/).forEach(value => {
-      this.primaryskillSet=    this.globalresponse.PrimarySkillSet.split(/;|,|\n/).forEach(value => {
+      this.primaryskillSet=this.globalresponse.PrimarySkillSet.split(/;|,|\n/).forEach(value => {
         if(value.trim()){
         this.pSkills.push(value.trim());
        

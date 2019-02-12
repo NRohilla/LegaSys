@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ResourceService } from '../resource.service';
-import { MatTableDataSource } from '@angular/material';
-import { FormGroup, FormGroupDirective, FormBuilder, Validators } from '@angular/forms';
+import { MatTableDataSource, MatSort, MatSortable } from '@angular/material';
+import { FormGroup, FormGroupDirective, FormBuilder, Validators, AbstractFormGroupDirective } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material';
 import { Router, RouterLinkWithHref } from '@angular/router';
@@ -9,6 +9,7 @@ import { toDate } from '@angular/common/src/i18n/format_date';
 import { from } from 'rxjs';
 import { TosterService } from '../../../shared/services/toster.service';
 import { Resource } from '../resource.model';
+import { formDirectiveProvider } from '@angular/forms/src/directives/ng_form';
 //import { start } from 'repl';
 
 @Component({
@@ -22,16 +23,16 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
   tottalExpm: any = 0;
   tottalExpd: any = 0;
   userDetailId: number;
-  showExp: boolean = false;
+  showExp: boolean = false;//show data table
   selected: any = 'false';
-  isExp: boolean = true;
+  isExp: boolean = false;//disable/enable yes/no
   cYear: number;
   cmonth: number;
   cday: number;
   backgroundDetails = new MatTableDataSource<UserBackgrnd>();
   currentExp: any;
   backup: any;
-  isAddItem: boolean = false;
+  isAddItem: boolean = true;//show expo panel
   disableFooter: boolean = true;
   uBackgrndForm: any;
   inputuBackgrnd: UserBackgrnd;
@@ -51,65 +52,78 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
   minDate=new Date(1990,0,1);
   monthDay: number[] = [31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; 
   todayDate=new Date;
-  panelOpenState=false;
+  panelOpenState=true;
+  isDisabled=true;
+  hideDiscard:boolean=true;
+  backupexp:any;
+  @ViewChild(MatSort) sort: MatSort
   constructor(public dataService: ResourceService, private datePipe: DatePipe, private formBuilder: FormBuilder, public snackBar: MatSnackBar, public router: Router,public toster:TosterService)
    { 
     //  debugger;
-     this.getJoiningDate();
-    if(this.joiningDate!=undefined)
-    this.currentExp=this.calcExperience(this.joiningDate,new Date())
+    //  this.getJoiningDate();
+    // if(this.joiningDate!=undefined)
+    // this.currentExp=this.calcExperience(this.joiningDate,new Date())
   }
 
   getToday(): string {
     return new Date().toISOString().split('T')[0]
   }
 
-  edit() {
+  // edit() {
 
-    if (this.selected == 'true') {
-      this.isAddItem = true;
-    }
-    else {
-      this.isAddItem = false;
-    }
-    this.isExp = false;
-    this.disableFooter = false;
-    this.disableAction=false;
-    this.panelOpenState=true;
-  }
+  //   if (this.selected == 'true') {
+  //     this.isAddItem = true;
+  //   }
+  //   else {
+  //     this.isAddItem = false;
+  //   }
+  //   this.isExp = false;
+  //   this.disableFooter = true;
+  //   // this.disableAction=false;
+  //   //this.panelOpenState=true;
+  // }
   discard() {
-    //debugger;
-    this.isExp = true;
-    this.isAddItem = false;
-    this.disableFooter = true;
-    this.TotalExp = this.TotalExpBackup;
-    //this.selected = 'false';
-    this.disableAction=true;
+    debugger;
+    // this.isExp = true;
+    // this.isAddItem = false;
+    // this.disableFooter = true;
+    // this.TotalExp = this.TotalExpBackup;
+    // //this.selected = 'false';
+    // this.disableAction=true;
     this.GetBackgroundDetailsDS();
     this.selectedRowIndex=-1;
-  }  
+    //this.restorebackup();
 
+  }  
+  CheckForWhiteSpace(controlName:string){
+    debugger;
+    
+    if(this.uBackgrndForm.controls[controlName].value<=0){
+      return this.uBackgrndForm.controls[controlName].setErrors({ pattern: true });
+    }
+    else{
+      this.uBackgrndForm.controls[controlName].setValue(this.uBackgrndForm.controls[controlName].value.trim());
+    }
+  }
+ 
 ngOnInit() {
-    //debugger;
+    debugger;
     this.userDetailId = +localStorage.getItem('UserDetailID');
     if (JSON.parse(localStorage.getItem('IsExperienced'))) {
       this.selected = 'true';
       this.GetBackgroundDetails();
-
+   
     }
     else {
       this.selected = 'false';
       this.backup = 1;
-      //this.isAddItem=true;  
+      this.isAddItem=false;  
+   
     }
   
        this.getJoiningDate();    
        this.currentExp = this.calcExperience(this.datePipe.transform(localStorage.getItem("DateOfJoining"), "yyyy-MM-dd"), new Date());
-    //this.currentExp=this.calcExperience(this.datePipe.transform(this.joiningDate),new Date());
-  //     else
- 
-  //this.currentExp = this.calcExperience(this.datePipe.transform( this.joiningDate,"yyyy-MM-dd"),new Date());  
-  //}
+    
       this.uBackgrndForm = this.formBuilder.group({ 
       BackgroundID: [''],
       CompanyName: ['', [Validators.required, Validators.pattern(this.onlyLetters)]],
@@ -121,13 +135,14 @@ ngOnInit() {
         validator: this.matchval 
       });
 
-    
+      // this.sort.sort(<MatSortable>({id: 'JoiningDate', start: 'desc'}));
+      this.backgroundDetails.sort = this.sort;
   }
 getJoiningDate(){
-  debugger;
+  //debugger;
   this.dataService.getResourceById(+localStorage.getItem("UserDetailID"))
   .subscribe((res)=>{
-    debugger;   
+   // debugger;   
     this.response=res; 
   this.joiningDate=this.datePipe.transform(this.response.DateOfJoining,"yyyy-MM-dd");
   if(this.joiningDate!=null)
@@ -138,7 +153,7 @@ getJoiningDate(){
   matchval(group: FormGroup) {
     let c1 = group.controls['JoiningDate'].value;
     let c2 = group.controls['LeavingDate'].value;
-    if (c2 > c1) {
+    if (c2 >= c1) {
       // alert("done");
       return null;
     }
@@ -153,18 +168,19 @@ getJoiningDate(){
     if ($event == "true") {
       this.GetBackgroundDetailsDS();
       this.isAddItem = true;
-        this.getJoiningDate();
+        this.getJoiningDate();  
+        
+        this.showExp = true;
+      
     }
     else {
       this.showExp = false;
       this.isAddItem = false;
-      this.disableFooter = false;
-      // this.isExp = true;
-
+     
     }
   }
   leapYear(date){
-    debugger;
+    //debugger;
     date=new Date(date);
     var year=date.getFullYear();
     if((0==year%4)&&(0!=year%100)||(0==year%400)){
@@ -177,7 +193,7 @@ getJoiningDate(){
   }
   //current Experience and datatable duration calculation
   calcExperience(sDate, eDate) {    
-     //debugger
+   //  debugger;
      var startDate = new Date(sDate);
      var endDate = new Date(eDate);
      var increment=0;
@@ -209,7 +225,7 @@ getJoiningDate(){
 
 
   calcTotExp(sDate, eDate) {
-   debugger;
+  // debugger;
      sDate=new Date(sDate);
      eDate=new Date(eDate);
       if(sDate>eDate){
@@ -287,7 +303,7 @@ getJoiningDate(){
   } 
  //Calculate Total experience
   CalculateTotal() {
-  debugger;
+  //debugger;
 
     this.tottalExpd = this.tottalExpd + this.cday;
     if (this.tottalExpd >= 30) {
@@ -310,14 +326,15 @@ getJoiningDate(){
 
   }
   bID: number = 0;
-  addExperience(formData: any, formDirective: FormGroupDirective) {
-    debugger;
+  addExperience( formDirective: FormGroupDirective,row:any) {
+    //debugger;
     this.inputuBackgrnd = this.uBackgrndForm.value;
     this.inputuBackgrnd.BackgroundID = this.bID;
-    this.bID -= 1;
+    this.bID += 1;
     this.inputuBackgrnd.UserDetailID = this.userDetailId;
+    
     if (this.formType == "Add") {
-      if (this.inputuBackgrnd.CompanyName !== "" && this.inputuBackgrnd.Designation !== "" && new Date(this.uBackgrndForm.controls['LeavingDate'].value) > new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
+      if (this.inputuBackgrnd.CompanyName !== "" && this.inputuBackgrnd.Designation !== "" && new Date(this.uBackgrndForm.controls['LeavingDate'].value) >= new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
         for (var i in this.backgroundDetails.data) {
           console.log(new Date (this.backgroundDetails.data[i].LeavingDate));
           console.log(new Date (this.inputuBackgrnd.JoiningDate));
@@ -326,27 +343,24 @@ getJoiningDate(){
             // this.snackBar.open("Record already exists", "Ok", {
             //   duration: 5000,
             // });
-            this.toster.showError("Record already exists");
+            this.toster.showError("Record not modified :Record already exists");
             this.selectedRowIndex=-1;
             return;
           }
-          if(  new Date(this.backgroundDetails.data[i].LeavingDate)>= new Date( this.inputuBackgrnd.JoiningDate)){
+          if(  new Date(this.backgroundDetails.data[i].LeavingDate)> new Date( this.inputuBackgrnd.JoiningDate)){
             this.toster.showError("Joining date of Last company(s) can't be lesser or equal to Leaving date of previous company(s)");
             return;
-          }
-          console.log(new Date(this.inputuBackgrnd.JoiningDate));
-          console.log(new Date(this.joiningDate));
-          console.log(new Date(this.inputuBackgrnd.LeavingDate));
-          console.log(new Date(this.joiningDate));
+          }       
          
         }
-        if(new Date(this.inputuBackgrnd.JoiningDate)>= new Date(this.joiningDate)|| new Date(this.inputuBackgrnd.LeavingDate)>=new Date(this.joiningDate)){
+        if(new Date(this.inputuBackgrnd.JoiningDate)> new Date(this.joiningDate)|| new Date(this.inputuBackgrnd.LeavingDate)>=new Date(this.joiningDate)){
           this.toster.showError("Past company(s) Joining Date/Leaving Date can't exceed Current Joining Date/Leaving Date")
           return;
         }
         const data = this.backgroundDetails.data;
         data.push(this.inputuBackgrnd);
         this.backgroundDetails.data = data;
+       // this.hideDiscard=false;
       }
       
       else if (new Date(this.uBackgrndForm.controls['LeavingDate'].value) < new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
@@ -361,99 +375,154 @@ getJoiningDate(){
 
       }
       this.selectedRowIndex=-1;
-
+      this.uBackgrndForm.reset();
     }
     else if (this.formType == "Update") {
       debugger;
       var flag = 0;
-      if (this.inputuBackgrnd.CompanyName !== "" && this.inputuBackgrnd.Designation !== "" && new Date(this.uBackgrndForm.controls['LeavingDate'].value) > new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
-       
-        for (var i in this.backgroundDetails.data) {
-
-          if (this.backgroundDetails.data[i].CompanyName.toLowerCase() == this.inputuBackgrnd.CompanyName.toLowerCase() &&
-           this.backgroundDetails.data[i].Designation.toLowerCase() == this.inputuBackgrnd.Designation.toLowerCase()) {
-            flag=1;           
-                  
+      let len=this.backgroundDetails.data.length;
+    if(len>1){
+      for(var k=0;k<len;k++){
+        if(this.backgroundDetails.data[k].BackgroundID==this.selectedRowIndex){
+          if(k==0 && new Date(this.backgroundDetails.data[k+1].JoiningDate)<new Date(this.inputuBackgrnd.LeavingDate)){
+            this.toster.showError("leaving date should not be greter than next company joining date");
           }
-          if(parseInt(i)==this.backgroundDetails.data.length-2){
-            
-            if(new Date(this.inputuBackgrnd.JoiningDate)<=new Date(this.backgroundDetails.data[i].LeavingDate))
-            {
-              this.toster.showError("Joining date of Last company(s) can't be lesser or equal to Leaving date of previous company(s)");
-             
-              return;
-            }
+          else if(k==(len-1) && new Date(this.backgroundDetails.data[k-1].LeavingDate)>new Date(this.inputuBackgrnd.JoiningDate)){
+            this.toster.showError("joining date should be less than previous company leaving date ");
           }
+          else if(k!=0 && k!=(len-1) ) {
+            if(new Date(this.backgroundDetails.data[k-1].LeavingDate)>new Date(this.inputuBackgrnd.JoiningDate) ||new Date(this.backgroundDetails.data[k+1].JoiningDate)<new Date(this.inputuBackgrnd.LeavingDate) ){
+              this.toster.showError("joining can not be lesser than previous leaving date and leaving date should not be greater than next joining date  ");
           
-        }
-        if(new Date(this.inputuBackgrnd.JoiningDate)>= new Date(this.joiningDate)||new Date(this.inputuBackgrnd.LeavingDate)>=new Date(this.joiningDate)){
-          this.toster.showError("Past company(s) Joining Date/Leaving Date can't exceed Current Joining Date/Leaving Date")
-          return;
-        }
+            }
+            else{
+              this.backgroundDetails.data.forEach(element => {
+                if (element.BackgroundID == this.selectedRowIndex) {
+                    
+                  element.CompanyName = this.inputuBackgrnd.CompanyName;
+                  element.Designation = this.inputuBackgrnd.Designation;
+                  element.JoiningDate =this.datePipe.transform(this.inputuBackgrnd.JoiningDate, "yyyy-MM-dd");
+                  element.LeavingDate =this.datePipe.transform(this.inputuBackgrnd.LeavingDate, "yyyy-MM-dd");
+                }
+              });
+            }
+
+           }
+          
+           
+          else{
+
+            if (this.inputuBackgrnd.CompanyName !== "" && this.inputuBackgrnd.Designation !== "" && new Date(this.uBackgrndForm.controls['LeavingDate'].value) >= new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
+       
+              for (var i in this.backgroundDetails.data) {
       
-       // update date for the existing record
-        if (flag != 0) {
-          this.backgroundDetails.data.forEach(element => {
-            if (element.BackgroundID == this.selectedRowIndex) {
-              
-              // if(new Date(this.inputuBackgrnd.JoiningDate)<=new Date(element.LeavingDate))
-              // {
-              //   this.toster.showError("Joining date of Last company(s) can't be lesser or equal to Leaving date of previous company(s)");
-              //   return;
-              // }
-
-                 if(new Date(element.JoiningDate).getTime()  !=new Date(this.inputuBackgrnd.JoiningDate).getTime()||
-                     new Date(element.LeavingDate).getTime()!= new Date(this.inputuBackgrnd.LeavingDate).getTime()&&
-                     new Date(this.inputuBackgrnd.JoiningDate)>=new Date(element.LeavingDate) )
-                 {
-                   
-                   debugger;
-                  
-                  element.JoiningDate = this.inputuBackgrnd.JoiningDate;
-                  element.LeavingDate = this.inputuBackgrnd.LeavingDate;
-                  flag=2;
-                 }
-                 
+                if (this.backgroundDetails.data[i].CompanyName.toLowerCase() == this.inputuBackgrnd.CompanyName.toLowerCase() &&
+                 this.backgroundDetails.data[i].Designation.toLowerCase() == this.inputuBackgrnd.Designation.toLowerCase()) {
+                  flag=1;           
+                        
+                }
             
-            }
-          });
-         if(flag==1){
-          // this.snackBar.open("Record already exists", "Ok", {
-          //   duration: 5000,
-
-          // });
-          this.toster.showWarning("Record already exists");
-          this.selectedRowIndex=-1;
-         }
-        }
-        else  {
-          this.backgroundDetails.data.forEach(element => {
-            if (element.BackgroundID == this.selectedRowIndex) {
                 
-              element.CompanyName = this.inputuBackgrnd.CompanyName;
-              element.Designation = this.inputuBackgrnd.Designation;
-              element.JoiningDate = this.inputuBackgrnd.JoiningDate;
-              element.LeavingDate = this.inputuBackgrnd.LeavingDate;
+              }
+              if(new Date(this.inputuBackgrnd.JoiningDate)>= new Date(this.joiningDate)||new Date(this.inputuBackgrnd.LeavingDate)>=new Date(this.joiningDate)){
+                this.toster.showError("Past company(s) Joining Date/Leaving Date can't exceed Current Joining Date/Leaving Date")
+                return;
+              }
+            
+             // update date for the existing record
+              if (flag != 0) {
+                this.backgroundDetails.data.forEach(element => {
+                  if (element.BackgroundID == this.selectedRowIndex) {
+                                             
+                       if(new Date(element.JoiningDate).getTime()  !=new Date(this.inputuBackgrnd.JoiningDate).getTime()||
+                           new Date(element.LeavingDate).getTime()!= new Date(this.inputuBackgrnd.LeavingDate).getTime()&&
+                           new Date(this.inputuBackgrnd.JoiningDate)<=new Date(element.LeavingDate) )
+                       {
+                         
+                         debugger;
+                        console.log(new Date(this.inputuBackgrnd.JoiningDate));
+                        console.log((this.inputuBackgrnd.JoiningDate));
+                        element.JoiningDate =this.datePipe.transform(this.inputuBackgrnd.JoiningDate, "yyyy-MM-dd");;
+                        element.LeavingDate =this.datePipe.transform(this.inputuBackgrnd.LeavingDate, "yyyy-MM-dd");
+                        flag=2;
+                       }
+                       
+                  
+                  }
+                });
+               if(flag==1){
+                // this.snackBar.open("Record already exists", "Ok", {
+                //   duration: 5000,
+      
+                // });
+                this.toster.showWarning("Record already exists");
+                this.selectedRowIndex=-1;
+               }
+              }
+              else  {
+                this.backgroundDetails.data.forEach(element => {
+                  if (element.BackgroundID == this.selectedRowIndex) {
+                      
+                    element.CompanyName = this.inputuBackgrnd.CompanyName;
+                    element.Designation = this.inputuBackgrnd.Designation;
+                    element.JoiningDate =this.datePipe.transform(this.inputuBackgrnd.JoiningDate, "yyyy-MM-dd");;
+                    element.LeavingDate =this.datePipe.transform(this.inputuBackgrnd.LeavingDate, "yyyy-MM-dd");;
+                  }
+                });
+              }
+      
             }
-          });
+      
+      
+      
+      
+            else if (new Date(this.uBackgrndForm.controls['LeavingDate'].value) < new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
+              
+              // this.snackBar.open("Leaving Date must be greater than Joining Date", "Ok", {
+              //   duration: 2000,
+              // });
+              this.toster.showError("Leaving Date must be greater than Joining Date");
+            }
+            //this.uBackgrndForm.reset();
+            this.selectedRowIndex=-1;
+          }
+          //formDirective.resetForm();
+          this.uBackgrndForm.reset();
+          this.formType = "Add"
+          //formDirective.resetForm();
+          if (this.backgroundDetails.data.length > 0) {
+            this.disableSave = true;
+          }
+      
+          this.currentExp = this.calcExperience(this.datePipe.transform(localStorage.getItem("DateOfJoining"), "yyyy-MM-dd"), new Date());
+         // this.currentExp = this.calcExperience(this.datePipe.transform(this.joiningDate, "yyyy-MM-dd"), new Date());
+      
+          this.tottalExpy = this.tottalExpm = this.tottalExpd = 0;
+         // debugger;
+          for (var i in this.backgroundDetails.data) {
+            this.calcTotExp(this.backgroundDetails.data[i].JoiningDate, this.backgroundDetails.data[i].LeavingDate);
+      
+          }
+          console.log(this.TotalExp);
+          this.CalculateTotal();
+
+          }
         }
-
-      }
-
-
-
-
-      else if (new Date(this.uBackgrndForm.controls['LeavingDate'].value) < new Date(this.uBackgrndForm.controls['JoiningDate'].value)) {
-        
-        // this.snackBar.open("Leaving Date must be greater than Joining Date", "Ok", {
-        //   duration: 2000,
-        // });
-        this.toster.showError("Leaving Date must be greater than Joining Date");
-      }
-      //this.uBackgrndForm.reset();
-      this.selectedRowIndex=-1;
     }
-    formDirective.resetForm();
+    else{
+      this.backgroundDetails.data.forEach(element => {
+        if (element.BackgroundID == this.selectedRowIndex) {
+            
+          element.CompanyName = this.inputuBackgrnd.CompanyName;
+          element.Designation = this.inputuBackgrnd.Designation;
+          element.JoiningDate =this.datePipe.transform(this.inputuBackgrnd.JoiningDate, "yyyy-MM-dd");;
+          element.LeavingDate =this.datePipe.transform(this.inputuBackgrnd.LeavingDate, "yyyy-MM-dd");;
+        }
+      });
+    }
+      }
+    
+    //formDirective.resetForm();
     this.uBackgrndForm.reset();
     this.formType = "Add"
     //formDirective.resetForm();
@@ -475,8 +544,10 @@ getJoiningDate(){
 
 
   }
+
+
   GetBackgroundDetails() {
-    debugger
+   // debugger
     this.dataService.getBackGroundDetails(+localStorage.getItem('UserDetailID')).subscribe(
       res => {
 
@@ -515,9 +586,10 @@ getJoiningDate(){
     this.dataService.getBackGroundDetails(+localStorage.getItem('UserDetailID')).subscribe(
       res => {
 
-        this.showExp = true;
+        // this.showExp = true;
+       
         this.backgroundDetails.data = res;
-    
+      
 
       })
   }
@@ -526,39 +598,66 @@ getJoiningDate(){
     //console.log(JSON.stringify(this.backgroundDetails.data)); 
     debugger;
     var id = +localStorage.getItem('UserDetailID');
-    this.dataService.AddUserBackGound(id, this.showExp, this.backgroundDetails.data)
-      .subscribe((result) => {
-        this.globalResponse = result;
-      },
-        error => {
-          console.log(error);
-          //this.isFailedMessage = true;
-          // this.snackBar.open("Error in posting data", "Ok", {
-          //   duration: 2000,
-          // });
-          this.toster.showError("Error in posting data");
-        },
-        () => {
-          //this.isSuccessMessage = true;
-          if (this.formType == "Add") {
-            // this.snackBar.open("Resource Added Successfully", "Ok", {
-            // duration: 2000,
-            //});
-            this.isExp = true;
-            this.isAddItem = false;
-            this.disableFooter = true;
-          }
-          else if (this.formType == "Update") {
-            // this.snackBar.open("Resource Updated Successfully", "Ok", {
-            //   duration: 2000,
-            // });
-          }
-          //this.router.navigate(['resource']);
-        })
+    // for(var i=0;i<=this.backgroundDetails.data.length;i++){
+    //      if(new Date (this.backgroundDetails.data[i].LeavingDate)>new Date (this.backgroundDetails.data[i+1].JoiningDate)){
+    //          this.toster.showError("Leaving date> joining date");
+             
+    //         //  this.highlight(this.backgroundDetails.data[i].BackgroundID)
+    //          return;
+    //      }
+    //     }
+         this.dataService.AddUserBackGound(id, this.showExp, this.backgroundDetails.data)
+         .subscribe((result) => {
+           this.globalResponse = result;
+         },
+           error => {
+             console.log(error);
+             //this.isFailedMessage = true;
+             // this.snackBar.open("Error in posting data", "Ok", {
+             //   duration: 2000,
+             // });
+             this.toster.showError("Error in posting data");
+           },
+           () => {
+             //this.isSuccessMessage = true;
+             if (this.formType == "Add") {
+               this.snackBar.open("Success", "Ok", {
+                duration: 2000,
+               });
+               this.GetBackgroundDetailsDS();
+               // this.isExp = true;
+               // this.isAddItem = false;
+               // this.disableFooter = true;
+               // if(this.showExp==true){
+               //   this.backupexp=1;
+               //   this.hideDiscard=false;
+               // }
+               // else if(this.showExp==false){
+               //   this.backupexp=0;
+               //   this.hideDiscard=false; 
+               // }
+              
+             }
+             // else if (this.formType == "Update") {
+             //   // this.snackBar.open("Resource Updated Successfully", "Ok", {
+             //   //   duration: 2000,
+             //   // });
+             
+             //this.router.navigate(['resource']);
+           
+            
+           })
+          
+  
+
+
+
+
+   
   }
 
-  formReset(formData: any, formDirective: FormGroupDirective) {
-    formDirective.resetForm();
+  formReset(formDirective: FormGroupDirective) {
+    //formDirective.resetForm();
     this.uBackgrndForm.reset();
     this.formType = "Add";
     this.selectedRowIndex=-1;
@@ -595,8 +694,8 @@ export class UserBackgrnd {
   UserDetailID: number;
   CompanyName: string;
   Designation: string;
-  JoiningDate: Date;
-  LeavingDate: Date;
+  JoiningDate: string;
+  LeavingDate: string;
   Duration: string;
   IsExperienced: Boolean;
 }

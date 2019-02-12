@@ -20,7 +20,7 @@ export class CreateResourceComponent implements OnInit {
   shift: Resource[];
   role: Resource[];
   rHead: Resource[];
-  namePattern = "[A-Za-z]{1,25}";
+  namePattern = '^[a-zA-Z ]+$';
   mobnumPattern = "^((\\+91-?)|0)?[0-9]{10}$";
   totexpPattern = "^(?!0+(?:\.0+)?$)[0-5]?[0-9](?:\.\d\d?)?$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -36,9 +36,9 @@ export class CreateResourceComponent implements OnInit {
 
     this.resourceForm = this.formBuilder.group({
 
-      firstname: ['', [Validators.required, Validators.maxLength(25), Validators.pattern(this.namePattern)]],
-      middlename: [''],
-      lastname: ['', [Validators.required, Validators.maxLength(25)]],
+      firstname: ['', [Validators.required,Validators.maxLength(25), Validators.pattern(this.namePattern)]],
+      middlename: ['',[Validators.maxLength(25), Validators.pattern(this.namePattern)]],
+      lastname: ['', [Validators.required, Validators.maxLength(25),Validators.pattern(this.namePattern)]],
       totalexp: ['', [Validators.required]],
       emailId: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
 
@@ -56,7 +56,16 @@ export class CreateResourceComponent implements OnInit {
 
 
   }
- 
+  CheckForWhiteSpace(controlName:string){
+    debugger;
+    
+    if(this.resourceForm.controls[controlName].value<=0){
+      return this.resourceForm.controls[controlName].setErrors({ pattern: true });
+    }
+    else{
+      this.resourceForm.controls[controlName].setValue(this.resourceForm.controls[controlName].value.trim());
+    }
+  }
   emailExists(){
     debugger;
     this.dataService.CheckEmail(this.resourceForm.value.emailId)
@@ -71,7 +80,7 @@ export class CreateResourceComponent implements OnInit {
           this.toster.showError("Email already registered! Try using different email id ");
           this.resourceForm.controls['emailId'].setErrors({'pattern': true});
 
-        }        
+        }         
     } 
    );
     

@@ -1,5 +1,5 @@
 import { Component, OnInit, ɵConsole, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroupDirective, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroupDirective, Validators, FormGroup, AbstractControl, FormGroupName } from '@angular/forms';
 import { ResourceService } from '../resource.service';
 import { MatTableDataSource, MatSnackBar, MatSort, MatTreeFlatDataSource } from '@angular/material';
 import { TosterService } from '../../../shared/services/toster.service';
@@ -32,18 +32,23 @@ export class ResourceQualificationComponent implements OnInit {
   primaryskillSet: any;
   secondaryskillSet: any;
   hqualification: any;
-  isAddItem: boolean = false;
+  isAddItem: boolean = true;
   globalResponse: any;
   inputQualification: Qualification;
   qid: number = 0;
   cid: number = 0;
-  // totexpPattern = "^(?!0+(?:\.0+)?$)[0-5]?[0-9](?:\.\d\d?)?$";
+  namePattern = '^[a-zA-Z ]+$';
   cTypes:string[]=['Certificate','Diploma'];
   tResponse:any;
+  boards:string[]=['CBSE','ICSE','UP','Bihar Board'];
+  institutes:string[]=['DUCAT','TestInstitute', 'TestInstitute','TestInstitute'];
+  cstreams:string[]=['Computer','IT','.NET']
+  panelOpenState=open;
   //Qdisable:boolean=false;
   // @ViewChild(MatSort) sort: MatSort;
   // @ViewChild('matformfield') 
   // matformfield:ElementRef;
+
   public get userGroup(): FormGroup {
     return this.uQualificationForm.get('Qgrid') as FormGroup;
   }
@@ -63,17 +68,17 @@ export class ResourceQualificationComponent implements OnInit {
  
 
   edit() {
-    this.disableFooter = false;
-    this.uQualificationForm.enable();
-    this.isAddItem = true;
-    if(this.qualificationDS.data.length==0 && this.certificationDS.data.length==0){
-      this.disablesave=true;
-    }
+    // this.disableFooter = false;
+    // this.uQualificationForm.enable();
+    // this.isAddItem = true;
+    // if(this.qualificationDS.data.length==0 && this.certificationDS.data.length==0){
+    //   this.disablesave=true;
+    // }
   }
   discard() {
-    this.uQualificationForm.disable();
-    this.disableFooter = true;
-    this.isAddItem = false;
+    //this.uQualificationForm.disable();
+    // this.disableFooter = true;
+    // this.isAddItem = false;
     this.GetQualification();
     this.GetCertification();
     this.selectedRowIndex=-1;
@@ -81,21 +86,7 @@ export class ResourceQualificationComponent implements OnInit {
   }
 
   ngOnInit() {
-    // debugger;
-    // if (localStorage.getItem("PrimarySkillSet") != "null") {
-    //   this.primaryskillSet = localStorage.getItem("PrimarySkillSet");
-    // }
-    // if (localStorage.getItem("SecondarySkillSet") != "null") {
-    //   this.secondaryskillSet = localStorage.getItem("SecondarySkillSet");
-    // }
-    // if (localStorage.getItem("Qualification") != "null") {
-    //   this.hqualification = localStorage.getItem("Qualification");
-    // }
-    //this.userDetailId = +localStorage.getItem('UserDetailID');
-  
-    //console.log(this.userDetailId + " " + this.primaryskillSet + " " + this.secondaryskillSet + " " + this.hqualification);
-
-    this.uQualificationForm = this.formBuilder.group({
+      this.uQualificationForm = this.formBuilder.group({
       // inputGroup: this.formBuilder.group({
       //   // PrimarySkillSet: ['', Validators.required],
       //   // SecondarySkillSet: [''],
@@ -106,9 +97,9 @@ export class ResourceQualificationComponent implements OnInit {
         QualificationID: [''],
         Qualification: ['', Validators.required],
         // iQualification:[''],
-        BoardUniversity: ['', Validators.required],
-        QStream: ['', Validators.required],
-        QYear: ['', [Validators.required, Validators.maxLength(4)]],
+        BoardUniversity: ['', [Validators.required,Validators.pattern(this.namePattern)]],
+        QStream: [''],
+        QYear: ['', [Validators.required, Validators.maxLength(4),Validators.minLength(4)]],
         QMarks: ['', [Validators.required]]
       }),
 
@@ -116,9 +107,9 @@ export class ResourceQualificationComponent implements OnInit {
         CertificationID: [''],
         CertificateNumber: ['', [Validators.required, Validators.maxLength(10)]],
         Type: ['', Validators.required],
-        Institution: ['', Validators.required],
+        Institution: ['', [Validators.required,Validators.pattern(this.namePattern)]],
         CStream: ['', Validators.required],
-        CYear: ['', [Validators.required, Validators.maxLength(4)]],
+        CYear: ['', [Validators.required, Validators.maxLength(4),Validators.minLength(4)]],
         CMarks: ['', Validators.required]
       }),
 
@@ -130,7 +121,16 @@ export class ResourceQualificationComponent implements OnInit {
        
   }
   
-
+  CheckForWhiteSpace(controlName:string){
+    debugger;
+    
+    if(this.uQualificationForm.controls.Cgrid.controls[controlName].value<=0){
+      return this.uQualificationForm.controls.Cgrid.controls[controlName].setErrors({ pattern: true });
+    }
+    else{
+      this.uQualificationForm.controls.Cgrid.controls[controlName].setValue(this.uQualificationForm.Cgrid.formgroup.controls[controlName].value.trim());
+    }
+  }
   GetQualification() {
     // debugger;
     this.dataservice.getUserQualification(+localStorage.getItem("UserDetailID")).subscribe(
@@ -174,10 +174,39 @@ export class ResourceQualificationComponent implements OnInit {
 
   //   }
   // }
+  matchYear(){
+     debugger;
+    let c1 = this.uQualificationForm.controls.Qgrid.controls['QYear'].value;
   
+    for (var i in this.qualificationDS.data) {
+      console.log(this.qualificationDS.data[i].QYear);
+    if(c1==this.qualificationDS.data[i].QYear){
+      return this.uQualificationForm.controls.Qgrid.controls['QYear'].setErrors({matchYear:true});
+    }
+    else
+    {    
+  
+    }
+  }
+  
+  }
+  matchQualification(value){
+    // let Q=this.uQualificationForm.controls.Qgrid.controls['Qualification'].value;
+
+    for (var i in this.qualificationDS.data) {
+      console.log(this.qualificationDS.data[i].Qualification);
+    if(value==this.qualificationDS.data[i].Qualification){
+      return this.uQualificationForm.controls.Qgrid.controls['Qualification'].setErrors({matchQualification:true});
+    }
+    else
+    {    
+  
+    }
+  }
+  }
   
   addQualification(formDirective: FormGroupDirective) {
-    // debugger;
+     debugger;
     
     console.log(this.qualificationDS.data);
     this.iQualification = this.uQualificationForm.controls.Qgrid.value;
@@ -197,7 +226,7 @@ export class ResourceQualificationComponent implements OnInit {
 
     if (this.qformType == "Add") {
      
-      if (this.iQualification.Qualification !== "" && this.iQualification.QStream !== "" && this.iQualification.QYear !== ""
+      if (this.iQualification.Qualification !== ""  && this.iQualification.QYear !== ""
         && this.iQualification.BoardUniversity !== "" && this.iQualification.QMarks !== null) {
         for (var i in this.qualificationDS.data) {
           if (this.qualificationDS.data[i].Qualification.toLowerCase() == this.iQualification.Qualification.toLowerCase()) {
@@ -207,6 +236,10 @@ export class ResourceQualificationComponent implements OnInit {
             // });
             return;
 
+          }
+          if(this.iQualification.QYear==this.qualificationDS.data[i].QYear){
+            this.toster.showError("Year Already exists");
+            return;
           }
         }
         const data = this.qualificationDS.data;
@@ -226,7 +259,7 @@ export class ResourceQualificationComponent implements OnInit {
     }
     else if (this.qformType == "Update") {  
         
-      if (this.iQualification.Qualification != "" && this.iQualification.QStream != "" && this.iQualification.QYear != ""
+      if (this.iQualification.Qualification != ""  && this.iQualification.QYear != ""
         && this.iQualification.BoardUniversity != "" && this.iQualification.QMarks != null) {
          
         this.qualificationDS.data.forEach(element => {
@@ -438,75 +471,8 @@ export class ResourceQualificationComponent implements OnInit {
       // this.educationDS.data.push(eds);
       //this.disablesave=true;
 
-    }
+    }  
     
-
-    //    if (this.qualificationDS.data.length == 0 && this.certificationDS.data.length == 0) {
-
-    //     const eds = new Qualification();
-    //     eds.PrimarySkillSet = this.inputQualification.PrimarySkillSet;
-    //     eds.SecondarySkillSet = this.inputQualification.SecondarySkillSet;
-    //     eds.HQualification = this.inputQualification.HQualification;
-    //     this.educationDS.data.push(eds);
-
-    //   }
-    //     if (this.certificationDS.data.length > 0) {
-    //      // console.log(this.certificationDS.data);
-
-
-    //       for (var i in this.certificationDS.data) {
-
-    //         // console.log(this.certificationDS.data[i].CertificationID);
-    //         // console.log( this.educationDS.data[i].CertificationID);
-    //        if(this.educationDS.data.length>0){
-    //         var len =this.educationDS.data.length;
-    //         if(len<=parseInt(i)){
-    //           this.educationDS.data[i].CertificationID = this.certificationDS.data[i].CertificationID;
-    //           this.educationDS.data[i].CertificateNumber = this.certificationDS.data[i].CertificateNumber;
-    //           this.educationDS.data[i].Type = this.certificationDS.data[i].Type;
-    //           this.educationDS.data[i].CStream = this.certificationDS.data[i].CStream;
-    //           this.educationDS.data[i].CYear = this.certificationDS.data[i].CYear;
-    //           this.educationDS.data[i].Institution = this.certificationDS.data[i].Institution;
-    //           this.educationDS.data[i].CMarks = this.certificationDS.data[i].CMarks;
-    //           this.educationDS.data[i].PrimarySkillSet = this.inputQualification.PrimarySkillSet;
-    //           this.educationDS.data[i].SecondarySkillSet = this.inputQualification.SecondarySkillSet;
-    //           this.educationDS.data[i].HQualification = this.inputQualification.HQualification;
-    //         }
-    //         else{
-    //           this.educationDS.data.push(this.certificationDS.data[i]);
-    //         this.educationDS.data[i].PrimarySkillSet = this.inputQualification.PrimarySkillSet;
-    //         this.educationDS.data[i].SecondarySkillSet = this.inputQualification.SecondarySkillSet;
-    //         this.educationDS.data[i].HQualification = this.inputQualification.HQualification;
-    //         }
-
-    //         // this.educationDS.data[i].UserDetailID = id;
-    //         //debugger;
-
-    //        }
-    //        else{
-    //         this.educationDS.data.push(this.certificationDS.data[i]);
-    //         this.educationDS.data[i].PrimarySkillSet = this.inputQualification.PrimarySkillSet;
-    //         this.educationDS.data[i].SecondarySkillSet = this.inputQualification.SecondarySkillSet;
-    //         this.educationDS.data[i].HQualification = this.inputQualification.HQualification;
-    //        }
-
-
-
-    //       }
-    //       // }
-
-    //     }
-    //     else {
-
-    //       this.educationDS.data[0].PrimarySkillSet = this.inputQualification.PrimarySkillSet;
-    //       this.educationDS.data[0].SecondarySkillSet = this.inputQualification.SecondarySkillSet;
-    //       this.educationDS.data[0].HQualification = this.inputQualification.HQualification;
-    //     }
-    //     console.log(this.educationDS.data);
-
-
-
-
     //this.educationDS.data[0].QualificationID = this.qualificationDS.data[0].QualificationID;
     this.dataservice.AddUserQualification(id, this.educationDS.data)
       .subscribe(result => {
@@ -527,18 +493,17 @@ export class ResourceQualificationComponent implements OnInit {
           //   duration: 2000,
 
           // });
-          this.toster.showSuccess("Success");
-          //this.uQualificationForm.controls.Qgrid['PrimarySkillSet']
-
+          this.toster.showSuccess("Success");        
+          
           // this.isExp = true;
           // this.isAddItem = false;
-          this.disableFooter = true;
-          this.isAddItem = false;
+          //this.disableFooter = true;
+          //this.isAddItem = false;
 
           this.formResetQ();
           this.formResetC();
-          // this.uQualificationForm.controls.Qgrid.reset();
-          // this.uQualificationForm.controls.Cgrid.reset();
+          this.uQualificationForm.controls.Qgrid.reset();
+          this.uQualificationForm.controls.Cgrid.reset();
             //this.uQualificationForm.disable();
           // this.qualificationDS.data=null;
 

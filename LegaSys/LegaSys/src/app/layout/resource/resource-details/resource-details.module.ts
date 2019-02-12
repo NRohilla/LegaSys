@@ -7,7 +7,7 @@ import { ResourcePersonaldetailsComponent } from '../components/resource.persona
 import { PageHeaderModule } from './../../../shared/modules/page-header/page-header.module';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import{MatSelectModule, MatTableModule, MatSnackBarModule, MatDatepickerModule, MatChipsModule, MatIconModule, MatDividerModule, MatAutocompleteModule, MatToolbarModule, MatCheckboxModule, MatListModule, MatStepperModule, MatVerticalStepper} from '@angular/material';
+import{MatSelectModule, MatTableModule, MatSnackBarModule, MatDatepickerModule, MatChipsModule, MatIconModule, MatDividerModule, MatAutocompleteModule, MatToolbarModule, MatCheckboxModule, MatListModule, MatStepperModule, MatVerticalStepper, MatSortModule} from '@angular/material';
 //import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import { ResourceSkillsetComponent } from '../components/resource.skillset.compo
     CommonModule,
     ResourceDetailsRoutingModule,PageHeaderModule,MatTabsModule,MatFormFieldModule,MatSelectModule,FormsModule,
     MatInputModule,ReactiveFormsModule,MatTableModule,MatExpansionModule,MatSnackBarModule,MatNativeDateModule,
-    MatDatepickerModule,MatChipsModule,MatIconModule,MatAutocompleteModule,MatToolbarModule,MatCheckboxModule,MatListModule
+    MatDatepickerModule,MatChipsModule,MatIconModule,MatAutocompleteModule,MatToolbarModule,MatCheckboxModule,MatListModule,MatSortModule
   ],
   declarations: [ResourceDetailsComponent,ResourceSummaryComponent,ResourcePersonaldetailsComponent,ResourceBackgrounddetailsComponent,ResourceQualificationComponent,ResourceAllocationComponent,ResourceSkillsetComponent],
   providers: [DatePipe]

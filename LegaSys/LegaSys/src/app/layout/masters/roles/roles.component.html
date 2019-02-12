@@ -49,7 +49,7 @@
 <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
 
 <h2>{{formType}} Role</h2>
-<form [formGroup]="roleForm" #formDirective="ngForm" (ngSubmit)="onSubmit(roleForm, formDirective)">
+<form [formGroup]="roleForm" #formDirective="ngForm" (ngSubmit)="onSubmit( formDirective)">
   <div class="example-container">
     <div class="row">
       <div class="col-xl-6">

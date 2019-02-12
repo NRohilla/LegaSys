@@ -13,6 +13,10 @@ import { DialogComponent } from './masters/dialog/dialog.component';
 import { PageHeaderModule } from '../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material';
+import { SubtaskComponent } from './tasks/subtask/subtask.component';
+import { EdittaskComponent } from './tasks/edittask/edittask.component';
+import { TimelineComponent, ChatComponent } from './dashboard/components';
+import { FilterPipe } from './project/filter.pipe';
 
 @NgModule({
     imports: [
@@ -30,10 +34,15 @@ import { MatPaginatorModule } from '@angular/material';
         FormsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+       
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, CreateResourceComponent, DialogComponent],
-    entryComponents: [DialogComponent]
+    providers: [],
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, CreateResourceComponent,FilterPipe,DialogComponent],
+    entryComponents: [DialogComponent],
+    exports: [
+        FilterPipe
+     ]
 })
 export class LayoutModule { }
 

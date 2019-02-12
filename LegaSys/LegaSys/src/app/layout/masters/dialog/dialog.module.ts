@@ -10,7 +10,7 @@ import { MatDialogModule } from "@angular/material";
         MatDialogModule
     ],
     providers: [],
-    declarations: [DialogComponent]
+    declarations: []
 })
 
 export class DialogModule { }

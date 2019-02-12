@@ -1,47 +1,15 @@
-<form [formGroup]="uQualificationForm" >
-  <!-- <div formGroupName="inputGroup"> -->
-  <!-- <div class="bg-white">
-    <label><b>Primary Skill Set</b> </label>
-    <mat-form-field style="margin-left: 80px;width:350px !important">
-      <input matInput formControlName="PrimarySkillSet" [(ngModel)]="primaryskillSet">
-      <mat-error *ngIf="uQualificationForm.controls.inputGroup.hasError('required', 'PrimarySkillSet')"> -->
-          <!-- <span [hidden]="!uQualificationForm.controls.inputGroup['PrimarySkillSet'].errors.required"> -->
-              <!-- PrimarySkill Set is required. -->
-          <!-- </span> -->
-         
-        <!-- </mat-error>
-    </mat-form-field>
-  </div>
-  <div class="bg-white">
-    <label><b>Secondary Skill Set</b> </label>
-    <mat-form-field style="margin-left: 60px;width:350px !important">
-      <input matInput formControlName="SecondarySkillSet" [(ngModel)]="secondaryskillSet"> -->
-      <!-- <mat-error *ngIf="uQualificationForm.controls.SecondarySkillSet.invalid">
-          <span [hidden]="!uQualificationForm.controls['SecondarySkillSet'].errors.required">
-              SecondarySkill Set is required.
-          </span>
-         
-        </mat-error> -->
-    <!-- </mat-form-field>
-  </div> -->
+<form [formGroup]="uQualificationForm" > 
+<!-- <p class="bg-white" style="color: #f44336;font-size: smaller">*Start with the least qualification first</p> -->
 
-  <!-- <div class="bg-white">
-    <label><b> Select Qualification Category: </b> </label>
-    <mat-form-field style=" margin-left: 50px;width:350px !important">
-      <mat-select formControlName="HQualification" [(ngModel)]="hqualification" (ngModelChange)="onChange($event)">
-        <mat-option *ngFor="let Qualif of ddlHQualification" [value]="Qualif.id">{{Qualif.name}}</mat-option>
-        <mat-error *ngIf="uQualificationForm.controls.inputGroup.hasError('required', 'HQualification')"> -->
-            <!-- <span [hidden]="!uQualificationForm.controls.inputGroup['HQualification'].errors.required"> -->
-                <!-- Qualification is required. -->
-            <!-- </span> -->
-           
-          <!-- </mat-error>
-      </mat-select>
-    </mat-form-field>
-  </div> -->
-<!-- </div> -->
-<p class="bg-white" style="color: #f44336;font-size: smaller">*Start with the least qualification first</p>
   <div *ngIf="showQTable" >
+      <mat-accordion>
+          <mat-expansion-panel  [expanded]='false'>
+            <mat-expansion-panel-header>
+              <mat-panel-title style="font-size: larger;color:black">
+                Add Qualification Details
+              </mat-panel-title>
+              
+            </mat-expansion-panel-header>
     <div formGroupName="Qgrid">
       <mat-table [dataSource]="qualificationDS" matSort class="example-container mat-elevation-z8 resource-grid">
         <ng-container matColumnDef="QualificationID">
@@ -49,7 +17,7 @@
           <mat-cell *matCellDef="let element"> {{element.QualificationID}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Qualification">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Qualification</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Qualification*</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.Qualification}} </mat-cell>>
         </ng-container>
@@ -79,79 +47,98 @@
           (click)="highlight(row)"></mat-row>
 
       </mat-table>
+      <span  style="color: #f44336;font-size: smaller">*Start with the least qualification first</span>
+      <br><br><br>
+    
       <div *ngIf="isAddItem">
       <!--  <form [formGroup]="uQualificationForm.controls.Qgrid">-->
-            <mat-accordion>
-                <mat-expansion-panel [expanded]="true">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title style="font-size: smaller;color: steelblue;">
-                     
-                    </mat-panel-title>
-        
-                  </mat-expansion-panel-header>
+           
                   <div class="row">
-                    <div class="col-xl-2">
-                      <mat-form-field style="width:200px">
-                        <!-- <mat-select placeholder="Select Qualification" formControlName="Qualification"  (selectionChange)="valueChanged($event.value)" > -->
-                          <mat-select placeholder="Select Qualification" formControlName="Qualification"   >
+                    <div class="col-xl-4">
+                      <mat-form-field style="width:350px !important">
+                        <mat-select placeholder="Select Qualification" formControlName="Qualification"  (selectionChange)="matchQualification($event.value)" >
+                          <!-- <mat-select placeholder="Select Qualification" formControlName="Qualification"   > -->
                           <mat-option value="10th">10th</mat-option>
                           <mat-option value="12th">12th</mat-option>
                           <mat-option value="Graduate">Graduate</mat-option>
                           <mat-option value="PostGraduate">Post Graduate</mat-option>
-                          <mat-option value="HQ">Higher Qualification</mat-option>
+                          <mat-option value="HQ">Higher Qualification</mat-option>  
                         </mat-select>
-                        <mat-error *ngIf="uQualificationForm.controls.Qgrid.hasError('required', 'Qualification')">
-                          <!-- <span [hidden]="!uQualificationForm.controls.Qgrid.QStream?.errors.required"> -->
-                             Qualification is required.
-                          <!-- </span> -->
-                         
+                        <mat-error *ngIf="uQualificationForm.controls.Qgrid.controls['Qualification'].invalid">
+                            <span *ngIf="uQualificationForm.controls.Qgrid.controls['Qualification'].errors.required">Qualification is required</span>
+                            <span *ngIf="uQualificationForm.controls.Qgrid.controls['Qualification'].errors.matchQualification">Qualification can't be duplicate</span>
+  
                         </mat-error>
                       </mat-form-field>
                     </div>
-                    <div class="col-xl-2">
-                      <mat-form-field style="width:200px">
-                        <input matInput placeholder="Stream/Subjects" formControlName="QStream" class="text-uppercase"  >
-                        <mat-error *ngIf="uQualificationForm.controls.Qgrid.hasError('required', 'QStream') ">
-                         <!-- <span [hidden]="!uQualificationForm.controls.Qgrid.QStream?.errors.required">  -->
-                                                      Stream/Subjects is required.
-                         <!-- </span>  --> 
-                       
+                    <div class="col-xl-4">
+                      <mat-form-field style="width:450px !important">
+                        <textarea matInput placeholder="Stream/Subjects" formControlName="QStream" class="text-uppercase" type="text" pattern="[a-zA-Z ]*" ></textarea>
+                        <mat-error *ngIf="uQualificationForm.controls.Qgrid.controls['QStream'].invalid">
+                          <span *ngIf="uQualificationForm.controls.Qgrid.controls['QStream'].errors.required">Stream is required</span>
+                          <span *ngIf="uQualificationForm.controls.Qgrid.controls['QStream'].errors.pattern">Only text allowed</span>
+
                       </mat-error>
                      
                       </mat-form-field>
                     </div>
-                    <div class="col-xl-2">
-                      <mat-form-field style="width:200px">
-                        <input matInput placeholder="Year" formControlName="QYear" type="text" pattern="[0-9]+">
+                    <div class="col-xl-4">
+                        <mat-form-field style="width:350px !important">
+                          <input matInput placeholder="Board/University" formControlName="BoardUniversity" class="text-uppercase" [matAutocomplete]="auto1">
+                          <!-- <input matInput placeholder=" Certification Type" formControlName="Type" class="text-uppercase"  [matAutocomplete]="auto"> -->
+                          <mat-autocomplete #auto1="matAutocomplete">
+                            <mat-option *ngFor="let board of boards" [value]="board">
+                                {{board}}
+                            </mat-option>
+                          </mat-autocomplete>
+                            <mat-error *ngIf="uQualificationForm.controls.Qgrid.controls['BoardUniversity'].invalid">
+                              <span *ngIf="uQualificationForm.controls.Qgrid.controls['BoardUniversity'].errors.required"> Board/University is required..</span>     
+                              <!-- <span *ngIf="personalDetailsForm.controls['Firstname'].errors.maxlength">Maximum allowed characters are 25.</span>                           -->
+                              <span *ngIf="uQualificationForm.controls.Qgrid.controls['BoardUniversity'].errors.pattern ">Special characters and numbers are not allowed.</span>
+                            </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                      <div class="row">
+                    <div class="col-xl-4">
+                      <mat-form-field style="width:200px !important">
+                        <input matInput placeholder="Year" formControlName="QYear" type="text" pattern="[0-9]+" (keyup)="matchYear()" >
                         <mat-error *ngIf="uQualificationForm.controls.Qgrid.controls['QYear'].invalid  ">
-                            Year must be numeric. 
+                            <span *ngIf="uQualificationForm.controls.Qgrid.controls['QYear'].errors.required">
+                                Year is required
+                          </span>   
+                          <span *ngIf="uQualificationForm.controls.Qgrid.controls['QYear'].errors.pattern">
+                                Year must be numeric.
+                        </span> 
+                        <span *ngIf="uQualificationForm.controls.Qgrid.controls['QYear'].errors.maxlength">
+                            Year can't be more than 4 digit long.
+                    </span> 
+                    <span *ngIf="uQualificationForm.controls.Qgrid.controls['QYear'].errors.minlength">
+                        Year must atleast 4 digit long.
+                   </span>   
+                   <span *ngIf="uQualificationForm.controls.Qgrid.controls['QYear'].errors.matchYear">
+                      Year Already Exists
+                 </span>                      
                           </mat-error>
-                        <mat-error *ngIf="uQualificationForm.controls.Qgrid.hasError('required', 'QYear') ">
-                          <!-- <span [hidden]="!uQualificationForm.controls.Qgrid.hasError('required', 'QYear') "> -->
-                              Year is required.
-                          <!-- </span> -->
-                        </mat-error>
+                        <!-- <mat-error *ngIf="uQualificationForm.controls.Qgrid.hasError('required', 'QYear') "> Year is required.</mat-error>
                         <mat-error *ngIf="uQualificationForm.get('Qgrid.QYear').hasError('maxlength')" >
-                            Year must be 4 digit long.
-                          </mat-error>
-                        <!-- <span [hidden]="!uQualificationForm.controls.Qgrid.hasError('maxlength', 'QYear')">
-                            Maximum allowed characters are 4.
-                          </span> -->
-                        
+                            Year must be 4 digit long. -->
+                       
+                            <!-- <mat-error *ngIf="professionalDetailsForm.controls['companyZipcode'].invalid">
+                              <span *ngIf="professionalDetailsForm.controls['companyZipcode'].errors.required">
+                                    ZIP can not be blank
+                              </span>               
+                              <span *ngIf="professionalDetailsForm.controls['companyZipcode'].errors.pattern">
+                                      Cna contain only numbers
+                                </span>    
+                           </mat-error> -->
+
+
                       </mat-form-field>
                     </div>
-                    <div class="col-xl-2">
-                      <mat-form-field style="width:200px">
-                        <input matInput placeholder="Board/University" formControlName="BoardUniversity" class="text-uppercase">
-                        <mat-error *ngIf="uQualificationForm.controls.Qgrid.hasError('required', 'BoardUniversity')">
-                            <!-- <span [hidden]="!uQualificationForm.controls.Qgrid.BoardUniversity.errors.required"> -->
-                                Board/University is required.
-                            <!-- </span> -->
-                          </mat-error>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-xl-2">
-                      <mat-form-field style="width:100px">
+                    
+                    <div class="col-xl-4">
+                      <mat-form-field style="width:350px !important">
                         <input   matInput placeholder="Marks" formControlName="QMarks" type="number" pattern="[0-9/.]+"  >
                         <!-- <input   matInput placeholder="Marks" formControlName="QMarks" type="number" pattern="^(100\.00|[0-9]?\d\.\d{2})$"  > -->
                         <mat-error *ngIf="uQualificationForm.controls.Qgrid.controls['QMarks'].invalid">
@@ -169,25 +156,40 @@
                           
                       </mat-form-field>
                     </div>
-                    <div >
-        
+                    
+                    <div class=" col-xl-4">
+                      
                       <button type="button" class="btn btn-secondary float-right ml-2" (click)="formResetQ();"><i class="fa fa-times"
                           aria-hidden="true"></i>Cancel</button>
-                      <button   [disabled]="!uQualificationForm.controls.Qgrid.valid" type="submit" class="btn btn-info float-right" (click)="addQualification()"><i class="fa fa-plus"
+                      <button   [disabled]="!uQualificationForm.controls.Qgrid.valid" type="button" class="btn btn-info float-right" (click)="addQualification()"><i class="fa fa-plus"
                           aria-hidden="true"></i>
-                        {{qformType}} Qualification</button>
+                        {{qformType}} Qualification </button>
                        
                     </div>
                   </div>
+                  <!-- </div> -->
+                </div>
+              </div>  
                 </mat-expansion-panel>
               </mat-accordion>
      <!--   </form>-->
      
-    </div>
-    </div>  
+   
     <!-- //////////////// -->
     <!-- <br><br> -->
     <!-- <mat-divider></mat-divider> -->
+    <mat-accordion>
+        <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" >
+          <mat-expansion-panel-header> -->
+              <mat-expansion-panel [expanded]='false'
+              >
+                <mat-expansion-panel-header>
+            <mat-panel-title  style="font-size: larger;color: black;">
+              Add Certification Details
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
     <div formGroupName="Cgrid">
       <mat-table [dataSource]="certificationDS" matSort class="example-container mat-elevation-z8 resource-grid">
         <ng-container matColumnDef="CertificationID">
@@ -231,18 +233,12 @@
           (click)="highlightCert(row)"></mat-row>
 
       </mat-table>
+      <br><br>
       <div  *ngIf="isAddItem">
-      <mat-accordion>
-        <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title style="font-size: smaller;color: steelblue;">
-              
-            </mat-panel-title>
-
-          </mat-expansion-panel-header>
+     
           <div class="row">
-            <div class="col-xl-2">
-              <mat-form-field style="width: 200px;" #matformfield>
+            <div class="col-xl-4">
+              <mat-form-field style="width:350px !important" #matformfield>
                 <input matInput  placeholder="Certificate Number" formControlName="CertificateNumber" type="text" pattern="[0-9]+" >
                 <mat-error *ngIf="uQualificationForm.controls.Cgrid.controls['CertificateNumber'].invalid  ">
                     Certificate Number must be numeric. 
@@ -260,24 +256,35 @@
                   </mat-error> -->
               </mat-form-field>
             </div>
-            <div class="col-xl-2">
-              <mat-form-field style="width:200px">
-                <input matInput placeholder=" Certification Type" formControlName="Type" class="text-uppercase"  [matAutocomplete]="auto">
+            <div class="col-xl-4">
+              <mat-form-field style="width:350px !important">
+                <input matInput placeholder=" Certification Type" formControlName="Type" class="text-uppercase"  [matAutocomplete]="auto" >
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option *ngFor="let cType of cTypes" [value]="cType">
                       {{cType}}
                   </mat-option>
                 </mat-autocomplete>
-                <mat-error *ngIf="uQualificationForm.controls.Cgrid.hasError('required', 'Type') ">
+                <mat-error  *ngIf="uQualificationForm.controls.Cgrid.hasError('required', 'Type')">
                   <!-- <span [hidden]="!uQualificationForm.controls['Type'].errors.required"> -->
+                      <!-- <span >
+                          whitespace not allowed
+                    </span>  
+                    <span>
+                        Type is required.
+                  </span>   -->
                     Type is required.
                   <!-- </span> -->
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-xl-2">
-              <mat-form-field style="width:200px">
-                <input matInput placeholder="Stream" formControlName="CStream" class="text-uppercase">
+            <div class="col-xl-4">
+              <mat-form-field style="width:350px !important">
+                <input matInput placeholder="Stream" formControlName="CStream" class="text-uppercase" [matAutocomplete]='auto3'>
+                <mat-autocomplete #auto3="matAutocomplete">
+                  <mat-option *ngFor="let cstream of cstreams" [value]="cstream">
+                      {{cstream}}
+                  </mat-option>
+                </mat-autocomplete> 
                 <mat-error *ngIf="uQualificationForm.controls.Cgrid.hasError('required', 'CStream') ">
                   <!-- <span [hidden]="!uQualificationForm.controls['Stream'].errors.required"> -->
                     Stream is required.
@@ -285,33 +292,45 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-xl-2">
-              <mat-form-field style="width:200px">
+            </div>
+            <div class="row">
+            <div class="col-xl-4">
+              <mat-form-field style="width:350px !important">
                 <input matInput placeholder="Year of passing" formControlName="CYear" type="text" pattern="[0-9]+">
-                <mat-error *ngIf="uQualificationForm.controls.Cgrid.hasError('required', 'CYear') ">
-                  <!-- <span [hidden]="!uQualificationForm.controls['Year'].errors.required"> -->
-                    Year is required.
-                  <!-- </span> -->
-                </mat-error>
-                <mat-error *ngIf="uQualificationForm.get('Cgrid.CYear').hasError('maxlength')" >
-                    Year must be 4 digit long.
+                <mat-error *ngIf="uQualificationForm.controls.Cgrid.controls['CYear'].invalid  ">
+                    <span *ngIf="uQualificationForm.controls.Cgrid.controls['CYear'].errors.required">
+                        Year is required
+                  </span>   
+                  <span *ngIf="uQualificationForm.controls.Cgrid.controls['CYear'].errors.pattern">
+                        Year must be numeric.
+                </span> 
+                <span *ngIf="uQualificationForm.controls.Cgrid.controls['CYear'].errors.maxlength">
+                    Year can't be more than 4 digit long.
+            </span> 
+            <span *ngIf="uQualificationForm.controls.Cgrid.controls['CYear'].errors.minlength">
+                Year must atleast 4 digit long.
+           </span>                                 
                   </mat-error>
               </mat-form-field>
             </div>
           
           <!-- <div class="row"> -->
-            <div class="col-xl-2">
-              <mat-form-field style="width:200px">
-                <input matInput placeholder="Institution.." formControlName="Institution" class="text-uppercase">
-                <mat-error *ngIf="uQualificationForm.controls.Cgrid.hasError('required', 'Institution') ">
-                  <!-- <span [hidden]="!uQualificationForm.controls['Institution'].errors.required"> -->
-                    Institute is required.
-                  <!-- </span> -->
+            <div class="col-xl-4">
+              <mat-form-field style="width:350px !important">
+                <input matInput placeholder="Institution.." formControlName="Institution" class="text-uppercase" [matAutocomplete]="auto2">   
+                <mat-autocomplete #auto2="matAutocomplete">
+                  <mat-option *ngFor="let institute of institutes" [value]="institute">
+                      {{institute}}
+                  </mat-option>
+                </mat-autocomplete>           
+                <mat-error *ngIf="uQualificationForm.controls.Cgrid.controls['Institution'].invalid">
+                  <span *ngIf="uQualificationForm.controls.Cgrid.controls['Institution'].errors.required"> Institute is required.</span>                                          
+                  <span *ngIf="uQualificationForm.controls.Cgrid.controls['Institution'].errors.pattern ">Special characters and numbers are not allowed.</span>
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-xl-2">
-              <mat-form-field style="width:100px">
+            <div class="col-xl-4">
+              <mat-form-field style="width:350px !important">
                 <input matInput placeholder="Marks" formControlName="CMarks" type="number" pattern="[0-9/.]+">
                 <mat-error *ngIf="uQualificationForm.controls.Cgrid.controls['CMarks'].invalid  ">
                     Invalid Marks!!!  
@@ -338,26 +357,27 @@
                         aria-hidden="true"></i>Cancel</button>
                     <button [disabled]="!uQualificationForm.controls.Cgrid.valid" type="button" class="btn btn-info float-right" (click)="addCertification()"><i class="fa fa-plus"
                         aria-hidden="true"></i>
-                      {{cformType}} Certification</button>
+                      {{cformType}} Certification </button>
       
                   </div>
             </div>
-
+          </div>
+        </div>
         </mat-expansion-panel>
       </mat-accordion>
-    </div>
+   
   </div>
-  </div>
+  
   <div style=" background: #bee5eb; padding: 10px; float: left; width: 100%;">
     <div *ngIf="disableFooter" class="float-right ml-2">
-      <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        Add New</button>
+      <!-- <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Add New</button> -->
          <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/resource']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
-    </div>
-    <div *ngIf="!disableFooter" class="float-right ml-2">
-      <button [disabled]="disablesave" type="submit" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save"
+    <!-- </div>
+    <div *ngIf="!disableFooter" class="float-right ml-2"> -->
+      <button [disabled]="disablesave" type="button" mat-button class="btn btn-success float-right ml-3" (click)="Save()"><i class="fa fa-save"
           aria-hidden="true"></i> Save</button>
-      <button mat-button class="btn btn-secondary" (click)="discard()"><i class="fa fa-times" aria-hidden="true"></i>
+      <button mat-button type="reset" class="btn btn-secondary ml-3" (click)="discard()"><i class="fa fa-times" aria-hidden="true"></i>
         Discard</button>
     </div>
 

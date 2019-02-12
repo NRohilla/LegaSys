@@ -13,7 +13,7 @@ import { DomainsService } from '../domains/domains.service';
   styleUrls: ['./technologies.component.scss']
 })
 export class TechnologiesComponent implements OnInit {
-
+  value:any;
   technologyForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     master_DomainID: new FormControl('', [Validators.required])

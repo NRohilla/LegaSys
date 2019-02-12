@@ -15,7 +15,7 @@ namespace LegaSysDataAccess
     public partial class LegaSys_UserQualification
     {
         public int QualificationID { get; set; }
-        public int? UserDetailID { get; set; }
+        public int UserDetailID { get; set; }
         public string Qualification { get; set; }
         public string Stream { get; set; }
         public int Year { get; set; }

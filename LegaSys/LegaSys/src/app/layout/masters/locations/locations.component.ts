@@ -11,7 +11,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./locations.component.scss']
 })
 export class LocationsComponent implements OnInit {
-
+  value:any;
   locationForm = new FormGroup({
     locationAddress: new FormControl('', [Validators.required, Validators.maxLength(500)])
   });

@@ -11,7 +11,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./leaves.component.scss']
 })
 export class LeavesComponent implements OnInit {
-
+  value:any;
   leaveForm = new FormGroup({
     statusName: new FormControl('', [Validators.required, Validators.maxLength(100)])
   });

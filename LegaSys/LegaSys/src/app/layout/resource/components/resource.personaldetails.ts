@@ -15,7 +15,7 @@ export class ResourcePersonaldetailsComponent implements OnInit {
   resoursedetails: any;
   getAllRole: Resource;
   getAllShift: Resource[];
-  namePattern = "[A-Za-z]{1,25}";
+  namePattern = '^[a-zA-Z ]+$';
   mobnumPattern = "^((\\+91-?)|0)?[0-9]{10}$";
   totexpPattern = "^(?!0+(?:\.0+)?$)[0-5]?[0-9](?:\.\d\d?)?$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -28,9 +28,9 @@ export class ResourcePersonaldetailsComponent implements OnInit {
     private formBuilder: FormBuilder, private titleService: Title) {
     titleService.setTitle("LegaSys - Resource Details");
     this.personalDetailsForm = this.formBuilder.group({
-      Firstname: ['', [Validators.required, Validators.pattern(this.namePattern)]],
-      Lastname: ['', [Validators.required, Validators.pattern(this.namePattern)]],
-      Middlename: ['', ''],
+      Firstname: ['', [Validators.required,Validators.maxLength(25), Validators.pattern(this.namePattern)]],
+      Lastname: ['', [Validators.required,Validators.maxLength(25), Validators.pattern(this.namePattern)]],
+      Middlename: ['', [Validators.maxLength(25),Validators.pattern(this.namePattern)]],
       EmailId: ['', Validators.pattern(this.emailPattern)],
       TotalExp: ['', [Validators.required, Validators.pattern('[0-9/.]+')]],
       Master_Role_ID: [this.getAllRole, [Validators.required]],
@@ -44,7 +44,16 @@ export class ResourcePersonaldetailsComponent implements OnInit {
 
 
   }
-
+  CheckForWhiteSpace(controlName:string){
+    debugger;
+    
+    if(this.personalDetailsForm.controls[controlName].value<=0){
+      return this.personalDetailsForm.controls[controlName].setErrors({ pattern: true });
+    }
+    else{
+      this.personalDetailsForm.controls[controlName].setValue(this.personalDetailsForm.controls[controlName].value.trim());
+    }
+  }
   roleChanged(value) {
     this.resourceService.getReportingHead(value)
       .subscribe((data: Resource[]) => {

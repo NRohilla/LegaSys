@@ -11,7 +11,7 @@ import { RolesService } from './roles.service';
   styleUrls: ['./roles.component.scss']
 })
 export class RolesComponent implements OnInit {
-
+  value:any;
   roleForm = new FormGroup({
     role: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     description: new FormControl('', [Validators.maxLength(100)]),
@@ -64,7 +64,7 @@ export class RolesComponent implements OnInit {
     this.rolesService.changeStatus(id).subscribe(res => { this.ngOnInit(); });
   }
 
-  formReset(formData: any, formDirective: FormGroupDirective) {
+  formReset(formDirective: FormGroupDirective) {
     formDirective.resetForm();
     this.roleForm.reset();
     this.formType = "Add";

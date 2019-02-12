@@ -35,6 +35,7 @@ namespace LegaSysUOW.Interface
 
         Boolean ChangeClientStatus(Int32 ID, Int32 userId);
         List<LegaSysDataAccess.LegaSys_ClientStatus> GetClientStatus();
+        List<ClientDetail> GetAllActiveClient();
 
     }
 }

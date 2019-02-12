@@ -11,6 +11,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSnackBarModule,
     MatAutocompleteModule,
     NgbModule.forRoot(),
-    MatStepperModule
+    MatStepperModule,
+    MatCheckboxModule
   ],
   providers: [ClientServiceService],
     declarations: [AddclientComponent]

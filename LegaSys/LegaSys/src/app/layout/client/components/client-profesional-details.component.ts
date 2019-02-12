@@ -107,15 +107,25 @@ export class ClientProfesionalDetailsComponent implements OnInit {
   /**** This method will be used in OnInit to create a reactive form  */
   CreateProfessionalDetailsForm(){
     this.professionalDetailsForm = this.formBuilder.group({
-      companyName: ['',[Validators.required]],
-      companyAddress: ['',Validators.required],
+      companyName: ['',[Validators.required,Validators.pattern('^[a-zA-Z ]+$')]],
+      companyAddress: ['',[Validators.required,Validators.pattern('^[a-zA-Z ]+$')]],
       companyCountry: ['',Validators.required],
-      companyZipcode: ['',[Validators.required,Validators.pattern('^[0-9 ]+$')]],
+      companyZipcode: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       companyEmail: ['',Validators.required],
-      companyPhone: ['',[Validators.required,Validators.pattern('^[0-9 ]+$')]],
-      companyFax: ['',Validators.pattern('^[0-9 ]+$')]     
+      companyPhone: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
+      companyFax: ['',Validators.pattern('^[0-9]+$')]     
     });
     
+  }
+  CheckForWhiteSpace(contraolName:string){
+    debugger;
+    
+    if(this.professionalDetailsForm.controls[contraolName].value<=0){
+      return this.professionalDetailsForm.controls[contraolName].setErrors({ pattern: true });
+    }
+    else{
+      this.professionalDetailsForm.controls[contraolName].setValue(this.professionalDetailsForm.controls[contraolName].value.trim());
+    }
   }
 
 }

@@ -59,10 +59,8 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     this.currentClientDetails.ClientName = this.personalDetailsForm.controls['clientName'].value;
     this.currentClientDetails.Address = this.personalDetailsForm.controls['clientAddress'].value;
     this.currentClientDetails.EmailID = this.personalDetailsForm.controls['clientEmail'].value;
-    this.currentClientDetails.EmailID2 = this.personalDetailsForm.controls['clientEmail2'].value;
-    this.currentClientDetails.EmailID3 = this.personalDetailsForm.controls['clientEmail3'].value;
-    this.currentClientDetails.EmailID4 = this.personalDetailsForm.controls['clientEmail4'].value;
-    this.currentClientDetails.Country = this.personalDetailsForm.controls['country'].value;
+   this.currentClientDetails.Country = this.personalDetailsForm.controls['country'].value;
+   this.currentClientDetails.ClientPhone = this.personalDetailsForm.controls['clientPhone'].value;
     this.onClientDetailsChange.emit(this.currentClientDetails);
     this.MakeFieldEditable();
   }
@@ -71,11 +69,9 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   CreatePersonalDetailsForm() {
     this.personalDetailsForm = this.formBuilder.group({
       clientName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-      clientAddress: ['', Validators.required],
+      clientAddress: ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+$')]],
       clientEmail: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      clientEmail2: ['', Validators.pattern(this.emailPattern)],
-      clientEmail3: ['', Validators.pattern(this.emailPattern)],
-      clientEmail4: ['', Validators.pattern(this.emailPattern)],
+      clientPhone: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       country: ['', Validators.required]
     });
   }
@@ -124,14 +120,8 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     if (this.currentClientDetails.EmailID != null && this.currentClientDetails.EmailID != '' && this.currentClientDetails.EmailID != undefined) {
       this.personalDetailsForm.controls['clientEmail'].setValue(this.currentClientDetails.EmailID.trim());
     }
-    if (this.currentClientDetails.EmailID2 != null && this.currentClientDetails.EmailID2 != '' && this.currentClientDetails.EmailID2 != undefined) {
-      this.personalDetailsForm.controls['clientEmail2'].setValue(this.currentClientDetails.EmailID2.trim());
-    }
-    if (this.currentClientDetails.EmailID3 != null && this.currentClientDetails.EmailID3 != '' && this.currentClientDetails.EmailID3 != undefined) {
-      this.personalDetailsForm.controls['clientEmail3'].setValue(this.currentClientDetails.EmailID3.trim());
-    }
-    if (this.currentClientDetails.EmailID4 != null && this.currentClientDetails.EmailID4 != '' && this.currentClientDetails.EmailID4 != undefined) {
-      this.personalDetailsForm.controls['clientEmail4'].setValue(this.currentClientDetails.EmailID4.trim());    }
+  
+      this.personalDetailsForm.controls['clientPhone'].setValue(this.currentClientDetails.ClientPhone);
     this.personalDetailsForm.controls['country'].setValue(this.currentClientDetails.Country);
   }
 
@@ -145,9 +135,8 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
         case 'clientAddress': return "Client Address ";
         case 'country': return "Country ";
         case 'clientEmail': return "Primary Email  ";
-        case 'clientEmail2': return "Secondary Email ";
-        case 'clientEmail3': return "Other Email";
-        case 'clientEmail4': return "Other Email";
+     
+        case 'clientPhone': return "Contact Number";
         default: return " ";
       }
     }
@@ -155,5 +144,16 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
       return " ";
     }
   }
+  CheckForWhiteSpace(contraolName:string){
+    debugger;
+    
+    if(this.personalDetailsForm.controls[contraolName].value<=0){
+      return this.personalDetailsForm.controls[contraolName].setErrors({ pattern: true });
+    }
+    else{
+      this.personalDetailsForm.controls[contraolName].setValue(this.personalDetailsForm.controls[contraolName].value.trim());
+    }
+  }
+
 
 }

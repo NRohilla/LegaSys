@@ -13,36 +13,39 @@
                 <!-- <form role="form"> -->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Name" formControlName="ClientName" name="ClientName" id="ClientName">
+                        <input matInput placeholder="Name" formControlName="ClientName" name="ClientName" id="ClientName" (change)="CheckForWhiteSpace('ClientName','clientPersonalDetailsForm',0)">
+                        
                         <mat-error *ngIf="clientPersonalDetailsForm.controls['ClientName'].invalid">
                             <span *ngIf="clientPersonalDetailsForm.controls['ClientName'].errors.required"> Name can not be empty</span>
-                            <span *ngIf="clientPersonalDetailsForm.controls['ClientName'].errors.pattern"> Name can only contain text</span>
+                            <span *ngIf="clientPersonalDetailsForm.controls['ClientName'].errors.pattern"> Name can not contain numbers, Special charecters and Whitspace at the beginning</span>
                         </mat-error>
                     
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Address" formControlName="Address" name="Address" id="CoClient">
+                        <input matInput placeholder="Address" formControlName="Address" name="Address" id="CoClient" (change)="CheckForWhiteSpace('Address','clientPersonalDetailsForm',0)" >
                         <mat-error *ngIf="clientPersonalDetailsForm.controls['Address'].invalid">
                                 <span *ngIf="clientPersonalDetailsForm.controls['Address'].errors.required"> Address can not be empty</span>
+                                <span *ngIf="clientPersonalDetailsForm.controls['Address'].errors.pattern"> Address can not contain  Whitspace at the beginning</span>
+                       
                               
                             </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input  type="text" matInput formControlName="Country" [matAutocomplete]="auto"
-                            placeholder="Country">
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important">
+                        <input  type="text" matInput formControlName="Country" [matAutocomplete]="auto2"
+                            placeholder="Country" >
+                        <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" style="max-height: 200px !important">
                             <mat-option *ngFor="let option of filteredOptionsForClientPersonalDetailsForm | async" [value]="option" style="max-height: 200px !important">
                                 {{option}}
                             </mat-option>
                         </mat-autocomplete>
                         <mat-error *ngIf="clientPersonalDetailsForm.controls['Country'].invalid">
-                                <span *ngIf="clientPersonalDetailsForm.controls['Country'].errors.required">Country can not be empty</span>
-                              
-                            </mat-error>
+                            <span *ngIf="clientPersonalDetailsForm.controls['Country'].errors.required">Country can not be empty</span>
+                          
+                        </mat-error>
                     </mat-form-field>
                 </div>
 
@@ -53,6 +56,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                         <mat-form-field class="w-100">
                             <input matInput placeholder="Email" formControlName="personalEmailId" name="personalEmailId" id="personalEmailId">
+                            <mat-hint ><strong>example: abc@gmail.com</strong> </mat-hint>
                             <mat-error *ngIf="clientPersonalDetailsForm.controls['personalEmailId'].invalid">
                                     <span *ngIf="clientPersonalDetailsForm.controls['personalEmailId'].errors.required">Email can not be empty</span>
                                     <span *ngIf="clientPersonalDetailsForm.controls['personalEmailId'].errors.pattern"> Please enter valid email</span>
@@ -61,10 +65,11 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Contact Number" formControlName="personalContactNo" name="personalContactNo" id="personalContactNo" maxlength="10"> 
+                            <input matInput placeholder="Contact Number" formControlName="personalContactNo" name="personalContactNo" id="personalContactNo" maxlength="10" minlength="10"> 
                             <mat-error *ngIf="clientPersonalDetailsForm.controls['personalContactNo'].invalid">
                                     <span *ngIf="clientPersonalDetailsForm.controls['personalContactNo'].errors.required">Contact can not be empty</span>
                                     <span *ngIf="clientPersonalDetailsForm.controls['personalContactNo'].errors.pattern">Contact number can cointain only numbers</span>
+                                    <span *ngIf="clientPersonalDetailsForm.controls['personalContactNo'].errors.minlength && !clientPersonalDetailsForm.controls['personalContactNo'].errors.pattern">Contact number should be of 10 digit long</span>
                                 </mat-error>
                         </mat-form-field>
                     </div>
@@ -73,7 +78,7 @@
     
                 </div>
         <div>
-          <button class="btn btn-info mx-2" matStepperNext>Next</button>
+          <button [disabled]="!clientPersonalDetailsForm.valid" class="btn btn-info mx-2" matStepperNext>Save and continue</button>
         </div>
       </form>
     </mat-step>
@@ -84,20 +89,21 @@
                 <!-- <form role="form"> -->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Company Name" formControlName="companyName" name="companyName" id="companyName">
+                        <input matInput placeholder="Company Name" formControlName="companyName" name="companyName" id="companyName" (change)="CheckForWhiteSpace('companyName','clientProfestionalDetailsForm',0)">
                         <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyName'].invalid">
                             <span *ngIf="clientProfestionalDetailsForm.controls['companyName'].errors.required"> Company Name can not be empty</span>
-                           
+                            <span *ngIf="clientProfestionalDetailsForm.controls['companyName'].errors.pattern"> Company Name can not contain numbers, Special charecters and Whitspace at the beginning</span>
+                        
                         </mat-error>
                     
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Address" formControlName="Address" name="Address" >
+                        <input matInput placeholder="Address" formControlName="Address" name="Address"  (change)="CheckForWhiteSpace('Address','clientProfestionalDetailsForm',0)" >
                         <mat-error *ngIf="clientProfestionalDetailsForm.controls['Address'].invalid">
                                 <span *ngIf="clientProfestionalDetailsForm.controls['Address'].errors.required"> Address can not be empty</span>
-                              
+                                <span *ngIf="clientProfestionalDetailsForm.controls['Address'].errors.pattern"> Address can not contain  Whitspace at the beginning</span>
                             </mat-error>
                     </mat-form-field>
                 </div>
@@ -106,7 +112,7 @@
                         <input  type="text" matInput formControlName="Country" [matAutocomplete]="auto"
                             placeholder="Country">
                         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important">
-                            <mat-option *ngFor="let option of filteredOptionsForClientPersonalDetailsForm | async" [value]="option" style="max-height: 200px !important">
+                            <mat-option *ngFor="let option of filteredOptionsForClientProfestionalDetailsForm | async" [value]="option" style="max-height: 200px !important">
                                 {{option}}
                             </mat-option>
                         </mat-autocomplete>
@@ -124,6 +130,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                         <mat-form-field class="w-100">
                             <input matInput placeholder="Company Email" formControlName="companyEmailId" name="companyEmailId" id="companyEmailId">
+                            <mat-hint ><strong>example: abc@gmail.com</strong> </mat-hint>
                             <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].invalid">
                                     <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.required">Email can not be empty</span>
                                     <span *ngIf="clientProfestionalDetailsForm.controls['companyEmailId'].errors.pattern"> Please enter valid email</span>
@@ -132,10 +139,11 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Contact Number" formControlName="companyContactNo" name="companyContactNo" id="companyContactNo" maxlength="11"> 
+                            <input matInput placeholder="Contact Number" formControlName="companyContactNo" name="companyContactNo" id="companyContactNo" maxlength="11" minlength="10"> 
                             <mat-error *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].invalid">
                                     <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.required">Contact can not be empty</span>
                                     <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.pattern"> Contact number can only contain numbers</span>
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['companyContactNo'].errors.minlength && !clientProfestionalDetailsForm.controls['companyContactNo'].errors.pattern"> Contact number should be atleat 10 charecter long</span>
                                 </mat-error>
                         </mat-form-field>
                     </div>
@@ -160,6 +168,7 @@
                             <mat-error *ngIf="clientProfestionalDetailsForm.controls['zip'].invalid">
                                     <span *ngIf="clientProfestionalDetailsForm.controls['zip'].errors.required">Email can not be empty</span>
                                     <span *ngIf="clientProfestionalDetailsForm.controls['zip'].errors.pattern">can contains only numbers</span>
+                                    <span *ngIf="clientProfestionalDetailsForm.controls['zip'].errors.minlength && !clientProfestionalDetailsForm.controls['zip'].errors.pattern">ZIP should be of 6 charecter long</span>
                                 </mat-error>
                         </mat-form-field>
                     </div>
@@ -171,37 +180,40 @@
                 </div>
      
         <div>
-          <button class="btn btn-info mx-2" matStepperPrevious>Back</button>
-          <button class="btn btn-info mx-2" matStepperNext>Next</button>
+          <!-- <button class="btn btn-info mx-2" matStepperPrevious>Back</button> -->
+          <button [disabled]="!clientProfestionalDetailsForm.valid" class="btn btn-info mx-2" matStepperNext>Save and continue</button>
         </div>
       </form>
     </mat-step>
 
     <mat-step [stepControl]="coClientForm">
+            <mat-checkbox class="example-margin" [(ngModel)]="showCoClientForm">Do you want to add client </mat-checkbox>
             <form [formGroup]="coClientForm">
               <ng-template matStepLabel>Fill out Co Client  Details</ng-template>
               <div formArrayName="coClientDetails" *ngIf="showCoClientForm">
                 <!-- Check the correct way to iterate your form array -->
                 <div *ngFor="let coClientDetail of coClientForm.controls.coClientDetails.controls; let i=index"  [formGroupName]="i">
-                  <h4>Co Client {{ i + 1 }} </h4>
+                  <h4>Co Client <i (click)="deleteRow(i)" class="fa fa-times" aria-hidden="true"></i> </h4>
                   <div class="form-group">
                         <div class="w-100 float-left">
                                 <!-- <form role="form"> -->
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                     <mat-form-field class="w-100">
-                                        <input matInput placeholder="Name" formControlName="Name" name="Name" id="Name">
+                                        <input matInput placeholder="Name" formControlName="Name" name="Name" id="Name" (change)="CheckForWhiteSpace('Name','coClientForm',i)">
+                                        <mat-hint ><strong>example: abc@gmail.com</strong> </mat-hint>
                                         <mat-error *ngIf="coClientDetail.controls.Name.invalid">
-                                           Contain only text
+                                           <span *ngIf="coClientDetail.controls.Name.errors.pattern">Name can not cointain special charecters, numbers and whitespace at beginning </span>
                                         </mat-error>
+                                        
                                     </mat-form-field>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
                                     <mat-form-field class="w-100">
-                                        <input matInput placeholder="Address" formControlName="Address" name="Address" >
-                                        <!-- <mat-error *ngIf="clientProfestionalDetailsForm.controls['Address'].invalid">
-                                                <span *ngIf="clientProfestionalDetailsForm.controls['Address'].errors.required"> Address can not be empty</span>
-                                              
-                                            </mat-error> -->
+                                        <input matInput placeholder="Address" formControlName="Address" name="Address" (change)="CheckForWhiteSpace('Address','coClientForm',i)" >
+                                        <mat-error *ngIf="coClientDetail.controls.Address.invalid">
+                                        <span *ngIf="coClientDetail.controls.Address.errors.pattern">Address can not contain whitespace at beginning </span>
+                                    </mat-error>
+                                      
                                     </mat-form-field>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
@@ -262,11 +274,10 @@
                         </div>
                         </div>
                       </form>
-                      <button matStepperPrevious class="btn btn-info mx-2">Back</button>
-                      <button matStepperNext class="btn btn-info mx-2">Next</button>
-                      <button  *ngIf="!showCoClientForm" (click)="ShowCoClient()" class="btn btn-info mx-2"> Add Co Client</button>
-                        <button  *ngIf="showCoClientForm && CheckFlag()" (click)="AddNewCoCLientForm()" class="btn btn-info mx-2">Add another Co Client</button>
-                                <button  *ngIf="showCoClientForm && flag>=0" (click)="deleteRow(i)" class="btn btn-info mx-2"> Remove Co Client</button>
+                      <button class="btn btn-info mx-2" matStepperNext>Save and continue</button>
+                    
+                        <button type="button"  *ngIf="showCoClientForm && CheckFlag()" (click)="AddNewCoCLientForm()" class="btn btn-info mx-2">Add another Co Client</button>
+                              
                     </mat-step>
          
     
@@ -275,7 +286,9 @@
       You are now done.
       <div>
         <button matStepperPrevious class="btn btn-info mx-2">Back</button>
-        <button (click)="stepper.reset()" class="btn btn-info mx-2">Reset</button>
+      
+        <button mat-button type="button" class="btn btn-success" [disabled]="!clientPersonalDetailsForm.valid && !clientProfestionalDetailsForm.valid" (click)='AddClient()' ><i class="fa fa-paper-plane" aria-hidden="true"></i>Submit
+        </button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
@@ -285,8 +298,7 @@
                     aria-hidden="true"></i> Back</button>
         </div>
 
-        <button mat-button class="btn btn-success" [disabled]="!clientPersonalDetailsForm.valid && !clientProfestionalDetailsForm.valid" (click)='AddClient()' ><i class="fa fa-paper-plane" aria-hidden="true"></i>Submit
-            </button>
+        
             </div>
 
 </div>

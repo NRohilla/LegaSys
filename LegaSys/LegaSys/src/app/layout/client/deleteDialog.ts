@@ -8,8 +8,9 @@ import { Client } from './model/client.model';
     templateUrl: 'deleteDialog.html',
   })
   export class DeleteDialog {
+
     currentClientDetails:Client;
-    constructor(public dialogRef: MatDialogRef<DeleteDialog>,public dialog: MatDialog, private clientService: ClientServiceService, @Inject(MAT_DIALOG_DATA) public data: object ) {}
+    constructor(public dialogRef: MatDialogRef<DeleteDialog>,public dialog: MatDialog, private clientService: ClientServiceService, @Inject(MAT_DIALOG_DATA) public data: any ) {}
    
    
       onNoClick(): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { Title } from '@angular/platform-browser';
+import { DashbordService } from './dashbord.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,8 +12,11 @@ import { Title } from '@angular/platform-browser';
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
-
-    constructor(private titleService: Title) {
+    activeClientCount:number=0;
+    inActiveClientCount:number=0;
+    totalClientCount:number;
+    link:string='client';
+    constructor(private titleService: Title,private dashBord:DashbordService) {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
@@ -55,7 +59,23 @@ export class DashboardComponent implements OnInit {
         this.titleService.setTitle("LegaSys - Dashboard");
     }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.dashBord.GetClientDetails().subscribe(
+            (suc:any)=>{
+                if(suc.success){
+                 for(let i=0;i<suc.data.length;i++){
+                     if(suc.data[i].IsActive){
+                         this.activeClientCount+=1;
+                     }
+                     else{
+                         this.inActiveClientCount+=1;
+                     }
+                 }
+                 this.totalClientCount=this.activeClientCount+this.inActiveClientCount;
+                }
+            }
+        )
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

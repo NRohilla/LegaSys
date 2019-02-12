@@ -15,52 +15,55 @@
         <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="start_date">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Start Date</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Start Date</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.Start_Date | date}} </mat-cell>
       </ng-container>
       <!-- client email Column -->
       <ng-container matColumnDef="End_date">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">End Date</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">End Date</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.End_Date | date}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="duration">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Duration </span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Duration </span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{calcTotExp(element.Start_Date,element.End_Date)}} </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="assign_type">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Assign Type</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Assign Type</span> </mat-header-cell>
         <mat-cell *matCellDef="let element">Full time </mat-cell>
       </ng-container>
       <ng-container matColumnDef="service_type">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Service Type</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Service Type</span> </mat-header-cell>
         <mat-cell *matCellDef="let element">{{GetStatus(element.End_Date)}} </mat-cell>
       </ng-container>
     
       <!--client address Column -->
       
         <ng-container matColumnDef="action">
-          <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+          <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef > </mat-header-cell>
           <mat-cell *matCellDef="let element" class="text-right">
               <button mat-button (click)="ViewProjectDetails(element.ProjectID)"  class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View</button>
             
              </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row >
-        <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.ProjectID}"
+        <mat-row  matTooltip="Give it a click to update" *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.ProjectID}"
         (click)="highlight(row)"></mat-row>
     </mat-table>
     <form *ngIf="showProjectDetailsForm" class="w-100 float-left table-active py-5 px-2" [formGroup]="projectDetailsForm">
       <div class="row m-0">
           <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
               <mat-form-field >               
-              <input  formControlName="title" matInput placeholder="Title" maxlength="50" >                 
-              <!-- <mat-error *ngIf="professionalDetailsForm.controls['companyName'].invalid">
-                    <span *ngIf="professionalDetailsForm.controls['companyName'].errors.required">
+              <input  formControlName="title" matInput placeholder="Title" maxlength="50" (change)="CheckForWhiteSpace('title')" >                 
+              <mat-error *ngIf="projectDetailsForm.controls['title'].invalid">
+                    <span *ngIf="projectDetailsForm.controls['title'].errors.required">
                           Company name can bot be blank
-                    </span>               
+                    </span>       
+                    <span *ngIf="projectDetailsForm.controls['title'].errors.pattern">
+                      title  can not except whitespaces at the beinning 
+                </span>               
               
-                 </mat-error> -->
+                 </mat-error>
           </mat-form-field>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">

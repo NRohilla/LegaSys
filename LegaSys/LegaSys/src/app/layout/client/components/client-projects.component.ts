@@ -120,7 +120,7 @@ export class ClientProjectsComponent implements OnInit {
       /******** This method will be used to create projectDetaiosForm */
       CreateProjectDetailsForm(){
         this.projectDetailsForm = this.formBuilder.group({
-          title: ['',Validators.required],
+          title: ['',[Validators.required,Validators.pattern('^[a-zA-Z ]+$')]],
           startDate: ['',Validators.required],
           endDate: ['',],
           assignType:[''],
@@ -221,6 +221,16 @@ export class ClientProjectsComponent implements OnInit {
     debugger;
     sessionStorage.setItem('cllientIdToAddProject',sessionStorage.getItem('currentClientID'));
     this.router.navigate(['./project/add']);
+  }
+  CheckForWhiteSpace(contraolName:string){
+    debugger;
+    
+    if(this.projectDetailsForm.controls[contraolName].value<=0){
+      return this.projectDetailsForm.controls[contraolName].setErrors({ pattern: true });
+    }
+    else{
+      this.projectDetailsForm.controls[contraolName].setValue(this.projectDetailsForm.controls[contraolName].value.trim());
+    }
   }
 
   

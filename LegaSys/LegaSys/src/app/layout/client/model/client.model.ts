@@ -21,6 +21,7 @@ export class Client {
      ClientCountryZip:string;
      CompanyPhone:string;
      ClientCompanyFax:string;
+     ClientPhone:string;
      CoClientDetails:CoClientModal[]=[];
    
 }

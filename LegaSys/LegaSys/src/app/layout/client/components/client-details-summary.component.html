@@ -48,12 +48,16 @@
       <div class="row mx-0 my-2">
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>No Of Project :</strong></div>
-                  <div class="float-left">{{projectCount}}</div>
+                  <div class="float-left">{{clientProjectsList.length}}</div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>No of Resourse Hired:</strong></div>
                   <div class="float-left">{{resourseCount}}</div>
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                        <div class="summary-lebel float-left"><strong>No of Co-Client</strong></div>
+                        <div class="float-left">{{currentClientDetails.CoClientDetails.length}}</div>
+                  </div>
             <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>Secondry Co-Client:</strong></div>
                   <div class="float-left">{{currentClientDetails.CoClient2}}</div>

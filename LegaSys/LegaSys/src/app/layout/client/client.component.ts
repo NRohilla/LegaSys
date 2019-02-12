@@ -61,6 +61,7 @@ export class ClientComponent implements OnInit {
     );
   }
   applyFilter(filterValue: string) {
+    debugger;
     this.clientDetails.filter = filterValue.trim().toLowerCase();
   }
   /*********** Writen By Shubham Mishra on 8 nov 2018 following method is used for deleteing a perticular client   */

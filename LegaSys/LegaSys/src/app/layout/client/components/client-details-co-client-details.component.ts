@@ -1,8 +1,10 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { CurrentClientdataServiceService } from '../../../current-clientdata-service.service';
 import { ClientServiceService } from '../client-service.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from "@angular/forms";
 import { Client, CoClientModal } from '../model/client.model';
+import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
+import { DialogComponent } from '../../masters/dialog/dialog.component';
 
 @Component({
   selector: 'app-client-details-co-client-details',
@@ -14,210 +16,166 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   @Output('onCancel') onCancel = new EventEmitter<any>(); //used  to emit event to parent controller 
   @Input('currentClientDetails') currentClientDetails: Client; // used to hold current client details comming from parent controller i.e child details
   @Input('currentClientDetailsBackup') currentClientDetailsBackup: Client;// used to hold current client details comming from parent controller i.e child details this will be used when we need to change the update data to previous one
+  @ViewChild(MatSort) sort: MatSort;
 
-
-  /********************** Created By Shubham Mishra on 19-Nov-2018 **************/
+  /********************** Created By Shubham Mishra on 8-feb-2019 **************/
   disable: boolean = true; //this variable is used to bind the disabled attribute of input to make input fields editable and non editable
   coClientForm: FormGroup;// this is form group for co client 
   client: Client; // This is model of client
   readOnly: boolean = true;
   showCoClientForm:boolean=false;
-  flag:number=0;
-  constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService, private formBuilder: FormBuilder) {
+  flag:boolean=true;
+  displayedColumns: string[] = ['Name', 'Email', 'Address', 'Contact_no','Action']; // to display values in data table 
+  dataSource:any; 
+  selectedRowIndex:number=-1;
+  dataSourceBackup:any;
+  ids:number=-2;
+  showUpdateForm:boolean=true;
+  constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService,
+     private formBuilder: FormBuilder,public dialog: MatDialog) {
 
   }
-  /****** This fuction is used to make the form field editable  */
-  MakeFieldEditable() {
-    if (this.disable) {
-      this.disable = false;
-      this.readOnly = false;
-    }
-    else {
-      this.disable = true;
-      this.readOnly = true;
-    }
-  }
-  /****** This function is used to discard changes done by user, and replace changed data with previous data */
-  /*** modified on 27 Nov 2018  By Shubham Mishra *****/
-  DiscardChanges() {
-    this.currentClientDetails = this.currentClientDetailsBackup;
-    this.LoadCoClientForm();
-    this.onCancel.emit(this.currentClientDetails);
-    this.MakeFieldEditable();
-  }
-  /***** This function is used to update details of a client, following fucntion is emiting a event  */
-  UpdateClient() {
-    debugger;
-    var arrayControl = this.coClientForm.get('coClientDetails') as FormArray;
-    for(var j=0;j<arrayControl.length;j++){
-      console.log(arrayControl.controls[j].value);
-      if(j<this.currentClientDetails.CoClientDetails.length && this.currentClientDetails.CoClientDetails[j].IsActive!=false){
-        this.currentClientDetails.CoClientDetails[j].Name=arrayControl.controls[j].value.Name
-        this.currentClientDetails.CoClientDetails[j].Address=arrayControl.controls[j].value.Address
-        this.currentClientDetails.CoClientDetails[j].Phone=arrayControl.controls[j].value.contactNo
-        this.currentClientDetails.CoClientDetails[j].Email=arrayControl.controls[j].value.email
-      }
-      else{
-        let formArrayValue=new CoClientModal();
-              formArrayValue.Name=arrayControl.controls[j].value.Name;
-        formArrayValue.Address=arrayControl.controls[j].value.Address;
-        formArrayValue.Email=arrayControl.controls[j].value.email;
-        formArrayValue.Phone=arrayControl.controls[j].value.contactNo;
-        this.currentClientDetails.CoClientDetails.push(formArrayValue);
-      }
-     }
-     console.log(this.currentClientDetails);
-    this.onClientDetailsChange.emit(this.currentClientDetails);
-    this.MakeFieldEditable();
-  }
-  /***** Writen by Shubham  Mishra on 21 Nov 2018 ****
-   * ******* This fucntion is used to create a reactive form ************/
-  CreateCoClientForm() {
-    this.coClientForm = this.formBuilder.group({
-      coClient: ['', Validators.pattern('^[a-zA-Z ]+$')],
-      coClient2: ['', Validators.pattern('^[a-zA-Z ]+$')],
-      coClient3: ['', Validators.pattern('^[a-zA-Z ]+$')],
-      coClient4: ['', Validators.pattern('^[a-zA-Z ]+$')]
-    }, {
-      validator: this.matchval // your validation method
-    })
-  }
-  matchval(group: FormGroup){
-    let c1=group.controls['coClient'].value;
-    let c2=group.controls['coClient2'].value;
-    let c3=group.controls['coClient3'].value;
-    let c4=group.controls['coClient4'].value;
-    if(c4!=undefined ){
-      if(c3!=c4){
-        return null;
-
- }
- else{
-   return group.controls['coClient4'].setErrors({matchval: true});
-   
- }
-    }
-    else{
-      return null;
-    }
-  }
-  /******** Created on 27 nov 2018 ********/
-  /******** Following method will be used to get the place holder ********/
-  GetPlaceHolder(controlName: string) {
-    if (!this.readOnly) {
-      switch (controlName) {
-        case 'coClient': return "Primary Co client ";
-        case 'coClient2': return "Secondary Co Client";
-        case 'coClient3': return "Other Co Client ";
-        case 'coClient4': return "Other Co Client ";
-      }
-    }
-    else {
-      return " ";
-    }
-  }
-  ngOnInit() {
-    debugger;
-    if (this.currentClientDetails) {
-      console.log(this.currentClientDetails);
-      this.coClientForm=this.formBuilder.group({
-        coClientDetails:this.formBuilder.array([this.InitCoClientForm()])
-      });
-       if(this.currentClientDetails.CoClientDetails.length>0){
-         this.showCoClientForm=true;
-         this.LoadCoClientForm();
-
-       }
-      
-      // this.CreateCoClientForm();
-      // this.LoadCoClientForm();
-      // this.coClientForm.markAsTouched();
-    }
-  }
-  /********** Writen on 27 Nov 2018 **/
-  LoadCoClientForm() {
-    debugger;
-    var arrayControl = this.coClientForm.get('coClientDetails') as FormArray;
-   for(var j=0;j<this.currentClientDetails.CoClientDetails.length;j++){
-    //
-    arrayControl.controls[j].setValue({Name:this.currentClientDetails.CoClientDetails[j].Name,Address:this.currentClientDetails.CoClientDetails[j].Address,
-      contactNo:this.currentClientDetails.CoClientDetails[j].Phone,email:this.currentClientDetails.CoClientDetails[j].Email.trim()});
-    if(j!=(this.currentClientDetails.CoClientDetails.length-1)){
-      this.AddNewCoCLientForm();
-    }
-    
-    //console.log(arrayControl.controls[j].value);
-    // =this.currentClientDetails.CoClientDetails[j].Name;
-    // console.log(arrayControl.controls[j].value);
-    //   let formArrayValue=new CoClientModal();
-    //   formArrayValue.Name=arrayControl.controls[j].value.Name;
-    //   formArrayValue.Address=arrayControl.controls[j].value.Address;
-    //   formArrayValue.Email=arrayControl.controls[j].value.email;
-    //   formArrayValue.ContactNo=arrayControl.controls[j].value.contactNo;
-    //   this.clientDetails.CoClientDetails.push(formArrayValue);
   
-
-   }
-  }
-/****** Writen on 28 Jan 2019 ************/
-/***** Following Function will be used for hidding/showing Co Clinet Form  */
-ShowCoClient(){
-  if(this.showCoClientForm){
-    this.showCoClientForm=false;
-  }else{
-    this.showCoClientForm=true;
-  }
-
+  ngOnInit() {
+   this.RenderDataTable();   
+    }
+  
+ // used  to render data in table 
+RenderDataTable(){
+  debugger;
+  this.dataSource=new MatTableDataSource<CoClientModal>(this.currentClientDetails.CoClientDetails);
+  this.dataSourceBackup=JSON.parse(JSON.stringify(this.currentClientDetails.CoClientDetails));
+  this.dataSource.sort = this.sort;
+   
+  
 }
-InitCoClientForm(){
-  return this.formBuilder.group({
-    Name:['',Validators.pattern('^[a-zA-Z ]+$')],
-    email:['',Validators.email],
-    Address:[''],
-    contactNo:['',Validators.pattern('^[0-9 ]+$')]
+// used for Creating form 
+CreateCoClientForm(){
+  this.coClientForm=this.formBuilder.group({
+    name:['',[Validators.required,Validators.pattern('^[a-zA-Z ]+$')]],
+    email:['',[Validators.required,Validators.email]],
+    address:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+$')]],
+    contactNo:['',[Validators.required,Validators.pattern('^[0-9]+$')]]
   });
 }
-AddNewCoCLientForm(){
-  if(this.flag>4){}
-  const control = <FormArray>this.coClientForm.controls['coClientDetails'];
-    // add new formgroup
-    control.push(this.InitCoClientForm());
-    this.flag+=1;
 
+ShowCoClientAddForm(){
+  this.showCoClientForm=true;
+  this.CreateCoClientForm();
+ 
 }
-
-deleteRow(index: number) {
-  debugger;
-  // control refers to your formarray
-  const control = <FormArray>this.coClientForm.controls['coClientDetails'];
-  // remove the chosen row
-  control.removeAt(index);
-  if(this.currentClientDetails.CoClientDetails.length>0){
-    this.currentClientDetails.CoClientDetails[this.currentClientDetails.CoClientDetails.length-1].IsActive=false;
-  }
-  
-  this.flag-=1;
-  if(this.flag==-1){
-    this.showCoClientForm=false;
-  }
-
+// used for undo the changes in co client form 
+ClearSelection(){
+  this.coClientForm.reset();
+  this.showCoClientForm=false;
+  this.selectedRowIndex=-1;
 }
-CheckFlag(){
+// used for highlight the selected row
+highlight(row:CoClientModal) {
+ debugger;
+  if(this.showUpdateForm){
+    this.selectedRowIndex = row.CoClientID;
+  this.CreateCoClientForm();
+  this.showCoClientForm=true;
+  this.coClientForm.controls['name'].setValue(row.Name);
+  this.coClientForm.controls['address'].setValue(row.Address);
+  this.coClientForm.controls['email'].setValue(row.Email.trim());
+  this.coClientForm.controls['contactNo'].setValue(row.Phone);
   
-  if(this.flag==3){
-    return false;
-  }else if(this.flag==-1){
-    this.showCoClientForm=false;
-    return false;
   }
   else{
-    return true;
+    this.showUpdateForm=true;
+    
   }
-}
-show(coClientDetail:any){
-  debugger;
-console.log(coClientDetail);
-}
+  }
+  // used to update co client information
+  UpdateCoclient(){
+    debugger;
+    for(var i=0;i<this.dataSource.data.length;i++){
+      if(this.dataSource.data[i].CoClientID==this.selectedRowIndex){
+        this.dataSource.data[i].Name=this.coClientForm.controls["name"].value;
+        this.dataSource.data[i].Email=this.coClientForm.controls["email"].value;
+        this.dataSource.data[i].Address=this.coClientForm.controls["address"].value;
+        this.dataSource.data[i].Phone=this.coClientForm.controls["contactNo"].value;
+      }
+    }
+    for(var i=0;i<this.dataSourceBackup.length;i++){
+      if(this.dataSourceBackup[i].CoClientID==this.selectedRowIndex){
+        this.dataSourceBackup[i].Name=this.coClientForm.controls["name"].value;
+        this.dataSourceBackup[i].Email=this.coClientForm.controls["email"].value;
+        this.dataSourceBackup[i].Address=this.coClientForm.controls["address"].value;
+        this.dataSourceBackup[i].Phone=this.coClientForm.controls["contactNo"].value;
+      }
+    }
+    this.flag=false;
+   this.ClearSelection();
+
+  }
+  // used to add another co client 
+  AddCoClientRow(){
+    debugger;
+   const data=this.dataSource.data;
+   data.push({
+     CoClientID:this.ids,
+     Name:this.coClientForm.controls["name"].value,
+     Email:this.coClientForm.controls["email"].value,
+     Address:this.coClientForm.controls["address"].value,
+     Phone:this.coClientForm.controls["contactNo"].value
+
+   });
+   this.ids-=1;
+   this.dataSource.data=data;
+   this.flag=false;
+   this.ClearSelection();   
+     
+  }
+  // used to delete a specific coclient 
+  DeleteCoClient(row:CoClientModal){
+    debugger;
+    this.showUpdateForm=false;
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '325px',
+      data: { status: "Remove", confirm: true }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+         debugger;
+          const data = this.dataSource.data.filter(item => item.CoClientID !==row.CoClientID);
+          this.dataSource.data = data;          
+          for(var i=0;i<this.dataSourceBackup.length;i++){
+            if(this.dataSourceBackup[i].CoClientID==row.CoClientID){
+              this.dataSourceBackup[i].IsActive=false;
+            ;
+            }
+          }
+      }
+  });
+  }
+  // used to final save newly add co client and update co client at once 
+  SaveCoClientDetails(){
+    debugger;
+    for(var i=0;i<this.dataSource.data.length;i++){
+      if(this.dataSource.data[i].CoClientID<0){
+        this.dataSourceBackup.push(this.dataSource.data[i]);
+      }
+    }
+    this.currentClientDetails.CoClientDetails=this.dataSourceBackup;
+   
+    this.onClientDetailsChange.emit(this.currentClientDetails);
+    this.flag=true;
+  }
+  // used for restricating input boxes to except whitspace at beginning 
+  CheckForWhiteSpace(contraolName:string){
+    debugger;
+    
+    if(this.coClientForm.controls[contraolName].value<=0){
+      return this.coClientForm.controls[contraolName].setErrors({ pattern: true });
+    }
+    else{
+      this.coClientForm.controls[contraolName].setValue(this.coClientForm.controls[contraolName].value.trim());
+    }
+  }
 
 
 }

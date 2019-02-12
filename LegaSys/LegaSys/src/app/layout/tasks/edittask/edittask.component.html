@@ -187,25 +187,24 @@
         
                    
             <!-- Task Start Date Coloumn -->
-                     <!-- <div class="col-md-4">
+                    <div class="col-md-4">
                             <mat-form-field  class="w-100" >
                                     <mat-label style="font-weight:bold;font-size:15px;color: black">Start Date</mat-label>
                                     <BR>
-                                    <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" formControlName="Start_Date">
+                                    <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" formControlName="Start_Date" [(ngModel)]="dataSource.Start_Date" >
                                     <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                                     <mat-datepicker #pickerStart></mat-datepicker>
-                      Validation Error Message -->
-                                <!-- <mat-error *ngIf="taskForm.controls.Start_Date.invalid">
-                                        <span [hidden]="!taskForm.controls['Start_Date'].errors.required">
+                     <!-- Validation Error Message -->
+                                 <mat-error *ngIf="taskeditForm.controls.Start_Date.invalid">
+                                        <span [hidden]="!taskeditForm.controls['Start_Date'].errors.required">
                                                 Please select the Start Date in Date Formate Only(Characters not allowed) .
                                         </span>
                                       
                                    </mat-error>
         
-                             </mat-form-field> -->
-                                  
-                    <!-- </div> 
-         -->
+                             </mat-form-field>                                   
+                     </div> 
+      
                      <!-- Task Target Date Coloumn -->
                     <div class="col-md-4">
                             <mat-form-field  class="w-100" >
@@ -220,6 +219,9 @@
                                         <span [hidden]="!taskeditForm.controls['Target_Date'].errors.required">
                                               Please select the Target Date in Date Formate Only(Characters not allowed) .
                                         </span>
+                                        <span class="alert alert-danger" *ngIf="taskeditForm.controls['Target_Date'].errors?.matchval" class="d-block w-100 border-0 mat-error">
+                                                Target date must be greater than Start date.
+                                         </span>
                                        
                                    </mat-error> 
                                  
@@ -229,11 +231,11 @@
                     </div> 
          
             <!-- Select Task Classification -->
-                     <div class="col-md-4">
+                     <!-- <div class="col-md-4">
                           <mat-form-field class="w-100">
                                    <mat-label style="font-weight:bold;font-size:15px;color: black">Classification</mat-label>
                               <BR>
-                                  <mat-select placeholder="Classification" formControlName=Classification [(ngModel)]="dataSource.Activity_Id">
+                                  <mat-select placeholder="Classification" formControlName=Classification>
                  
                                               <mat-option *ngFor="let classification of taskClassification" [value]="classification.viewValue" > 
                                                     {{classification.viewValue}}
@@ -241,24 +243,23 @@
                                               </mat-option> 
           
                                   </mat-select>
-          
+           -->
                            <!-- Validation Error Message -->
-                              <mat-error *ngIf="taskeditForm.controls.Classification.invalid">
+                              <!-- <mat-error *ngIf="taskeditForm.controls.Classification.invalid">
                                     <span [hidden]="!taskeditForm.controls['Classification'].errors.required">
                                           Please select Task Classification.
                                     </span>
                                </mat-error>
                           
                           </mat-form-field>
-                  </div>
+                  </div> -->
                     <!-- Task Description Coloumn -->
               
          <div class="col-md-4">
                 <mat-form-field class="w-100">
                         <mat-label style="font-weight:bold;font-size:19px ;color: black">Task Description</mat-label>
                         <br>
-                    <textarea matInput placeholder="Description" formControlName=Description  [(ngModel)]="dataSource.Description" [readonly]= "isReadOnly"> </textarea>
-            
+                    <textarea matInput placeholder="Description" formControlName=Description  [(ngModel)]="dataSource.Description" > </textarea>
                 </mat-form-field>
         </div>
         
@@ -282,7 +283,7 @@
                    </mat-expansion-panel-header>
                
                    <mat-form-field class="w-100">
-                     <input matInput placeholder="Original Estimate(hr)" formControlName="Original_Estimate" type="number" [(ngModel)]="dataSource.Original_Estimate" >
+                     <input matInput placeholder="Original Estimate(hr)" formControlName="Original_Estimate" type="number" min="0" [(ngModel)]="dataSource.Original_Estimate" >
         
                       <!-- Validation Error Message -->
                       <mat-error *ngIf="taskeditForm.controls.Original_Estimate.invalid">
@@ -294,11 +295,11 @@
                    </mat-form-field>
         
                    <mat-form-field  class="w-100">
-                     <input matInput placeholder="Remaining(hr)" formControlName="Remaining" type="number" [(ngModel)]="Remaining">
+                     <input matInput placeholder="Remaining(hr)" formControlName="Remaining" type="number" min="0">
                      </mat-form-field>
         
                    <mat-form-field  class="w-100">
-                    <input matInput placeholder="Completed(hr)" formControlName="Completed" type="number" [(ngModel)]="Completed">
+                    <input matInput placeholder="Completed(hr)" formControlName="Completed" type="number" min="0">
                      </mat-form-field>
                   
                  </mat-expansion-panel>
@@ -311,7 +312,7 @@
                  <div class="col-md-4" >
                   <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif"> Upload </label>
                   <br>
-                           <input type="file" name="file"  (change)="onFileChanged($event)" />
+                           <input type="file" name="file"  />
                    
                   </div>
          </div> 
@@ -329,7 +330,7 @@
               </div>
               <!-- This button will be used to  Update Task -->
                <div *ngIf="!disable" >
-                   <button mat-button class="btn btn-success ml-3" (click)="UpdateTaskByID()"><i class="fa fa-save" aria-hidden="true" ></i> Update</button>     
+                   <button mat-button class="btn btn-success ml-3" (click)="UpdateTaskByID()"  [disabled]="!taskeditForm.valid"><i class="fa fa-save" aria-hidden="true" ></i> Update</button>     
                    <button mat-button class="btn btn-secondary ml-3"  (click)=" MakeFieldEditable()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button> 
                    <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>
                </div>

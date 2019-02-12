@@ -90,11 +90,6 @@ namespace LegaSysServices.Controllers
             return Json(new { id = lsProjects, message = "Project Task Updated successfully." });
         }
 
-
-
-
-
-
         //Code For SubTask Controller*********SADHANA**********10 dec 2018
 
         //GET Method
@@ -131,14 +126,31 @@ namespace LegaSysServices.Controllers
 
         [HttpPost]
         [Route("subtask/create/{id}")]
-        public IHttpActionResult AddSubTask(int id, List<SubTaskDetail> subtaskDetail)
+        public IHttpActionResult Post(int id,[FromBody] SubTaskDetail objSubTask)
         {
             //Fetching UserId
             int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
-            _uOWSubTask.CreateProjectSubTaskDetail(id, subtaskDetail, createdBy);
+            _uOWSubTask.CreateProjectSubTaskDetail(id, objSubTask, createdBy);
 
             return Json(new { success = true });
+        }
+
+        //Method to update task
+
+        [HttpPost]
+        [Route("subtask/update")]
+        public IHttpActionResult Put([FromBody]SubTaskDetail objsubTask)
+        {
+            //Fetching UserId
+            int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
+            objsubTask.ProjectUpdated_By= updatedBy;
+            var lsProjects = _uOWSubTask.UpdateSubTaskDetail( objsubTask);
+
+            if (lsProjects <= 0)
+                return InternalServerError();
+
+            return Json(new { id = lsProjects, message = "Project Task Updated successfully." });
         }
 
 
@@ -203,6 +215,33 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult GetTaskActivity()
         {
             return Json(_Taskdt.GetTaskActivity());
+        }
+
+
+        //Method to check any new task created already exsists
+
+            [HttpGet]
+            [Route("task/isexsists")]
+            public IHttpActionResult CheckIsTaskExsists(string taskname)
+                {
+                    return Json(_Taskdt.CheckIsTaskExsists(taskname));
+                }
+
+
+        [HttpGet]
+        [Route("subtask/isexsists")]
+        public IHttpActionResult CheckIsSubTaskExsists(string subtaskname)
+        {
+            return Json(_uOWSubTask.CheckIsSubTaskExsists(subtaskname));
+        }
+
+        //updated the following code in the task controller from MohitK 30/01/2019 
+        [HttpGet]
+        [Route("project/getalltaskofproject/{id}")]
+        public IHttpActionResult GetAllTaskOfProject(int id)
+        {
+
+            return Json(_Taskdt.GetAllTaskOfProject(id));
         }
 
     }

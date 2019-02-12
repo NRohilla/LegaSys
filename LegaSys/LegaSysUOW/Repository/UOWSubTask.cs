@@ -51,7 +51,7 @@ namespace LegaSysUOW.Repository
 
         //Method To get Subtask By Id ******SADHANA********
         IEnumerable<SubTaskDetail> IUOWSubTask.GetAllProjectSubTaskbyTaskId(int id)
-        {
+       {
             var subtaskdetail = (from subtasks in db.LegaSys_ProjectSubTasks
                                  join tasks in db.LegaSys_ProjectTasks on subtasks.Project_Task_ID equals tasks.ProjectTaskID
                                  join projects in db.LegaSys_Projects on tasks.Project_ID equals projects.ProjectID
@@ -73,7 +73,7 @@ namespace LegaSysUOW.Repository
                                     Remaining = (x.subtasks.SubTaskRemaining),
                                     Status_Id = x.subtasks.SubTask_Status,
 
-                                    SubTaskStatus_Type = db.LegaSys_TaskStatus.SingleOrDefault(SubTaskStatus_obj => SubTaskStatus_obj.Status_Id == x.subtasks.SubTask_Status)?.Status_Type,
+                                    SubTask_Status = db.LegaSys_TaskStatus.SingleOrDefault(SubTaskStatus_obj => SubTaskStatus_obj.Status_Id == x.subtasks.SubTask_Status)?.Status_Type,
                                     Priority_Id = x.subtasks.SubTask_Priority,
                                     SubTask_Priority = db.LegaSys_Priority.SingleOrDefault(SubTaskPriority_obj => SubTaskPriority_obj.Priority_Id == x.subtasks.SubTask_Priority)?.Priority_Type,
                                     Activity_Id = x.subtasks.SubTask_Activity,
@@ -82,7 +82,8 @@ namespace LegaSysUOW.Repository
                                     Risk_Id = x.subtasks.SubTask_Risk,
                                     SubTask_AssignTo = x.tasks.Task_AssignTo,
                                     SubTaskTarget_Date = x.subtasks.SubTarget_Date,
-                                    SubTaskStart_Date = x.subtasks.SubTaskStart_Date
+                                    SubTaskStart_Date = x.subtasks.SubTaskStart_Date,
+                                    SubTaskAcceptance_Criteria = x.subtasks.SubTaskAcceptance_Criteria,
 
 
                                 });
@@ -107,57 +108,92 @@ namespace LegaSysUOW.Repository
 
 
         //Method for creating new Subtask.******SADHANA********
-        public bool CreateProjectSubTaskDetail(int id, List<SubTaskDetail> subtaskDetail, int createdBy)
+        public bool CreateProjectSubTaskDetail(int id,SubTaskDetail objSubTask, int createdBy)
         {
 
 
-            var typeattachment = subtaskDetail.Select(z => new LegaSys_AttachmentTypes
-            {
-                AttachmentTypeID = z.AttachmentTypeID ?? 0,
-                AttachmentType = z.AttachmentType,
-                Created_Date = DateTime.Now,
-                Description = z.SubTask_Description,
+            //var typeattachment = subtaskDetail.Select(z => new LegaSys_AttachmentTypes
+            //{
+            //    AttachmentTypeID = z.AttachmentTypeID ?? 0,
+            //    AttachmentType = z.AttachmentType,
+            //    Created_Date = DateTime.Now,
+            //    Description = z.SubTask_Description,
 
-            }).ToList();
+            //}).ToList();
 
-            typeattachment.RemoveAll(x => x.AttachmentType == null);
+            //typeattachment.RemoveAll(x => x.AttachmentType == null);
 
-            foreach (var item in db.LegaSys_AttachmentTypes)
-            {
-                var type = typeattachment.FirstOrDefault(x => x.AttachmentType == item.AttachmentType);
-                if (type != null)
-                    typeattachment.Remove(type);
-            }
+            //foreach (var item in db.LegaSys_AttachmentTypes)
+            //{
+            //    var type = typeattachment.FirstOrDefault(x => x.AttachmentType == item.AttachmentType);
+            //    if (type != null)
+            //        typeattachment.Remove(type);
+            //}
 
-            db.BulkInsert(typeattachment);
+            //db.BulkInsert(typeattachment);
 
-            var attachment = subtaskDetail.Select(y => new LegaSys_Attachments
-            {
-                AttachmentPath = y.AttachmentPath,
-                Title = y.SubTask_Title,
-                Description = y.SubTask_Description,
-                Created_By = createdBy,
-                Created_Date = DateTime.Now,
-                AttachmentTypeID = db.LegaSys_AttachmentTypes.FirstOrDefault(P => P.AttachmentType == y.AttachmentType)?.AttachmentTypeID
-            }).ToList();
+            //var attachment = subtaskDetail.Select(y => new LegaSys_Attachments
+            //{
+            //    AttachmentPath = y.AttachmentPath,
+            //    Title = y.SubTask_Title,
+            //    Description = y.SubTask_Description,
+            //    Created_By = createdBy,
+            //    Created_Date = DateTime.Now,
+            //    AttachmentTypeID = db.LegaSys_AttachmentTypes.FirstOrDefault(P => P.AttachmentType == y.AttachmentType)?.AttachmentTypeID
+            //}).ToList();
 
-            attachment.RemoveAll(x => x.AttachmentPath == null);
+            //attachment.RemoveAll(x => x.AttachmentPath == null);
 
-            db.BulkInsert(attachment);
+            //db.BulkInsert(attachment);
 
-            var subtaskModel = subtaskDetail.Select(x => new LegaSys_ProjectSubTasks
+            //adding data to project task table
+            var subtaskModel = new LegaSys_ProjectSubTasks
             {
                 Project_Task_ID = id,
-                ProjectSubTaskID = x.ProjectSubTaskID,
-                Title = x.SubTask_Title,
-                Description = x.SubTask_Description,
-                Attachment_ID = db.LegaSys_Attachments.FirstOrDefault(z => z.AttachmentPath == x.AttachmentPath)?.AttachmentID
 
-            });
+                Title = objSubTask.SubTask_Title,
 
-            db.BulkMerge(subtaskModel);
+                Description = objSubTask.SubTask_Description,
+
+                // Attachment_ID = attachment.AttachmentID,
+
+                Created_By = createdBy,
+
+                SubTaskAcceptance_Criteria = objSubTask.SubTaskAcceptance_Criteria,
+
+                SubTarget_Date = objSubTask.SubTaskTarget_Date,
+
+                SubTaskStart_Date = objSubTask.SubTaskStart_Date,
+
+                Created_Date = DateTime.Now,
+
+                SubTask_Activity = objSubTask.Activity_Id,
+
+                SubTask_AssignTo = db.LegaSys_ProjectTasks.SingleOrDefault(Task_obj => Task_obj.ProjectTaskID == objSubTask.Project_Task_ID)?.Task_AssignTo,
+
+                SubTask_Priority = objSubTask.Priority_Id,
+
+                SubTask_Risk = objSubTask.Risk_Id,
+
+                SubTask_Status = objSubTask.Status_Id,
+
+                SubTaskOriginal_Estimate = objSubTask.SubTaskOriginal_Estimate,
+
+                SubTaskRemaining = objSubTask.Remaining,
+
+                SubTaskCompleted = objSubTask.Completed
+
+
+            };
+
+            db.LegaSys_ProjectSubTasks.Add(subtaskModel);
 
             db.SaveChanges();
+
+           
+                //db.BulkMerge(subtaskModel);
+
+                 db.SaveChanges();
 
             return true;
         }
@@ -166,20 +202,39 @@ namespace LegaSysUOW.Repository
 
 
         //method to update Subtask******SADHANA********
-        public int UpdateProjectSubTaskDetail(SubTaskDetail projectSubTaskDetail)
+        public int UpdateSubTaskDetail(SubTaskDetail projectSubTaskDetail)
         {
-            var objProjectsubtaskDetail = db.LegaSys_ProjectSubTasks.Where(x => x.ProjectSubTaskID == projectSubTaskDetail.ProjectSubTaskID).FirstOrDefault();
-            if (objProjectsubtaskDetail != null)
+            var objSubTask = db.LegaSys_ProjectSubTasks.Where(x => x.ProjectSubTaskID == projectSubTaskDetail.ProjectSubTaskID).FirstOrDefault();
+            if (objSubTask != null)
             {
-                objProjectsubtaskDetail.ProjectSubTaskID = projectSubTaskDetail.ProjectSubTaskID;
-                objProjectsubtaskDetail.Title = projectSubTaskDetail.SubTask_Title;
-                objProjectsubtaskDetail.Description = projectSubTaskDetail.SubTask_Description;
-                objProjectsubtaskDetail.Attachment_ID = projectSubTaskDetail.Attachment_ID;
-                objProjectsubtaskDetail.Project_Task_ID = projectSubTaskDetail.Project_Task_ID;
+                objSubTask.ProjectSubTaskID = projectSubTaskDetail.ProjectSubTaskID;
 
-                objProjectsubtaskDetail.Updated_By = projectSubTaskDetail.SubTask_Updated_By;
+                objSubTask.Title = projectSubTaskDetail.SubTask_Title;
 
-                objProjectsubtaskDetail.Updated_Date = (projectSubTaskDetail.projectTask_Updated_Date != null) ? projectSubTaskDetail.projectTask_Updated_Date : DateTime.Now;
+                objSubTask.Description = projectSubTaskDetail.SubTask_Description;
+
+                objSubTask.SubTaskAcceptance_Criteria = projectSubTaskDetail.SubTaskAcceptance_Criteria;
+
+                objSubTask.SubTarget_Date = projectSubTaskDetail.SubTaskTarget_Date;
+
+                objSubTask.SubTaskStart_Date = projectSubTaskDetail.SubTaskStart_Date;
+
+                objSubTask.SubTask_Activity = projectSubTaskDetail.Activity_Id;
+
+                objSubTask.SubTask_AssignTo = db.LegaSys_ProjectTasks.SingleOrDefault(Task_obj => Task_obj.ProjectTaskID == projectSubTaskDetail.Project_Task_ID)?.Task_AssignTo;
+
+                objSubTask.SubTask_Priority = projectSubTaskDetail.Priority_Id;
+
+                objSubTask.SubTask_Risk = projectSubTaskDetail.Risk_Id;
+
+                objSubTask.SubTask_Status = projectSubTaskDetail.Status_Id;
+
+                objSubTask.SubTaskOriginal_Estimate = projectSubTaskDetail.SubTaskOriginal_Estimate;
+
+                objSubTask.SubTaskRemaining = projectSubTaskDetail.Remaining;
+
+                objSubTask.SubTaskCompleted = projectSubTaskDetail.Completed;
+
                 db.SaveChanges();
             }
 
@@ -194,6 +249,24 @@ namespace LegaSysUOW.Repository
         {
 
 
+        }
+
+
+        public bool CheckIsSubTaskExsists(string subtaskTittle)
+        {
+
+            var SubTask = (from subtasks in db.LegaSys_ProjectSubTasks
+                        where (subtasks.Title == subtaskTittle)
+                        select subtasks).FirstOrDefault();
+
+            if (SubTask == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
 

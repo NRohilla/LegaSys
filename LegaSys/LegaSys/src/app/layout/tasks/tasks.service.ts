@@ -42,7 +42,7 @@ export class TasksService {
     }
 
     CreateProjectTaskDetail(taskmodel: TaskModel) {
-        debugger;
+       
 
 
         return this.http.post<TaskModel[]>('http://localhost:58164/task/create', taskmodel, { headers: this.getToken() })
@@ -63,7 +63,7 @@ export class TasksService {
 
     GetAllProjects() {
 
-        return this.http.get('http://localhost:58164/project/getall', { headers: this.getToken() })
+        return this.http.get('http://localhost:58164/project/getactive', { headers: this.getToken() })
     }
 
     public GetAllClients() {
@@ -71,11 +71,7 @@ export class TasksService {
         return this.http.get('http://localhost:58164/client/GetAllClient', { headers: this.getToken() });
     }
 
-    errorHandler(error: Response) {
-        console.log(error);
-        return throwError(error);
-    }
-
+   
     public GetUserName() {
 
         return this.http.get('http://localhost:58164/client/AuthenticateLogin', { headers: this.getToken() });
@@ -84,57 +80,80 @@ export class TasksService {
 
 
     GetAllProjectSubTaskbyTaskId(ID) {
-        debugger;
+   
 
-        return this.http.get('http://localhost:58164/subtask/' + ID, { headers: this.getToken() })
+        return this.http.get('http://localhost:58164/subtask/' + ID, { headers: this.getToken() }) 
     }
 
 
-    public CreateProjectSubTask(id: number, subtaskDetail: TaskModel[]) {
-        debugger;
+    public CreateProjectSubTask(ID,subtaskmodel: TaskModel) {
+        
+      
+        return this.http.post<TaskModel[]>('http://localhost:58164/subtask/create/' +ID , subtaskmodel, { headers: this.getToken() });
+    }
 
-        return this.http.post<TaskModel[]>('http://localhost:58164/subtask/create/' + id, subtaskDetail, { headers: this.getToken() });
+
+    UpdateProjectSubTaskDetail(subtaskmodel: TaskModel) {
+      
+
+        return this.http.post<TaskModel[]>('http://localhost:58164/subtask/update/', subtaskmodel, { headers: this.getToken() });
     }
 
 
      public addAttechmentatServer(formData:FormData) {
-         debugger;
-
+        
         return this.http.post('http://localhost:58164/attachment/create/', formData, { headers: this.getToken() });
      }
 
        public GetTaskStatus()
        {
-           debugger
+          
          return this.http.get('http://localhost:58164/task/getstatus/' ,{ headers: this.getToken() })
        }
 
        
        public GetTaskPriority()
        {
-         debugger
+         
          return this.http.get('http://localhost:58164/task/getpriority/' ,{ headers: this.getToken() })
        }
 
        
        public GetTaskRisk()
        {
-         debugger
+        
          return this.http.get('http://localhost:58164/task/getrisk/' ,{ headers: this.getToken() })
        }
     
        public GetTaskAssignee()
        {
-         debugger
+        
          return this.http.get('http://localhost:58164/resource/getall/' ,{ headers: this.getToken() })
        }
 
 
        public GetTaskActivity()
        {
-         debugger
+        
          return this.http.get('http://localhost:58164/task/getactivity/' ,{ headers: this.getToken() })
        }
+
+       public CheckIsTaskExsists(taskValue)     
+       {
+         
+        return this.http.get('http://localhost:58164/task/isexsists/?taskname=' + taskValue,{ headers:this.getToken()} )
+
+       }
+
+
+       public CheckIsSubTaskExsists(subtaskValue)     
+       {
+         
+        return this.http.get('http://localhost:58164/subtask/isexsists/?subtaskname=' + subtaskValue,{ headers:this.getToken()} )
+
+       }
+
+  
 
   
 }

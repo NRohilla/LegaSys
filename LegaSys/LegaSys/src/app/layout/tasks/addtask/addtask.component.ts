@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { TosterService } from '../../../shared/services/toster.service';
 import { TaskModel } from '../tasks.component';
 import { TasksService } from '../tasks.service';
 import { ViewEncapsulation } from '@angular/core';
@@ -15,18 +15,22 @@ import { ViewEncapsulation } from '@angular/core';
 export class AddtaskComponent implements OnInit {
 
   taskForm: FormGroup;
-  myclients: any = [];
+  myprojects: any = [];
   public files: any[];
   myModel: TaskModel;
   taskStatus : any=[];
   taskPriority : any =[];
   taskRisk :any =[];
   taskAssignee: any =[];
-  startDate:any;
-  targetDate:any;
+ 
   taskActivity:any=[];
   ID:any;
- 
+  Remaining:any;
+  Completed:any;
+  Original_Estimate:any;
+  acceptancecriteria:any;
+  taskDescription:any;
+
   taskClassification: any = 
     [
         {value: '1', viewValue: 'Functional'},
@@ -34,7 +38,7 @@ export class AddtaskComponent implements OnInit {
      ];
   
  
-  constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: ToastrManager) {
+  constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: TosterService) {
     this.files = [];
     this.myModel = new TaskModel();
   }
@@ -69,7 +73,7 @@ export class AddtaskComponent implements OnInit {
      
 
     //calling get client method
-    this.GetClientName();
+    this.GetAllProject();
     this.GetTaskStatus();
     this.GetTaskRisk();
     this. GetTaskPriority();
@@ -81,8 +85,20 @@ export class AddtaskComponent implements OnInit {
   //tOASTER mETHODS
  showSuccess()
   {
-    this.toastr.successToastr('Task Created Successfully.', 'Success!');
+    this.toastr.showSuccess('Task Created Successfully.');
   }
+   //tOASTER mETHODS
+   ShowCancel()
+   {
+     this.toastr.showInfo("Task cancelled");
+   }
+
+   ShowExsistsMessage()
+   {
+      this.toastr.showError("Task Already Exsists");
+   }
+
+
 
   SaveData() 
   {
@@ -122,16 +138,15 @@ export class AddtaskComponent implements OnInit {
   }
 
   //method for binding drop down Project name
-  GetClientName() 
+  GetAllProject() 
   {
-
+debugger;
     this.dataService.GetAllProjects().subscribe
       (
       data =>
        {
-     
-        this.myclients = data;		// FILL THE ARRAY WITH DATA.
-      },
+        this.myprojects = data;		// FILL THE ARRAY WITH DATA.
+       },
       (err) => {
         console.log(err);
       }
@@ -183,7 +198,7 @@ export class AddtaskComponent implements OnInit {
   //method for getting risk from db
   GetTaskPriority()
   {
-    debugger;
+   
       this.dataService.GetTaskPriority().subscribe
       (
           data =>{
@@ -203,7 +218,7 @@ export class AddtaskComponent implements OnInit {
   //method for getting risk from db
   GetAllAssignee()
   {
-    debugger;
+    
       this.dataService.GetTaskAssignee().subscribe
       (
           data =>{
@@ -222,7 +237,7 @@ export class AddtaskComponent implements OnInit {
   //binding dropdown task activity
   GetTaskActivity()
   {
-    debugger;
+   
       this.dataService.GetTaskActivity().subscribe
       (
           data =>{
@@ -240,7 +255,7 @@ export class AddtaskComponent implements OnInit {
 
 
   matchval(group: FormGroup) {
-    debugger
+   
     let startDate = group.controls['Start_Date'].value;
     let targetDate = group.controls['Target_Date'].value;
     if (targetDate > startDate) {
@@ -262,10 +277,54 @@ export class AddtaskComponent implements OnInit {
 
   //method for file upload
   onFileChanged(event: any) {
-    debugger;
+   
     this.files = event.target.files;
     this.myModel.AttachmentType = this.files[0].type;
     this.myModel.AttachmentPath = event.target.value;
     
   }
+
+  onTaskChanged(taskValue : string )
+  {
+   
+    if (taskValue.trim().length == 0) 
+        {
+          this.toastr.showError("Invalid Task Title (Only Space not acceptable)");
+          
+        }
+      
+       else
+       {
+            this.dataService.CheckIsTaskExsists(taskValue).subscribe
+               (
+                      data =>
+                          {
+           
+                                if(data==true)
+                                  {
+                                     this.ShowExsistsMessage();
+                                     this.taskForm.controls.TaskTitle.reset();
+                                   }
+                           },
+                       (err) =>
+          
+                           {
+                                 console.log(err);
+                            }
+ 
+               );
+
+         }
+  }
+
+
+    Cancel()
+    {
+        this.taskForm.reset();
+        this.ShowCancel();
+
+    }
+    
+
+  
 }

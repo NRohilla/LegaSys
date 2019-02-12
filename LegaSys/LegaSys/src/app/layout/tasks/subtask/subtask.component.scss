@@ -33,13 +33,11 @@
     background:#bef9bb;
   }
 
-
-
   table {
     width: 100%;
   }
   .mat-form-field {
-    font-size: 16px;
+    font-size: 14px;
     width: 100%;
     margin-top: 10px;
   }
@@ -58,3 +56,14 @@
 .mat-row:nth-child(odd){
   background-color:whitesmoke;
   }
+
+  .labeltext
+  {
+    margin-left: 40%;
+  
+  }
+  /* To display a border for the input */
+  .mat-input-flex.mat-form-field-flex{
+      border: 1px solid black;
+   }
+  

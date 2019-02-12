@@ -3,29 +3,30 @@
 
 
   <!-- Lebel for Project Tittle,Task Tittle ,Task Description -->
-  <form [formGroup]="LebalForm">
-      <div class="example-container" style="padding-left:10px;padding-right: 10px;">    
+  
+      <div class="example-container" style="padding-left:20px;padding-right: 20px; padding-top: 20px">    
          
             <div class="row">
                 <div class="col-md-4">
-                   <mat-form-field class="w-100">
-                        
-                             <mat-label style ="font-weight:bold;font-size:15px;color: black">Project Title</mat-label>
-                                <input matInput placeholder="Project Title" formControlName=Project_ID  [readonly]="true">
-                       
-                     </mat-form-field>
+                      <mat-label style ="font-weight:bold;font-size:15px;color: black">Project ID : </mat-label>
+
+                            <mat-label>{{project_Title}}</mat-label>        
+                  
                  </div>
                  <div class="col-md-4">
-                   <mat-form-field class="w-100">
-                       
-                              <mat-label style ="font-weight:bold;font-size:15px;color: black">Task Title</mat-label>
-                                  <input matInput placeholder="Task Title" formControlName=taskTitle  [readonly]="true">  
-                   </mat-form-field>
+                              <mat-label style ="font-weight:bold;font-size:15px;color: black">Task Title : </mat-label>
+                              
+                                  <mat-label>{{task_Title}}</mat-label>  
                 </div>
+                <div class="col-md-4">
+                  <mat-label style ="font-weight:bold;font-size:15px;color: black">Task_Assign To : </mat-label>
+                  
+                      <mat-label>{{taskAssignTo}}</mat-label>  
+               </div>
              </div>
        
         </div>
-  </form>
+ 
   
 <!-- Filtering The Table -->
 <div class="col-md-3">
@@ -49,81 +50,84 @@
 
   <!-- SubTask Tittle column -->
   <ng-container matColumnDef="SubTask_Title">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">SubTask
-      </span> </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.SubTask_Title}} </mat-cell>
+           <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">SubTask
+                  </span> </mat-header-cell>
+           <mat-cell *matCellDef="let element"> {{element.SubTask_Title}} </mat-cell>
   </ng-container>
 
   <!-- SubTask Description column -->
   <ng-container matColumnDef="SubTask_Description">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Description</span>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.SubTask_Description}} </mat-cell>
+           <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Description</span>
+           </mat-header-cell>
+           <mat-cell *matCellDef="let element"> {{element.SubTask_Description}} </mat-cell>
   </ng-container>
 
-  <!-- Task Assingn to column-->
-  <ng-container matColumnDef="SubTask_AssignTo">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Assign To</span>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.SubTask_AssignTo}} </mat-cell>
-    </ng-container> 
-  
   
      <!-- Task Status column -->
     <ng-container matColumnDef="SubTask_Status">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Status</span>
-        </mat-header-cell>
-        <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
-        <mat-cell *matCellDef="let element"> {{element.Status_Id}} </mat-cell>
+           <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Status</span>
+           </mat-header-cell>
+     <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
+           <mat-cell *matCellDef="let element">{{element.SubTask_Status}} </mat-cell>
        
+    </ng-container>
+  
+  
+  <!-- SubTask Priority Coloumn -->
+      <ng-container matColumnDef="SubTask_Priority">
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Priority</span>
+                 </mat-header-cell>
+           <mat-cell *matCellDef="let element"> {{element.SubTask_Priority}} </mat-cell>
       </ng-container>
   
     
   
-  <!-- SubTask Priority Coloumn -->
-      <ng-container matColumnDef="SubTask_Priority">
-          <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Priority</span>
-          </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.Priority_Id}} </mat-cell>
-        </ng-container>
-  
-    
-  
   <!-- SubTask Project Activity Area Coloumn -->
-  <ng-container matColumnDef="SubTask_Activity">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Activity</span>
-      </mat-header-cell>
-       <mat-cell *matCellDef="let element">{{element.Activity_Id}} </mat-cell> 
-    </ng-container>
+       <ng-container matColumnDef="SubTask_Activity">
+            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Activity</span>
+                  </mat-header-cell>
+           <mat-cell *matCellDef="let element">{{element.SubTask_Activity}} </mat-cell> 
+       </ng-container>
   
   
     <!-- SubTask Created Date Coloumn-->
-    <ng-container matColumnDef="SubTaskStart_Date">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Start Date</span>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.SubTaskStart_Date|date}} </mat-cell>
+       <ng-container matColumnDef="SubTaskStart_Date">
+           <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Start Date</span>
+            </mat-header-cell>
+           <mat-cell *matCellDef="let element"> {{element.SubTaskStart_Date|date}} </mat-cell>
       </ng-container> 
   
+
   <!-- SubTask Project Target Date Coloumn -->
-  <ng-container matColumnDef="SubTaskTarget_Date">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Target Date</span>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.SubTaskTarget_Date|date}} </mat-cell>
-  </ng-container>
+      <ng-container matColumnDef="SubTaskTarget_Date">
+           <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Target Date</span>
+              </mat-header-cell>
+           <mat-cell *matCellDef="let element">{{element.SubTaskTarget_Date|date}} </mat-cell>
+      </ng-container>
   
   <!-- SubTask OriginAL Estimate Coloumn -->
-  <ng-container matColumnDef="SubTaskOriginal_Estimate">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class= "text-white font-14">Original Estimate</span>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.SubTaskOriginal_Estimate}}</mat-cell>
-  </ng-container>
+      <ng-container matColumnDef="SubTaskOriginal_Estimate">
+           <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class= "text-white font-14">Original Estimate</span>
+              </mat-header-cell>
+           <mat-cell *matCellDef="let element">{{element.SubTaskOriginal_Estimate}}</mat-cell>
+      </ng-container>
+
+
+
+      <!-- SubTask Acceptance Coloumn -->
+      <ng-container matColumnDef="SubTaskAcceptance_Criteria">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class= "text-white font-14">Acceptance Criteria</span>
+           </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.SubTaskAcceptance_Criteria}}</mat-cell>
+     </ng-container>
+
 
   <!-- Project SubTaskTitle ID -->
-  <ng-container matColumnDef="ProjectSubTaskID">
-    <mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white font-14">Subtaskid</span>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.ProjectSubTaskID}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="ProjectSubTaskID">
+           <mat-header-cell class="bg-info" *matHeaderCellDef ><span class="text-white font-14">Subtaskid</span>
+              </mat-header-cell>
+           <mat-cell *matCellDef="let element">{{element.ProjectSubTaskID}} </mat-cell>
+    </ng-container>
 
 
 
@@ -133,9 +137,10 @@
       <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">  </span>
       </mat-header-cell>
     
-      <mat-cell *matCellDef="let element"><button (click)="ViewTask(element.ProjectTaskID)" style="line-height: 28px;"  mat-button class="mat-button btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+      <mat-cell *matCellDef="let element"><button  style="line-height: 28px;"  mat-button class="mat-button btn btn-info mx-1" matTooltip="Edit SubTask"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-        <button mat-button class="btn btn-danger mx-1 mat-button" (click)="deleteTask(element.ProjectTaskID)" style="line-height: 28px;" ><i class="fa fa-times"  aria-hidden="true"></i></button>  </mat-cell> 
+        <!-- <button mat-button class="btn btn-danger mx-1 mat-button" (click)="deleteTask(element.ProjectTaskID)" style="line-height: 28px;" ><i class="fa fa-times"  aria-hidden="true" matTooltip="Delete SubTask"></i></button>  -->
+     </mat-cell> 
     </ng-container>
   
   <!-- Select Table Row Data -->
@@ -165,65 +170,281 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title style="font-size: smaller;color: steelblue">
-            Click to add new Subtask
+            Click To {{formType}} SubTask
           </mat-panel-title>
         </mat-expansion-panel-header>
-
-
-
-        <div class="example-container " style="padding-left:10px;padding-right: 10px;">
-          <div class="row">
-           
-            <div class="col-md-3">
+        
+    <div class="example-container " style="padding-left:10px;padding-right: 10px;">    
+  
+               
+   <div class="row">    
+         
               <!-- SubTask Title Coloumn -->
-              <mat-form-field class="w-100">
-                <mat-label style="font-weight:bold;font-size:15px;color: black">SubTask Title</mat-label>
-                <br />
-                <input matInput placeholder="SubTask Title" formControlName=SubTask_Title [(ngModel)]="dataSource.SubTask_Title">
-
-                <!-- Validation Error Message -->
-
-                <mat-error *ngIf="subtaskForm.controls.SubTask_Title.invalid">
-                  <span [hidden]="!subtaskForm.controls['SubTask_Title'].errors.required">
-                    Task Title is required.
-                  </span>
-                  <span [hidden]="!subtaskForm.controls['SubTask_Title'].errors.maxlength">
-                    Maximum allowed characters are 25
-                  </span>
-
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <!-- SubTask Description Coloumn -->
-            <div class="col-md-4">
-              <mat-form-field class="w-100">
-                <mat-label style="font-weight:bold;font-size:15px;color: black">Description</mat-label>
-
-                <textarea matInput placeholder="SubTask_Description" formControlName=SubTask_Description style="position: relative;top: 15px;"> </textarea>
-              </mat-form-field>
-            </div>
-
-            <!-- Upload documents -->
-            <div class="col-md-2">
-
-              <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif">Upload
-                Document</label>
-              <br />
-              <input type="file" name="file" (change)="onFileChanged($event)" />
-            </div>
-
-            <div class="col-md-3" style="margin-top:12px;">
-
-              <div>
-                <button type="submit" class="btn btn-info ml-3" (click)="addnewSubTaskInGrid()"><i class="fa fa-plus"
-                    aria-hidden="true"></i>{{formType}} Subtask</button>
-
-                <button type="reset" class="btn btn-secondary ml-3" (click)="reset()"><i class="fa fa-times" aria-hidden="true"></i>Reset</button>
+                <div class="col-md-4" >
+                         <mat-form-field class="w-100">
+                                <mat-label style="font-weight:bold;font-size:15px;color: black" >SubTask Title</mat-label>
+                                 <BR>
+                                     <input matInput placeholder="SubTask Title" formControlName=SubTask_Title (change)="onSubTaskChanged($event.target.value)" required>
+                                     
+                      
+        
+                      <!-- Validation Error Message -->
+                                 <mat-error *ngIf="subtaskForm.controls.SubTask_Title.invalid">
+                                     <span [hidden]="!subtaskForm.controls['SubTask_Title'].errors.required">
+                                         SubTask Title is required.
+                                     </span>
+                                     <span [hidden]="!subtaskForm.controls['SubTask_Title'].errors.maxlength">
+                                             Maximum allowed characters are 25 and space is not consider
+                                     </span>
+                                 </mat-error>
+                         </mat-form-field>
+                         
+               </div>
+                  <!-- Select SubTask Status  -->
+              <div class="col-md-4">
+                      <mat-form-field class="w-100">
+                               <mat-label style="font-weight:bold;font-size:15px;color: black">Status</mat-label>
+                          <BR>
+                              <mat-select placeholder="SubTask Status" formControlName=Status_Id required>
+             
+                                           <mat-option *ngFor="let status of subtaskStatus" [value]="status.Status_Id">
+                                                {{status.Status_Type}}
+                                            
+                                          </mat-option> 
+      
+                              </mat-select>
+      
+                       <!-- Validation Error Message -->
+                          <mat-error *ngIf="subtaskForm.controls.Status_Id.invalid">
+                                <span [hidden]="!subtaskForm.controls['Status_Id'].errors.required">
+                                      Please select the SubTask Status.
+                                </span>
+                           </mat-error>
+                      
+                      </mat-form-field>
               </div>
+  
+                <!-- Select SubTask Priority  -->
+                <div class="col-md-4">
+                      <mat-form-field class="w-100">
+                               <mat-label style="font-weight:bold;font-size:15px;color: black" >Priority</mat-label>
+                          <BR>
+                              <mat-select placeholder="SubTask Priority" formControlName=Priority_Id required>
+             
+                                          <mat-option *ngFor="let priority of subtaskPriority" [value]="priority.Priority_Id">
+                                                {{priority.Priority_Type}}
+                                            
+                                          </mat-option>
+      
+                              </mat-select>
+      
+                       <!-- Validation Error Message -->
+                          <mat-error *ngIf="subtaskForm.controls.Priority_Id.invalid">
+                                <span [hidden]="!subtaskForm.controls['Priority_Id'].errors.required">
+                                        Please set the SubTask Priority.
+                                </span>
+                           </mat-error>
+                      
+                      </mat-form-field>
+              </div>
+  
+  
+                <!-- Select SubTask Risk  -->
+                <div class="col-md-4">
+                      <mat-form-field class="w-100">
+                               <mat-label style="font-weight:bold;font-size:15px;color: black">Risk</mat-label>
+                          <BR>
+                              <mat-select placeholder="Task Risk" formControlName=Risk_Id required>
+             
+                                          <mat-option *ngFor="let risk of subtaskRisk" [value]="risk.Risk_Id">
+                                                {{risk.Risk_Type}}
+                                            
+                                          </mat-option> 
+   
+                              </mat-select>
+      
+                       <!-- Validation Error Message -->
+                          <mat-error *ngIf="subtaskForm.controls.Risk_Id.invalid">
+                                <span [hidden]="!subtaskForm.controls['Risk_Id'].errors.required">
+                                      Please set the SubTask Risk.
+                                </span>
+                           </mat-error>
+                      
+                      </mat-form-field>
+              </div>
+  
+  
+               <!-- Select SubTask Activity  -->
+               <div class="col-md-4">
+                    <mat-form-field class="w-100">
+                             <mat-label style="font-weight:bold;font-size:15px;color: black"> Activity</mat-label>
+                        <BR>
+                            <mat-select placeholder="SubTask Activity" formControlName=Activity_Id required>
+           
+                                         <mat-option *ngFor="let activity of subtaskActivity" [value]="activity.Activity_Id">
+                                              {{activity.Task_Activity}}
+                                          
+                                        </mat-option>  
+  
+                            </mat-select>
+    
+                     <!-- Validation Error Message -->
+                        <mat-error *ngIf="subtaskForm.controls.Activity_Id.invalid">
+                              <span [hidden]="!subtaskForm.controls['Activity_Id'].errors.required">
+                                    Please set the SubTask Activity Area.
+                              </span>
+                         </mat-error>
+                    
+                    </mat-form-field>
             </div>
-          </div>
+             
+              
+             
+               <!-- SubTask Start Date Coloumn -->
+               <div class="col-md-4">
+                      <mat-form-field  class="w-100" >
+                              <mat-label style="font-weight:bold;font-size:15px;color: black">Start Date</mat-label>
+                              <BR>
+                              <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" formControlName="SubTaskStart_Date" required>
+                              <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerStart></mat-datepicker>
+               <!-- Validation Error Message -->
+                          <mat-error *ngIf="subtaskForm.controls.SubTaskStart_Date.invalid">
+                                  <span [hidden]="!subtaskForm.controls['SubTaskStart_Date'].errors.required">
+                                          Please select the Start Date in Date Formate Only(Characters not allowed) .
+                                  </span>
+                                
+                             </mat-error>
+  
+                       </mat-form-field>
+                            
+              </div>
+  
+               <!-- SubTask Target Date Coloumn -->
+               <div class="col-md-4">
+                      <mat-form-field  class="w-100" >
+                              <mat-label style="font-weight:bold;font-size:15px;color: black">Target Date</mat-label>
+                              <BR>
+                              <input matInput [matDatepicker]="pickerTarget" placeholder="Target Date" formControlName="SubTaskTarget_Date" required>
+                              <mat-datepicker-toggle matSuffix [for]="pickerTarget"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerTarget></mat-datepicker>
+  
+               <!-- Validation Error Message -->
+                          <mat-error *ngIf="subtaskForm.controls.SubTaskTarget_Date.invalid">
+                                  <span [hidden]="!subtaskForm.controls['SubTaskTarget_Date'].errors.required">
+                                        Please select the Target Date in Date Formate Only(Characters not allowed) .
+                                  </span>
+  
+                                <span class="alert alert-danger" *ngIf="subtaskForm.controls['SubTaskTarget_Date'].errors?.matchval" class="d-block w-100 border-0 mat-error">
+                                       Target date must be greater than Start date
+                                </span>
+                                 
+                             </mat-error>
+                           
+                          
+                      </mat-form-field>
+                            
+              </div>
+  
+               <!-- Select SubTask Classification -->
+               <div class="col-md-4">
+                    <mat-form-field class="w-100">
+                             <mat-label style="font-weight:bold;font-size:15px;color: black" >Classification </mat-label>
+                        <BR>
+                            <mat-select placeholder="Classification" formControlName="Classification" required>
+           
+                                        <mat-option *ngFor="let classification of subtaskClassification" [value]="classification.value">
+                                              {{classification.viewValue}}
+                                          
+                                        </mat-option>  
+    
+                            </mat-select>
+    
+                     <!-- Validation Error Message -->
+                        <mat-error *ngIf="subtaskForm.controls.Classification.invalid">
+                              <span [hidden]="!subtaskForm.controls['Classification'].errors.required">
+                                    Please select Task Classification.
+                              </span>
+                         </mat-error>
+                    
+                    </mat-form-field>
+            </div>
+              <!-- upload coloumn  -->
+   
+      <!-- <div class="col-md-4 " style="margin-top:22px">
+       <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif" >Upload</label>
+           <br>
+                <input type="file" name="file"  (change)="onFileChanged($event)" />
+       </div> -->
+              
+          
+     </div>
+    <div class="row">
+      <!-- SubTask Description Coloumn -->
+  
+    <div class="col-md-4">
+           <div class="w-100">
+               <mat-label style="font-weight:bold;font-size:15px;color: black;display: block; margin-bottom: 5px;">Description</mat-label>
+       
+              <textarea class="form-control rounded-0" id="subtaskDescription" Placeholder="Description" rows="3"  formControlName= "SubTask_Description"></textarea>
+          </div>      
+    </div>
+  
+  <!-- SubTask Acceptance Criteria Coloumn -->
+  
+       <div class="col-md-4">
+             <div class="w-100">
+                  <mat-label style="font-weight:bold;font-size:15px;color: black;  display: block; margin-bottom: 5px;">Acceptance Criteria</mat-label>
+  
+                 <textarea class="form-control rounded-0"  Placeholder="acceptance criteria" rows="3"   formControlName= "SubTaskAcceptance_Criteria"></textarea>
+            </div>
+  
+       </div>
+    
+    </div>
+    <div class="row mt-4">
+      <!-- Efforts coloumn  -->
+               
+      <div class="col-md-4">
+        <mat-expansion-panel>
+             <mat-expansion-panel-header>
+               <mat-panel-title>
+                   <mat-label style="font-weight:bold;font-size:15px;color: black">Efforts</mat-label>
+               </mat-panel-title>
+               <mat-panel-description>
+                 Type Original Estimate
+               </mat-panel-description>
+             </mat-expansion-panel-header>
+         
+             <mat-form-field class="w-100">
+               <input matInput placeholder="Original Estimate(hr)" formControlName="SubTaskOriginal_Estimate" type="number" min="0" >
+  
+                <!-- Validation Error Message -->
+                <mat-error *ngIf="subtaskForm.controls.SubTaskOriginal_Estimate.invalid">
+                    <span [hidden]="!subtaskForm.controls['SubTaskOriginal_Estimate'].errors.required">  
+                          Please Add Original Estimate,it should be Numeric only.
+                    </span>
+               </mat-error>
+  
+             </mat-form-field>
+  
+             <mat-form-field  class="w-100">
+               <input matInput placeholder="Remaining(hr)" type="number" min="0">
+               </mat-form-field>
+  
+             <mat-form-field  class="w-100">
+              <input matInput placeholder="Completed(hr)"  type="number" min="0" >
+               </mat-form-field>
+            
+           </mat-expansion-panel>
         </div>
+  </div>   
+     
+  </div>
+  
+
+
+ 
       </mat-expansion-panel>
     </mat-accordion>
   </div>
@@ -233,16 +454,19 @@
        <div *ngIf="disable">
 
              <!-- (click)="MakeFieldEditable()" will call on grid rowchange event -->
-            <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-edit" aria-hidden="true"></i>Edit</button>
+            <button mat-button class="btn btn-info" (click)="edit()"><i class="fa fa-plus" aria-hidden="true"></i>Add New</button>
+            
             <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i>
                    Back</button>
         </div>
               <!-- This button will be used to  Update Task -->
         <div *ngIf="!disable">
-             <button mat-button class="btn btn-success ml-3"  (click)="SaveTaskInDB()"><i class="fa fa-save" aria-hidden="true"></i>Save</button>
+             <button mat-button  class="btn btn-success ml-3"  (click)="SaveTaskInDB()" [disabled]="!subtaskForm.valid" matTooltip="Save SubTask" type="button"><i class="fa fa-save" aria-hidden="true"></i>{{formType}} Subtask</button>
+          
+
              <button mat-button class="btn btn-secondary ml-3" (click)="discard()"><i class="fa fa-times" aria-hidden="true"></i>
                    Cancel</button>
-             <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"></i>
+             <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"  type="button"></i>
                    Back</button>
         </div>
 

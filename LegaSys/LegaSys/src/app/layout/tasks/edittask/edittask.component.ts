@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { TosterService } from '../../../shared/services/toster.service';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class EdittaskComponent implements OnInit {
   taskRisk :any =[];
   taskAssignee: any =[];
   startDate:any;
-  targetDate:any;
+ 
   taskActivity:any=[];
   taskClassification: any = 
     [
@@ -32,7 +32,8 @@ export class EdittaskComponent implements OnInit {
         {value: '2', viewValue: 'Business'},
      ];
   
-   constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: ToastrManager) {
+   constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr:TosterService) 
+   {
 
     this.taskeditForm = this.Formbuilder.group
       ({
@@ -46,14 +47,20 @@ export class EdittaskComponent implements OnInit {
         Risk_Id: ['', Validators.required],
         Activity_Id:['', Validators.required],
         Task_AssignTo:['',Validators.required],
-        Classification:['', Validators.required ],
+      
         Original_Estimate:['',Validators.required],
         Remaining:[''],
         Completed:[''],
         ProjectTaskID:[''],
         Target_Date:['',Validators.required],
-     
+        Start_Date:['',Validators.required],
+      },
+      {
+          validator: this.matchval // your validation method
       });
+ 
+     
+      
   }
 
   ngOnInit() {
@@ -74,11 +81,13 @@ export class EdittaskComponent implements OnInit {
 
   // Method For Fetch Data
   GetTaskByID(ID) {
-debugger;
+    debugger;
+
     this.dataService.GetProjectTaskbyId(ID).subscribe(
       res => {
-        debugger;
+       
         this.dataSource = res;
+     
      
       },
       err => {
@@ -90,14 +99,14 @@ debugger;
   //Method For Update data
   UpdateTaskByID()
    {
-     debugger;
 
     this.taskeditForm.value.ProjectTaskID = this.Id;
     this.taskeditForm.value.Project_ID = this.dataSource.Project_ID;
-    this.dataService.UpdateProjectTaskDetail(this.taskeditForm.value).subscribe(
+    this.dataService.UpdateProjectTaskDetail(this.taskeditForm.value).subscribe
+    (
       res => {
        
-        this.showSuccessWithTimeout("Updated Successfully","Success","25000");
+        this.showSuccess();
         this.MakeFieldEditable();
        
       },
@@ -111,15 +120,12 @@ debugger;
   MakeFieldEditable() {
     if (this.disable) {
       this.disable = false;
-      // this.issreadOnly = false;
-      // this.isReadOnly = false;
       this.taskeditForm.enable();
     }
     else {
       this.disable = true;
-      // this.isReadOnly = true;
-      // this.issreadOnly = true;
       this.taskeditForm.disable();
+      //this.showCancel();
     }
   }
 
@@ -129,7 +135,7 @@ debugger;
     this.dataService.GetAllClients().subscribe
       (
       data => {
-        //console.log("data from Clients:" + JSON.stringify(data));
+      
         this.myclients = data;		// FILL THE ARRAY WITH DATA.
       },
       (err) => {
@@ -142,7 +148,7 @@ debugger;
     this.dataService.GetAllProjects().subscribe
       (
       data => {
-        //console.log("data from Projects:" + JSON.stringify(data));
+       
         this.myprojects = data;		// FILL THE ARRAY WITH DATA.
       },
       (err) => {
@@ -152,26 +158,20 @@ debugger;
   }
 
 
-  //Toster Notifications
-  showSuccessWithTimeout(message, title, timespan){ 
-    debugger; 
-    this.toastr.successToastr(message, title ,{
-        timeOut :  timespan
-    })
-}
+  
   showSuccess() {
-    this.toastr.successToastr('Task Updated Successfully', 'Success!');
+    this.toastr.showSuccess("Task Updated Successfully");
   }
 
   showCancel() {
-    this.toastr.infoToastr('Task Cancelled', 'Cancel');
+    this.toastr.showInfo("Task Cancelled");
   }
 
 
       //method for getting status from db
       GetTaskStatus()
       {
-        debugger;
+       
           this.dataService.GetTaskStatus().subscribe
           (
               data =>{
@@ -191,7 +191,7 @@ debugger;
    //method for getting risk from db
    GetTaskRisk()
    {
-     debugger;
+    
        this.dataService.GetTaskRisk().subscribe
        (
            data =>{
@@ -211,7 +211,7 @@ debugger;
     //method for getting risk from db
     GetTaskPriority()
     {
-      debugger;
+    
         this.dataService.GetTaskPriority().subscribe
         (
             data =>{
@@ -231,7 +231,7 @@ debugger;
     //method for getting risk from db
     GetAllAssignee()
     {
-      debugger;
+     
         this.dataService.GetTaskAssignee().subscribe
         (
             data =>{
@@ -250,7 +250,7 @@ debugger;
     //binding dropdown task activity
     GetTaskActivity()
     {
-      debugger;
+     
         this.dataService.GetTaskActivity().subscribe
         (
             data =>{
@@ -266,7 +266,24 @@ debugger;
         );
     }
     
+
+//tO CHECK validation of target date and staet date
+    matchval(group: FormGroup) {
+   debugger;
+      let startDate = group.controls['Start_Date'].value;
+      let targetDate = group.controls['Target_Date'].value;
+       if (targetDate > startDate) {
+        
+        return null;
   
+          }
+       else {
+         return group.controls['Target_Date'].setErrors({ matchval: true });
+  
+       }
+    }
+  
+          
 }
   
 

@@ -57,9 +57,9 @@ namespace LegaSysUOW.Repository
             }
             return list;
         }
-        public List<ProjectDetail> GetAvailableUserListForProject(int[] Id)
+        public List<ProjectResources> GetAvailableUserListForProject(int[] Id)
         {
-            List<ProjectDetail> list = null;
+            List<ProjectResources> list = null;
             using (LegaSysEntities db = new LegaSysEntities())
             {
                 list = (from d in db.LegaSys_UserDetails.Where(x => (!Id.Contains(x.UserDetailID)) && x.IsActive == true).AsEnumerable()
@@ -69,7 +69,7 @@ namespace LegaSysUOW.Repository
                         from r in r_join.DefaultIfEmpty()
                         join rh in db.LegaSys_UserDetails on d.ReportingHead_ID equals rh.UserDetailID into rh_join
                         from rh in rh_join.DefaultIfEmpty()                        
-                        select new ProjectDetail
+                        select new ProjectResources
                         {
                             Resource_ID = d.UserDetailID,
                             ResourceName = $"{d.Firstname} {d.Lastname}",

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject, ViewChild } from '@angular/core';
-import { ProjectAll } from '../../projectModel';
+import { ProjectAll, ProjectResources } from '../../projectModel';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatSort, MatPaginator, MatSnackBar } from '@angular/material';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
@@ -19,6 +19,7 @@ import { DialogComponent } from '../../../../layout/masters/dialog/dialog.compon
 import { forEach } from '@angular/router/src/utils/collection';
 
 
+
 @Component({
     selector: 'app-project-resource',
     templateUrl: './project-resource.component.html',
@@ -26,10 +27,11 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class ProjectResourceComponent implements OnInit {
     @Input('resourceDetails') resourcedetails: ProjectAll;
-    resourceRow: ProjectAll;
+    resourceRow: ProjectResources;
     projectid: any;
     resourcelist: any;
     aResourceList: any;
+    //datasource: any;
     datasource: any;
     shift: Resource[];
     shiftid: number;
@@ -90,6 +92,7 @@ export class ProjectResourceComponent implements OnInit {
 
         });
         this.isSubmit = false;
+        //console.log("ngoninit resource details"+ JSON.stringify(this.resourcedetails));
 
 
 
@@ -106,7 +109,7 @@ export class ProjectResourceComponent implements OnInit {
             aMaster_Shift_ID: ['']
 
         });
-        //console.log("ngoninit:" + JSON.stringify(this.resourcedetails));
+
         this.dataService.getShift()
             .subscribe((data: Resource[]) => {
                 //debugger;
@@ -125,16 +128,10 @@ export class ProjectResourceComponent implements OnInit {
                 error => {
                     console.log('There was an error while retrieving Posts !!!' + error);
                 });
-
-
-        //alert(this.projectid);
         this.projectid = this.resourcedetails.ProjectID;
-        //this.shiftid = this.resourcedetails.Master_Shift_ID;
-        // this.resourcename = this.resourcedetails.ResourceName;
 
     }
     selectedRowIndex: number;
-    //row:Project;
 
     Highlight(row) {
         //alert(row.Resource_ID);
@@ -163,7 +160,7 @@ export class ProjectResourceComponent implements OnInit {
     }
 
     RenderDataTable() {
-        //debugger;
+        debugger;
         this.apiService.getAllResourceOnProject(this.projectid)
             .subscribe(
                 res => {
@@ -175,7 +172,7 @@ export class ProjectResourceComponent implements OnInit {
                     this.datasourcebackup = JSON.parse(JSON.stringify(this.resourcelist)); //for checking the number of resources working on project
                     // this.datasource.paginator = this.paginator;
                     // this.datasource.sort = this.sort;
-                    //console.log("resource" + JSON.stringify(this.datasource.ProjectResourceID));
+                    //console.log(" RenderDataTable resource list" + JSON.stringify(this.resourcelist));
                 },
                 error => {
                     console.log('There was an error while retrieving Posts !!!' + error);
@@ -196,7 +193,7 @@ export class ProjectResourceComponent implements OnInit {
     }
     UpdateRow() {
 
-        //debugger;
+        debugger;
         var shifttime = $(".mat-select-value-text span").html();
         //alert(this.msid);
         //var noRecordUpdated = 0;
@@ -239,9 +236,8 @@ export class ProjectResourceComponent implements OnInit {
                             });
                             this.isSubmit = true;
                             for (var i in this.datasourcebackup) {
-                                if (this.datasourcebackup[i].Resource_ID == this.resourceRow.Resource_ID)
-                                {
-                                    this.datasourcebackup[i].Master_Shift_ID=this.msid;
+                                if (this.datasourcebackup[i].Resource_ID == this.resourceRow.Resource_ID) {
+                                    this.datasourcebackup[i].Master_Shift_ID = this.msid;
                                 }
                             }
                             break;
@@ -277,7 +273,7 @@ export class ProjectResourceComponent implements OnInit {
     DiscardRow() {
         this.isSelected = false;
         this.ResetChanges();
-        this.ResetResourceInfoForm();
+        //this.ResetResourceInfoForm();
     }
 
 
@@ -302,12 +298,17 @@ export class ProjectResourceComponent implements OnInit {
                     this.isSelected = false;
                     this.isSubmit = true;
                 }
-
-                this.datasourcebackup.forEach(element => {
-                    if (element.Resource_ID == row.Resource_ID) {
-                        element.Status = 0;
+                for (var i = 0; i < this.datasourcebackup.length; i++) {
+                    if (this.datasourcebackup[i].Resource_ID == row.Resource_ID) {
+                        this.datasourcebackup[i].ResourceStatus = 0;
                     }
-                });
+                }
+
+                // this.datasourcebackup.forEach(element => {
+                //     if (element.Resource_ID == row.Resource_ID) {
+                //         element.Status = 0;
+                //     }
+                // });
                 this.checkCount();
 
                 //this.ResourcesList.push(row);
@@ -318,9 +319,11 @@ export class ProjectResourceComponent implements OnInit {
                 }, []);
                 var u = uniq.filter(x => x != row.Resource_ID);
                 this.ids = u;
-                this.datachanged = "yes";
-                this.ResetResourceInfoForm();
-                this.datachanged = "";
+                //this.ResourceInfoForm.reset();
+                //  
+                this.isSelected = false;
+                // this.isSubmit = false;
+                this.ResourceInfoForm.reset();
             }
         });
     }
@@ -427,35 +430,48 @@ export class ProjectResourceComponent implements OnInit {
         //console.log("on change after shift change"+JSON.stringify(this.aResourceList));
     }
     PushData() {
-        //debugger;
+        debugger;
         //loop for data in datasource and check if the data already exist or not
         // if (this.datasource.data.length > 0) {
-        for (var i in this.datasource.data) {
-            if (this.datasource.data[i].Resource_ID == this.aResource_Id && this.datasource.data[i].Master_Shift_ID == this.amsid) {
-                this.snackBar.open("Record already exists", "Ok", {
-                    duration: 5000,
+        if (this.datasource.data.length == 0) {
+            this.PushD();
+        }
+        else {
+            for (var i in this.datasource.data) {
 
-                });
-                return;
-            }
-            else {
-                this.PushD();
-                break;
+                if (this.datasource.data[i].Resource_ID == this.aResource_Id && this.datasource.data[i].Master_Shift_ID == this.amsid) {
+                    this.snackBar.open("Record already exists", "Ok", {
+                        duration: 5000,
+
+                    });
+                    return;
+                }
+                else {
+                    this.PushD();
+                    break;
+                }
             }
         }
+
     }
-    // else {
-    //     this.PushD(); // check these lines for redundant data addition?
-    // }
-    //}
+
     PushD() {
         debugger;
         const data = this.datasource.data;
         //console.log("before pushing to datasource"+JSON.stringify(this.aResourceList));
+        if (this.aResourceList.ProjectID == 0 || this.aResourceList.ProjectID == undefined) {
+            this.aResourceList.ProjectID = this.projectid;
+        }
         data.push(this.aResourceList);
+
         this.datasource.data = data;
+
+        // if(this.datasourcebackup.data.length==0)
+        // {
+        //     this.datasourcebackup.push(this.aResourceList);
+        // }
         //rebind the select list without the newly inserted resource        
-        console.log("resource details on PUSHD()" + JSON.stringify(this.resourcelist));
+        //console.log("resource details on PUSHD()" + JSON.stringify(this.resourcelist));
         this.ids.push(this.aResourceList.Resource_ID);
 
         this.ResetAddResourceInfoForm();
@@ -466,26 +482,29 @@ export class ProjectResourceComponent implements OnInit {
 
         // this.isAdd=false;
         debugger;
+        this.AddResourceInfoForm.reset();
         this.isDisableAddButton = true;
         this.isSelected = false;
-        this.AddResourceInfoForm.controls['aResourceName'].setValue("");
-        this.AddResourceInfoForm.controls['aShiftName'].setValue("");
-        this.AddResourceInfoForm.controls['aMaster_Shift_ID'].setValue("");
+        // this.AddResourceInfoForm.controls['aResourceName'].setValue("");
+        //this.AddResourceInfoForm.controls['aShiftName'].setValue("");
+        // this.AddResourceInfoForm.controls['aMaster_Shift_ID'].setValue("");
         this.BindResourceList(this.ids);
         //this.AddResourceInfoForm.controls['aResourceName'].markAsUntouched();
     }
 
-    ResetResourceInfoForm() {
-        this.isSelected = false;
-        this.ResourceInfoForm.controls['ResourceName'].setValue("");
-        this.ResourceInfoForm.controls['ShiftName'].setValue("");
-        this.ResourceInfoForm.controls['Master_Shift_ID'].setValue(0);
+    // ResetResourceInfoForm() {
+    //     this.isSelected = false;
+    //     this.isSubmit=false;
+    //     this.ResourceInfoForm.reset();
+    //     // this.ResourceInfoForm.controls['ResourceName'].setValue("");
+    //     // this.ResourceInfoForm.controls['ShiftName'].setValue("");
+    //     // this.ResourceInfoForm.controls['Master_Shift_ID'].setValue(0);
 
-        if (this.datachanged.length! > 0) {
-            this.RenderDataTable();
-        }
+    //     if (this.datachanged.length! > 0) {
+    //         this.RenderDataTable();
+    //     }
 
-    }
+    // }
     ResetChanges() {
         // this.AddResourceClick();
 
@@ -509,38 +528,92 @@ export class ProjectResourceComponent implements OnInit {
         //     //console.log("submit  " + JSON.stringify(this.datasource.data));
         //     this.datasource.data.ProjectID = this.projectid;
         // }
-        console.log("resource details before submit from backup" + JSON.stringify(this.datasourcebackup));
+        //console.log("resource details before submit from backup" + JSON.stringify(this.datasourcebackup));
 
 
         const lengthofbackup = this.datasourcebackup.length;
-        for (var i = 0; i < lengthofbackup; i++) {
-            for (var j = 0; j < this.datasource.data.length; j++) {
-                if (this.datasourcebackup[i].Resource_ID !== this.datasource.data[j].Resource_ID && this.datasource.data[j].ProjectID == 0 && this.datasource.data[j].Status == null) {
-                    this.datasource.data[j].Status = 1;
-                    this.datasourcebackup.push(this.datasource.data[j]);
+        if (lengthofbackup == 0) {
+            //this.datasourcebackup.push(this.datasource.data);
+            for (var i = 0; i < this.datasource.data.length; i++) {
+
+                this.datasourcebackup.push(this.datasource.data[i]);
+            }
+        }
+        else {
+            for (var i = 0; i < lengthofbackup; i++) {
+                for (var j = 0; j < this.datasource.data.length; j++) {
+                    //if (this.datasourcebackup[i].Resource_ID !== this.datasource.data[j].Resource_ID && (this.datasource.data[j].ProjectID == 0 ||this.datasource.data[j].ProjectID==undefined ) && this.datasource.data[j].ResourceStatus == null) {
+                    if (this.datasourcebackup[i].Resource_ID !== this.datasource.data[j].Resource_ID && (this.datasource.data[j].ResourceStatus == null || this.datasource.data[j].ResourceStatus == 0)) {
+                        this.datasource.data[j].ResourceStatus = 1;
+                        this.datasourcebackup.push(this.datasource.data[j]);
+                    }
                 }
             }
         }
-        // for(var i=0;i<this.datasourcebackup.length;i++)
-        // {
-        //     if(this.datasourcebackup[i].Resource_ID==this.datasourcebackup[i+1].Resource_ID)
-        // }
-        //console.log("resource details before submit from backup" + JSON.stringify(this.datasourcebackup));
-        //console.log("dbup count"+ this.datasourcebackup.length);
-        this.apiService.mapResourceOnProject(this.datasourcebackup).subscribe(
+
+
+        if (this.resourcedetails.projectResources == undefined) {
+            this.resourcedetails.projectResources = new Array<ProjectResources>();
+        }
+
+        const len = this.datasourcebackup.length;
+        for (var i = 0; i < len; i++) {
+            this.datasourcebackup.map(item => {
+                return {
+                    Resource_ID: item.Resource_ID,
+                    ResourceName: item.ResourceName,
+                    TotalExp: item.TotalExp,
+                    ResourceEmailId: item.ResourceEmailId,
+                    ResourceMobileNumber: item.ResourceMobileNumber,
+                    Resource_IsActive: item.Resource_IsActive,
+                    Master_Shift_ID: item.Master_Shift_ID,
+                    Shift: item.Shift,
+                    Master_Location_ID: item.Master_Location_ID,
+                    Location: item.Location,
+                    ReportingHead_ID: item.ReportingHead_ID,
+                    ReportingHeadName: item.ReportingHeadName,
+                    Master_Role_ID: item.Master_Role_ID,
+                    Master_Role: item.Master_Role,
+                    ProjectResourceID: item.ProjectResourceID,
+                    ResourceStatus: item.ResourceStatus,
+                }
+            });
+        }
+        this.resourcedetails.projectResources = new Array<ProjectResources>();
+        // this.resourcedetails.projectResources.push(this.datasourcebackup);
+        for (var i = 0; i < this.datasourcebackup.length; i++) {
+
+            this.resourcedetails.projectResources.push(this.datasourcebackup[i]);
+        }
+
+
+
+
+        this.apiService.mapResourceOnProject(this.resourcedetails).subscribe(
             res => {
-                alert(res);
-                //this.openSnackBar();
+                console.log(res);
                 this.snackBar.open('Resource Updated successfully', 'ok', { duration: 2500 });
                 this.RenderDataTable();
+                this.isSubmit = false;
+                this.isSelected = false;
 
             });
-        // return this.apiService.mapResourceOnProject(this.datasource.data);
     }
     checkCount() {
         if (this.initialresourcecounts != this.finalresourcecounts) {
             this.isSubmit = true;
         }
+    }
+
+    onNoClick(): void {
+        this.router.navigate(['project']);
+    }
+
+    applyFilter(filterValue: string) {
+        debugger;
+        filterValue = filterValue.trim();
+        filterValue = filterValue.toLowerCase();
+        this.datasource.filter = filterValue;
     }
 
 }

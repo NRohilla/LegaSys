@@ -1,154 +1,154 @@
-<div class="py-4 px-1">
-        <div class="form-group" *ngIf="currentProjectDetails">
-                <div class="col-lg-12" style="margin-bottom: 1%;">
-                        <div class="row">
-                                <div class="col-md-2" style="display:none">
-                                        <mat-form-field class="w-100">
-                                                <label class="summary-lebel float-left"><strong>:</strong></label>
-                                                <mat-label>Project ID</mat-label>
-                                                <input matInput #input [disabled]="disable" [(ngModel)]="currentProjectDetails.ProjectID"
-                                                        name="ProjectID" required>
-                                                <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
-                                        </mat-form-field>
+<form [formGroup]="projectinfo">
+        <div class="py-4 px-1" >
+                <div class="form-group" *ngIf="currentProjectDetails">
+                        <div class="col-lg-12" style="margin-bottom: 1%;">
+                                <div class="row">
+                                        <div class="col-md-2" style="display:none">
+                                                <mat-form-field class="w-100">
+                                                        <label class="summary-lebel float-left"><strong>:</strong></label>
+                                                        <mat-label>Project ID</mat-label>
+                                                        <!-- <input matInput #input [disabled]="disable" [(ngModel)]="currentProjectDetails.ProjectID"
+                                                        formControlName="ProjectID" required> -->
+                                                        <input matInput #input  formControlName="ProjectID" [disabled]="disable"  required>
+                                                        <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+        
+                                                <mat-form-field class="w-100">
+                                                        <label class="summary-lebel float-left" *ngIf="disable"><strong>Title:
+                                                                </strong></label>
+                                                        <mat-label *ngIf="!disable">Title</mat-label>
+                                                        <!-- <input matInput #input [disabled]="disable" [(ngModel)]="currentProjectDetails.Title"
+                                                        formControlName="Title" required> -->
+                                                        <input matInput #input formControlName="Title" (blur)="TrimString('Title')" [readonly]="disable" required>
+                                                        <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                                <mat-form-field class="w-100">
+                                                        <label class="summary-lebel float-left" *ngIf="disable"><strong>Description:
+                                                                </strong></label>
+                                                        <mat-label *ngIf="!disable">Description</mat-label>
+                                                        <!-- <textarea matInput [disabled]="disable" [(ngModel)]="currentProjectDetails.Description"
+                                                        formControlName="ProjectDescription" required style="height:25px"></textarea> -->
+        
+                                                        <textarea matInput formControlName="ProjectDescription" [readonly]="disable" (blur)="TrimString('ProjectDescription')" required style="height:25px"></textarea>
+                                                        <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                                <mat-form-field class="w-100">
+                                                        <label class="summary-lebel float-left" *ngIf="disable"><strong>Technical
+                                                                        Domain: </strong></label>
+                                                        <!-- <label class="summary-lebel float-left" ><strong>{{projectdetails.ProjectDomain_ID}} </strong></label> -->
+                                                        <mat-label *ngIf="!disable">Technical
+                                                                Domain</mat-label>
+                                                       
+        
+                                                        <!-- <mat-select formControlName="ProjectDomain_ID" [disabled]="disable" [(ngModel)]="currentProjectDetails.ProjectDomain_ID">
+                                                                <mat-option>--
+                                                                        Select
+                                                                        Technical
+                                                                        Domain--</mat-option>
+                                                                <mat-option *ngFor="let technologydetail of TechnicalDomainList"
+                                                                        [value]="technologydetail.ProjectDomain_ID">
+                                                                        {{technologydetail.DomainName}}
+                                                                </mat-option>
+                                                        </mat-select> -->
+                                                        <mat-select formControlName="ProjectDomain_ID" [disabled]="disable">
+                                                                <mat-option>--
+                                                                        Select
+                                                                        Technical
+                                                                        Domain--</mat-option>
+                                                                <mat-option *ngFor="let technologydetail of TechnicalDomainList"
+                                                                        [value]="technologydetail.ProjectDomain_ID">
+                                                                        {{technologydetail.DomainName}}
+                                                                </mat-option>
+                                                        </mat-select>
+        
+                                                        
+                                                </mat-form-field>
+                                        </div>
+        
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-
-                                        <mat-form-field class="w-100">
-                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Title:
-                                                        </strong></label>
-                                                <mat-label *ngIf="!disable">Title</mat-label>
-                                                <input matInput #input [disabled]="disable" [(ngModel)]="currentProjectDetails.Title"
-                                                        name="Title" required>
-                                                <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
-                                        </mat-form-field>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                                        <mat-form-field class="w-100">
-                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Description:
-                                                        </strong></label>
-                                                <mat-label *ngIf="!disable">Description</mat-label>
-                                                <textarea matInput [disabled]="disable" [(ngModel)]="currentProjectDetails.Description"
-                                                        name="ProjectDescription" required style="height:25px"></textarea>
-                                                <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
-                                        </mat-form-field>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                                        <mat-form-field class="w-100">
-                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Technical
-                                                                Domain: </strong></label>
-                                                <!-- <label class="summary-lebel float-left" ><strong>{{projectdetails.ProjectDomain_ID}} </strong></label> -->
-                                                <mat-label *ngIf="!disable">Technical
-                                                        Domain</mat-label>
-                                                <!-- <mat-select name="ProjectDomain_ID"                                                                                                       
-                                          [placeholder]="GetPlaceHolder('ProjectDomain_ID')"
-                                                  [disabled]="disable"
-                                                  [(ngModel)]="projectdetails.ProjectDomain_ID">
-                                                  <mat-option>--
-                                                          Select
-                                                          Technical
-                                                          Domain--</mat-option>
-                                                  <mat-option
-                                                          *ngFor="let technologydetail of TechnicalDomainList"
-                                                          [value]="technologydetail.TechDomainID">
-                                                          {{technologydetail.DomainName}}
-                                                  </mat-option>
-                                          </mat-select> -->
-
-                                                <mat-select name="ProjectDomain_ID" [disabled]="disable" [(ngModel)]="currentProjectDetails.ProjectDomain_ID">
-                                                        <mat-option>--
-                                                                Select
-                                                                Technical
-                                                                Domain--</mat-option>
-                                                        <mat-option *ngFor="let technologydetail of TechnicalDomainList"
-                                                                [value]="technologydetail.ProjectDomain_ID">
-                                                                {{technologydetail.DomainName}}
-                                                        </mat-option>
-                                                </mat-select>
-
-                                                <!-- <mat-select [disabled]="disableSummary"
-                                          [(ngModel)]="resourcedetails.Master_Location_ID"
-                                          name="Master_Location">
-                                          <mat-option
-                                                  *ngFor="let location of Location"
-                                                  [value]="location.LocationID">
-                                                  {{location.LocationAddress}}
-                                          </mat-option> 
-                                  </mat-select>-->
-
-                                                <!--<input matInput #input class="form-control"  [disabled]="disable" [(ngModel)]="projectdetails.DomainName" name="ProjectDomainName" > -->
-                                        </mat-form-field>
-                                </div>
-
                         </div>
                 </div>
-        </div>
-
-        <div class="form-group">
-                <div class="col-lg-12" style="margin-bottom: 1%;">
-                        <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                                        <!-- [(ngModel)]="projectdetails.StartDate"  -->
-                                        <mat-form-field class="w-100">
-                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Project
-                                                                Start Date:</strong></label>
-                                                <mat-label *ngIf="!disable">Project
-                                                        Start Date</mat-label>
-                                                <input matInput [matDatepicker]="startpicker" [disabled]="disable" name="Start_Date" [(ngModel)]="currentProjectDetails.Start_Date">
-                                                <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
-                                                <mat-datepicker #startpicker></mat-datepicker>
-                                                <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
-                                        </mat-form-field>
-
+        
+                <div class="form-group">
+                        <div class="col-lg-12" style="margin-bottom: 1%;">
+                                <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                                <!-- [(ngModel)]="projectdetails.StartDate"  -->
+                                                <mat-form-field class="w-100">
+                                                        <label class="summary-lebel float-left" *ngIf="disable"><strong>Project
+                                                                        Start Date:</strong></label>
+                                                        <mat-label *ngIf="!disable">Project
+                                                                Start Date</mat-label>
+                                                        <!-- <input matInput [matDatepicker]="startpicker" [disabled]="disable" formControlName="Start_Date" [(ngModel)]="currentProjectDetails.Start_Date" (dateChange)="calcDuration(currentProjectDetails.Start_Date,currentProjectDetails.End_Date)"> -->
+                                                        <input matInput [matDatepicker]="startpicker"  formControlName="Start_Date" [readonly]="disable" (dateChange)="calcDuration(currentProjectDetails.Start_Date,currentProjectDetails.End_Date)">
+                                                        <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+                                                        <mat-datepicker #startpicker></mat-datepicker>
+                                                        <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                                                </mat-form-field>
+        
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+        
+                                                <mat-form-field class="w-100">
+                                                        <label class="summary-lebel float-left" *ngIf="disable"><strong>
+                                                                        Project End Date:</strong></label>
+                                                        <mat-label *ngIf="!disable">Project End
+                                                                Date</mat-label>
+                                                        <!-- <input matInput [matDatepicker]="endpicker" 
+                                                                [disabled]="disable" formControlName="End_Date" [(ngModel)]="currentProjectDetails.End_Date" (dateChange)="calcDuration(currentProjectDetails.Start_Date,currentProjectDetails.End_Date)" > -->
+                                                                <input matInput [matDatepicker]="endpicker" 
+                                                                formControlName="End_Date" [readonly]="disable"  (dateChange)="calcDuration(currentProjectDetails.Start_Date,currentProjectDetails.End_Date)" >
+                                                        <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                                                        <mat-datepicker #endpicker></mat-datepicker>
+                                                        <mat-error *ngIf="projectinfo.controls['End_Date'].errors?.CompareDates" class="d-block w-100 border-0 mat-error">                
+                                                                Project End date should be Greater than Project Start date                                                             
+                                                            </mat-error>
+                                                        <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                                                        <!-- [(ngModel)]="projectdetails.EndDate" -->
+                                                </mat-form-field>
+        
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
+                                                <mat-form-field class="w-100" >
+                                                        <label class="summary-lebel float-left" *ngIf="disable"><strong>Duration:</strong></label>
+                                                        <mat-label *ngIf="!disable">Duration</mat-label>
+                                                        <!-- <input matInput #input [disabled]="disable" 
+                                                        formControlName="ProjectDuration" [(ngModel)]="durationtime" [readonly]="true" > -->
+                                                        <input matInput #input formControlName="ProjectDuration"  [readonly]="true" >
+                                                </mat-form-field>
+                                                <!-- [(ngModel)]="projectdetails.Duration" -->
+                                        </div>
+        
+        
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-
-                                        <mat-form-field class="w-100">
-                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>
-                                                                Project End Date:</strong></label>
-                                                <mat-label *ngIf="!disable">Project End
-                                                        Date</mat-label>
-                                                <input matInput [matDatepicker]="endpicker" 
-                                                        [disabled]="disable" name="End_Date" [(ngModel)]="currentProjectDetails.End_Date" (dateChange)="calcDuration(currentProjectDetails.Start_Date,currentProjectDetails.End_Date)" >
-                                                <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
-                                                <mat-datepicker #endpicker></mat-datepicker>
-                                                <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
-                                                <!-- [(ngModel)]="projectdetails.EndDate" -->
-                                        </mat-form-field>
-
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
-                                        <mat-form-field class="w-100">
-                                                <label class="summary-lebel float-left" *ngIf="disable"><strong>Duration:</strong></label>
-                                                <mat-label *ngIf="!disable">Duration</mat-label>
-                                                <input matInput #input [disabled]="disable" 
-                                                        name="ProjectDuration" [(ngModel)]="durationtime">
-                                        </mat-form-field>
-                                        <!-- [(ngModel)]="projectdetails.Duration" -->
-                                </div>
-
-
                         </div>
                 </div>
+        
         </div>
-
-</div>
-<div class="w-100 float-left d-block table-info px-4 py-2 table-info">
-        <div class="px-2 float-right">
-                <button mat-button class="btn btn-secondary" tabindex="-1" (click)="onNoClick()"><i class="fa fa-backward"
-                                aria-hidden="true"></i> Back</button>
+        <div class="w-100 float-left d-block table-info px-4 py-2 table-info">
+                <div class="px-2 float-right">
+                        <button mat-button class="btn btn-secondary" tabindex="-1" (click)="onNoClick()"><i class="fa fa-backward"
+                                        aria-hidden="true"></i> Back</button>
+                </div>
+                <div class="px-2 float-right">
+                        <button mat-button class="btn btn-info" (click)="edit()" *ngIf="!isSave"><i class="fa fa-pencil-square-o"
+                                        aria-hidden="true"></i> Edit</button>
+                </div>
+                <div class="px-2 float-right" *ngIf="isSave">
+                        <button mat-button class="btn btn-success" (click)="save()" [disabled]="!projectinfo.valid"><i class="fa fa-save" aria-hidden="true"></i>
+                                Save</button>
+                </div>
+                <div class="px-2 float-right">
+                        <button mat-button class="btn btn-secondary" tabindex="-1" *ngIf="isSave" (click)="onCancelClick()"><i
+                                        class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+                </div>
+        
+        
         </div>
-        <div class="px-2 float-right">
-                <button mat-button class="btn btn-info" (click)="edit()" *ngIf="!isSave"><i class="fa fa-pencil-square-o"
-                                aria-hidden="true"></i> Edit</button>
-        </div>
-        <div class="px-2 float-right" *ngIf="isSave">
-                <button mat-button class="btn btn-success" (click)="save()"><i class="fa fa-save" aria-hidden="true"></i>
-                        Save</button>
-        </div>
-        <div class="px-2 float-right">
-                <button mat-button class="btn btn-secondary" tabindex="-1" *ngIf="isSave" (click)="onCancelClick()"><i
-                                class="fa fa-times" aria-hidden="true"></i> Cancel</button>
-        </div>
-
-
-</div>
+</form>

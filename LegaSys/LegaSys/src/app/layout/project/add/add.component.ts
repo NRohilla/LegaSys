@@ -93,7 +93,7 @@ export class AddComponent implements OnInit {
     }
 
     public getClient() {
-        this.dataService.GetClient().subscribe(
+        this.dataService.GetAllActiveClient().subscribe(
             res => {
                 this.clientdetails = res;
             });

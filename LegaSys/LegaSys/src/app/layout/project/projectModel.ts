@@ -14,7 +14,7 @@ export class ProjectAll {
   //ClientDetailID: number;
   ProjectDomain_ID: number;
   ProjectDomain: string;
-  Status: boolean;
+  Status: number;
   Created_By: number;
   Updated_By: number;
   Created_Date: Date;
@@ -33,8 +33,8 @@ export class ProjectAll {
   DomainName: string;
   EmailID4: string;
   ProjectDomainName: string;
-  Resource_ID: number;
-  ResourceName: string;
+  //Resource_ID: number;
+  //ResourceName: string;
   ProjectTaskID: number;
   ProjectName: string;
   TaskTitle: string;
@@ -50,11 +50,33 @@ export class ProjectAll {
   ResourceFirstname: string;
   ResourceMiddlename: string;
   ResourceLastname: string;
+  Remarks: string;
+  //TotalExp: number;
+  //ResourceEmailId: string;
+  //ResourceMobileNumber: string;
+  //Resource_IsActive: boolean;
+  
+  //Master_Shift_ID: number;
+  //Shift: string;
+  //Master_Location_ID: number;
+  //Location: string;
+  //ReportingHead_ID: number;
+  //ReportingHeadName: string;
+  //Master_Role_ID: number;
+  //Master_Role: string;
+  Start_Date: Date;
+  End_Date: Date;
+  projectResources:ProjectResources[]=[];
+
+
+}
+export class ProjectResources {
+  Resource_ID: number;
+  ResourceName: string;
   TotalExp: number;
   ResourceEmailId: string;
-  ResourceMobileNumber: string;
-  Resource_IsActive: boolean;
-  Remarks: string;
+  ResourceMobileNumber: number;
+  Resource_IsActive: Boolean;
   Master_Shift_ID: number;
   Shift: string;
   Master_Location_ID: number;
@@ -63,8 +85,6 @@ export class ProjectAll {
   ReportingHeadName: string;
   Master_Role_ID: number;
   Master_Role: string;
-  Start_Date: Date;
-  End_Date: Date;  
-  
-
+  ProjectResourceID: number;
+  ResourceStatus: number;
 }

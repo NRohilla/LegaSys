@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
+//changes by team
+import { NgModule  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SubTaskRoutingModule} from './subtask-routing.module';
 import { SubtaskComponent } from './subtask.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+//import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { PageHeaderModule } from '../../../shared';
 import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatButtonModule, MatDialogModule, MatTabsModule, MatSortModule, MatSpinner } from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatButtonModule, MatDialogModule, MatTabsModule, MatSortModule ,MatProgressSpinnerModule,MatExpansionModule} from '@angular/material';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { TasksService } from '../tasks.service';
-
+//TEAM 
 
 @NgModule({
     imports: [CommonModule,
@@ -30,10 +31,13 @@ import { TasksService } from '../tasks.service';
               MatTabsModule,
               MatSortModule,
               MatProgressSpinnerModule,
-              MatCardModule 
+              MatCardModule ,
+              MatExpansionModule,
+              ReactiveFormsModule
             
             ],
             providers: [TasksService],
-    declarations: [SubtaskComponent]
+    declarations: [],
+ 
 })
 export class SubTaskModule {}

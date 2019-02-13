@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatSort, MatPaginator, MatTableDataSource,MatDialog } from '@angular/material';
 import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TasksService } from './tasks.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { DecimalPipe } from '@angular/common';
+import { TosterService } from './../../shared/services/toster.service';
+import { DialogComponent } from '../masters/dialog/dialog.component';
+
+
 
 @Component({
   selector: 'app-tasks',
@@ -19,7 +23,7 @@ export class TaskComponent implements OnInit {
 
   displayedColumns: string[] = ['TaskTitle', 'Project_Title','Task_AssignTo','Task_Status','Task_Priority','Task_Activity','Start_Date','Target_Date','Action'];
 
-  constructor(public dataService: TasksService, private router: Router, public toastr: ToastrManager) { }
+  constructor(public dataService: TasksService, private router: Router, public  toastr: TosterService,public dialog: MatDialog) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -52,19 +56,29 @@ export class TaskComponent implements OnInit {
       });
   }
   //send id
-  ViewTask(ID) {
+  ViewTask(ID) 
+  {
     sessionStorage.setItem("currentId", ID);
     this.router.navigate(['/viewtask']);
   }
  //tOASTER mETHODS
  showSuccess()
   {
-    this.toastr.successToastr('Task Deleted Successfully.', 'Success!');
+    this.toastr.showSuccess('Task Deleted Successfully.');
   }
 
   deleteTask(ID)
   {
-    debugger;
+    debugger
+
+    const dialogRef = this.dialog.open(DialogComponent, 
+      {
+          width: '325px',
+          data: { status: "delete", confirm: true }
+      });
+
+  dialogRef.afterClosed().subscribe(result => {
+      if (result) {
      this.dataService.DeleteProjectTask(ID).subscribe(
 
       res=>
@@ -72,16 +86,21 @@ export class TaskComponent implements OnInit {
        this.dataSource=res;
        this.ID = this.dataSource.ProjectTaskID;
        this.showSuccess();
+       this.FetchDataTable();
+      
       },
       error =>
       {
         console.log('There was an error while retrieving data !!!' + error);
  
       });
+
+
   }
-  
+        }); 
 
 
+}
 }
 
 export class TaskModel {

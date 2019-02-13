@@ -16,6 +16,7 @@ import {
     MatIconModule,
     MatNativeDateModule ,
     MatExpansionModule,
+    MatTooltipModule
     
    
 } from '@angular/material';
@@ -38,6 +39,7 @@ import { AddtaskRoutingModule } from './addtask-routing.module';
         MatNativeDateModule,
         AddtaskRoutingModule,
         MatExpansionModule,
+        MatTooltipModule,
     ],
     declarations: [[AddtaskComponent]],
     providers:[],

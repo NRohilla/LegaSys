@@ -7,7 +7,7 @@ import { EdittaskComponent } from '../edittask/edittask.component';
 import { PageHeaderModule } from './../../../shared/modules/page-header/page-header.module';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import{MatSelectModule, MatTableModule, MatSnackBarModule, MatDatepickerModule,MatSortModule} from '@angular/material';
+import{MatSelectModule, MatTableModule, MatSnackBarModule, MatDatepickerModule,MatSortModule,MatTooltipModule} from '@angular/material';
 import {MatInputModule,MatPaginatorModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion';
@@ -33,7 +33,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDatepickerModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatSortModule
+    MatSortModule,
+    MatTooltipModule
   
   ],
   declarations: [ViewdetailComponent,SubtaskComponent,EdittaskComponent],

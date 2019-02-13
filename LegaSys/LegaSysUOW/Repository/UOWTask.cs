@@ -46,7 +46,8 @@ namespace LegaSysUOW.Repository
                         Priority_Id = tasks.Task_Priority,
                         Risk_Id = tasks.Task_Risk,
                         Task_AssignTo = tasks.Task_AssignTo,
-                        Target_Date = tasks.Target_Date
+                        Target_Date = tasks.Target_Date,
+                        Start_Date=tasks.Start_Date
 
 
                     }).FirstOrDefault();
@@ -214,8 +215,8 @@ namespace LegaSysUOW.Repository
                    {
                        Status_Id = x.status.Status_Id,
                        Status_Type = x.status.Status_Type,
-                      //Status_Icon=x.status.Status_Icon
-                  });
+                       //Status_Icon=x.status.Status_Icon
+                   });
             return statusObj;
 
         }
@@ -276,17 +277,30 @@ namespace LegaSysUOW.Repository
         //Method For Delet Project******SADHANA********
         public bool DeleteProjectTask(int id)
         {
-            var Subtask = db.LegaSys_ProjectSubTasks.FirstOrDefault(x => x.Project_Task_ID == id);
-            db.LegaSys_ProjectSubTasks.Remove(Subtask);
-            var Task = db.LegaSys_ProjectTasks.FirstOrDefault(x => x.ProjectTaskID == id);
-            db.LegaSys_ProjectTasks.Remove(Task);
 
-            //db.SaveChanges();
+
+            // Query to delete all subtask against task id to be deleted.
+
+            var subtasks = db.LegaSys_ProjectSubTasks.Where(x => x.Project_Task_ID == id).ToList();
+            foreach (var subtask in subtasks)
+                db.LegaSys_ProjectSubTasks.Remove(subtask);
+
+            //Query to delete task of given id.
+
+            var task = db.LegaSys_ProjectTasks.Where(x => x.ProjectTaskID == id).FirstOrDefault();
+          
+                db.LegaSys_ProjectTasks.Remove(task);
+
+                db.SaveChanges();
+
+           
 
             return true;
 
         }
 
+
+        //Method For Delet Project******MOHIT********
         public List<TaskDetail> GetAllTaskOfProject(int id)
         {
 
@@ -305,6 +319,24 @@ namespace LegaSysUOW.Repository
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        //Created By Sadhana...********* 5 feb 2019
+         public bool  CheckIsTaskExsists(string taskTittle)
+        {
+
+            var Task = (from tasks in db.LegaSys_ProjectTasks
+                        where (tasks.Title == taskTittle)
+                        select tasks).FirstOrDefault();
+
+            if (Task == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

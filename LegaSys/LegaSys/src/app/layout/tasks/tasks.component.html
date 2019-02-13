@@ -35,7 +35,7 @@
 
    <!-- Task Status column -->
   <ng-container matColumnDef="Task_Status">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Status</span>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Status</span>
       </mat-header-cell>
       <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
       <mat-cell *matCellDef="let element"> {{element.Status_Type}} </mat-cell>
@@ -58,38 +58,38 @@
 
 <!-- Task Priority Coloumn -->
     <ng-container matColumnDef="Task_Priority">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Priority</span>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Priority_Type}} </mat-cell>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Priority</span>
+      </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.Priority_Type}}</mat-cell>
       </ng-container>
 
   
 
 <!-- Task Project Activity Area Coloumn -->
 <ng-container matColumnDef="Task_Activity">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Activity</span>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Activity</span>
     </mat-header-cell>
-     <mat-cell *matCellDef="let element">{{element.Task_Activity}} </mat-cell> 
+     <mat-cell *matCellDef="let element">{{element.Task_Activity}}</mat-cell> 
   </ng-container>
 
 
   <!-- Task Created Date Coloumn-->
   <ng-container matColumnDef="Start_Date">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Start Date</span>
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Start Date</span>
       </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Start_Date|date}} </mat-cell>
     </ng-container> 
 
 <!-- Task Project Target Date Coloumn -->
 <ng-container matColumnDef="Target_Date">
-  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Target Date</span>
+  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Target Date</span>
   </mat-header-cell>
   <mat-cell *matCellDef="let element">{{element.Target_Date|date}} </mat-cell>
 </ng-container>
 
 <!-- Task OriginAL Estimate Coloumn -->
 <ng-container matColumnDef="Original_Estimate">
-  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class= "text-white font-14">Original Estimate</span>
+  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class= "text-white font-14">Original Estimate</span>
   </mat-header-cell>
   <mat-cell *matCellDef="let element"> {{element.Original_Estimate} } </mat-cell>
 </ng-container>
@@ -100,9 +100,9 @@
       <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">  </span>
       </mat-header-cell>
     
-      <mat-cell *matCellDef="let element"><button (click)="ViewTask(element.ProjectTaskID)" style="line-height: 28px;"  mat-button class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+      <mat-cell *matCellDef="let element"><button (click)="ViewTask(element.ProjectTaskID)" style="line-height: 28px;"  mat-button class="btn btn-info mx-1"  matTooltip="Edit Task"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-        <button mat-button class="btn btn-danger mx-1" (click)="deleteTask(element.ProjectTaskID)" style="line-height: 28px;" ><i class="fa fa-times"  aria-hidden="true"></i></button>  </mat-cell> 
+        <button mat-button class="btn btn-danger mx-1" (click)="deleteTask(element.ProjectTaskID)" style="line-height: 28px;" matTooltip="Delete Task"><i class="fa fa-times"  aria-hidden="true" ></i></button>  </mat-cell> 
     </ng-container>
   
  
@@ -129,6 +129,7 @@
 
   <!-- This button will be used to add new Task into the database-->
 
-  <button mat-button class="btn btn-info" [routerLink]="['/addtask']"><i class="fa fa-plus" aria-hidden="true"></i>
+  <button mat-button class="btn btn-info" [routerLink]="['/addtask']" matTooltip="Create Task"><i class="fa fa-plus" aria-hidden="true" ></i>
     Add New Task</button>
 </div>
+

@@ -16,9 +16,7 @@ import {
     MatPaginatorModule,
     
     MatDatepickerModule,
-   
- 
-  
+
     MatIconModule,
   
     MatExpansionModule,
@@ -39,7 +37,6 @@ import {
         PageHeaderModule,
         MatDatepickerModule,
      
- 
         MatIconModule,
         
     MatNativeDateModule ,
@@ -48,7 +45,7 @@ import {
         MatExpansionModule,
         MatFormFieldModule,
     ],
-    declarations: [[EdittaskComponent]],
+    declarations: [],
   providers:[],
 })
 export class EdittaskModule {

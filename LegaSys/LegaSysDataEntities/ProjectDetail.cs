@@ -35,8 +35,6 @@ namespace LegaSysDataEntities
         public string DomainName { get; set; }  
         public string  EmailID4 { get; set; }
         public string ProjectDomainName { get; set; }
-        public int? Resource_ID { get; set; }
-        public string ResourceName { get; set; }
         public int? ProjectTaskID { get; set; }
         public string ProjectName { get; set; }
         public string TaskTitle { get; set; }
@@ -47,15 +45,39 @@ namespace LegaSysDataEntities
         public string ProjectSubTaskName { get; set; }
         public string SubTaskTitle { get; set; }
         public string SubTaskDescription { get; set; }
-        public int? SubTaskAttachmentID { get; set; }
-        public string ResourceFirstname { get; set; }
-        public string ResourceMiddlename { get; set; }
-        public string ResourceLastname { get; set; }
+        public int? SubTaskAttachmentID { get; set; }        
+        public string Remarks { get; set; }
+        //public int? Resource_ID { get; set; }
+        //public string ResourceName { get; set; }
+        //public string ResourceFirstname { get; set; }
+        //public string ResourceMiddlename { get; set; }
+        //public string ResourceLastname { get; set; }
+        //public Decimal? TotalExp { get; set; }
+        //public string ResourceEmailId { get; set; }
+        //public string ResourceMobileNumber { get; set; }
+        //public Boolean? Resource_IsActive { get; set; }
+        //public int? Master_Shift_ID { get; set; }
+        //public string Shift { get; set; }
+        //public int? Master_Location_ID { get; set; }
+        //public string Location { get; set; }
+        //public int? ReportingHead_ID { get; set; }
+        //public string ReportingHeadName { get; set; }
+        //public int? Master_Role_ID { get; set; }
+        //public string Master_Role { get; set; }
+        //public int? ProjectResourceID { get; set; }
+        public List<ProjectResources> projectResources { get; set; }
+
+}
+
+    //added on 11/02/2019
+
+    public class ProjectResources {
+        public int? Resource_ID { get; set; }
+        public string ResourceName { get; set; }
         public Decimal? TotalExp { get; set; }
         public string ResourceEmailId { get; set; }
         public string ResourceMobileNumber { get; set; }
         public Boolean? Resource_IsActive { get; set; }
-        public string Remarks { get; set; }
         public int? Master_Shift_ID { get; set; }
         public string Shift { get; set; }
         public int? Master_Location_ID { get; set; }
@@ -65,6 +87,7 @@ namespace LegaSysDataEntities
         public int? Master_Role_ID { get; set; }
         public string Master_Role { get; set; }
         public int? ProjectResourceID { get; set; }
+        public short? ResourceStatus { get; set; }
 
-}
+    }
 }

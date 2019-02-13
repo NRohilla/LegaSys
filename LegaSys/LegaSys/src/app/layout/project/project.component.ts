@@ -107,6 +107,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
 
     applyFilter(filterValue: string) {
+        debugger;
         filterValue = filterValue.trim();
         filterValue = filterValue.toLowerCase();
         this.dataSource.filter = filterValue;
@@ -119,4 +120,5 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     //       duration: 500,
     //     });
     // }
+    
 }

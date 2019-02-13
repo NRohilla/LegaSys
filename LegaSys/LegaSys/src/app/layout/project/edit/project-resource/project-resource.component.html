@@ -1,4 +1,9 @@
 <div class="py-4 px-1">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                <mat-form-field class="w-100">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+        </div>
         <div class="form-group">
 
                 <table mat-table [dataSource]="datasource" style="width: 100%;">
@@ -56,8 +61,8 @@
 <div>
 
 </div>
-<form [formGroup]="ResourceInfoForm" #formDirective="ngForm" *ngIf="isSelected" >
-        <div class="row" >
+<form [formGroup]="ResourceInfoForm" #formDirective="ngForm" *ngIf="isSelected">
+        <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 float-left">
 
                         <mat-form-field class="w-100">
@@ -133,9 +138,10 @@
 
                                 <!-- <button mat-button mat-raised-button class="btn btn-info mx-1" (click)="Edit()" *ngIf="disable"><i
                                                         class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button> -->
-                                <button mat-button class="btn btn-success float-right ml-1" (click)="PushData()" [disabled]="isDisableAddButton"><i
-                                                class="fa fa-upload" aria-hidden="true"></i> Add</button>
-                                
+                                <button mat-button class="btn btn-success float-right ml-1" (click)="PushData()"
+                                        [disabled]="isDisableAddButton" type="button"><i class="fa fa-upload" aria-hidden="true"></i>
+                                        Add</button>
+
                         </div>
                 </form>
         </mat-expansion-panel>
@@ -144,13 +150,18 @@
 
 <div class="w-100 float-left d-block table-info px-4 py-2 table-info">
         <div class="px-2 float-right">
-                <button mat-button class="btn btn-info mx-1" *ngIf="isSubmit" (click)="ResetChanges()"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+                <button mat-button class="btn btn-info mx-1" *ngIf="isSubmit" (click)="ResetChanges()"><i class="fa fa-minus-circle"
+                                aria-hidden="true"></i>
                         Discard</button> <br>
         </div>
         <div class="px-2 float-right">
-                <button *ngIf="isSubmit"  mat-button class="btn btn-success  mx-1" (click)="Submit()"><i class="fa fa-plus-square"
+                <button *ngIf="isSubmit" type="button" mat-button class="btn btn-success  mx-1" (click)="Submit()"><i class="fa fa-plus-square"
                                 aria-hidden="true"></i>
                         Save</button>
+        </div>
+        <div class="px-2 float-right">
+                <button mat-button class="btn btn-secondary" tabindex="-1" (click)="onNoClick()"><i class="fa fa-backward"
+                                aria-hidden="true"></i> Back</button>
         </div>
 
 </div>

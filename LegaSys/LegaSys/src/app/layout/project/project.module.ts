@@ -20,6 +20,7 @@ import { ProjectInfoComponent } from './edit/project-info/project-info.component
 import { ProjectResourceComponent } from './edit/project-resource/project-resource.component';
 import { ProjectClientComponent } from './edit/project-client/project-client.component';
 import { ProjectTaskComponent } from './edit/project-task/project-task.component';
+import { DialogComponent } from '../masters/dialog/dialog.component';
 
 @NgModule({
   imports: [

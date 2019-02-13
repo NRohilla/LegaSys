@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialogRef, MatFormField, MatFormFieldControl, MatTabChangeEvent, MatSnackBar } from '@angular/material';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Injectable } from '@angular/core';
 import { SharedService } from '../../Shared/shared.service';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -13,13 +13,15 @@ import { ok } from 'assert';
 import {ProjectInfoComponent} from './project-info/project-info.component';
 import {ProjectClientComponent} from './project-client/project-client.component';
 import {ProjectResourceComponent} from './project-resource/project-resource.component';
-import {ProjectTaskComponent} from './project-task/project-task.component'
+import {ProjectTaskComponent} from './project-task/project-task.component';
+
 @Component({
     selector: 'app-edit',
     templateUrl: './edit.component.html',
     styleUrls: ['./edit.component.scss'],
     animations: [routerTransition()]
 })
+
 export class EditComponent implements OnInit {
     projectdetails: any;
     clientdetails: any;
@@ -51,31 +53,8 @@ export class EditComponent implements OnInit {
         private router: Router, public project: Project, public snackBar: MatSnackBar) {
         const id = this.route.snapshot.paramMap.get('ProjectID');
         this.projectid = id;
-        debugger;
-        this.dataService.GetProjectById(id).subscribe(
-            res => {
-                //debugger;
-                //if (res.message = 'Record Not Found.') {
-                //  this.notfound = true;
-
-                // } else {
-                //debugger;
-                
-                this.projectdetails = res;
-                this.projectdetailsbackup=JSON.parse(JSON.stringify(res));
-                this.clientdetails = res;                
-                this.date = new Date('12/11/2018');                
-                 //debugger;
-                this.resourcedetails = res;
-                this.taskdetails = res;
-                //console.log("projectdetails: " +JSON.stringify(this.projectdetails) );
-                // }
-            }, error => {
-                alert("Invalid Request!");
-                this.router.navigate(['/project']);
-                const errorresult = 'No Result';
-            }
-        );        
+            
+        this. GetprojectbyId();
         this.GetAllClientStatus();
         this.GetAllShift();
         this.GetAllLocation();
@@ -98,6 +77,32 @@ export class EditComponent implements OnInit {
     }
     submit() {
 
+    }
+    GetprojectbyId(){
+        this.dataService.GetProjectById(this.projectid).subscribe(
+            res => {
+                //debugger;
+                //if (res.message = 'Record Not Found.') {
+                //  this.notfound = true;
+
+                // } else {
+                //debugger;
+                
+                this.projectdetails = res;
+                this.projectdetailsbackup=JSON.parse(JSON.stringify(res));
+                this.clientdetails = res;                
+                //this.date = new Date('12/11/2018');                
+                 //debugger;
+                this.resourcedetails = res;
+                this.taskdetails = res;
+                //console.log("projectdetails: " +JSON.stringify(this.projectdetails) );
+                // }
+            }, error => {
+                alert("Invalid Request!");
+                this.router.navigate(['/project']);
+                const errorresult = 'No Result';
+            }
+        );  
     }
 
     onLinkClick(event: MatTabChangeEvent) {
@@ -129,7 +134,7 @@ export class EditComponent implements OnInit {
 
     }
     save(projectdetails:Project) {
-        debugger;
+        //debugger;
         this.dataService.updateProject(this.projectdetails).subscribe(
             res => {
                 sessionStorage.setItem('message', 'updated');
@@ -138,6 +143,7 @@ export class EditComponent implements OnInit {
                 this.dataService.getAllProject();
                 this.disable = true;
                 this.isSave = false;
+                this.GetprojectbyId();
             });
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ProjectAll } from '../../projectModel';
 import { AlertPromise } from 'selenium-webdriver';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -27,49 +27,59 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class ProjectTaskComponent implements OnInit {
 
-  @Input('taskDetails') taskdetails: ProjectAll; 
+  @Input('taskDetails') taskdetails: ProjectAll;
   projectid: any;
   datasource: any;
   tasklist: any;
   constructor(private route: ActivatedRoute, private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
-        private apiService: SharedService, private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog, public dataService: ResourceService, public snackBar: MatSnackBar) {
+    private apiService: SharedService, private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog, public dataService: ResourceService, public snackBar: MatSnackBar) {
 
-        const id = this.route.snapshot.paramMap.get('ProjectID');
-        this.projectid = id;
-        
-        
-        //this.isSelected = false;
-        //this.isEdit=false;
-        //this.disable = false;
+    const id = this.route.snapshot.paramMap.get('ProjectID');
+    this.projectid = id;
 
-    }
-    displayedColumns = ['ProjectTaskID','TaskTitle', 'Status','Task_AssignTo', 'actions'];
+
+    //this.isSelected = false;
+    //this.isEdit=false;
+    //this.disable = false;
+
+  }
+  displayedColumns = ['ProjectTaskID', 'TaskTitle', 'Status', 'Task_AssignTo', 'actions'];
 
   ngOnInit() {
     this.RenderDataTable();
-    
+
     //alert("tsk : "+JSON.stringify(this.taskdetails.TaskTitle+""+this.taskdetails.TaskAttachmentName+""+this.taskdetails.Description));
   }
   RenderDataTable() {
     //debugger;
     this.apiService.getalltaskofproject(this.projectid)
-        .subscribe(
-            res => {
+      .subscribe(
+        res => {
 
-              debugger;
-                this.tasklist = res;           
-                
-            },
-            error => {
-                console.log('There was an error while retrieving Posts !!!' + error);
-            });
+          //debugger;
+          this.tasklist = res;
+          this.datasource = new MatTableDataSource(this.tasklist);
+
+        },
+        error => {
+          console.log('There was an error while retrieving Posts !!!' + error);
+        });
 
 
-}
+  }
 
-Navigate(ptid:any){  
-  sessionStorage.setItem("currentId", ptid);
-  this.router.navigate(['/edittask']);
-}
+  Navigate(ptid: any) {
+    sessionStorage.setItem("currentId", ptid);
+    this.router.navigate(['/edittask']);
+  }
 
+  onNoClick(): void {
+    this.router.navigate(['project']);
+  }
+  applyFilter(filterValue: string) {
+    debugger;
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.datasource.filter = filterValue;
+  }
 }

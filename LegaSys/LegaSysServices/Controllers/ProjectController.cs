@@ -107,11 +107,37 @@ namespace LegaSysServices.Controllers
 
         [HttpPost]
         [Route("project/mapresource")]
-        public IHttpActionResult MapResource(ProjectDetail[] projectDetail)
+        public IHttpActionResult MapResource(ProjectDetail projectDetail)
         {
-            _projects.MapResource(projectDetail);
-            return Json(new { message = "Resource details updated successfully." });
+            if (projectDetail == null)
+                return BadRequest();
+            else
+            {
+                _projects.MapResource(projectDetail);
+                return Json(new { message = "Resource details updated successfully." });
+            }
+            
         }
         //commented for update on GIT 06/12/2018
+
+        //[HttpGet]
+        //[Route("project/GetAllActiveProjects")]
+        //public IHttpActionResult GetAllActiveProjects()
+        //{
+        //    var projects = _projects.GetAllActiveProjects();
+        //    if (projects == null)
+        //        return NotFound();
+        //    return Json(projects);
+        //}
+        [HttpGet]
+        [Route("project/getactive")]
+        public IHttpActionResult GetAllActiveProjects()
+        {
+            var projects = _projects.GetAllActiveProjects();
+            if (projects == null)
+                return NotFound();
+            return Json(projects);
+
+        }
     }
 }

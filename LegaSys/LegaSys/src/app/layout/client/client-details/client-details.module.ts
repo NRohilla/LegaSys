@@ -23,6 +23,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ClientProfesionalDetailsComponent } from '../components/client-profesional-details.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
+
 @NgModule({
   imports: [
     CommonModule,

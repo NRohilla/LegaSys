@@ -30,6 +30,7 @@ export class ClientDetailsComponent implements OnInit {
     this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
       (suc:any) => {
         if(suc.success){
+          debugger;
           this.isLoading = false;
           this.currentClientDetails = suc.data;
           this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc.data));
@@ -52,7 +53,7 @@ export class ClientDetailsComponent implements OnInit {
          //this.show(); 
           this.openSnackBar();
           this.currentClientDetails=client;
-           //this.GetClientsWithID(this.currentClientID);                     
+           this.GetClientsWithID(this.currentClientID);                     
         }
         else{
           this.tosterService.showError("Client Updation Failed");

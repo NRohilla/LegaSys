@@ -9,9 +9,12 @@ import {
     NotificationComponent,
     ClientsComponent,
     TasksComponent,
-    ResourcesComponent
+    ResourcesComponent,
+    ChatComponent,
+    TimelineComponent
 } from './components';
 import { StatModule } from '../../shared';
+import { DashbordService } from './dashbord.service';
 
 @NgModule({
     imports: [
@@ -27,7 +30,9 @@ import { StatModule } from '../../shared';
         NotificationComponent,
         ClientsComponent,
         TasksComponent,
-        ResourcesComponent
-    ]
+        ResourcesComponent,
+        TimelineComponent,ChatComponent
+    ],
+    providers: [DashbordService],
 })
 export class DashboardModule {}

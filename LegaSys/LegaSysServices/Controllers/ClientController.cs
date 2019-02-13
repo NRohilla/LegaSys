@@ -179,6 +179,14 @@ namespace LegaSysServices.Controllers
 
         }
 
+        [HttpGet]
+        [Route("client/GetAllActiveClient")]
+        public IHttpActionResult GetAllActiveClient()
+        {
+
+            return Json(new { success = true, data = _ClientRepository.GetAllActiveClient() });
+
+        }
 
 
 

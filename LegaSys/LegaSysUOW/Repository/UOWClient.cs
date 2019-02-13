@@ -57,7 +57,8 @@ namespace LegaSysUOW.Repository
                     CompanyName = Objclient.CompanyName,
                     CompanyAddress = Objclient.CompanyAddress,
                     CompanyPhone = Objclient.CompanyPhone,
-                    ClientCountry = Objclient.ClientCountry
+                    ClientCountry = Objclient.ClientCountry,
+                    ClientPhone= Objclient.ClientPhone
                 };
                 db.LegaSys_ClientDetails.Add(model);
                 db.SaveChanges();
@@ -124,6 +125,8 @@ namespace LegaSysUOW.Repository
                       Created_By = x.Created_By,
                       Phone = x.phone,
                       IsActive = x.IsActive
+
+                      
                   }).ToList();
 
 
@@ -155,7 +158,9 @@ namespace LegaSysUOW.Repository
                         ClientCompanyFax = ClientDetail.ClientCompanyFax,
                         ClientCountry = ClientDetail.ClientCountry,
                         ClientCountryZip = ClientDetail.ClientCountryZip,
-                        CoClientDetails = coClientList
+                        CoClientDetails = coClientList,
+                        ClientPhone= ClientDetail.ClientPhone
+
 
 
 
@@ -203,11 +208,12 @@ namespace LegaSysUOW.Repository
                 obj.Created_Date = objClient.Created_Date;
                 obj.Updated_Date = System.DateTime.UtcNow;
                 obj.IsActive = true;
+                obj.ClientPhone = objClient.ClientPhone;
                 db.LegaSys_ClientDetails.AddOrUpdate(obj);
 
                 for (int i = 0; i < objClient.CoClientDetails.Count; i++)
                 {
-                    if (objClient.CoClientDetails[i].CoClientID != null)
+                    if (Convert.ToInt32(objClient.CoClientDetails[i].CoClientID)>0)
                     {
                         LegaSys_CoClientDetails coClientDetailsObj = new LegaSys_CoClientDetails();
                         coClientDetailsObj.CoClientID = objClient.CoClientDetails[i].CoClientID.Value;
@@ -285,7 +291,7 @@ namespace LegaSysUOW.Repository
                     obj.EmailID4 = ClientDetail.EmailID4;
                     obj.Created_By = ClientDetail.Created_By;
                     obj.Updated_By = userId;
-
+                    obj.ClientPhone = ClientDetail.ClientPhone;
                     obj.Updated_Date = System.DateTime.UtcNow;
                     obj.IsActive = false;
                     db.LegaSys_ClientDetails.AddOrUpdate(obj);
@@ -485,5 +491,13 @@ namespace LegaSysUOW.Repository
             }
 
         }
+
+        public List<ClientDetail> GetAllActiveClient()
+        {
+            var activeClient = GetAllClient().Where(x => x.IsActive == true).ToList();
+            return activeClient;
+        }
+
+
     }
 }

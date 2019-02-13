@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+// import { link } from 'fs';
 
 @Component({
     selector: 'app-stat',
@@ -20,9 +22,18 @@ export class StatComponent implements OnInit {
     @Input() totalcount: number;
     @Input() tag: string;
     @Input() data: number;
+     @Input() link: string;
+    
     @Output() event: EventEmitter<any> = new EventEmitter();
 
-    constructor() {}
+    constructor(private router:Router ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(this.link);
+    }
+    Redirect(){
+      debugger;
+     
+        this.router.navigate(['/'+this.link]);
+    }
 }

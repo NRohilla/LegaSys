@@ -16,7 +16,7 @@
     <hr> -->
     <div class="row">
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [tag]="'Clients'" [icon]="'fa-users'" [count]="26" [label]="'Active'" [count1]="19" [label1]="'Inactive'" [totalcount]="45"></app-stat>
+            <app-stat *ngIf="activeClientCount && inActiveClientCount && totalClientCount && link " [bgClass]="'primary'" [tag]="'Clients'" [icon]="'fa-users'" [count]="activeClientCount" [label]="'Active'" [count1]="inActiveClientCount" [label1]="'Inactive'" [totalcount]="totalClientCount" [link]="link"></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
             <app-stat [bgClass]="'warning'" [tag]="'Resources'" [icon]="'fa-users'" [count]="14" [label]="'Billable'" [count1]="12" [label1]="'Support'" [count2]="10" [label2]="'Bench'" [count3]="4" [label3]="'On Leave'" [totalcount]="40"></app-stat>

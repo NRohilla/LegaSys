@@ -33,8 +33,9 @@ namespace LegaSysDataEntities
         public string ClientCompanyFax { get; set; }
 
         public List<CoClient> CoClientDetails { get; set; }
+        public string ClientPhone { get; set; }
 
-        
+
 
 
 

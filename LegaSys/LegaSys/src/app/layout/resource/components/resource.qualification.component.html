@@ -117,7 +117,7 @@
                         Year must atleast 4 digit long.
                    </span>   
                    <span *ngIf="uQualificationForm.controls.Qgrid.controls['QYear'].errors.matchYear">
-                      Year Already Exists
+                     {{yearErrorFlags()}}
                  </span>                      
                           </mat-error>
                         <!-- <mat-error *ngIf="uQualificationForm.controls.Qgrid.hasError('required', 'QYear') "> Year is required.</mat-error>

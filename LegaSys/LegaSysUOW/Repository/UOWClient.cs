@@ -494,8 +494,37 @@ namespace LegaSysUOW.Repository
 
         public List<ClientDetail> GetAllActiveClient()
         {
-            var activeClient = GetAllClient().Where(x => x.IsActive == true).ToList();
-            return activeClient;
+            List<ClientDetail> lstClient = null;            
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    lstClient = db.LegaSys_ClientDetails.Where(x=>x.IsActive==true).Select(s =>
+                         new ClientDetail()
+                         {
+                             ClientDetailID = s.ClientDetailID,
+                             ClientName = s.ClientName,
+                             Address = s.Address,
+                             Country = s.Country,
+                             CoClient = s.CoClient,
+                             //CoClient2 = s.CoClient2,
+                             //CoClient3 = s.CoClient3,
+                             //CoClient4 = s.CoClient4,
+                             EmailID = s.EmailID,
+                             //EmailID2 = s.EmailID2,
+                             //EmailID3 = s.EmailID3,
+                             //EmailID4 = s.EmailID4,
+                             //Created_By = s.Created_By,
+                             //Updated_By = s.Updated_By,
+                             IsActive = (bool)s.IsActive
+                         }).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return lstClient;
         }
 
 

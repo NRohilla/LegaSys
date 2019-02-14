@@ -4,5 +4,10 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+    production: false,
+    ////Uncomment while working on local
+    BaseAPIURL: "http://localhost:58164"
+
+    //Uncomment while publishing
+     //BaseAPIURL: "http://172.16.200.33:9393/LegaSys/Services/"
 };

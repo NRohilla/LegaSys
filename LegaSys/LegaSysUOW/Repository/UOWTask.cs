@@ -79,7 +79,7 @@ namespace LegaSysUOW.Repository
                       Task_AssignTo = db.LegaSys_UserDetails.SingleOrDefault(TaskAssignee_obj => TaskAssignee_obj.Firstname == x.tasks.Task_AssignTo)?.Firstname,
 
 
-                  });
+                  }).ToList();
             return taskdetail;
         }
 

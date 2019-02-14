@@ -94,8 +94,9 @@ export class AddComponent implements OnInit {
 
     public getClient() {
         this.dataService.GetAllActiveClient().subscribe(
-            res => {
-                this.clientdetails = res;
+            (res:any) => {
+                debugger;
+                this.clientdetails = res.data;
             });
     }
     public GetAllTechdomains() {

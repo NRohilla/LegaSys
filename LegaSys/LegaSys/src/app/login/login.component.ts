@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
     ngOnInit() { }
 
     onLoggedin(userName, password) {
+        console.log('User Clicked BUtton');
+        debugger;
         this.loginServiceOb.authenticateUser(userName, password)
             .pipe(first())
             .subscribe(

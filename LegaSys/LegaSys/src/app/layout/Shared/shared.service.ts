@@ -135,5 +135,10 @@ export class SharedService {
         return this.http.get('http://localhost:58164/project/getalltaskofproject/' + projectid, this.headers);
 
     }
+    public GetAllActiveClient(){
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.get('http://localhost:58164/client/GetAllActiveClient', this.headers);
+    }
 
 }

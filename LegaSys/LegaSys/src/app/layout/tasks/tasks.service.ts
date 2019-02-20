@@ -2,8 +2,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
-import { throwError } from 'rxjs';
-import { URLSearchParams } from '@angular/http';
 import { TaskModel } from './tasks.component';
 import { environment } from '../../../environments/environment';
 
@@ -43,6 +41,7 @@ export class TasksService {
     }
 
     CreateProjectTaskDetail(taskmodel: TaskModel) {
+        debugger
        
 
 
@@ -64,7 +63,7 @@ export class TasksService {
 
     GetAllProjects() {
 
-        return this.http.get(this.baseUrl +'/project/getactive', { headers: this.getToken() })
+        return this.http.get(this.baseUrl +'/project/getactive')
     }
 
     public GetAllClients() {

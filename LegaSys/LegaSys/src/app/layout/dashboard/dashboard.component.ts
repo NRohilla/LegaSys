@@ -3,6 +3,7 @@ import { routerTransition } from '../../router.animations';
 import { Title } from '@angular/platform-browser';
 import { DashbordService } from './dashbord.service';
 
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -14,8 +15,17 @@ export class DashboardComponent implements OnInit {
     public sliders: Array<any> = [];
     activeClientCount:number=0;
     inActiveClientCount:number=0;
+    activeTask:number=0;
+    closedTask:number=0;
+    newTask:number=0;
+    inProgressTask:number=0;
+    completedTask:number=0;
+    TotalcountTask:number=0;
     totalClientCount:number;
-    link:string='client';
+    activeResourceCount:number=0;
+    inactiveResourceCount:number=0;
+    totalResourceCount:number=0;
+    link:string[]= ['client','resource','project','tasks'];
     constructor(private titleService: Title,private dashBord:DashbordService) {
         this.sliders.push(
             {
@@ -63,11 +73,14 @@ export class DashboardComponent implements OnInit {
         this.dashBord.GetClientDetails().subscribe(
             (suc:any)=>{
                 if(suc.success){
-                 for(let i=0;i<suc.data.length;i++){
-                     if(suc.data[i].IsActive){
+                 for(let i=0;i<suc.data.length;i++)
+                 {
+                     if(suc.data[i].IsActive)
+                     {
                          this.activeClientCount+=1;
                      }
-                     else{
+                     else
+                     {
                          this.inActiveClientCount+=1;
                      }
                  }
@@ -75,6 +88,97 @@ export class DashboardComponent implements OnInit {
                 }
             }
         )
+
+      //Calling the method CalculateTask.....
+       this.CalculateTask()
+
+       //Calling the method Calculate Resource
+       this.calculateResource();
+
+    }
+
+
+
+   //Metrhod To get All task and Calculate ....********By Sadhana on 15 feb 2019*******.....
+    public CalculateTask()
+    {
+       
+        this.dashBord.GetAllProjectsTask().subscribe(
+           ( res:any)=>
+            {
+                
+                    for(let i=0;i<res.length;i++)
+                    {
+                     
+                        
+                        if(res[i].Status_Type == "Active")
+                        {
+                            this.activeTask+=1;
+                           
+
+                        }
+                        else if(res[i].Status_Type== "Closed")
+                        {
+                            this.closedTask+=1;
+                           
+
+                        }
+                        else if(res[i].Status_Type== "New")
+                        {
+                            this.newTask+=1;
+                         
+
+                        }
+                        else if(res[i].Status_Type== "InProgress")
+                        {
+                            this.inProgressTask+=1;
+                           
+                        }
+                        else if(res[i].Status_Type== "Completed")
+                        {
+                            this.completedTask+=1;
+                          
+                        }
+                    }
+
+                        //This totalcount is of only these task wich are in cards.....
+                   
+                        this.TotalcountTask=this.activeTask+this.newTask+this.inProgressTask+this.completedTask;
+
+                }
+
+
+
+
+        )
+
+
+    }
+
+
+    //Code to calculate resources....***Bader on 20 feb 2019***
+    public calculateResource()
+    {
+        debugger;
+        this.dashBord.GetResourceDetails().subscribe(
+            (res:any)=>{
+                debugger;
+                for(let i=0;i<res.length;i++){
+                    if(res[i].IsActive){
+                            this.activeResourceCount+=1;
+
+                    }
+                    else{
+                        this.inactiveResourceCount+=1;
+                    }
+                }
+                this.totalResourceCount=this.activeResourceCount+this.inactiveResourceCount;
+            }
+        )
+
+
+
+
     }
 
     public closeAlert(alert: any) {

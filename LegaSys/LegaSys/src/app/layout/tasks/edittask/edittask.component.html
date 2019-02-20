@@ -25,7 +25,7 @@
                       <!-- Task Title Coloumn -->
                       <div class="col-md-4" >
                               <mat-form-field class="w-100">
-                                     <mat-label style="font-weight:bold;font-size:15px;color: black">Task Title</mat-label>
+                                     <mat-label style="font-weight:bold;font-size:19px;color: black">Task Title</mat-label>
                                       <BR>
                                        <input matInput placeholder="Task Title" formControlName=TaskTitle  [(ngModel)]="dataSource.TaskTitle" [readonly]="true">
        
@@ -65,7 +65,7 @@
         <!-- Select Task Status  -->
                     <div class="col-md-4">
                             <mat-form-field class="w-100">
-                                     <mat-label style="font-weight:bold;font-size:15px;color: black">Task Status</mat-label>
+                                     <mat-label style="font-weight:bold;font-size:19px;color: black"> Status</mat-label>
                                 <BR>
                                     <mat-select placeholder="Task Status" formControlName=Status_Id  [(ngModel)]="dataSource.Status_Id">
                    
@@ -89,7 +89,7 @@
         <!-- Select Task Priority  -->
                       <div class="col-md-4">
                             <mat-form-field class="w-100">
-                                     <mat-label style="font-weight:bold;font-size:15px;color: black">Task Priority</mat-label>
+                                     <mat-label style="font-weight:bold;font-size:19px;color: black">Priority</mat-label>
                                 <BR>
                                     <mat-select placeholder="Task Priority" formControlName=Priority_Id [(ngModel)]="dataSource.Priority_Id">
                    
@@ -114,7 +114,7 @@
         <!-- Select Task Risk  -->
                     <div class="col-md-4">
                             <mat-form-field class="w-100">
-                                     <mat-label style="font-weight:bold;font-size:15px;color: black">Task Risk</mat-label>
+                                     <mat-label style="font-weight:bold;font-size:19px;color: black">Risk</mat-label>
                                 <BR>
                                     <mat-select placeholder="Task Risk" formControlName=Risk_Id [(ngModel)]="dataSource.Risk_Id">
                    
@@ -139,7 +139,7 @@
         <!-- Select Task Activity  -->
                     <div class="col-md-4">
                           <mat-form-field class="w-100">
-                                   <mat-label style="font-weight:bold;font-size:15px;color: black">Task Activity</mat-label>
+                                   <mat-label style="font-weight:bold;font-size:19px;color: black"> Activity</mat-label>
                               <BR>
                                   <mat-select placeholder="Task Activity" formControlName=Activity_Id [(ngModel)]="dataSource.Activity_Id">
                  
@@ -164,7 +164,7 @@
         
                       <div class="col-md-4">
                             <mat-form-field class="w-100">
-                                     <mat-label style="font-weight:bold;font-size:15px;color: black">Assinged To</mat-label>
+                                     <mat-label style="font-weight:bold;font-size:19px;color: black">Assigned To</mat-label>
                                 <BR>
                                     <mat-select placeholder="Task_AssignTo" formControlName=Task_AssignTo [(ngModel)]="dataSource.Task_AssignTo">
                    
@@ -178,7 +178,7 @@
                              <!-- Validation Error Message -->
                                 <mat-error *ngIf="taskeditForm.controls.Task_AssignTo.invalid">
                                       <span [hidden]="!taskeditForm.controls['Task_AssignTo'].errors.required">
-                                            Please Assingn Task.
+                                            Please Assign Task.
                                       </span>
                                  </mat-error>
                             
@@ -189,7 +189,7 @@
             <!-- Task Start Date Coloumn -->
                     <div class="col-md-4">
                             <mat-form-field  class="w-100" >
-                                    <mat-label style="font-weight:bold;font-size:15px;color: black">Start Date</mat-label>
+                                    <mat-label style="font-weight:bold;font-size:19px;color: black">Start Date</mat-label>
                                     <BR>
                                     <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" formControlName="Start_Date" [(ngModel)]="dataSource.Start_Date" >
                                     <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
@@ -208,7 +208,7 @@
                      <!-- Task Target Date Coloumn -->
                     <div class="col-md-4">
                             <mat-form-field  class="w-100" >
-                                    <mat-label style="font-weight:bold;font-size:15px;color: black">Target Date</mat-label>
+                                    <mat-label style="font-weight:bold;font-size:19px;color: black">Target Date</mat-label>
                                     <BR>
                                     <input matInput [matDatepicker]="pickerTarget" placeholder="Target Date" formControlName=Target_Date [(ngModel)]="dataSource.Target_Date">
                                     <mat-datepicker-toggle matSuffix [for]="pickerTarget"></mat-datepicker-toggle>
@@ -230,34 +230,10 @@
                                   
                     </div> 
          
-            <!-- Select Task Classification -->
-                     <!-- <div class="col-md-4">
-                          <mat-form-field class="w-100">
-                                   <mat-label style="font-weight:bold;font-size:15px;color: black">Classification</mat-label>
-                              <BR>
-                                  <mat-select placeholder="Classification" formControlName=Classification>
-                 
-                                              <mat-option *ngFor="let classification of taskClassification" [value]="classification.viewValue" > 
-                                                    {{classification.viewValue}}
-                                                
-                                              </mat-option> 
           
-                                  </mat-select>
-           -->
-                           <!-- Validation Error Message -->
-                              <!-- <mat-error *ngIf="taskeditForm.controls.Classification.invalid">
-                                    <span [hidden]="!taskeditForm.controls['Classification'].errors.required">
-                                          Please select Task Classification.
-                                    </span>
-                               </mat-error>
-                          
-                          </mat-form-field>
-                  </div> -->
-                    <!-- Task Description Coloumn -->
-              
          <div class="col-md-4">
                 <mat-form-field class="w-100">
-                        <mat-label style="font-weight:bold;font-size:19px ;color: black">Task Description</mat-label>
+                        <mat-label style="font-weight:bold;font-size:19px ;color: black">Description</mat-label>
                         <br>
                     <textarea matInput placeholder="Description" formControlName=Description  [(ngModel)]="dataSource.Description" > </textarea>
                 </mat-form-field>
@@ -275,7 +251,7 @@
               <mat-expansion-panel>
                    <mat-expansion-panel-header>
                      <mat-panel-title>
-                         <mat-label style="font-weight:bold;font-size:15px;color: black">Efforts</mat-label>
+                         <mat-label style="font-weight:bold;font-size:19px;color: black">Efforts</mat-label>
                      </mat-panel-title>
                      <mat-panel-description>
                        Type Original Estimate

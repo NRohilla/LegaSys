@@ -11,7 +11,7 @@ import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
     name: string;
-    lastLogin: string;
+    lastLogin: any;
     constructor(private translate: TranslateService, public router: Router,
         @Inject(SESSION_STORAGE) private storage: StorageService) {
 
@@ -32,10 +32,13 @@ export class HeaderComponent implements OnInit {
     }
 
     getName() {
-        var token = this.storage.get('UserToken');
-        if (token != null) {
-            this.name = token.name;
-            this.lastLogin = token.lastlogin;
+        debugger;
+     
+        var userName=this.storage.get('UserName');
+        if (userName != null) {
+            this.name = userName;
+            this.lastLogin =new Date();
+            
         }
     }
 

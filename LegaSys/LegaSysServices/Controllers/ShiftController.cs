@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace LegaSysServices.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ShiftController : ApiController
     {
         private readonly IUOWShifts _uOWShifts;

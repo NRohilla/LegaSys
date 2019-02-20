@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef,Inject  } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
 import { TosterService } from '../../../shared/services/toster.service';
 import { TaskModel } from '../tasks.component';
 import { TasksService } from '../tasks.service';
 import { ViewEncapsulation } from '@angular/core';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+
 
 @Component({
   selector: 'app-addtask',
@@ -38,14 +40,15 @@ export class AddtaskComponent implements OnInit {
      ];
   
  
-  constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: TosterService) {
+  constructor(public Formbuilder: FormBuilder, public dataService: TasksService, public router: Router, public toastr: TosterService , @Inject(SESSION_STORAGE) private storage: StorageService) {
     this.files = [];
     this.myModel = new TaskModel();
   }
 
   ngOnInit() {
     
-   
+    if(localStorage.getItem('isLoggedin')=='true')
+    {
 
     this.taskForm = this.Formbuilder.group
       ({
@@ -81,6 +84,12 @@ export class AddtaskComponent implements OnInit {
     this.GetTaskActivity();
 
   }
+  else{
+    this.router.navigateByUrl("/login");
+  }
+
+  }
+
 
   //tOASTER mETHODS
  showSuccess()
@@ -103,6 +112,7 @@ export class AddtaskComponent implements OnInit {
   SaveData() 
   {
     debugger;
+    var userName=this.storage.get('UserName');
     this.myModel.TaskTitle = this.taskForm.value.TaskTitle;
     this.myModel.Description = this.taskForm.value.taskDescription;
     this.myModel.Project_ID = this.taskForm.value.Project_ID;

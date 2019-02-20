@@ -44,9 +44,9 @@
             <!-- Task Title Coloumn -->
               <div class="col-md-4" >
                        <mat-form-field class="w-100">
-                              <mat-label style="font-weight:bold;font-size:15px;color: black" > Title</mat-label>
+                              <mat-label style="font-weight:bold;font-size:15px;color: black" for="TaskTitle">Title</mat-label>
                                <BR>
-                                   <input matInput placeholder="Task Title" formControlName=TaskTitle (change)="onTaskChanged($event.target.value)" required>
+                                   <input matInput placeholder="Task Title" formControlName=TaskTitle (change)="onTaskChanged($event.target.value)" id="TaskTitle" required>
                                    
                     
       
@@ -79,7 +79,7 @@
                      <!-- Validation Error Message -->
                         <mat-error *ngIf="taskForm.controls.Status_Id.invalid">
                               <span [hidden]="!taskForm.controls['Status_Id'].errors.required">
-                                    Please select the Task Status.
+                                    Please select the Status.
                               </span>
                          </mat-error>
                     
@@ -89,7 +89,7 @@
               <!-- Select Task Priority  -->
               <div class="col-md-4">
                     <mat-form-field class="w-100">
-                             <mat-label style="font-weight:bold;font-size:15px;color: black" > Priority</mat-label>
+                             <mat-label style="font-weight:bold;font-size:15px;color: black" >Priority</mat-label>
                         <BR>
                             <mat-select placeholder="Task Priority" formControlName=Priority_Id required>
            
@@ -128,7 +128,7 @@
                      <!-- Validation Error Message -->
                         <mat-error *ngIf="taskForm.controls.Risk_Id.invalid">
                               <span [hidden]="!taskForm.controls['Risk_Id'].errors.required">
-                                    Please set the Task Risk.
+                                    Please set the Risk.
                               </span>
                          </mat-error>
                     
@@ -153,7 +153,7 @@
                    <!-- Validation Error Message -->
                       <mat-error *ngIf="taskForm.controls.Activity_Id.invalid">
                             <span [hidden]="!taskForm.controls['Activity_Id'].errors.required">
-                                  Please set the Task Activity Area.
+                                  Please set the Activity Area.
                             </span>
                        </mat-error>
                   
@@ -249,7 +249,7 @@
                    <!-- Validation Error Message -->
                       <mat-error *ngIf="taskForm.controls.Classification.invalid">
                             <span [hidden]="!taskForm.controls['Classification'].errors.required">
-                                  Please select Task Classification.
+                                  Please select Classification.
                             </span>
                        </mat-error>
                   

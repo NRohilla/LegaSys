@@ -58,7 +58,7 @@
                 <div class="col-md-4">
 
                     <mat-form-field style="width:350px !important">
-                        <input formControlName="TotalExp" type="number" min="0" max="60" matInput min="0" max="60"
+                        <input formControlName="TotalExp" type="number" min="0" max="60" matInput min="0" max="60" 
                             placeholder="Total Experience" [(ngModel)]="resoursedetails.TotalExp" name="resoursedetails.TotalExp">
                         <mat-error *ngIf="personalDetailsForm.controls['TotalExp'].invalid && (personalDetailsForm.controls['TotalExp'].dirty || personalDetailsForm.controls['TotalExp'].touched)">
                           Total experience is required </mat-error>
@@ -72,8 +72,21 @@
                             Enter Valid Email ID</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-md-4">
-                    <mat-form-field style="width:350px !important">
+                <div class="col-sm-1">
+                    <mat-form-field style="width:100px !important">
+                        <input matInput placeholder="Country Code" formControlName="countrycode" [(ngModel)]="resoursedetails.CountryCode" [matAutocomplete]="auto2"
+                            name="resoursedetails.CountryCode"  required>
+                            <mat-autocomplete #auto2="matAutocomplete">
+                                <mat-option *ngFor="let option of filterBasedOptionsForCountryCode | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                              </mat-autocomplete>   
+                        <mat-error *ngIf="personalDetailsForm.controls['countrycode'].invalid && (personalDetailsForm.controls['countrycode'].dirty || personalDetailsForm.controls['countrycode'].touched)">
+                            Enter a valid Country code</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field style="width:210px !important">
                         <input matInput placeholder="Mobile" formControlName="mobile" [(ngModel)]="resoursedetails.MobileNumber"
                             name="resoursedetails.MobileNumber" type="number" required>
                         <mat-error *ngIf="personalDetailsForm.controls['mobile'].invalid && (personalDetailsForm.controls['mobile'].dirty || personalDetailsForm.controls['mobile'].touched)">

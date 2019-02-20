@@ -3,6 +3,8 @@ import { FormBuilder, FormGroupDirective, Validators, FormGroup, AbstractControl
 import { ResourceService } from '../resource.service';
 import { MatTableDataSource, MatSnackBar, MatSort, MatTreeFlatDataSource } from '@angular/material';
 import { TosterService } from '../../../shared/services/toster.service';
+import { retryWhen } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resource-qualification',
@@ -26,8 +28,7 @@ export class ResourceQualificationComponent implements OnInit {
   iCertification: Qualification;
   selectedRowIndex: number = -1;
   selectedRowIndex1: number = -1;
-  userDetailId: number;
-  // Qgrid: any;
+  userDetailId: number; 
   educationDS = new MatTableDataSource<Qualification>();
   primaryskillSet: any;
   secondaryskillSet: any;
@@ -40,20 +41,17 @@ export class ResourceQualificationComponent implements OnInit {
   namePattern = '^[a-zA-Z ]+$';
   cTypes:string[]=['Certificate','Diploma'];
   tResponse:any;
-  boards:string[]=['CBSE','ICSE','UP','Bihar Board'];
+  boards:string[]=['CBSE','ICSE','UP Board','Bihar Board'];
   institutes:string[]=['DUCAT','TestInstitute', 'TestInstitute','TestInstitute'];
   cstreams:string[]=['Computer','IT','.NET']
   panelOpenState=open;
   errorFlag=1;
-  //Qdisable:boolean=false;
-  // @ViewChild(MatSort) sort: MatSort;
-  // @ViewChild('matformfield') 
-  // matformfield:ElementRef;
+  
 
   public get userGroup(): FormGroup {
     return this.uQualificationForm.get('Qgrid') as FormGroup;
   }
-  constructor(private formBuilder: FormBuilder, public dataservice: ResourceService, public snackBar: MatSnackBar,public toster:TosterService) {
+  constructor(private formBuilder: FormBuilder, public dataservice: ResourceService, public snackBar: MatSnackBar,public toster:TosterService,private router: Router) {
 
   }
 
@@ -68,57 +66,54 @@ export class ResourceQualificationComponent implements OnInit {
   ];
  
 
-  edit() {
-    // this.disableFooter = false;
-    // this.uQualificationForm.enable();
-    // this.isAddItem = true;
-    // if(this.qualificationDS.data.length==0 && this.certificationDS.data.length==0){
-    //   this.disablesave=true;
-    // }
-  }
+  
   discard() {
-    //this.uQualificationForm.disable();
-    // this.disableFooter = true;
-    // this.isAddItem = false;
+   
     this.GetQualification();
     this.GetCertification();
     this.selectedRowIndex=-1;
     this.selectedRowIndex1=-1;
+    this.toster.showInfo("Changes discarded");
   }
 
   ngOnInit() {
+     
+    if(localStorage.getItem('isLoggedin')=='true'){
       this.uQualificationForm = this.formBuilder.group({
-      // inputGroup: this.formBuilder.group({
-      //   // PrimarySkillSet: ['', Validators.required],
-      //   // SecondarySkillSet: [''],
-      //   //HQualification: ['', Validators.required],
-      // }),
-      //Qgrid: this.formBuilder.array([this.QgridItem()])
-      Qgrid: this.formBuilder.group({
-        QualificationID: [''],
-        Qualification: ['', Validators.required],
-        // iQualification:[''],
-        BoardUniversity: ['', [Validators.required,Validators.pattern(this.namePattern)]],
-        QStream: [''],
-        QYear: ['', [Validators.required, Validators.maxLength(4),Validators.minLength(4)]],
-        QMarks: ['', [Validators.required]]
-      }),
-
-      Cgrid: this.formBuilder.group({
-        CertificationID: [''],
-        CertificateNumber: ['', [Validators.required, Validators.maxLength(10)]],
-        Type: ['', Validators.required],
-        Institution: ['', [Validators.required,Validators.pattern(this.namePattern)]],
-        CStream: ['', Validators.required],
-        CYear: ['', [Validators.required, Validators.maxLength(4),Validators.minLength(4)]],
-        CMarks: ['', Validators.required]
-      }),
-
-    });
-    this.showQTable = true;
-    this.GetQualification();
-    this.GetCertification();
-    //this.uQualificationForm.disable();
+        // inputGroup: this.formBuilder.group({
+        //   // PrimarySkillSet: ['', Validators.required],
+        //   // SecondarySkillSet: [''],
+        //   //HQualification: ['', Validators.required],
+        // }),
+        //Qgrid: this.formBuilder.array([this.QgridItem()])
+        Qgrid: this.formBuilder.group({
+          QualificationID: [''],
+          Qualification: ['', Validators.required],
+          // iQualification:[''],
+          BoardUniversity: ['', [Validators.required,Validators.pattern(this.namePattern)]],
+          QStream: [''],
+          QYear: ['', [Validators.required, Validators.maxLength(4),Validators.minLength(4)]],
+          QMarks: ['', [Validators.required]]
+        }),
+  
+        Cgrid: this.formBuilder.group({
+          CertificationID: [''],
+          CertificateNumber: ['', [Validators.required, Validators.maxLength(10)]],
+          Type: ['', Validators.required],
+          Institution: ['', [Validators.required,Validators.pattern(this.namePattern)]],
+          CStream: ['', Validators.required],
+          CYear: ['', [Validators.required, Validators.maxLength(4),Validators.minLength(4)]],
+          CMarks: ['', Validators.required]
+        }),
+  
+      });
+      this.showQTable = true;
+      this.GetQualification();
+      this.GetCertification();
+    }
+    else{
+    this.router.navigateByUrl("/login");
+    }
        
   }
   
@@ -189,7 +184,7 @@ export class ResourceQualificationComponent implements OnInit {
     let c1 = this.uQualificationForm.controls.Qgrid.controls['QYear'].value;
   
     for (var i in this.qualificationDS.data) {
-      //console.log(this.qualificationDS.data[i].QYear);
+    
     if(c1==this.qualificationDS.data[i].QYear){
       this.errorFlag=1;
       return this.uQualificationForm.controls.Qgrid.controls['QYear'].setErrors({matchYear:true});
@@ -198,17 +193,7 @@ export class ResourceQualificationComponent implements OnInit {
     {      
     }
 
-    // if(this.qualificationDS.data.length>0 && this.uQualificationForm.controls.Qgrid.controls['Qualification'].value=="12th"
-    // && (this.qualificationDS.data[i].Qualification=="10th"&&  c1<=this.qualificationDS.data[i].QYear||c1<this.qualificationDS.data[i].QYear+2)){
-    //   //alert("must be greater");
-    //   this.errorFlag=0;
-    //   return this.uQualificationForm.controls.Qgrid.controls['QYear'].setErrors({matchYear:true});
-    // }
-    // else if(this.uQualificationForm.controls.Qgrid.controls['Qualification'].value=="Graduate" &&( this.qualificationDS.data[i].Qualification=="12th"
-    //    && c1<=this.qualificationDS.data[i].QYear||c1< this.qualificationDS.data[i].QYear+3)){
-    //     this.errorFlag=0;
-    //     return this.uQualificationForm.controls.Qgrid.controls['QYear'].setErrors({matchYear:true});
-    // }
+  
   }
   
   }
@@ -227,7 +212,14 @@ export class ResourceQualificationComponent implements OnInit {
   }
   
   }
-  
+  add(){
+    const data = this.qualificationDS.data;
+    data.push(this.iQualification);       
+    this.qualificationDS.data = data;    
+    this.uQualificationForm.controls.Qgrid.reset();
+    this.disablesave=false;
+    this.selectedRowIndex=-2;
+  }
   addQualification(formDirective: FormGroupDirective) {
      debugger;
     
@@ -236,9 +228,6 @@ export class ResourceQualificationComponent implements OnInit {
     this.iQualification.QualificationID = this.qid;//prevent dual row select
     this.qid -= 1;
     this.iQualification.UserDetailID =  +localStorage.getItem('UserDetailID');
-    // this.iQualification.PrimarySkillSet = null;
-    // this.iQualification.SecondarySkillSet = null;
-    //this.iQualification.HQualification = null;
     this.iQualification.CertificationID = null;
     this.iQualification.CertificateNumber = null;
     this.iQualification.Type = null;
@@ -251,138 +240,165 @@ export class ResourceQualificationComponent implements OnInit {
      
       if (this.iQualification.Qualification !== ""  && this.iQualification.QYear !== ""
         && this.iQualification.BoardUniversity !== "" && this.iQualification.QMarks !== null) {
-         
-          // if(this.qualificationDS.data.length==0 && this.iQualification.Qualification!="10th"){
-          //   this.toster.showError("Add 10th record first");
-          //   return;
-          // }
-          // else if(this.qualificationDS.data.length>0 && this.iQualification.Qualification=="12th"){
-          //   for(var i in this.qualificationDS.data){
-          //   if(this.iQualification.QYear<this.qualificationDS.data[i].QYear|| this.iQualification.QYear<this.qualificationDS.data[i].QYear+2){
-          //     this.toster.showError("must be greater");
-          //     return;
-          //   }
-          //   else{
-              
-          //   }
-          // }}
+          let length=this.qualificationDS.data.length;
+          switch(this.iQualification.Qualification){
+              case '12th' : if(this.qualificationDS.data.length>0){
+                              let diffrence=parseInt(this.iQualification.QYear)-parseInt(this.qualificationDS.data[length-1].QYear)                         
+                              if(diffrence>=2){
+                                this.add();
+                               
+                                return;
+                              }
+                              else{
+                                this.toster.showError("There should be 2 year minimum gap between 10Th and 12th");
+                                return;
+                              }
+                            }
+                            else{
+                              this.toster.showError("Insert 10th Record first");
+                              return;
+                            }
+             case 'Graduate' : if(this.qualificationDS.data.length>1){
+                              let diffrence=parseInt(this.iQualification.QYear)-parseInt(this.qualificationDS.data[length-1].QYear)                            
+                               if(diffrence>=3){
+                                this.add();
+                              
+                                return;
+                              }                                                    
+                              else{
+                                this.toster.showError("There should be 3 year minimum gap between 12Th and Gradualtion");
+                                return;
+                              }
+                            }
+                            else{
+                              this.toster.showError("Insert 12th Record first");
+                              return;
+                            }
+           case 'PostGraduate' : if(this.qualificationDS.data.length>2){
+                              let diffrence=parseInt(this.iQualification.QYear)-parseInt(this.qualificationDS.data[length-1].QYear)
+                              // if(this.qualificationDS.data[length-1].Qualification=="12th"){
+                              //   this.toster.showError("Record Already exists");
+                              // }
+                               if(diffrence>=2){
+                                this.add();
+                           
+                                return;
+                              }                                                    
+                              else{
+                                this.toster.showError("There should be 2 year minimum gap between Graduation and Post Graduation");
+                                return;
+                              }
+                            }
+                            else{
+                              this.toster.showError("Insert Graduation Record first");
+                              return;
+                            }    
+             
 
-        for (var i in this.qualificationDS.data) {
-          if (this.qualificationDS.data[i].Qualification.toLowerCase() == this.iQualification.Qualification.toLowerCase()) {
-            this.toster.showWarning("Qualification: "+this.qualificationDS.data[i].Qualification+ " already Exists");
-            // , "Ok", {
-            //   duration: 5000,
-            // });
-            return;
-
+        
+             default: this.add();
+           
+                       return;       
+                            
           }
-          if(this.iQualification.QYear==this.qualificationDS.data[i].QYear){
-            this.toster.showError("Year Already exists");
-
-            return;
-          }
-         
-        }
-        const data = this.qualificationDS.data;
-        data.push(this.iQualification);
-        //this.qualificationDS.data.push(this.iQualification);
-        // debugger;
-        this.qualificationDS.data = data;
           
-        console.log(this.qualificationDS.data);
-        console.log(data);
-        this.uQualificationForm.controls.Qgrid.reset();
-        this.disablesave=false;
+
+    
       }
-      // else{
-      //   this.uQualificationForm.controls.Qgrid.controls.reset();
-      // }
+     
     }
     else if (this.qformType == "Update") {  
-        
+        debugger;
       if (this.iQualification.Qualification != ""  && this.iQualification.QYear != ""
         && this.iQualification.BoardUniversity != "" && this.iQualification.QMarks != null) {
-         
-        this.qualificationDS.data.forEach(element => {
-          if (element.QualificationID == this.selectedRowIndex) {
-            element.Qualification = this.iQualification.Qualification;
-            element.QStream = this.iQualification.QStream;
-            element.QYear = this.iQualification.QYear;
-            element.BoardUniversity = this.iQualification.BoardUniversity;
-            element.QMarks = this.iQualification.QMarks;
-          }
-          
-        });
-        this.uQualificationForm.controls.Qgrid.reset();
-        this.qformType = "Add";
-        //this.Qdisable=false;
+         var countUpdate=0;
+          switch(this.iQualification.Qualification){
+            case '10th' : for(var j=0;j<this.qualificationDS.data.length;j++){
+                             if(this.qualificationDS.data[j].Qualification=='12th' && this.iQualification.QYear>this.qualificationDS.data[j].QYear){
+                               this.toster.showError(" 10th completion year can not be greter than 12th complition year");
+                               countUpdate=1;
+                              // this.selectedRowIndex=-2;
+                               return;
+                             }
+                             if(this.qualificationDS.data[j].Qualification=='12th' && (parseInt(this.iQualification.QYear)-parseInt(this.qualificationDS.data[j].QYear))<2){
+                               this.toster.showError("There should be minimum 2 year gap between 10th and 12th");
+                               countUpdate=1;
+                            //   this.selectedRowIndex=-2;
+                               return;
+                             }
+                             
+                            }
+            case '12th': for(var k=0;k<this.qualificationDS.data.length;k++){
+              if(this.qualificationDS.data[k].Qualification=='Graduate' && this.iQualification.QYear>this.qualificationDS.data[k].QYear){
+                this.toster.showError(" 12th completion year can not be greter than Graduation complition year");
+                countUpdate=1;
+              //  this.selectedRowIndex=-2;
+                return;
+              }
+              else if(this.qualificationDS.data[k].Qualification=='Graduate' && (parseInt(this.iQualification.QYear)-parseInt(this.qualificationDS.data[k].QYear))<3){
+                this.toster.showError("There should be minimum 3 year gap between 12th and Graduation");
+                countUpdate=1;
+                //this.selectedRowIndex=-2;
+                return;
+              }
+              // else{
+             
+              //     return;
+              // }
+             }           
+             case 'Graduate': for(var l=0;l<this.qualificationDS.data.length;l++){
+              if(this.qualificationDS.data[l].Qualification=='PostGraduate' && this.iQualification.QYear>this.qualificationDS.data[l].QYear){
+                this.toster.showError(" Graduation completion year can not be greter than Post Graduation complition year");
+                countUpdate=1;
+               // this.selectedRowIndex=-2;
+                return;
+              }
+              else if(this.qualificationDS.data[l].Qualification=='PostGraduate' && (parseInt(this.iQualification.QYear)-parseInt(this.qualificationDS.data[l].QYear))<2){
+                this.toster.showError("There should be minimum 2 year gap between Graduation and Post Graduation");
+                countUpdate=1;
+               // this.selectedRowIndex=-2;
+                return;
+              }
+              
+             }           
+           }
+                  if(countUpdate==0){
+                          this.qualificationDS.data.forEach(element => {
+                            if (element.QualificationID == this.selectedRowIndex) {
+                              element.Qualification = this.iQualification.Qualification;
+                              element.QStream = this.iQualification.QStream;
+                              element.QYear = this.iQualification.QYear;
+                              element.BoardUniversity = this.iQualification.BoardUniversity;
+                              element.QMarks = this.iQualification.QMarks;
+                            }
+                            
+                          });
+                          this.uQualificationForm.controls.Qgrid.reset();
+                          this.qformType = "Add";
+                         // this.selectedRowIndex=-2;
+                        }
+
+       
+       
       }
 
     }
-    //  formDirective.resetForm();
-    //  this.uQualificationForm.controls.Qgrid.reset();
-    //  this.uQualificationForm.controls.Cgrid.reset();
-
-    //this.uQualificationForm.controls.Qgrid.patchValue( {QStream:"",QYear:""} );
-    //this.uQualificationForm.controls.Qgrid.reset();
-
-
-    // this.uQualificationForm.value.Qgrid.Stream="";
-    // formDirective.resetForm({
-    //   'Stream': ''//Or '' to empty initial value. 
-    //   //address: this.hero.addresses[0] || new Address()
-    // });
-    //  this.uQualificationForm.controls.Qgrid.controls.reset();
-    //this.formResetQ(event);
+  //  this.selectedRowIndex=-2;
   }
-  // valueChanged(value){
-  //   debugger;
-  //   for (var i in this.qualificationDS.data) {
-  //     if (this.qualificationDS.data[i].Qualification.toLowerCase() == value) {
-         
-  //         this.uQualificationForm.controls.Qgrid.setValue({
-  //         QualificationID:this.qualificationDS.data[i].QualificationID,
-  //         Qualification:this.qualificationDS.data[i].Qualification,        
-  //         QStream: this.qualificationDS.data[i].QStream,
-  //         QYear:this.qualificationDS.data[i].QYear,
-  //         BoardUniversity:this.qualificationDS.data[i].BoardUniversity,
-  //         QMarks:this.qualificationDS.data[i].QMarks
-        
-  //       });
-  //       this.qformType="Update";
-  //         return;
-  //     }
-  //     else{
-  //       // this.uQualificationForm.controls.Qgrid.patchValue({
-  //       //   Qualification:value,
-  //       //   Qstream:''
-  //       // });
-  //       //this.uQualificationForm.controls.Qgrid.reset();
-  //       this.uQualificationForm.controls.Qgrid.setValue({
-  //         QualificationID:'',
-  //         Qualification:value,
-  //         QStream:'',
-  //         QYear:'',
-  //         BoardUniversity:'',
-  //         QMarks:''
-  //       });
-  //       this.qformType="Add";
-  //     }
-  //   } 
-  // }
+ 
   checkCertificate(){
     debugger;
     for(var i in this.certificationDS.data){
      if(this.certificationDS.data[i].CertificateNumber==this.uQualificationForm.value.Cgrid.CertificateNumber){
         alert("already exists");
-                  //  this.matformfield=true ;             
+                           
       }
     }
   }
 
   addCertification(formDirective: FormGroupDirective) {
     // debugger
-    //this.certificationDS.data=null;
+   
     this.iCertification = this.uQualificationForm.controls.Cgrid.value;
 
     this.iCertification.CertificationID = this.cid;
@@ -402,18 +418,11 @@ export class ResourceQualificationComponent implements OnInit {
             }
           }
 
-        // console.log(this.iCertification);
-        // console.log(this.certificationDS.data);
+       
         const data = this.certificationDS.data;
         data.push(this.iCertification);
         this.certificationDS.data = data;
-        // console.log(this.certificationDS.data);
-
-
-        //this.certificationDS.data.push(this.iCertification);
-
-        // this.educationDS.data=data;
-        //console.log(data);
+   
         this.uQualificationForm.controls.Cgrid.reset();
         this.disablesave=false;
       }
@@ -436,9 +445,7 @@ export class ResourceQualificationComponent implements OnInit {
         this.cformType = "Add";
       }
     }
-    //formDirective.resetForm();
-
-    // this.uQualificationForm.controls.Cgrid.reset();
+   
   }
   InsertQualificationDetails() {
     this.educationDS.data = this.qualificationDS.data;
@@ -483,18 +490,10 @@ export class ResourceQualificationComponent implements OnInit {
 
   }
   Save() {
-    //console.log(JSON.stringify(this.backgroundDetails.data));
-
+    
     // debugger;
     var id = +localStorage.getItem('UserDetailID');
-    //this.inputQualification = this.uQualificationForm.controls.inputGroup.value;
-    //    const eds = new Qualification();
-    // eds.PrimarySkillSet = this.inputQualification.PrimarySkillSet;
-    // eds.SecondarySkillSet = this.inputQualification.SecondarySkillSet;
-    // eds.HQualification = this.inputQualification.HQualification;
-    // eds.UserDetailID=id;
-    // this.educationDS.data.push(eds);
-
+    
     if (this.qualificationDS.data.length > 0) {
 
       this.InsertQualificationDetails();
@@ -504,73 +503,49 @@ export class ResourceQualificationComponent implements OnInit {
 
     }
     if (this.qualificationDS.data.length == 0 && this.certificationDS.data.length == 0) {
-      // const eds = new Qualification();
-      // // eds.PrimarySkillSet = this.inputQualification.PrimarySkillSet;
-      // // eds.SecondarySkillSet = this.inputQualification.SecondarySkillSet;
-      // eds.HQualification = this.inputQualification.HQualification;
-      // eds.UserDetailID = id;
-      // this.educationDS.data.push(eds);
-      //this.disablesave=true;
+      
 
     }  
     
-    //this.educationDS.data[0].QualificationID = this.qualificationDS.data[0].QualificationID;
+    
     this.dataservice.AddUserQualification(id, this.educationDS.data)
       .subscribe(result => {
         this.globalResponse = result;
       },
         error => {
-          //  console.log(error);
-          // this.isFailedMessage = true;
+        
           // this.snackBar.open("Error in posting data", "Ok", {
           //   duration: 2000,
           // });
           this.toster.showError("Something went wrong");
         },
         () => {
-          //this.isSuccessMessage = true;
-          // if (this.formType == "Add") {
-          // this.snackBar.open("Success", "Ok", {
-          //   duration: 2000,
-
-          // });
+        
           this.toster.showSuccess("Success");        
           
-          // this.isExp = true;
-          // this.isAddItem = false;
-          //this.disableFooter = true;
-          //this.isAddItem = false;
-
+        
           this.formResetQ();
           this.formResetC();
           this.uQualificationForm.controls.Qgrid.reset();
           this.uQualificationForm.controls.Cgrid.reset();
-            //this.uQualificationForm.disable();
-          // this.qualificationDS.data=null;
-
+           
           this.GetQualification();
           this.GetCertification();
 
 
-          // this.uQualificationForm.Cgrid.reset();
+        
         }
-        // else if (this.formType == "Update") {
-        //   // this.snackBar.open("Resource Updated Successfully", "Ok", {
-        //   //   duration: 2000,
-        //   // });
-        // }
-        //this.router.navigate(['resource']);
-        //}
+        
 
       )
   }
   formResetQ() {
-    //event.preventDefault();
-    // this.uQualificationForm.controls.Qgrid.patchValue( {'Stream':null} );
+  
     this.uQualificationForm.controls.Qgrid.reset();   
     this.qformType = "Add"; 
     this.selectedRowIndex=-1;
-    //this.Qdisable=false;
+    
+   
   }
   formResetC() {
     this.uQualificationForm.controls.Cgrid.reset();
@@ -580,11 +555,10 @@ export class ResourceQualificationComponent implements OnInit {
   }
   highlight(row) {
     // debugger;
-    //  alert("highlight"+JSON.stringify(row));
+   
     this.selectedRowIndex = row.QualificationID;
     this.qformType = "Update";
-   // this.Qdisable=true;
-    // console.log(this.uQualificationForm.controls.Qgrid)
+   
     this.uQualificationForm.controls.Qgrid.setValue({
       QualificationID: row.QualificationID, Qualification: row.Qualification, QStream: row.QStream, QYear: row.QYear,
       BoardUniversity: row.BoardUniversity, QMarks: row.QMarks
@@ -592,7 +566,7 @@ export class ResourceQualificationComponent implements OnInit {
   }
 
   highlightCert(row) {
-    //  alert("highlightCert"+JSON.stringify(row) );
+    
     this.selectedRowIndex1 = row.CertificationID;
     this.cformType = "Update";
     this.uQualificationForm.controls.Cgrid.setValue({
@@ -600,26 +574,7 @@ export class ResourceQualificationComponent implements OnInit {
       Institution: row.Institution, CStream: row.CStream, CMarks: row.CMarks
     })
   }
- ageRangeValidator(control: AbstractControl): { [key: string]: boolean } | null {
-   debugger;
-  var flag=0;
-    if (control.value !== undefined  ) {
-        for(var i=0;i<this.certificationDS.data.length;i++){
-          if(this.certificationDS.data[i].CertificateNumber==control.value ){
-            flag=1;
-          }
-        }
-        if(flag==0){
-          return { 'ageRange': true };
-        }
-        else{
-          return null;
-        }
-        //return { 'ageRange': true };
-    }
-
-    return null;
-}
+ 
 
 }
 
@@ -644,30 +599,3 @@ export class Qualification {
   CYear: string;
   CMarks: string;
 }
-// export class QualificationModel {
-//   QualificationID: number;
-//   UserDetailID: number;
-//   Qualification: string;
-//   Stream: string;
-//   Year: string;
-//   BoardUniversity: string;
-//   Marks: number;
-// }
-// export class CertificationModel {
-//   CertificationID: number;
-//   UserDetailID: number;
-//   Type: string;
-//   CertificateNumber: string;
-//   Institution: string;
-//   Stream: string;
-//   Year: string;
-//   Marks: number
-// }
-// export class EducationModel {
-//   PrimarySkillSet: string;
-//   SecondarySkillSet: string;
-//   HQualification: string;
-//   Qualification: QualificationModel[];
-//   Certification: CertificationModel[];
-
-//}

@@ -5,6 +5,11 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from '@angular/material';
 import { Title } from '@angular/platform-browser';
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { TosterService } from '../../../shared/services/toster.service';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { parse } from 'querystring';
 @Component({
   selector: 'app-resource-personal',
   templateUrl: './resource.personaldetails.html',
@@ -24,8 +29,10 @@ export class ResourcePersonaldetailsComponent implements OnInit {
   currentResourceDetails: any;
   currentResourceDetailsCancel: any
   personalDetailsForm: FormGroup;
+  countriesCode:string[]= ["+7 840","+93","+93","+355","+213","+1 684","+376","+244", "+1 264", "+1 268","+54","+374","+297","+247","+61","+672","+43","+994","+1 242","+973","+880","+1 246","+1 268","+375","+32","+501","+229","+1 441","+975","+55","+246","+359","+855","+1", "+236","+56","+86","+57","+506","+53","+420","+45","+1 767","+1 809","+20","+251","+679","+358","+33", "+995","+49","+30","+852","+36","+354","+91","+62","+98","+964","+353","+972","+39","+1 876","+81","+962","+7 7","+254","+965","+996","+218","+370","+352","+261","+60","+960","+223","+230","+52","+976","+212","+95","+977","+31","+64","+234","+850","+47","+968","+92","+595","+51","+63","+48","+351","+974","+40","+7","+966","+381","+65","+27","+82","+34","+94","+268","+46","+41","+963","+886","+992","+255","+66","+670","+216","+90","+1 340","+256","+380","+971","+44","+1","+84","+967","+263"];
+  filterBasedOptionsForCountryCode:Observable<string[]>;
   constructor(private snackBar: MatSnackBar, private resourceService: ResourceService, private router: Router,
-    private formBuilder: FormBuilder, private titleService: Title) {
+    private formBuilder: FormBuilder, private titleService: Title ,public toster:TosterService) {
     titleService.setTitle("LegaSys - Resource Details");
     this.personalDetailsForm = this.formBuilder.group({
       Firstname: ['', [Validators.required,Validators.maxLength(25), Validators.pattern(this.namePattern)]],
@@ -38,11 +45,20 @@ export class ResourcePersonaldetailsComponent implements OnInit {
       Master_Location_ID: [this.getLocation, [Validators.required]],
       UserDetailID: [this.getReportingHead, [Validators.required]],
       Remarks: ['', ''],
-      mobile: ['', [Validators.required, Validators.pattern(this.mobnumPattern)]]
+      mobile: ['', [Validators.required, Validators.pattern(this.mobnumPattern)]],
+      countrycode:['',Validators.required]
     });
 
+    this.filterBasedOptionsForCountryCode=this.personalDetailsForm.controls['countrycode'].valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterForCountryCode(value))
+    );
 
-
+  }
+  private _filterForCountryCode(value: string): string[] {
+    debugger;
+    const filterValueForCountryCode = value.toLowerCase();
+    return this.countriesCode.filter(option => option.toLowerCase().indexOf(filterValueForCountryCode) === 0);
   }
   CheckForWhiteSpace(controlName:string){
     debugger;
@@ -61,46 +77,50 @@ export class ResourcePersonaldetailsComponent implements OnInit {
       })
   }
 
-  ngOnInit() {
-
-    this.resourceService.getRole().subscribe(
-      suc => {
-        this.getAllRole = suc;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    this.resourceService.getShift().subscribe(
-      suc => {
-        this.getAllShift = suc;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-    this.resourceService.getLocation().subscribe(
-
-      suc => {
-        this.getLocation = suc;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    this.GetId();
-
-
-
-    this.personalDetailsForm.disable();
+  ngOnInit() {    
+    if(localStorage.getItem('isLoggedin')=='true'){
+      this.resourceService.getRole().subscribe(
+        suc => {
+          this.getAllRole = suc;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  
+      this.resourceService.getShift().subscribe(
+        suc => {
+          this.getAllShift = suc;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+      this.resourceService.getLocation().subscribe(
+  
+        suc => {
+          this.getLocation = suc;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  
+      this.GetId();
+  
+  
+  
+      this.personalDetailsForm.disable();
+    }
+    else{
+    this.router.navigateByUrl("/login");
+    }
   }
 
   GetId() {
     this.resourceService.getResourceById(+localStorage.getItem('UserDetailID')).subscribe(
       suc => {
-        this.resoursedetails = suc;
+        this.resoursedetails = suc;      
         this.currentResourceDetailsCancel = JSON.parse(JSON.stringify(suc));
         //localStorage.setItem("DateOfJoining", this.resoursedetails.DateOfJoining);
         this.resourceService.getReportingHead(this.resoursedetails.Master_Role_ID).subscribe(
@@ -125,9 +145,10 @@ export class ResourcePersonaldetailsComponent implements OnInit {
       suc => {
         if (suc) {
           this.resoursedetails = suc;
-          this.snackBar.open("Resource details updated successfully", "Ok", {
-            duration: 2000,
-          });
+          // this.snackBar.open("Resource details updated successfully", "Ok", {
+          //   duration: 2000,
+          // });
+          this.toster.showSuccess("Resource details updated successfully");
         }
 
         this.GetId();
@@ -154,6 +175,7 @@ export class ResourcePersonaldetailsComponent implements OnInit {
   Cancel() {
     this.currentResourceDetails = this.currentResourceDetailsCancel;
     this.MakeFieldEditable();
+    this.GetId();
   }
 
 

@@ -3,6 +3,7 @@ import {ViewChild} from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
 import { ResourceSummaryComponent } from '../components/resource.summary';
 import { ResourcePersonaldetailsComponent } from '../components/resource.personaldetails';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resource-details',
@@ -13,11 +14,17 @@ import { ResourcePersonaldetailsComponent } from '../components/resource.persona
 
 export class ResourceDetailsComponent implements OnInit {
   @ViewChild(ResourceSummaryComponent) private resourceSummaryComponent: ResourceSummaryComponent;
-  //@ViewChild(ResourcePersonaldetailsComponent) private resourcePersonaldetailsComponent: ResourcePersonaldetailsComponent;
+  @ViewChild(ResourcePersonaldetailsComponent) private resourcePersonaldetailsComponent: ResourcePersonaldetailsComponent;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('isLoggedin')=='true'){
+
+    }
+    else{
+    this.router.navigateByUrl("/login");
+    }
   }
   
   onTabChanged(event: MatTabChangeEvent) 
@@ -28,7 +35,7 @@ export class ResourceDetailsComponent implements OnInit {
     }
     else
     {
-       // this.resourcePersonaldetailsComponent.ngOnInit(); //Or whatever name the method is called
+       this.resourcePersonaldetailsComponent.ngOnInit(); //Or whatever name the method is called
     }
   }
 }

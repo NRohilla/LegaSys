@@ -17,33 +17,33 @@
           <mat-cell *matCellDef="let element"> {{element.QualificationID}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Qualification">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Qualification*</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Qualification*</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.Qualification}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Stream">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Stream / Subjects</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Stream / Subjects</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.QStream|uppercase}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Year">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Year of Passing</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Year of Passing</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.QYear}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="BoardUniversity">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Board/University</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white">Board/University</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.BoardUniversity|uppercase}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Marks">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Marks Obtained(%)</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Marks Obtained(%)</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.QMarks}} </mat-cell>>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-        <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.QualificationID}"
+        <mat-row matTooltip="Click to update below" *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.QualificationID}"
           (click)="highlight(row)"></mat-row>
 
       </mat-table>
@@ -62,18 +62,18 @@
                           <mat-option value="12th">12th</mat-option>
                           <mat-option value="Graduate">Graduate</mat-option>
                           <mat-option value="PostGraduate">Post Graduate</mat-option>
-                          <mat-option value="HQ">Higher Qualification</mat-option>  
+                          <!-- <mat-option value="HQ">Higher Qualification</mat-option>   -->
                         </mat-select>
                         <mat-error *ngIf="uQualificationForm.controls.Qgrid.controls['Qualification'].invalid">
                             <span *ngIf="uQualificationForm.controls.Qgrid.controls['Qualification'].errors.required">Qualification is required</span>
-                            <span *ngIf="uQualificationForm.controls.Qgrid.controls['Qualification'].errors.matchQualification">Qualification can't be duplicate</span>
+                            <span *ngIf="uQualificationForm.controls.Qgrid.controls['Qualification'].errors.matchQualification">Already exists qualification cannot be entered again</span>
   
                         </mat-error>
                       </mat-form-field>
                     </div>
                     <div class="col-xl-4">
                       <mat-form-field style="width:450px !important">
-                        <textarea matInput placeholder="Stream/Subjects" formControlName="QStream" class="text-uppercase" type="text" pattern="[a-zA-Z ]*" ></textarea>
+                        <textarea matInput placeholder="Stream/Subjects" formControlName="QStream" class="text-uppercase" type="text" pattern="[a-zA-Z, ]*" ></textarea>
                         <mat-error *ngIf="uQualificationForm.controls.Qgrid.controls['QStream'].invalid">
                           <span *ngIf="uQualificationForm.controls.Qgrid.controls['QStream'].errors.required">Stream is required</span>
                           <span *ngIf="uQualificationForm.controls.Qgrid.controls['QStream'].errors.pattern">Only text allowed</span>
@@ -160,7 +160,7 @@
                     <div class=" col-xl-4">
                       
                       <button type="button" class="btn btn-secondary float-right ml-2" (click)="formResetQ();"><i class="fa fa-times"
-                          aria-hidden="true"></i>Cancel</button>
+                          aria-hidden="true"></i>Reset</button>
                       <button   [disabled]="!uQualificationForm.controls.Qgrid.valid" type="button" class="btn btn-info float-right" (click)="addQualification()"><i class="fa fa-plus"
                           aria-hidden="true"></i>
                         {{qformType}} Qualification </button>
@@ -198,38 +198,38 @@
           <mat-cell *matCellDef="let element"> {{element.CertificationID}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="CertificateNumber">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Certification
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white">Certification
               Number </span></mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.CertificateNumber}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Type">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Certification
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Certification
               Type</span> </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.Type|uppercase}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Stream">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Stream</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Stream</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.CStream|uppercase}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Year">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Year of Passing</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Year of Passing</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.CYear}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Institution">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Institution</span>
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Institution</span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.Institution|uppercase}} </mat-cell>>
         </ng-container>
         <ng-container matColumnDef="Marks">
-          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Marks Obtained(%)
+          <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Marks Obtained(%)
             </span></mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.CMarks}} </mat-cell>>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedCertColumns"></mat-header-row>
 
-        <mat-row *matRowDef="let row; columns: displayedCertColumns;" [ngClass]="{'highlight': selectedRowIndex1 == row.CertificationID}"
+        <mat-row matTooltip="Click to update below"  *matRowDef="let row; columns: displayedCertColumns;" [ngClass]="{'highlight': selectedRowIndex1 == row.CertificationID}"
           (click)="highlightCert(row)"></mat-row>
 
       </mat-table>
@@ -354,7 +354,7 @@
                 <div class="w-100 d-block text-right">
 
                     <button type="button" class="btn btn-secondary float-right ml-2" (click)="formResetC($event);"><i class="fa fa-times"
-                        aria-hidden="true"></i>Cancel</button>
+                        aria-hidden="true"></i>Reset</button>
                     <button [disabled]="!uQualificationForm.controls.Cgrid.valid" type="button" class="btn btn-info float-right" (click)="addCertification()"><i class="fa fa-plus"
                         aria-hidden="true"></i>
                       {{cformType}} Certification </button>

@@ -57,8 +57,10 @@ namespace LegaSysUOW.Repository
                     CompanyName = Objclient.CompanyName,
                     CompanyAddress = Objclient.CompanyAddress,
                     CompanyPhone = Objclient.CompanyPhone,
+                    countrytTelephoneCodeClientOffice = Objclient.countrytTelephoneCodeClientOffice,
                     ClientCountry = Objclient.ClientCountry,
-                    ClientPhone= Objclient.ClientPhone
+                    ClientPhone= Objclient.ClientPhone,
+                    countrytTelephoneCodeClient=Objclient.countrytTelephoneCodeClient
                 };
                 db.LegaSys_ClientDetails.Add(model);
                 db.SaveChanges();
@@ -77,7 +79,8 @@ namespace LegaSysUOW.Repository
                         Created_Date = System.DateTime.UtcNow,
                         Updated_Date = System.DateTime.UtcNow,
                         phone = Objclient.CoClientDetails[i].Phone,
-                        IsActive = true
+                        IsActive = true,
+                        countryCode= Objclient.CoClientDetails[i].countryCode
 
 
                     };
@@ -124,9 +127,10 @@ namespace LegaSysUOW.Repository
                       Created_Date = x.Created_Date,
                       Created_By = x.Created_By,
                       Phone = x.phone,
-                      IsActive = x.IsActive
+                      IsActive = x.IsActive,
+                      countryCode=x.countryCode
 
-                      
+
                   }).ToList();
 
 
@@ -159,7 +163,9 @@ namespace LegaSysUOW.Repository
                         ClientCountry = ClientDetail.ClientCountry,
                         ClientCountryZip = ClientDetail.ClientCountryZip,
                         CoClientDetails = coClientList,
-                        ClientPhone= ClientDetail.ClientPhone
+                        ClientPhone= ClientDetail.ClientPhone,
+                        countrytTelephoneCodeClient=ClientDetail.countrytTelephoneCodeClient,
+                        countrytTelephoneCodeClientOffice= ClientDetail.countrytTelephoneCodeClientOffice
 
 
 
@@ -205,6 +211,8 @@ namespace LegaSysUOW.Repository
                 obj.ClientCompanyFax = objClient.ClientCompanyFax;
                 obj.ClientCountry = objClient.ClientCountry;
                 obj.ClientCountryZip = objClient.ClientCountryZip;
+                obj.countrytTelephoneCodeClient = objClient.countrytTelephoneCodeClient;
+                obj.countrytTelephoneCodeClientOffice = objClient.countrytTelephoneCodeClientOffice;
                 obj.Created_Date = objClient.Created_Date;
                 obj.Updated_Date = System.DateTime.UtcNow;
                 obj.IsActive = true;
@@ -228,6 +236,7 @@ namespace LegaSysUOW.Repository
                         coClientDetailsObj.Updated_By = objClient.CoClientDetails[i].Updated_By;
                         coClientDetailsObj.Updated_Date = objClient.CoClientDetails[i].Updated_Date;
                         coClientDetailsObj.IsActive = objClient.CoClientDetails[i].IsActive;
+                        coClientDetailsObj.countryCode = objClient.CoClientDetails[i].countryCode;
                         db.LegaSys_CoClientDetails.AddOrUpdate(coClientDetailsObj);
 
 
@@ -292,6 +301,8 @@ namespace LegaSysUOW.Repository
                     obj.Created_By = ClientDetail.Created_By;
                     obj.Updated_By = userId;
                     obj.ClientPhone = ClientDetail.ClientPhone;
+                    obj.countrytTelephoneCodeClient = ClientDetail.countrytTelephoneCodeClient;
+                    obj.countrytTelephoneCodeClientOffice = ClientDetail.countrytTelephoneCodeClientOffice;
                     obj.Updated_Date = System.DateTime.UtcNow;
                     obj.IsActive = false;
                     db.LegaSys_ClientDetails.AddOrUpdate(obj);
@@ -313,6 +324,7 @@ namespace LegaSysUOW.Repository
                          Updated_By = s.Updated_By,
                          Updated_Date = s.Updated_Date,
                          Created_Date = s.Created_Date
+                         
 
 
                      }).ToList();

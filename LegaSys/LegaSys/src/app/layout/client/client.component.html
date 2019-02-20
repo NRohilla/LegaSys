@@ -6,7 +6,7 @@
  <!-- <ngb-alert style="width:40%;" *ngIf="Message" type="success" (close)="Message = null">{{ successMessage }}</ngb-alert> -->
 <div class="col-lg-4 col-md-4 col-sm-6 col-12">
  <mat-form-field class="w-100">
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
   </mat-form-field>
 </div>
  <!-- This function is for filter the grid -->
@@ -52,9 +52,9 @@
         <mat-cell *matCellDef="let element" class="text-right">
           <!-- [routerLink]="['/client-details'] -->
             <button mat-button (click)="ViewClientDetails(element.ClientDetailID)"  class="btn btn-info mx-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View</button>
-            <button mat-button *ngIf="!element.IsActive" (click)= "OpenActivationDialog(element.ClientDetailID)" class="btn btn-success mx-1"><i class="fa fa-check"></i> Activate</button>
+            <button mat-button *ngIf="!element.IsActive" (click)= "OpenActivationDialog(element.ClientDetailID)" class="btn btn-success mx-1 buttonsize"><i class="fa fa-check"></i> Activate</button>
             
-            <button mat-button *ngIf="element.IsActive"(click)= "openDialog(element.ClientDetailID)" class="btn btn-danger mx-1"><i class="fa fa-ban" aria-hidden="true"></i> Detactivate</button>
+            <button mat-button *ngIf="element.IsActive"(click)= "openDialog(element.ClientDetailID)" class="btn btn-danger mx-1 buttonsize"><i class="fa fa-ban" aria-hidden="true"></i> Detactivate</button>
        
         <!-- <button (click)="$event.stopPropagation(); status(element.TechDomainID, element.IsActive)" mat-raised-button
       [ngClass]="{'btn-info': !element.IsActive, 'btn-danger': element.IsActive}">

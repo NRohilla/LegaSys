@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace LegaSysServices.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ClientController : ApiController
     {
         string Result = string.Empty;
@@ -54,15 +54,12 @@ namespace LegaSysServices.Controllers
         //Post client details
         public IHttpActionResult AddClientDetails(ClientDetail Objclient)
         {
-            //  int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
-            // Objclient.Created_By = userId;
-
-            //   return Result = _ClientRepository.AddClientDetails(Objclient);
+         
             if (Objclient != null)
             {
-                int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
-                Objclient.Created_By = userId;
-                Objclient.Updated_By = userId;
+                //int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+                //Objclient.Created_By = userId;
+                //Objclient.Updated_By = userId;
                 int responce = _ClientRepository.AddClientDetails(Objclient);
                 return Json(new { success = true, Id = responce });
 
@@ -81,8 +78,8 @@ namespace LegaSysServices.Controllers
         {
             if (objClient != null)
             {
-                int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
-                objClient.Updated_By = userId;
+                //int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+                //objClient.Updated_By = userId;
                 Boolean responce = _ClientRepository.UpdateClientDetails(objClient);
                 return Json(new { success = responce });
 
@@ -96,9 +93,9 @@ namespace LegaSysServices.Controllers
 
 
         [HttpDelete]
-        [Route("client/DeleteClientById/{id}")]
+        [Route("client/DeleteClientById")]
         //Delete client
-        public IHttpActionResult DeleteClientById(Int32 Id)
+        public IHttpActionResult DeleteClientById(Int32 Id,Int32 userId)
         {
             //  
 
@@ -107,7 +104,7 @@ namespace LegaSysServices.Controllers
             //  return Result;
             if (Id <= 0)
                 return BadRequest("Invalid Client Id.");
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+            //int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
             return Json(new { success = true, data = _ClientRepository.DeleteClientById(Id, userId) });
 
         }
@@ -140,8 +137,8 @@ namespace LegaSysServices.Controllers
             //  return responce;
             if (objClientProject != null)
             {
-                int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
-                objClientProject.Updated_By = userId;
+                //int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+                //objClientProject.Updated_By = userId;
                 Boolean responce = _ClientRepository.UpdateClientProjectDetailsWithId(objClientProject);
                 return Json(new { success = responce });
 
@@ -155,11 +152,11 @@ namespace LegaSysServices.Controllers
         ////Update client details
 
         [HttpGet]
-        [Route("client/updateClientStatus/{id}")]
+        [Route("client/updateClientStatus")]
         //Update client details
-        public IHttpActionResult UpdateClientStatus(Int32 ID)
+        public IHttpActionResult UpdateClientStatus(Int32 ID,Int32 userId)
         {
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+           // int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
             //objClientProject.Updated_By = userId;
             Boolean responce = _ClientRepository.ChangeClientStatus(ID, userId);
             return Json(new { success = responce });

@@ -1,10 +1,14 @@
-<!-- <h1 mat-dialog-title >Confirmation</h1> -->
-<div [ngStyle]="{background: 'url(./warning.png)'}"></div>
-
-<div mat-dialog-content style="margin-bottom:30px;">
-  Are you sure you want to {{data.status}}?
-</div>
-<div mat-dialog-actions>
-  <button mat-button class="btn btn-success" [mat-dialog-close]="data.confirm" cdkFocusInitial>Yes</button>
-  <button mat-button class="btn btn-secondry" style="margin-left: 20px" (click)="onNoClick()">No</button>
-</div>
+<div class="w-100 d-block text-center float-left">
+    <img src="../../../assets/images/warning.png" alt="Warning" height="120px" width="110px" />
+  
+    <div mat-dialog-content style="margin-bottom:30px;">
+      <span> <strong><h3>Are you sure ?</h3></strong></span>
+      you want to {{data.status}}
+    </div>
+  </div>
+  <div mat-dialog-actions class="w-100 float-left">
+    <div style="width: 200px; margin: 0 auto; display: block;">
+      <button mat-button class="btn btn-link" [mat-dialog-close]="data.confirm" cdkFocusInitial>Yes</button>
+      <button mat-button class="btn btn-link" style="margin-left: 20px" (click)="onNoClick()">No</button>
+    </div>
+  </div>

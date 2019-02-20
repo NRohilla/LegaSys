@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace LegaSysServices.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class RoleController : ApiController
     {
         private readonly IUOWRoles _uOWRoles;

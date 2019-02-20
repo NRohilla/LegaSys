@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace LegaSysServices.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class ProjectController : ApiController
     {
         private readonly IUOWProjects _projects;

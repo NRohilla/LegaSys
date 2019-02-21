@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace LegaSysServices.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class LocationController : ApiController
     {
         private readonly IUOWLocations _uOWLocations;

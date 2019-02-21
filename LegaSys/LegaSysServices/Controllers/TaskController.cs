@@ -63,8 +63,8 @@ namespace LegaSysServices.Controllers
         {
 
             //Fetching UserId
-            int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
-            objTask.Created_By = createdBy;
+            //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+            //objTask.Created_By = createdBy;
 
             var result = _Taskdt.CreateProjectTaskDetail(objTask);
 
@@ -80,8 +80,8 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult Put([FromBody]TaskDetail objTask)
         {
             //Fetching UserId
-            int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
-            objTask.Updated_By = updatedBy;
+            //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
+            //objTask.Updated_By = updatedBy;
             var lsProjects = _Taskdt.UpdateProjectTaskDetail(objTask);
 
             if (lsProjects <= 0)
@@ -143,8 +143,8 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult Put([FromBody]SubTaskDetail objsubTask)
         {
             //Fetching UserId
-            int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
-            objsubTask.ProjectUpdated_By= updatedBy;
+            //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
+            //objsubTask.ProjectUpdated_By= updatedBy;
             var lsProjects = _uOWSubTask.UpdateSubTaskDetail( objsubTask);
 
             if (lsProjects <= 0)

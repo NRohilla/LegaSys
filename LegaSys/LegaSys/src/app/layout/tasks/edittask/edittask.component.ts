@@ -65,16 +65,24 @@ export class EdittaskComponent implements OnInit {
 
   ngOnInit() {
 
-    //Fetching Id From Session.
-    this.Id = sessionStorage.getItem("currentId");
-    this.GetTaskByID(this.Id);
-    this.GetTaskStatus();
-    this.GetTaskRisk();
-    this. GetTaskPriority();
-    this.GetAllAssignee();
-    this.GetTaskActivity();
-   // this.GetProject();
-    this.taskeditForm.disable();
+    if(localStorage.getItem('isLoggedin')=='true')
+    {
+       //Fetching Id From Session.
+         this.Id = sessionStorage.getItem("currentId");
+          this.GetTaskByID(this.Id);
+           this.GetTaskStatus();
+             this.GetTaskRisk();
+               this. GetTaskPriority();
+                 this.GetAllAssignee();
+                  this.GetTaskActivity();
+                    // this.GetProject();
+                     this.taskeditForm.disable();
+
+    }
+  else
+     {
+        this.router.navigateByUrl("/login");
+     }
   }
 
   

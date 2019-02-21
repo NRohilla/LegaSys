@@ -14,7 +14,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-     
+     debugger;
        var authReq:any;
       
      

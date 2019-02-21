@@ -1,4 +1,4 @@
-import { AuthHttpInterceptor } from './authinterceptor';
+// mport { AuthHttpInterceptor } from './authinterceptor';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -52,11 +52,11 @@ export const createTranslateLoader = (http: HttpClient) => {
         TosterService,
       
         AuthGuard,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthHttpInterceptor,
-            multi: true
-        }
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: AuthHttpInterceptor,
+        //     multi: true
+        // }
     ],
     bootstrap: [AppComponent]
 })

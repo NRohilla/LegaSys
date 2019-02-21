@@ -33,8 +33,16 @@ export class TaskComponent implements OnInit {
 
   ngOnInit()
    {
-    this.FetchDataTable();
-   
+
+    if(localStorage.getItem('isLoggedin')=='true')
+          {
+
+              this.FetchDataTable();
+         }
+     else
+         {
+             this.router.navigateByUrl("/login");
+         }
   }
 
   //  Method to get data from database

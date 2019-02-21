@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ProjectAll } from '../../projectModel';
-import { AlertPromise } from 'selenium-webdriver';
+//import { AlertPromise } from 'selenium-webdriver';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatSort, MatPaginator, MatSnackBar } from '@angular/material';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';

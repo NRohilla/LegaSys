@@ -124,5 +124,10 @@ export class SharedService {
         //headers.append(this.storage.get('UserToken').access_token, '');
         return this.http.get(this.url +'/client/GetAllActiveClient', this.headers);
     }
+    public GetAllActiveClient(){
+        const headers = new Headers();
+        headers.append(this.storage.get('UserToken').access_token, '');
+        return this.http.get('http://localhost:58164/client/GetAllActiveClient', this.headers);
+    }
 
 }

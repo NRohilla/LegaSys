@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule, MatFormFieldModule, MatIconModule, MatInputModule, MatChipsModule, MatDividerModule, MatProgressBarModule, MatProgressSpinnerModule, MatCardModule, MatStepperModule, MatVerticalStepper } from '@angular/material';
+import { MatToolbarModule, MatFormFieldModule, MatIconModule, MatInputModule, MatChipsModule, MatDividerModule, MatProgressBarModule, MatProgressSpinnerModule, MatCardModule, MatStepperModule, MatVerticalStepper, MatAutocompleteModule } from '@angular/material';
 import { ResourceService } from './resource.service';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
 import { FormsModule } from '@angular/forms';

@@ -7,6 +7,8 @@ import { TechnologiesService } from '../../masters/technologies/technologies.ser
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatAutocompleteSelectedEvent, MatAutocompleteTrigger, MatSelectionList } from '@angular/material';
 import { Observable } from 'rxjs';
+import { stringify } from '@angular/core/src/util';
+import { Router } from '@angular/router';
 
 // export interface Pskill {
 //   name: string;
@@ -45,7 +47,7 @@ export class ResourceSkillsetComponent implements OnInit {
   @ViewChild('fInput') fInput: ElementRef<HTMLInputElement>;
   tResponses2: any=[];
 
-  constructor(private formBuilder: FormBuilder,public dataservice:ResourceService,public toster:TosterService,public techservice:TechnologiesService) { }
+  constructor(private formBuilder: FormBuilder,public dataservice:ResourceService,public toster:TosterService,public techservice:TechnologiesService,private router: Router) { }
  
   add1(event: MatChipInputEvent): void {
     const input = event.input;
@@ -124,32 +126,16 @@ export class ResourceSkillsetComponent implements OnInit {
   //   return this.tResponses.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   // }
   ngOnInit() {
-    debugger;
-    // this.uSkillForm = this.formBuilder.group({      
-    //     PrimarySkillSet: [''],
-    //     SecondarySkillSet: [''],
-    //     // HQualification: [''],
-    //   });
-    // this.uSkillForm.disable();
-    //  if (localStorage.getItem("PrimarySkillSet") != "null") {
-    //   this.primaryskillSet = localStorage.getItem("PrimarySkillSet");
-    // }
-    // if (localStorage.getItem("SecondarySkillSet") != "null") {
-    //   this.secondaryskillSet = localStorage.getItem("SecondarySkillSet");
-    // }
-  
-    this.getSkills();
-    
-    this.getTechnology();
-    
-    // this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-    //   startWith(null),
-    //   map((skill: string | null) => skill ? this._filter(skill) : this.tResponses.slice()));
 
-     
-
-// this.primaryskillSet=this.globalresponse.PrimarySkillSet;
-// this.secondaryskillSet=this.globalresponse.SecondarySkillSet;
+    
+    if(localStorage.getItem('isLoggedin')=='true'){
+      this.getSkills();    
+      this.getTechnology();
+    }
+    else{
+    this.router.navigateByUrl("/login");
+    }
+   
   }
   
 
@@ -164,11 +150,13 @@ export class ResourceSkillsetComponent implements OnInit {
     this.disabled=true;
     this.disableFooter=true;
     this.removable=false;
+    //this.globalresponse.PrimarySkillSet=new String[0];
    
    
   }
+ 
   getTechnology(){
-    debugger;
+   // debugger;
     this.techservice.getAllTechnologies()
     .subscribe((res:any)=>{
       debugger;
@@ -233,7 +221,7 @@ export class ResourceSkillsetComponent implements OnInit {
     .subscribe((res:any)=>{
 
       if(res.success){
-        this.toster.showSuccess("Success");
+        this.toster.showSuccess("Skillset updated successfully");
         this.discard();
       }
 

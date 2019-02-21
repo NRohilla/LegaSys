@@ -34,5 +34,6 @@ namespace LegaSysDataEntities
         public string PrimarySkillSet { get; set; }
         public string SecondarySkillSet { get; set; }
         public string Qualification { get; set; }
+        public string CountryCode { get; set; }
     }
 }

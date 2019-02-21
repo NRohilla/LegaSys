@@ -15,7 +15,7 @@ namespace LegaSysUOW.Interface
         bool UpdateResource(UserDetail userDetail);
         bool DeleteResource(int id, int userId);
         IEnumerable<UserBackground> GetUserBackground(int id);
-        bool CreateUserBackground(int id, bool isExp, List<UserBackground> userBackground);
+        bool CreateUserBackground(int id, bool isExp, decimal totExp, List<UserBackground> userBackground);
 
       IEnumerable<UserEducationModel> GetUserQualification(int id);
 
@@ -27,5 +27,6 @@ namespace LegaSysUOW.Interface
 
         bool CheckEmail(string email);
         bool AddSkillById( UserDetail userDetail);
+        List<UserDetail> GetAllResources();
     }
 }

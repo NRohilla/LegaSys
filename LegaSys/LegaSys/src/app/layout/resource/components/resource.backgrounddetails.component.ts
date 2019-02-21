@@ -56,6 +56,7 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
   isDisabled=true;
   hideDiscard:boolean=true;
   backupexp:any;
+  texp:any;
   @ViewChild(MatSort) sort: MatSort
   constructor(public dataService: ResourceService, private datePipe: DatePipe, private formBuilder: FormBuilder, public snackBar: MatSnackBar, public router: Router,public toster:TosterService)
    { 
@@ -90,10 +91,10 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
     // this.TotalExp = this.TotalExpBackup;
     // //this.selected = 'false';
     // this.disableAction=true;
-    this.GetBackgroundDetailsDS();
+    this.GetBackgroundDetailsDS();    
     this.selectedRowIndex=-1;
     //this.restorebackup();
-
+    this.toster.showInfo("Changes discarded");
   }  
   CheckForWhiteSpace(controlName:string){
     debugger;
@@ -108,35 +109,41 @@ export class ResourceBackgrounddetailsComponent implements OnInit {
  
 ngOnInit() {
     debugger;
-    this.userDetailId = +localStorage.getItem('UserDetailID');
-    if (JSON.parse(localStorage.getItem('IsExperienced'))) {
-      this.selected = 'true';
-      this.GetBackgroundDetails();
    
-    }
-    else {
-      this.selected = 'false';
-      this.backup = 1;
-      this.isAddItem=false;  
-   
-    }
-  
-       this.getJoiningDate();    
-       this.currentExp = this.calcExperience(this.datePipe.transform(localStorage.getItem("DateOfJoining"), "yyyy-MM-dd"), new Date());
+      if(localStorage.getItem('isLoggedin')=='true'){
+        this.userDetailId = +localStorage.getItem('UserDetailID');
+        if (JSON.parse(localStorage.getItem('IsExperienced'))) {
+          this.selected = 'true';
+          this.GetBackgroundDetails();
+       
+        }
+        else {
+          this.selected = 'false';
+          this.backup = 1;
+          this.isAddItem=false;  
+       
+        }
+      
+           this.getJoiningDate();    
+           this.currentExp = this.calcExperience(this.datePipe.transform(localStorage.getItem("DateOfJoining"), "yyyy-MM-dd"), new Date());
+        
+          this.uBackgrndForm = this.formBuilder.group({ 
+          BackgroundID: [''],
+          CompanyName: ['', [Validators.required, Validators.pattern(this.onlyLetters)]],
+          Designation: ['', [Validators.required, Validators.pattern(this.onlyLetters)]],
+          JoiningDate: ['', Validators.required],
+          LeavingDate: ['', Validators.required],
     
-      this.uBackgrndForm = this.formBuilder.group({ 
-      BackgroundID: [''],
-      CompanyName: ['', [Validators.required, Validators.pattern(this.onlyLetters)]],
-      Designation: ['', [Validators.required, Validators.pattern(this.onlyLetters)]],
-      JoiningDate: ['', Validators.required],
-      LeavingDate: ['', Validators.required],
-
-    }, {
-        validator: this.matchval 
-      });
-
-      // this.sort.sort(<MatSortable>({id: 'JoiningDate', start: 'desc'}));
-      this.backgroundDetails.sort = this.sort;
+        }, {
+            validator: this.matchval 
+          });
+    
+          // this.sort.sort(<MatSortable>({id: 'JoiningDate', start: 'desc'}));
+          this.backgroundDetails.sort = this.sort;
+      }
+      else{
+      this.router.navigateByUrl("/login");
+      }
   }
 getJoiningDate(){
   //debugger;
@@ -318,6 +325,7 @@ getJoiningDate(){
     }
 
     this.TotalExp = (this.tottalExpy += this.cYear) + " Year(s) " + this.tottalExpm + " Month(s) " + this.tottalExpd + " Day(s)";
+    this.texp=parseFloat( this.tottalExpy+'.'+this.tottalExpm).toFixed(2);
     if (this.count == 0) {
       
       this.TotalExpBackup = this.TotalExp;
@@ -327,7 +335,7 @@ getJoiningDate(){
   }
   bID: number = 0;
   addExperience( formDirective: FormGroupDirective,row:any) {
-    //debugger;
+    debugger;
     this.inputuBackgrnd = this.uBackgrndForm.value;
     this.inputuBackgrnd.BackgroundID = this.bID;
     this.bID += 1;
@@ -347,7 +355,7 @@ getJoiningDate(){
             this.selectedRowIndex=-1;
             return;
           }
-          if(  new Date(this.backgroundDetails.data[i].LeavingDate)> new Date( this.inputuBackgrnd.JoiningDate)){
+          if( this.datePipe.transform(this.backgroundDetails.data[i].LeavingDate,'yyyy-MM-dd')> this.datePipe.transform( this.inputuBackgrnd.JoiningDate,'yyyy-MM-dd')){
             this.toster.showError("Joining date of Last company(s) can't be lesser or equal to Leaving date of previous company(s)");
             return;
           }       
@@ -374,6 +382,9 @@ getJoiningDate(){
       else {
 
       }
+      this.snackBar.open("Successfully Added", "Ok", {
+               duration: 2000,
+             });
       this.selectedRowIndex=-1;
       this.uBackgrndForm.reset();
     }
@@ -455,7 +466,7 @@ getJoiningDate(){
                 //   duration: 5000,
       
                 // });
-                this.toster.showWarning("Record already exists");
+                this.toster.showWarning("Cannot Update: Record is unmodified");
                 this.selectedRowIndex=-1;
                }
               }
@@ -470,7 +481,9 @@ getJoiningDate(){
                   }
                 });
               }
-      
+              this.snackBar.open("Updated successfully", "Ok", {
+                duration: 2000,
+              });
             }
       
       
@@ -483,9 +496,11 @@ getJoiningDate(){
               // });
               this.toster.showError("Leaving Date must be greater than Joining Date");
             }
+            
             //this.uBackgrndForm.reset();
             this.selectedRowIndex=-1;
           }
+           
           //formDirective.resetForm();
           this.uBackgrndForm.reset();
           this.formType = "Add"
@@ -606,7 +621,7 @@ getJoiningDate(){
     //          return;
     //      }
     //     }
-         this.dataService.AddUserBackGound(id, this.showExp, this.backgroundDetails.data)
+         this.dataService.AddUserBackGound(id, this.showExp,this.texp, this.backgroundDetails.data)
          .subscribe((result) => {
            this.globalResponse = result;
          },
@@ -621,9 +636,10 @@ getJoiningDate(){
            () => {
              //this.isSuccessMessage = true;
              if (this.formType == "Add") {
-               this.snackBar.open("Success", "Ok", {
-                duration: 2000,
-               });
+              //  this.snackBar.open("Success", "Ok", {
+              //   duration: 2000,
+              //  });
+              this.toster.showSuccess("Background details saved successfully")
                this.GetBackgroundDetailsDS();
                // this.isExp = true;
                // this.isAddItem = false;

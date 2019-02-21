@@ -9,7 +9,7 @@
 </div>
 
 <div class="bg-white" *ngIf="joiningDate">
-  <label><b>Current Experience:</b><span style="margin-left: 40px;"> {{currentExp}} &nbsp;&nbsp;    DOJ:-({{joiningDate}}) </span> </label>
+  <label><b>Current Experience:</b><span style="margin-left: 40px;"> {{currentExp}}</span> &nbsp;&nbsp; <span matTooltip="Date of Joining (yyyy/mm/dd)">   DOJ:-({{joiningDate}}) </span> </label>
   <br><br>
 </div>
 <div class="bg-white">
@@ -22,30 +22,30 @@
   <mat-table [dataSource]="backgroundDetails" matSort class="example-container mat-elevation-z8 resource-grid">
     <ng-container matColumnDef="BackgroundID">
       <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>BackGround ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.BackgroundID}} </mat-cell>>
+      <mat-cell *matCellDef="let element" > {{element.BackgroundID}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="CompanyName">
-      <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header ><span class="text-white text-uppercase">Company Name*</span>  </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header ><span class="text-white ">Company Name*</span>  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.CompanyName|uppercase}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="Designation">
-      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Designation</span> </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white ">Designation</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Designation|uppercase}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="JoiningDate">
-      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Joining Date</span> </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white">Joining Date</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.JoiningDate| date}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="LeavingDate">
-      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Leaving Date</span> </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white ">Leaving Date</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.LeavingDate| date}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="Duration">
-      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Duration</span> </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white">Duration</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{calcExperience(element.JoiningDate, element.LeavingDate)}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="Action">
-      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Action</span> </mat-header-cell>
+      <mat-header-cell mat-header-cell class="bg-info"*matHeaderCellDef mat-sort-header><span class="text-white ">Action</span> </mat-header-cell>
       <mat-cell *matCellDef="let element" >
           <button mat-button [disabled]='disableAction' (click)="RemoveBackground(element.BackgroundID)" class="btn btn-danger mx-1"><i class="fa fa-times"
             aria-hidden="true"></i> <span class="action-btn"></span></button>
@@ -54,7 +54,7 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.BackgroundID}"
+    <mat-row matTooltip="Click to Update" *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.BackgroundID}"
       (click)="highlight(row)"></mat-row>
 
     <!-- <mat-footer-row *matFooterRowDef>

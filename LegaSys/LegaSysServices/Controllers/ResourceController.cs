@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace LegaSysServices.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ResourceController : ApiController
     {
         private readonly IUOWResources _uOWResources;
@@ -37,9 +37,9 @@ namespace LegaSysServices.Controllers
 
         [HttpGet]
         [Route("resource/delete/{id}")]
-        public IHttpActionResult DeleteResource(int id)
+        public IHttpActionResult DeleteResource(int id,int userId)
         {
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
+            //int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
 
             return Json(new { success = _uOWResources.DeleteResource(id, userId) });
         }
@@ -73,9 +73,9 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+           // int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
-            model.Created_By = createdBy;
+           // model.Created_By = createdBy;
 
             int id = _uOWResources.CreateResoure(model);
 
@@ -92,9 +92,9 @@ namespace LegaSysServices.Controllers
                 return BadRequest("Model cannot be null");
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+           // int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
-            userDetail.Created_By = createdBy;
+            //userDetail.Created_By = createdBy;
 
             if (!_uOWResources.AddSkillById(userDetail))
                 return NotFound();
@@ -112,9 +112,9 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+           // int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
-            model.Created_By = createdBy;
+            //model.Created_By = createdBy;
 
             if (!_uOWResources.UpdateResource(model))
                 return NotFound();
@@ -130,7 +130,7 @@ namespace LegaSysServices.Controllers
 
         [HttpPost]
         [Route("resource/createbackground/{id}")]
-        public IHttpActionResult AddUserBackground([FromUri] int id, bool isExp, List<UserBackground> model)
+        public IHttpActionResult AddUserBackground([FromUri] int id, bool isExp, decimal totExp, List<UserBackground> model)
         {
             if (model == null)
                 return BadRequest("Model cannot be null");
@@ -138,7 +138,7 @@ namespace LegaSysServices.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _uOWResources.CreateUserBackground(id, isExp, model);
+            _uOWResources.CreateUserBackground(id, isExp,totExp, model);
 
             return Json(new { success = true });
         }
@@ -170,6 +170,11 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult GetResourceProject(int id)
         {
             return Json(_uOWResources.getResourceProject(id));
+        }
+        [Route("resource/GetAllResource")]
+        public IHttpActionResult GetAllResource()
+        {
+            return Json(_uOWResources.GetAllResources());
         }
     }
 }

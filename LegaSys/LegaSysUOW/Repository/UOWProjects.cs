@@ -215,6 +215,8 @@ namespace LegaSysUOW.Repository
                 objProjectDetail.Created_By = projectDetail.Created_By;
                 objProjectDetail.Updated_By = projectDetail.Updated_By;
                 objProjectDetail.Created_Date = projectDetail.Created_Date;
+                objProjectDetail.Start_Date = projectDetail.Start_Date;
+                objProjectDetail.End_Date = projectDetail.End_Date;
                 objProjectDetail.Updated_Date = DateTime.Now;// (projectDetail.Updated_Date != null) ? projectDetail.Updated_Date : DateTime.Now;
                 db.SaveChanges();
             }

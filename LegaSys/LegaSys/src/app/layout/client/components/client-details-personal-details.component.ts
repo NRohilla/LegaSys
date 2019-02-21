@@ -24,13 +24,15 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
 
   disable: boolean = true; // this variable is used to bind the disabled attribute of input to make input fields editable and non editable
   personalDetailsForm: FormGroup; // This formgroup is for Client Personal Details form
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';// this regex will be used to validate email pattern
+  emailPattern = '^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';// this regex will be used to validate email pattern
 
   /**** Writen on 23 Nov 2018 ***********/
   readOnly: boolean = true;// this variable will be used to make the form field non editable
   // following array will hold the list of country and willbe used to shown as dropdown in country field 
   CountryList: string[] = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
+  countriesCode:string[]= ["+7 840","+93","+93","+355","+213","+1 684","+376","+244", "+1 264", "+1 268","+54","+374","+297","+247","+61","+672","+43","+994","+1 242","+973","+880","+1 246","+1 268","+375","+32","+501","+229","+1 441","+975","+55","+246","+359","+855","+1", "+236","+56","+86","+57","+506","+53","+420","+45","+1 767","+1 809","+20","+251","+679","+358","+33", "+995","+49","+30","+852","+36","+354","+91","+62","+98","+964","+353","+972","+39","+1 876","+81","+962","+7 7","+254","+965","+996","+218","+370","+352","+261","+60","+960","+223","+230","+52","+976","+212","+95","+977","+31","+64","+234","+850","+47","+968","+92","+595","+51","+63","+48","+351","+974","+40","+7","+966","+381","+65","+27","+82","+34","+94","+268","+46","+41","+963","+886","+992","+255","+66","+670","+216","+90","+1 340","+256","+380","+971","+44","+1","+84","+967","+263"];
   filteredOptions: Observable<string[]>;// this variable will hold the returned list of autocomplete
+  filterBasedOptionsForCountryCode:Observable<string[]>;
   constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService, private router: Router, private formBuilder: FormBuilder) {
   }
   /****** This fuction is used to make the form field editable  */
@@ -58,9 +60,10 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   UpdateClient() {
     this.currentClientDetails.ClientName = this.personalDetailsForm.controls['clientName'].value;
     this.currentClientDetails.Address = this.personalDetailsForm.controls['clientAddress'].value;
-    this.currentClientDetails.EmailID = this.personalDetailsForm.controls['clientEmail'].value;
+    this.currentClientDetails.EmailID2 = this.personalDetailsForm.controls['clientEmail'].value;
    this.currentClientDetails.Country = this.personalDetailsForm.controls['country'].value;
    this.currentClientDetails.ClientPhone = this.personalDetailsForm.controls['clientPhone'].value;
+   this.currentClientDetails.countrytTelephoneCodeClient=this.personalDetailsForm.controls['countryCode'].value;
     this.onClientDetailsChange.emit(this.currentClientDetails);
     this.MakeFieldEditable();
   }
@@ -69,9 +72,10 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   CreatePersonalDetailsForm() {
     this.personalDetailsForm = this.formBuilder.group({
       clientName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-      clientAddress: ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+$')]],
+      clientAddress: ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9-.#&^ ]+$')]],
       clientEmail: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       clientPhone: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
+      countryCode: ['',[Validators.required]],
       country: ['', Validators.required]
     });
   }
@@ -84,6 +88,10 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
+      this.filterBasedOptionsForCountryCode=this.personalDetailsForm.controls['countryCode'].valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterForCountryCode(value))
+      );
     }
   }
   /**** This function is used to filter the name of country from country List  */
@@ -91,6 +99,12 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.CountryList.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
+  private _filterForCountryCode(value: string): string[] {
+    debugger;
+    const filterValueForCountryCode = value.toLowerCase();
+    return this.countriesCode.filter(option => option.toLowerCase().indexOf(filterValueForCountryCode) === 0);
+  }
+  
   /******** Created by SHubham Kumar Mishra on 22 nov 2018 **********
    ********* following method are used for geting validation error message dynamically **********/
   GetErrorMessage(controlName: string) {
@@ -118,11 +132,12 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
     this.personalDetailsForm.controls['clientAddress'].setValue(this.currentClientDetails.Address);
 
     if (this.currentClientDetails.EmailID != null && this.currentClientDetails.EmailID != '' && this.currentClientDetails.EmailID != undefined) {
-      this.personalDetailsForm.controls['clientEmail'].setValue(this.currentClientDetails.EmailID.trim());
+      this.personalDetailsForm.controls['clientEmail'].setValue(this.currentClientDetails.EmailID2.trim());
     }
   
       this.personalDetailsForm.controls['clientPhone'].setValue(this.currentClientDetails.ClientPhone);
     this.personalDetailsForm.controls['country'].setValue(this.currentClientDetails.Country);
+    this.personalDetailsForm.controls['countryCode'].setValue(this.currentClientDetails.countrytTelephoneCodeClient);
   }
 
   /****** Created on 27 Nov 2017 ************/
@@ -131,12 +146,13 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
   GetPlaceHolder(str: string) {
     if (!this.readOnly) {
       switch (str) {
-        case 'clientName': return "Client Name ";
-        case 'clientAddress': return "Client Address ";
+        case 'clientName': return "Name ";
+        case 'clientAddress': return "Address ";
         case 'country': return "Country ";
-        case 'clientEmail': return "Primary Email  ";
+        case 'clientEmail': return "Email  ";
+        case 'countryCode': return "Telephone Country Code  ";
      
-        case 'clientPhone': return "Contact Number";
+        case 'clientPhone': return "Number";
         default: return " ";
       }
     }
@@ -154,6 +170,8 @@ export class ClientDetailsPersonalDetailsComponent implements OnInit {
       this.personalDetailsForm.controls[contraolName].setValue(this.personalDetailsForm.controls[contraolName].value.trim());
     }
   }
+  /****** Created on 14 feb 2019 ************* */
+  
 
 
 }

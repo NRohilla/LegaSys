@@ -22,4 +22,9 @@ namespace LegaSysDataEntities
         public Nullable<System.DateTime> Start_Date { get; set; }
         public Nullable<System.DateTime> End_Date { get; set; }
     }
+    public class DummyModal
+    {
+        public List<ClientProjects> clientProject { get; set; }
+        public int userID { get; set; }
+    }
 }

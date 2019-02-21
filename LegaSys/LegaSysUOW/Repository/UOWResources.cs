@@ -53,7 +53,8 @@ namespace LegaSysUOW.Repository
                 Created_By = userDetail.Created_By,
                 IsExperienced = false,
                 IsActive = true,
-                DateOfJoining=DateTime.Now
+                DateOfJoining=DateTime.Now,
+                CountryCode=userDetail.CountryCode
             };                             
 
             db.LegaSys_UserDetails.Add(model);
@@ -174,6 +175,7 @@ namespace LegaSysUOW.Repository
                         DateOfJoining = x.user.DateOfJoining,
                         PrimarySkillSet=x.user.PrimarySkillSet,
                         SecondarySkillSet=x.user.SecondarySkillSet,
+                        CountryCode=x.user.CountryCode
                         //Qualification=x.user.Qualification
                     }).FirstOrDefault();
             return resource;
@@ -199,6 +201,7 @@ namespace LegaSysUOW.Repository
             existingModel.Remarks = userDetail.Remarks;
             existingModel.Updated_Date = DateTime.Now;
             existingModel.Updated_By = userDetail.Created_By;
+            existingModel.CountryCode = userDetail.CountryCode;
 
             db.SaveChanges();
 
@@ -223,12 +226,12 @@ namespace LegaSysUOW.Repository
         }
 
 
-        public bool CreateUserBackground(int id, bool isExp, List<UserBackground> userBackground)
+        public bool CreateUserBackground(int id, bool isExp,decimal totExp, List<UserBackground> userBackground)
         {
             
             var user = db.LegaSys_UserDetails.FirstOrDefault(x => x.UserDetailID == id);           
               user.IsExperienced = isExp;
-
+            user.TotalExp = totExp;
             if (isExp)
             {
                
@@ -586,6 +589,39 @@ namespace LegaSysUOW.Repository
 
             return data;
 
+        }
+
+        public List<UserDetail> GetAllResources()
+        {
+            List<UserDetail> lstResource = null;
+            try
+            {
+                using (LegaSysEntities db = new LegaSysEntities())
+                {
+                    lstResource = db.LegaSys_UserDetails.Select(x =>
+                    new UserDetail()
+              {
+                  UserDetailID = x.UserDetailID,
+                  Firstname = x.Firstname,
+                  Middlename = x.Middlename,
+                  Lastname = x.Lastname,
+                  TotalExp = x.TotalExp,
+                  EmailId = x.EmailId,
+                  IsExperienced = x.IsExperienced,
+                  PrimarySkillSet = x.PrimarySkillSet,
+                  SecondarySkillSet = x.SecondarySkillSet,
+                  Qualification = x.Qualification,
+                  DateOfJoining = x.DateOfJoining,
+                  IsActive = x.IsActive
+
+              }).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return lstResource;
         }
     }
 }

@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <div>
     <app-page-header [heading]="'Resources'" [style]="'background-color:lightgrey'" [icon]="'fa fa-fw fa-users'"></app-page-header>
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Filter">
+    <mat-form-field class="col-md-4">
+        <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search">
         <button mat-button  matSuffix mat-icon-button aria-label="Clear" >
             <mat-icon>close</mat-icon>
         </button>
@@ -19,14 +19,14 @@
           The actual rendered columns are set as a property on the row definition" -->
     <!-- Position Column -->
     <ng-container matColumnDef="UserDetailID">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white text-uppercase">Resource
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white ">Resource
                 ID</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.UserDetailID}} </mat-cell>>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="Firstname">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Name</span>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white ">Name</span>
         </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.Firstname+' '+element.Middlename+' '+element.Lastname}}
         </mat-cell>
@@ -34,31 +34,31 @@
 
     <!-- TotalExp Column -->
     <ng-container matColumnDef="TotalExp">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Total
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white">Total
                 Exp</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.TotalExp}} </mat-cell>
     </ng-container>
     <!-- EmailId Column -->
     <ng-container matColumnDef="EmailId">
-        <mat-header-cell class="bg-info" style="flex: 0 0 350px;" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Email</span>
+        <mat-header-cell class="bg-info" style="flex: 0 0 350px;" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white ">Email</span>
         </mat-header-cell>
         <mat-cell *matCellDef="let element" style="flex: 0 0 350px;"> {{element.EmailId}} </mat-cell>
     </ng-container>
     <!-- Shift Column -->
     <ng-container matColumnDef="Shift">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Shift</span>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white ">Shift</span>
         </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.Shift}} </mat-cell>
     </ng-container>
     <!-- Location Column -->
     <ng-container matColumnDef="Location_ID">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Location</span>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white ">Location</span>
         </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.LocationAddress}} </mat-cell>
     </ng-container>
     <!-- ReportingHead Column -->
     <ng-container matColumnDef="ReportingHead_ID">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Reporting
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white ">Reporting
                 Head</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.ReportingHead}} </mat-cell>
     </ng-container>

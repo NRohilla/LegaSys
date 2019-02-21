@@ -27,7 +27,8 @@ export class Resource {
     DateOfJoining:Date;
     PrimarySkillSet:string;
     SecondarySkillSet:string;
-
+    CountryCode:string;
+    Created_By:number;
     
 
 }

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { stringify } from '@angular/core/src/render3/util';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { MatTable, MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar  } from '@angular/material';
+import { MatTable, MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { SharedService } from '../Shared/shared.service';
 import { Observable } from 'rxjs';
@@ -14,6 +14,7 @@ import { EditComponent } from './edit/edit.component';
 import { Project } from '../project/projenctModel';
 import { AddComponent } from './add/add.component';
 import { BehaviorSubject, fromEvent } from 'rxjs';
+import { DeleteDialog } from "../client/deleteDialog"
 //import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component';
 @Component({
     selector: 'app-project',
@@ -24,7 +25,7 @@ import { BehaviorSubject, fromEvent } from 'rxjs';
 
 export class ProjectComponent implements OnInit, AfterViewInit {
     project: any;
-    displayedColumns = ['ProjectID','Title', 'ClientName', 'DomainName', 'Description','actions'];
+    displayedColumns = ['ProjectID', 'Title', 'ClientName', 'DomainName', 'Description', 'actions'];
     projectdetails: any;
     exampleDatabase: SharedService | null;
     index: number;
@@ -46,7 +47,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
 
     // addProject(project: Project) {
-    addProject() {        
+    addProject() {
         this.router.navigate(['./project/add']);
         // {path: 'project', component: ProjectComponent}
 
@@ -81,29 +82,57 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     editproject(data: any) {
         this.router.navigate(['./project/edit', data.ProjectID]);
     }
-    private refreshTable() {
-    }
+    private refreshTable() { }
     deleteproject(id, status) {
+        debugger;
         // const dialogRef = this.dialog.open("Test", {
         //     width: '250px',
         //   //data: {name: this.name, animal: this.animal}
         //   });
-        if (status = 1) {
-            const Id = id;
-            if (confirm('Are you sure to Activate this record ?' + id) === true) {
-                this.apiService.DeletProject(id).subscribe(res => {
-                    this.RenderDataTable();
-                });
-            }
-        } else {
+        sessionStorage.setItem("currentClientdailogID", id);
+        if (status == 0) {
+            const dialogRef = this.dialog.open(DeleteDialog, {
+                width: '370px',
 
-            const Id = id;
-            if (confirm('Are you sure to delete this record ?' + id) === true) {
+                data: { status: "Deactivate", confirm: true }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+
+
+            if (result)
                 this.apiService.DeletProject(id).subscribe(res => {
                     this.RenderDataTable();
                 });
-            }
+        });
         }
+        else {   
+            debugger;         
+
+            const dialogRef = this.dialog.open(DeleteDialog, {
+                width: '370px',
+
+                data: { status: "Activate", confirm: true }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+                if (result)
+                    this.apiService.DeletProject(id).subscribe(res => {
+                        this.RenderDataTable();
+                    });
+            });
+            
+        }
+        // }
+
+
+        // dialogRef.afterClosed().subscribe(result => {
+
+
+        //     if (result)
+        //         this.apiService.DeletProject(id).subscribe(res => {
+        //             this.RenderDataTable();
+        //         });
+        // });
+
     }
 
     applyFilter(filterValue: string) {
@@ -120,5 +149,5 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     //       duration: 500,
     //     });
     // }
-    
+
 }

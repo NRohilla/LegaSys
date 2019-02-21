@@ -63,6 +63,7 @@ namespace LegaSysDataAccess
         public string SecondarySkillSet { get; set; }
         public string Qualification { get; set; }
         public Nullable<System.DateTime> DateOfJoining { get; set; }
+        public string CountryCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_LeavesApplication> LegaSys_LeavesApplication { get; set; }

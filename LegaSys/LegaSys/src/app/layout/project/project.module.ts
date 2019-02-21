@@ -21,6 +21,7 @@ import { ProjectResourceComponent } from './edit/project-resource/project-resour
 import { ProjectClientComponent } from './edit/project-client/project-client.component';
 import { ProjectTaskComponent } from './edit/project-task/project-task.component';
 import { DialogComponent } from '../masters/dialog/dialog.component';
+import { DeleteDialog } from '../client/deleteDialog';
 
 @NgModule({
   imports: [
@@ -59,8 +60,8 @@ import { DialogComponent } from '../masters/dialog/dialog.component';
     MatFormFieldModule, PageHeaderModule 
 
   ],
-  declarations: [ProjectComponent, EditComponent, AddComponent, SnackBarComponentExampleComponent,ProjectInfoComponent, ProjectResourceComponent, ProjectClientComponent, ProjectTaskComponent],
-  entryComponents: [AddComponent, SnackBarComponentExampleComponent],
+  declarations: [ProjectComponent, EditComponent, AddComponent, SnackBarComponentExampleComponent,ProjectInfoComponent, ProjectResourceComponent, ProjectClientComponent, ProjectTaskComponent,DeleteDialog],
+  entryComponents: [AddComponent, SnackBarComponentExampleComponent,DeleteDialog],
   providers: [Project]
 })
 export class ProjectModule { }

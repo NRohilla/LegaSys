@@ -16,7 +16,7 @@ export class ClientProjectsComponent implements OnInit {
   @Input('currentClientDetails') currentClientDetails: any; // used to hold current client details comming from parent controller i.e child details
   //@ViewChild(MatPaginator) paginator: MatPaginator;
   timeSpan:any
-  displayedColumns: string[] = ['Title', 'start_date','End_date','duration','assign_type', 'service_type','action'];
+  displayedColumns: string[] = ['Title', 'start_date','End_date','duration', 'service_type','action'];
   selectedRowIndex: number = -1;
   projectDetailsForm:FormGroup;
   showProjectDetailsForm:boolean=false;
@@ -120,7 +120,7 @@ export class ClientProjectsComponent implements OnInit {
       /******** This method will be used to create projectDetaiosForm */
       CreateProjectDetailsForm(){
         this.projectDetailsForm = this.formBuilder.group({
-          title: ['',[Validators.required,Validators.pattern('^[a-zA-Z ]+$')]],
+          title: ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+$')]],
           startDate: ['',Validators.required],
           endDate: ['',],
           assignType:[''],

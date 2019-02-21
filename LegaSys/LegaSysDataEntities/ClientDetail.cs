@@ -34,6 +34,8 @@ namespace LegaSysDataEntities
 
         public List<CoClient> CoClientDetails { get; set; }
         public string ClientPhone { get; set; }
+        public string countrytTelephoneCodeClient { get; set; }
+        public string countrytTelephoneCodeClientOffice { get; set; }
 
 
 
@@ -54,7 +56,9 @@ namespace LegaSysDataEntities
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string countryCode { get; set; }
     }
+    
 
    
 }

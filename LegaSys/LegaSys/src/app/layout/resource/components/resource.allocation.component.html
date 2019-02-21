@@ -5,36 +5,36 @@
     <mat-cell *matCellDef="let element"> {{element.ProjectResourceID}} </mat-cell>>
   </ng-container>
   <ng-container matColumnDef="Resource_ID">
-    <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Resource_ID
+    <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white">Resource_ID
          </span></mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Resource_ID}} </mat-cell>>
   </ng-container>
   <ng-container matColumnDef="Project_ID">
-    <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Project_ID</span> </mat-header-cell>
+    <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white ">Project_ID</span> </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Project_ID}} </mat-cell>>
   </ng-container>
   <ng-container matColumnDef="Title">
-    <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase">Project Title</span>
+    <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white">Project Title</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>>
   </ng-container>
   <ng-container matColumnDef="Status">
-    <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Status</span>
+    <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white"> Active/Inactive</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.Status}} </mat-cell>>
+    <mat-cell *matCellDef="let element"> {{GetStatus(element.Status)}} </mat-cell>>
   </ng-container>
   <ng-container matColumnDef="Start_Date">
-      <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Start Date</span>
+      <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white "> Start Date</span>
       </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Start_Date|date}} </mat-cell>>
     </ng-container>
     <ng-container matColumnDef="End_Date">
-        <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> Completion Date</span>
+        <mat-header-cell mat-header-cell class="bg-info"  *matHeaderCellDef mat-sort-header><span class="text-white"> Completion Date</span>
         </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.End_Date|date}} </mat-cell>>
       </ng-container>
   <ng-container matColumnDef="Action">
-    <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white text-uppercase"> </span> </mat-header-cell>
+    <mat-header-cell mat-header-cell class="bg-info" *matHeaderCellDef mat-sort-header><span class="text-white">Action </span> </mat-header-cell>
     <mat-cell *matCellDef="let element">
 
         <button mat-button (click)="ViewProjectDetails(element.Project_ID)" class="btn btn-info mx-1"><i class="fa fa-pencil-square-o"

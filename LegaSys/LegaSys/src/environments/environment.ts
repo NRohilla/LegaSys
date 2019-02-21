@@ -6,7 +6,8 @@
 export const environment = {
     production: false,
     ////Uncomment while working on local
-    BaseAPIURL: "http://localhost:58164"
+    //BaseAPIURL: "http://localhost:58164"
+    BaseAPIURL: "http://localhost/LegaSysServices/"
 
     //Uncomment while publishing
      //BaseAPIURL: "http://172.16.200.33:9393/LegaSys/Services/"

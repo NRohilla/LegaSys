@@ -44,5 +44,12 @@ namespace LegaSysServices.Controllers
         {
             return Json(_uOWUsers.GetAvailableUserListForProject(id));
         }
+
+        [HttpGet]
+        [Route("Test")]
+        public string TestMethod()
+        {
+            return "I was Hit Successfully";
+        }
     }
 }

@@ -73,12 +73,18 @@ export class ProjectInfoComponent implements OnInit {
     this.router.navigate(['project']);
   }
   save() {
-    // this.currentProjectDetails.ProjectName=this.projectinfo.controls['Title'].value ;
-    // this.currentProjectDetails.Description =this.projectinfo.controls['ProjectDescription'].value ;
-    // this.currentProjectDetails.ProjectDomain_ID =this.projectinfo.controls['ProjectDomain_ID'].value ;
     debugger;
+    
+    this.currentProjectDetails.ProjectName=this.projectinfo.controls['Title'].value ;
+    this.currentProjectDetails.Description =this.projectinfo.controls['ProjectDescription'].value ;
+    this.currentProjectDetails.ProjectDomain_ID =this.projectinfo.controls['ProjectDomain_ID'].value ;
+    this.currentProjectDetails.Start_Date =this.projectinfo.controls['Start_Date'].value ;
+    this.currentProjectDetails.End_Date =this.projectinfo.controls['End_Date'].value ;    
     this.onprojectinformationChange.emit(this.currentProjectDetails);
-    this.onCancelClick();
+    //this.onCancelClick();
+     this.isSave = false;
+    // //this.disableSummary = true;
+     this.disable = true;
 
   }
   public GetAllTechDomain() {
@@ -135,8 +141,8 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   CompareDates(group: FormGroup) {
-    let s_date = group.controls['Start_Date'].value;
-    let e_date = group.controls['End_Date'].value;
+    let s_date = new Date( group.controls['Start_Date'].value);
+    let e_date = new Date( group.controls['End_Date'].value);
     if (e_date == null) {
       return null;
 
@@ -176,7 +182,7 @@ export class ProjectInfoComponent implements OnInit {
     this.projectinfo.controls['End_Date'].setValue(this.currentProjectDetails.End_Date);
     this.projectinfo.controls['ProjectDuration'].setValue(this.durationtime);
   }
-
+  //white space or empty strting validation
   TrimString(controlname:string){  
     debugger;  
     this.projectinfo.controls[controlname].setValue(this.projectinfo.controls[controlname].value.trim());    

@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from "
 import { Client, CoClientModal } from '../model/client.model';
 import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
 import { DialogComponent } from '../../masters/dialog/dialog.component';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-client-details-co-client-details',
@@ -25,12 +27,14 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   readOnly: boolean = true;
   showCoClientForm:boolean=false;
   flag:boolean=true;
-  displayedColumns: string[] = ['Name', 'Email', 'Address', 'Contact_no','Action']; // to display values in data table 
+  displayedColumns: string[] = ['Name', 'Email', 'Address','countryCode','Contact_no','Action']; // to display values in data table 
   dataSource:any; 
   selectedRowIndex:number=-1;
   dataSourceBackup:any;
   ids:number=-2;
   showUpdateForm:boolean=true;
+  countriesCode:string[]= ["+7 840","+93","+93","+355","+213","+1 684","+376","+244", "+1 264", "+1 268","+54","+374","+297","+247","+61","+672","+43","+994","+1 242","+973","+880","+1 246","+1 268","+375","+32","+501","+229","+1 441","+975","+55","+246","+359","+855","+1", "+236","+56","+86","+57","+506","+53","+420","+45","+1 767","+1 809","+20","+251","+679","+358","+33", "+995","+49","+30","+852","+36","+354","+91","+62","+98","+964","+353","+972","+39","+1 876","+81","+962","+7 7","+254","+965","+996","+218","+370","+352","+261","+60","+960","+223","+230","+52","+976","+212","+95","+977","+31","+64","+234","+850","+47","+968","+92","+595","+51","+63","+48","+351","+974","+40","+7","+966","+381","+65","+27","+82","+34","+94","+268","+46","+41","+963","+886","+992","+255","+66","+670","+216","+90","+1 340","+256","+380","+971","+44","+1","+84","+967","+263"];
+  filterBasedOptionsForCountryCode:Observable<string[]>;
   constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService,
      private formBuilder: FormBuilder,public dialog: MatDialog) {
 
@@ -38,8 +42,13 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
   
   ngOnInit() {
    this.RenderDataTable();   
-    }
   
+    }
+    private _filterForCountryCode(value: string): string[] {
+      debugger;
+      const filterValueForCountryCode = value.toLowerCase();
+      return this.countriesCode.filter(option => option.toLowerCase().indexOf(filterValueForCountryCode) === 0);
+    }
  // used  to render data in table 
 RenderDataTable(){
   debugger;
@@ -55,8 +64,13 @@ CreateCoClientForm(){
     name:['',[Validators.required,Validators.pattern('^[a-zA-Z ]+$')]],
     email:['',[Validators.required,Validators.email]],
     address:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+$')]],
+    countryCode:['',Validators.required],
     contactNo:['',[Validators.required,Validators.pattern('^[0-9]+$')]]
   });
+  this.filterBasedOptionsForCountryCode=this.coClientForm.controls['countryCode'].valueChanges.pipe(
+    startWith(''),
+    map(value => this._filterForCountryCode(value))
+  );
 }
 
 ShowCoClientAddForm(){
@@ -81,6 +95,7 @@ highlight(row:CoClientModal) {
   this.coClientForm.controls['address'].setValue(row.Address);
   this.coClientForm.controls['email'].setValue(row.Email.trim());
   this.coClientForm.controls['contactNo'].setValue(row.Phone);
+  this.coClientForm.controls['countryCode'].setValue(row.countryCode);
   
   }
   else{
@@ -97,6 +112,7 @@ highlight(row:CoClientModal) {
         this.dataSource.data[i].Email=this.coClientForm.controls["email"].value;
         this.dataSource.data[i].Address=this.coClientForm.controls["address"].value;
         this.dataSource.data[i].Phone=this.coClientForm.controls["contactNo"].value;
+        this.dataSource.data[i].countryCode=this.coClientForm.controls["countryCode"].value;
       }
     }
     for(var i=0;i<this.dataSourceBackup.length;i++){
@@ -104,7 +120,7 @@ highlight(row:CoClientModal) {
         this.dataSourceBackup[i].Name=this.coClientForm.controls["name"].value;
         this.dataSourceBackup[i].Email=this.coClientForm.controls["email"].value;
         this.dataSourceBackup[i].Address=this.coClientForm.controls["address"].value;
-        this.dataSourceBackup[i].Phone=this.coClientForm.controls["contactNo"].value;
+        this.dataSourceBackup[i].countryCode=this.coClientForm.controls["countryCode"].value;
       }
     }
     this.flag=false;
@@ -120,7 +136,8 @@ highlight(row:CoClientModal) {
      Name:this.coClientForm.controls["name"].value,
      Email:this.coClientForm.controls["email"].value,
      Address:this.coClientForm.controls["address"].value,
-     Phone:this.coClientForm.controls["contactNo"].value
+     Phone:this.coClientForm.controls["contactNo"].value,
+     countryCode:this.coClientForm.controls["countryCode"].value,
 
    });
    this.ids-=1;

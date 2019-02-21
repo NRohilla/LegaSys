@@ -2,7 +2,7 @@ import { Injectable, Component, OnInit, Inject } from '@angular/core';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { HttpClient, HttpClientModule, HttpResponse, HttpRequest, HttpHeaders } from '@angular/common/http';
-import { Project } from '../project/projenctModel';
+//import { Project } from '../project/projenctModel';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

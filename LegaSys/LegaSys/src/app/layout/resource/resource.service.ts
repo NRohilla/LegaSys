@@ -59,6 +59,7 @@ export class ResourceService {
 
     addResource(resource: Resource) {
         debugger;
+        resource.Created_By=+localStorage.getItem('userDetailsID');
         return this.http.post(this.baseUrl + '/resource/create', resource, { headers: this.getToken() })
             .pipe(
                 map(res => res),
@@ -73,11 +74,14 @@ export class ResourceService {
 
     updateResource(resource: Resource) {
         debugger;
+        resource.Created_By=(+localStorage.getItem('userDetailsID'));
         return this.http.post(this.baseUrl + '/resource/update', resource, { headers: this.getToken() });
     }
 
-    deleteResource(id) {
-        return this.http.get(this.baseUrl + '/resource/delete/' + id)
+    deleteResource(id,userID:number) {
+        debugger;
+        
+        return this.http.get(this.baseUrl + '/resource/delete/' + id + '?userId='+userID)
     }
 
     getRole() {
@@ -96,10 +100,10 @@ export class ResourceService {
 
         return this.http.get<UserBackgrnd[]>(this.baseUrl +'/resource/getuserbackground/' + id, { headers: this.getToken() })
     }
-    AddUserBackGound(id: number, isExp: boolean, background: UserBackgrnd[]) {
+    AddUserBackGound(id: number, isExp: boolean,totexp:number, background: UserBackgrnd[]) {
 debugger;
         console.log(background);
-        return this.http.post(this.baseUrl +'/resource/createbackground/' + id + '?isExp=' + isExp, background, { headers: this.getToken() })
+        return this.http.post(this.baseUrl +'/resource/createbackground/' + id + '?isExp=' + isExp+'&totExp='+totexp, background, { headers: this.getToken() })
     }
     getUserQualification(id: number) {
         debugger;
@@ -120,6 +124,7 @@ debugger;
     }
     AddSkillset(skill:Resource){
         debugger;
+        skill.Created_By=(+localStorage.getItem('userDetailsID'));
         return this.http.post(this.baseUrl +'/resource/addskillbyid',skill,{headers:this.getToken()});
     }
 }

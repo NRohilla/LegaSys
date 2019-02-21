@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, Inject } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
@@ -9,6 +9,8 @@ import { CurrentClientdataServiceService } from '../../current-clientdata-servic
 import { Client } from './model/client.model';
 import { DeleteDialog } from './deleteDialog';
 import { TosterService } from '../../shared/services/toster.service';
+import { StorageService,SESSION_STORAGE } from 'angular-webstorage-service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 // import { ActivateDialog } from './activateDialog';
 // import { ClientActiveDialog } from './clientActiveDialloge';
 @Component({
@@ -30,7 +32,8 @@ export class ClientComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog, private modalService: NgbModal, private clientService: ClientServiceService,
-    private router: Router, private currentClientdataService: CurrentClientdataServiceService, public tosterService: TosterService, public snackBar: MatSnackBar) {
+    private router: Router, private currentClientdataService: CurrentClientdataServiceService, public tosterService: TosterService, public snackBar: MatSnackBar,
+    @Inject(SESSION_STORAGE) private storage: StorageService) {
 
 
   }
@@ -96,7 +99,7 @@ export class ClientComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialog, {
       width: '370px',
 
-      data: { status: "Deactive", confirm: true }
+      data: { status: "Deactivate", confirm: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -112,7 +115,7 @@ export class ClientComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialog, {
       width: '370px',
 
-      data: { status: "Active", confirm: true }
+      data: { status: "Activate", confirm: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -145,8 +148,23 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Following fuction will execute and call to client service to get all client from database
-    this.GetAllClients();
+    debugger;
+    //const helper = new JwtHelperService();
+
+    
+   var token=this.storage.get("userDetailsID");
+//    const decodedToken = helper.decodeToken(token);
+// const expirationDate = helper.getTokenExpirationDate(token);
+//    const isExpired = helper.isTokenExpired(token);
+  
+    if(this.storage.get("userDetailsID")!=null){
+      this.GetAllClients();
+    }
+    else{
+      this.router.navigateByUrl("/login");
+    }
+   
+   
   }
   openSnackBar() {
     this.snackBar.open("Client Deleted Successfully'", "Close", {

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CurrentClientdataServiceService } from '../../../current-clientdata-service.service';
 import { ClientServiceService } from '../client-service.service';
 import { Client } from '../model/client.model';
 import { TosterService } from '../../../shared/services/toster.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-client-details',
@@ -22,21 +24,22 @@ export class ClientDetailsComponent implements OnInit {
   isLoading = true;
   clientProjectsList: any;
   constructor(private currentClientdataService: CurrentClientdataServiceService, private clientService: ClientServiceService,
-    public toastr: ToastrManager,public tosterService:TosterService,public snackBar: MatSnackBar) { }
+    public toastr: ToastrManager, public tosterService: TosterService, public snackBar: MatSnackBar, private router: Router,
+    @Inject(SESSION_STORAGE) private storage: StorageService) { }
 
   /***** This method is used for Geting details of client selecte dby user. This method is calling client service with parameter ID which is ID of 
    ***** client selected by user to view *****************************************************************************************************/
   GetClientsWithID(ID: any) {
     this.clientService.GetDetailsOfClientwhoseID(ID).subscribe(
-      (suc:any) => {
-        if(suc.success){
+      (suc: any) => {
+        if (suc.success) {
           debugger;
           this.isLoading = false;
           this.currentClientDetails = suc.data;
           this.currentClientDetailsBackup = JSON.parse(JSON.stringify(suc.data));
-  
+
         }
-      
+
       },
       err => {
         console.log(err);
@@ -46,18 +49,18 @@ export class ClientDetailsComponent implements OnInit {
   /***** This method is used for updating  details of client modified by  user. This method is calling client service with parameter model *****************************************************************************************************/
   updateClent(client: any) {
     this.clientService.UpdateDetailsWithID(client).subscribe(
-      (suc:any) => {
+      (suc: any) => {
         debugger;
-        if(suc.success){
-         this.tosterService.showSuccess("Client Updated Succesfully");
-         //this.show(); 
+        if (suc.success) {
+          this.tosterService.showSuccess("Client Updated Succesfully");
+          //this.show(); 
           this.openSnackBar();
-          this.currentClientDetails=client;
-           this.GetClientsWithID(this.currentClientID);                     
+          this.currentClientDetails = client;
+          this.GetClientsWithID(this.currentClientID);
         }
-        else{
+        else {
           this.tosterService.showError("Client Updation Failed");
-        }      
+        }
       },
       err => {
         console.log(err);
@@ -66,7 +69,7 @@ export class ClientDetailsComponent implements OnInit {
   }
   onCancel(client: any) {
     this.tosterService.showInfo("cancelled");
-        this.currentClientDetails = client;
+    this.currentClientDetails = client;
   }
   show() {
     this.Message = true;
@@ -74,26 +77,33 @@ export class ClientDetailsComponent implements OnInit {
     setTimeout(() => this.Message = false, 20000)
   }
   ngOnInit() {
-    this.currentClientID = sessionStorage.getItem("currentClientID");
-    if (this.currentClientID != null && this.currentClientID != '') {
-      this.GetClientsWithID(this.currentClientID);
-      this.GetAllClientProject(parseInt(this.currentClientID));
-    }
-  }
-  GetAllClientProject(id:number){
     
+    if (this.storage.get("userDetailsID") != null) {
+      this.currentClientID = sessionStorage.getItem("currentClientID");
+      if (this.currentClientID != null && this.currentClientID != '') {
+        this.GetClientsWithID(this.currentClientID);
+        this.GetAllClientProject(parseInt(this.currentClientID));
+      }
+    }
+    else {
+      this.router.navigateByUrl("/login");
+    }
+
+  }
+  GetAllClientProject(id: number) {
+
     this.clientService.GetClientAllProject(id).subscribe(
-      (suc:any)=>{    
+      (suc: any) => {
         debugger;
-        if(suc.success){
-       
-            this.clientProjectsList=suc.data;
-        }             
+        if (suc.success) {
+
+          this.clientProjectsList = suc.data;
+        }
       }
     );
   }
   openSnackBar() {
-    this.snackBar.open("Client updated Successfully'","Close", {
+    this.snackBar.open("Client updated Successfully'", "Close", {
       duration: 1000,
     });
   }

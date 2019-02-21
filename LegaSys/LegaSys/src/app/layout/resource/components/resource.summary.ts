@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourceService } from '../resource.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-resource-summary',
   templateUrl: './resource.summary.html',
@@ -7,20 +8,30 @@ import { ResourceService } from '../resource.service'
 })
 export class ResourceSummaryComponent implements OnInit {
   resoursedetails: any;
-  constructor(private resourceService: ResourceService) {
+  constructor(private resourceService: ResourceService,private router: Router) {
   }
 
   ngOnInit() {
     //debugger;
-    this.resourceService.getResourceById(+localStorage.getItem('UserDetailID')).subscribe(
-      suc => {
-        this.resoursedetails = suc;
-        
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    
+    if(localStorage.getItem('isLoggedin')=='true'){
+      this.resourceService.getResourceById(+localStorage.getItem('UserDetailID')).subscribe(
+        suc => {
+          this.resoursedetails = suc;
+         
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+    else{
+    this.router.navigateByUrl("/login");
+    }
+
+
+
+   
   }
 
 }

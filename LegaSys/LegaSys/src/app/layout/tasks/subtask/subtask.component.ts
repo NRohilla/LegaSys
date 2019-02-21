@@ -98,7 +98,11 @@ export class SubtaskComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+   
+    if(localStorage.getItem('isLoggedin')=='true'){
+     
    
 
     this.ProjectTaskId = sessionStorage.getItem("currentId");
@@ -109,6 +113,10 @@ export class SubtaskComponent implements OnInit {
     this. GetTaskPriority();
     this.GetAllAssignee();
     this.GetTaskActivity();
+  }
+  else{
+    this.router.navigateByUrl("/login");
+  }
 
   }
 

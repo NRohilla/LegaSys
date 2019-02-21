@@ -28,12 +28,12 @@
         <mat-cell *matCellDef="let element"> {{calcTotExp(element.Start_Date,element.End_Date)}} </mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="assign_type">
+      <!-- <ng-container matColumnDef="assign_type">
         <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Assign Type</span> </mat-header-cell>
         <mat-cell *matCellDef="let element">Full time </mat-cell>
-      </ng-container>
+      </ng-container> -->
       <ng-container matColumnDef="service_type">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Service Type</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14"> Project Status</span> </mat-header-cell>
         <mat-cell *matCellDef="let element">{{GetStatus(element.End_Date)}} </mat-cell>
       </ng-container>
     

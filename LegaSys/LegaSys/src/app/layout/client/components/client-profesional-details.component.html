@@ -86,29 +86,41 @@
             </mat-form-field>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
-            <mat-form-field class="w-100">
-                    <label *ngIf="readOnly"><strong>Company Phone </strong></label>
-                <input  [readonly]="readOnly" formControlName="companyPhone" matInput [placeholder]="GetPlaceHolder('companyPhone')" maxlength="10" minlength="10" >
-               
-                <mat-error *ngIf="professionalDetailsForm.controls['companyPhone'].invalid">
-                        <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.required">
-                              Company Phone number can bot be blank
-                        </span>               
-                        <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.pattern">
-                                phone no can only contain numbers
-                          </span>
-                          <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.minlength && !professionalDetailsForm.controls['companyPhone'].errors.pattern ">
-                                Contact number should be of 10 charecter long
-                          </span>  
-                     </mat-error>
-            </mat-form-field>
+                <mat-form-field class="w-100">
+                        <label *ngIf="readOnly"><strong>Telephone Country Code</strong></label>
+                        <input  [readonly]="readOnly" type="text" matInput formControlName="countryCode" [matAutocomplete]="auto2" [placeholder]="GetPlaceHolder('countryCode')">
+                        <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" style="max-height: 200px !important">
+                          <mat-option *ngFor="let option of filterBasedOptionsForCountryCode | async" [value]="option" style="max-height: 200px !important">
+                            {{option}}
+                          </mat-option>
+                        </mat-autocomplete>
+                </mat-form-field>
         </div>
+       
        
        
       
      
   </div>
   <div class="row m-0">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                <mat-form-field class="w-100">
+                        <label *ngIf="readOnly"><strong>Company Phone </strong></label>
+                    <input  [readonly]="readOnly" formControlName="companyPhone" matInput [placeholder]="GetPlaceHolder('companyPhone')" maxlength="10" minlength="10" >
+                   
+                    <mat-error *ngIf="professionalDetailsForm.controls['companyPhone'].invalid">
+                            <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.required">
+                                  Company Phone number can bot be blank
+                            </span>               
+                            <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.pattern">
+                                   Please enter valid number
+                              </span>
+                              <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.minlength && !professionalDetailsForm.controls['companyPhone'].errors.pattern ">
+                                    Contact number should be of 10 charecter long
+                              </span>  
+                         </mat-error>
+                </mat-form-field>
+            </div>
      
       <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
           <mat-form-field class="w-100">

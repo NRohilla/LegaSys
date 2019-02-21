@@ -23,6 +23,8 @@ export class Client {
      ClientCompanyFax:string;
      ClientPhone:string;
      CoClientDetails:CoClientModal[]=[];
+     countrytTelephoneCodeClient:string;
+     countrytTelephoneCodeClientOffice:string;
    
 }
 export class ClientProject{
@@ -54,4 +56,9 @@ export class ClientProject{
      Updated_By:number;
      Updated_Date:Date;
      IsActive:boolean;
+     countryCode:string;
+}
+export class dummyModel{
+     data:any;
+     userDetailsID:number;
 }

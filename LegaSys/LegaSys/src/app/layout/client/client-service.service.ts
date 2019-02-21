@@ -1,6 +1,6 @@
-import { Injectable,Inject } from '@angular/core';
-import { HttpClient, HttpHeaders,HttpClientModule } from '@angular/common/http';
-import{Client, ClientProject} from './model/client.model';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { Client, ClientProject } from './model/client.model';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { environment } from '../../../environments/environment';
 
@@ -9,58 +9,63 @@ import { environment } from '../../../environments/environment';
 })
 export class ClientServiceService {
 
-  
-  currentClientDetails:object;
-    // This is the client API URL
-    URL = environment.BaseAPIURL;
+
+  currentClientDetails: object;
+  // This is the client API URL
+  URL = environment.BaseAPIURL;
   constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) { }
-  CreateHeader(){
-   
+  CreateHeader() {
+
     let token = this.storage.get('UserToken');
     if (token != null) {
-        var accessToken = 'Bearer ' + token.access_token;
-        let accessHeader = new HttpHeaders();
-        accessHeader = accessHeader.append('Authorization', accessToken);
-        return accessHeader;
+      var accessToken = 'Bearer ' + token.access_token;
+      let accessHeader = new HttpHeaders();
+      accessHeader = accessHeader.append('Authorization', accessToken);
+      return accessHeader;
     }
   }
 
-/*************** Created By Shubham Mishra on 8-Nov-2018  *********
- * **********    Following fuction are used to call web API and perform respective fuction */ 
+  /*************** Created By Shubham Mishra on 8-Nov-2018  *********
+   * **********    Following fuction are used to call web API and perform respective fuction */
 
-  GetClientDetails(){   
-      debugger;
-      return this.http.get<Client[]>(this.URL +'/Client/GetAllClient', { headers: this.CreateHeader() });
-
-  }
-   GetDetailsOfClientwhoseID(ID){
-       return this.http.get<Client>(this.URL +'/Client/GetClientById/'+ID,{ headers: this.CreateHeader() });
-
-  }
-  AddClientDetails(client: Client)
-  {
-
-      return this.http.post(this.URL +'/Client/AddClientDetails',client,{ headers: this.CreateHeader() });
-
-  }
-  UpdateDetailsWithID(client: Client){   
-    
-      return this.http.put(this.URL +'/Client/UpdateClientDetails',client,{ headers: this.CreateHeader() });
-  }
-  DeleteClient(ID){
-      return this.http.delete(this.URL +'/Client/DeleteClientById/'+ID,{ headers: this.CreateHeader() });
-  }
-  GetClientAllProject(ID:number){
-      return this.http.get(this.URL +'/Client/GetProjectsByClientId/'+ID,{ headers: this.CreateHeader() });
-  }
-  UpdateClientProjectWithId(projectDetails:ClientProject){
+  GetClientDetails() {
     debugger;
-      return this.http.put(this.URL +'/Client/UpdateProjectDetailsWithId',projectDetails,{ headers: this.CreateHeader() });
+    return this.http.get<Client[]>(this.URL + '/Client/GetAllClient'); // get All client 
 
   }
-  ActivateClienthavingId(ID:number){
-      return this.http.get(this.URL +'/Client/updateClientStatus/'+ID,{ headers: this.CreateHeader() });
+  GetDetailsOfClientwhoseID(ID) {
+    return this.http.get<Client>(this.URL + '/Client/GetClientById/' + ID); // get client with ID
+
   }
- 
- 
+  AddClientDetails(client: Client) {
+    client.Created_By= parseInt(this.storage.get('userDetailsID'));
+    client.Updated_By=parseInt(this.storage.get('userDetailsID'));
+
+    return this.http.post(this.URL + '/Client/AddClientDetails', client ); // Add new client 
+
+  }
+  UpdateDetailsWithID(client: Client) {
+    client.Updated_By=parseInt(this.storage.get('userDetailsID'));
+    return this.http.put(this.URL + '/Client/UpdateClientDetails', client); // update perticular client 
+  }
+  DeleteClient(ID) {
+    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
+    return this.http.delete(this.URL + '/Client/DeleteClientById?Id='+ID+'&userId='+userDetailsID); // delete perticular client 
+   
+  }
+  GetClientAllProject(ID: number) {
+    return this.http.get(this.URL + '/Client/GetProjectsByClientId/' + ID); // get all project of perticular client 
+  }
+  UpdateClientProjectWithId(projectDetails: ClientProject) {
+    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
+    return this.http.put(this.URL + '/Client/UpdateProjectDetailsWithId', projectDetails); // update project details of a perticular client 
+
+  }
+  ActivateClienthavingId(ID: number) {
+    debugger;
+    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
+    return this.http.get(this.URL + '/Client/updateClientStatus?Id='+ID+'&userId='+userDetailsID);  // activating a client 
+  }
+
+
 }

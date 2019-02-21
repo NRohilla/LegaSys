@@ -16,12 +16,12 @@
     color: #d0cdfa;
     text-transform: uppercase;
     text-align: center;
-    font-weight: bold;
+    //font-weight: bold;
    }
    input::placeholder {
     color: red;
     font-size: 1.2em;
-    font-weight: bold;
+   // font-weight: bold;
   }
   .labeltext
 {
@@ -64,6 +64,6 @@
   }
   /* To display a border for the input */
   .mat-input-flex.mat-form-field-flex{
-      border: 1px solid black;
+      border: 1px  black;
    }
   

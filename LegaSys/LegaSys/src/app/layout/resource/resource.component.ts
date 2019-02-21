@@ -50,7 +50,8 @@ export class ResourceComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.dataService.deleteResource(id).subscribe(res => {
+              var  userID=+localStorage.getItem('userDetailsID');
+                this.dataService.deleteResource(id,userID).subscribe(res => {
                     if (res) {
                         this.snackBar.open("User deleted successfully", "Ok", {
                             duration: 3000,
@@ -63,7 +64,13 @@ export class ResourceComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.RenderDataTable();
+        if(localStorage.getItem('isLoggedin')=='true'){
+            this.RenderDataTable();
+        }
+        else{
+        this.router.navigateByUrl("/login");
+        }
+     
     }
 
     RenderDataTable() {

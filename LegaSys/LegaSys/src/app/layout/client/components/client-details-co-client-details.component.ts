@@ -984,6 +984,7 @@ export class ClientDetailsCoClientDetailsComponent implements OnInit {
     }
   ]
   filteredOptions: Observable<string[]>;
+  checkUpdate:boolean=false;
   
   constructor(private clientService: ClientServiceService, private currentClientdataService: CurrentClientdataServiceService,
      private formBuilder: FormBuilder,public dialog: MatDialog) {
@@ -1039,9 +1040,10 @@ ClearSelection(){
   this.showCoClientForm=false;
   this.selectedRowIndex=-1;
   this.showUpdateForm=false;
+  this.checkUpdate=false;
 }
 // used for highlight the selected row
-highlight(row:CoClientModal) {
+highlight(row:any) {
  debugger;
   if(this.showUpdateForm){
     this.selectedRowIndex = row.CoClientID;
@@ -1053,6 +1055,7 @@ highlight(row:CoClientModal) {
   this.coClientForm.controls['contactNo'].setValue(row.Phone);
   this.coClientForm.controls['countryCode'].setValue(row.countryCode);
   this.coClientForm.controls['country'].setValue(row.Country);
+  this.checkUpdate=true;
   
   }
   else{
@@ -1098,7 +1101,9 @@ highlight(row:CoClientModal) {
      Address:this.coClientForm.controls["address"].value,
      Phone:this.coClientForm.controls["contactNo"].value,
      countryCode:this.coClientForm.controls["countryCode"].value,
-     country:this.coClientForm.controls["country"].value,
+     Country:this.coClientForm.controls["country"].value,
+     Created_By: localStorage.getItem('userDetailsID'),
+     Updated_By:localStorage.getItem('userDetailsID')
 
    });
    this.ids-=1;
@@ -1155,7 +1160,9 @@ highlight(row:CoClientModal) {
       this.coClientForm.controls[contraolName].setValue(this.coClientForm.controls[contraolName].value.trim());
     }
   }
-  SelectCountryCode(){
+
+  /******* Written on 26 Feb 2019 *******/
+  SelectCountryCode(){  // this function is used to populate the country code on selection of country 
     debugger;
     for(var i=0;i<this.countries.length;i++){
       if(this.countries[i].name==this.coClientForm.controls['country'].value){
@@ -1164,33 +1171,32 @@ highlight(row:CoClientModal) {
       }
     }
   }
-  CheckEmail(control:AbstractControl){
-    debugger;
-    if(control.value!='' && !this.showUpdateForm){
+  CheckEmail(control:AbstractControl){  // this function is used to check that the entered email is not matched with any other co clints 
+    
       for(let i=0;i<this.dataSource.data.length;i++){
-        if(this.dataSource.data[i].Email.trim()==control.value){
+        if(this.dataSource.data[i].Email.trim()==control.value && this.selectedRowIndex!=this.dataSource.data[i].CoClientID) {
           return { CheckEmail : true };
         }
-        else{
-          return null;
-        }
       }
-
-    }
-    else{
-      return null;
-    }
+   
   }
   CheckContactNumber(control:AbstractControl){
-    if(!this.showUpdateForm){
-      for(let i=0;i<this.dataSource.data.length;i++){
-        if(this.dataSource.data[i].Phone==control.value){
-          return { contactNumber : true };
-        }       
+    debugger;      // this function is used to check that contact numbers should be different than the other co clients 
+
+        for(let i=0;i<this.dataSource.data.length;i++){
+          if(this.dataSource.data[i].Phone==control.value && this.selectedRowIndex!=this.dataSource.data[i].CoClientID){
+            return { contactNumber : true };
+          }       
+        }
+        if(control.value==this.currentClientDetails.ClientPhone ||control.value==this.currentClientDetails.ClientPhone2 ){
+          return { personalContact:true}
+        }
       }
+        
       
-    }
-    }
+      
+      
+    
   
 
 

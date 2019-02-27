@@ -114,6 +114,7 @@
                     <span *ngIf="coClientForm.controls['contactNo'].errors.pattern"> Contact number can only numbers</span>
                     <span *ngIf="coClientForm.controls['contactNo'].errors.minlength && !coClientForm.controls['contactNo'].errors.pattern"> Contact number should be 10 charecter long</span>
                     <span  *ngIf="coClientForm.controls['contactNo'].errors?.contactNumber" >Please enter different number than the other co clients</span>
+                    <span  *ngIf="coClientForm.controls['contactNo'].errors?.personalContact" >Please enter different conatct number than client peronal contact numbers </span>
                   
                   </mat-error>
                 </mat-form-field>

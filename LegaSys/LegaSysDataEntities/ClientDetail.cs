@@ -30,12 +30,15 @@ namespace LegaSysDataEntities
         public string ClientCountry { get; set; }
         public string ClientCountryZip { get; set; }
         public string CompanyPhone { get; set; }
+        public string ClientExtension { get; set; }
         public string ClientCompanyFax { get; set; }
 
         public List<CoClient> CoClientDetails { get; set; }
         public string ClientPhone { get; set; }
+        public string ClientPhone2 { get; set; }
         public string countrytTelephoneCodeClient { get; set; }
         public string countrytTelephoneCodeClientOffice { get; set; }
+
 
 
 

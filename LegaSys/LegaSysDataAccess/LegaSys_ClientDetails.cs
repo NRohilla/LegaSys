@@ -19,6 +19,7 @@ namespace LegaSysDataAccess
         {
             this.LegaSys_Client_Projects = new HashSet<LegaSys_Client_Projects>();
             this.LegaSys_Projects = new HashSet<LegaSys_Projects>();
+            this.LegaSys_CoClientDetails = new HashSet<LegaSys_CoClientDetails>();
         }
     
         public int ClientDetailID { get; set; }
@@ -38,10 +39,23 @@ namespace LegaSysDataAccess
         public string CoClient4 { get; set; }
         public string EmailID4 { get; set; }
         public bool IsActive { get; set; }
+        public string CompanyName { get; set; }
+        public string CompanyAddress { get; set; }
+        public string ClientCountry { get; set; }
+        public string ClientCountryZip { get; set; }
+        public string CompanyPhone { get; set; }
+        public string ClientCompanyFax { get; set; }
+        public string ClientPhone { get; set; }
+        public string countrytTelephoneCodeClient { get; set; }
+        public string countrytTelephoneCodeClientOffice { get; set; }
+        public string ClientPhone2 { get; set; }
+        public string ClientExtension { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_Client_Projects> LegaSys_Client_Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_Projects> LegaSys_Projects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LegaSys_CoClientDetails> LegaSys_CoClientDetails { get; set; }
     }
 }

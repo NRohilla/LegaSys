@@ -13,6 +13,7 @@ export class ClientServiceService {
   currentClientDetails: object;
   // This is the client API URL
   URL = environment.BaseAPIURL;
+   userDetailsID=parseInt(localStorage.getItem('userDetailsID'));
   constructor(private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService) { }
   CreateHeader() {
 
@@ -38,33 +39,27 @@ export class ClientServiceService {
 
   }
   AddClientDetails(client: Client) {
-    client.Created_By= parseInt(this.storage.get('userDetailsID'));
-    client.Updated_By=parseInt(this.storage.get('userDetailsID'));
+    client.Created_By=this.userDetailsID;
+    client.Updated_By=this.userDetailsID;
 
     return this.http.post(this.URL + '/Client/AddClientDetails', client ); // Add new client 
 
   }
   UpdateDetailsWithID(client: Client) {
-    client.Updated_By=parseInt(this.storage.get('userDetailsID'));
-    return this.http.put(this.URL + '/Client/UpdateClientDetails', client); // update perticular client 
+       return this.http.put(this.URL + '/Client/UpdateClientDetails', client); // update perticular client 
   }
   DeleteClient(ID) {
-    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
-    return this.http.delete(this.URL + '/Client/DeleteClientById?Id='+ID+'&userId='+userDetailsID); // delete perticular client 
-   
+      return this.http.delete(this.URL + '/Client/DeleteClientById?Id='+ID+'&userId='+this.userDetailsID); // delete perticular client    
   }
   GetClientAllProject(ID: number) {
     return this.http.get(this.URL + '/Client/GetProjectsByClientId/' + ID); // get all project of perticular client 
   }
   UpdateClientProjectWithId(projectDetails: ClientProject) {
-    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
-    return this.http.put(this.URL + '/Client/UpdateProjectDetailsWithId', projectDetails); // update project details of a perticular client 
-
+      return this.http.put(this.URL + '/Client/UpdateProjectDetailsWithId', projectDetails); // update project details of a perticular client 
   }
   ActivateClienthavingId(ID: number) {
     debugger;
-    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
-    return this.http.get(this.URL + '/Client/updateClientStatus?Id='+ID+'&userId='+userDetailsID);  // activating a client 
+       return this.http.get(this.URL + '/Client/updateClientStatus?Id='+ID+'&userId='+this.userDetailsID);  // activating a client 
   }
 
 

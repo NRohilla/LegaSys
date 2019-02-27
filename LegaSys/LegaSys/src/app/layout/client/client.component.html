@@ -41,9 +41,13 @@
       <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Country</span> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Country}} </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="conatct_number">
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Conatct Number</span> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.countrytTelephoneCodeClient}}-{{element.ClientPhone}} </mat-cell>
+      </ng-container>
     <!-- co client  Column -->
     <ng-container matColumnDef="CoClient">
-        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header>  <span class="text-white font-14">Status</span> </mat-header-cell>
+        <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef>  <span class="text-white font-14">Status</span> </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{GetStatus(element.IsActive)}} </mat-cell>
       </ng-container>
     <!--Action  Column, will contains button for View,Edit and Delete -->

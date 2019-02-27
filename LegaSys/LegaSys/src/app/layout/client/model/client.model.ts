@@ -22,9 +22,11 @@ export class Client {
      CompanyPhone:string;
      ClientCompanyFax:string;
      ClientPhone:string;
+     ClientPhone2:string;
      CoClientDetails:CoClientModal[]=[];
      countrytTelephoneCodeClient:string;
      countrytTelephoneCodeClientOffice:string;
+     ClientExtension:string;
    
 }
 export class ClientProject{

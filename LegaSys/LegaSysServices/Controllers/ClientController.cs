@@ -54,14 +54,22 @@ namespace LegaSysServices.Controllers
         //Post client details
         public IHttpActionResult AddClientDetails(ClientDetail Objclient)
         {
-         
+
             if (Objclient != null)
             {
                 //int.TryParse(((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var userId);
                 //Objclient.Created_By = userId;
                 //Objclient.Updated_By = userId;
                 int responce = _ClientRepository.AddClientDetails(Objclient);
-                return Json(new { success = true, Id = responce });
+                if (responce != 0)
+                {
+                    return Json(new { success = true, Id = responce });
+                }
+                else
+                {
+                    return Json(new { success = false});
+                }
+               
 
             }
             return BadRequest("Model cannot be null");

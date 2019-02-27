@@ -26,6 +26,7 @@ namespace LegaSysDataAccess
         public Nullable<System.DateTime> Updated_Date { get; set; }
         public string phone { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string countryCode { get; set; }
     
         public virtual LegaSys_ClientDetails LegaSys_ClientDetails { get; set; }
     }

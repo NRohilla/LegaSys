@@ -15,13 +15,20 @@ namespace LegaSysUOW.Repository
 {
     public class UOWClient : IUOWClient
     {
+       
         private readonly LegaSysEntities db;
-
-        public UOWClient(IDbFactory dbFactory)
+        private readonly IUOWCoClient _CoClientRepository;
+        public UOWClient(IDbFactory dbFactory, IUOWCoClient COClientRepository)
         {
             db = dbFactory.Init();
+            _CoClientRepository = COClientRepository;
 
         }
+       
+     
+
+
+
 
         public int AddClientDetails(ClientDetail Objclient)
         {
@@ -60,42 +67,26 @@ namespace LegaSysUOW.Repository
                     countrytTelephoneCodeClientOffice = Objclient.countrytTelephoneCodeClientOffice,
                     ClientCountry = Objclient.ClientCountry,
                     ClientPhone= Objclient.ClientPhone,
-                    countrytTelephoneCodeClient=Objclient.countrytTelephoneCodeClient
+                    ClientPhone2 = Objclient.ClientPhone2,
+                    ClientExtension=Objclient.ClientExtension,
+                    countrytTelephoneCodeClient =Objclient.countrytTelephoneCodeClient
                 };
                 db.LegaSys_ClientDetails.Add(model);
                 db.SaveChanges();
                 Result = model.ClientDetailID;
-                for (int i = 0; i < Objclient.CoClientDetails.Count; i++)
+                Boolean coCLientResult = _CoClientRepository.AddCoClient(Objclient.CoClientDetails, Result);
+                if (!coCLientResult)
                 {
-                    var coClientModel = new LegaSys_CoClientDetails
-                    {
-                        CoClientName = Objclient.CoClientDetails[i].Name,
-                        ClientDetailID = Result,
-                        Address = Objclient.CoClientDetails[i].Address,
-                        Country = Objclient.ClientCountry,
-                        EmailID = Objclient.CoClientDetails[i].Email,
-                        Created_By = Objclient.Created_By,
-                        Updated_By = Objclient.Updated_By,
-                        Created_Date = System.DateTime.UtcNow,
-                        Updated_Date = System.DateTime.UtcNow,
-                        phone = Objclient.CoClientDetails[i].Phone,
-                        IsActive = true,
-                        countryCode= Objclient.CoClientDetails[i].countryCode
-
-
-                    };
-                    db.LegaSys_CoClientDetails.Add(coClientModel);
-                    db.SaveChanges();
-
-
+                   Result = 0;
                 }
-                return Result;
+
+
 
 
             }
 
 
-            catch (Exception)
+            catch (Exception e)
             {
 
                 Result = 0;
@@ -113,25 +104,7 @@ namespace LegaSysUOW.Repository
 
             try
             {
-                List<CoClient> coClientList = db.LegaSys_CoClientDetails.Where(x => x.ClientDetailID == Id && x.IsActive == true).Select(x =>
-                  new CoClient
-                  {
-                      CoClientID = x.CoClientID,
-                      ClientDetailID = x.ClientDetailID,
-                      Name = x.CoClientName,
-                      Address = x.Address,
-                      Email = x.EmailID,
-                      Country = x.Country,
-                      Updated_By = x.Updated_By,
-                      Updated_Date = x.Updated_Date,
-                      Created_Date = x.Created_Date,
-                      Created_By = x.Created_By,
-                      Phone = x.phone,
-                      IsActive = x.IsActive,
-                      countryCode=x.countryCode
-
-
-                  }).ToList();
+                List<CoClient> coClientList = _CoClientRepository.GetAllCoClientByClientID(Id);
 
 
                 var ClientDetail = db.LegaSys_ClientDetails.Where(p => p.ClientDetailID == Id).FirstOrDefault();
@@ -164,7 +137,9 @@ namespace LegaSysUOW.Repository
                         ClientCountryZip = ClientDetail.ClientCountryZip,
                         CoClientDetails = coClientList,
                         ClientPhone= ClientDetail.ClientPhone,
-                        countrytTelephoneCodeClient=ClientDetail.countrytTelephoneCodeClient,
+                        ClientPhone2 = ClientDetail.ClientPhone2,
+                        ClientExtension=ClientDetail.ClientExtension,
+                        countrytTelephoneCodeClient =ClientDetail.countrytTelephoneCodeClient,
                         countrytTelephoneCodeClientOffice= ClientDetail.countrytTelephoneCodeClientOffice
 
 
@@ -208,6 +183,7 @@ namespace LegaSysUOW.Repository
                 obj.CompanyName = objClient.CompanyName;
                 obj.CompanyAddress = objClient.CompanyAddress;
                 obj.CompanyPhone = objClient.CompanyPhone;
+                obj.ClientExtension = objClient.ClientExtension;
                 obj.ClientCompanyFax = objClient.ClientCompanyFax;
                 obj.ClientCountry = objClient.ClientCountry;
                 obj.ClientCountryZip = objClient.ClientCountryZip;
@@ -217,55 +193,19 @@ namespace LegaSysUOW.Repository
                 obj.Updated_Date = System.DateTime.UtcNow;
                 obj.IsActive = true;
                 obj.ClientPhone = objClient.ClientPhone;
+                obj.ClientPhone2 = objClient.ClientPhone2;
                 db.LegaSys_ClientDetails.AddOrUpdate(obj);
-
-                for (int i = 0; i < objClient.CoClientDetails.Count; i++)
+                if(_CoClientRepository.UpdateCoClientByClientID(objClient.CoClientDetails, objClient.ClientDetailID))
                 {
-                    if (Convert.ToInt32(objClient.CoClientDetails[i].CoClientID)>0)
-                    {
-                        LegaSys_CoClientDetails coClientDetailsObj = new LegaSys_CoClientDetails();
-                        coClientDetailsObj.CoClientID = objClient.CoClientDetails[i].CoClientID.Value;
-                        coClientDetailsObj.ClientDetailID = objClient.CoClientDetails[i].ClientDetailID.Value;
-                        coClientDetailsObj.Address = objClient.CoClientDetails[i].Address;
-                        coClientDetailsObj.CoClientName = objClient.CoClientDetails[i].Name;
-                        coClientDetailsObj.Country = objClient.CoClientDetails[i].Country;
-                        coClientDetailsObj.EmailID = objClient.CoClientDetails[i].Email;
-                        coClientDetailsObj.phone = objClient.CoClientDetails[i].Phone;
-                        coClientDetailsObj.Created_By = objClient.CoClientDetails[i].Created_By;
-                        coClientDetailsObj.Created_Date = objClient.CoClientDetails[i].Created_Date;
-                        coClientDetailsObj.Updated_By = objClient.CoClientDetails[i].Updated_By;
-                        coClientDetailsObj.Updated_Date = objClient.CoClientDetails[i].Updated_Date;
-                        coClientDetailsObj.IsActive = objClient.CoClientDetails[i].IsActive;
-                        coClientDetailsObj.countryCode = objClient.CoClientDetails[i].countryCode;
-                        db.LegaSys_CoClientDetails.AddOrUpdate(coClientDetailsObj);
-
-
-                    }
-                    else
-                    {
-                        var coClientModel = new LegaSys_CoClientDetails
-                        {
-                            CoClientName = objClient.CoClientDetails[i].Name,
-                            ClientDetailID = objClient.ClientDetailID,
-                            Address = objClient.CoClientDetails[i].Address,
-                            Country = objClient.ClientCountry,
-                            EmailID = objClient.CoClientDetails[i].Email,
-                            Created_By = objClient.Updated_By,
-                            Updated_By = objClient.Updated_By,
-                            Created_Date = System.DateTime.UtcNow,
-                            Updated_Date = System.DateTime.UtcNow,
-                            phone = objClient.CoClientDetails[i].Phone,
-                            IsActive = true
-                        };
-                        db.LegaSys_CoClientDetails.Add(coClientModel);
-                    }
-
-
+                    db.SaveChanges();
+                    Result = true;
 
                 }
-                db.SaveChanges();
-
-                Result = true;
+                else
+                {
+                    Result = false;
+                }
+                
 
             }
             catch (Exception)
@@ -301,6 +241,8 @@ namespace LegaSysUOW.Repository
                     obj.Created_By = ClientDetail.Created_By;
                     obj.Updated_By = userId;
                     obj.ClientPhone = ClientDetail.ClientPhone;
+                    obj.ClientExtension = obj.ClientExtension;
+                    obj.ClientPhone2 = ClientDetail.ClientPhone2;
                     obj.countrytTelephoneCodeClient = ClientDetail.countrytTelephoneCodeClient;
                     obj.countrytTelephoneCodeClientOffice = ClientDetail.countrytTelephoneCodeClientOffice;
                     obj.Updated_Date = System.DateTime.UtcNow;
@@ -382,23 +324,19 @@ namespace LegaSysUOW.Repository
                 {
                     lstClient = db.LegaSys_ClientDetails.Select(s =>
                          new ClientDetail()
+                         
                          {
                              ClientDetailID = s.ClientDetailID,
                              ClientName = s.ClientName,
                              Address = s.Address,
                              Country = s.Country,
                              CoClient = s.CoClient,
-                             //CoClient2 = s.CoClient2,
-                             //CoClient3 = s.CoClient3,
-                             //CoClient4 = s.CoClient4,
+                             ClientPhone=s.ClientPhone,
+                             countrytTelephoneCodeClient = s.countrytTelephoneCodeClient,
                              EmailID = s.EmailID,
-                             //EmailID2 = s.EmailID2,
-                             //EmailID3 = s.EmailID3,
-                             //EmailID4 = s.EmailID4,
-                             //Created_By = s.Created_By,
-                             //Updated_By = s.Updated_By,
+                          
                              IsActive = (bool)s.IsActive
-                         }).ToList();
+                         }).OrderByDescending(x => x.ClientDetailID).ToList();
                 }
             }
             catch (Exception)

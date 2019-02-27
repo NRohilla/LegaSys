@@ -6,35 +6,29 @@
 
   <!-- client name column -->
   <ng-container matColumnDef="Name">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Name</span>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef > <span class="text-white font-14">Name</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
   </ng-container>
 
   <!-- client email Column -->
   <ng-container matColumnDef="Email">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Email</span>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Email</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Email}} </mat-cell>
   </ng-container>
 
   <!--client address Column -->
   <ng-container matColumnDef="Address">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Address</span>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Address</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Address}} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="countryCode">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Telephone country code</span> </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.countryCode}} </mat-cell>
-    </ng-container>
-  <!-- client country Column -->
   <ng-container matColumnDef="Contact_no">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Contact
-        Number</span> </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.Phone}} </mat-cell>
-  </ng-container>
-  <!-- co client  Column -->
+      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef > <span class="text-white font-14">Contact Number</span> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.countryCode}}-{{element.Phone}} </mat-cell>
+    </ng-container>
+  
   <ng-container matColumnDef="Action">
     <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef> <span class="text-white font-14"></span>
     </mat-header-cell>
@@ -49,80 +43,126 @@
 </mat-table>
 <form *ngIf="showCoClientForm"class="w-100 float-left table-active py-5 px-2" [formGroup]="coClientForm">
   <div class="row m-0">
-    <div class="col-lg-2 col-md-2 col-sm-2 col-2 float-left">
-      <mat-form-field>
-        <input formControlName="name" matInput placeholder="Name" maxlength="50" (change)="CheckForWhiteSpace('name')">
-        <mat-error *ngIf="coClientForm.controls['name'].invalid ">
-          <span *ngIf="coClientForm.controls['name'].errors.required"> Name can not be empty</span>
-          <span *ngIf="coClientForm.controls['name'].errors.pattern">Name can not cointain whitespace at beginning</span>
-         
-          </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-2 float-left">
-      <mat-form-field>
-        <input formControlName="email" matInput placeholder="Email">
-        <mat-hint ><strong>example: abc@gmail.com</strong> </mat-hint>
-        <mat-error *ngIf="coClientForm.controls['email'].invalid ">
-            
-          <span *ngIf="coClientForm.controls['email'].errors.required"> Email can not be empty</span>
-          <span *ngIf="coClientForm.controls['email'].errors.email"> Please enter valid email </span>
-          </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-2 float-left">
-      <mat-form-field>
-        <input formControlName="address" matInput placeholder="Address" (change)="CheckForWhiteSpace('address')">
-        <mat-error *ngIf="coClientForm.controls['address'].invalid ">
-          <span *ngIf="coClientForm.controls['address'].errors.required"> Address can not be empty</span>
-          <span *ngIf="coClientForm.controls['address'].errors.pattern">Address can not cointain whitespace at beginning</span>
-         </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-2 float-left">
-        <mat-form-field class="w-100">
-            <input   type="text" matInput formControlName="countryCode" [matAutocomplete]="auto2" placeholder="Telephone Country Code">
-            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" style="max-height: 200px !important">
-              <mat-option *ngFor="let option of filterBasedOptionsForCountryCode | async" [value]="option" style="max-height: 200px !important">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-    </mat-form-field>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+          <mat-form-field  class="w-100">
+              <input formControlName="name" matInput placeholder="Name" maxlength="50" (change)="CheckForWhiteSpace('name')">
+              <mat-error *ngIf="coClientForm.controls['name'].invalid ">
+                <span *ngIf="coClientForm.controls['name'].errors.required"> Name can not be empty</span>
+                <span *ngIf="coClientForm.controls['name'].errors.pattern">Name can not cointain whitespace at beginning</span>
+               
+                </mat-error>
+            </mat-form-field>
       </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-2 float-left">
-      <mat-form-field>
-        <input formControlName="contactNo" matInput placeholder="Contact Number" maxlength="10" minlength="10">
-        <mat-error *ngIf="coClientForm.controls['contactNo'].invalid ">
-          <span *ngIf="coClientForm.controls['contactNo'].errors.required"> Contact number can not be empty</span>
-          <span *ngIf="coClientForm.controls['contactNo'].errors.pattern"> Contact number can only numbers</span>
-          <span *ngIf="coClientForm.controls['contactNo'].errors.minlength && !coClientForm.controls['contactNo'].errors.pattern"> Contact number should be 10 charecter long</span>
-         </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="float-left w-100">
-      <div class="px-2 float-right">
-        <button mat-button class="btn btn-info" (click)="ClearSelection()"><i class="fa fa-times" aria-hidden="true"></i>
-          Clear</button>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+          <mat-form-field  class="w-100">
+              <input formControlName="email" matInput placeholder="Email">
+              <mat-hint ><strong>example: abc@gmail.com</strong> </mat-hint>
+              <mat-error *ngIf="coClientForm.controls['email'].invalid ">
+                  
+                <span *ngIf="coClientForm.controls['email'].errors.required"> Email can not be empty</span>
+                <span *ngIf="coClientForm.controls['email'].errors.email"> Please enter valid email </span>
+                <span  *ngIf="coClientForm.controls['email'].errors?.CheckEmail" >Please enter different email than the other co client emails</span>
+                            
+                </mat-error>
+            </mat-form-field>
       </div>
-      <div class="px-2 float-right">
-        <button type="button" *ngIf="selectedRowIndex==-1" [disabled]="!coClientForm.valid" mat-button class="btn btn-success" (click)="AddCoClientRow()"><i
-            class="fa fa-plus" aria-hidden="true"></i> Add</button>
-        <button type="button" *ngIf="selectedRowIndex!=-1" [disabled]="!coClientForm.valid" mat-button class="btn btn-success" (click)="UpdateCoclient()"><i
-            class="fa fa-save" aria-hidden="true"></i> Update</button>
-
+      <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+          <mat-form-field  class="w-100">
+              <input formControlName="address" matInput placeholder="Address" (change)="CheckForWhiteSpace('address')">
+              <mat-error *ngIf="coClientForm.controls['address'].invalid ">
+                <span *ngIf="coClientForm.controls['address'].errors.required"> Address can not be empty</span>
+                <span *ngIf="coClientForm.controls['address'].errors.pattern">Address can not cointain whitespace at beginning</span>
+               </mat-error>
+            </mat-form-field>
       </div>
-    </div>
-  
 
   </div>
-  
+  <div class="row m-0">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+          <mat-form-field class="w-100">
+          
+          <input   type="text" matInput formControlName="country" [matAutocomplete]="auto" placeholder="Country" >
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important"  (optionSelected)="SelectCountryCode()">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="max-height: 200px !important">
+            {{option}}
+          </mat-option>
+          </mat-autocomplete>
+          <!-- <mat-error *ngIf="personalDetailsForm.controls['country'].invalid  && (personalDetailsForm.controls['country'].dirty || personalDetailsForm.controls['country'].touched)">Country can not be blank</mat-error>
+                    -->
+          </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left"> 
+          <div class='row'>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
+                  <mat-form-field class="w-100">
+                      
+                          <input   type="text" matInput formControlName="countryCode" [matAutocomplete]="auto3" placeholder="Country Code" readonly="true" >
+                           <!-- <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" style="max-height: 200px !important">
+                            <mat-option *ngFor="let option of filterBasedOptionsForCountryCodePersonaTab | async" [value]="option" style="max-height: 200px !important">
+                              {{option}}
+                            </mat-option>
+                          </mat-autocomplete> -->
+                  </mat-form-field>
+
+          </div>
+          <div class="col-lg-9 col-md-9 col-sm-9 col-9 float-left">
+                     
+              <mat-form-field  class="w-100">
+                  <input formControlName="contactNo" matInput placeholder="Contact Number" maxlength="10" minlength="10">
+                  <mat-error *ngIf="coClientForm.controls['contactNo'].invalid ">
+                    <span *ngIf="coClientForm.controls['contactNo'].errors.required"> Contact number can not be empty</span>
+                    <span *ngIf="coClientForm.controls['contactNo'].errors.pattern"> Contact number can only numbers</span>
+                    <span *ngIf="coClientForm.controls['contactNo'].errors.minlength && !coClientForm.controls['contactNo'].errors.pattern"> Contact number should be 10 charecter long</span>
+                    <span  *ngIf="coClientForm.controls['contactNo'].errors?.contactNumber" >Please enter different number than the other co clients</span>
+                  
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      </div>
+      </div>
+      <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+          <mat-form-field class="w-100">
+              <input   type="text" matInput formControlName="countryCode" [matAutocomplete]="auto2" placeholder="Telephone Country Code">
+              <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" style="max-height: 200px !important">
+                <mat-option *ngFor="let option of filterBasedOptionsForCountryCode | async" [value]="option" style="max-height: 200px !important">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+      </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+          <mat-form-field  class="w-100">
+              <input formControlName="contactNo" matInput placeholder="Contact Number" maxlength="10" minlength="10">
+              <mat-error *ngIf="coClientForm.controls['contactNo'].invalid ">
+                <span *ngIf="coClientForm.controls['contactNo'].errors.required"> Contact number can not be empty</span>
+                <span *ngIf="coClientForm.controls['contactNo'].errors.pattern"> Contact number can only numbers</span>
+                <span *ngIf="coClientForm.controls['contactNo'].errors.minlength && !coClientForm.controls['contactNo'].errors.pattern"> Contact number should be 10 charecter long</span>
+               </mat-error>
+            </mat-form-field>
+      </div> -->
+  </div> 
+  <div class="row m-0">
+      <div class="float-left w-100">
+          <div class="px-2 float-right">
+            <button mat-button class="btn btn-info" (click)="ClearSelection()"><i class="fa fa-times" aria-hidden="true"></i>
+              Clear</button>
+          </div>
+          <div class="px-2 float-right">
+            <button type="button" *ngIf="selectedRowIndex==-1" [disabled]="!coClientForm.valid" mat-button class="btn btn-success" (click)="AddCoClientRow()"><i
+                class="fa fa-plus" aria-hidden="true"></i> Add</button>
+            <button type="button" *ngIf="selectedRowIndex!=-1" [disabled]="!coClientForm.valid" mat-button class="btn btn-success" (click)="UpdateCoclient()"><i
+                class="fa fa-save" aria-hidden="true"></i> Update</button>
+      
+          </div>
+        </div>
+  </div>
 
 </form>
+
 <div class="w-100 float-left table-info px-4 py-2 text-right footer-height" >
   <!-- This button will be used to add client into the database-->
   <div class="px-2 float-right">
-      <button  type="button"  mat-button class="btn btn-info" (click)="ShowCoClientAddForm()"><i class="fa fa-plus" aria-hidden="true"></i> Add Client</button>
+      <button  *ngIf="dataSource.data.length!=4" type="button"  mat-button class="btn btn-info" (click)="ShowCoClientAddForm()"><i class="fa fa-plus" aria-hidden="true"></i> Add Client</button>
       </div>
   
     <div class="px-2 float-right">

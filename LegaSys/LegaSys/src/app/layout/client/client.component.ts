@@ -24,10 +24,11 @@ export class ClientComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   // This is an array for Header in Grid displaying client details
-  displayedColumns: string[] = ['ClientName', 'Email', 'Address', 'Country', 'CoClient', 'action'];
+  displayedColumns: string[] = ['ClientName', 'Email', 'Address', 'Country', 'conatct_number','CoClient', 'action'];
   clientDetails: any = [];  // This array will hold the all client details
   Message: boolean = false;
   successMessage: string;
+  data:any
   isLoading = true;// this varibale will be used to display progressive spinner
 
 

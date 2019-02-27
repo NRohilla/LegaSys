@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div class="">
   <form class="w-100 float-left table-active py-5 px-2" [formGroup]="professionalDetailsForm">
       <div class="row m-0">
           <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
@@ -37,7 +37,7 @@
               <mat-form-field class="w-100">
                   <label *ngIf="readOnly"><strong>Country</strong></label>
       <input   [readonly]="readOnly" type="text" matInput formControlName="companyCountry" [matAutocomplete]="auto" [placeholder]="GetPlaceHolder('companyCountry')">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" style="max-height: 200px !important" (optionSelected)="SelectCountryCode()">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="max-height: 200px !important">
           {{option}}
         </mat-option>
@@ -58,34 +58,17 @@
        
     </div>
     <div class="row m-0">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
-            <mat-form-field class="w-100">
-                    <label *ngIf="readOnly"><strong>ZIP </strong></label>
-                <input  [readonly]="readOnly" formControlName="companyZipcode" matInput [placeholder]="GetPlaceHolder('companyZipcode')" maxlength="6" minlength="6">
-                <mat-error *ngIf="professionalDetailsForm.controls['companyZipcode'].invalid">
-                        <span *ngIf="professionalDetailsForm.controls['companyZipcode'].errors.required">
-                              ZIP can not be blank
-                        </span>               
-                        <span *ngIf="professionalDetailsForm.controls['companyZipcode'].errors.pattern">
-                                Can contain only numbers
-                          </span>   
-                          <span *ngIf="!professionalDetailsForm.controls['companyZipcode'].errors.pattern && professionalDetailsForm.controls['companyZipcode'].errors.minlength">
-                             ZIP sholud be 6 charecter long
-                          </span>    
-                     </mat-error>
-                 
-            </mat-form-field>
-        </div>
+        
         <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
             <mat-form-field class="w-100">
                     <label *ngIf="readOnly"><strong>Company Email </strong></label>
-                    <mat-hint ><strong>example: abc@gmail.com</strong> </mat-hint>
+                    <mat-hint style="margin-left: 377px;"><strong>example: abc@gmail.com</strong> </mat-hint>
                 <input  [readonly]="readOnly" formControlName="companyEmail" matInput [placeholder]="GetPlaceHolder('companyEmail')" >
                
                  
             </mat-form-field>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
                 <mat-form-field class="w-100">
                         <label *ngIf="readOnly"><strong>Telephone Country Code</strong></label>
                         <input  [readonly]="readOnly" type="text" matInput formControlName="countryCode" [matAutocomplete]="auto2" [placeholder]="GetPlaceHolder('countryCode')">
@@ -95,7 +78,60 @@
                           </mat-option>
                         </mat-autocomplete>
                 </mat-form-field>
-        </div>
+        </div> -->
+        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left"> 
+                <div class='row'>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-3 float-left">
+                        <mat-form-field class="w-100">
+                                <label *ngIf="readOnly"><strong>Country Code</strong></label>
+                                <input   type="text" matInput formControlName="countryCode" [matAutocomplete]="auto3" [placeholder]="GetPlaceHolder('countryCode')" readonly="true" >
+                                 <!-- <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" style="max-height: 200px !important">
+                                  <mat-option *ngFor="let option of filterBasedOptionsForCountryCodePersonaTab | async" [value]="option" style="max-height: 200px !important">
+                                    {{option}}
+                                  </mat-option>
+                                </mat-autocomplete> -->
+                        </mat-form-field>
+
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-9 float-left">
+                           
+                        <mat-form-field class="w-100">
+                                <label *ngIf="readOnly"><strong>Company Phone </strong></label>
+                            <input  [readonly]="readOnly" formControlName="companyPhone" matInput [placeholder]="GetPlaceHolder('companyPhone')" maxlength="10" minlength="10" >
+                           
+                            <mat-error *ngIf="professionalDetailsForm.controls['companyPhone'].invalid">
+                                    <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.required">
+                                          Company Phone number can bot be blank
+                                    </span>               
+                                    <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.pattern">
+                                           Please enter valid number
+                                      </span>
+                                      <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.minlength && !professionalDetailsForm.controls['companyPhone'].errors.pattern ">
+                                            Contact number should be of 10 charecter long
+                                      </span>  
+                                 </mat-error>
+                        </mat-form-field>
+                    </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                    <mat-form-field class="w-100">
+                            <label *ngIf="readOnly"><strong>Extension </strong></label>
+                        <input  [readonly]="readOnly" formControlName="extension" matInput [placeholder]="GetPlaceHolder('extension')" maxlength="5" minlength="1" >
+                       
+                        <mat-error *ngIf="professionalDetailsForm.controls['extension'].invalid">
+                                <span *ngIf="professionalDetailsForm.controls['extension'].errors.required">
+                                      Company Phone number can bot be blank
+                                </span>               
+                                <span *ngIf="professionalDetailsForm.controls['extension'].errors.pattern">
+                                       Please enter valid number
+                                  </span>
+                                  <span *ngIf="professionalDetailsForm.controls['extension'].errors.minlength && !professionalDetailsForm.controls['extension'].errors.pattern ">
+                                        Contact number should be of 1 - 5 charecter long
+                                  </span>  
+                             </mat-error>
+                    </mat-form-field>
+                </div>
        
        
        
@@ -103,24 +139,25 @@
      
   </div>
   <div class="row m-0">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
-                <mat-form-field class="w-100">
-                        <label *ngIf="readOnly"><strong>Company Phone </strong></label>
-                    <input  [readonly]="readOnly" formControlName="companyPhone" matInput [placeholder]="GetPlaceHolder('companyPhone')" maxlength="10" minlength="10" >
-                   
-                    <mat-error *ngIf="professionalDetailsForm.controls['companyPhone'].invalid">
-                            <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.required">
-                                  Company Phone number can bot be blank
-                            </span>               
-                            <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.pattern">
-                                   Please enter valid number
-                              </span>
-                              <span *ngIf="professionalDetailsForm.controls['companyPhone'].errors.minlength && !professionalDetailsForm.controls['companyPhone'].errors.pattern ">
-                                    Contact number should be of 10 charecter long
-                              </span>  
-                         </mat-error>
-                </mat-form-field>
-            </div>
+ 
+            <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
+                    <mat-form-field class="w-100">
+                            <label *ngIf="readOnly"><strong>Postal Code </strong></label>
+                        <input  [readonly]="readOnly" formControlName="companyZipcode" matInput [placeholder]="GetPlaceHolder('companyZipcode')" maxlength="6" minlength="6">
+                        <mat-error *ngIf="professionalDetailsForm.controls['companyZipcode'].invalid">
+                                <span *ngIf="professionalDetailsForm.controls['companyZipcode'].errors.required">
+                                     Postal code can not be blank
+                                </span>               
+                                <span *ngIf="professionalDetailsForm.controls['companyZipcode'].errors.pattern">
+                                        Postal code contain only numbers
+                                  </span>   
+                                  <span *ngIf="!professionalDetailsForm.controls['companyZipcode'].errors.pattern && professionalDetailsForm.controls['companyZipcode'].errors.minlength">
+                                        Postal code sholud be 6 charecter long
+                                  </span>    
+                             </mat-error>
+                         
+                    </mat-form-field>
+                </div>
      
       <div class="col-lg-4 col-md-4 col-sm-4 col-6 float-left">
           <mat-form-field class="w-100">

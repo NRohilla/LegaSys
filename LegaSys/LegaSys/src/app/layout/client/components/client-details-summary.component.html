@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div class="">
 <div class="w-100 float-left table-active py-4 px-2" *ngIf="currentClientDetails">
       <div class="row mx-0 my-2">
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
@@ -21,48 +21,65 @@
                         <div class="float-left">{{currentClientDetails.EmailID2}}</div>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                        <div class="summary-lebel float-left"><strong>Company Name:</strong></div>
-                        <div class="float-left">{{currentClientDetails.CompanyName}}</div>
+                        <div class="summary-lebel float-left"><strong>Secondary Email ID :</strong></div>
+                        <div class="float-left">{{currentClientDetails.EmailID3}}</div>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                        <div class="summary-lebel float-left"><strong>Company Adsress:</strong></div>
-                        <div class="float-left">{{currentClientDetails.CompanyAddress}}</div>
-                  </div>
+                              <div class="summary-lebel float-left"><strong>Contact Number :</strong></div>
+                              <div class="float-left">{{currentClientDetails.countrytTelephoneCodeClient}}-{{currentClientDetails.ClientPhone}}</div>
+                        </div>
+                 
       
             </div>
       <div class="row mx-0 my-2">
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                              <div class="summary-lebel float-left"><strong>Company Name:</strong></div>
+                              <div class="float-left">{{currentClientDetails.CompanyName}}</div>
+                        </div>
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                              <div class="summary-lebel float-left"><strong>Company Address:</strong></div>
+                              <div class="float-left">{{currentClientDetails.CompanyAddress}}</div>
+                        </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>Office Email ID :</strong></div>
                   <div class="float-left">{{currentClientDetails.EmailID}}</div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                  <div class="summary-lebel float-left"><strong>Office Phone:</strong></div>
-                  <div class="float-left">{{currentClientDetails.countrytTelephoneCodeClientOffice}}-{{currentClientDetails.CompanyPhone}}</div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                  <div class="summary-lebel float-left"><strong>Fax :</strong></div>
-                  <div class="float-left">{{currentClientDetails.ClientCompanyFax}}</div>
-            </div>
+          
 
       </div>
       <div class="row mx-0 my-2">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                  <div class="summary-lebel float-left"><strong>No Of Project :</strong></div>
-                  <div class="float-left">{{clientProjectsList.length}}</div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                  <div class="summary-lebel float-left"><strong>No of Resourse Hired:</strong></div>
-                  <div class="float-left">{{resourseCount}}</div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
-                        <div class="summary-lebel float-left"><strong>No of Co-Client</strong></div>
-                        <div class="float-left">{{currentClientDetails.CoClientDetails.length}}</div>
-                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                              <div class="summary-lebel float-left"><strong>Office Phone:</strong></div>
+                              <div class="float-left">{{currentClientDetails.countrytTelephoneCodeClientOffice}}-{{currentClientDetails.CompanyPhone}}</div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                    <div class="summary-lebel float-left"><strong>Extension:</strong></div>
+                                    <div class="float-left">{{currentClientDetails.ClientExtension}}</div>
+                              </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                              <div class="summary-lebel float-left"><strong>Fax :</strong></div>
+                              <div class="float-left">{{currentClientDetails.ClientCompanyFax}}</div>
+                        </div>
+           
             <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
                   <div class="summary-lebel float-left"><strong>Secondry Co-Client:</strong></div>
                   <div class="float-left">{{currentClientDetails.CoClient2}}</div>
             </div> -->
 
+      </div>
+      <div class="row mx-0 my-2">
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                              <div class="summary-lebel float-left"><strong>No Of Project :</strong></div>
+                              <div class="float-left">{{clientProjectsList.length}}</div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                              <div class="summary-lebel float-left"><strong>No of Resourse Hired:</strong></div>
+                              <div class="float-left">{{resourseCount}}</div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">
+                                    <div class="summary-lebel float-left"><strong>No of Co-Client</strong></div>
+                                    <div class="float-left">{{currentClientDetails.CoClientDetails.length}}</div>
+                              </div>
       </div>
     <!--  <div class="row mx-0 my-2">
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 float-left">

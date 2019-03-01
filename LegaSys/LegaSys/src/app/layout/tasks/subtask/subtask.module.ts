@@ -1,6 +1,6 @@
 //changes by team
 import { NgModule  } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { SubTaskRoutingModule} from './subtask-routing.module';
 import { SubtaskComponent } from './subtask.component';
@@ -33,7 +33,8 @@ import { TasksService } from '../tasks.service';
               MatProgressSpinnerModule,
               MatCardModule ,
               MatExpansionModule,
-              ReactiveFormsModule
+              ReactiveFormsModule,
+              
             
             ],
             providers: [TasksService],

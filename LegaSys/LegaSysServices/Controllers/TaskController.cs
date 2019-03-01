@@ -129,11 +129,12 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult Post(int id,[FromBody] SubTaskDetail objSubTask)
         {
             //Fetching UserId
-            int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+            //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
 
-            _uOWSubTask.CreateProjectSubTaskDetail(id, objSubTask, createdBy);
-
-            return Json(new { success = true });
+           bool Status= _uOWSubTask.CreateProjectSubTaskDetail(id, objSubTask);
+            if (Status)
+            return Json(new { success = Status});
+            return Json(new { success =Status} );
         }
 
         //Method to update task
@@ -153,6 +154,7 @@ namespace LegaSysServices.Controllers
             return Json(new { id = lsProjects, message = "Project Task Updated successfully." });
         }
 
+        
 
 
         //METHOD TO DELETE TASK
@@ -161,9 +163,14 @@ namespace LegaSysServices.Controllers
 
         public IHttpActionResult DeleteProjectTask(int id)
         {
-            _Taskdt.DeleteProjectTask(id);
+            bool Status= _Taskdt.DeleteProjectTask(id);
 
-            return Json(new { success = true });
+            if (Status)
+                return Json(new { success = Status });
+            return Json(new { success = Status });
+
+
+         
 
         }
 

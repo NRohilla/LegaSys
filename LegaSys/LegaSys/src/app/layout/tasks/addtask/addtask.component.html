@@ -17,9 +17,9 @@
         <!-- Select Project Name -->
       <div class="col-md-4">
               <mat-form-field class="w-100">
-                      <mat-label style="font-weight:bold;font-size:15px;color: black">Project Title</mat-label>
+                      <mat-label style="font-weight:bold;font-size:15px;color: black">Please select project</mat-label>
                       <BR>
-                       <mat-select placeholder="Project Name" formControlName="Project_ID" required >
+                       <mat-select (selectionChange)="onChange($event.value)"  id="Project_ID" placeholder="Project Name" formControlName="Project_ID" required >
              
                                           <mat-option *ngFor="let projects of myprojects" [value]="projects.ProjectID">
                                                 {{projects.Title}}
@@ -166,18 +166,18 @@
                     <mat-form-field class="w-100">
                              <mat-label style="font-weight:bold;font-size:15px;color: black">Assinged To</mat-label>
                         <BR>
-                            <mat-select placeholder="Task_AssignTo" formControlName=Task_AssignTo required>
+                            <mat-select placeholder="UserId" formControlName=UserId required>
            
-                                         <mat-option *ngFor="let assignee of taskAssignee" [value]="assignee.Firstname">
-                                              {{assignee.Firstname}}
+                                         <mat-option *ngFor="let assignee of taskAssignee" [value]="assignee.Resource_ID">
+                                              {{assignee.ResourceName}}
                                           
                                         </mat-option> 
     
                             </mat-select>
     
                      <!-- Validation Error Message -->
-                        <mat-error *ngIf="taskForm.controls.Task_AssignTo.invalid">
-                              <span [hidden]="!taskForm.controls['Task_AssignTo'].errors.required">
+                        <mat-error *ngIf="taskForm.controls.UserId.invalid">
+                              <span [hidden]="!taskForm.controls['UserId'].errors.required">
                                     Please Assingn Task.
                               </span>
                          </mat-error>
@@ -263,9 +263,9 @@
 
  <div class="col-md-4">
       <div class="w-100">
-        <mat-label style="font-weight:bold;font-size:15px;color: black;     display: block; margin-bottom: 5px;">Description</mat-label>
+            <mat-label style="font-weight:bold;font-size:15px;color: black;     display: block; margin-bottom: 5px;">Description</mat-label>
      
-        <textarea class="form-control rounded-0" id="taskDescription" Placeholder="Description" rows="3"  formControlName= "taskDescription"></textarea>
+        <textarea class="form-control rounded-0" style="font-size: 15px" id="taskDescription" Placeholder="Description" rows="3"  formControlName= "taskDescription"></textarea>
       </div>      
 </div>
 
@@ -273,9 +273,9 @@
 
 <div class="col-md-4">
 <div class="w-100">
-<mat-label style="font-weight:bold;font-size:15px;color: black;  display: block; margin-bottom: 5px;">Acceptance Criteria</mat-label>
+<mat-label style="font-weight:bold;font-size:15px;color: black;     display: block;; margin-bottom: 5px;">Acceptance Criteria</mat-label>
 
-<textarea class="form-control rounded-0" id="acceptancecriteria" Placeholder="acceptance criteria" rows="3"   formControlName= "acceptancecriteria"></textarea>
+<textarea class="form-control rounded-0" style="font-size: 15px"  id="acceptancecriteria" Placeholder="acceptance criteria" rows="3"   formControlName= "acceptancecriteria"></textarea>
 </div>
 
     </div>
@@ -316,11 +316,11 @@
            </mat-form-field>
 
            <mat-form-field  class="w-100">
-             <input matInput placeholder="Remaining(hr)" type="number" min="0">
+             <input matInput placeholder="Remaining(hr)" type="number" min="0"  [readonly]="true">
              </mat-form-field>
 
            <mat-form-field  class="w-100">
-            <input matInput placeholder="Completed(hr)"  type="number" min="0" >
+            <input matInput placeholder="Completed(hr)"  type="number" min="0"  [readonly]="true">
              </mat-form-field>
           
          </mat-expansion-panel>

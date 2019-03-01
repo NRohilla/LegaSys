@@ -72,7 +72,7 @@ namespace LegaSysUOW.Repository
                                     Completed = (x.subtasks.SubTaskCompleted),
                                     Remaining = (x.subtasks.SubTaskRemaining),
                                     Status_Id = x.subtasks.SubTask_Status,
-
+                                    SubTask_Status_Icon= db.LegaSys_TaskStatus.SingleOrDefault(TaskIcon_obj => TaskIcon_obj.Status_Id == x.subtasks.SubTask_Status)?.Status_Icon,
                                     SubTask_Status = db.LegaSys_TaskStatus.SingleOrDefault(SubTaskStatus_obj => SubTaskStatus_obj.Status_Id == x.subtasks.SubTask_Status)?.Status_Type,
                                     Priority_Id = x.subtasks.SubTask_Priority,
                                     SubTask_Priority = db.LegaSys_Priority.SingleOrDefault(SubTaskPriority_obj => SubTaskPriority_obj.Priority_Id == x.subtasks.SubTask_Priority)?.Priority_Type,
@@ -108,7 +108,7 @@ namespace LegaSysUOW.Repository
 
 
         //Method for creating new Subtask.******SADHANA********
-        public bool CreateProjectSubTaskDetail(int id,SubTaskDetail objSubTask, int createdBy)
+        public bool CreateProjectSubTaskDetail(int id,SubTaskDetail objSubTask)
         {
 
 
@@ -157,7 +157,7 @@ namespace LegaSysUOW.Repository
 
                 // Attachment_ID = attachment.AttachmentID,
 
-                Created_By = createdBy,
+               // Created_By = createdBy,
 
                 SubTaskAcceptance_Criteria = objSubTask.SubTaskAcceptance_Criteria,
 
@@ -166,10 +166,6 @@ namespace LegaSysUOW.Repository
                 SubTaskStart_Date = objSubTask.SubTaskStart_Date,
 
                 Created_Date = DateTime.Now,
-
-                SubTask_Activity = objSubTask.Activity_Id,
-
-                SubTask_AssignTo = db.LegaSys_ProjectTasks.SingleOrDefault(Task_obj => Task_obj.ProjectTaskID == objSubTask.Project_Task_ID)?.Task_AssignTo,
 
                 SubTask_Priority = objSubTask.Priority_Id,
 
@@ -256,8 +252,8 @@ namespace LegaSysUOW.Repository
         {
 
             var SubTask = (from subtasks in db.LegaSys_ProjectSubTasks
-                        where (subtasks.Title == subtaskTittle)
-                        select subtasks).FirstOrDefault();
+                           where (subtasks.Title == subtaskTittle)
+                           select subtasks).FirstOrDefault();
 
             if (SubTask == null)
             {

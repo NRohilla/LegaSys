@@ -90,7 +90,7 @@ export class SharedService {
         // const headers = new Headers();
         // headers.append(this.storage.get('UserToken').access_token, '');
         // return this.http.get(this.url +'/project/GetAllTechDomains', this.headers);
-        return this.http.get(this.url +'project/GetAllTechDomains');
+        return this.http.get(this.url +'/project/GetAllTechDomains');
     }
 
 
@@ -149,3 +149,5 @@ export class SharedService {
     //}
 
 }
+
+

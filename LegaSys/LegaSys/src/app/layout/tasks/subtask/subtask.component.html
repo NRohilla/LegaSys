@@ -7,29 +7,36 @@
       <div class="example-container" style="padding-left:20px;padding-right: 20px; padding-top: 20px">    
          
             <div class="row">
-                <div class="col-md-4">
-                      <mat-label style ="font-weight:bold;font-size:15px;color: black">Project ID : </mat-label>
+                <div class="col-md-3">
+                      <mat-label style ="font-weight:bold;font-size:15px;color: black">Project: </mat-label>
 
                             <mat-label>{{project_Title}}</mat-label>        
                   
                  </div>
-                 <div class="col-md-4">
-                              <mat-label style ="font-weight:bold;font-size:15px;color: black">Task Title : </mat-label>
+                 <div class="col-md-3">
+                              <mat-label style ="font-weight:bold;font-size:15px;color: black">Task: </mat-label>
                               
                                   <mat-label>{{task_Title}}</mat-label>  
                 </div>
-                <div class="col-md-4">
-                  <mat-label style ="font-weight:bold;font-size:15px;color: black">Task_Assign To : </mat-label>
+                <div class="col-md-3">
+                  <mat-label style ="font-weight:bold;font-size:15px;color: black">Task Assign To: </mat-label>
                   
                       <mat-label>{{taskAssignTo}}</mat-label>  
                </div>
+
+               <div class="col-md-3">
+                    <mat-label style ="font-weight:bold;font-size:15px;color: black">Activity: </mat-label>
+                
+                    <mat-label>{{subtaskActivity}}</mat-label>  
+             </div>
+               
              </div>
        
         </div>
  
   
 <!-- Filtering The Table -->
-<div class="col-md-3">
+<div class="col-md-3" *ngIf="disableDatatable" >
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
 </mat-form-field>
@@ -44,8 +51,8 @@
 
 
 <!-- table-active -->
-
-<mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
+<div *ngIf="disableDatatable">
+<mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8" >
 
 
   <!-- SubTask Tittle column -->
@@ -59,7 +66,7 @@
   <ng-container matColumnDef="SubTask_Description">
            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Description</span>
            </mat-header-cell>
-           <mat-cell *matCellDef="let element"> {{element.SubTask_Description}} </mat-cell>
+           <mat-cell *matCellDef="let element">  {{element.SubTask_Description}} </mat-cell>
   </ng-container>
 
   
@@ -68,7 +75,7 @@
            <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Status</span>
            </mat-header-cell>
      <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
-           <mat-cell *matCellDef="let element">{{element.SubTask_Status}} </mat-cell>
+           <mat-cell *matCellDef="let element">   <img src={{element.SubTask_Status_Icon}} height="15" width="15" > {{element.SubTask_Status}} </mat-cell>
        
     </ng-container>
   
@@ -154,8 +161,20 @@
   </mat-row>
 
 </mat-table>
+</div>
 
-<div>
+
+<div  style="text-align: center; color:lightgray; padding:  60px 0 50px; font-size: 30px ;font-family: 'Times New Roman', Times, serif" *ngIf="disableMessage">  
+  
+      <b>  
+          <i>NO RECORDS TO DISPLAY !!</i>  
+      </b>  
+
+</div>  
+
+
+
+<div *ngIf="disableDatatable" >
   <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="table-active"></mat-paginator>
 
 </div>
@@ -275,7 +294,7 @@
   
   
                <!-- Select SubTask Activity  -->
-               <div class="col-md-4">
+               <!-- <div class="col-md-4">
                     <mat-form-field class="w-100">
                              <mat-label style="font-weight:bold;font-size:15px;color: black"> Activity</mat-label>
                         <BR>
@@ -286,10 +305,10 @@
                                           
                                         </mat-option>  
   
-                            </mat-select>
+                            </mat-select> -->
     
                      <!-- Validation Error Message -->
-                        <mat-error *ngIf="subtaskForm.controls.Activity_Id.invalid">
+                        <!-- <mat-error *ngIf="subtaskForm.controls.Activity_Id.invalid">
                               <span [hidden]="!subtaskForm.controls['Activity_Id'].errors.required">
                                     Please set the SubTask Activity Area.
                               </span>
@@ -297,7 +316,7 @@
                     
                     </mat-form-field>
             </div>
-             
+              -->
               
              
                <!-- SubTask Start Date Coloumn -->
@@ -313,6 +332,10 @@
                                   <span [hidden]="!subtaskForm.controls['SubTaskStart_Date'].errors.required">
                                           Please select the Start Date in Date Formate Only(Characters not allowed) .
                                   </span>
+
+                                  <span class="alert alert-danger" *ngIf="subtaskForm.controls['SubTaskStart_Date'].errors?.matchval" class="d-block w-100 border-0 mat-error">
+                                    Start date must be in between Task Start Date and Task Target Date.
+                             </span>
                                 
                              </mat-error>
   
@@ -386,7 +409,7 @@
            <div class="w-100">
                <mat-label style="font-weight:bold;font-size:15px;color: black;display: block; margin-bottom: 5px;">Description</mat-label>
        
-              <textarea class="form-control rounded-0" id="subtaskDescription" Placeholder="Description" rows="3"  formControlName= "SubTask_Description"></textarea>
+              <textarea class="form-control rounded-0" style="font-size: 15px" id="subtaskDescription" Placeholder="Description" rows="3"  formControlName= "SubTask_Description"></textarea>
           </div>      
     </div>
   
@@ -396,7 +419,7 @@
              <div class="w-100">
                   <mat-label style="font-weight:bold;font-size:15px;color: black;  display: block; margin-bottom: 5px;">Acceptance Criteria</mat-label>
   
-                 <textarea class="form-control rounded-0"  Placeholder="acceptance criteria" rows="3"   formControlName= "SubTaskAcceptance_Criteria"></textarea>
+                 <textarea class="form-control rounded-0" style="font-size: 15px"   Placeholder="acceptance criteria" rows="3"   formControlName= "SubTaskAcceptance_Criteria"></textarea>
             </div>
   
        </div>
@@ -429,11 +452,11 @@
              </mat-form-field>
   
              <mat-form-field  class="w-100">
-               <input matInput placeholder="Remaining(hr)" type="number" min="0">
+               <input matInput placeholder="Remaining(hr)" type="number" min="0"  [readonly]="true">
                </mat-form-field>
   
              <mat-form-field  class="w-100">
-              <input matInput placeholder="Completed(hr)"  type="number" min="0" >
+              <input matInput placeholder="Completed(hr)"  type="number" min="0"  [readonly]="true">
                </mat-form-field>
             
            </mat-expansion-panel>

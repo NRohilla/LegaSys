@@ -38,23 +38,11 @@
       <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Status</span>
       </mat-header-cell>
       <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
-      <mat-cell *matCellDef="let element"> {{element.Status_Type}} </mat-cell>
+      <mat-cell *matCellDef="let element">
+          <img src={{element.Status_Icon}} height="15" width="15" > {{element.Status_Type}}</mat-cell>
+         <!-- <mat-chip color="primary" selected style="padding: 5px; border-radius: 4px;"> {{element.Status_Type}}</mat-chip></mat-cell> -->
      
     </ng-container>
-
-     <!-- Task Status icon -->
-  <!-- <ng-container matColumnDef="Status_Icon">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14"> icon </span>
-      </mat-header-cell>
-    the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
-
-    <!--  <mat-cell *matCellDef="let element">
-    
-         <img src={{element.Status_Icon}}  height="42" width="42">  </mat-cell> 
-     
-    </ng-container> -->
-
-
 
 <!-- Task Priority Coloumn -->
     <ng-container matColumnDef="Task_Priority">

@@ -27,5 +27,9 @@ namespace LegaSysUOW.Interface
 
         //for updating the GIT on 06/12/2018
 
+
+        // ..................Created By Sadhana..........Dated 2/28/2019
+        IEnumerable<ProjectDetail> GetAllAssignedProjects();
+
     }
 }

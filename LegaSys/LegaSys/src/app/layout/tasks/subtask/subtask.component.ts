@@ -10,6 +10,8 @@ import { EditComponent } from '../../project/edit/edit.component';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { DataSource } from '@angular/cdk/table';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -20,7 +22,7 @@ import { DataSource } from '@angular/cdk/table';
   styleUrls: ['./subtask.component.scss']
 })
 export class SubtaskComponent implements OnInit {
-  LebalForm :FormGroup;
+  LebalForm: FormGroup;
   subtaskForm: FormGroup;
   dataSource: any;
   isSave: boolean = true;
@@ -40,31 +42,40 @@ export class SubtaskComponent implements OnInit {
   attachmentName: string;
   selectedFile: File;
   formDirective: FormGroupDirective;
-  newPath : any;
-  project_Title:any;
-  task_Title:any;
-  subTask_ID:any;
-  taskAssignTo:any;
+  newPath: any;
+  project_Title: any;
+  task_Title: any;
+  subTask_ID: any;
+  taskAssignTo: any;
   subtaskStatus: any;
-  subtaskRisk:any;
-  subtaskPriority:any;
-  subtaskAssignee:any;
-  subtaskActivity:any
-  classif:any;
-  acceptance:any;
-  subtaskClassification: any = 
-  [
-      {value: '1', viewValue: 'Functional'},
-      {value: '2', viewValue: 'Business'},
-   ];
+  subtaskRisk: any;
+  subtaskPriority: any;
+  subtaskAssignee: any;
+  subtaskActivity: any
+  classif: any;
+  acceptance: any;
+  disableDatatable: any = true;
+  disableMessage: any = false;
+  taskActivity: any;
+  date:any;
 
-  
- 
 
-  displayedColumns: string[] = ['ProjectSubTaskID','SubTask_Title','SubTask_Status','SubTask_Priority','SubTask_Activity','SubTaskStart_Date','SubTaskTarget_Date','SubTaskOriginal_Estimate','Action',];
 
-  constructor(public dataService: TasksService, private router: Router, public Formbuilder: FormBuilder, public toastr: TosterService)
-   {
+  projectTitle: any;
+
+  projectId: any;
+  subtaskClassification: any =
+    [
+      { value: '1', viewValue: 'Functional' },
+      { value: '2', viewValue: 'Business' },
+    ];
+
+
+
+
+  displayedColumns: string[] = ['ProjectSubTaskID', 'SubTask_Title', 'SubTask_Status', 'SubTask_Priority', 'SubTaskStart_Date', 'SubTaskTarget_Date', 'SubTaskOriginal_Estimate', 'Action',];
+
+  constructor(public dataService: TasksService, private router: Router, public Formbuilder: FormBuilder, public toastr: TosterService ,) {
     this.subtaskForm = this.Formbuilder.group
       ({
         SubTask_Title: ['', [Validators.required, Validators.maxLength(25)]],
@@ -72,20 +83,19 @@ export class SubtaskComponent implements OnInit {
         Status_Id: ['', Validators.required],
         Priority_Id: ['', Validators.required],
         Risk_Id: ['', Validators.required],
-        Activity_Id:['', Validators.required],
-        Classification:['', Validators.required ],
-        SubTaskAcceptance_Criteria:['',Validators.required],
-        SubTaskOriginal_Estimate:['',Validators.required],
-        Remaining:[''],
-        Completed:[''],
-        SubTaskStart_Date:['',Validators.required],
-        SubTaskTarget_Date:['',Validators.required],
-        },
-         {
-              validator: this.matchval // my validation method
-         });
-     
-    
+        Classification: ['', Validators.required],
+        SubTaskAcceptance_Criteria: ['', Validators.required],
+        SubTaskOriginal_Estimate: ['', Validators.required],
+        Remaining: [''],
+        Completed: [''],
+        SubTaskStart_Date: ['', Validators.required],
+        SubTaskTarget_Date: ['', Validators.required],
+      },
+        {
+          validator: this.matchval // my validation method
+        });
+
+
     this.files = [];
     this.myModel = new TaskModel();
 
@@ -98,25 +108,31 @@ export class SubtaskComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit() 
-  {
-   
-    if(localStorage.getItem('isLoggedin')=='true'){
-     
-   
+  ngOnInit() {
 
-    this.ProjectTaskId = sessionStorage.getItem("currentId");
+    debugger;
+    if (localStorage.getItem('isLoggedin') == 'true') {
 
-    this.GetAllSubTaskByTaskID(this.ProjectTaskId);
-    this.GetTaskStatus();
-    this.GetTaskRisk();
-    this. GetTaskPriority();
-    this.GetAllAssignee();
-    this.GetTaskActivity();
-  }
-  else{
-    this.router.navigateByUrl("/login");
-  }
+      this.ProjectTaskId = sessionStorage.getItem("currentId");
+
+      this.project_Title = localStorage.getItem("projectTitle");
+
+      this.task_Title = localStorage.getItem("taskTitle");
+
+      this.taskAssignTo = localStorage.getItem("taskAssignTo");
+
+      this.subtaskActivity = localStorage.getItem("subtaskActivity");
+
+      this.GetAllSubTaskByTaskID(this.ProjectTaskId);
+      this.GetTaskStatus();
+      this.GetTaskRisk();
+      this.GetTaskPriority();
+
+
+    }
+    else {
+      this.router.navigateByUrl("/login");
+    }
 
   }
 
@@ -129,28 +145,28 @@ export class SubtaskComponent implements OnInit {
     this.toastr.showSuccess('Subtask Updated Successfully');
   }
   //  Method For Fetch Data against ID
-  GetAllSubTaskByTaskID(ID) 
-  {
-  debugger;
-//vs
+  GetAllSubTaskByTaskID(ID) {
+    debugger;
+
     this.dataService.GetAllProjectSubTaskbyTaskId(ID).subscribe(
       res => {
         this.dataSource = new MatTableDataSource<TaskModel>();
         this.dataSource.data = res;
-       
-        this.project_Title=this.dataSource.data[0].Project_Title;
-        this.task_Title=this.dataSource.data[0].TaskTitle
-        this.taskAssignTo=this.dataSource.data[0].SubTask_AssignTo;
-       
-      
-  
-      
+
+        if (this.dataSource.data.length == 0) {
+          this.disableDatatable = false;
+          this.disableMessage = true;
+        }
+
+
         if (this.dataSource.data.value != null) {
           this.disable = false;
+
         }
         else {
-
           this.disable = true;
+
+          // this.disableMessage=true;
         }
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -163,149 +179,103 @@ export class SubtaskComponent implements OnInit {
     );
   }
 
-    //method for getting status from db
-    GetTaskStatus()
-    {
-    
-        this.dataService.GetTaskStatus().subscribe
-        (
-            data =>{
+  //method for getting status from db
+  GetTaskStatus() {
 
-            this.subtaskStatus= data; // FILL THE ARRAY WITH DATA.
-            },
-            (err) =>
-            
-            {
-              console.log(err);
-            }
+    this.dataService.GetTaskStatus().subscribe
+      (
+        data => {
 
-        );
-    }
+          this.subtaskStatus = data; // FILL THE ARRAY WITH DATA.
+        },
+        (err) => {
+          console.log(err);
+        }
 
-
- //method for getting risk from db
- GetTaskRisk()
- {
-  
-     this.dataService.GetTaskRisk().subscribe
-     (
-         data =>{
-
-         this.subtaskRisk= data; // FILL THE ARRAY WITH DATA.
-         },
-         (err) =>
-         
-         {
-           console.log(err);
-         }
-
-     );
- }
+      );
+  }
 
 
   //method for getting risk from db
-  GetTaskPriority()
-  {
-   
-      this.dataService.GetTaskPriority().subscribe
+  GetTaskRisk() {
+
+    this.dataService.GetTaskRisk().subscribe
       (
-          data =>{
- 
-          this.subtaskPriority= data; // FILL THE ARRAY WITH DATA.
-          },
-          (err) =>
-          
-          {
-            console.log(err);
-          }
- 
+        data => {
+
+          this.subtaskRisk = data; // FILL THE ARRAY WITH DATA.
+        },
+        (err) => {
+          console.log(err);
+        }
+
       );
   }
-    
+
 
   //method for getting risk from db
-  GetAllAssignee()
-  {
-    
-      this.dataService.GetTaskAssignee().subscribe
+  GetTaskPriority() {
+
+    this.dataService.GetTaskPriority().subscribe
       (
-          data =>{
- 
-          this.subtaskAssignee= data; // FILL THE ARRAY WITH DATA.
-          },
-          (err) =>
-          
-          {
-            console.log(err);
-          }
- 
+        data => {
+
+          this.subtaskPriority = data; // FILL THE ARRAY WITH DATA.
+        },
+        (err) => {
+          console.log(err);
+        }
+
       );
   }
 
-  //binding dropdown task activity
-  GetTaskActivity()
-  {
-   
-      this.dataService.GetTaskActivity().subscribe
-      (
-          data =>{
- 
-          this.subtaskActivity= data; // FILL THE ARRAY WITH DATA.
-          },
-          (err) =>
-          
-          {
-            console.log(err);
-          }
- 
-      );
-  }
+
 
 
   //Method to save Uploads
   onFileChanged(event: any) {
-  
+
     this.files = event.target.files;
-    this.attachmentType =  this.files[0].type;
+    this.attachmentType = this.files[0].type;
     this.attachmentPath = event.target.value;
     this.attachmentName = this.files[0].name;
     this.postFiles(this.files);
-        
+
 
   }
 
 
- 
+
   highlight(row) {
     debugger;
     this.formType = "Update";
     this.edit();
     this.selectedRowIndex = row.ProjectSubTaskID;
-    this.subTask_ID=row.ProjectSubTaskID;
-   
+    this.subTask_ID = row.ProjectSubTaskID;
+
     this.subtaskForm.setValue({
-  
+
       SubTask_Title: row.SubTask_Title,
       SubTask_Description: row.SubTask_Description,
-      Status_Id:row.Status_Id,
-      Priority_Id:row.Priority_Id,
-      Risk_Id:row.Risk_Id,
-      Activity_Id:row.Activity_Id,
-      SubTaskStart_Date:row.SubTaskStart_Date,
-      SubTaskTarget_Date:row.SubTaskTarget_Date,
-      Classification:"",
-      SubTaskAcceptance_Criteria :row.SubTaskAcceptance_Criteria,
-      SubTaskOriginal_Estimate:row.SubTaskOriginal_Estimate,
-      Remaining:0,
-      Completed:0,
+      Status_Id: row.Status_Id,
+      Priority_Id: row.Priority_Id,
+      Risk_Id: row.Risk_Id,
+
+      SubTaskStart_Date: row.SubTaskStart_Date,
+      SubTaskTarget_Date: row.SubTaskTarget_Date,
+      Classification: "",
+      SubTaskAcceptance_Criteria: row.SubTaskAcceptance_Criteria,
+      SubTaskOriginal_Estimate: row.SubTaskOriginal_Estimate,
+      Remaining: 0,
+      Completed: 0,
     });
-   
+
   }
 
   //Method to aad Record In Grid
 
   // addnewSubTaskInGrid() {
-   
+
   //   this.myModel = this.subtaskForm.value;
   //   this.myModel.ProjectSubTaskID = 0;
   //   this.myModel.ProjectTaskID = this.ProjectTaskId;
@@ -331,13 +301,13 @@ export class SubtaskComponent implements OnInit {
   //   }
 
   //   else {
-      
+
   //     this.dataSource.data.forEach(element => {
   //       if (element.ProjectSubTaskID == this.selectedRowIndex) {
 
   //         element.SubTask_Title = this.myModel.SubTask_Title;
   //         element.SubTask_Description = this.myModel.SubTask_Description;
-        
+
   //       }
   //       this.reset(/*this.subtaskForm, this.formDirective*/);
 
@@ -350,75 +320,75 @@ export class SubtaskComponent implements OnInit {
 
   //Method to add record in DB
   SaveTaskInDB() {
-   debugger;
-   if (this.formType=="Add")
-   //Code to Create subtask.
-   {
-    
-    this.myModel.SubTask_Title = this.subtaskForm.value.SubTask_Title;
-    this.myModel.SubTask_Description = this.subtaskForm.value.SubTask_Description;
-    this.myModel.Remaining=this.subtaskForm.value.Remaining;
-    this.myModel.SubTaskStart_Date=this.subtaskForm.value.SubTaskStart_Date;
-    this.myModel.Task_AssignTo=this.subtaskForm.value.Task_AssignTo;
-    this.myModel.Priority_Id=this.subtaskForm.value.Priority_Id;
-    this.myModel.Risk_Id=this.subtaskForm.value.Risk_Id;
-    this.myModel.Status_Id=this.subtaskForm.value.Status_Id;
-    this.myModel.SubTaskAcceptance_Criteria=this.subtaskForm.value.SubTaskAcceptance_Criteria;
-    this.myModel.Classification=this.subtaskForm.value.Classification;
-    this.myModel.SubTaskTarget_Date=this.subtaskForm.value.SubTaskTarget_Date;
-    this.myModel.Completed=this.subtaskForm.value.Completed;
-    this.myModel.SubTaskOriginal_Estimate=this.subtaskForm.value.SubTaskOriginal_Estimate;
-    this.myModel.Remaining=this.subtaskForm.value.Remaining;
-    this.myModel.Activity_Id=this.subtaskForm.value.Activity_Id;
-    this.dataService.CreateProjectSubTask(this.ProjectTaskId,this.myModel)
-      .subscribe((result) => 
-      {
-        
-        this.showSuccess();
-      
-        this.subtaskForm.reset();
-        this.GetAllSubTaskByTaskID(this.ProjectTaskId);
-        
-      },
-        error => {
-          console.log(error);
+    debugger;
+    if (this.formType == "Add")
+    //Code to Create subtask.
+    {
+
+      this.myModel.SubTask_Title = this.subtaskForm.value.SubTask_Title;
+      this.myModel.SubTask_Description = this.subtaskForm.value.SubTask_Description;
+      this.myModel.Remaining = this.subtaskForm.value.Remaining;
+      this.myModel.SubTaskStart_Date = this.subtaskForm.value.SubTaskStart_Date;
+      this.myModel.Task_AssignTo = this.subtaskForm.value.Task_AssignTo;
+      this.myModel.Priority_Id = this.subtaskForm.value.Priority_Id;
+      this.myModel.Risk_Id = this.subtaskForm.value.Risk_Id;
+      this.myModel.Status_Id = this.subtaskForm.value.Status_Id;
+      this.myModel.SubTaskAcceptance_Criteria = this.subtaskForm.value.SubTaskAcceptance_Criteria;
+      this.myModel.Classification = this.subtaskForm.value.Classification;
+      this.myModel.SubTaskTarget_Date = this.subtaskForm.value.SubTaskTarget_Date;
+      this.myModel.Completed = this.subtaskForm.value.Completed;
+      this.myModel.SubTaskOriginal_Estimate = this.subtaskForm.value.SubTaskOriginal_Estimate;
+      this.myModel.Remaining = this.subtaskForm.value.Remaining;
+      this.myModel.Activity_Id = this.subtaskForm.value.Activity_Id;
+      this.dataService.CreateProjectSubTask(this.ProjectTaskId, this.myModel)
+        .subscribe((result) => {
+
+          this.showSuccess();
+
+          this.subtaskForm.reset();
+          this.disableDatatable = true;
+          this.disableMessage = false;
+          this.GetAllSubTaskByTaskID(this.ProjectTaskId);
+
+
         },
-        () => {
-          if (this.formType == "Add") {
-            this.isAddItem = false;
-            this.disableFooter = true;
+          error => {
+            console.log(error);
+          },
+          () => {
+            if (this.formType == "Add") {
+              this.isAddItem = false;
+              this.disableFooter = true;
+            }
+            this.discard();
+          })
+
+    }
+
+    //Code to Update subtask
+    else {
+      this.subtaskForm.value.ProjectSubTaskID = this.subTask_ID;
+
+      this.dataService.UpdateProjectSubTaskDetail(this.subtaskForm.value).subscribe
+        (
+          res => {
+            this.showupdateSuccess();
+
+            this.subtaskForm.reset();
+            this.formType = "Add";
+            this.edit();
+            this.GetAllSubTaskByTaskID(this.ProjectTaskId);
+
+          },
+          err => {
+            console.log(err);
           }
-          this.discard();
-        })
-
-      }
-
-      //Code to Update subtask
-      else
-      {
-              this.subtaskForm.value.ProjectSubTaskID=this.subTask_ID;
-              
-                  this.dataService.UpdateProjectSubTaskDetail(this.subtaskForm.value).subscribe
-                    (
-                          res => {
-                                    this.showupdateSuccess();
-                                
-                                    this.subtaskForm.reset();
-                                    this.formType="Add";
-                                    this.edit();
-                                    this.GetAllSubTaskByTaskID(this.ProjectTaskId);
-       
-                                 },
-                           err => 
-                                {
-                                   console.log(err);
-                                }
-                    );
-      }
+        );
+    }
   }
 
   postFiles(files) {
-    
+
     if (files.length === 0)
       return;
 
@@ -427,13 +397,13 @@ export class SubtaskComponent implements OnInit {
     for (let file of files)
       formData.append(file.name, file);
 
-      this.dataService. addAttechmentatServer(formData)
+    this.dataService.addAttechmentatServer(formData)
       .subscribe((result) => {
-       
+
         console.log(result);
-        this.newPath = result; 
+        this.newPath = result;
       })
-      
+
   }
 
 
@@ -442,7 +412,7 @@ export class SubtaskComponent implements OnInit {
     if (this.selected == 'true') {
       this.isAddItem = true;
       this.disable = false;
-      
+
     }
     else {
       this.isAddItem = false;
@@ -454,7 +424,7 @@ export class SubtaskComponent implements OnInit {
 
   //method to hide form
   discard() {
-    
+
     this.isAddItem = false;
     this.disableFooter = true;
     this.disable = true;
@@ -463,69 +433,93 @@ export class SubtaskComponent implements OnInit {
     this.formType = "Add";
 
   }
-  
-  ShowCustomMessage()
-  {
-     this.toastr.showError("SubTask Already Exsists");
+
+  ShowCustomMessage() {
+    this.toastr.showError("SubTask Already Exsists");
   }
-  onSubTaskChanged(subtaskValue : string )
-  { 
+
+
+
+  // Method to check if any subtask already exsists.
+  onSubTaskChanged(subtaskValue: string) {
     debugger
-        if (subtaskValue.trim().length == 0) 
-                 {
-                      this.toastr.showError("Invalid Task Title (Only Space not acceptable)");
-      
-                 }
-  
-        else
-                {
-    
-                       this.dataService.CheckIsSubTaskExsists(subtaskValue).subscribe
-               (
-                 data =>
-                   {
-                        console.log(data);
-                        if(data==true)
-                          {
-                               this.ShowCustomMessage();
-                               this.subtaskForm.controls.SubTask_Title.reset();
-                          }
-                   },
-                  (err) =>
-          
-                   {
-                        console.log(err);
-                   }
- 
-             );
-
-          }
-    }
-  matchval(group: FormGroup) {
-   
-    let startDate = group.controls['SubTaskStart_Date'].value;
-    let targetDate = group.controls['SubTaskTarget_Date'].value;
-    if (targetDate > startDate) {
-      
-      return null;
+    if (subtaskValue.trim().length == 0) {
+      this.toastr.showError("Invalid Task Title (Only Space not acceptable)");
 
     }
+
     else {
-      return group.controls['SubTaskTarget_Date'].setErrors({ matchval: true });
+
+      this.dataService.CheckIsSubTaskExsists(subtaskValue).subscribe
+        (
+          data => {
+            console.log(data);
+            if (data == true) {
+              this.ShowCustomMessage();
+              this.subtaskForm.controls.SubTask_Title.reset();
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+
+        );
 
     }
   }
 
-  reset(/* formData: any,  formDirective: FormGroupDirective*/) {
+  matchval(group: FormGroup) {
+    debugger;
+
+    let datePipe :DatePipe=new DatePipe('en-US');
+
+    let taskstartDate = (localStorage.getItem("taskStartDate"));
+
+    let tasktargetDate = localStorage.getItem("taskTargetDate");
+
+    let startDate= datePipe.transform((group.controls['SubTaskStart_Date'].value), "yyyy-MM-dd");
   
-    // formDirective.resetForm();
+    let targetDate = datePipe.transform((group.controls['SubTaskTarget_Date'].value),"yyyy-MM-dd");
+
+    if (startDate != null && targetDate != null) {
+      debugger;
+      if ((startDate > taskstartDate && startDate < tasktargetDate) && (targetDate > taskstartDate && targetDate < tasktargetDate))
+      
+      {
+
+        if (targetDate > startDate) {
+
+          return null;
+    
+        }
+        else {
+          return group.controls['SubTaskTarget_Date'].setErrors({ matchval: true });
+    
+        }
+    
+      }
+
+      else {
+        return group.controls['SubTaskStart_Date'].setErrors({ matchval: true });
+
+      }
+    }
+
+  
+  }
+
+
+
+
+  reset() {
+
     this.subtaskForm.reset();
     this.formType = "Add";
 
   }
 
 
- 
+
 
 
 }

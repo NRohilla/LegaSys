@@ -13,7 +13,7 @@ namespace LegaSysUOW.Interface
     public interface IUOWSubTask
     {
         IEnumerable<SubTaskDetail> GetAllProjectsSubTask();
-        bool CreateProjectSubTaskDetail( int id,SubTaskDetail objSubTask, int createdBy);
+        bool CreateProjectSubTaskDetail( int id,SubTaskDetail objSubTask);
         IEnumerable<SubTaskDetail> GetAllProjectSubTaskbyTaskId(int id);
         void DeleteProjectSubTask(int id);
         int UpdateSubTaskDetail(SubTaskDetail objsubTask);

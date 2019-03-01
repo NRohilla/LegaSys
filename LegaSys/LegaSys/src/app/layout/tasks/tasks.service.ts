@@ -30,8 +30,7 @@ export class TasksService {
     headers: any;
 
     GetProjectTaskbyId(ID) {
-
-
+       
         return this.http.get(this.baseUrl+'/task/' + ID, { headers: this.getToken() })
     }
 
@@ -62,8 +61,9 @@ export class TasksService {
     }
 
     GetAllProjects() {
+        debugger;
 
-        return this.http.get(this.baseUrl +'/project/getactive')
+        return this.http.get(this.baseUrl +'/project/onresource')
     }
 
     public GetAllClients() {
@@ -125,10 +125,11 @@ export class TasksService {
            return this.http.get(this.baseUrl +'/task/getrisk/' ,{ headers: this.getToken() })
        }
     
-       public GetTaskAssignee()
+       public GetTaskAssignee(ID)
        {
+           debugger;
         
-           return this.http.get(this.baseUrl +'/resource/getall/' ,{ headers: this.getToken() })
+           return this.http.get(this.baseUrl +'/project/getallresourceonproject/' +ID,{ headers: this.getToken() })
        }
 
 

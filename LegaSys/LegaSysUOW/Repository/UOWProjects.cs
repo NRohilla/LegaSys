@@ -425,5 +425,26 @@ namespace LegaSysUOW.Repository
             return allprojects;
 
         }
+
+        // ..................Created By Sadhana..........Dated 2/28/2019
+
+        public IEnumerable<ProjectDetail> GetAllAssignedProjects()
+        {
+            var allassignProjects = (from projects in db.LegaSys_Projects.Where(x => x.Status == 1)
+                                     join resources in db.LegaSys_ProjectResources on projects.ProjectID equals resources.Project_ID
+                                     select new { projects, resources }).AsEnumerable()
+                                         .Select(x => new ProjectDetail
+                                         {
+                                             ProjectID = x.resources.Project_ID ?? 0,
+                                             Title = x.projects.Title
+
+
+                                         }).ToList();
+                                             
+
+                                              //Code to remove Duplicate Entries............
+                                             var result = allassignProjects.GroupBy(x => x.Title).Select(y => y.FirstOrDefault());
+            return result;
+        }
     }
 }

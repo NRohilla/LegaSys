@@ -3,8 +3,7 @@ import { MatSort, MatPaginator, MatTableDataSource,MatDialog } from '@angular/ma
 import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TasksService } from './tasks.service';
-import { ToastrManager } from 'ng6-toastr-notifications';
-import { DecimalPipe } from '@angular/common';
+
 import { TosterService } from './../../shared/services/toster.service';
 import { DialogComponent } from '../masters/dialog/dialog.component';
 
@@ -20,7 +19,7 @@ export class TaskComponent implements OnInit {
   dataSource: any = [];
   isLoading = true;
   ID : any;
-
+ 
   displayedColumns: string[] = ['TaskTitle', 'Project_Title','Task_AssignTo','Task_Status','Task_Priority','Task_Activity','Start_Date','Target_Date','Action'];
 
   constructor(public dataService: TasksService, private router: Router, public  toastr: TosterService,public dialog: MatDialog) { }
@@ -38,7 +37,7 @@ export class TaskComponent implements OnInit {
           {
 
               this.FetchDataTable();
-         }
+          }
      else
          {
              this.router.navigateByUrl("/login");
@@ -49,14 +48,19 @@ export class TaskComponent implements OnInit {
   
   FetchDataTable() {
     debugger;
+    
     this.dataService.GetAllProjectsTask().subscribe(
       res => {
-        debugger;
+       
         this.dataSource = new MatTableDataSource<TaskModel>();
         this.isLoading = false;
         this.dataSource.data = res;
+      
+       
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+      
+
       },
       error => {
         this.isLoading = false
@@ -66,9 +70,14 @@ export class TaskComponent implements OnInit {
   //send id
   ViewTask(ID) 
   {
+  
     sessionStorage.setItem("currentId", ID);
+
+
     this.router.navigate(['/viewtask']);
   }
+
+  
  //tOASTER mETHODS
  showSuccess()
   {
@@ -130,7 +139,7 @@ export class TaskModel {
   Task_Priority:number;
   Task_Risk: number;
   Task_Activity:number;
-  Task_Assigne_Id:number;
+  UserId:number;
   Task_AssignTo:string;
   Start_Date:Date;
   Target_Date:Date;

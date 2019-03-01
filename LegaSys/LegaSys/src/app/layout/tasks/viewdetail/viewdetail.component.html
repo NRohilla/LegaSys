@@ -4,7 +4,7 @@
   <mat-tab label="Task" >
     <app-edittask> </app-edittask>
   </mat-tab>
-  <mat-tab label="Subtask" >
+  <mat-tab label="Subtask"  (selectedTabChange)="test($event)">
     <app-subtask></app-subtask>
   </mat-tab>
 

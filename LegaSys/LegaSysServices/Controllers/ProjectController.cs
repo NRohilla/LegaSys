@@ -88,6 +88,7 @@ namespace LegaSysServices.Controllers
             return Json(project);
         }
 
+         
         [HttpGet]
         [Route("project/getallresourceonproject/{projectid}")]
         public IHttpActionResult GetAllResourceOnProject(int projectid)
@@ -118,22 +119,28 @@ namespace LegaSysServices.Controllers
             }
             
         }
-        //commented for update on GIT 06/12/2018
-
-        //[HttpGet]
-        //[Route("project/GetAllActiveProjects")]
-        //public IHttpActionResult GetAllActiveProjects()
-        //{
-        //    var projects = _projects.GetAllActiveProjects();
-        //    if (projects == null)
-        //        return NotFound();
-        //    return Json(projects);
-        //}
+       
         [HttpGet]
         [Route("project/getactive")]
         public IHttpActionResult GetAllActiveProjects()
         {
             var projects = _projects.GetAllActiveProjects();
+            if (projects == null)
+                return NotFound();
+            return Json(projects);
+
+        }
+
+
+
+
+        // ..................Created By Sadhana..........Dated 2/28/2019
+
+        [HttpGet]
+        [Route("project/onresource")]
+        public IHttpActionResult GetAllAssignedProjects()
+        {
+            var projects = _projects.GetAllAssignedProjects();
             if (projects == null)
                 return NotFound();
             return Json(projects);

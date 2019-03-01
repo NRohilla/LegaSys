@@ -8,7 +8,7 @@ import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateResourceComponent } from './resource/create-resource.component';
-import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatButtonModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatButtonModule, MatDialogModule, MatSnackBarModule, MatAutocomplete, MatAutocompleteModule } from '@angular/material';
 import { DialogComponent } from './masters/dialog/dialog.component';
 import { PageHeaderModule } from '../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +35,7 @@ import { FilterPipe } from './project/filter.pipe';
         ReactiveFormsModule,
         MatSnackBarModule,
         MatPaginatorModule,
+        MatAutocompleteModule
        
     ],
     providers: [],

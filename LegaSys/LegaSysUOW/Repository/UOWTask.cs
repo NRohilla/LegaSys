@@ -20,38 +20,49 @@ namespace LegaSysUOW.Repository
             db = dbFactory.Init();
         }
 
+
+
+
         //Method for get any perticuler Task by Id******SADHANA********
         public TaskDetail GetProjectTaskbyId(int id)
         {
-            return (from tasks in db.LegaSys_ProjectTasks
-                    join Projects in db.LegaSys_Projects on tasks.Project_ID equals Projects.ProjectID
-                    join clients in db.LegaSys_ClientDetails on Projects.Client_ID equals clients.ClientDetailID
-                    where tasks.ProjectTaskID == id
-                    select new TaskDetail
-                    {
-                        ProjectTaskID = tasks.ProjectTaskID,
-                        TaskTitle = tasks.Title,
-                        Description = tasks.Description,
-                        Attachment_ID = tasks.Attachment_ID,
-                        Project_ID = tasks.Project_ID,
-                        Project_Description = Projects.Description,
-                        Project_Title = Projects.Title,
-                        Client_ID = clients.ClientDetailID,
-                        Client_Name = clients.ClientName,
-                        Original_Estimate = tasks.Original_Estimate,
-                        Completed = (tasks.Completed),
-                        Remaining = (tasks.Remaining),
-                        Status_Id = tasks.Task_Status,
-                        Activity_Id = tasks.Task_Activity,
-                        Priority_Id = tasks.Task_Priority,
-                        Risk_Id = tasks.Task_Risk,
-                        Task_AssignTo = tasks.Task_AssignTo,
-                        Target_Date = tasks.Target_Date,
-                        Start_Date=tasks.Start_Date
+            var subtaskDetail= (from tasks in db.LegaSys_ProjectTasks
+                                     join Projects in db.LegaSys_Projects on tasks.Project_ID equals Projects.ProjectID
+                                        join clients in db.LegaSys_ClientDetails on Projects.Client_ID equals clients.ClientDetailID join assignee in db.LegaSys_UserDetails on tasks.UserId equals assignee.UserDetailID join activity in db.LegaSys_Activity on tasks.Task_Activity equals activity.Activity_Id
+                                          where tasks.ProjectTaskID == id
+                                                 select new TaskDetail
+                                                          {
+                                                                    ProjectTaskID = tasks.ProjectTaskID,
+                                                                    TaskTitle = tasks.Title,
+                                                                    Description = tasks.Description,
+                                                                    Attachment_ID = tasks.Attachment_ID,
+                                                                    Project_ID = tasks.Project_ID,
+                                                                    Project_Description = Projects.Description,
+                                                                    Project_Title = Projects.Title,
+                                                                    Client_ID = clients.ClientDetailID,
+                                                                    Client_Name = clients.ClientName,
+                                                                    Original_Estimate = tasks.Original_Estimate,
+                                                                    Completed = tasks.Completed,
+                                                                    Remaining = tasks.Remaining,
+                                                                    Status_Id = tasks.Task_Status,
+                                                                    Activity_Id = tasks.Task_Activity,
+                                                                    Priority_Id = tasks.Task_Priority,
+                                                                    Risk_Id = tasks.Task_Risk,
+                                                                    UserId = tasks.UserId,
+                                                                    Task_AssignTo = assignee.Firstname,
+                                                                    Target_Date = tasks.Target_Date,
+                                                                    Start_Date = tasks.Start_Date,
+                                                                    Task_Activity = activity.Activity_Name,
+                                                                    Acceptance_Criteria=tasks.Acceptance_Criteria,
 
 
-                    }).FirstOrDefault();
+
+                    }).SingleOrDefault();
+
+            return subtaskDetail;
         }
+
+        
 
         //Method for get all Task.******SADHANA********
         public IEnumerable<TaskDetail> GetAllProjectsTask()
@@ -76,9 +87,8 @@ namespace LegaSysUOW.Repository
                       Priority_Type = db.LegaSys_Priority.SingleOrDefault(TaskPriority_obj => TaskPriority_obj.Priority_Id == x.tasks.Task_Priority)?.Priority_Type,
                       Risk_Type = db.LegaSys_Risk.SingleOrDefault(TaskRisk_obj => TaskRisk_obj.Risk_Id == x.tasks.Task_Risk)?.Risk_Type,
                       Task_Activity = db.LegaSys_Activity.SingleOrDefault(TaskActivity_obj => TaskActivity_obj.Activity_Id == x.tasks.Task_Activity)?.Activity_Name,
-                      Task_AssignTo = db.LegaSys_UserDetails.SingleOrDefault(TaskAssignee_obj => TaskAssignee_obj.Firstname == x.tasks.Task_AssignTo)?.Firstname,
-
-
+                      Task_AssignTo = db.LegaSys_UserDetails.SingleOrDefault(TaskAssign_obj => TaskAssign_obj.UserDetailID == x.tasks.UserId)?.Firstname,
+                     
                   }).ToList();
             return taskdetail;
         }
@@ -134,7 +144,7 @@ namespace LegaSysUOW.Repository
 
                 Task_Activity = projectTaskDetail.Activity_Id,
 
-                Task_AssignTo = projectTaskDetail.Task_AssignTo,
+                UserId = projectTaskDetail.UserId,
 
                 Task_Priority = projectTaskDetail.Priority_Id,
 
@@ -171,6 +181,8 @@ namespace LegaSysUOW.Repository
 
                 objProjecttaskDetail.Description = projectTaskDetail.Description;
 
+                objProjecttaskDetail.Acceptance_Criteria = projectTaskDetail.Acceptance_Criteria;
+
                 objProjecttaskDetail.Attachment_ID = projectTaskDetail.Attachment_ID;
 
                 objProjecttaskDetail.Project_ID = projectTaskDetail.Project_ID;
@@ -193,7 +205,8 @@ namespace LegaSysUOW.Repository
 
                 objProjecttaskDetail.Task_Status = projectTaskDetail.Status_Id;
 
-                objProjecttaskDetail.Task_AssignTo = projectTaskDetail.Task_AssignTo;
+                objProjecttaskDetail.UserId = projectTaskDetail.UserId;
+
                 objProjecttaskDetail.Target_Date = projectTaskDetail.Target_Date;
 
 
@@ -293,7 +306,7 @@ namespace LegaSysUOW.Repository
 
                 db.SaveChanges();
 
-           
+          
 
             return true;
 

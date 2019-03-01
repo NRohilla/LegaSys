@@ -1,5 +1,5 @@
 // mport { AuthHttpInterceptor } from './authinterceptor';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,7 +49,7 @@ export const createTranslateLoader = (http: HttpClient) => {
    
     providers: [
         CurrentClientdataServiceService,
-        TosterService,
+        TosterService,DatePipe,
       
         AuthGuard,
         // {

@@ -38,6 +38,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   
   ],
   declarations: [ViewdetailComponent,SubtaskComponent,EdittaskComponent],
-  providers: [DatePipe]
+  providers: []
 })
 export class viewdetailModule { }

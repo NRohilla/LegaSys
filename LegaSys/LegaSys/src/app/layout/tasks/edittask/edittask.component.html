@@ -3,7 +3,7 @@
 
         <br>
         
-        <form [formGroup]="taskeditForm">
+        <form [formGroup]="taskeditForm" *ngIf="dataSource">
           <div class="example-container " style="padding-left:10px;padding-right: 10px;"> 
             <div class="row">    
                         <div class="col-md-4">
@@ -50,11 +50,15 @@
 
          <div class="col-md-4">
                   <div class="w-100">
-                     <mat-label style="font-weight:bold;font-size:15px;color: black;display: block; margin-bottom: 5px;">Description</mat-label>
+                     <mat-label style="font-weight:bold;font-size:15px;color: black;display: block; margin-bottom:5px;">Project Description</mat-label>
        
-                        <textarea class="form-control rounded-0"  Placeholder="Project Description" rows="3" id="projectDescription" formControlName=projectDescription  [(ngModel)]="dataSource.Project_Description" [readonly]="true"></textarea>
+                        <textarea class="form-control rounded-0" style="font-size: 15px"   Placeholder="Project Description" rows="3" id="projectDescription" formControlName=projectDescription  [(ngModel)]="dataSource.Project_Description" [readonly]="true"></textarea>
                 </div>      
         </div>
+
+
+
+        
       </div>
     
 <br>
@@ -112,7 +116,7 @@
         
         
         <!-- Select Task Risk  -->
-                    <div class="col-md-4">
+                    <!-- <div class="col-md-4">
                             <mat-form-field class="w-100">
                                      <mat-label style="font-weight:bold;font-size:19px;color: black">Risk</mat-label>
                                 <BR>
@@ -124,16 +128,16 @@
                                                 </mat-option> 
          
                                     </mat-select>
-            
+             -->
                              <!-- Validation Error Message -->
-                                <mat-error *ngIf="taskeditForm.controls.Risk_Id.invalid">
+                                <!-- <mat-error *ngIf="taskeditForm.controls.Risk_Id.invalid">
                                       <span [hidden]="!taskeditForm.controls['Risk_Id'].errors.required">
                                             Please set the Task Risk.
                                       </span>
                                  </mat-error>
                             
                             </mat-form-field>
-                    </div>
+                    </div> -->
         
         
         <!-- Select Task Activity  -->
@@ -166,18 +170,18 @@
                             <mat-form-field class="w-100">
                                      <mat-label style="font-weight:bold;font-size:19px;color: black">Assigned To</mat-label>
                                 <BR>
-                                    <mat-select placeholder="Task_AssignTo" formControlName=Task_AssignTo [(ngModel)]="dataSource.Task_AssignTo">
+                                    <mat-select placeholder="Task AssignTo" formControlName=UserId [(ngModel)]="dataSource.UserId">
                    
-                                                 <mat-option *ngFor="let assignee of taskAssignee" [value]="assignee.Firstname">
-                                                      {{assignee.Firstname}}
+                                                 <mat-option *ngFor="let assignee of taskAssignee" [value]="assignee.Resource_ID">
+                                                      {{assignee.ResourceName}}
                                                   
                                                 </mat-option> 
             
                                     </mat-select>
             
                              <!-- Validation Error Message -->
-                                <mat-error *ngIf="taskeditForm.controls.Task_AssignTo.invalid">
-                                      <span [hidden]="!taskeditForm.controls['Task_AssignTo'].errors.required">
+                                <mat-error *ngIf="taskeditForm.controls.UserId.invalid">
+                                      <span [hidden]="!taskeditForm.controls['UserId'].errors.required">
                                             Please Assign Task.
                                       </span>
                                  </mat-error>
@@ -230,18 +234,38 @@
                                   
                     </div> 
          
-          
-         <div class="col-md-4">
-                <mat-form-field class="w-100">
-                        <mat-label style="font-weight:bold;font-size:19px ;color: black">Description</mat-label>
-                        <br>
-                    <textarea matInput placeholder="Description" formControlName=Description  [(ngModel)]="dataSource.Description" > </textarea>
-                </mat-form-field>
-        </div>
+        <!-- Task Description Coloumn -->
+
+ <div class="col-md-4">
+      <div class="w-100">
+        <mat-label style="font-weight:bold;font-size:15px;color: black;     display: block; margin-bottom: 5px;">Description</mat-label>
+     
+        <textarea class="form-control rounded-0" style="font-size: 15px" id="Description" Placeholder="Description" rows="3"  formControlName= "Description"  [(ngModel)]="dataSource.Description"></textarea>
+      </div>      
+</div>
+
+<!-- Task Acceptance Criteria Coloumn -->
+
+<div class="col-md-4">
+                  <div class="w-100">
+                              <mat-label style="font-weight:bold;font-size:15px;color: black;  display: block; margin-bottom: 5px;">Acceptance Criteria</mat-label>
+
+                              <textarea class="form-control rounded-0" style="font-size: 15px"  id="acceptancecriteria" Placeholder="acceptance criteria" rows="3"   formControlName= "acceptancecriteria"  [(ngModel)]="dataSource.Acceptance_Criteria"></textarea>
+                  </div>
+
+</div>
+  <!-- upload coloumn  -->
+ 
+  <div class="row mb-4">
+      <div class="col-md-4 " style="margin-top:22px">
+                   <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif"> Upload </label>
+                    <br>
+                        <input type="file" name="file"  />
         
-                    
-                
-           </div>
+       </div>
+  </div>
+           
+</div>
        
        
           <div class="row mt-4">
@@ -251,7 +275,7 @@
               <mat-expansion-panel>
                    <mat-expansion-panel-header>
                      <mat-panel-title>
-                         <mat-label style="font-weight:bold;font-size:19px;color: black">Efforts</mat-label>
+                         <mat-label style="font-weight:bold;font-size:15px;color: black">Efforts</mat-label>
                      </mat-panel-title>
                      <mat-panel-description>
                        Type Original Estimate
@@ -271,11 +295,11 @@
                    </mat-form-field>
         
                    <mat-form-field  class="w-100">
-                     <input matInput placeholder="Remaining(hr)" formControlName="Remaining" type="number" min="0">
+                     <input matInput placeholder="Remaining(hr)" formControlName="Remaining" type="number" min="0"  [readonly]="true">
                      </mat-form-field>
         
                    <mat-form-field  class="w-100">
-                    <input matInput placeholder="Completed(hr)" formControlName="Completed" type="number" min="0">
+                    <input matInput placeholder="Completed(hr)" formControlName="Completed" type="number" min="0"  [readonly]="true">
                      </mat-form-field>
                   
                  </mat-expansion-panel>
@@ -283,15 +307,7 @@
              
       
         
-          <!-- upload coloumn  -->
-          <div class="row mb-3">
-                 <div class="col-md-4" >
-                  <label style="font-weight:bold;font-size:15px;color: black; font-family: Roboto, Arial, sans-serif"> Upload </label>
-                  <br>
-                           <input type="file" name="file"  />
-                   
-                  </div>
-         </div> 
+        
         </div>
         
    

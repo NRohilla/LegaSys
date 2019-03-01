@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
 import { Router } from '@angular/router';
 import { TosterService } from '../../../shared/services/toster.service';
 import { TasksService } from '../tasks.service';
+import { MatTableDataSource,MatDialog } from '@angular/material';
+import{TaskModel}from '../tasks.component'
 
 @Component({
   selector: 'app-edittask',
@@ -14,7 +16,7 @@ export class EdittaskComponent implements OnInit {
   //Declaration
   responce: any;
   Id: any;
-  dataSource: any = []
+  dataSource: any;
   taskeditForm: FormGroup;
   disable: boolean = true;
   myclients: any = [];
@@ -24,6 +26,15 @@ export class EdittaskComponent implements OnInit {
   taskRisk :any =[];
   taskAssignee: any =[];
   startDate:any;
+ 
+  taskTitle:any;
+  projectTitle:any;
+  taskAssignTo:any;
+  projectId:any;
+  subtaskActivity:any;
+  taskStartDate:any;
+  taskTargetDate:any;
+
  
   taskActivity:any=[];
   taskClassification: any = 
@@ -42,11 +53,13 @@ export class EdittaskComponent implements OnInit {
         Description: [''],
         Project_ID: [0, Validators.required],
         projectDescription:[''],
+        acceptancecriteria:[''],
         Status_Id: ['', Validators.required],
         Priority_Id: ['', Validators.required],
-        Risk_Id: ['', Validators.required],
+       // Risk_Id: ['', Validators.required],
+
         Activity_Id:['', Validators.required],
-        Task_AssignTo:['',Validators.required],
+        UserId:['',Validators.required],
       
         Original_Estimate:['',Validators.required],
         Remaining:[''],
@@ -67,15 +80,19 @@ export class EdittaskComponent implements OnInit {
 
     if(localStorage.getItem('isLoggedin')=='true')
     {
+      debugger; 
+
        //Fetching Id From Session.
+      
          this.Id = sessionStorage.getItem("currentId");
           this.GetTaskByID(this.Id);
+         
            this.GetTaskStatus();
              this.GetTaskRisk();
                this. GetTaskPriority();
-                 this.GetAllAssignee();
+                
                   this.GetTaskActivity();
-                    // this.GetProject();
+                     this.GetProject();
                      this.taskeditForm.disable();
 
     }
@@ -85,18 +102,41 @@ export class EdittaskComponent implements OnInit {
      }
   }
 
-  
-
+ 
   // Method For Fetch Data
   GetTaskByID(ID) {
     debugger;
-
+    
     this.dataService.GetProjectTaskbyId(ID).subscribe(
       res => {
-       
+        debugger;
+      
         this.dataSource = res;
+        console.log(this.dataSource);        
+        this.projectId =this.dataSource.Project_ID;
+        this.projectTitle=this.dataSource.Project_Title;
+        this.taskTitle=this.dataSource.TaskTitle;
+        this.taskAssignTo=this.dataSource.Task_AssignTo;
+        this.subtaskActivity=this.dataSource.Task_Activity;
+        this.taskStartDate = this.dataSource.Start_Date;
+        this.taskTargetDate=this.dataSource.Target_Date
+
+
+        localStorage.setItem("projectTitle" , this.projectTitle );
+
+        localStorage.setItem("taskTitle",  this.taskTitle);
+   
+        localStorage.setItem("taskAssignTo",this.taskAssignTo);
+   
+        localStorage.setItem("subtaskActivity",this.subtaskActivity);
+
+        localStorage.setItem("taskStartDate",this.taskStartDate);
+   
+        localStorage.setItem("taskTargetDate",this.taskTargetDate);
      
-     
+        
+        this.GetAllAssignee();
+       
       },
       err => {
         console.log(err);
@@ -107,6 +147,7 @@ export class EdittaskComponent implements OnInit {
   //Method For Update data
   UpdateTaskByID()
    {
+     debugger;
 
     this.taskeditForm.value.ProjectTaskID = this.Id;
     this.taskeditForm.value.Project_ID = this.dataSource.Project_ID;
@@ -240,11 +281,15 @@ export class EdittaskComponent implements OnInit {
     GetAllAssignee()
     {
      
-        this.dataService.GetTaskAssignee().subscribe
+     
+        this.dataService.GetTaskAssignee(this.projectId).subscribe
         (
             data =>{
    
-            this.taskAssignee= data; // FILL THE ARRAY WITH DATA.
+            this.taskAssignee= data; 
+            // FILL THE ARRAY WITH DATA.
+
+          
             },
             (err) =>
             
@@ -277,7 +322,7 @@ export class EdittaskComponent implements OnInit {
 
 //tO CHECK validation of target date and staet date
     matchval(group: FormGroup) {
-   debugger;
+   
       let startDate = group.controls['Start_Date'].value;
       let targetDate = group.controls['Target_Date'].value;
        if (targetDate > startDate) {
@@ -291,7 +336,8 @@ export class EdittaskComponent implements OnInit {
        }
     }
   
-          
+
+  
 }
   
 

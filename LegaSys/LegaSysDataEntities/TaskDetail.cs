@@ -57,7 +57,7 @@ namespace LegaSysDataEntities
 
         public string Acceptance_Criteria { get; set; }
 
-        public int? Task_Assigne_Id { get; set; }
+        public int? UserId { get; set; }
 
         public string Task_AssignTo { get; set; }
 

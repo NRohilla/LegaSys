@@ -12,7 +12,7 @@ import { TasksService } from './tasks.service';
 import { TasksRoutingModule } from './task-routing.module';
 
 import { MatDatepickerModule,
-         MatIconModule,
+         MatIconModule,MatChipsModule,
          MatNativeDateModule,} from '@angular/material'
        
 
@@ -30,7 +30,7 @@ import { MatDatepickerModule,
         MatDialogModule,
         FormsModule,
         PageHeaderModule,
-        MatTabsModule,
+        MatTabsModule,MatChipsModule,
         MatSortModule,
         MatProgressSpinnerModule,
         MatCardModule,

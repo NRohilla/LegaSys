@@ -24,7 +24,7 @@ export class AddtaskComponent implements OnInit {
   taskPriority : any =[];
   taskRisk :any =[];
   taskAssignee: any =[];
- 
+ name="shubham";
   taskActivity:any=[];
   ID:any;
   Remaining:any;
@@ -32,6 +32,7 @@ export class AddtaskComponent implements OnInit {
   Original_Estimate:any;
   acceptancecriteria:any;
   taskDescription:any;
+  projectId:any;
 
   taskClassification: any = 
     [
@@ -46,6 +47,9 @@ export class AddtaskComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
+
+    
     
     if(localStorage.getItem('isLoggedin')=='true')
     {
@@ -60,7 +64,7 @@ export class AddtaskComponent implements OnInit {
         Priority_Id: ['', Validators.required],
         Risk_Id: ['', Validators.required],
         Activity_Id:['', Validators.required],
-        Task_AssignTo:[''],
+        UserId:[''],
        
         Classification:['', Validators.required ],
         acceptancecriteria:['',Validators.required],
@@ -76,11 +80,12 @@ export class AddtaskComponent implements OnInit {
      
 
     //calling get client method
+  
     this.GetAllProject();
     this.GetTaskStatus();
     this.GetTaskRisk();
     this. GetTaskPriority();
-    this.GetAllAssignee();
+    
     this.GetTaskActivity();
 
   }
@@ -118,7 +123,7 @@ export class AddtaskComponent implements OnInit {
     this.myModel.Project_ID = this.taskForm.value.Project_ID;
     this.myModel.Remaining=this.taskForm.value.Remaining;
     this.myModel.Start_Date=this.taskForm.value.Start_Date;
-    this.myModel.Task_AssignTo=this.taskForm.value.Task_AssignTo;
+    this.myModel.UserId=this.taskForm.value.UserId;
     this.myModel.Priority_Id=this.taskForm.value.Priority_Id;
     this.myModel.Risk_Id=this.taskForm.value.Risk_Id;
     this.myModel.Status_Id=this.taskForm.value.Status_Id;
@@ -155,7 +160,8 @@ debugger;
       (
       data =>
        {
-        this.myprojects = data;		// FILL THE ARRAY WITH DATA.
+        this.myprojects = data;	
+        console.log(data);// FILL THE ARRAY WITH DATA.
        },
       (err) => {
         console.log(err);
@@ -228,12 +234,15 @@ debugger;
   //method for getting risk from db
   GetAllAssignee()
   {
-    
-      this.dataService.GetTaskAssignee().subscribe
+    debugger;
+   
+    console.log(this.projectId);
+      this.dataService.GetTaskAssignee(this.projectId).subscribe
       (
           data =>{
  
           this.taskAssignee= data; // FILL THE ARRAY WITH DATA.
+         
           },
           (err) =>
           
@@ -296,6 +305,7 @@ debugger;
 
   onTaskChanged(taskValue : string )
   {
+
    
     if (taskValue.trim().length == 0) 
         {
@@ -335,6 +345,17 @@ debugger;
 
     }
     
+
+    onChange(projectValue)
+    {
+      debugger;
+    
+     this.projectId=projectValue;
+     sessionStorage.setItem("projectId",this.projectId);
+     this.GetAllAssignee();
+
+
+    }
 
   
 }

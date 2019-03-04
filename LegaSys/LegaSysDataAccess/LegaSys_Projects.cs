@@ -33,6 +33,9 @@ namespace LegaSysDataAccess
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
+        public Nullable<System.DateTime> Start_Date { get; set; }
+        public Nullable<System.DateTime> End_Date { get; set; }
+        public string ProjectD_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LegaSys_Client_Projects> LegaSys_Client_Projects { get; set; }

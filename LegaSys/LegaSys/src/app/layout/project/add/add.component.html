@@ -16,10 +16,10 @@
     <div class="row m-0">
         <div class="col-lg-6 col-md-6 colsm-6 col-12 float-left">
             <mat-form-field class="w-100 mt-4">
-                <input formControlName="Title" matInput placeholder="Title">
+                <input formControlName="Title" matInput placeholder="Title" (blur)="TrimString('Title')">
             </mat-form-field>
             <mat-error>
-                <span *ngIf="!regiForm.get('Title').valid && regiForm.get('Title').touched">Please enter Title Name </span>
+                <span *ngIf="!regiForm.get('Title').valid && regiForm.get('Title').touched">Please enter valid Project Title/Name </span>
             </mat-error>
         </div>
         <!-- testing 27112018 -->
@@ -43,7 +43,7 @@
             <mat-form-field class="w-100">
                 <mat-select formControlName="ProjectDomain_ID" placeholder="Select Technical Domain">
                     <mat-option>-- Select Technical Domain--</mat-option>
-                    <mat-option *ngFor="let technologydetail of technologydetails" [value]="technologydetail.ProjectDomain_ID">
+                    <mat-option *ngFor="let technologydetail of technologydetails" [value]="technologydetail.ProjectDomain_ID" (click)="SetTechnology(technologydetail.DomainName)">
                         {{technologydetail.DomainName}}
                     </mat-option>
                 </mat-select>
@@ -61,7 +61,7 @@
             <mat-form-field class="w-100">
                 <mat-select formControlName="Client_ID" placeholder="Select Client">
                     <mat-option>-- Select Client --</mat-option>
-                    <mat-option *ngFor="let client of clientdetails" [value]="client.ClientDetailID">
+                    <mat-option *ngFor="let client of clientdetails" [value]="client.ClientDetailID" (click)="SetClientName(client.ClientName)">
                         {{client.ClientName}}
                     </mat-option>
                 </mat-select>

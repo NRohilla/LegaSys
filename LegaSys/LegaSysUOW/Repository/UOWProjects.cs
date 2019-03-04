@@ -111,6 +111,7 @@ namespace LegaSysUOW.Repository
                 .ToList();
             ProjectDetail objPd = new ProjectDetail();
             objPd.ProjectID = result[0].ProjectID;
+            objPd.ProjectD_ID = result[0].ProjectD_ID;
             objPd.Title = result[0].Title;
             objPd.Description = result[0].Description;
             objPd.ProjectDomain_ID = result[0].ProjectDomain_ID;
@@ -150,6 +151,7 @@ namespace LegaSysUOW.Repository
                                select new ProjectDetail
                                {
                                    ProjectID = projects.ProjectID,
+                                   ProjectD_ID = projects.ProjectD_ID,
                                    Title = projects.Title,
                                    Description = projects.Description,
                                    Client_ID = projects.Client_ID.Value,
@@ -177,7 +179,7 @@ namespace LegaSysUOW.Repository
                                    //SubTaskTitle = x.subtask.Title,
                                    //SubTaskDescription = x.subtask.Description,
                                    //SubTaskAttachmentID = x.subtask.Attachment_ID.Value
-                               }).AsEnumerable();
+                               }).OrderByDescending(x=>x.ProjectID).AsEnumerable();
             return allprojects;
         }
         public int CreateProjectDetail(ProjectDetail projectDetail)
@@ -188,16 +190,17 @@ namespace LegaSysUOW.Repository
                 Description = projectDetail.Description,
                 Client_ID = projectDetail.Client_ID,
                 ProjectDomain_ID = projectDetail.ProjectDomain_ID,
-                Status = 0,//projectDetail.Status,
+                Status = 1,//projectDetail.Status==Active,
                 Created_By = projectDetail.Created_By,
                 Updated_By = projectDetail.Updated_By,
                 Created_Date = DateTime.Now,
                 Updated_Date = DateTime.Now,
+                ProjectD_ID=projectDetail.ProjectD_ID
             };
 
             db.LegaSys_Projects.Add(projectModel);
             db.SaveChanges();
-
+            UpdateProjectDetailId(projectModel.ProjectID);
             return projectModel.ProjectID;
         }
 
@@ -208,7 +211,8 @@ namespace LegaSysUOW.Repository
             {
                 objProjectDetail.ProjectID = projectDetail.ProjectID;
                 objProjectDetail.ProjectDomain_ID = projectDetail.ProjectDomain_ID;
-                objProjectDetail.Title = projectDetail.Title;
+                //objProjectDetail.Title = projectDetail.Title;
+                objProjectDetail.Title = projectDetail.ProjectName;
                 objProjectDetail.Description = projectDetail.Description;
                 objProjectDetail.Client_ID = projectDetail.Client_ID;
                 //objProjectDetail.Status = projectDetail.Status;
@@ -424,6 +428,13 @@ namespace LegaSysUOW.Repository
                                 });
             return allprojects;
 
+        }
+
+        private void UpdateProjectDetailId(int lastInsertedPid) {
+            var objProjectDetail = db.LegaSys_Projects.Where(x => x.ProjectID == lastInsertedPid).FirstOrDefault();
+            string str = objProjectDetail.ProjectD_ID.ToUpper();
+            objProjectDetail.ProjectD_ID = str+lastInsertedPid.ToString();
+            db.SaveChanges();
         }
     }
 }

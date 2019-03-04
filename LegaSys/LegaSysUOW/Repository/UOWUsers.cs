@@ -57,12 +57,15 @@ namespace LegaSysUOW.Repository
             }
             return list;
         }
-        public List<ProjectResources> GetAvailableUserListForProject(int[] Id)
+
+        //public List<ProjectResources> GetAvailableUserListForProject(int[] Id)
+        public List<ProjectResources> GetAvailableUserListForProject(ForAvailableResource _far)
         {
             List<ProjectResources> list = null;
+            int mrid = db.LegaSys_UserDetails.Where(x => x.UserDetailID == _far.UserDetail_Id).Select(x=>x.Master_Role_ID).SingleOrDefault();
             using (LegaSysEntities db = new LegaSysEntities())
             {
-                list = (from d in db.LegaSys_UserDetails.Where(x => (!Id.Contains(x.UserDetailID)) && x.IsActive == true).AsEnumerable()
+                list = (from d in db.LegaSys_UserDetails.Where(x => (!_far.ids.Contains(x.UserDetailID)) && x.IsActive == true && x.Master_Role_ID>mrid).AsEnumerable()
                         join s in db.LegaSys_Master_Shifts on d.Master_Shift_ID equals s.ShiftID into s_join
                         from s in s_join.DefaultIfEmpty()
                         join r in db.LegaSys_Master_Roles on d.Master_Role_ID equals r.UserRoleID into r_join

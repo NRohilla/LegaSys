@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject, ViewChild } from '@angular/core';
-import { ProjectAll, ProjectResources } from '../../projectModel';
+import { ProjectAll, ProjectResources, SResource } from '../../projectModel';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatSort, MatPaginator, MatSnackBar } from '@angular/material';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
@@ -52,7 +52,7 @@ export class ProjectResourceComponent implements OnInit {
     isAdd: boolean;
     isSubmit: boolean = false;
     datasourcebackup: any;
-
+   showDataTable:boolean=false;
     AddResourceInfoForm: FormGroup;
     ResourceInfoForm: FormGroup;
     ResourcesList: any;
@@ -64,9 +64,13 @@ export class ProjectResourceComponent implements OnInit {
     datachanged: string = "";
     isDisableAddButton: boolean = true;
     ShowAddbtn: boolean = true;
+    ShowDiv:boolean=false;
+    isDataSourceBackUpChanged:boolean=true;
+    isShowAddDiv:boolean=false;
+    
     //@ViewChild(MatPaginator) paginator: MatPaginator;
     // @ViewChild(MatSort) sort: MatSort;
-    displayedColumns = ['ProjectID', 'Resource_ID', 'ResourceName', 'TotalExp', 'ResourceEmailId', 'Shift', 'ReportingHeadName', 'Master_Role', 'actions'];
+    displayedColumns = ['ProjectID', 'Resource_ID', 'ResourceName', 'TotalExp', 'ResourceEmailId', 'Shift', 'Master_Role', 'actions'];
     // paginator: any;
     // sort: any;
     constructor(private route: ActivatedRoute, private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
@@ -91,7 +95,7 @@ export class ProjectResourceComponent implements OnInit {
             // });
 
         });
-        this.isSubmit = false;
+        this.isSubmit=false;
         //console.log("ngoninit resource details"+ JSON.stringify(this.resourcedetails));
 
 
@@ -160,15 +164,17 @@ export class ProjectResourceComponent implements OnInit {
     }
 
     RenderDataTable() {
-        debugger;
+        //debugger;
         this.apiService.getAllResourceOnProject(this.projectid)
             .subscribe(
                 res => {
                     this.resourcelist = res;
                     //this.uresourcelist = this.resourcelist;// this list will be used for saving the edited record without effecting original record
                     //
+                    
                     this.datasource = new MatTableDataSource(this.resourcelist);
                     this.initialresourcecounts = this.datasource.data.length;
+                    this.ShowDiv=this.initialresourcecounts==0?false:true;
                     this.datasourcebackup = JSON.parse(JSON.stringify(this.resourcelist)); //for checking the number of resources working on project
                     // this.datasource.paginator = this.paginator;
                     // this.datasource.sort = this.sort;
@@ -195,13 +201,7 @@ export class ProjectResourceComponent implements OnInit {
 
         debugger;
         var shifttime = $(".mat-select-value-text span").html();
-        //alert(this.msid);
-        //var noRecordUpdated = 0;
-
-        //var msid=
-        // let abc = this.newrow;
-        // console.log(abc);
-        //alert(shifttime);
+        
         if (this.formType == "Update") {
             //debugger;
             //var recordexist = false;
@@ -234,7 +234,7 @@ export class ProjectResourceComponent implements OnInit {
                                     }
                                 }
                             });
-                            this.isSubmit = true;
+                            this.isSubmit=true;
                             for (var i in this.datasourcebackup) {
                                 if (this.datasourcebackup[i].Resource_ID == this.resourceRow.Resource_ID) {
                                     this.datasourcebackup[i].Master_Shift_ID = this.msid;
@@ -268,6 +268,13 @@ export class ProjectResourceComponent implements OnInit {
                 // }
             }
 
+            if(this.datasource.data!=this.datasourcebackup){
+                this.isSubmit=true;               
+            }
+            this.ResourceInfoForm.reset();
+            this.isSelected=false;
+
+        
         }
     }
     DiscardRow() {
@@ -296,7 +303,8 @@ export class ProjectResourceComponent implements OnInit {
                 if (data.length == 0) // if no more data remaining in the datasource
                 {
                     this.isSelected = false;
-                    this.isSubmit = true;
+                    this.ShowDiv=false;
+                    // this.isSubmit=true;
                 }
                 for (var i = 0; i < this.datasourcebackup.length; i++) {
                     if (this.datasourcebackup[i].Resource_ID == row.Resource_ID) {
@@ -309,7 +317,7 @@ export class ProjectResourceComponent implements OnInit {
                 //         element.Status = 0;
                 //     }
                 // });
-                this.checkCount();
+                //this.checkCount();
 
                 //this.ResourcesList.push(row);
                 //find the unique ids in the 
@@ -322,17 +330,40 @@ export class ProjectResourceComponent implements OnInit {
                 //this.ResourceInfoForm.reset();
                 //  
                 this.isSelected = false;
-                // this.isSubmit = false;
+                // this.isSubmit=false;
                 this.ResourceInfoForm.reset();
+                debugger;
+                if(this.datasource==this.datasourcebackup ){
+                    this.isSubmit=false;
+                   
+                }
+                else if(this.datasource.data.length==this.datasourcebackup.length ){
+                    this.isSubmit=false;
+                    
+                }
+                else{
+                    this.isSubmit=true;
+                }
+
             }
         });
+        
     }
     AddResourceClick() {
-        //debugger;
+        debugger;
 
         this.formType = "Add";
         this.isAdd = true;
-        this.isSubmit = true;
+        if(this.isShowAddDiv==false)
+        {
+            this.isShowAddDiv=true;
+        }
+        else if(this.isShowAddDiv==true)
+        {
+            this.isShowAddDiv=false;
+        }
+
+        //this.isSubmit=true;
         //alert(this.AddResourceInfoForm.controls['aResourceName'].value);
 
         if (this.AddResourceInfoForm.controls['aResourceName'].value == undefined || this.AddResourceInfoForm.controls['aResourceName'].value == "") {
@@ -354,18 +385,22 @@ export class ProjectResourceComponent implements OnInit {
         //var u = uniq.filter(x => x != row.Resource_ID);
         //this.ids = u;
         this.BindResourceList(this.ids);
-        this.ShowAddbtn = true;
+        //this.ShowAddbtn = true;
 
     }
 
     BindResourceList(ids) {
-        //debugger;
+        //debugger;       
         var uniq = this.ids.reduce(function (a, b) {
             if (a.indexOf(b) < 0) a.push(b);
             return a;
         }, []);
         this.ids = uniq;
-        this.apiService.getAvailableResourceOnProject(this.ids).subscribe(
+        let sresource=new SResource();
+        sresource.ids=this.ids;
+        //alert(parseInt(localStorage.getItem('userDetailsID')));
+        sresource.UserDetail_Id=parseInt(localStorage.getItem('userDetailsID'));
+        this.apiService.getAvailableResourceOnProject(sresource).subscribe(
             res => {
                 this.ResourcesList = res;
 
@@ -475,6 +510,11 @@ export class ProjectResourceComponent implements OnInit {
         this.ids.push(this.aResourceList.Resource_ID);
 
         this.ResetAddResourceInfoForm();
+        this.ShowDiv=true;
+        if(this.datasource.data!=this.datasourcebackup){
+            this.isSubmit=true;
+            //alert("PushD "+this.isSubmit);
+        }
 
 
     }
@@ -491,20 +531,7 @@ export class ProjectResourceComponent implements OnInit {
         this.BindResourceList(this.ids);
         //this.AddResourceInfoForm.controls['aResourceName'].markAsUntouched();
     }
-
-    // ResetResourceInfoForm() {
-    //     this.isSelected = false;
-    //     this.isSubmit=false;
-    //     this.ResourceInfoForm.reset();
-    //     // this.ResourceInfoForm.controls['ResourceName'].setValue("");
-    //     // this.ResourceInfoForm.controls['ShiftName'].setValue("");
-    //     // this.ResourceInfoForm.controls['Master_Shift_ID'].setValue(0);
-
-    //     if (this.datachanged.length! > 0) {
-    //         this.RenderDataTable();
-    //     }
-
-    // }
+    
     ResetChanges() {
         // this.AddResourceClick();
 
@@ -517,7 +544,7 @@ export class ProjectResourceComponent implements OnInit {
         // }
         //alert(this.ids);
         this.BindResourceList(this.ids);
-        this.isSubmit = false;
+        this.isSubmit=false;
         this.isSelected = false;
 
     }
@@ -532,6 +559,9 @@ export class ProjectResourceComponent implements OnInit {
 
 
         const lengthofbackup = this.datasourcebackup.length;
+        if(this.datasource.data==this.datasourcebackup){
+            alert("let see data");
+        }
         if (lengthofbackup == 0) {
             //this.datasourcebackup.push(this.datasource.data);
             for (var i = 0; i < this.datasource.data.length; i++) {
@@ -594,7 +624,7 @@ export class ProjectResourceComponent implements OnInit {
                 console.log(res);
                 this.snackBar.open('Resource Updated successfully', 'ok', { duration: 2500 });
                 this.RenderDataTable();
-                this.isSubmit = false;
+                this.isSubmit=false;
                 this.isSelected = false;
 
             });

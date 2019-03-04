@@ -18,6 +18,8 @@ export class StatComponent implements OnInit {
     @Input() label2: string;
     @Input() count3: number;
     @Input() label3: string;
+    @Input() count4: number;
+    @Input() label4: string;
     @Input() total: string;
     @Input() totalcount: number;
     @Input() tag: string;

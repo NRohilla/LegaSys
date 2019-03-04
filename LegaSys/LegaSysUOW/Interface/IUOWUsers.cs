@@ -11,7 +11,7 @@ namespace LegaSysUOW.Interface
     {
         UserLoginDetails AuthenticateAndFetchUserDetail(string Username, string Password);
         List<UserDetail> GetUserList(int roleId);
-        List<ProjectResources> GetAvailableUserListForProject(int[] roleId);
+        List<ProjectResources> GetAvailableUserListForProject(ForAvailableResource forAvailableResource);
     }
 }
     

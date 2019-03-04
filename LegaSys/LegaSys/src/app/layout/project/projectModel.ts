@@ -88,3 +88,8 @@ export class ProjectResources {
   ProjectResourceID: number;
   ResourceStatus: number;
 }
+
+export class SResource{
+  UserDetail_Id:number;
+  ids:number[]=[];
+}

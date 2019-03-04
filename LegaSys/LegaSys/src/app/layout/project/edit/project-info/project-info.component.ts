@@ -33,6 +33,7 @@ export class ProjectInfoComponent implements OnInit {
   disable: Boolean = true;
   isSave: boolean;
   durationtime: string;
+  
   constructor(private route: ActivatedRoute, public dataService: SharedService,
     private router: Router, private project: Project, public snackBar: MatSnackBar, private summary: EditComponent, private formBuilder: FormBuilder) {
 
@@ -43,11 +44,11 @@ export class ProjectInfoComponent implements OnInit {
     // debugger;
     // console.log("current oninit" + JSON.stringify(this.currentProjectDetails));
     // console.log("current backup oninit" + JSON.stringify(this.currentProjectDetailsBackup));
-    
+
     var model = JSON.parse(JSON.stringify(this.currentProjectDetails));
-    this.durationtime = this.calcDuration(model.Start_Date, model.End_Date);
+    //this.durationtime = this.calcDuration();
     this.CreateProjectInfoForm();
-    
+
     this.SetProjectInfo();
 
   }
@@ -61,12 +62,14 @@ export class ProjectInfoComponent implements OnInit {
 
   }
   onCancelClick() {
+    this.projectinfo.reset();
     this.currentProjectDetails = this.currentProjectDetailsBackup;
     this.SetProjectInfo();
-    this.calcDuration(this.currentProjectDetails.Start_Date, this.currentProjectDetails.End_Date);
+    this.calcDuration();
     this.isSave = false;
     //this.disableSummary = true;
     this.disable = true;
+    
 
   }
   onNoClick(): void {
@@ -74,17 +77,17 @@ export class ProjectInfoComponent implements OnInit {
   }
   save() {
     debugger;
-    
-    this.currentProjectDetails.ProjectName=this.projectinfo.controls['Title'].value ;
-    this.currentProjectDetails.Description =this.projectinfo.controls['ProjectDescription'].value ;
-    this.currentProjectDetails.ProjectDomain_ID =this.projectinfo.controls['ProjectDomain_ID'].value ;
-    this.currentProjectDetails.Start_Date =this.projectinfo.controls['Start_Date'].value ;
-    this.currentProjectDetails.End_Date =this.projectinfo.controls['End_Date'].value ;    
+
+    this.currentProjectDetails.ProjectName = this.projectinfo.controls['Title'].value;
+    this.currentProjectDetails.Description = this.projectinfo.controls['ProjectDescription'].value;
+    this.currentProjectDetails.ProjectDomain_ID = this.projectinfo.controls['ProjectDomain_ID'].value;
+    this.currentProjectDetails.Start_Date = this.projectinfo.controls['Start_Date'].value;
+    this.currentProjectDetails.End_Date = this.projectinfo.controls['End_Date'].value;
     this.onprojectinformationChange.emit(this.currentProjectDetails);
     //this.onCancelClick();
-     this.isSave = false;
+    this.isSave = false;
     // //this.disableSummary = true;
-     this.disable = true;
+    this.disable = true;
 
   }
   public GetAllTechDomain() {
@@ -95,8 +98,16 @@ export class ProjectInfoComponent implements OnInit {
     );
   }
 
-  calcDuration(sDate, eDate) {
-    //debugger;
+  calcDuration() {
+    debugger;
+    if (this.projectinfo.controls['Start_Date'].value == "" || this.projectinfo.controls['End_Date'].value == "" || this.projectinfo.controls['Start_Date'].value == null || this.projectinfo.controls['End_Date'].value == null) {
+      return null;
+
+    }
+    else {
+      var sDate = this.projectinfo.controls['Start_Date'].value;
+    var eDate = this.projectinfo.controls['End_Date'].value;
+
 
     var startDate = new Date(sDate);
     var endDate;
@@ -120,51 +131,52 @@ export class ProjectInfoComponent implements OnInit {
       increment = 0
     }
     var Year = endDate.getFullYear() - (startDate.getFullYear() + increment);
-
-    //  var tottalExpy=tottalExpy+Year;
-    //  var tottalExpm=tottalExpm+month;
-    //  if(tottalExpm>12){
-    //  tottalExpy+=1;
-    //    tottalExpm=tottalExpm-12;
-    //  }
-    //  var tottalExpd=tottalExpd+Days;
-    //  {
-    //    if(tottalExpd>30){
-    //   tottalExpm+=1;
-    //     tottalExpd=tottalExpd-30;
-    //    }
-    //  }       
     var duration = Year + " Year(s) " + month + " Month(s) " + Days + " Day(s)";
     this.durationtime = duration;
+    this.projectinfo.controls['ProjectDuration'].setValue(this.durationtime);
     return duration;
+    }
+    
 
   }
 
   CompareDates(group: FormGroup) {
-    let s_date = new Date( group.controls['Start_Date'].value);
-    let e_date = new Date( group.controls['End_Date'].value);
-    if (e_date == null) {
+    debugger;
+    if((group.controls['Start_Date'].value == "" && group.controls['End_Date'].value != "")||(group.controls['Start_Date'].value == null && group.controls['End_Date'].value != null))
+    {
+      return group.controls['Start_Date'].setErrors({ CompareDates: true });
+    }
+    if (group.controls['Start_Date'].value == "" || group.controls['End_Date'].value == "" || group.controls['Start_Date'].value == null || group.controls['End_Date'].value == null) {
       return null;
 
     }
-    else if (e_date > s_date) {
-      // alert("done");
-      return null;
-
-    }
+    
     else {
-      return group.controls['End_Date'].setErrors({ CompareDates: true });
+      let s_date = new Date(group.controls['Start_Date'].value);
+      let e_date = new Date(group.controls['End_Date'].value);
+      if (e_date == null) {
+        return null;
 
+      }
+      else if (e_date > s_date) {
+        // alert("done");
+        return null;
+
+      }
+      else {
+        return group.controls['End_Date'].setErrors({ CompareDates: true });
+
+      }
     }
   }
   CreateProjectInfoForm() {
     this.projectinfo = this.formBuilder.group({
       ProjectID: ['', Validators.required],
-      Title: ['', Validators.required],
+      Title: ['', Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z_ ]+([a-zA-Z-_])*$')])],
       ProjectDescription: ['',],
       ProjectDomain_ID: ['', Validators.required],
-      Start_Date: ['', Validators.required],
-      End_Date: [''],
+      Start_Date: ['',],
+      End_Date: ['',],
       ProjectDuration: ['']
     }, {
         validator: this.CompareDates // your validation method
@@ -173,19 +185,39 @@ export class ProjectInfoComponent implements OnInit {
 
   }
   SetProjectInfo() {
-    debugger;
+
     this.projectinfo.controls['ProjectID'].setValue(this.currentProjectDetails.ProjectID);
     this.projectinfo.controls['Title'].setValue(this.currentProjectDetails.Title.trim());
     this.projectinfo.controls['ProjectDescription'].setValue(this.currentProjectDetails.Description.trim());
     this.projectinfo.controls['ProjectDomain_ID'].setValue(this.currentProjectDetails.ProjectDomain_ID);
     this.projectinfo.controls['Start_Date'].setValue(this.currentProjectDetails.Start_Date);
     this.projectinfo.controls['End_Date'].setValue(this.currentProjectDetails.End_Date);
-    this.projectinfo.controls['ProjectDuration'].setValue(this.durationtime);
+    debugger;
+    if (this.currentProjectDetails.Start_Date != undefined || this.projectinfo.controls['Start_Date'].value != null) {
+      this.projectinfo.controls['ProjectDuration'].setValue(this.calcDuration());
+    }
+
   }
   //white space or empty strting validation
-  TrimString(controlname:string){  
-    debugger;  
-    this.projectinfo.controls[controlname].setValue(this.projectinfo.controls[controlname].value.trim());    
+  TrimString(controlname: string) {
+    debugger;
+    this.projectinfo.controls[controlname].setValue(this.projectinfo.controls[controlname].value.trim());
   }
+  SetPlaceHolder(controlname: string){
+    if (!this.disable) {
+      switch (controlname) {
+        case 'Start_Date': return "Choose start date";
+        case 'End_Date': return "Choose end date"; 
+        case 'Duration': return "Duration";        
+        default: return " ";
+      }
+    }
+    else {
+      return "";
+    } 
+      
+    }
+    
   
+
 }

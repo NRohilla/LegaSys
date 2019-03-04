@@ -48,8 +48,8 @@ namespace LegaSysServices.Controllers
 
             if (result <= 0)
                 return InternalServerError();
-
-            return Json(new { id = result, message = "Project created successfully." });
+            else
+                return Json(new { id = result, message = "Project created successfully." });
         }
 
         [HttpPost]
@@ -59,8 +59,8 @@ namespace LegaSysServices.Controllers
             var lsProjects = _projects.UpdateProjectDetail(objProjects);
             if (lsProjects <= 0)
                 return InternalServerError();
-
-            return Json(new { id = lsProjects, message = "Project Updated successfully." });
+            else
+                return Json(new { id = lsProjects, message = "Project Updated successfully." });
 
         }
 
@@ -69,7 +69,7 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult DeleteProject(int id)
         {
             _projects.DeleteProject(id);
-            return Json(new { message = "Project deleted  successfully." });
+            return Json(new { message = "Success." });
         }
 
         [HttpGet]
@@ -85,7 +85,7 @@ namespace LegaSysServices.Controllers
             var project = _projects.GetAllTechnology();
             if (project == null)
                 return NotFound();
-            return Json(project);
+            else  return Json(project);
         }
 
         [HttpGet]
@@ -95,14 +95,14 @@ namespace LegaSysServices.Controllers
             var resource = _projects.GetAllResourceOnProject(projectid);
             if (resource == null)
                 return NotFound();
-            return Json(resource);
+            else return Json(resource);
         }
         [HttpPost]
         [Route("project/removeresource")]
         public IHttpActionResult RemoveResource(ProjectDetail projectDetail)
         {
             _projects.RemoveResource(projectDetail);
-            return Json(new { message = "Project deleted  successfully." });
+            return Json(new { message = "Success." });
         }
 
         [HttpPost]
@@ -136,7 +136,7 @@ namespace LegaSysServices.Controllers
             var projects = _projects.GetAllActiveProjects();
             if (projects == null)
                 return NotFound();
-            return Json(projects);
+            else return Json(projects);
 
         }
     }

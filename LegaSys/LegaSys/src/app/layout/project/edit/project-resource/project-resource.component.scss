@@ -3,3 +3,17 @@
 
   background: #D1F7F7; /*light blue */
 }
+
+::ng-deep .mat-tab-label {
+
+  color:white;
+  // background-color: cadetblue;
+
+
+  .frmbutton{
+    //height: 36px;
+    max-height: 42px;
+  }
+
+
+}

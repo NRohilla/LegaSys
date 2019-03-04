@@ -27,19 +27,22 @@ export class AddComponent implements OnInit {
     Blog: String = '';
     Email: String = '';
     IsAccepted: Number = 0;
+    ClientName: string ;
+    TechnologyName: string ;
     //testing 27/11/2018
     // constructor(public dialogRef: MatDialogRef<AddComponent>,
     constructor(
         //@Inject(MAT_DIALOG_DATA) public data: Project,
         public dataService: SharedService, private fb: FormBuilder, private router: Router, public snackBar: MatSnackBar) {
         this.regiForm = fb.group({
-            'Title': ["", Validators.required],
+            'Title': ["", Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z_ ]+([a-zA-Z-_])*$')])],
             'Description': ["", Validators.compose([Validators.required, Validators.maxLength(500)])],
 
             //'DomainName' : [null, Validators.required],
 
             'Client_ID': [0, Validators.required],
             'ProjectDomain_ID': [0, Validators.required],
+            'ProjectD_ID': [""]
         });
         this.getClient();
         //this.GetAllDomain();
@@ -54,11 +57,11 @@ export class AddComponent implements OnInit {
         // Validators.email,
     ]);
     ngOnInit() {
-        var cllientId=sessionStorage.getItem('cllientIdToAddProject');
-        if(cllientId!=null){
+        var cllientId = sessionStorage.getItem('cllientIdToAddProject');
+        if (cllientId != null) {
             this.regiForm.controls['Client_ID'].setValue(parseInt(cllientId));
         }
-     }
+    }
     getErrorMessage() {
         return this.formControl.hasError('required') ? 'Required field' :
             this.formControl.hasError('email') ? 'Not a valid email' :
@@ -74,11 +77,14 @@ export class AddComponent implements OnInit {
     //     );
     // }
     onFormSubmit(form: NgForm) {
+        this.GenerateProjectID();
         console.log(this.regiForm.value);
+
         debugger;
         if (form['Title'] != "" && form['Client_ID'] != 0 && form['ProjectDomain_ID'] != 0) {
-            this.dataService.addProject(form).subscribe(
+            this.dataService.addProject(this.regiForm.value).subscribe(
                 res => {
+
                     sessionStorage.setItem('message', 'added');
                     //this.openSnackBar();
                     this.snackBar.open('Project added successfully', 'ok', { duration: 2500 });
@@ -91,15 +97,22 @@ export class AddComponent implements OnInit {
 
 
     }
+    GenerateProjectID() {
+        var date = new Date;        
+        //this.regiForm.controls.ProjectD_ID.setValue(this.TechnologyName.concat(this.ClientName).concat(date.getDate().toString()).concat(date.getMinutes().toString()).concat(date.getSeconds().toString()));
+        this.regiForm.controls.ProjectD_ID.setValue(this.TechnologyName.concat(this.ClientName));
+        console.log(this.regiForm.controls.ProjectD_ID.value);    
+    }
 
     public getClient() {
         this.dataService.GetAllActiveClient().subscribe(
-            (res:any) => {
-                debugger;
+            (res: any) => {
+                //debugger;
                 this.clientdetails = res.data;
             });
     }
     public GetAllTechdomains() {
+        debugger;
         this.dataService.getalltechdomains().subscribe(
             res => {
                 this.technologydetails = res;
@@ -113,6 +126,17 @@ export class AddComponent implements OnInit {
         this.snackBar.openFromComponent(SnackBarComponentExampleComponent, {
             duration: 2000,
         });
+    }
+    TrimString(str: string) {
+        this.regiForm.controls[str].setValue(this.regiForm.controls[str].value.trim());
+    }
+    SetTechnology(str: string) {
+        var matches = str.match(/\b(\w)/g); 
+        this.TechnologyName = matches.join('');
+    }
+    SetClientName(str: string) {
+        var matches = str.match(/\b(\w)/g); // ['J','S','O','N']
+        this.ClientName = matches.join(''); // JSON        
     }
 }
 

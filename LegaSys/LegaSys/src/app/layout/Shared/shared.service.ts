@@ -69,28 +69,28 @@ export class SharedService {
         // const headers = new Headers();
         // headers.append(this.storage.get('UserToken').access_token, '');
         // return this.http.get(this.url +'/location/getall', this.headers);
-        return this.http.get(this.url +'location/getall');
+        return this.http.get(this.url +'/location/getall');
     }
     public getallreportinghead() {
         // const headers = new Headers();
         // headers.append(this.storage.get('UserToken').access_token, '');
         // return this.http.get(this.url +'/resource/getall', this.headers);
-        return this.http.get(this.url +'resource/getall');
+        return this.http.get(this.url +'/resource/getall');
     }
     public getallrole() {
         // const headers = new Headers();
         // headers.append(this.storage.get('UserToken').access_token, '');
         // return this.http.get(this.url +'/role/getall', this.headers);
-        return this.http.get(this.url +'role/getall');
+        return this.http.get(this.url +'/role/getall');
     }
 
     //new
     public getalltechdomains() {
-        // debugger;
+         //debugger;
         // const headers = new Headers();
         // headers.append(this.storage.get('UserToken').access_token, '');
         // return this.http.get(this.url +'/project/GetAllTechDomains', this.headers);
-        return this.http.get(this.url +'project/GetAllTechDomains');
+        return this.http.get(this.url +'/project/GetAllTechDomains');
     }
 
 

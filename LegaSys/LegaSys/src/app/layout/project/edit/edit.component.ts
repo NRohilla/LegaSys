@@ -134,7 +134,7 @@ export class EditComponent implements OnInit {
 
     }
     save(projectdetails:Project) {
-        //debugger;
+        debugger;
         this.dataService.updateProject(this.projectdetails).subscribe(
             res => {
                 sessionStorage.setItem('message', 'updated');
@@ -212,9 +212,15 @@ export class EditComponent implements OnInit {
 
     }
     calcDuration(sDate, eDate){
-       // debugger;
-    
-        var startDate = new Date(sDate);
+        
+        //debugger;
+        if (sDate=="" || eDate=="" || sDate==null ||eDate ==null ) {
+            return null;
+      
+          }
+        
+        else{
+            var startDate = new Date(sDate);
         var endDate;
         if(eDate==undefined){
           endDate = new Date();
@@ -253,6 +259,9 @@ export class EditComponent implements OnInit {
       //  }       
         var duration=Year+" Year(s) "+month+" Month(s) "+Days+" Day(s)";
         return duration;
+        }
+    
+        
          
       }
 }

@@ -66,8 +66,9 @@ namespace LegaSysDataEntities
         //public string Master_Role { get; set; }
         //public int? ProjectResourceID { get; set; }
         public List<ProjectResources> projectResources { get; set; }
+        public string ProjectD_ID { get; set; }
 
-}
+    }
 
     //added on 11/02/2019
 
@@ -89,5 +90,11 @@ namespace LegaSysDataEntities
         public int? ProjectResourceID { get; set; }
         public short? ResourceStatus { get; set; }
 
+    }
+
+    public class ForAvailableResource
+    {
+        public int UserDetail_Id { get; set; }
+        public List<int> ids { get; set; } 
     }
 }

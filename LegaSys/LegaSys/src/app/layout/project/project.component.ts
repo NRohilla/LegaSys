@@ -14,7 +14,10 @@ import { EditComponent } from './edit/edit.component';
 import { Project } from '../project/projenctModel';
 import { AddComponent } from './add/add.component';
 import { BehaviorSubject, fromEvent } from 'rxjs';
-import { DeleteDialog } from "../client/deleteDialog"
+import { DialogComponent } from '../masters/dialog/dialog.component';
+
+
+
 //import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component';
 @Component({
     selector: 'app-project',
@@ -25,7 +28,8 @@ import { DeleteDialog } from "../client/deleteDialog"
 
 export class ProjectComponent implements OnInit, AfterViewInit {
     project: any;
-    displayedColumns = ['ProjectID', 'Title', 'ClientName', 'DomainName', 'Description', 'actions'];
+    // displayedColumns = ['ProjectID', 'Title', 'ClientName', 'DomainName', 'Description', 'actions'];
+    displayedColumns = ['ProjectD_ID', 'Title', 'ClientName', 'Created_Date', 'Status', 'actions'];
     projectdetails: any;
     exampleDatabase: SharedService | null;
     index: number;
@@ -40,9 +44,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         private apiService: SharedService, private router: Router, public dialog: MatDialog) {
         this.RenderDataTable();
         this.dataSource = new MatTableDataSource(this.project);
+       
     }
 
-    ngOnInit() {
+    ngOnInit() {       
 
     }
 
@@ -68,7 +73,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
             .subscribe(
                 res => {
                     this.project = res;
+
+                    //this.project.Status==0?"Inactive":"Active";
                     this.dataSource = new MatTableDataSource(this.project);
+                    this.SwapStatus();
                     this.dataSource.paginator = this.paginator;
                     this.dataSource.sort = this.sort;
                     //console.log("project"+JSON.stringify (this.project));
@@ -84,17 +92,17 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     }
     private refreshTable() { }
     deleteproject(id, status) {
-        debugger;
+        //debugger;
         // const dialogRef = this.dialog.open("Test", {
         //     width: '250px',
         //   //data: {name: this.name, animal: this.animal}
         //   });
         sessionStorage.setItem("currentClientdailogID", id);
-        if (status == 0) {
-            const dialogRef = this.dialog.open(DeleteDialog, {
+        if (status == 'InActive') {
+            const dialogRef = this.dialog.open(DialogComponent, {
                 width: '370px',
 
-                data: { status: "Deactivate", confirm: true }
+                data: { status: "Activate", confirm: true }
             });
             dialogRef.afterClosed().subscribe(result => {
 
@@ -106,12 +114,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
         });
         }
         else {   
-            debugger;         
+            //debugger;         
 
-            const dialogRef = this.dialog.open(DeleteDialog, {
+            const dialogRef = this.dialog.open(DialogComponent, {
                 width: '370px',
 
-                data: { status: "Activate", confirm: true }
+                data: { status: "Deactivate", confirm: true }
             });
             dialogRef.afterClosed().subscribe(result => {
                 if (result)
@@ -149,5 +157,26 @@ export class ProjectComponent implements OnInit, AfterViewInit {
     //       duration: 500,
     //     });
     // }
+    GetStatus(element: number) {
+        if (element==0) {
+          return 'In active';
+        } else {
+          return 'Active';
+        }
+      }
+
+      SwapStatus(){
+        debugger;
+        for (var i in this.dataSource.data){
+            if(this.dataSource.data[i].Status==0)
+            {
+                this.dataSource.data[i].Status='InActive';
+            }
+            else if(this.dataSource.data[i].Status==1)
+            {
+                this.dataSource.data[i].Status='Active';
+            }
+        }
+      }
 
 }

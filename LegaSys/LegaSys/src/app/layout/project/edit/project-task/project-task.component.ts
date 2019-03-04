@@ -31,6 +31,7 @@ export class ProjectTaskComponent implements OnInit {
   projectid: any;
   datasource: any;
   tasklist: any;
+  isAvailableTask:boolean=false;
   constructor(private route: ActivatedRoute, private http: HttpClient, @Inject(SESSION_STORAGE) private storage: StorageService,
     private apiService: SharedService, private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog, public dataService: ResourceService, public snackBar: MatSnackBar) {
 
@@ -56,9 +57,10 @@ export class ProjectTaskComponent implements OnInit {
       .subscribe(
         res => {
 
-          //debugger;
+          debugger;
           this.tasklist = res;
           this.datasource = new MatTableDataSource(this.tasklist);
+          if(this.datasource.data.length==0){this.isAvailableTask=true;}
 
         },
         error => {
@@ -81,5 +83,10 @@ export class ProjectTaskComponent implements OnInit {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.datasource.filter = filterValue;
+  }
+
+  AddTask(){
+    sessionStorage.setItem("projectdetails", JSON.stringify(this.taskdetails));
+    this.router.navigate(['/addtask']);
   }
 }

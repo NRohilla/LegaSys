@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     }
 
     getName() {
-        debugger;
+        //debugger;
      
         var userName=this.storage.get('UserName');
         if (userName != null) {

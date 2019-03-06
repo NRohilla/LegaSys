@@ -10,7 +10,7 @@ import { Client } from './model/client.model';
 import { DeleteDialog } from './deleteDialog';
 import { TosterService } from '../../shared/services/toster.service';
 import { StorageService,SESSION_STORAGE } from 'angular-webstorage-service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+//import { JwtHelperService } from '@auth0/angular-jwt';
 // import { ActivateDialog } from './activateDialog';
 // import { ClientActiveDialog } from './clientActiveDialloge';
 @Component({

@@ -1,85 +1,95 @@
 <span class="k-i-loading k-icon" style="font-size: 64px;"></span>
 <div>
-    <app-page-header [heading]="'Tasks'" [icon]="'fa fa-users'"></app-page-header>
-   
-  </div>
-  <!-- //Filtering The Table -->
+  <app-page-header [heading]="'Tasks'" [icon]="'fa fa-users'"></app-page-header>
+
+</div>
+<!-- //Filtering The Table -->
 <div class="col-md-3">
   <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-    </mat-form-field></div>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" [(ngModel)]="searchValue">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" type="reset" (click)="ClearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
 
 <!-- table-active -->
-<mat-table [dataSource]="dataSource" matSort >
+<mat-table [dataSource]="dataSource" matSort>
 
   <!-- Task Tittle column -->
   <ng-container matColumnDef="TaskTitle">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span class="text-white font-14">Title</span> </mat-header-cell>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header> <span
+        class="text-white font-14">Title</span> </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.TaskTitle}} </mat-cell>
   </ng-container>
 
-   <!-- Task Project Title Coloumn -->
-   <ng-container matColumnDef="Project_Title">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Project Title</span>
+  <!-- Task Project Title Coloumn -->
+  <ng-container matColumnDef="Project_Title">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span
+        class="text-white font-14">Project Title</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Project_Title}} </mat-cell>
   </ng-container>
 
   <!-- Task Assingn to column-->
   <ng-container matColumnDef="Task_AssignTo">
-    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span class="text-white font-14">Assign To</span>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef mat-sort-header><span
+        class="text-white font-14">Assign To</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.Task_AssignTo}} </mat-cell>
-  </ng-container> 
+  </ng-container>
 
 
-   <!-- Task Status column -->
+  <!-- Task Status column -->
   <ng-container matColumnDef="Task_Status">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Status</span>
-      </mat-header-cell>
-      <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
-      <mat-cell *matCellDef="let element">
-          <img src={{element.Status_Icon}} height="15" width="15" > {{element.Status_Type}}</mat-cell>
-         <!-- <mat-chip color="primary" selected style="padding: 5px; border-radius: 4px;"> {{element.Status_Type}}</mat-chip></mat-cell> -->
-     
-    </ng-container>
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Status</span>
+    </mat-header-cell>
+    <!-- the field Status Status_Type which would seen on Grid table must be same as entity class of visual studio -->
+    <mat-cell *matCellDef="let element">
+      <img src={{element.Status_Icon}} height="15" width="15"> {{element.Status_Type}}</mat-cell>
+    <!-- <mat-chip color="primary" selected style="padding: 5px; border-radius: 4px;"> {{element.Status_Type}}</mat-chip></mat-cell> -->
 
-<!-- Task Priority Coloumn -->
-    <ng-container matColumnDef="Task_Priority">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Priority</span>
-      </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.Priority_Type}}</mat-cell>
-      </ng-container>
+  </ng-container>
 
-  
+  <!-- Task Priority Coloumn -->
+  <ng-container matColumnDef="Task_Priority">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Priority</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Priority_Type}}</mat-cell>
+  </ng-container>
 
-<!-- Task Project Activity Area Coloumn -->
-<ng-container matColumnDef="Task_Activity">
+
+
+  <!-- Task Project Activity Area Coloumn -->
+  <ng-container matColumnDef="Task_Activity">
     <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Activity</span>
     </mat-header-cell>
-     <mat-cell *matCellDef="let element">{{element.Task_Activity}}</mat-cell> 
+    <mat-cell *matCellDef="let element">{{element.Task_Activity}}</mat-cell>
   </ng-container>
 
 
   <!-- Task Created Date Coloumn-->
   <ng-container matColumnDef="Start_Date">
-      <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Start Date</span>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Start_Date|date}} </mat-cell>
-    </ng-container> 
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Start
+        Date</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Start_Date|date}} </mat-cell>
+  </ng-container>
 
-<!-- Task Project Target Date Coloumn -->
-<ng-container matColumnDef="Target_Date">
-  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class="text-white font-14">Target Date</span>
-  </mat-header-cell>
-  <mat-cell *matCellDef="let element">{{element.Target_Date|date}} </mat-cell>
-</ng-container>
+  <!-- Task Project Target Date Coloumn -->
+  <ng-container matColumnDef="Target_Date">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Target
+        Date</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Target_Date|date}} </mat-cell>
+  </ng-container>
 
-<!-- Task OriginAL Estimate Coloumn -->
-<ng-container matColumnDef="Original_Estimate">
-  <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef ><span class= "text-white font-14">Original Estimate</span>
-  </mat-header-cell>
-  <mat-cell *matCellDef="let element"> {{element.Original_Estimate} } </mat-cell>
+  <!-- Task OriginAL Estimate Coloumn -->
+  <ng-container matColumnDef="Original_Estimate">
+    <mat-header-cell class="bg-info" mat-header-cell *matHeaderCellDef><span class="text-white font-14">Original
+        Estimate</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Original_Estimate} } </mat-cell>
 </ng-container>
 
  <!--These Buttons are Use to Edit Record and Delete-->
@@ -120,4 +130,3 @@
   <button mat-button class="btn btn-info" [routerLink]="['/addtask']" matTooltip="Create Task"><i class="fa fa-plus" aria-hidden="true" ></i>
     Add New Task</button>
 </div>
-

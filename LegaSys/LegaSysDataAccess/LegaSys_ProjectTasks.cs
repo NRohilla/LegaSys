@@ -29,6 +29,18 @@ namespace LegaSysDataAccess
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
+        public Nullable<int> Task_Status { get; set; }
+        public Nullable<int> Task_Priority { get; set; }
+        public Nullable<int> Task_Risk { get; set; }
+        public Nullable<int> Task_Activity { get; set; }
+        public string Task_AssignTo { get; set; }
+        public Nullable<System.DateTime> Target_Date { get; set; }
+        public string Acceptance_Criteria { get; set; }
+        public Nullable<double> Original_Estimate { get; set; }
+        public Nullable<double> Remaining { get; set; }
+        public Nullable<double> Completed { get; set; }
+        public Nullable<System.DateTime> Start_Date { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual LegaSys_Attachments LegaSys_Attachments { get; set; }
         public virtual LegaSys_Projects LegaSys_Projects { get; set; }

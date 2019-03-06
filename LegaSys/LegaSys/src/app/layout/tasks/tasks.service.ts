@@ -39,19 +39,19 @@ export class TasksService {
         return this.http.get(this.baseUrl +'/task/getall', { headers: this.getToken() })
     }
 
-    CreateProjectTaskDetail(taskmodel: TaskModel) {
+    CreateProjectTaskDetail(createdBy:number,taskmodel: TaskModel,) {
         debugger
        
 
 
-        return this.http.post<TaskModel[]>(this.baseUrl +'/task/create', taskmodel, { headers: this.getToken() })
+        return this.http.post<TaskModel[]>(this.baseUrl +'/task/create/' + createdBy, taskmodel)
     }
 
-    UpdateProjectTaskDetail(taskmodel: TaskModel) {
+    UpdateProjectTaskDetail(updatedBy :number,taskmodel: TaskModel) {
 
 
 
-        return this.http.post<TaskModel[]>(this.baseUrl +'/task/update', taskmodel, { headers: this.getToken() })
+        return this.http.post<TaskModel[]>(this.baseUrl +'/task/update/' + updatedBy,  taskmodel)
     }
 
     DeleteProjectTask(ID) {
@@ -93,10 +93,10 @@ export class TasksService {
     }
 
 
-    UpdateProjectSubTaskDetail(subtaskmodel: TaskModel) {
+    UpdateProjectSubTaskDetail(ID,subtaskmodel: TaskModel) {
       
 
-        return this.http.post<TaskModel[]>(this.baseUrl +'/subtask/update/', subtaskmodel, { headers: this.getToken() });
+        return this.http.post<TaskModel[]>(this.baseUrl +'/subtask/update/' +ID, subtaskmodel, { headers: this.getToken() });
     }
 
 

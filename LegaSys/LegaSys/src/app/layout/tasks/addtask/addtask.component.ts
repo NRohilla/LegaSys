@@ -33,6 +33,7 @@ export class AddtaskComponent implements OnInit {
   acceptancecriteria:any;
   taskDescription:any;
   projectId:any;
+  createdBy:any;
 
   taskClassification: any = 
     [
@@ -49,7 +50,7 @@ export class AddtaskComponent implements OnInit {
   ngOnInit() {
     debugger;
 
-    
+   
     
     if(localStorage.getItem('isLoggedin')=='true')
     {
@@ -117,7 +118,8 @@ export class AddtaskComponent implements OnInit {
   SaveData() 
   {
     debugger;
-    var userName=this.storage.get('UserName');
+    this.createdBy=localStorage.getItem('userDetailsID');
+    
     this.myModel.TaskTitle = this.taskForm.value.TaskTitle;
     this.myModel.Description = this.taskForm.value.taskDescription;
     this.myModel.Project_ID = this.taskForm.value.Project_ID;
@@ -136,7 +138,7 @@ export class AddtaskComponent implements OnInit {
     this.myModel.Activity_Id=this.taskForm.value.Activity_Id;
    
        
-    this.dataService.CreateProjectTaskDetail(this.myModel).subscribe
+    this.dataService.CreateProjectTaskDetail(this.createdBy,this.myModel).subscribe
       (
         
      (res:any) => {  

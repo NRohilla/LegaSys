@@ -16,9 +16,16 @@ import { DialogComponent } from '../masters/dialog/dialog.component';
 })
 export class TaskComponent implements OnInit {
 
+  //Declaration of Variables
+
   dataSource: any = [];
   isLoading = true;
   ID : any;
+  createdBy:any
+  searchValue:string = '';
+
+
+
  
   displayedColumns: string[] = ['TaskTitle', 'Project_Title','Task_AssignTo','Task_Status','Task_Priority','Task_Activity','Start_Date','Target_Date','Action'];
 
@@ -32,6 +39,8 @@ export class TaskComponent implements OnInit {
 
   ngOnInit()
    {
+
+   
 
     if(localStorage.getItem('isLoggedin')=='true')
           {
@@ -118,8 +127,15 @@ export class TaskComponent implements OnInit {
 
 
 }
-}
 
+ClearSearch()
+     {
+       debugger;
+  
+          this.searchValue = null;
+          this.FetchDataTable();
+      }
+}
 export class TaskModel {
   //Fields Of Task Table
 

@@ -58,15 +58,13 @@ namespace LegaSysServices.Controllers
 
         //method for create project task  PosT Method
         [HttpPost]
-        [Route("task/create")]
-        public IHttpActionResult Post([FromBody] TaskDetail objTask)
+        [Route("task/create/{id}")]
+        public IHttpActionResult Post(int id, [FromBody] TaskDetail objTask)
         {
 
-            //Fetching UserId
-            //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
-            //objTask.Created_By = createdBy;
+         
 
-            var result = _Taskdt.CreateProjectTaskDetail(objTask);
+            var result = _Taskdt.CreateProjectTaskDetail(objTask,id);
 
             if (result <= 0)
                 return InternalServerError();
@@ -76,13 +74,13 @@ namespace LegaSysServices.Controllers
 
         //Method for update task PuT method 
         [HttpPost]
-        [Route("task/update")]
-        public IHttpActionResult Put([FromBody]TaskDetail objTask)
+        [Route("task/update/{id}")]
+        public IHttpActionResult Put(int id,[FromBody]TaskDetail objTask)
         {
             //Fetching UserId
             //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
             //objTask.Updated_By = updatedBy;
-            var lsProjects = _Taskdt.UpdateProjectTaskDetail(objTask);
+            var lsProjects = _Taskdt.UpdateProjectTaskDetail(objTask,id);
 
             if (lsProjects <= 0)
                 return InternalServerError();
@@ -129,7 +127,7 @@ namespace LegaSysServices.Controllers
         public IHttpActionResult Post(int id,[FromBody] SubTaskDetail objSubTask)
         {
             //Fetching UserId
-            //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var createdBy);
+         
 
            bool Status= _uOWSubTask.CreateProjectSubTaskDetail(id, objSubTask);
             if (Status)
@@ -140,13 +138,12 @@ namespace LegaSysServices.Controllers
         //Method to update task
 
         [HttpPost]
-        [Route("subtask/update")]
-        public IHttpActionResult Put([FromBody]SubTaskDetail objsubTask)
+        [Route("subtask/update/{id}")]
+        public IHttpActionResult Put(int id, [FromBody]SubTaskDetail objsubTask)
         {
-            //Fetching UserId
-            //int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "userid").Value, out var updatedBy);
-            //objsubTask.ProjectUpdated_By= updatedBy;
-            var lsProjects = _uOWSubTask.UpdateSubTaskDetail( objsubTask);
+           
+         
+            var lsProjects = _uOWSubTask.UpdateSubTaskDetail( id,objsubTask);
 
             if (lsProjects <= 0)
                 return InternalServerError();

@@ -147,6 +147,7 @@ namespace LegaSysUOW.Repository
             //db.BulkInsert(attachment);
 
             //adding data to project task table
+
             var subtaskModel = new LegaSys_ProjectSubTasks
             {
                 Project_Task_ID = id,
@@ -157,7 +158,7 @@ namespace LegaSysUOW.Repository
 
                 // Attachment_ID = attachment.AttachmentID,
 
-               // Created_By = createdBy,
+                 Created_By = objSubTask.Created_By,
 
                 SubTaskAcceptance_Criteria = objSubTask.SubTaskAcceptance_Criteria,
 
@@ -198,9 +199,10 @@ namespace LegaSysUOW.Repository
 
 
         //method to update Subtask******SADHANA********
-        public int UpdateSubTaskDetail(SubTaskDetail projectSubTaskDetail)
+        public int UpdateSubTaskDetail(int id,SubTaskDetail projectSubTaskDetail)
         {
             var objSubTask = db.LegaSys_ProjectSubTasks.Where(x => x.ProjectSubTaskID == projectSubTaskDetail.ProjectSubTaskID).FirstOrDefault();
+
             if (objSubTask != null)
             {
                 objSubTask.ProjectSubTaskID = projectSubTaskDetail.ProjectSubTaskID;
@@ -230,6 +232,10 @@ namespace LegaSysUOW.Repository
                 objSubTask.SubTaskRemaining = projectSubTaskDetail.Remaining;
 
                 objSubTask.SubTaskCompleted = projectSubTaskDetail.Completed;
+
+                objSubTask.Updated_By = id;
+
+                objSubTask.Updated_Date = DateTime.Now;
 
                 db.SaveChanges();
             }

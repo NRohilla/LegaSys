@@ -42,11 +42,14 @@ export class DashbordService {
 
   }
 
+
+
+  /*****************Created by Sadhana To get All Task to Calculate Task On DashBoard************   */
   GetAllProjectsTask() 
   {
 
     return this.http.get<TaskModel[]>(this.baseUrl +'/task/getall', { headers: this.CreateHeader() })
-}
+  }
 
 GetResourceDetails(){
   debugger;

@@ -23,6 +23,17 @@ namespace LegaSysDataAccess
         public Nullable<int> Updated_By { get; set; }
         public Nullable<System.DateTime> Created_Date { get; set; }
         public Nullable<System.DateTime> Updated_Date { get; set; }
+        public Nullable<int> SubTask_Status { get; set; }
+        public Nullable<int> SubTask_Priority { get; set; }
+        public Nullable<int> SubTask_Risk { get; set; }
+        public Nullable<int> SubTask_Activity { get; set; }
+        public string SubTask_AssignTo { get; set; }
+        public Nullable<System.DateTime> SubTarget_Date { get; set; }
+        public string SubTaskAcceptance_Criteria { get; set; }
+        public Nullable<double> SubTaskOriginal_Estimate { get; set; }
+        public Nullable<double> SubTaskRemaining { get; set; }
+        public Nullable<double> SubTaskCompleted { get; set; }
+        public Nullable<System.DateTime> SubTaskStart_Date { get; set; }
     
         public virtual LegaSys_Attachments LegaSys_Attachments { get; set; }
         public virtual LegaSys_ProjectTasks LegaSys_ProjectTasks { get; set; }

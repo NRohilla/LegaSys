@@ -39,17 +39,17 @@ export class ClientServiceService {
   }
   AddClientDetails(client: Client) {
     client.Created_By= parseInt(this.storage.get('userDetailsID'));
-    client.Updated_By=parseInt(this.storage.get('userDetailsID'));
+    client.Updated_By= parseInt(localStorage.getItem('userDetailsID'));
 
     return this.http.post(this.URL + '/Client/AddClientDetails', client ); // Add new client 
 
   }
   UpdateDetailsWithID(client: Client) {
-    client.Updated_By=parseInt(this.storage.get('userDetailsID'));
+    client.Updated_By= parseInt(localStorage.getItem('userDetailsID'));
     return this.http.put(this.URL + '/Client/UpdateClientDetails', client); // update perticular client 
   }
   DeleteClient(ID) {
-    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
+    let userDetailsID= parseInt(localStorage.getItem('userDetailsID'));
     return this.http.delete(this.URL + '/Client/DeleteClientById?Id='+ID+'&userId='+userDetailsID); // delete perticular client 
    
   }
@@ -57,15 +57,16 @@ export class ClientServiceService {
     return this.http.get(this.URL + '/Client/GetProjectsByClientId/' + ID); // get all project of perticular client 
   }
   UpdateClientProjectWithId(projectDetails: ClientProject) {
-    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
+    let userDetailsID= parseInt(localStorage.getItem('userDetailsID'));
     return this.http.put(this.URL + '/Client/UpdateProjectDetailsWithId', projectDetails); // update project details of a perticular client 
 
   }
   ActivateClienthavingId(ID: number) {
     debugger;
-    let userDetailsID=parseInt(this.storage.get('userDetailsID'));
+    let userDetailsID= parseInt(localStorage.getItem('userDetailsID'));
     return this.http.get(this.URL + '/Client/updateClientStatus?Id='+ID+'&userId='+userDetailsID);  // activating a client 
   }
 
 
 }
+// parseInt(localStorage.getItem('userDetailsID'));

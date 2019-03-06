@@ -11,11 +11,11 @@ namespace LegaSysUOW.Interface
     //Interface
     public interface IUOWTask
     {
-        int CreateProjectTaskDetail(TaskDetail projectTaskDetail);
+        int CreateProjectTaskDetail(TaskDetail projectTaskDetail,int createdBy);
         TaskDetail GetProjectTaskbyId(int id);
         IEnumerable<TaskDetail> GetAllProjectsTask();
         bool DeleteProjectTask(int id);
-        int UpdateProjectTaskDetail(TaskDetail projectTaskDetail);
+        int UpdateProjectTaskDetail(TaskDetail projectTaskDetail,int updatedBy);
         IEnumerable<TaskDetail> GetTaskStatus();
         IEnumerable<TaskDetail> GetTaskPriority();
         IEnumerable<TaskDetail> GetTaskRisk();

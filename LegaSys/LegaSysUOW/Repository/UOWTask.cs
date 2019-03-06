@@ -94,8 +94,10 @@ namespace LegaSysUOW.Repository
         }
 
         //Method for creating new task.******SADHANA********
-        public int CreateProjectTaskDetail(TaskDetail projectTaskDetail)
+        public int CreateProjectTaskDetail(TaskDetail projectTaskDetail,int createdBy)
         {
+
+
 
             //declaration of object attachmentType
             var Typeattachment = new LegaSys_AttachmentTypes
@@ -131,8 +133,8 @@ namespace LegaSysUOW.Repository
                 Attachment_ID = attachment.AttachmentID,
 
                 Project_ID = projectTaskDetail.Project_ID,
+                Created_By = createdBy,
 
-                Created_By = projectTaskDetail.Created_By,
 
                 Acceptance_Criteria = projectTaskDetail.Acceptance_Criteria,
 
@@ -170,7 +172,7 @@ namespace LegaSysUOW.Repository
 
 
         //method to update task******SADHANA********
-        public int UpdateProjectTaskDetail(TaskDetail projectTaskDetail)
+        public int UpdateProjectTaskDetail(TaskDetail projectTaskDetail , int updatedBy)
         {
             var objProjecttaskDetail = db.LegaSys_ProjectTasks.Where(x => x.ProjectTaskID == projectTaskDetail.ProjectTaskID).FirstOrDefault();
             if (objProjecttaskDetail != null)
@@ -187,7 +189,7 @@ namespace LegaSysUOW.Repository
 
                 objProjecttaskDetail.Project_ID = projectTaskDetail.Project_ID;
 
-                objProjecttaskDetail.Updated_By = projectTaskDetail.Updated_By;
+                objProjecttaskDetail.Updated_By = updatedBy;
 
                 objProjecttaskDetail.Updated_Date = (projectTaskDetail.Updated_Date != null) ? projectTaskDetail.Updated_Date : DateTime.Now;
 
@@ -201,7 +203,7 @@ namespace LegaSysUOW.Repository
 
                 objProjecttaskDetail.Task_Priority = projectTaskDetail.Priority_Id;
 
-                objProjecttaskDetail.Task_Risk = projectTaskDetail.Risk_Id;
+               
 
                 objProjecttaskDetail.Task_Status = projectTaskDetail.Status_Id;
 

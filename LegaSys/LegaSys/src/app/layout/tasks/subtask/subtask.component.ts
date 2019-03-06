@@ -58,6 +58,9 @@ export class SubtaskComponent implements OnInit {
   disableMessage: any = false;
   taskActivity: any;
   date:any;
+  createdBy:any;
+  updatedBy:any;
+  searchValue:string ='';
 
 
 
@@ -83,7 +86,7 @@ export class SubtaskComponent implements OnInit {
         Status_Id: ['', Validators.required],
         Priority_Id: ['', Validators.required],
         Risk_Id: ['', Validators.required],
-        Classification: ['', Validators.required],
+       
         SubTaskAcceptance_Criteria: ['', Validators.required],
         SubTaskOriginal_Estimate: ['', Validators.required],
         Remaining: [''],
@@ -136,7 +139,7 @@ export class SubtaskComponent implements OnInit {
 
   }
 
-  //tOASTER mETHODS
+  //TOASTER METHODS
   showSuccess() {
     this.toastr.showSuccess('Subtask Created Successfully');
   }
@@ -263,7 +266,7 @@ export class SubtaskComponent implements OnInit {
 
       SubTaskStart_Date: row.SubTaskStart_Date,
       SubTaskTarget_Date: row.SubTaskTarget_Date,
-      Classification: "",
+     
       SubTaskAcceptance_Criteria: row.SubTaskAcceptance_Criteria,
       SubTaskOriginal_Estimate: row.SubTaskOriginal_Estimate,
       Remaining: 0,
@@ -324,6 +327,7 @@ export class SubtaskComponent implements OnInit {
     if (this.formType == "Add")
     //Code to Create subtask.
     {
+      this.createdBy=localStorage.getItem('userDetailsID');
 
       this.myModel.SubTask_Title = this.subtaskForm.value.SubTask_Title;
       this.myModel.SubTask_Description = this.subtaskForm.value.SubTask_Description;
@@ -340,7 +344,9 @@ export class SubtaskComponent implements OnInit {
       this.myModel.SubTaskOriginal_Estimate = this.subtaskForm.value.SubTaskOriginal_Estimate;
       this.myModel.Remaining = this.subtaskForm.value.Remaining;
       this.myModel.Activity_Id = this.subtaskForm.value.Activity_Id;
-      this.dataService.CreateProjectSubTask(this.ProjectTaskId, this.myModel)
+      this.myModel.Created_By= this.createdBy;
+      
+      this.dataService.CreateProjectSubTask(this.ProjectTaskId, this.myModel )
         .subscribe((result) => {
 
           this.showSuccess();
@@ -367,9 +373,12 @@ export class SubtaskComponent implements OnInit {
 
     //Code to Update subtask
     else {
+
+      this.updatedBy=localStorage.getItem('userDetailsID');
+
       this.subtaskForm.value.ProjectSubTaskID = this.subTask_ID;
 
-      this.dataService.UpdateProjectSubTaskDetail(this.subtaskForm.value).subscribe
+      this.dataService.UpdateProjectSubTaskDetail(this.updatedBy,this.subtaskForm.value).subscribe
         (
           res => {
             this.showupdateSuccess();
@@ -468,6 +477,9 @@ export class SubtaskComponent implements OnInit {
     }
   }
 
+
+  // Method to compare the dates of task and sub task creation
+
   matchval(group: FormGroup) {
     debugger;
 
@@ -510,7 +522,7 @@ export class SubtaskComponent implements OnInit {
 
 
 
-
+// Method to reset the form
   reset() {
 
     this.subtaskForm.reset();
@@ -519,7 +531,12 @@ export class SubtaskComponent implements OnInit {
   }
 
 
+  ClearSearch()
+  {
+    debugger;
 
-
-
+       this.searchValue = null;
+     
+       this.GetAllSubTaskByTaskID(this.ProjectTaskId);
+  }
 }

@@ -34,11 +34,16 @@
        
         </div>
  
-  
+  <br>
+  <br>
 <!-- Filtering The Table -->
 <div class="col-md-3" *ngIf="disableDatatable" >
 <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search"  [(ngModel)]="searchValue">
+  <button mat-button  matSuffix mat-icon-button aria-label="Clear"  type="reset" (click)="ClearSearch()" >
+    <mat-icon>close</mat-icon>
+</button>
+
 </mat-form-field>
 </div>
 
@@ -370,11 +375,11 @@
               </div>
   
                <!-- Select SubTask Classification -->
-               <div class="col-md-4">
+               <!-- <div class="col-md-4">
                     <mat-form-field class="w-100">
-                             <mat-label style="font-weight:bold;font-size:15px;color: black" >Classification </mat-label>
+                             <mat-label style="font-weight:bold;font-size:15px;color: black" >Classification</mat-label>
                         <BR>
-                            <mat-select placeholder="Classification" formControlName="Classification" required>
+                            <mat-select placeholder="Classification" formControlName="Classification"  required>
            
                                         <mat-option *ngFor="let classification of subtaskClassification" [value]="classification.value">
                                               {{classification.viewValue}}
@@ -382,16 +387,16 @@
                                         </mat-option>  
     
                             </mat-select>
-    
+     
                      <!-- Validation Error Message -->
-                        <mat-error *ngIf="subtaskForm.controls.Classification.invalid">
+                        <!-- <mat-error *ngIf="subtaskForm.controls.Classification.invalid">
                               <span [hidden]="!subtaskForm.controls['Classification'].errors.required">
                                     Please select Task Classification.
                               </span>
                          </mat-error>
                     
                     </mat-form-field>
-            </div>
+            </div> --> 
               <!-- upload coloumn  -->
    
       <!-- <div class="col-md-4 " style="margin-top:22px">
@@ -407,7 +412,7 @@
   
     <div class="col-md-4">
            <div class="w-100">
-               <mat-label style="font-weight:bold;font-size:15px;color: black;display: block; margin-bottom: 5px;">Description</mat-label>
+               <mat-label style="font-weight:bold;font-size:13px;color: black;display: block; margin-bottom: 5px;">Description</mat-label>
        
               <textarea class="form-control rounded-0" style="font-size: 15px" id="subtaskDescription" Placeholder="Description" rows="3"  formControlName= "SubTask_Description"></textarea>
           </div>      
@@ -417,7 +422,7 @@
   
        <div class="col-md-4">
              <div class="w-100">
-                  <mat-label style="font-weight:bold;font-size:15px;color: black;  display: block; margin-bottom: 5px;">Acceptance Criteria</mat-label>
+                  <mat-label style="font-weight:bold;font-size:13px;color: black;  display: block; margin-bottom: 5px;">Acceptance Criteria</mat-label>
   
                  <textarea class="form-control rounded-0" style="font-size: 15px"   Placeholder="acceptance criteria" rows="3"   formControlName= "SubTaskAcceptance_Criteria"></textarea>
             </div>
@@ -432,7 +437,7 @@
         <mat-expansion-panel>
              <mat-expansion-panel-header>
                <mat-panel-title>
-                   <mat-label style="font-weight:bold;font-size:15px;color: black">Efforts</mat-label>
+                   <mat-label style="font-weight:bold;font-size:13px;color: black">Efforts</mat-label>
                </mat-panel-title>
                <mat-panel-description>
                  Type Original Estimate
@@ -487,7 +492,7 @@
              <button mat-button  class="btn btn-success ml-3"  (click)="SaveTaskInDB()" [disabled]="!subtaskForm.valid" matTooltip="Save SubTask" type="button"><i class="fa fa-save" aria-hidden="true"></i>{{formType}} Subtask</button>
           
 
-             <button mat-button class="btn btn-secondary ml-3" (click)="discard()"><i class="fa fa-times" aria-hidden="true"></i>
+             <button mat-button class="btn btn-secondary ml-3" (click)="discard()"><i class="fa fa-times" aria-hidden="true"  matTooltip="Cancel Task"></i>
                    Cancel</button>
              <button mat-button class="btn btn-secondary ml-3" [routerLink]="['/tasks']"><i class="fa fa-backward" aria-hidden="true"  type="button"></i>
                    Back</button>

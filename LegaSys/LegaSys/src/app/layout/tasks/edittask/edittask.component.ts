@@ -34,6 +34,7 @@ export class EdittaskComponent implements OnInit {
   subtaskActivity:any;
   taskStartDate:any;
   taskTargetDate:any;
+  updatedBy :any;
 
  
   taskActivity:any=[];
@@ -53,7 +54,7 @@ export class EdittaskComponent implements OnInit {
         Description: [''],
         Project_ID: [0, Validators.required],
         projectDescription:[''],
-        acceptancecriteria:[''],
+        Acceptance_Criteria:[''],
         Status_Id: ['', Validators.required],
         Priority_Id: ['', Validators.required],
        // Risk_Id: ['', Validators.required],
@@ -119,7 +120,8 @@ export class EdittaskComponent implements OnInit {
         this.taskAssignTo=this.dataSource.Task_AssignTo;
         this.subtaskActivity=this.dataSource.Task_Activity;
         this.taskStartDate = this.dataSource.Start_Date;
-        this.taskTargetDate=this.dataSource.Target_Date
+        this.taskTargetDate=this.dataSource.Target_Date;
+      
 
 
         localStorage.setItem("projectTitle" , this.projectTitle );
@@ -148,10 +150,11 @@ export class EdittaskComponent implements OnInit {
   UpdateTaskByID()
    {
      debugger;
-
+  
+    this.updatedBy=localStorage.getItem('userDetailsID');
     this.taskeditForm.value.ProjectTaskID = this.Id;
     this.taskeditForm.value.Project_ID = this.dataSource.Project_ID;
-    this.dataService.UpdateProjectTaskDetail(this.taskeditForm.value).subscribe
+    this.dataService.UpdateProjectTaskDetail(this.updatedBy,this.taskeditForm.value).subscribe
     (
       res => {
        

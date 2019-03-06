@@ -37,7 +37,8 @@ import { MatDatepickerModule,
         MatDatepickerModule,
         MatIconModule,
         MatNativeDateModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatIconModule
     ],
 
 

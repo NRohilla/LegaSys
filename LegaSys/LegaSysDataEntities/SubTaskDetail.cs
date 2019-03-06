@@ -17,7 +17,10 @@ namespace LegaSysDataEntities
         public Nullable<int> ProjectUpdated_By { get; set; }
         public string TaskTitle { get; set; }
         public string Description { get; set; }
+
+        public int Created_By { get; set; }
         public Nullable<System.DateTime> ProjectTask_Created_Date { get; set; }
+        public int Updated_By { get; set; }
         public Nullable<System.DateTime> projectTask_Updated_Date { get; set; }
         public string AttachmentPath { get; set; }
         public string AttachmentType { get; set; }
@@ -42,6 +45,7 @@ public Nullable<System.DateTime> SubTaskStart_Date { get; set; }
 public Nullable<double> SubTaskOriginal_Estimate { get; set; }
 public Nullable<double> Remaining { get; set; }
 public Nullable<double> Completed { get; set; }
+
 
 
 

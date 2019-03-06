@@ -14,7 +14,7 @@ import {MatCardModule} from '@angular/material/card';
 import {DeleteDialog} from './deleteDialog';   
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { JwtModule } from '@auth0/angular-jwt';
+//import { JwtModule } from '@auth0/angular-jwt';
 
 import { ClientProjectsComponent } from './components/client-projects.component';
 
@@ -39,8 +39,8 @@ import { ClientProjectsComponent } from './components/client-projects.component'
     MatCardModule,
     MatTooltipModule,
     MatSnackBarModule,
-    JwtModule.forRoot({   
-    })
+    // JwtModule.forRoot({   
+    // })
    
   ],
   providers: [ClientServiceService],

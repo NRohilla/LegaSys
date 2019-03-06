@@ -16,7 +16,7 @@ namespace LegaSysUOW.Interface
         bool CreateProjectSubTaskDetail( int id,SubTaskDetail objSubTask);
         IEnumerable<SubTaskDetail> GetAllProjectSubTaskbyTaskId(int id);
         void DeleteProjectSubTask(int id);
-        int UpdateSubTaskDetail(SubTaskDetail objsubTask);
+        int UpdateSubTaskDetail(int id,SubTaskDetail objsubTask);
 
         // string addAttechmentonServer(HttpPostedFile postedFile);
    

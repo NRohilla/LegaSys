@@ -167,16 +167,7 @@ namespace LegaSysUOW.Repository
                                    EmailID3 = c.EmailID3,
                                    CoClient = c.CoClient,
 
-                                   //ProjectDomainName = t.DomainName,
-                                   //Resource_ID = x.resources.Resource_ID.Value,
-                                   //ProjectTaskID = x.task.ProjectTaskID,
-                                   //TaskTitle = x.task.Title,
-                                   //TaskDescription = x.task.Description,
-                                   //TaskAttachmentID = x.task.Attachment_ID.Value,
-                                   //ProjectSubTaskID = x.subtask.ProjectSubTaskID,
-                                   //SubTaskTitle = x.subtask.Title,
-                                   //SubTaskDescription = x.subtask.Description,
-                                   //SubTaskAttachmentID = x.subtask.Attachment_ID.Value
+                                 
                                }).AsEnumerable();
             return allprojects;
         }
@@ -318,7 +309,7 @@ namespace LegaSysUOW.Repository
         {
             try
             {
-                //var project = db.LegaSys_ProjectResources.FirstOrDefault(x => (x.Resource_ID == projectDetail.projectResources.Resource_ID && x.Project_ID == projectDetail.ProjectID));
+               
                 var project = db.LegaSys_ProjectResources.FirstOrDefault();
                 project.IsResourceActive = 0; //set resource to inactive/false
                 db.SaveChanges();
@@ -337,7 +328,7 @@ namespace LegaSysUOW.Repository
             {
                 int pid = projectDetail.ProjectID;
                 int rid, msid;
-                //var dprojectDetail = projectDetail.Distinct();
+              
 
 
                 List<ProjectResources> resourcelist = GetAllResourceOnProject(pid);
@@ -363,8 +354,7 @@ namespace LegaSysUOW.Repository
                     }
                     else //no resource found working on project
                     {
-                        //check if resource has worked previously on the project or not,if yes then  activate that resource
-                        //else create new record
+                      
                         var res = db.LegaSys_ProjectResources.Where(x => x.Resource_ID == rid && x.Project_ID == pid).FirstOrDefault();
                         if (res != null)
                         {
@@ -380,8 +370,7 @@ namespace LegaSysUOW.Repository
                             };
                             db.LegaSys_ProjectResources.Add(pr);
                         }
-                        //var ur= db.LegaSys_UserDetails.Where(x => x.UserDetailID == projectDetail[i].Resource_ID).FirstOrDefault();
-                        //CheckResourceShift(rid, msid);
+                       
                     }
                     CheckResourceShift(rid, msid);
                 }
@@ -408,8 +397,7 @@ namespace LegaSysUOW.Repository
 
         public IEnumerable<ProjectDetail> GetAllActiveProjects()
         {
-            //var activeprojects = GetAllProjects().Where(x => x.Status == 1).ToList();
-            //return activeprojects;
+            
 
             var allprojects = (from projects in db.LegaSys_Projects.Where(x => x.Status == 1)
                                select new { projects }).AsEnumerable()
